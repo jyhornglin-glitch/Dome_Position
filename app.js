@@ -484,6 +484,13 @@ document.addEventListener('DOMContentLoaded', () => {
       maxOffset = Math.max(maxOffset, Math.abs(pt.dx_rel), Math.abs(pt.dy_rel));
     });
     
+    // Always include Stage B center (-6, 37) in the visible map area
+    if (!homeCoord.isText) {
+      const stageB_dx_rel = -6 - homeCoord.x;
+      const stageB_dy_rel = 37 - homeCoord.y;
+      maxOffset = Math.max(maxOffset, Math.abs(stageB_dx_rel), Math.abs(stageB_dy_rel));
+    }
+    
     // Determine MAX_GRID_COORD and GRID_SPACING dynamically
     MAX_GRID_COORD = 4;
     while (MAX_GRID_COORD < maxOffset + 1.5) {
