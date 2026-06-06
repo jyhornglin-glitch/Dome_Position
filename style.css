@@ -1679,3 +1679,29 @@ svg {
   font-size: 10px;
   padding: 5px 10px;
 }
+
+/* Trajectory Toggle Checkbox */
+.trajectory-toggle-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  user-select: none;
+}
+
+.trajectory-toggle-container input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  accent-color: var(--blue-color);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.trajectory-toggle-container label {
+  cursor: pointer;
+  font-weight: 600;
+}

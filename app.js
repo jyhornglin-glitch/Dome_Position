@@ -276,6 +276,13 @@ document.addEventListener('DOMContentLoaded', () => {
         syncActiveCardAndStep();
       }
     });
+
+    const showFullTrajectory = document.getElementById('showFullTrajectory');
+    if (showFullTrajectory) {
+      showFullTrajectory.addEventListener('change', () => {
+        drawLocalGridPath();
+      });
+    }
   }
 
   function resetToEmptyState() {
@@ -288,6 +295,12 @@ document.addEventListener('DOMContentLoaded', () => {
   function selectPerformer(performer) {
     currentPerformer = performer;
     activeFormationIdx = 0; // Reset active formation index to 0 (Basic)
+    
+    // Reset trajectory toggle checkbox to unchecked
+    const showFullTrajectory = document.getElementById('showFullTrajectory');
+    if (showFullTrajectory) {
+      showFullTrajectory.checked = false;
+    }
     
     const fields = getPerformerFields(performer);
     
@@ -439,6 +452,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const svgEl = targetSvg || document.getElementById('localGridSvg');
     const fIdx = (targetIdx !== null) ? targetIdx : activeFormationIdx;
     const isMainSvg = (svgEl === document.getElementById('localGridSvg'));
+    
+    const showFullToggle = document.getElementById('showFullTrajectory');
+    const showFull = (targetSvg === null && showFullToggle) ? showFullToggle.checked : false;
     
     // Save original scales to avoid preview rendering overriding main scales
     const originalMaxGridCoord = MAX_GRID_COORD;
@@ -756,6 +772,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Draw all transition path segments sequentially
     for (let i = 0; i < allPoints.length - 1; i++) {
+      if (!showFull && i + 1 > fIdx) continue;
+      
       const startPt = allPoints[i];
       const endPt = allPoints[i + 1];
       
@@ -779,6 +797,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Render Display Nodes on SVG
     pointsToDisplay.forEach(pt => {
+      if (!showFull && pt.index !== 0 && pt.index !== fIdx && pt.index !== fIdx - 1) {
+        return;
+      }
+      
       const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
       g.setAttribute('class', `path-point pt-${pt.key} role-${pt.role} ${pt.key === formations[fIdx].key ? 'active-formation' : ''}`);
       g.setAttribute('id', `local-point-${pt.key}`);
