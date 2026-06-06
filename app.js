@@ -54,6 +54,23 @@ document.addEventListener('DOMContentLoaded', () => {
     { key: 'bigV', name: '大Ｖ小Ｖ隊形', label: '大V小V' }
   ];
 
+  // Get coordinate and name dynamically to handle inconsistent data keys in data.js
+  function getPerformerFields(performer) {
+    if (!performer) return { coordinate: '', name: '' };
+    // Check if the 'name' field contains digits or hyphens, indicating it is the coordinate
+    if (/[\d-]/.test(performer.name)) {
+      return {
+        coordinate: performer.name,
+        name: performer.id
+      };
+    } else {
+      return {
+        coordinate: performer.id,
+        name: performer.name
+      };
+    }
+  }
+
   // Initialize App
   init();
 
@@ -172,12 +189,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     list.forEach(p => {
+      const fields = getPerformerFields(p);
       const div = document.createElement('div');
       div.className = 'autocomplete-item';
       
       const textDiv = document.createElement('div');
       textDiv.className = 'name-id';
-      textDiv.innerHTML = `${p.name} <span>(${p.id})</span>`;
+      textDiv.innerHTML = `${fields.name} <span>(${fields.coordinate})</span>`;
       
       const badge = document.createElement('span');
       badge.className = `category-badge cat-${p.category}`;
@@ -188,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       div.addEventListener('click', () => {
         selectPerformer(p);
-        searchInput.value = p.name;
+        searchInput.value = fields.name;
         autocompleteList.style.display = 'none';
       });
       
@@ -269,13 +287,15 @@ document.addEventListener('DOMContentLoaded', () => {
     currentPerformer = performer;
     activeFormationIdx = 0; // Reset active formation index to 0 (Basic)
     
+    const fields = getPerformerFields(performer);
+    
     // Update summary card
-    perfAvatar.textContent = performer.name.charAt(0);
+    perfAvatar.textContent = fields.name.charAt(0);
     perfAvatar.className = `performer-avatar cat-${performer.category}`;
-    perfName.textContent = performer.name;
+    perfName.textContent = fields.name;
     perfCategory.textContent = performer.category;
     perfCategory.className = `meta-badge cat-${performer.category}`;
-    perfID.textContent = `身分證: ${performer.id}`;
+    perfID.textContent = `身分證: ${fields.coordinate}`;
     
     // Show main view
     emptyState.style.display = 'none';
@@ -298,6 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Update detail cards values & icons
   function updateFormationCards() {
+    const fields = getPerformerFields(currentPerformer);
     formations.forEach(f => {
       const card = document.getElementById(`card-${f.key}`);
       const coordBadge = document.getElementById(`coord-${f.key}`);
@@ -306,7 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const vectorPrev = document.getElementById(`vector-${f.key}-prev`);
       
       let coordStr = '';
-      if (f.key === 'basic') coordStr = currentPerformer.name;
+      if (f.key === 'basic') coordStr = fields.coordinate;
       else if (f.key === 'circle') coordStr = currentPerformer.circle;
       else if (f.key === 'xingYuan') coordStr = currentPerformer.xingYuan;
       else if (f.key === 'jingSi') coordStr = currentPerformer.jingSi;
@@ -315,10 +336,10 @@ document.addEventListener('DOMContentLoaded', () => {
       coordBadge.textContent = coordStr;
       
       // Render HTML landmark icons
-      drawHtmlLandmarkIcon(iconWrapper, f.key, currentPerformer.category, currentPerformer.id);
+      drawHtmlLandmarkIcon(iconWrapper, f.key, currentPerformer.category, fields.name);
       
       const currentCoord = parseCoordinate(coordStr);
-      const basicCoord = parseCoordinate(currentPerformer.name);
+      const basicCoord = parseCoordinate(fields.coordinate);
       
       // Calculate relative step descriptions
       if (f.key === 'basic') {
@@ -328,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const prevKey = formations[formations.findIndex(x => x.key === f.key) - 1].key;
         let prevCoordStr = '';
-        if (prevKey === 'basic') prevCoordStr = currentPerformer.name;
+        if (prevKey === 'basic') prevCoordStr = fields.coordinate;
         else if (prevKey === 'circle') prevCoordStr = currentPerformer.circle;
         else if (prevKey === 'xingYuan') prevCoordStr = currentPerformer.xingYuan;
         else if (prevKey === 'jingSi') prevCoordStr = currentPerformer.jingSi;
@@ -411,15 +432,16 @@ document.addEventListener('DOMContentLoaded', () => {
   function drawLocalGridPath() {
     if (!currentPerformer) return;
     
+    const fields = getPerformerFields(currentPerformer);
     // Home coordinates
-    const homeCoord = parseCoordinate(currentPerformer.name);
+    const homeCoord = parseCoordinate(fields.coordinate);
     const category = currentPerformer.category;
 
     // Calculate dynamic scale based on maximum coordinate offset of points to display
     let maxOffset = 0;
     const tempPoints = formations.map((f) => {
       let coordStr = '';
-      if (f.key === 'basic') coordStr = currentPerformer.name;
+      if (f.key === 'basic') coordStr = fields.coordinate;
       else if (f.key === 'circle') coordStr = currentPerformer.circle;
       else if (f.key === 'xingYuan') coordStr = currentPerformer.xingYuan;
       else if (f.key === 'jingSi') coordStr = currentPerformer.jingSi;
@@ -528,13 +550,13 @@ document.addEventListener('DOMContentLoaded', () => {
     centerText.setAttribute('y', GRID_CENTER_Y - 10);
     centerText.setAttribute('fill', 'var(--red-color)');
     centerText.setAttribute('font-weight', 'bold');
-    centerText.textContent = `身分證 (${currentPerformer.id})`;
+    centerText.textContent = `身分證 (${fields.name})`;
     localGridLines.appendChild(centerText);
     
     // Calculate relative coordinates and map to SVG coords
     const allPoints = formations.map((f, idx) => {
       let coordStr = '';
-      if (f.key === 'basic') coordStr = currentPerformer.name;
+      if (f.key === 'basic') coordStr = fields.coordinate;
       else if (f.key === 'circle') coordStr = currentPerformer.circle;
       else if (f.key === 'xingYuan') coordStr = currentPerformer.xingYuan;
       else if (f.key === 'jingSi') coordStr = currentPerformer.jingSi;
@@ -703,7 +725,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mapMovementGuide) {
       const f = formations[activeFormationIdx];
       let coordStr = '';
-      if (f.key === 'basic') coordStr = currentPerformer.name;
+      if (f.key === 'basic') coordStr = fields.coordinate;
       else if (f.key === 'circle') coordStr = currentPerformer.circle;
       else if (f.key === 'xingYuan') coordStr = currentPerformer.xingYuan;
       else if (f.key === 'jingSi') coordStr = currentPerformer.jingSi;
@@ -715,7 +737,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         const prevKey = formations[activeFormationIdx - 1].key;
         let prevCoordStr = '';
-        if (prevKey === 'basic') prevCoordStr = currentPerformer.name;
+        if (prevKey === 'basic') prevCoordStr = fields.coordinate;
         else if (prevKey === 'circle') prevCoordStr = currentPerformer.circle;
         else if (prevKey === 'xingYuan') prevCoordStr = currentPerformer.xingYuan;
         else if (prevKey === 'jingSi') prevCoordStr = currentPerformer.jingSi;
@@ -815,6 +837,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Render step navigation flow walkthrough list
   function updateNavigationSteps() {
     navStepsFlow.innerHTML = '';
+    const fields = getPerformerFields(currentPerformer);
     
     formations.forEach((f, idx) => {
       const item = document.createElement('div');
@@ -831,7 +854,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title.className = 'nav-step-title';
       
       let coordStr = '';
-      if (f.key === 'basic') coordStr = currentPerformer.name;
+      if (f.key === 'basic') coordStr = fields.coordinate;
       else if (f.key === 'circle') coordStr = currentPerformer.circle;
       else if (f.key === 'xingYuan') coordStr = currentPerformer.xingYuan;
       else if (f.key === 'jingSi') coordStr = currentPerformer.jingSi;
@@ -858,7 +881,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         const prevKey = formations[idx - 1].key;
         let prevCoordStr = '';
-        if (prevKey === 'basic') prevCoordStr = currentPerformer.name;
+        if (prevKey === 'basic') prevCoordStr = fields.coordinate;
         else if (prevKey === 'circle') prevCoordStr = currentPerformer.circle;
         else if (prevKey === 'xingYuan') prevCoordStr = currentPerformer.xingYuan;
         else if (prevKey === 'jingSi') prevCoordStr = currentPerformer.jingSi;
