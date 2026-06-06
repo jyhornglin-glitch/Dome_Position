@@ -81,6 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupFilters();
     setupMobileTabs();
     setupEventListeners();
+    setupDownloadListeners();
   }
 
   // Real-time status bar clock
@@ -408,7 +409,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Draw Dynamic SVG Landmark Image inside grid map using PNG stickers
-  function drawSvgLandmarkImage(parentGroup, type, category, x, y, size) {
+  function drawSvgLandmarkImage(parentGroup, type, category, x, y, size, isMainSvg = true) {
     const img = document.createElementNS('http://www.w3.org/2000/svg', 'image');
     img.setAttributeNS('http://www.w3.org/1999/xlink', 'href', `images/stickers/${type}_${category}.png`);
     img.setAttribute('x', x - size / 2);
@@ -417,21 +418,31 @@ document.addEventListener('DOMContentLoaded', () => {
     img.setAttribute('height', size);
     img.setAttribute('class', 'svg-sticker-image');
     
-    // Add click event to image to sync active formation
-    img.addEventListener('click', () => {
-      const idx = formations.findIndex(x => x.key === type);
-      activeFormationIdx = idx;
-      updateFormationControls();
-      drawLocalGridPath();
-      syncActiveCardAndStep();
-    });
+    if (isMainSvg) {
+      // Add click event to image to sync active formation
+      img.addEventListener('click', () => {
+        const idx = formations.findIndex(x => x.key === type);
+        activeFormationIdx = idx;
+        updateFormationControls();
+        drawLocalGridPath();
+        syncActiveCardAndStep();
+      });
+    }
     
     parentGroup.appendChild(img);
   }
 
   // Draw relative coordinate grid path centered at basic ID (0,0) (standard unrotated axes)
-  function drawLocalGridPath() {
+  function drawLocalGridPath(targetSvg = null, targetIdx = null) {
     if (!currentPerformer) return;
+    
+    const svgEl = targetSvg || document.getElementById('localGridSvg');
+    const fIdx = (targetIdx !== null) ? targetIdx : activeFormationIdx;
+    const isMainSvg = (svgEl === document.getElementById('localGridSvg'));
+    
+    // Save original scales to avoid preview rendering overriding main scales
+    const originalMaxGridCoord = MAX_GRID_COORD;
+    const originalGridSpacing = GRID_SPACING;
     
     const fields = getPerformerFields(currentPerformer);
     // Home coordinates
@@ -463,9 +474,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     const displayedIndices = [0];
-    if (activeFormationIdx > 0) {
-      displayedIndices.push(activeFormationIdx - 1);
-      displayedIndices.push(activeFormationIdx);
+    if (fIdx > 0) {
+      displayedIndices.push(fIdx - 1);
+      displayedIndices.push(fIdx);
     }
     
     displayedIndices.forEach(idx => {
@@ -492,13 +503,18 @@ document.addEventListener('DOMContentLoaded', () => {
       labelStep = 8;
     }
     
-    stageWatermark.innerHTML = '';
-    localGridLines.innerHTML = '';
-    localPathSegments.innerHTML = '';
-    localPathPoints.innerHTML = '';
+    const wmkGroup = svgEl.querySelector('.stage-watermark') || svgEl.querySelector('#stageWatermark');
+    const linesGroup = svgEl.querySelector('.grid-lines') || svgEl.querySelector('#localGridLines');
+    const pathSegmentsGroup = svgEl.querySelector('#localPathSegments');
+    const pathPointsGroup = svgEl.querySelector('#localPathPoints');
+    
+    wmkGroup.innerHTML = '';
+    linesGroup.innerHTML = '';
+    pathSegmentsGroup.innerHTML = '';
+    pathPointsGroup.innerHTML = '';
     
     // Update grid clipping path rect
-    const gridClipRect = document.getElementById('gridClipRect');
+    const gridClipRect = svgEl.querySelector('#gridClipRect') || svgEl.querySelector('clipPath rect');
     if (gridClipRect) {
       gridClipRect.setAttribute('x', GRID_CENTER_X - MAX_GRID_COORD * GRID_SPACING);
       gridClipRect.setAttribute('y', GRID_CENTER_Y - MAX_GRID_COORD * GRID_SPACING);
@@ -509,7 +525,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Draw Stage B blueprint watermark background
     if (!homeCoord.isText) {
       // 0. Draw Stage Background to mask the grid lines underneath
-      // Runway Background: Col = -8 to -2, running vertically
       const bg_x1_rel = -8 - homeCoord.x;
       const bg_y1_rel = -MAX_GRID_COORD;
       const bg_svgTopLeft = gridToSvg(bg_x1_rel, bg_y1_rel);
@@ -522,7 +537,7 @@ document.addEventListener('DOMContentLoaded', () => {
       bgRect.setAttribute('width', bg_width);
       bgRect.setAttribute('height', bg_height);
       bgRect.setAttribute('class', 'watermark-bg');
-      stageWatermark.appendChild(bgRect);
+      wmkGroup.appendChild(bgRect);
       
       // Stage B Circular Background: Col = -6, Row = 37, Radius = 10.5
       const stageB_dx_rel = -6 - homeCoord.x;
@@ -534,7 +549,7 @@ document.addEventListener('DOMContentLoaded', () => {
       bgCircle.setAttribute('cy', stageB_svg.y);
       bgCircle.setAttribute('r', 10.5 * GRID_SPACING);
       bgCircle.setAttribute('class', 'watermark-bg');
-      stageWatermark.appendChild(bgCircle);
+      wmkGroup.appendChild(bgCircle);
 
       // 1. Draw Runway Central Rectangle: Col = -8 to -4, Row = 32 to 42
       const rect_x1_rel = -8 - homeCoord.x;
@@ -549,28 +564,23 @@ document.addEventListener('DOMContentLoaded', () => {
       rect.setAttribute('width', rect_width);
       rect.setAttribute('height', rect_height);
       rect.setAttribute('class', 'watermark-rect');
-      stageWatermark.appendChild(rect);
+      wmkGroup.appendChild(rect);
       
       // 2. Draw 13 bulging concentric lines representing stage B circles and runway steps
-      // Radii range from 4.5 to 10.5 in steps of 0.5
       for (let i = 0; i <= 12; i++) {
         const R_i = 4.5 + i * 0.5;
-        // Runway offset at top and bottom (representing steps width 2.0 to 4.0 relative to center -6)
         const W_i = 2.0 + i * (2.0 / 12.0);
         
-        // Relative column coordinates for left, mid, right
         const col_top = -6 + W_i - homeCoord.x;
         const col_mid = -6 + R_i - homeCoord.x;
         const col_bottom = -6 + W_i - homeCoord.x;
         
-        // Rel rows for transition points
         const row_top_start = -MAX_GRID_COORD;
         const row_top_curve = 37 - 12 - homeCoord.y;
         const row_mid = 37 - homeCoord.y;
         const row_bottom_curve = 37 + 12 - homeCoord.y;
         const row_bottom_end = MAX_GRID_COORD;
         
-        // Project to SVG coordinates
         const x_top = GRID_CENTER_X + col_top * GRID_SPACING;
         const x_mid = GRID_CENTER_X + col_mid * GRID_SPACING;
         const x_bottom = GRID_CENTER_X + col_bottom * GRID_SPACING;
@@ -581,11 +591,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const y_bottom_curve = GRID_CENTER_Y + row_bottom_curve * GRID_SPACING;
         const y_bottom_end = GRID_CENTER_Y + row_bottom_end * GRID_SPACING;
         
-        // Cubic bezier control Y coordinates
         const y_control_top = GRID_CENTER_Y + (37 - 6 - homeCoord.y) * GRID_SPACING;
         const y_control_bottom = GRID_CENTER_Y + (37 + 6 - homeCoord.y) * GRID_SPACING;
         
-        // Construct SVG path string
         const pathD = `M ${x_top} ${y_top_start} ` +
                       `L ${x_top} ${y_top_curve} ` +
                       `C ${x_top} ${y_control_top}, ${x_mid} ${y_control_top}, ${x_mid} ${y_mid} ` +
@@ -596,29 +604,24 @@ document.addEventListener('DOMContentLoaded', () => {
         path.setAttribute('d', pathD);
         path.setAttribute('fill', 'none');
         
-        // Alternate colors: odd indices (yellow), even indices (gray)
         if (i % 2 === 1) {
           path.setAttribute('class', 'watermark-line-yellow');
         } else {
-          // Highlight outermost boundary line (index 12, R = 10.5)
           if (i === 12) {
             path.setAttribute('class', 'watermark-line-accent');
           } else {
             path.setAttribute('class', 'watermark-line');
           }
         }
-        stageWatermark.appendChild(path);
+        wmkGroup.appendChild(path);
       }
       
       // 3. Draw radial stairs/steps on Stage B: radiating from center (-6, 37)
-      // Since it's centered at Col = -6, Row = 37:
-      
-      // Radial stairs radiating outwards to the right (angles from -45 to 45)
       const angles = [-45, -30, -15, 0, 15, 30, 45];
       angles.forEach(angle => {
         const rad = (angle * Math.PI) / 180;
-        const r_start = 4.5 * GRID_SPACING; // Innermost step circle
-        const r_end = 10.5 * GRID_SPACING;  // Outermost step circle
+        const r_start = 4.5 * GRID_SPACING;
+        const r_end = 10.5 * GRID_SPACING;
         
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         line.setAttribute('x1', stageB_svg.x + r_start * Math.cos(rad));
@@ -626,7 +629,7 @@ document.addEventListener('DOMContentLoaded', () => {
         line.setAttribute('x2', stageB_svg.x + r_end * Math.cos(rad));
         line.setAttribute('y2', stageB_svg.y + r_end * Math.sin(rad));
         line.setAttribute('class', 'watermark-line');
-        stageWatermark.appendChild(line);
+        wmkGroup.appendChild(line);
       });
       
       // 4. Draw Faint text label "乙舞台" centered at (-6, 37)
@@ -635,34 +638,33 @@ document.addEventListener('DOMContentLoaded', () => {
       stageBText.setAttribute('y', stageB_svg.y + 3);
       stageBText.setAttribute('class', 'watermark-text');
       stageBText.textContent = '乙舞台';
-      stageWatermark.appendChild(stageBText);
+      wmkGroup.appendChild(stageBText);
     }
     
     // Draw background grid lines (centered at 180, 180) - horizontal and vertical
     for (let i = -MAX_GRID_COORD; i <= MAX_GRID_COORD; i++) {
       const posOffset = i * GRID_SPACING;
       
-      // Vertical line (constant X offset, running vertically along Y)
+      // Vertical line
       const vLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
       vLine.setAttribute('x1', GRID_CENTER_X + posOffset);
       vLine.setAttribute('y1', GRID_CENTER_Y - MAX_GRID_COORD * GRID_SPACING);
       vLine.setAttribute('x2', GRID_CENTER_X + posOffset);
       vLine.setAttribute('y2', GRID_CENTER_Y + MAX_GRID_COORD * GRID_SPACING);
       if (i === 0) vLine.setAttribute('class', 'axis');
-      localGridLines.appendChild(vLine);
+      linesGroup.appendChild(vLine);
       
-      // Horizontal line (constant Y offset, running horizontally along X)
+      // Horizontal line
       const hLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
       hLine.setAttribute('x1', GRID_CENTER_X - MAX_GRID_COORD * GRID_SPACING);
       hLine.setAttribute('y1', GRID_CENTER_Y + posOffset);
       hLine.setAttribute('x2', GRID_CENTER_X + MAX_GRID_COORD * GRID_SPACING);
       hLine.setAttribute('y2', GRID_CENTER_Y + posOffset);
       if (i === 0) hLine.setAttribute('class', 'axis');
-      localGridLines.appendChild(hLine);
+      linesGroup.appendChild(hLine);
       
-      // Grid coordinates labels (every labelStep units)
+      // Grid coordinates labels
       if (i % labelStep === 0 && i !== 0) {
-        // Label for Cartesian X (Column index) along the horizontal axis
         const xText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         xText.setAttribute('x', GRID_CENTER_X + posOffset);
         xText.setAttribute('y', GRID_CENTER_Y + 11);
@@ -672,9 +674,8 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           xText.textContent = i > 0 ? `右${i}` : `左${Math.abs(i)}`;
         }
-        localGridLines.appendChild(xText);
+        linesGroup.appendChild(xText);
         
-        // Label for Cartesian Y (Row index) along the vertical axis
         const yText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         yText.setAttribute('x', GRID_CENTER_X - 10);
         yText.setAttribute('y', GRID_CENTER_Y + posOffset + 3);
@@ -684,18 +685,18 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           yText.textContent = i > 0 ? `後${i}` : `前${Math.abs(i)}`;
         }
-        localGridLines.appendChild(yText);
+        linesGroup.appendChild(yText);
       }
     }
     
-    // Add center coordinate label "身分證 (0,0)"
+    // Add center coordinate label "身分證"
     const centerText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     centerText.setAttribute('x', GRID_CENTER_X - 25);
     centerText.setAttribute('y', GRID_CENTER_Y - 10);
     centerText.setAttribute('fill', 'var(--red-color)');
     centerText.setAttribute('font-weight', 'bold');
     centerText.textContent = `身分證 (${fields.name})`;
-    localGridLines.appendChild(centerText);
+    linesGroup.appendChild(centerText);
     
     // Calculate relative coordinates and map to SVG coords
     const allPoints = formations.map((f, idx) => {
@@ -709,19 +710,16 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const coord = parseCoordinate(coordStr);
       
-      // Calculate relative offsets (in grid units)
       let dx_rel = 0;
       let dy_rel = 0;
       if (!coord.isText && !homeCoord.isText) {
         dx_rel = coord.x - homeCoord.x;
         dy_rel = coord.y - homeCoord.y;
       } else if (coord.isText) {
-        // Use pre-mapped mock offsets for text coordinates so they draw visually
         dx_rel = coord.mockX;
         dy_rel = coord.mockY;
       }
       
-      // Project using standard gridToSvg
       const ptSvg = gridToSvg(dx_rel, dy_rel);
       
       return {
@@ -744,7 +742,7 @@ document.addEventListener('DOMContentLoaded', () => {
         role = 'basic';
         roleLabel = '身分證(起點)';
       }
-      if (idx === activeFormationIdx) {
+      if (idx === fIdx) {
         role = 'current';
         roleLabel = `目前: ${pt.label}`;
       }
@@ -755,15 +753,11 @@ document.addEventListener('DOMContentLoaded', () => {
       };
     });
     
-    // Clear old path segments
-    localPathSegments.innerHTML = '';
-    
     // Draw all transition path segments sequentially
     for (let i = 0; i < allPoints.length - 1; i++) {
       const startPt = allPoints[i];
       const endPt = allPoints[i + 1];
       
-      // Only draw if there is actual movement between the steps
       if (startPt.pos.x !== endPt.pos.x || startPt.pos.y !== endPt.pos.y) {
         const pathD = `M ${startPt.pos.x} ${startPt.pos.y} L ${endPt.pos.x} ${endPt.pos.y}`;
         
@@ -771,25 +765,23 @@ document.addEventListener('DOMContentLoaded', () => {
         path.setAttribute('d', pathD);
         path.setAttribute('fill', 'none');
         
-        // Highlight active transition step with animation and gradient
-        if (i + 1 === activeFormationIdx) {
+        if (i + 1 === fIdx) {
           path.setAttribute('class', 'local-path-line');
           path.setAttribute('marker-end', 'url(#local-arrow)');
         } else {
           path.setAttribute('class', 'local-path-line-static');
           path.setAttribute('marker-end', 'url(#local-arrow-static)');
         }
-        localPathSegments.appendChild(path);
+        pathSegmentsGroup.appendChild(path);
       }
     }
     
     // Render Display Nodes on SVG
     pointsToDisplay.forEach(pt => {
       const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-      g.setAttribute('class', `path-point pt-${pt.key} role-${pt.role} ${pt.key === formations[activeFormationIdx].key ? 'active-formation' : ''}`);
+      g.setAttribute('class', `path-point pt-${pt.key} role-${pt.role} ${pt.key === formations[fIdx].key ? 'active-formation' : ''}`);
       g.setAttribute('id', `local-point-${pt.key}`);
       
-      // Background glow circle
       const glowCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       glowCircle.setAttribute('cx', pt.pos.x);
       glowCircle.setAttribute('cy', pt.pos.y);
@@ -805,108 +797,119 @@ document.addEventListener('DOMContentLoaded', () => {
       g.appendChild(glowCircle);
       
       // Render the sticker image (size = 28px)
-      drawSvgLandmarkImage(g, pt.key, category, pt.pos.x, pt.pos.y, 28);
+      drawSvgLandmarkImage(g, pt.key, category, pt.pos.x, pt.pos.y, 28, isMainSvg);
       
-      // Sync on node click
-      g.addEventListener('click', () => {
-        const idx = formations.findIndex(x => x.key === pt.key);
-        activeFormationIdx = idx;
-        updateFormationControls();
-        drawLocalGridPath();
-        syncActiveCardAndStep();
-      });
+      if (isMainSvg) {
+        // Sync on node click
+        g.addEventListener('click', () => {
+          const idx = formations.findIndex(x => x.key === pt.key);
+          activeFormationIdx = idx;
+          updateFormationControls();
+          drawLocalGridPath();
+          syncActiveCardAndStep();
+        });
+      }
       
-      localPathPoints.appendChild(g);
+      pathPointsGroup.appendChild(g);
     });
 
-    // Update top coordinate display bar (only showing Basic, Prev, and Current for clean layout)
-    const coordBar = document.getElementById('mapCoordDisplayBar');
-    if (coordBar) {
-      coordBar.innerHTML = '';
-      
-      const coordBarPoints = [];
-      coordBarPoints.push({
-        ...allPoints[0],
-        role: 'basic',
-        roleLabel: '身分證(起點)'
-      });
-      
-      if (activeFormationIdx > 0) {
-        const prevIdx = activeFormationIdx - 1;
-        if (prevIdx > 0) {
+    // Only update auxiliary UI if we are drawing the main SVG
+    if (isMainSvg) {
+      // Update top coordinate display bar
+      const coordBar = document.getElementById('mapCoordDisplayBar');
+      if (coordBar) {
+        coordBar.innerHTML = '';
+        
+        const coordBarPoints = [];
+        coordBarPoints.push({
+          ...allPoints[0],
+          role: 'basic',
+          roleLabel: '身分證(起點)'
+        });
+        
+        if (activeFormationIdx > 0) {
+          const prevIdx = activeFormationIdx - 1;
+          if (prevIdx > 0) {
+            coordBarPoints.push({
+              ...allPoints[prevIdx],
+              role: 'prev',
+              roleLabel: `上一個: ${allPoints[prevIdx].label}`
+            });
+          } else {
+            coordBarPoints[0].roleLabel = '身分證 (上一個位置)';
+            coordBarPoints[0].isAlsoPrev = true;
+          }
+          
           coordBarPoints.push({
-            ...allPoints[prevIdx],
-            role: 'prev',
-            roleLabel: `上一個: ${allPoints[prevIdx].label}`
+            ...allPoints[activeFormationIdx],
+            role: 'current',
+            roleLabel: `目前: ${allPoints[activeFormationIdx].label}`
           });
         } else {
-          coordBarPoints[0].roleLabel = '身分證 (上一個位置)';
-          coordBarPoints[0].isAlsoPrev = true;
+          coordBarPoints[0].roleLabel = '目前位置 (身分證)';
+          coordBarPoints[0].role = 'current';
         }
         
-        coordBarPoints.push({
-          ...allPoints[activeFormationIdx],
-          role: 'current',
-          roleLabel: `目前: ${allPoints[activeFormationIdx].label}`
+        coordBarPoints.forEach(pt => {
+          const itemDiv = document.createElement('div');
+          itemDiv.className = `map-coord-item ${pt.role === 'current' ? 'active-node' : ''}`;
+          
+          const labelSpan = document.createElement('span');
+          labelSpan.className = 'label';
+          labelSpan.textContent = pt.roleLabel;
+          
+          const valSpan = document.createElement('span');
+          valSpan.className = 'val';
+          if (!pt.coord.isText) {
+            valSpan.textContent = `${pt.coord.text} (-${pt.coord.x.toFixed(1).replace('.0', '')}, ${pt.coord.y.toFixed(1).replace('.0', '')})`;
+          } else {
+            valSpan.textContent = pt.coord.text;
+          }
+          
+          itemDiv.appendChild(labelSpan);
+          itemDiv.appendChild(valSpan);
+          coordBar.appendChild(itemDiv);
         });
-      } else {
-        coordBarPoints[0].roleLabel = '目前位置 (身分證)';
-        coordBarPoints[0].role = 'current';
       }
-      
-      coordBarPoints.forEach(pt => {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = `map-coord-item ${pt.role === 'current' ? 'active-node' : ''}`;
-        
-        const labelSpan = document.createElement('span');
-        labelSpan.className = 'label';
-        labelSpan.textContent = pt.roleLabel;
-        
-        const valSpan = document.createElement('span');
-        valSpan.className = 'val';
-        if (!pt.coord.isText) {
-          valSpan.textContent = `${pt.coord.text} (-${pt.coord.x.toFixed(1).replace('.0', '')}, ${pt.coord.y.toFixed(1).replace('.0', '')})`;
+
+      // Update movement guide text below the map
+      const mapMovementGuide = document.getElementById('mapMovementGuide');
+      if (mapMovementGuide) {
+        const f = formations[activeFormationIdx];
+        let coordStr = '';
+        if (f.key === 'basic') coordStr = fields.coordinate;
+        else if (f.key === 'circle') coordStr = currentPerformer.circle;
+        else if (f.key === 'xingYuan') coordStr = currentPerformer.xingYuan;
+        else if (f.key === 'jingSi') coordStr = currentPerformer.jingSi;
+        else if (f.key === 'lamp') coordStr = currentPerformer.lamp;
+        else if (f.key === 'bigV') coordStr = currentPerformer.bigV;
+
+        if (activeFormationIdx === 0) {
+          mapMovementGuide.innerHTML = `<i class="fa-solid fa-street-view" style="color: var(--red-color); margin-right: 5px;"></i><strong>起點就位</strong>：至身分證座標點 <strong>(${coordStr})</strong> 就定位。`;
         } else {
-          valSpan.textContent = pt.coord.text;
+          const prevKey = formations[activeFormationIdx - 1].key;
+          let prevCoordStr = '';
+          if (prevKey === 'basic') prevCoordStr = fields.coordinate;
+          else if (prevKey === 'circle') prevCoordStr = currentPerformer.circle;
+          else if (prevKey === 'xingYuan') prevCoordStr = currentPerformer.xingYuan;
+          else if (prevKey === 'jingSi') prevCoordStr = currentPerformer.jingSi;
+          else if (prevKey === 'lamp') prevCoordStr = currentPerformer.lamp;
+          
+          const prevCoord = parseCoordinate(prevCoordStr);
+          const currentCoord = parseCoordinate(coordStr);
+          
+          const movement = getVectorDescription(prevCoord, currentCoord);
+          const prevName = formations[activeFormationIdx - 1].name.split(' ')[0];
+          
+          mapMovementGuide.innerHTML = `<i class="fa-solid fa-route" style="color: var(--blue-color); margin-right: 5px;"></i><strong>隊形移動</strong>：從 ${prevName} <strong>(${prevCoordStr})</strong> 移動至 ${f.name.split(' ')[0]} <strong>(${coordStr})</strong>。<br>跑法：<strong>${movement}</strong>。`;
         }
-        
-        itemDiv.appendChild(labelSpan);
-        itemDiv.appendChild(valSpan);
-        coordBar.appendChild(itemDiv);
-      });
-    }
-
-    // Update movement guide text below the map
-    const mapMovementGuide = document.getElementById('mapMovementGuide');
-    if (mapMovementGuide) {
-      const f = formations[activeFormationIdx];
-      let coordStr = '';
-      if (f.key === 'basic') coordStr = fields.coordinate;
-      else if (f.key === 'circle') coordStr = currentPerformer.circle;
-      else if (f.key === 'xingYuan') coordStr = currentPerformer.xingYuan;
-      else if (f.key === 'jingSi') coordStr = currentPerformer.jingSi;
-      else if (f.key === 'lamp') coordStr = currentPerformer.lamp;
-      else if (f.key === 'bigV') coordStr = currentPerformer.bigV;
-
-      if (activeFormationIdx === 0) {
-        mapMovementGuide.innerHTML = `<i class="fa-solid fa-street-view" style="color: var(--red-color); margin-right: 5px;"></i><strong>起點就位</strong>：至身分證座標點 <strong>(${coordStr})</strong> 就定位。`;
-      } else {
-        const prevKey = formations[activeFormationIdx - 1].key;
-        let prevCoordStr = '';
-        if (prevKey === 'basic') prevCoordStr = fields.coordinate;
-        else if (prevKey === 'circle') prevCoordStr = currentPerformer.circle;
-        else if (prevKey === 'xingYuan') prevCoordStr = currentPerformer.xingYuan;
-        else if (prevKey === 'jingSi') prevCoordStr = currentPerformer.jingSi;
-        else if (prevKey === 'lamp') prevCoordStr = currentPerformer.lamp;
-        
-        const prevCoord = parseCoordinate(prevCoordStr);
-        const currentCoord = parseCoordinate(coordStr);
-        
-        const movement = getVectorDescription(prevCoord, currentCoord);
-        const prevName = formations[activeFormationIdx - 1].name.split(' ')[0];
-        
-        mapMovementGuide.innerHTML = `<i class="fa-solid fa-route" style="color: var(--blue-color); margin-right: 5px;"></i><strong>隊形移動</strong>：從 ${prevName} <strong>(${prevCoordStr})</strong> 移動至 ${f.name.split(' ')[0]} <strong>(${coordStr})</strong>。<br>跑法：<strong>${movement}</strong>。`;
       }
+    }
+    
+    // Restore previous scale for preview renders to keep main SVG state pure
+    if (!isMainSvg) {
+      MAX_GRID_COORD = originalMaxGridCoord;
+      GRID_SPACING = originalGridSpacing;
     }
   }
 
@@ -1071,4 +1074,316 @@ document.addEventListener('DOMContentLoaded', () => {
     
     syncActiveCardAndStep();
   }
+
+  // Get base64 representation of an HTML image element
+  function getBase64FromImageEl(imgEl) {
+    try {
+      const canvas = document.createElement('canvas');
+      canvas.width = imgEl.naturalWidth || imgEl.width || 44;
+      canvas.height = imgEl.naturalHeight || imgEl.height || 44;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(imgEl, 0, 0);
+      return canvas.toDataURL('image/png');
+    } catch (e) {
+      console.error('Error getting base64 from image element', e);
+      return imgEl.src;
+    }
+  }
+
+  // Convert SVG element to Canvas and trigger PNG download
+  function downloadSvgAsPng(svgEl, filename) {
+    return new Promise((resolve, reject) => {
+      try {
+        const clonedSvg = svgEl.cloneNode(true);
+        
+        // 1. Convert relative images inside SVG to base64
+        const images = clonedSvg.querySelectorAll('image');
+        images.forEach(img => {
+          const href = img.getAttribute('href') || img.getAttribute('xlink:href');
+          if (href && !href.startsWith('data:')) {
+            const filename = href.split('/').pop();
+            const key = filename.split('_')[0];
+            const cardImg = document.querySelector(`#card-${key} img.landmark-sticker-img`);
+            if (cardImg) {
+              const base64 = getBase64FromImageEl(cardImg);
+              img.setAttribute('href', base64);
+              img.removeAttribute('xlink:href');
+            }
+          }
+        });
+        
+        // 2. Inject style sheet rules
+        const styleEl = document.createElementNS('http://www.w3.org/2000/svg', 'style');
+        styleEl.textContent = `
+          svg {
+            background-color: #ffffff;
+          }
+          .grid-lines line {
+            stroke: rgba(15, 23, 42, 0.06);
+            stroke-width: 0.5px;
+          }
+          .grid-lines line.axis {
+            stroke: rgba(15, 23, 42, 0.2);
+            stroke-width: 1px;
+          }
+          .grid-lines text {
+            font-family: 'Outfit', 'Noto Sans TC', -apple-system, sans-serif;
+            font-size: 8px;
+            fill: rgba(15, 23, 42, 0.65);
+            text-anchor: middle;
+          }
+          .stage-watermark .watermark-bg {
+            fill: #fef08a;
+            stroke: none;
+          }
+          .stage-watermark .watermark-line {
+            fill: none;
+            stroke: #94a3b8;
+            stroke-width: 0.75px;
+          }
+          .stage-watermark .watermark-line-accent {
+            fill: none;
+            stroke: #475569;
+            stroke-width: 1.25px;
+          }
+          .stage-watermark .watermark-line-yellow {
+            fill: none;
+            stroke: #d97706;
+            stroke-width: 0.75px;
+          }
+          .stage-watermark .watermark-rect {
+            fill: #fde047;
+            stroke: #475569;
+            stroke-width: 1.25px;
+          }
+          .stage-watermark .watermark-text {
+            fill: #0f172a;
+            font-family: 'Outfit', 'Noto Sans TC', -apple-system, sans-serif;
+            font-size: 8px;
+            font-weight: bold;
+            text-anchor: middle;
+          }
+          .local-path-line {
+            fill: none;
+            stroke: url(#local-path-grad);
+            stroke-width: 2.5px;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 6, 4;
+          }
+          .local-path-line-static {
+            fill: none;
+            stroke: #0284c7;
+            stroke-width: 1.5px;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            opacity: 0.55;
+          }
+          .path-node-glow {
+            opacity: 0.3;
+          }
+          .path-node-glow.glow-basic {
+            fill: #ef4444;
+          }
+          .path-node-glow.glow-prev {
+            fill: #0284c7;
+          }
+          .path-node-glow.glow-current {
+            fill: #d97706;
+            opacity: 0.5;
+          }
+          .svg-sticker-image {
+            filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.3));
+          }
+        `;
+        clonedSvg.insertBefore(styleEl, clonedSvg.firstChild);
+        
+        // 3. Serialize to XML string
+        const serializer = new XMLSerializer();
+        const svgString = serializer.serializeToString(clonedSvg);
+        
+        // 4. Create blob url
+        const svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+        const URL = window.URL || window.webkitURL || window;
+        const blobURL = URL.createObjectURL(svgBlob);
+        
+        // 5. Draw onto a Canvas
+        const img = new Image();
+        img.onload = () => {
+          try {
+            const canvas = document.createElement('canvas');
+            canvas.width = 720;
+            canvas.height = 720;
+            const ctx = canvas.getContext('2d');
+            
+            // Fill solid white background
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, 720, 720);
+            
+            // Draw SVG
+            ctx.drawImage(img, 0, 0, 720, 720);
+            
+            // Clean URL
+            URL.revokeObjectURL(blobURL);
+            
+            // Trigger download
+            const pngURL = canvas.toDataURL('image/png');
+            const downloadLink = document.createElement('a');
+            downloadLink.href = pngURL;
+            downloadLink.download = filename;
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+            resolve();
+          } catch (err) {
+            reject(err);
+          }
+        };
+        img.onerror = (err) => {
+          URL.revokeObjectURL(blobURL);
+          reject(err);
+        };
+        img.src = blobURL;
+      } catch (err) {
+        reject(err);
+      }
+    });
+  }
+
+  // Setup Download & Modal Event Listeners
+  function setupDownloadListeners() {
+    const downloadCurrentBtn = document.getElementById('downloadCurrentBtn');
+    const viewAllMapsBtn = document.getElementById('viewAllMapsBtn');
+    const allMapsModal = document.getElementById('allMapsModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const downloadAllBtn = document.getElementById('downloadAllBtn');
+    const modalBody = document.getElementById('modalBody');
+    const modalTitle = document.getElementById('modalTitle');
+
+    // 1. Download Current map view
+    downloadCurrentBtn.addEventListener('click', () => {
+      if (!currentPerformer) return;
+      const fields = getPerformerFields(currentPerformer);
+      const f = formations[activeFormationIdx];
+      const filename = `${fields.name}_${fields.coordinate}_${activeFormationIdx + 1}_${f.label}.png`;
+      
+      downloadCurrentBtn.disabled = true;
+      const originalText = downloadCurrentBtn.innerHTML;
+      downloadCurrentBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> 下載中...`;
+      
+      downloadSvgAsPng(document.getElementById('localGridSvg'), filename)
+        .finally(() => {
+          downloadCurrentBtn.disabled = false;
+          downloadCurrentBtn.innerHTML = originalText;
+        });
+    });
+
+    // 2. Open Modal & render previews
+    viewAllMapsBtn.addEventListener('click', () => {
+      if (!currentPerformer) return;
+      const fields = getPerformerFields(currentPerformer);
+      
+      modalTitle.textContent = `${fields.name} (${fields.coordinate}) - 所有隊形定點圖`;
+      modalBody.innerHTML = '';
+      
+      // Render 6 previews inside modal
+      formations.forEach((f, idx) => {
+        const card = document.createElement('div');
+        card.className = 'modal-map-card';
+        
+        const title = document.createElement('div');
+        title.className = 'modal-map-title';
+        title.textContent = `${String(idx + 1).padStart(2, '0')}. ${f.name}`;
+        
+        const previewDiv = document.createElement('div');
+        previewDiv.className = 'modal-map-preview';
+        
+        // Clone main SVG structure
+        const previewSvg = document.getElementById('localGridSvg').cloneNode(true);
+        previewSvg.removeAttribute('id');
+        previewSvg.setAttribute('style', 'pointer-events: none;');
+        previewSvg.querySelector('.grid-lines').innerHTML = '';
+        previewSvg.querySelector('.stage-watermark').innerHTML = '';
+        previewSvg.querySelector('#localPathSegments').innerHTML = '';
+        previewSvg.querySelector('#localPathPoints').innerHTML = '';
+        
+        // Render into clone SVG
+        drawLocalGridPath(previewSvg, idx);
+        
+        previewDiv.appendChild(previewSvg);
+        
+        // Download button
+        const dlBtn = document.createElement('button');
+        dlBtn.className = 'control-btn modal-map-btn';
+        dlBtn.innerHTML = `<i class="fa-solid fa-download"></i> 下載`;
+        dlBtn.addEventListener('click', () => {
+          const filename = `${fields.name}_${fields.coordinate}_${idx + 1}_${f.label}.png`;
+          dlBtn.disabled = true;
+          dlBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i>...`;
+          downloadSvgAsPng(previewSvg, filename)
+            .finally(() => {
+              dlBtn.disabled = false;
+              dlBtn.innerHTML = `<i class="fa-solid fa-download"></i> 下載`;
+            });
+        });
+        
+        card.appendChild(title);
+        card.appendChild(previewDiv);
+        card.appendChild(dlBtn);
+        modalBody.appendChild(card);
+      });
+      
+      allMapsModal.style.display = 'flex';
+    });
+
+    // 3. Close Modal
+    closeModalBtn.addEventListener('click', () => {
+      allMapsModal.style.display = 'none';
+    });
+    
+    // Close modal on click outside container
+    allMapsModal.addEventListener('click', (e) => {
+      if (e.target === allMapsModal) {
+        allMapsModal.style.display = 'none';
+      }
+    });
+
+    // 4. Download All sequentially
+    downloadAllBtn.addEventListener('click', async () => {
+      if (!currentPerformer) return;
+      downloadAllBtn.disabled = true;
+      const originalText = downloadAllBtn.innerHTML;
+      
+      const fields = getPerformerFields(currentPerformer);
+      
+      for (let idx = 0; idx < formations.length; idx++) {
+        const f = formations[idx];
+        downloadAllBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> 下載中 (${idx + 1}/${formations.length})`;
+        
+        const filename = `${fields.name}_${fields.coordinate}_${idx + 1}_${f.label}.png`;
+        const card = modalBody.children[idx];
+        if (card) {
+          const svg = card.querySelector('svg');
+          if (svg) {
+            try {
+              await downloadSvgAsPng(svg, filename);
+              // Small delay to allow sequential downloads without overlap
+              await new Promise(r => setTimeout(r, 600));
+            } catch (err) {
+              console.error('Failed to download image ' + idx, err);
+            }
+          }
+        }
+      }
+      
+      downloadAllBtn.innerHTML = `<i class="fa-solid fa-check"></i> 下載完成`;
+      setTimeout(() => {
+        downloadAllBtn.disabled = false;
+        downloadAllBtn.innerHTML = originalText;
+      }, 2000);
+    });
+  }
+
+  // Final sync check
+  syncActiveCardAndStep();
 });
