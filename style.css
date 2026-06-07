@@ -787,17 +787,17 @@ svg {
 .path-label-text {
   font-size: 7.5px;
   font-weight: 700;
-  fill: var(--text-secondary);
+  fill: #f8fafc;
   text-anchor: middle;
 }
 
 .path-label-text.label-current {
-  fill: var(--gold-color);
+  fill: #fbbf24;
   font-weight: 800;
 }
 
 .path-label-text.label-prev {
-  fill: var(--blue-color);
+  fill: #38bdf8;
 }
 
 /* Walkthrough List (Steps Navigation) */
@@ -1704,4 +1704,36 @@ svg {
 .trajectory-toggle-container label {
   cursor: pointer;
   font-weight: 600;
+}
+
+/* Custom ID Sticker text overlay styling */
+.sticker-circle-overlay {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.sticker-coord-text-html {
+  font-family: 'Outfit', 'Noto Sans TC', -apple-system, sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  color: #000000;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.sticker-coord-text {
+  font-family: 'Outfit', 'Noto Sans TC', -apple-system, sans-serif;
+  font-size: 6px;
+  font-weight: 800;
+  fill: #000000;
+  text-anchor: middle;
 }

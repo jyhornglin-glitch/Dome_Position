@@ -443,6 +443,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     parentGroup.appendChild(img);
+
+    if (type === 'basic' && currentPerformer) {
+      const fields = getPerformerFields(currentPerformer);
+      const centerColor = category.startsWith('B') ? '#7dbf32' : '#e65537';
+      
+      const overlayCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      overlayCircle.setAttribute('cx', x);
+      overlayCircle.setAttribute('cy', y);
+      overlayCircle.setAttribute('r', '7.5');
+      overlayCircle.setAttribute('fill', centerColor);
+      parentGroup.appendChild(overlayCircle);
+      
+      const overlayText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      overlayText.setAttribute('x', x);
+      overlayText.setAttribute('y', y + 2.2); // vertical baseline centering offset
+      overlayText.setAttribute('text-anchor', 'middle');
+      overlayText.setAttribute('class', 'sticker-coord-text');
+      overlayText.textContent = fields.coordinate;
+      parentGroup.appendChild(overlayText);
+    }
   }
 
   // Draw relative coordinate grid path centered at basic ID (0,0) (standard unrotated axes)
@@ -822,6 +842,34 @@ document.addEventListener('DOMContentLoaded', () => {
       // Render the sticker image (size = 28px)
       drawSvgLandmarkImage(g, pt.key, category, pt.pos.x, pt.pos.y, 28, isMainSvg);
       
+      // Draw coordinate label under the node
+      if (pt.coord && pt.coord.text) {
+        const textLength = pt.coord.text.length;
+        const bgWidth = textLength * 5.2 + 6;
+        const bgHeight = 11;
+        const labelY = pt.pos.y + 22; // position label below the node
+        
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('x', pt.pos.x - bgWidth / 2);
+        rect.setAttribute('y', labelY - bgHeight / 2);
+        rect.setAttribute('width', bgWidth);
+        rect.setAttribute('height', bgHeight);
+        let bgClass = 'path-label-bg';
+        if (pt.role === 'current') bgClass += ' bg-current';
+        rect.setAttribute('class', bgClass);
+        g.appendChild(rect);
+        
+        const textEl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        textEl.setAttribute('x', pt.pos.x);
+        textEl.setAttribute('y', labelY + 2.5); // vertical baseline alignment
+        let textClass = 'path-label-text';
+        if (pt.role === 'current') textClass += ' label-current';
+        else if (pt.role === 'prev') textClass += ' label-prev';
+        textEl.setAttribute('class', textClass);
+        textEl.textContent = pt.coord.text;
+        g.appendChild(textEl);
+      }
+      
       if (isMainSvg) {
         // Sync on node click
         g.addEventListener('click', () => {
@@ -939,6 +987,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Draw Card Landmark Icon in HTML using the cropped PNG stickers
   function drawHtmlLandmarkIcon(wrapper, type, category, id) {
     wrapper.innerHTML = '';
+    wrapper.style.position = 'relative';
+    wrapper.style.display = 'inline-flex';
+    wrapper.style.alignItems = 'center';
+    wrapper.style.justifyContent = 'center';
     
     const img = document.createElement('img');
     img.src = `images/stickers/${type}_${category}.png`;
@@ -951,6 +1003,22 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
     wrapper.appendChild(img);
+
+    if (type === 'basic' && currentPerformer) {
+      const fields = getPerformerFields(currentPerformer);
+      const circleOverlay = document.createElement('div');
+      circleOverlay.className = 'sticker-circle-overlay';
+      
+      const centerColor = category.startsWith('B') ? '#7dbf32' : '#e65537';
+      circleOverlay.style.backgroundColor = centerColor;
+      
+      const textSpan = document.createElement('span');
+      textSpan.className = 'sticker-coord-text-html';
+      textSpan.textContent = fields.coordinate;
+      
+      circleOverlay.appendChild(textSpan);
+      wrapper.appendChild(circleOverlay);
+    }
   }
 
   // Update Top Toggle Controls display text and button states
@@ -1217,6 +1285,38 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           .svg-sticker-image {
             filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.3));
+          }
+          .path-label-bg {
+            fill: rgba(8, 12, 20, 0.9);
+            stroke: rgba(255, 255, 255, 0.08);
+            stroke-width: 0.5px;
+            rx: 2px;
+          }
+          .path-label-bg.bg-current {
+            fill: rgba(15, 23, 42, 0.95);
+            stroke: rgba(245, 158, 11, 0.3);
+            stroke-width: 0.75px;
+          }
+          .path-label-text {
+            font-family: 'Outfit', 'Noto Sans TC', -apple-system, sans-serif;
+            font-size: 7.5px;
+            font-weight: 700;
+            fill: #f8fafc;
+            text-anchor: middle;
+          }
+          .path-label-text.label-current {
+            fill: #fbbf24;
+            font-weight: 800;
+          }
+          .path-label-text.label-prev {
+            fill: #38bdf8;
+          }
+          .sticker-coord-text {
+            font-family: 'Outfit', 'Noto Sans TC', -apple-system, sans-serif;
+            font-size: 6px;
+            font-weight: bold;
+            fill: #000000;
+            text-anchor: middle;
           }
         `;
         clonedSvg.insertBefore(styleEl, clonedSvg.firstChild);
