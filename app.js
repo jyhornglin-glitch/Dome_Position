@@ -891,10 +891,13 @@ document.addEventListener('DOMContentLoaded', () => {
       g.setAttribute('class', `path-point pt-${pt.key} role-${pt.role} ${pt.key === formations[fIdx].key ? 'active-formation' : ''}`);
       g.setAttribute('id', `local-point-${pt.key}`);
       
+      // Calculate dynamic landmark size based on grid spacing
+      const landmarkSize = Math.max(12, Math.min(32, GRID_SPACING * 1.8));
+      
       const glowCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       glowCircle.setAttribute('cx', pt.pos.x);
       glowCircle.setAttribute('cy', pt.pos.y);
-      glowCircle.setAttribute('r', '16');
+      glowCircle.setAttribute('r', landmarkSize * 0.6);
       
       if (pt.role === 'current') {
         glowCircle.setAttribute('class', 'path-node-glow glow-current');
@@ -905,15 +908,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       g.appendChild(glowCircle);
       
-      // Render the sticker image (size = 28px)
-      drawSvgLandmarkImage(g, pt.key, category, pt.pos.x, pt.pos.y, 28, isMainSvg);
+      // Render the sticker image dynamically sized
+      drawSvgLandmarkImage(g, pt.key, category, pt.pos.x, pt.pos.y, landmarkSize, isMainSvg);
       
       // Draw coordinate label under the node
       if (pt.coord && pt.coord.text) {
         const textLength = pt.coord.text.length;
         const bgWidth = textLength * 5.2 + 6;
         const bgHeight = 11;
-        const labelY = pt.pos.y + 22; // position label below the node
+        const labelY = pt.pos.y + landmarkSize / 2 + 8; // position label dynamically below the node
         
         const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
         rect.setAttribute('x', pt.pos.x - bgWidth / 2);
