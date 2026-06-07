@@ -1396,7 +1396,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           .svg-pdf-title-text {
             font-family: 'Outfit', 'Noto Sans TC', -apple-system, sans-serif;
-            font-size: 20px;
+            font-size: 15px;
             font-weight: bold;
             fill: #0f172a;
             text-anchor: middle;
@@ -1407,8 +1407,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // 2.5. Inject step name title if provided
         if (stepName) {
           const titleText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-          titleText.setAttribute('x', '360');
-          titleText.setAttribute('y', '45');
+          titleText.setAttribute('x', '180');
+          titleText.setAttribute('y', '20');
           titleText.setAttribute('text-anchor', 'middle');
           titleText.setAttribute('class', 'svg-pdf-title-text');
           titleText.textContent = stepName;
