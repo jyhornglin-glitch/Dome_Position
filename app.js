@@ -835,6 +835,16 @@ document.addEventListener('DOMContentLoaded', () => {
       };
     });
     
+    // Define custom colors for each formation key
+    const formationColors = {
+      basic: '#eab308',      // 黃色
+      circle: '#854d0e',     // 棕色
+      xingYuan: '#16a34a',   // 綠色
+      jingSi: '#eab308',     // 黃色
+      lamp: '#4ade80',       // 淺綠色
+      bigV: '#ec4899'        // 粉紅色
+    };
+    
     // Draw all transition path segments sequentially
     for (let i = 0; i < allPoints.length - 1; i++) {
       if (!showFull && i + 1 > fIdx) continue;
@@ -849,12 +859,18 @@ document.addEventListener('DOMContentLoaded', () => {
         path.setAttribute('d', pathD);
         path.setAttribute('fill', 'none');
         
+        const targetKey = endPt.key;
+        const color = formationColors[targetKey];
+        path.style.stroke = color;
+        
         if (i + 1 === fIdx) {
           path.setAttribute('class', 'local-path-line');
-          path.setAttribute('marker-end', 'url(#local-arrow)');
+          path.setAttribute('marker-end', `url(#local-arrow-${targetKey})`);
+          path.style.filter = `drop-shadow(0 0 3px ${color})`;
         } else {
           path.setAttribute('class', 'local-path-line-static');
-          path.setAttribute('marker-end', 'url(#local-arrow-static)');
+          path.setAttribute('marker-end', `url(#local-arrow-static-${targetKey})`);
+          path.style.filter = 'none';
         }
         pathSegmentsGroup.appendChild(path);
       }
