@@ -765,7 +765,6 @@ svg {
 
 .path-point {
   transition: var(--transition-smooth);
-  cursor: pointer;
 }
 
 .path-point.active-formation {
@@ -800,13 +799,8 @@ svg {
 }
 
 .svg-sticker-image {
-  cursor: pointer;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
   transition: var(--transition-smooth);
-}
-
-.svg-sticker-image:hover {
-  transform: scale(1.15);
 }
 
 .path-label-bg {

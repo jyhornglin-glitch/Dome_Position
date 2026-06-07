@@ -470,7 +470,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const overlayCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       overlayCircle.setAttribute('cx', x);
       overlayCircle.setAttribute('cy', y);
-      overlayCircle.setAttribute('r', '7.5');
+      overlayCircle.setAttribute('r', (size * 0.3).toFixed(2));
       overlayCircle.setAttribute('fill', centerColor);
       parentGroup.appendChild(overlayCircle);
       
@@ -478,37 +478,40 @@ document.addEventListener('DOMContentLoaded', () => {
       if (parts.length === 2) {
         // Draw white dividing line
         const midLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        midLine.setAttribute('x1', x - 4.5);
+        midLine.setAttribute('x1', (x - size * 0.18).toFixed(2));
         midLine.setAttribute('y1', y);
-        midLine.setAttribute('x2', x + 4.5);
+        midLine.setAttribute('x2', (x + size * 0.18).toFixed(2));
         midLine.setAttribute('y2', y);
         midLine.setAttribute('stroke', '#ffffff');
-        midLine.setAttribute('stroke-width', '0.6');
+        midLine.setAttribute('stroke-width', (size * 0.024).toFixed(2));
         parentGroup.appendChild(midLine);
         
         // Top number
         const topText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         topText.setAttribute('x', x);
-        topText.setAttribute('y', y - 1.5);
+        topText.setAttribute('y', (y - size * 0.06).toFixed(2));
         topText.setAttribute('text-anchor', 'middle');
         topText.setAttribute('class', 'sticker-coord-text');
+        topText.setAttribute('style', `font-size: ${(size * 0.208).toFixed(2)}px`);
         topText.textContent = parts[0].padStart(2, '0');
         parentGroup.appendChild(topText);
         
         // Bottom number
         const bottomText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         bottomText.setAttribute('x', x);
-        bottomText.setAttribute('y', y + 4.8);
+        bottomText.setAttribute('y', (y + size * 0.192).toFixed(2));
         bottomText.setAttribute('text-anchor', 'middle');
         bottomText.setAttribute('class', 'sticker-coord-text');
+        bottomText.setAttribute('style', `font-size: ${(size * 0.208).toFixed(2)}px`);
         bottomText.textContent = parts[1].padStart(2, '0');
         parentGroup.appendChild(bottomText);
       } else {
         const overlayText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         overlayText.setAttribute('x', x);
-        overlayText.setAttribute('y', y + 2.2);
+        overlayText.setAttribute('y', (y + size * 0.088).toFixed(2));
         overlayText.setAttribute('text-anchor', 'middle');
         overlayText.setAttribute('class', 'sticker-coord-text');
+        overlayText.setAttribute('style', `font-size: ${(size * 0.208).toFixed(2)}px`);
         overlayText.textContent = fields.coordinate.padStart(2, '0');
         parentGroup.appendChild(overlayText);
       }
@@ -891,8 +894,8 @@ document.addEventListener('DOMContentLoaded', () => {
       g.setAttribute('class', `path-point pt-${pt.key} role-${pt.role} ${pt.key === formations[fIdx].key ? 'active-formation' : ''}`);
       g.setAttribute('id', `local-point-${pt.key}`);
       
-      // Calculate dynamic landmark size based on grid spacing
-      const landmarkSize = Math.max(12, Math.min(32, GRID_SPACING * 1.8));
+      // Calculate dynamic landmark size based on grid spacing (scaled down by another 80%)
+      const landmarkSize = Math.max(12, Math.min(32, GRID_SPACING * 1.8)) * 0.8;
       
       // Render the sticker image dynamically sized
       drawSvgLandmarkImage(g, pt.key, category, pt.pos.x, pt.pos.y, landmarkSize, isMainSvg);
