@@ -894,20 +894,6 @@ document.addEventListener('DOMContentLoaded', () => {
       // Calculate dynamic landmark size based on grid spacing
       const landmarkSize = Math.max(12, Math.min(32, GRID_SPACING * 1.8));
       
-      const glowCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      glowCircle.setAttribute('cx', pt.pos.x);
-      glowCircle.setAttribute('cy', pt.pos.y);
-      glowCircle.setAttribute('r', landmarkSize * 0.6);
-      
-      if (pt.role === 'current') {
-        glowCircle.setAttribute('class', 'path-node-glow glow-current');
-      } else if (pt.role === 'prev') {
-        glowCircle.setAttribute('class', 'path-node-glow glow-prev');
-      } else {
-        glowCircle.setAttribute('class', 'path-node-glow glow-basic');
-      }
-      g.appendChild(glowCircle);
-      
       // Render the sticker image dynamically sized
       drawSvgLandmarkImage(g, pt.key, category, pt.pos.x, pt.pos.y, landmarkSize, isMainSvg);
       
