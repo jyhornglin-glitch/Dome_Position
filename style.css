@@ -586,47 +586,45 @@ body {
   touch-action: none; /* Prevents screen scrolling on touch drag-to-pan */
 }
 
-/* Floating Zoom Controls */
-.map-zoom-controls {
-  position: absolute;
-  bottom: 12px;
-  right: 12px;
+/* Grid Map Controls (Zoom & Rotation Toolbar) */
+.map-controls-row {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-  z-index: 10;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  margin-bottom: 8px;
 }
 
-.zoom-btn {
-  width: 34px;
-  height: 34px;
+.control-btn-circle {
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background: rgba(15, 23, 42, 0.6); /* Glassmorphic dark background */
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #ffffff;
+  background: var(--white-color);
+  border: 1px solid var(--panel-border);
+  color: var(--text-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
   transition: var(--transition-smooth);
 }
 
-.zoom-btn:hover {
-  background: rgba(15, 23, 42, 0.85);
-  transform: scale(1.1);
-  color: var(--blue-color);
-  border-color: rgba(56, 189, 248, 0.35);
+.control-btn-circle:hover {
+  background: var(--gold-color);
+  color: var(--white-color);
+  border-color: var(--gold-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.2);
 }
 
-.zoom-btn:active {
-  transform: scale(0.95);
+.control-btn-circle:active {
+  transform: translateY(0);
 }
 
-.zoom-btn i {
-  font-size: 13px;
+.control-btn-circle i {
+  font-size: 14px;
 }
 
 /* Grabbing cursor states */
