@@ -786,7 +786,7 @@ document.addEventListener('DOMContentLoaded', () => {
     centerText.setAttribute('y', GRID_CENTER_Y - 10);
     centerText.setAttribute('fill', 'var(--red-color)');
     centerText.setAttribute('font-weight', 'bold');
-    centerText.textContent = `身分證 (${fields.name})`;
+    centerText.textContent = `身分證 (${fields.coordinate})`;
     linesGroup.appendChild(centerText);
     
     // Calculate relative coordinates and map to SVG coords
