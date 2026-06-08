@@ -319,6 +319,7 @@ const performersData = [
   { category: "A藍", id: "17-46", name: "陳秋梅", circle: "18.4-47.2", xingYuan: "14-62.5", jingSi: "17-46", lamp: "17.5-40.8", bigV: "18.9-56.8" },
   { category: "A藍", id: "17-47", name: "古芳玲", circle: "18-48.2", xingYuan: "14-63.31", jingSi: "17-47", lamp: "13.8-53", bigV: "18.5-57.5" },
   { category: "A藍", id: "17-48", name: "劉金玉", circle: "17.7-48.8", xingYuan: "14-64.1", jingSi: "17-48", lamp: "12-54.3", bigV: "18-58.8" },
+  { category: "A藍", id: "17-49", name: "", circle: "17.3-49.8", xingYuan: "13-61.2", jingSi: "17-49", lamp: "11.8-54.9", bigV: "17.7-59.5" },
   { category: "A藍", id: "18-46", name: "劉貞吟", circle: "19.4-47.1", xingYuan: "15-62", jingSi: "18-46", lamp: "17.7-46.9", bigV: "18.5-56.8" },
   { category: "A藍", id: "18-47", name: "陳翠英", circle: "19-48", xingYuan: "15-63", jingSi: "18-47", lamp: "17.6-47.7", bigV: "19-57.5" },
   { category: "A藍", id: "18-48", name: "?", circle: "18.7-49.7", xingYuan: "15-64", jingSi: "18-48", lamp: "17.9-48.3", bigV: "18.7-59.5" },
