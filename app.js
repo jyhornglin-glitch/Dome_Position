@@ -1102,8 +1102,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // 顯示姓名標籤
             if (showNames && name) {
               const lbl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-              const shiftX = rx * 1.5 * GRID_SPACING;
-              const shiftY = ry * 1.5 * GRID_SPACING;
+              const shiftX = rx * GRID_SPACING;
+              const shiftY = ry * GRID_SPACING;
               lbl.setAttribute('x', String(svgX + shiftX));
               lbl.setAttribute('y', String(svgY + shiftY - dotR - 2));
               lbl.setAttribute('text-anchor', 'middle');
