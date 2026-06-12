@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // State variables
   let currentPerformer = null;
   let currentDisplayName = ''; // Day-specific name (blank when session has no data)
+  let currentDayNameMap = {}; // id -> name for the selected session
   let activeTab = 'localGrid'; // Default mobile tab is Grid view
   let activeFormationIdx = 0; // Current active formation index (0 to 5)
   let zoomLevel = 1.0;
@@ -254,6 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Build a quick lookup: id -> dayName
       const dayNameMap = {};
       dayList.forEach(d => { dayNameMap[d.id] = d.name; });
+      currentDayNameMap = dayNameMap; // expose to drawLocalGridPath
 
       const category = categoryFilter.value;
       const normalizedVal = val.replace(/^0+(\d+)/, '$1').replace(/-0+(\d+)/, '-$1');
@@ -405,6 +407,13 @@ document.addEventListener('DOMContentLoaded', () => {
         drawLocalGridPath();
       });
     }
+
+    const showNeighborNames = document.getElementById('showNeighborNames');
+    if (showNeighborNames) {
+      showNeighborNames.addEventListener('change', () => {
+        drawLocalGridPath();
+      });
+    }
   }
 
   function resetToEmptyState() {
@@ -424,6 +433,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (showFullTrajectory) showFullTrajectory.checked = false;
     const showNeighborDots = document.getElementById('showNeighborDots');
     if (showNeighborDots) showNeighborDots.checked = false;
+    const showNeighborNamesEl = document.getElementById('showNeighborNames');
+    if (showNeighborNamesEl) showNeighborNamesEl.checked = false;
+
     
     const fields = getPerformerFields(performer);
     // displayName: strictly from day roster (dayOverrideName).
@@ -1074,7 +1086,10 @@ document.addEventListener('DOMContentLoaded', () => {
           const Y_RADIUS = 1;
           const dotR = Math.max(4, GRID_SPACING * 0.28);
 
-          function drawNeighborDot(svgX, svgY, color) {
+          const showNamesToggle = document.getElementById('showNeighborNames');
+          const showNames = showNamesToggle ? showNamesToggle.checked : false;
+
+          function drawNeighborDot(svgX, svgY, color, name) {
             const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
             dot.setAttribute('cx', String(svgX));
             dot.setAttribute('cy', String(svgY));
@@ -1084,6 +1099,21 @@ document.addEventListener('DOMContentLoaded', () => {
             dot.setAttribute('stroke', '#ffffff');
             dot.setAttribute('stroke-width', '1.5');
             pathSegmentsGroup.appendChild(dot);
+            // 顯示姓名標籤
+            if (showNames && name) {
+              const lbl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+              lbl.setAttribute('x', String(svgX));
+              lbl.setAttribute('y', String(svgY - dotR - 2));
+              lbl.setAttribute('text-anchor', 'middle');
+              lbl.setAttribute('fill', color);
+              lbl.setAttribute('stroke', '#0f172a');
+              lbl.setAttribute('stroke-width', '2');
+              lbl.setAttribute('paint-order', 'stroke fill');
+              lbl.setAttribute('font-size', '6.5');
+              lbl.setAttribute('font-weight', 'bold');
+              lbl.textContent = name;
+              pathSegmentsGroup.appendChild(lbl);
+            }
           }
 
           // 以身分證座標為基準，找三個縱軸的鄰近格，顯示當前隊形位置
@@ -1109,7 +1139,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const nCoord = parseCoordinate(nCoordStr);
                 if (nCoord.isText || nCoord.x === null) return;
                 const nsvg = gridToSvg(nCoord.x - homeCoord.x, nCoord.y - homeCoord.y);
-                drawNeighborDot(nsvg.x, nsvg.y, col.color);
+                const nName = currentDayNameMap[p.id] || '';
+                drawNeighborDot(nsvg.x, nsvg.y, col.color, nName);
               });
             });
           }
