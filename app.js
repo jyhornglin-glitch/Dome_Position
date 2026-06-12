@@ -1084,7 +1084,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!myCoord.isText && myCoord.x !== null) {
           const X_RADIUS = 1;
           const Y_RADIUS = 1;
-          const dotR = Math.max(4, GRID_SPACING * 0.28);
+          const dotR = Math.max(2, GRID_SPACING * 0.14);
 
           const showNamesToggle = document.getElementById('showNeighborNames');
           const showNames = showNamesToggle ? showNamesToggle.checked : false;
@@ -1097,13 +1097,13 @@ document.addEventListener('DOMContentLoaded', () => {
             dot.setAttribute('fill', color);
             dot.setAttribute('fill-opacity', '0.92');
             dot.setAttribute('stroke', '#ffffff');
-            dot.setAttribute('stroke-width', '1.5');
+            dot.setAttribute('stroke-width', '1.0');
             pathSegmentsGroup.appendChild(dot);
             // 顯示姓名標籤
             if (showNames && name) {
               const lbl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
               const shiftX = rx * GRID_SPACING;
-              const shiftY = ry * GRID_SPACING;
+              const shiftY = (ry + 1) * GRID_SPACING;
               lbl.setAttribute('x', String(svgX + shiftX));
               lbl.setAttribute('y', String(svgY + shiftY - dotR - 2));
               lbl.setAttribute('text-anchor', 'middle');
