@@ -1106,12 +1106,20 @@ document.addEventListener('DOMContentLoaded', () => {
               const shiftY = (ry + 1) * GRID_SPACING;
               lbl.setAttribute('x', String(svgX + shiftX));
               lbl.setAttribute('y', String(svgY + shiftY - dotR - 2));
-              lbl.setAttribute('text-anchor', 'middle');
+              
+              // 動態對齊以防重疊
+              let anchor = 'middle';
+              if (rx < -0.01) {
+                anchor = 'end';
+              } else if (rx > 0.01) {
+                anchor = 'start';
+              }
+              lbl.setAttribute('text-anchor', anchor);
               lbl.setAttribute('fill', color);
               lbl.setAttribute('stroke', '#0f172a');
-              lbl.setAttribute('stroke-width', '1.2');
+              lbl.setAttribute('stroke-width', '0.9');
               lbl.setAttribute('paint-order', 'stroke fill');
-              lbl.setAttribute('font-size', '4.9');
+              lbl.setAttribute('font-size', '3.7');
               lbl.setAttribute('font-weight', 'bold');
               lbl.textContent = name;
               pathSegmentsGroup.appendChild(lbl);
