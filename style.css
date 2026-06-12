@@ -2252,18 +2252,21 @@ svg {
   flex-shrink: 0;
 }
 
-/* Toggle row - both checkboxes on one line */
+/* Toggle row - checkboxes on one line */
 .toggle-row {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: nowrap;
   padding: 2px 0;
+  width: 100%;
 }
 
 .toggle-row .trajectory-toggle-container {
   margin: 0;
   padding: 0;
   flex-shrink: 0;
+  font-size: 10px;
 }

@@ -1107,9 +1107,9 @@ document.addEventListener('DOMContentLoaded', () => {
               lbl.setAttribute('text-anchor', 'middle');
               lbl.setAttribute('fill', color);
               lbl.setAttribute('stroke', '#0f172a');
-              lbl.setAttribute('stroke-width', '2');
+              lbl.setAttribute('stroke-width', '1.2');
               lbl.setAttribute('paint-order', 'stroke fill');
-              lbl.setAttribute('font-size', '6.5');
+              lbl.setAttribute('font-size', '4.9');
               lbl.setAttribute('font-weight', 'bold');
               lbl.textContent = name;
               pathSegmentsGroup.appendChild(lbl);
@@ -1133,12 +1133,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (basicCoord.isText || basicCoord.x === null) return;
                 const dx = Math.abs(basicCoord.x - targetX);
                 const dy = Math.abs(basicCoord.y - myBasicCoord.y);
-                if (dx >= 0.01 || dy > Y_RADIUS) return; // 指定 X 欄、Y±4
+                if (dx >= 0.01 || dy > Y_RADIUS) return; // 指定 X 欄、Y±1
                 const nCoordStr = activeFormation.key === 'basic' ? p.id : p[activeFormation.key];
                 if (!nCoordStr) return;
                 const nCoord = parseCoordinate(nCoordStr);
                 if (nCoord.isText || nCoord.x === null) return;
-                const nsvg = gridToSvg(nCoord.x - homeCoord.x, nCoord.y - homeCoord.y);
+                const rx = col.xOffset;
+                const ry = basicCoord.y - myBasicCoord.y;
+                const nsvg = gridToSvg(nCoord.x - homeCoord.x + rx * 1.5, nCoord.y - homeCoord.y + ry * 1.5);
                 const nName = currentDayNameMap[p.id] || '';
                 drawNeighborDot(nsvg.x, nsvg.y, col.color, nName);
               });
