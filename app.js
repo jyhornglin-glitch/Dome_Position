@@ -398,6 +398,13 @@ document.addEventListener('DOMContentLoaded', () => {
         drawLocalGridPath();
       });
     }
+
+    const showNeighborDots = document.getElementById('showNeighborDots');
+    if (showNeighborDots) {
+      showNeighborDots.addEventListener('change', () => {
+        drawLocalGridPath();
+      });
+    }
   }
 
   function resetToEmptyState() {
@@ -415,6 +422,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const showFullTrajectory = document.getElementById('showFullTrajectory');
     if (showFullTrajectory) showFullTrajectory.checked = false;
+    const showNeighborDots = document.getElementById('showNeighborDots');
+    if (showNeighborDots) showNeighborDots.checked = false;
     
     const fields = getPerformerFields(performer);
     // displayName: strictly from day roster (dayOverrideName).
@@ -1047,11 +1056,72 @@ document.addEventListener('DOMContentLoaded', () => {
       pathPointsGroup.appendChild(g);
     });
 
-    // Only update auxiliary UI if we are drawing the main SVG
+    // ── Neighbor Dots ──────────────────────────────────────────────────
+    // X軸 ±2 格 → 綠色點 | Y軸 ±4 格 → 紅色點
+    {
+      const showNeighborToggle = document.getElementById('showNeighborDots');
+      const showNeighbors = showNeighborToggle ? showNeighborToggle.checked : false;
+
+      if (showNeighbors && !homeCoord.isText) {
+        const activeFormation = formations[fIdx];
+        const myCoordStr = activeFormation.key === 'basic'
+          ? fields.coordinate
+          : currentPerformer[activeFormation.key];
+        const myCoord = parseCoordinate(myCoordStr);
+
+        if (!myCoord.isText && myCoord.x !== null) {
+          const X_RADIUS = 1;
+          const Y_RADIUS = 1;
+          const dotR = Math.max(4, GRID_SPACING * 0.28);
+
+          function drawNeighborDot(svgX, svgY, color) {
+            const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            dot.setAttribute('cx', String(svgX));
+            dot.setAttribute('cy', String(svgY));
+            dot.setAttribute('r', String(dotR));
+            dot.setAttribute('fill', color);
+            dot.setAttribute('fill-opacity', '0.92');
+            dot.setAttribute('stroke', '#ffffff');
+            dot.setAttribute('stroke-width', '1.5');
+            pathSegmentsGroup.appendChild(dot);
+          }
+
+          // 以身分證座標為基準，找三個縱軸的鄰近格，顯示當前隊形位置
+          // X-1 → 藍色 | X → 紅色 | X+1 → 綠色
+          const myBasicCoord = parseCoordinate(fields.coordinate);
+          if (!myBasicCoord.isText && myBasicCoord.x !== null) {
+            const columnDefs = [
+              { xOffset: -1, color: '#3b82f6' }, // X-1 藍色
+              { xOffset:  0, color: '#ef4444' }, // X   紅色
+              { xOffset: +1, color: '#22c55e' }, // X+1 綠色
+            ];
+            columnDefs.forEach(col => {
+              const targetX = myBasicCoord.x + col.xOffset;
+              performersData.forEach(p => {
+                if (p === currentPerformer && col.xOffset === 0) return;
+                const basicCoord = parseCoordinate(p.id);
+                if (basicCoord.isText || basicCoord.x === null) return;
+                const dx = Math.abs(basicCoord.x - targetX);
+                const dy = Math.abs(basicCoord.y - myBasicCoord.y);
+                if (dx >= 0.01 || dy > Y_RADIUS) return; // 指定 X 欄、Y±4
+                const nCoordStr = activeFormation.key === 'basic' ? p.id : p[activeFormation.key];
+                if (!nCoordStr) return;
+                const nCoord = parseCoordinate(nCoordStr);
+                if (nCoord.isText || nCoord.x === null) return;
+                const nsvg = gridToSvg(nCoord.x - homeCoord.x, nCoord.y - homeCoord.y);
+                drawNeighborDot(nsvg.x, nsvg.y, col.color);
+              });
+            });
+          }
+        }
+      }
+    }
+    // ───────────────────────────────────────────────────────────────
     if (isMainSvg) {
       // Update top coordinate display bar
       const coordBar = document.getElementById('mapCoordDisplayBar');
       if (coordBar) {
+
         coordBar.innerHTML = '';
         
         const coordBarPoints = [];

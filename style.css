@@ -1530,12 +1530,12 @@ svg {
 .map-coord-display-bar {
   display: flex;
   align-items: stretch;
-  gap: 6px;
+  gap: 4px;
   background: rgba(15, 23, 42, 0.5);
   border: 1px solid var(--panel-border);
-  border-radius: 12px;
-  padding: 8px 10px;
-  margin: 10px 15px 5px 15px;
+  border-radius: 10px;
+  padding: 4px 8px;
+  margin: 4px 15px 3px 15px;
   backdrop-filter: blur(10px);
 }
 
@@ -1544,13 +1544,13 @@ svg {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3px;
+  gap: 1px;
   flex: 1;
   min-width: 0;
-  padding: 6px 10px;
+  padding: 3px 8px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.10);
-  border-radius: 8px;
+  border-radius: 7px;
   white-space: nowrap;
 }
 
@@ -2219,4 +2219,51 @@ svg {
   padding: 0 4px;
   font-size: 11px;
   color: #67e8f9;
+}
+
+/* =========================================
+   Neighbor Dots on Grid Map
+   ========================================= */
+.neighbor-dot {
+  pointer-events: none;
+  transition: r 0.2s ease;
+}
+
+.neighbor-dot-label {
+  font-size: 5.5px;
+  fill: #ef4444;
+  font-family: 'Outfit', monospace;
+  font-weight: 700;
+  pointer-events: none;
+  text-shadow: 0 0 3px #fff;
+}
+
+/* Red dot legend indicator in toggle label */
+.dot-legend.neighbor-dot-legend {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ef4444;
+  border: 1.5px solid #fff;
+  box-shadow: 0 0 4px rgba(239,68,68,0.6);
+  margin-right: 4px;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+/* Toggle row - both checkboxes on one line */
+.toggle-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 2px 0;
+}
+
+.toggle-row .trajectory-toggle-container {
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
 }
