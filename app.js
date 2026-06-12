@@ -1089,7 +1089,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const showNamesToggle = document.getElementById('showNeighborNames');
           const showNames = showNamesToggle ? showNamesToggle.checked : false;
 
-          function drawNeighborDot(svgX, svgY, color, name) {
+          function drawNeighborDot(svgX, svgY, color, name, rx, ry) {
             const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
             dot.setAttribute('cx', String(svgX));
             dot.setAttribute('cy', String(svgY));
@@ -1102,8 +1102,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // 顯示姓名標籤
             if (showNames && name) {
               const lbl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-              lbl.setAttribute('x', String(svgX));
-              lbl.setAttribute('y', String(svgY - dotR - 2));
+              const shiftX = rx * 1.5 * GRID_SPACING;
+              const shiftY = ry * 1.5 * GRID_SPACING;
+              lbl.setAttribute('x', String(svgX + shiftX));
+              lbl.setAttribute('y', String(svgY + shiftY - dotR - 2));
               lbl.setAttribute('text-anchor', 'middle');
               lbl.setAttribute('fill', color);
               lbl.setAttribute('stroke', '#0f172a');
@@ -1140,9 +1142,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (nCoord.isText || nCoord.x === null) return;
                 const rx = col.xOffset;
                 const ry = basicCoord.y - myBasicCoord.y;
-                const nsvg = gridToSvg(nCoord.x - homeCoord.x + rx * 1.5, nCoord.y - homeCoord.y + ry * 1.5);
+                const nsvg = gridToSvg(nCoord.x - homeCoord.x, nCoord.y - homeCoord.y);
                 const nName = currentDayNameMap[p.id] || '';
-                drawNeighborDot(nsvg.x, nsvg.y, col.color, nName);
+                drawNeighborDot(nsvg.x, nsvg.y, col.color, nName, rx, ry);
               });
             });
           }
