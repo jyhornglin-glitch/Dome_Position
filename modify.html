@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大巨蛋跑位定位系統 — 管理後台</title>
+  <!-- Google Fonts: Outfit and Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      
+      --blue-color: #0284c7;
+      --blue-hover: #0369a1;
+      --amber-color: #d97706;
+      --amber-hover: #b45309;
+      --green-color: #10b981;
+      --red-color: #ef4444;
+      
+      --font-family: 'Outfit', 'Noto Sans TC', -apple-system, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-primary);
+      font-family: var(--font-family);
+      min-height: 100vh;
+      padding: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 900px) {
+      .container {
+        grid-template-columns: 320px 1fr;
+      }
+    }
+
+    /* Common Card Styling */
+    .card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      box-shadow: var(--glass-shadow);
+      padding: 24px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: -0.025em;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 4px;
+      background: linear-gradient(to right, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .subtitle {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    /* Form Fields */
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    .form-control {
+      width: 100%;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: var(--text-primary);
+      padding: 10px 14px;
+      font-size: 0.95rem;
+      font-family: var(--font-family);
+      transition: all 0.2s ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--blue-color);
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.3);
+      background: rgba(15, 23, 42, 0.8);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      font-family: var(--font-family);
+      width: 100%;
+    }
+
+    .btn-primary {
+      background: var(--blue-color);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--blue-hover);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-primary);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-success {
+      background: var(--green-color);
+      color: white;
+    }
+
+    .btn-success:hover {
+      opacity: 0.9;
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Grid Layout for Forms */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* Settings Sidebar */
+    .settings-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .status-disconnected {
+      background: rgba(239, 68, 68, 0.15);
+      color: var(--red-color);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+
+    .status-connected {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--green-color);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+
+    /* Search Result Box */
+    .search-box {
+      margin-bottom: 24px;
+    }
+
+    /* Form Section Dividers */
+    .form-divider {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.08);
+      margin: 24px 0;
+    }
+
+    /* Position Coordinates Section */
+    .coords-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 600px) {
+      .coords-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .coord-badge-icon {
+      margin-right: 6px;
+      opacity: 0.8;
+    }
+
+    /* Live Output Console */
+    .console-container {
+      margin-top: 24px;
+    }
+
+    .console-header {
+      display: flex;
+      justify-between: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .console-title {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .console-box {
+      background: #090d16;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      padding: 16px;
+      height: 160px;
+      overflow-y: auto;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.825rem;
+      color: #38bdf8;
+      line-height: 1.5;
+    }
+
+    .console-line-info {
+      color: #38bdf8;
+    }
+
+    .console-line-success {
+      color: #10b981;
+    }
+
+    .console-line-error {
+      color: #ef4444;
+      font-weight: bold;
+    }
+
+    .console-line-warning {
+      color: #f59e0b;
+    }
+
+    /* Header Link */
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .header-bar a {
+      color: var(--blue-color);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .header-bar a:hover {
+      text-decoration: underline;
+    }
+
+    /* Day Roster Badges */
+    .day-roster-section {
+      background: rgba(15, 23, 42, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 24px;
+    }
+
+    .day-roster-title {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .day-roster-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .day-roster-badge {
+      background: rgba(2, 132, 199, 0.12);
+      border: 1px solid rgba(2, 132, 199, 0.2);
+      color: #38bdf8;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .day-roster-empty {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* Auto-save notification */
+    .auto-save-warning {
+      font-size: 0.8rem;
+      color: #f59e0b;
+      margin-top: 6px;
+      display: flex;
+      align-items: flex-start;
+      gap: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <!-- Sidebar: Credentials & Settings -->
+    <div class="settings-panel">
+      
+      <!-- System Title -->
+      <div class="card">
+        <div class="header-bar">
+          <h1>跑位系統</h1>
+          <a href="index.html"><i class="fa-solid fa-house"></i> 回查詢頁</a>
+        </div>
+        <div class="subtitle">大巨蛋跑位資料 — 後台管理中心</div>
+        <div id="githubStatus" class="status-badge status-disconnected">
+          <i class="fa-solid fa-circle-exclamation"></i> 未連線
+        </div>
+      </div>
+
+      <!-- GitHub API Setup Card -->
+      <div class="card">
+        <h2><i class="fa-brands fa-github"></i> GitHub 連線設定</h2>
+        <div class="form-group">
+          <label for="ghToken">Personal Access Token (PAT)</label>
+          <input type="password" id="ghToken" class="form-control" placeholder="輸入 ghp_ 開頭 Token...">
+        </div>
+        <div class="form-group">
+          <label for="ghOwner">GitHub 帳號 (Owner)</label>
+          <input type="text" id="ghOwner" class="form-control" value="jyhornglin-glitch">
+        </div>
+        <div class="form-group">
+          <label for="ghRepo">專案名稱 (Repository)</label>
+          <input type="text" id="ghRepo" class="form-control" value="Dome_Position">
+        </div>
+        <div class="form-group">
+          <label for="ghBranch">分支 (Branch)</label>
+          <input type="text" id="ghBranch" class="form-control" value="main">
+        </div>
+        
+        <button id="btnConnect" class="btn btn-primary" style="margin-top: 8px;">
+          <i class="fa-solid fa-plug"></i> 載入 GitHub 最新資料
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Main Content Panel: Search and Edit Form -->
+    <div class="card">
+      <h2><i class="fa-solid fa-user-pen"></i> 表演者資料編輯</h2>
+      
+      <!-- Search Form -->
+      <div class="search-box">
+        <div class="form-group">
+          <label for="searchIdInput">輸入身份證 (如：4-46 或 19-54) 進行查詢</label>
+          <div style="display: flex; gap: 8px;">
+            <input type="text" id="searchIdInput" class="form-control" placeholder="請先連線載入資料，再輸入座標身份證..." disabled>
+            <button id="btnSearch" class="btn btn-primary" style="width: auto; white-space: nowrap;" disabled>
+              <i class="fa-solid fa-magnifying-glass"></i> 查詢
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-divider"></div>
+
+      <!-- Edit Form (Hidden by default until search matches or create is clicked) -->
+      <div id="editorContainer" style="display: none;">
+        
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="editId">身份證 (唯一標記)</label>
+            <input type="text" id="editId" class="form-control" disabled>
+          </div>
+          <div class="form-group">
+            <label for="editCategory">身分別 (例如：A藍, A白, B藍, B白)</label>
+            <input type="text" id="editCategory" class="form-control" placeholder="A藍">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="editName">姓名 (當您修改此姓名時，會同時自動修正各場次的表演者名單)</label>
+          <input type="text" id="editName" class="form-control" placeholder="范志偉">
+        </div>
+
+        <!-- Days Schedule overview -->
+        <div class="day-roster-section">
+          <div class="day-roster-title"><i class="fa-solid fa-calendar-days"></i> 該身分證已登記的演繹場次：</div>
+          <div id="dayRosterList" class="day-roster-list">
+            <!-- Badges populated dynamically -->
+          </div>
+          <div class="auto-save-warning">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span>儲存時，上述場次的 `姓名` 將自動同步變更，以確保前台顯示一致。</span>
+          </div>
+        </div>
+
+        <h3 style="font-size: 1rem; color: var(--text-secondary); margin-bottom: 12px; font-weight: 600;">
+          <i class="fa-solid fa-compass"></i> 各隊形跑位座標點位修正
+        </h3>
+
+        <!-- Positions grid -->
+        <div class="coords-grid">
+          <div class="form-group">
+            <label><span class="coord-badge-icon" style="color: var(--blue-color);"><i class="fa-solid fa-ring"></i></span>01圓形</label>
+            <input type="text" id="posCircle" class="form-control" placeholder="5.2-46.2">
+          </div>
+          <div class="form-group">
+            <label><span class="coord-badge-icon" style="color: var(--amber-color);"><i class="fa-solid fa-hands-praying"></i></span>02行願</label>
+            <input type="text" id="posXingYuan" class="form-control" placeholder="2-49">
+          </div>
+          <div class="form-group">
+            <label><span class="coord-badge-icon" style="color: var(--green-color);"><i class="fa-solid fa-house-chimney"></i></span>04靜思家風</label>
+            <input type="text" id="posJingSi" class="form-control" placeholder="4-46">
+          </div>
+          <div class="form-group">
+            <label><span class="coord-badge-icon" style="color: var(--blue-color);"><i class="fa-solid fa-ship"></i></span>05-1有法船</label>
+            <input type="text" id="posLamp" class="form-control" placeholder="12.4-41.6">
+          </div>
+          <div class="form-group">
+            <label><span class="coord-badge-icon" style="color: var(--text-muted);"><i class="fa-solid fa-water"></i></span>05-2無法船</label>
+            <input type="text" id="posNoBoat" class="form-control" placeholder="12.4-41.6">
+          </div>
+          <div class="form-group">
+            <label><span class="coord-badge-icon" style="color: var(--purple-color);"><i class="fa-solid fa-star"></i></span>06四弘誓願</label>
+            <input type="text" id="posBigV" class="form-control" placeholder="3-49.6">
+          </div>
+        </div>
+
+        <div class="form-divider"></div>
+
+        <div style="display: flex; gap: 12px; margin-top: 16px;">
+          <button id="btnCancel" class="btn btn-secondary">
+            <i class="fa-solid fa-xmark"></i> 取消
+          </button>
+          <button id="btnSave" class="btn btn-success">
+            <i class="fa-solid fa-cloud-arrow-up"></i> 儲存變更並推送至 GitHub
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Initial empty state before query -->
+      <div id="emptyState" style="text-align: center; padding: 40px 0; color: var(--text-secondary);">
+        <i class="fa-solid fa-database" style="font-size: 3rem; color: var(--text-muted); margin-bottom: 16px; display: block;"></i>
+        <p>請先在左側填寫 GitHub Token，並點擊「載入 GitHub 最新資料」開始。</p>
+      </div>
+
+      <!-- Live Terminal Console Log -->
+      <div class="console-container">
+        <div class="console-header">
+          <div class="console-title"><i class="fa-solid fa-terminal"></i> 執行狀態日誌</div>
+          <button id="btnClearConsole" class="btn btn-secondary" style="width: auto; padding: 4px 10px; font-size: 0.75rem;">
+            清除記錄
+          </button>
+        </div>
+        <div id="consoleBox" class="console-box">
+          <span class="console-line-info">[INFO] 系統就緒。請輸入 GitHub Credentials 載入跑位名單。</span><br>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    // System State Variables
+    let performersCsvHeaders = [];
+    let performersList = [];
+    let dayPerformersCsvHeaders = [];
+    let dayPerformersList = [];
+    
+    // Elements
+    const ghTokenEl = document.getElementById('ghToken');
+    const ghOwnerEl = document.getElementById('ghOwner');
+    const ghRepoEl = document.getElementById('ghRepo');
+    const ghBranchEl = document.getElementById('ghBranch');
+    const btnConnect = document.getElementById('btnConnect');
+    const githubStatus = document.getElementById('githubStatus');
+    
+    const searchIdInput = document.getElementById('searchIdInput');
+    const btnSearch = document.getElementById('btnSearch');
+    const emptyState = document.getElementById('emptyState');
+    const editorContainer = document.getElementById('editorContainer');
+    
+    // Form Edit inputs
+    const editId = document.getElementById('editId');
+    const editCategory = document.getElementById('editCategory');
+    const editName = document.getElementById('editName');
+    const dayRosterList = document.getElementById('dayRosterList');
+    const posCircle = document.getElementById('posCircle');
+    const posXingYuan = document.getElementById('posXingYuan');
+    const posJingSi = document.getElementById('posJingSi');
+    const posLamp = document.getElementById('posLamp');
+    const posNoBoat = document.getElementById('posNoBoat');
+    const posBigV = document.getElementById('posBigV');
+    
+    const btnCancel = document.getElementById('btnCancel');
+    const btnSave = document.getElementById('btnSave');
+    
+    const consoleBox = document.getElementById('consoleBox');
+    const btnClearConsole = document.getElementById('btnClearConsole');
+
+    // Load saved settings from LocalStorage
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedToken = localStorage.getItem('dome_github_token');
+      const savedOwner = localStorage.getItem('dome_github_owner');
+      const savedRepo = localStorage.getItem('dome_github_repo');
+      const savedBranch = localStorage.getItem('dome_github_branch');
+      
+      if (savedToken) ghTokenEl.value = savedToken;
+      if (savedOwner) ghOwnerEl.value = savedOwner;
+      if (savedRepo) ghRepoEl.value = savedRepo;
+      if (savedBranch) ghBranchEl.value = savedBranch;
+      
+      log('系統啟動完畢。如有已儲存的 GitHub 連線設定，已自動帶入。');
+    });
+
+    // Logging helper
+    function log(message, type = 'info') {
+      const timestamp = new Date().toLocaleTimeString();
+      let lineClass = 'console-line-info';
+      let prefix = '[INFO]';
+      
+      if (type === 'success') {
+        lineClass = 'console-line-success';
+        prefix = '[SUCCESS]';
+      } else if (type === 'error') {
+        lineClass = 'console-line-error';
+        prefix = '[ERROR]';
+      } else if (type === 'warning') {
+        lineClass = 'console-line-warning';
+        prefix = '[WARNING]';
+      }
+      
+      consoleBox.innerHTML += `<span class="${lineClass}">${prefix} ${timestamp} ${message}</span><br>`;
+      consoleBox.scrollTop = consoleBox.scrollHeight;
+    }
+
+    btnClearConsole.addEventListener('click', () => {
+      consoleBox.innerHTML = '';
+      log('日誌主控台已清空。');
+    });
+
+    // Parse CSV helper (simple state machine parser handles quote block escaping)
+    function parseCSV(text) {
+      const lines = [];
+      let row = [""];
+      let inQuotes = false;
+      
+      for (let i = 0; i < text.length; i++) {
+        const c = text[i];
+        const next = text[i+1];
+        
+        if (c === '"') {
+          if (inQuotes && next === '"') {
+            row[row.length - 1] += '"';
+            i++;
+          } else {
+            inQuotes = !inQuotes;
+          }
+        } else if (c === ',' && !inQuotes) {
+          row.push("");
+        } else if ((c === '\r' || c === '\n') && !inQuotes) {
+          if (c === '\r' && next === '\n') { i++; }
+          lines.push(row);
+          row = [""];
+        } else {
+          row[row.length - 1] += c;
+        }
+      }
+      if (row.length > 1 || row[0] !== "") {
+        lines.push(row);
+      }
+      return lines;
+    }
+
+    // Convert CSV rows back to string
+    function stringifyCSV(headers, rows, mappingFn) {
+      const result = [headers.join(",")];
+      for (const row of rows) {
+        const line = headers.map(h => {
+          let val = mappingFn(row, h);
+          val = (val !== undefined && val !== null) ? String(val) : "";
+          if (val.includes(",") || val.includes('"') || val.includes("\n") || val.includes("\r")) {
+            val = '"' + val.replace(/"/g, '""') + '"';
+          }
+          return val;
+        });
+        result.push(line.join(","));
+      }
+      return "\ufeff" + result.join("\r\n") + "\r\n"; // UTF-8 BOM for Excel Chinese support
+    }
+
+    // Connect & Load from GitHub
+    btnConnect.addEventListener('click', async () => {
+      const token = ghTokenEl.value.trim();
+      const owner = ghOwnerEl.value.trim();
+      const repo = ghRepoEl.value.trim();
+      const branch = ghBranchEl.value.trim();
+      
+      if (!token) {
+        alert('請先輸入 GitHub Personal Access Token (PAT)！');
+        log('連線載入失敗：無輸入 GitHub PAT Token。', 'error');
+        return;
+      }
+
+      // Save credentials locally
+      localStorage.setItem('dome_github_token', token);
+      localStorage.setItem('dome_github_owner', owner);
+      localStorage.setItem('dome_github_repo', repo);
+      localStorage.setItem('dome_github_branch', branch);
+      
+      btnConnect.disabled = true;
+      githubStatus.className = 'status-badge status-disconnected';
+      githubStatus.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> 資料載入中...`;
+      
+      log(`開始連線至 GitHub 倉庫: ${owner}/${repo} (${branch} 分支)`);
+      
+      try {
+        // 1. Fetch performers.csv
+        log(`正在取得 performers.csv...`);
+        const perfData = await fetchGitHubFile(token, owner, repo, branch, 'performers.csv');
+        const parsedPerf = parsePerformersCSV(perfData.content);
+        performersCsvHeaders = parsedPerf.headers;
+        performersList = parsedPerf.data;
+        log(`成功載入 performers.csv，共載入 ${performersList.length} 筆表演者坐標。`, 'success');
+        
+        // 2. Fetch dayperformers.csv
+        log(`正在取得 dayperformers.csv...`);
+        const dayData = await fetchGitHubFile(token, owner, repo, branch, 'dayperformers.csv');
+        const parsedDay = parseDayPerformersCSV(dayData.content);
+        dayPerformersCsvHeaders = parsedDay.headers;
+        dayPerformersList = parsedDay.data;
+        log(`成功載入 dayperformers.csv，共載入 ${dayPerformersList.length} 筆場次配置名單。`, 'success');
+        
+        // Setup UI state on success
+        githubStatus.className = 'status-badge status-connected';
+        githubStatus.innerHTML = `<i class="fa-solid fa-circle-check"></i> 已連線 (資料最新)`;
+        searchIdInput.disabled = false;
+        btnSearch.disabled = false;
+        emptyState.style.display = 'none';
+        
+        log(`GitHub 連線與最新資料載入完全成功！您可以開始在上方搜尋身分證並進行編輯。`, 'success');
+        
+      } catch (err) {
+        log(`載入失敗: ${err.message}`, 'error');
+        alert(`資料載入失敗！\n錯誤原因: ${err.message}\n請確認 Token 是否有效、擁有儲存庫權限，以及 Owner/Repo 設定正確。`);
+        githubStatus.className = 'status-badge status-disconnected';
+        githubStatus.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> 連線失敗`;
+        
+        searchIdInput.disabled = true;
+        btnSearch.disabled = true;
+        emptyState.style.display = 'flex';
+      } finally {
+        btnConnect.disabled = false;
+      }
+    });
+
+    // Fetch File from GitHub API helper
+    async function fetchGitHubFile(token, owner, repo, branch, path) {
+      const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${branch}`;
+      const headers = {
+        'Authorization': `token ${token}`,
+        'Accept': 'application/vnd.github.v3+json',
+        'Cache-Control': 'no-cache' // Force get fresh SHA and content
+      };
+      
+      const res = await fetch(url, { headers });
+      if (!res.ok) {
+        throw new Error(`[GET ${path}] 遠端回報錯誤 ${res.status}: ${res.statusText}`);
+      }
+      
+      const data = await res.json();
+      // Decode content base64, handling Chinese UTF-8 decoding correctly
+      const binaryStr = atob(data.content.replace(/\s/g, ''));
+      const bytes = new Uint8Array(binaryStr.length);
+      for (let i = 0; i < binaryStr.length; i++) {
+        bytes[i] = binaryStr.charCodeAt(i);
+      }
+      const text = new TextDecoder('utf-8').decode(bytes);
+      
+      return {
+        sha: data.sha,
+        content: text
+      };
+    }
+
+    // Parse performers.csv
+    function parsePerformersCSV(text) {
+      const lines = parseCSV(text);
+      if (lines.length === 0) throw new Error('performers.csv 檔案內容為空！');
+      const headers = lines[0].map(h => h.trim());
+      const data = [];
+      
+      for (let i = 1; i < lines.length; i++) {
+        const row = lines[i];
+        if (row.length < headers.length) continue;
+        const obj = {};
+        headers.forEach((h, idx) => {
+          obj[h] = row[idx] ? row[idx].trim() : "";
+        });
+        
+        // Map headers dynamically to internal structured fields
+        obj._category = obj["身分別"] || obj["category"] || "";
+        obj._id = obj["身份證"] || obj["id"] || "";
+        obj._name = obj["姓名"] || obj["name"] || "";
+        obj._circle = obj["01圓形"] || obj["circle"] || "";
+        obj._xingYuan = obj["02行願"] || obj["xingYuan"] || "";
+        obj._jingSi = obj["04靜思家風"] || obj["jingSi"] || "";
+        obj._lamp = obj["05-1有法船"] || obj["lamp"] || "";
+        obj._noBoat = obj["05-2無法船"] || obj["noBoat"] || "";
+        obj._bigV = obj["06四弘誓願"] || obj["bigV"] || "";
+        
+        if (obj._id) {
+          data.push(obj);
+        }
+      }
+      return { headers, data };
+    }
+
+    // Parse dayperformers.csv
+    function parseDayPerformersCSV(text) {
+      const lines = parseCSV(text);
+      if (lines.length === 0) throw new Error('dayperformers.csv 檔案內容為空！');
+      const headers = lines[0].map(h => h.trim());
+      const data = [];
+      
+      for (let i = 1; i < lines.length; i++) {
+        const row = lines[i];
+        if (row.length < headers.length) continue;
+        const obj = {};
+        headers.forEach((h, idx) => {
+          obj[h] = row[idx] ? row[idx].trim() : "";
+        });
+        
+        obj._date = obj["日期"] || "";
+        obj._id = obj["身份證"] || "";
+        obj._name = obj["姓名"] || "";
+        
+        if (obj._id) {
+          data.push(obj);
+        }
+      }
+      return { headers, data };
+    }
+
+    // Search Performer
+    btnSearch.addEventListener('click', () => {
+      performSearch();
+    });
+
+    searchIdInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        performSearch();
+      }
+    });
+
+    function performSearch() {
+      const queryId = searchIdInput.value.trim();
+      if (!queryId) {
+        alert('請輸入要查詢的身份證！');
+        return;
+      }
+      
+      log(`正在搜尋身份證 "${queryId}"...`);
+      
+      // Find matches in performersList
+      const perf = performersList.find(p => p._id.toLowerCase() === queryId.toLowerCase());
+      
+      if (!perf) {
+        log(`找不到身份證為 "${queryId}" 的表演者。提供新建錄入。`, 'warning');
+        if (confirm(`找不到身份證為 "${queryId}" 的表演者資料。\n是否要為此身份證「新建」一筆表演者跑位記錄？`)) {
+          showEditor({
+            _id: queryId,
+            _category: "",
+            _name: "",
+            _circle: "",
+            _xingYuan: "",
+            _jingSi: "",
+            _lamp: "",
+            _noBoat: "",
+            _bigV: ""
+          }, true);
+        }
+      } else {
+        log(`找到表演者！身份證: ${perf._id}, 姓名: ${perf._name || '(無登記)'}`, 'success');
+        showEditor(perf, false);
+      }
+    }
+
+    // Populate and show editing form
+    function showEditor(performer, isNew = false) {
+      editId.value = performer._id;
+      editCategory.value = performer._category;
+      editName.value = performer._name;
+      
+      posCircle.value = performer._circle;
+      posXingYuan.value = performer._xingYuan;
+      posJingSi.value = performer._jingSi;
+      posLamp.value = performer._lamp;
+      posNoBoat.value = performer._noBoat;
+      posBigV.value = performer._bigV;
+      
+      // Query days scheduled for this performer
+      dayRosterList.innerHTML = '';
+      const days = dayPerformersList.filter(dp => dp._id.toLowerCase() === performer._id.toLowerCase());
+      
+      if (days.length === 0) {
+        dayRosterList.innerHTML = '<span class="day-roster-empty">此身分證目前無 any 場次登記名單。</span>';
+      } else {
+        days.forEach(dp => {
+          const badge = document.createElement('span');
+          badge.className = 'day-roster-badge';
+          badge.innerHTML = `<i class="fa-solid fa-calendar-day"></i> ${dp._date}`;
+          dayRosterList.appendChild(badge);
+        });
+      }
+      
+      emptyState.style.display = 'none';
+      editorContainer.style.display = 'block';
+      editCategory.focus();
+    }
+
+    // Cancel edit
+    btnCancel.addEventListener('click', () => {
+      editorContainer.style.display = 'none';
+      searchIdInput.value = '';
+      log('編輯已被取消。');
+    });
+
+    // Save and commit changes back to GitHub
+    btnSave.addEventListener('click', async () => {
+      const pid = editId.value.trim();
+      const pcat = editCategory.value.trim();
+      const pname = editName.value.trim();
+      
+      const pcircle = posCircle.value.trim();
+      const pxingYuan = posXingYuan.value.trim();
+      const pjingSi = posJingSi.value.trim();
+      const plamp = posLamp.value.trim();
+      const pnoBoat = posNoBoat.value.trim();
+      const pbigV = posBigV.value.trim();
+      
+      if (!pid) return;
+      
+      log(`準備將變更儲存並推送至 GitHub...`);
+      
+      // 1. Update performersList in memory
+      let idx = performersList.findIndex(p => p._id.toLowerCase() === pid.toLowerCase());
+      const updatedPerf = {
+        _id: pid,
+        _category: pcat,
+        _name: pname,
+        _circle: pcircle,
+        _xingYuan: pxingYuan,
+        _jingSi: pjingSi,
+        _lamp: plamp,
+        _noBoat: pnoBoat,
+        _bigV: pbigV
+      };
+      
+      if (idx === -1) {
+        performersList.push(updatedPerf);
+        log(`本機記憶體已加入新表演者 ${pid}`);
+      } else {
+        performersList[idx] = updatedPerf;
+        log(`本機記憶體已更新表演者 ${pid}`);
+      }
+      
+      // 2. Update dayPerformersList (match by ID and update name to pname)
+      let dayUpdatesCount = 0;
+      dayPerformersList.forEach(dp => {
+        if (dp._id.toLowerCase() === pid.toLowerCase()) {
+          dp._name = pname;
+          dayUpdatesCount++;
+        }
+      });
+      if (dayUpdatesCount > 0) {
+        log(`本機記憶體中已連帶同步修正 ${dayUpdatesCount} 個場次名單的姓名為「${pname}」`);
+      }
+      
+      // Disable buttons during saving
+      btnSave.disabled = true;
+      btnCancel.disabled = true;
+      btnConnect.disabled = true;
+      
+      const token = ghTokenEl.value.trim();
+      const owner = ghOwnerEl.value.trim();
+      const repo = ghRepoEl.value.trim();
+      const branch = ghBranchEl.value.trim();
+      
+      try {
+        // --- 1. Regenerate performers.csv string ---
+        log(`[1/4] 正在產生全新的 performers.csv 內容...`);
+        const newPerfCsv = stringifyCSV(performersCsvHeaders, performersList, (obj, header) => {
+          if (header === "身分別" || header === "category") return obj._category;
+          if (header === "身份證" || header === "id") return obj._id;
+          if (header === "姓名" || header === "name") return obj._name;
+          if (header === "01圓形" || header === "circle") return obj._circle;
+          if (header === "02行願" || header === "xingYuan") return obj._xingYuan;
+          if (header === "04靜思家風" || header === "jingSi") return obj._jingSi;
+          if (header === "05-1有法船" || header === "lamp") return obj._lamp;
+          if (header === "05-2無法船" || header === "noBoat") return obj._noBoat;
+          if (header === "06四弘誓願" || header === "bigV") return obj._bigV;
+          return obj[header] || "";
+        });
+        
+        // --- 2. Regenerate data.js string ---
+        log(`[2/4] 正在編譯產生的 data.js 程式碼...`);
+        const newDataJs = generateDataJS(performersList);
+        
+        // --- 3. Regenerate dayperformers.csv string ---
+        log(`[3/4] 正在產生全新的 dayperformers.csv 內容...`);
+        const newDayCsv = stringifyCSV(dayPerformersCsvHeaders, dayPerformersList, (obj, header) => {
+          if (header === "日期") return obj._date;
+          if (header === "身份證") return obj._id;
+          if (header === "姓名") return obj._name;
+          return obj[header] || "";
+        });
+        
+        // --- 4. Regenerate daydata.js string ---
+        log(`[4/4] 正在編譯產生的 daydata.js 程式碼...`);
+        const newDayDataJs = generateDayDataJS(dayPerformersList);
+        
+        // --- Sequentially Commit to GitHub ---
+        const commitMsg = `admin: update performer ${pid} (${pname}) positions and info via modify.html`;
+        
+        log(`🚀 開始批次推送變更至 GitHub...`);
+        
+        // Commit performers.csv
+        await commitGitHubFile(token, owner, repo, branch, 'performers.csv', newPerfCsv, commitMsg);
+        
+        // Commit data.js
+        await commitGitHubFile(token, owner, repo, branch, 'data.js', newDataJs, commitMsg);
+        
+        // Commit dayperformers.csv
+        await commitGitHubFile(token, owner, repo, branch, 'dayperformers.csv', newDayCsv, commitMsg);
+        
+        // Commit daydata.js
+        await commitGitHubFile(token, owner, repo, branch, 'daydata.js', newDayDataJs, commitMsg);
+        
+        log(`🎉 所有檔案已完全成功推送至 GitHub！前台網頁即刻套用最新跑位資料。`, 'success');
+        alert(`儲存成功！\n\n已成功將最新的表演者坐標及場次名單更新並推送至 GitHub 專案。`);
+        
+        // Hide editor on success
+        editorContainer.style.display = 'none';
+        searchIdInput.value = '';
+        
+      } catch (err) {
+        log(`儲存推送失敗: ${err.message}`, 'error');
+        alert(`儲存或推送至 GitHub 失敗！\n錯誤回報: ${err.message}`);
+      } finally {
+        btnSave.disabled = false;
+        btnCancel.disabled = false;
+        btnConnect.disabled = false;
+      }
+    });
+
+    // Helper to Commit (PUT) file to GitHub API
+    async function commitGitHubFile(token, owner, repo, branch, path, contentStr, commitMessage) {
+      const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${branch}`;
+      const headers = {
+        'Authorization': `token ${token}`,
+        'Accept': 'application/vnd.github.v3+json'
+      };
+      
+      log(`正在取得遠端 ${path} 的最新 SHA 標記...`);
+      let sha = null;
+      try {
+        const res = await fetch(url, { headers, cache: 'no-store' });
+        if (res.status === 200) {
+          const data = await res.json();
+          sha = data.sha;
+          log(`取得 ${path} SHA 成功: ${sha}`);
+        } else if (res.status === 404) {
+          log(`遠端無此檔案 ${path}，將為您全新建立。`);
+        } else {
+          throw new Error(`無法讀取 ${path} 狀態: ${res.statusText}`);
+        }
+      } catch (err) {
+        throw new Error(`取得遠端 ${path} SHA 碼失敗: ${err.message}`);
+      }
+      
+      // Correct Unicode Base64 encoding
+      const utf8Bytes = new TextEncoder().encode(contentStr);
+      let binaryStr = "";
+      for (let i = 0; i < utf8Bytes.length; i++) {
+        binaryStr += String.fromCharCode(utf8Bytes[i]);
+      }
+      const base64Content = btoa(binaryStr);
+      
+      const body = {
+        message: commitMessage,
+        content: base64Content,
+        branch: branch
+      };
+      if (sha) {
+        body.sha = sha;
+      }
+      
+      log(`正在發送提交請求更新 ${path}...`);
+      const putRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
+        method: 'PUT',
+        headers: {
+          ...headers,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      });
+      
+      if (putRes.ok) {
+        log(`更新檔案 ${path} 成功！`, 'success');
+      } else {
+        const errorData = await putRes.json().catch(() => ({}));
+        throw new Error(`[PUT ${path}] 遠端回報失敗: ${errorData.message || putRes.statusText}`);
+      }
+    }
+
+    // Generate data.js format string
+    function generateDataJS(performers) {
+      function esc(s) {
+        if (!s) return "";
+        return s.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n').replace(/\r/g, '\\r');
+      }
+      let jsContent = "// Performer Stage Formations Database\nconst performersData = [\n";
+      performers.forEach((p, idx) => {
+        const comma = idx < performers.length - 1 ? "," : "";
+        // Note: name field is hardcoded to empty string inside data.js, matching python import_csv.py rules
+        jsContent += `  { category: "${esc(p._category)}", id: "${esc(p._id)}", name: "", circle: "${esc(p._circle)}", xingYuan: "${esc(p._xingYuan)}", jingSi: "${esc(p._jingSi)}", lamp: "${esc(p._lamp)}", noBoat: "${esc(p._noBoat)}", bigV: "${esc(p._bigV)}" }${comma}\n`;
+      });
+      jsContent += "];\n\n// Export if in node environment, otherwise make it global\nif (typeof module !== 'undefined' && module.exports) {\n  module.exports = performersData;\n}\n";
+      return jsContent;
+    }
+
+    // Generate daydata.js format string
+    function generateDayDataJS(dayPerformers) {
+      const DAY_SESSIONS_DEF = [
+        { key: '1112', label: '11/12(四)', date: '1/12(四)' },
+        { key: '1113', label: '11/13(五)', date: '1/13(五)' },
+        { key: '1114', label: '11/14(六)', date: '1/14(六)' },
+        { key: '1115', label: '11/15(日)', date: '1/15(日)' },
+      ];
+      
+      function esc(s) {
+        if (!s) return "";
+        return s.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\n/g, '\\n').replace(/\r/g, '');
+      }
+      
+      const dayMap = {};
+      DAY_SESSIONS_DEF.forEach(sess => {
+        dayMap[sess.date] = [];
+      });
+      
+      dayPerformers.forEach(p => {
+        if (p._date in dayMap) {
+          dayMap[p._date].push({ id: p._id, name: p._name });
+        }
+      });
+      
+      const lines = [];
+      lines.push('// daydata.js — 自動由 import_daycsv.py 產生，請勿手動修改');
+      lines.push('');
+      
+      lines.push('const DAY_SESSIONS = [');
+      DAY_SESSIONS_DEF.forEach(sess => {
+        const count = dayMap[sess.date].length;
+        lines.push(`  { key: '${sess.key}', label: '${sess.label}', date: '${sess.date}', count: ${count} },`);
+      });
+      lines.push('];');
+      lines.push('');
+      
+      lines.push('const DAY_PERFORMERS = {');
+      DAY_SESSIONS_DEF.forEach(sess => {
+        const performers = dayMap[sess.date];
+        lines.push(`  '${sess.key}': [`);
+        performers.forEach(p => {
+          lines.push(`    { id: '${esc(p.id)}', name: '${esc(p.name)}' },`);
+        });
+        lines.push('  ],');
+      });
+      lines.push('};');
+      
+      return lines.join('\n') + '\n';
+    }
+  </script>
+</body>
+</html>
