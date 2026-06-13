@@ -27,7 +27,7 @@ const performersData = [
   { category: "B藍", id: "24-52", name: "", circle: "20-58", xingYuan: "19.5-46", jingSi: "24-52", lamp: "22.8-44", noBoat: "22.8-44", bigV: "25.5-45" },
   { category: "B藍", id: "24-53", name: "", circle: "19.2-59", xingYuan: "19.9-46.6", jingSi: "24-53", lamp: "22.5-44.6", noBoat: "22.5-44.6", bigV: "25-46" },
   { category: "B藍", id: "28-53", name: "", circle: "27.5-52", xingYuan: "30.4-45.5", jingSi: "28-53", lamp: "16.5-57", noBoat: "16.5-57", bigV: "26.5-56" },
-  { category: "A白", id: "1-54", name: "", circle: "8.5-45.9", xingYuan: "-59.5", jingSi: "-58.5", lamp: "-56.5", noBoat: "0.8-48.6", bigV: "1.4-47.8" },
+  { category: "A白", id: "1-54", name: "", circle: "8.5-45.9", xingYuan: "-7-59.5", jingSi: "-5-58.5", lamp: "-6-56.5", noBoat: "0.8-48.6", bigV: "1.4-47.8" },
   { category: "A白", id: "1-55", name: "", circle: "8-46.8", xingYuan: "-58.5", jingSi: "-56.5", lamp: "-58", noBoat: "0.4-49.2", bigV: "1-48.6" },
   { category: "A白", id: "1-56", name: "", circle: "7.5-47.5", xingYuan: "-59", jingSi: "-60", lamp: "-56.5", noBoat: "0.4-50.2", bigV: "0.5-49.5" },
   { category: "A白", id: "1-57", name: "", circle: "7-48.3", xingYuan: "-60", jingSi: "-61.5", lamp: "-49.5", noBoat: "5.6-44", bigV: "0-50.5" },
