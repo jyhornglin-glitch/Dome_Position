@@ -79,3 +79,14 @@
 ::1 - - [13/Jun/2026 13:36:20] "GET /images/stickers/lamp_A%E7%99%BD.png HTTP/1.1" 304 -
 ::1 - - [13/Jun/2026 13:36:20] "GET /images/stickers/jingSi_A%E7%99%BD.png HTTP/1.1" 304 -
 ::1 - - [13/Jun/2026 13:36:20] "GET /images/stickers/bigV_A%E7%99%BD.png HTTP/1.1" 304 -
+::1 - - [14/Jun/2026 18:49:26] "GET / HTTP/1.1" 304 -
+::1 - - [14/Jun/2026 18:49:26] "GET /style.css?v=1.4.6 HTTP/1.1" 304 -
+::1 - - [14/Jun/2026 18:49:26] "GET /data.js?v=1.4.6 HTTP/1.1" 200 -
+::1 - - [14/Jun/2026 18:49:26] "GET /daydata.js?v=1.4.6 HTTP/1.1" 200 -
+::1 - - [14/Jun/2026 18:49:26] "GET /lyrics.js?v=1.4.6 HTTP/1.1" 304 -
+::1 - - [14/Jun/2026 18:49:26] "GET /app.js?v=1.4.6 HTTP/1.1" 304 -
+::1 - - [14/Jun/2026 23:30:34] "GET / HTTP/1.1" 304 -
+::1 - - [14/Jun/2026 23:30:34] "GET /style.css?v=1.4.6 HTTP/1.1" 304 -
+::1 - - [14/Jun/2026 23:30:34] "GET /data.js?v=1.4.6 HTTP/1.1" 304 -
+::1 - - [14/Jun/2026 23:30:34] "GET /daydata.js?v=1.4.6 HTTP/1.1" 304 -
+::1 - - [14/Jun/2026 23:30:34] "GET /app.js?v=1.4.6 HTTP/1.1" 304 -

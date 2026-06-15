@@ -83,6 +83,20 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
+  // Get coordinate string for a given formation key, applying session overrides.
+  // For '1113' (11/13五) and '1115' (11/15日), the 'noBoat' (05-2無法船) position
+  // is overridden to be the same as 'lamp' (05-1有法船).
+  function getFormationCoordStr(performer, key) {
+    if (!performer) return '';
+    if (key === 'basic') {
+      return getPerformerFields(performer).coordinate;
+    }
+    if ((selectedSessionKey === '1113' || selectedSessionKey === '1115') && key === 'noBoat') {
+      return performer.lamp || '';
+    }
+    return performer[key] || '';
+  }
+
   // Initialize App — session overlay first
   setupSessionOverlay();
 
@@ -482,7 +496,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const vectorHome = document.getElementById(`vector-${f.key}-home`);
       const vectorPrev = document.getElementById(`vector-${f.key}-prev`);
       
-      let coordStr = f.key === 'basic' ? fields.coordinate : currentPerformer[f.key];
+      let coordStr = getFormationCoordStr(currentPerformer, f.key);
       coordBadge.textContent = coordStr;
       
       // Render HTML landmark icons
@@ -512,7 +526,7 @@ document.addEventListener('DOMContentLoaded', () => {
         vectorHome.textContent = getVectorDescription(basicCoord, currentCoord);
         
         const prevKey = formations[formations.findIndex(x => x.key === f.key) - 1].key;
-        let prevCoordStr = prevKey === 'basic' ? fields.coordinate : currentPerformer[prevKey];
+        let prevCoordStr = getFormationCoordStr(currentPerformer, prevKey);
         
         const prevCoord = parseCoordinate(prevCoordStr);
         vectorPrev.textContent = getVectorDescription(prevCoord, currentCoord);
@@ -661,7 +675,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Calculate dynamic scale based on maximum coordinate offset of points to display
     let maxOffset = 0;
     const tempPoints = formations.map((f) => {
-      let coordStr = f.key === 'basic' ? fields.coordinate : currentPerformer[f.key];
+      let coordStr = getFormationCoordStr(currentPerformer, f.key);
       
       const coord = parseCoordinate(coordStr);
       let dx_rel = 0;
@@ -911,7 +925,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Calculate relative coordinates and map to SVG coords
     const allPoints = formations.map((f, idx) => {
-      let coordStr = f.key === 'basic' ? fields.coordinate : currentPerformer[f.key];
+      let coordStr = getFormationCoordStr(currentPerformer, f.key);
       
       const coord = parseCoordinate(coordStr);
       
@@ -1076,9 +1090,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (showNeighbors && !homeCoord.isText) {
         const activeFormation = formations[fIdx];
-        const myCoordStr = activeFormation.key === 'basic'
-          ? fields.coordinate
-          : currentPerformer[activeFormation.key];
+        const myCoordStr = getFormationCoordStr(currentPerformer, activeFormation.key);
         const myCoord = parseCoordinate(myCoordStr);
 
         if (!myCoord.isText && myCoord.x !== null) {
@@ -1144,7 +1156,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const dx = Math.abs(basicCoord.x - targetX);
                 const dy = Math.abs(basicCoord.y - myBasicCoord.y);
                 if (dx >= 0.01 || dy > Y_RADIUS) return; // 指定 X 欄、Y±1
-                const nCoordStr = activeFormation.key === 'basic' ? p.id : p[activeFormation.key];
+                const nCoordStr = getFormationCoordStr(p, activeFormation.key);
                 if (!nCoordStr) return;
                 const nCoord = parseCoordinate(nCoordStr);
                 if (nCoord.isText || nCoord.x === null) return;
@@ -1220,13 +1232,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const mapMovementGuide = document.getElementById('mapMovementGuide');
       if (mapMovementGuide) {
         const f = formations[activeFormationIdx];
-        let coordStr = f.key === 'basic' ? fields.coordinate : currentPerformer[f.key];
+        let coordStr = getFormationCoordStr(currentPerformer, f.key);
 
         if (activeFormationIdx === 0) {
           mapMovementGuide.innerHTML = `<i class="fa-solid fa-street-view" style="color: var(--red-color); margin-right: 5px;"></i><strong>起點就位</strong>：至起點座標點 <strong>(${coordStr})</strong> 就定位。`;
         } else {
           const prevKey = formations[activeFormationIdx - 1].key;
-          let prevCoordStr = prevKey === 'basic' ? fields.coordinate : currentPerformer[prevKey];
+          let prevCoordStr = getFormationCoordStr(currentPerformer, prevKey);
           
           const prevCoord = parseCoordinate(prevCoordStr);
           const currentCoord = parseCoordinate(coordStr);
@@ -1409,7 +1421,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const title = document.createElement('div');
       title.className = 'nav-step-title';
       
-      let coordStr = f.key === 'basic' ? fields.coordinate : currentPerformer[f.key];
+      let coordStr = getFormationCoordStr(currentPerformer, f.key);
       
       const stepName = document.createElement('span');
       stepName.className = 'step-name';
@@ -1430,7 +1442,7 @@ document.addEventListener('DOMContentLoaded', () => {
         descr.innerHTML = `<strong>起點就位</strong>：至起點座標點 <strong>(${coordStr})</strong> 就定位。`;
       } else {
         const prevKey = formations[idx - 1].key;
-        let prevCoordStr = prevKey === 'basic' ? fields.coordinate : currentPerformer[prevKey];
+        let prevCoordStr = getFormationCoordStr(currentPerformer, prevKey);
         
         const prevCoord = parseCoordinate(prevCoordStr);
         const currentCoord = parseCoordinate(coordStr);
