@@ -57,6 +57,11 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
             post_data = self.rfile.read(content_length)
             data = json.loads(post_data.decode('utf-8'))
 
+            # Verify password
+            if data.get('password') != 'tzuchi60':
+                self.send_json_response(403, {"success": False, "error": "密碼錯誤，拒絕存取！"})
+                return
+
             session_key = data.get('session')
             target_id = str(data.get('id', '')).strip()
             new_name = str(data.get('name', '')).strip()
@@ -109,6 +114,11 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
             content_length = int(self.headers['Content-Length'])
             post_data = self.rfile.read(content_length)
             data = json.loads(post_data.decode('utf-8'))
+
+            # Verify password
+            if data.get('password') != 'tzuchi60':
+                self.send_json_response(403, {"success": False, "error": "密碼錯誤，拒絕存取！"})
+                return
 
             target_id = str(data.get('id', '')).strip()
             circle = str(data.get('circle', '')).strip()

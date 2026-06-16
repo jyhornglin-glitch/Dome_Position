@@ -2165,6 +2165,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const adminTabPanels = document.querySelectorAll('.admin-tab-panel');
     const adminMessage = document.getElementById('adminMessage');
     
+    // Auth UI Elements
+    const adminAuthScreen = document.getElementById('adminAuthScreen');
+    const adminMainContent = document.getElementById('adminMainContent');
+    const adminPasswordInput = document.getElementById('adminPassword');
+    const verifyAdminPasswordBtn = document.getElementById('verifyAdminPasswordBtn');
+    
+    let isAuthed = false;
+
     // Forms
     const dayperformerForm = document.getElementById('dayperformerForm');
     const performerForm = document.getElementById('performerForm');
@@ -2187,6 +2195,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Open Admin Modal
     adminBtn.addEventListener('click', () => {
       clearMsg();
+      
+      // Reset Auth Screen state
+      isAuthed = false;
+      adminPasswordInput.value = '';
+      adminAuthScreen.style.display = 'flex';
+      adminMainContent.style.display = 'none';
+
       // Pre-fill if we have an active performer currently queried on screen
       if (currentPerformer) {
         document.getElementById('adminDayId').value = currentPerformer.id;
@@ -2201,6 +2216,29 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('adminBigV').value = currentPerformer.bigV || '';
       }
       adminModal.style.display = 'flex';
+      adminPasswordInput.focus();
+    });
+
+    // Verify Password on UI
+    function handlePasswordVerify() {
+      clearMsg();
+      const pwd = adminPasswordInput.value;
+      if (pwd === 'tzuchi60') {
+        isAuthed = true;
+        adminAuthScreen.style.display = 'none';
+        adminMainContent.style.display = 'flex';
+      } else {
+        showMsg('密碼錯誤，請重新輸入！', 'error');
+        adminPasswordInput.value = '';
+        adminPasswordInput.focus();
+      }
+    }
+
+    verifyAdminPasswordBtn.addEventListener('click', handlePasswordVerify);
+    adminPasswordInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        handlePasswordVerify();
+      }
     });
 
     // Close Admin Modal
@@ -2274,7 +2312,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/api/update-dayperformer', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ session, id, name })
+        body: JSON.stringify({ session, id, name, password: 'tzuchi60' })
       })
       .then(res => res.json())
       .then(data => {
@@ -2316,7 +2354,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/api/update-performer', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, circle, xingYuan, jingSi, lamp, noBoat, bigV })
+        body: JSON.stringify({ id, circle, xingYuan, jingSi, lamp, noBoat, bigV, password: 'tzuchi60' })
       })
       .then(res => res.json())
       .then(data => {
