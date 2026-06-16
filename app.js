@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let panY = 0;
   let rotationAngle = 0;
   let selectedSessionKey = null; // Currently selected day key (e.g. '1114')
+  let hintModalClosed = false;
 
   // Relative Grid coordinate configuration
   const GRID_CENTER_X = 180;
@@ -71,6 +72,76 @@ document.addEventListener('DOMContentLoaded', () => {
     { key: 'noBoat', name: '05-2無法船', label: '無法船' },
     { key: 'bigV', name: '06四弘誓願', label: '四弘誓願' }
   ];
+
+  const ACTION_HINTS = {
+    'circle': [
+      '(面向)',
+      '甲舞台，45度序無量量法門...請佛轉法輪',
+      '甲舞台，45度，生:恭喜...前來禮',
+      '乙舞台，老:流逝光陰老去的苦悶分秒蹉跎的警鐘',
+      '乙舞台，病:病症摧殘惡道苦報患病...無常...兇險',
+      '乙舞台，死:人生苦短..死亡的苦 醒思生命的意涵',
+      '乙舞台，甲六度:開示...'
+    ],
+    'xingYuan': [
+      '（面向）',
+      '乙舞台，海浪...守之不動行願',
+      '法師，開經偈',
+      '甲舞台，45米籮:潤澤普令智慧扶...大乘米籮'
+    ],
+    'jingSi': [
+      '（面向）',
+      '法師45度，静思家風..守志奉道刻苦修行'
+    ],
+    'lamp': [
+      '（面向）',
+      '法師，點一盞燈:慈悲智慧',
+      '乙舞台，五毛錢:我也要參加',
+      '法師，慈善:是諸眾救處大依大導師作正念'
+    ],
+    'noBoat': [],
+    'bigV': [
+      '（面向）',
+      '乙舞台，病苦眾生在呐喊',
+      '乙舞台，大船師',
+      '甲舞台，四弘誓願'
+    ]
+  };
+
+  function getActionHintsForPerformer(performer, key) {
+    const list = ACTION_HINTS[key] || [];
+    if (list.length === 0) return [];
+    
+    const cat = performer.category || '';
+    const result = [];
+    
+    // Always include orientation if present
+    const orientation = list.find(item => item.includes('面向'));
+    if (orientation) {
+      result.push(orientation);
+    }
+    
+    // Filter others based on stage / category
+    list.forEach(item => {
+      if (item.includes('面向')) return;
+      
+      if (cat.startsWith('A')) {
+        if (item.includes('甲舞台')) {
+          result.push(item);
+        }
+      } else if (cat.startsWith('B')) {
+        if (item.includes('乙舞台')) {
+          result.push(item);
+        }
+      } else if (cat.startsWith('法師')) {
+        if (item.includes('法師')) {
+          result.push(item);
+        }
+      }
+    });
+    
+    return result;
+  }
 
   // Get coordinate and name from performer record.
   // Since v1.2.8: name is always empty in performersData (supplied by dayperformers.csv).
@@ -161,6 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
     setupDownloadListeners();
     setupZoomAndPan();
+    setupActionHintsOverlay();
   }
 
   // Real-time status bar clock
@@ -441,6 +513,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function selectPerformer(performer, dayOverrideName) {
     currentPerformer = performer;
     activeFormationIdx = 0;
+    hintModalClosed = false; // Reset close state on new performer selection
     resetZoomAndPan();
     
     const showFullTrajectory = document.getElementById('showFullTrajectory');
@@ -991,7 +1064,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const endPt = allPoints[i + 1];
       
       if (startPt.pos.x !== endPt.pos.x || startPt.pos.y !== endPt.pos.y) {
-        const pathD = `M ${startPt.pos.x} ${startPt.pos.y} L ${endPt.pos.x} ${endPt.pos.y}`;
+        let endX = endPt.pos.x;
+        let endY = endPt.pos.y;
+        if (i + 1 === fIdx) {
+          // Reduce length by 90% (only 10% of distance remains)
+          endX = startPt.pos.x + 0.1 * (endPt.pos.x - startPt.pos.x);
+          endY = startPt.pos.y + 0.1 * (endPt.pos.y - startPt.pos.y);
+        }
+        const pathD = `M ${startPt.pos.x} ${startPt.pos.y} L ${endX} ${endY}`;
         
         const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         path.setAttribute('d', pathD);
@@ -1004,7 +1084,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (i + 1 === fIdx) {
           path.setAttribute('class', 'local-path-line');
           path.setAttribute('marker-end', `url(#local-arrow-${targetKey})`);
-          path.style.filter = `drop-shadow(0 0 3px ${color})`;
+          path.style.filter = `drop-shadow(0 0 1px ${color})`;
         } else {
           path.setAttribute('class', 'local-path-line-static');
           path.setAttribute('marker-end', `url(#local-arrow-static-${targetKey})`);
@@ -1246,7 +1326,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const movement = getVectorDescription(prevCoord, currentCoord);
           const prevName = formations[activeFormationIdx - 1].name.split(' ')[0];
           
-          mapMovementGuide.innerHTML = `<i class="fa-solid fa-route" style="color: var(--blue-color); margin-right: 5px;"></i><strong>隊形移動</strong>：從 ${prevName} <strong>(${prevCoordStr})</strong> 移動至 ${f.name.split(' ')[0]} <strong>(${coordStr})</strong>。<br>跑法：<strong>${movement}</strong>。`;
+          mapMovementGuide.innerHTML = `<i class="fa-solid fa-route" style="color: var(--red-color); margin-right: 5px;"></i><strong>隊形移動</strong>：從 ${prevName} <strong>(${prevCoordStr})</strong> 移動至 ${f.name.split(' ')[0]} <strong>(${coordStr})</strong>。<br>跑法：<strong>${movement}</strong>。`;
         }
       }
 
@@ -1372,6 +1452,8 @@ document.addEventListener('DOMContentLoaded', () => {
         s.classList.remove('active');
       }
     });
+    
+    updateActionHintsDisplay();
   }
 
   // Highlight detail card from map hover
@@ -1565,10 +1647,10 @@ document.addEventListener('DOMContentLoaded', () => {
           .local-path-line {
             fill: none;
             stroke: url(#local-path-grad);
-            stroke-width: 1.75px;
+            stroke-width: 0.35px;
             stroke-linecap: round;
             stroke-linejoin: round;
-            stroke-dasharray: 6, 4;
+            stroke-dasharray: 1.2, 0.8;
           }
           .local-path-line-static {
             fill: none;
@@ -2022,6 +2104,92 @@ document.addEventListener('DOMContentLoaded', () => {
     svgEl.addEventListener('touchstart', startDrag, { passive: false });
     window.addEventListener('touchmove', moveDrag, { passive: false });
     window.addEventListener('touchend', endDrag);
+  }
+
+  // Define floating action hints modal initialization
+  function setupActionHintsOverlay() {
+    const svgWrapper = document.querySelector('.svg-wrapper');
+    if (!svgWrapper) return;
+    
+    if (document.getElementById('actionHintModal')) return;
+    
+    const modal = document.createElement('div');
+    modal.id = 'actionHintModal';
+    modal.className = 'action-hint-modal';
+    modal.style.display = 'none';
+    modal.innerHTML = `
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+        <strong style="font-size: 12px; color: #000000;"><i class="fa-solid fa-person-running"></i> 動作提示</strong>
+        <button class="action-hint-close-btn" id="closeHintBtn">&times;</button>
+      </div>
+      <div id="actionHintBody" style="color: #000000;"></div>
+    `;
+    
+    const showBtn = document.createElement('button');
+    showBtn.id = 'showHintBtn';
+    showBtn.className = 'show-hint-btn';
+    showBtn.style.display = 'none';
+    showBtn.innerHTML = '<i class="fa-solid fa-circle-info"></i> 動作提示';
+    
+    svgWrapper.appendChild(modal);
+    svgWrapper.appendChild(showBtn);
+    
+    // Stop propagation of touch/mouse events so panning/zooming isn't triggered
+    const stopProp = (e) => e.stopPropagation();
+    modal.addEventListener('mousedown', stopProp);
+    modal.addEventListener('touchstart', stopProp);
+    showBtn.addEventListener('mousedown', stopProp);
+    showBtn.addEventListener('touchstart', stopProp);
+    
+    document.getElementById('closeHintBtn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      hintModalClosed = true;
+      modal.style.display = 'none';
+      showBtn.style.display = 'flex';
+    });
+    
+    showBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      hintModalClosed = false;
+      modal.style.display = 'block';
+      showBtn.style.display = 'none';
+    });
+  }
+
+  // Update floating action hints based on current step & performer
+  function updateActionHintsDisplay() {
+    const modal = document.getElementById('actionHintModal');
+    const showBtn = document.getElementById('showHintBtn');
+    if (!modal || !showBtn || !currentPerformer) return;
+    
+    const f = formations[activeFormationIdx];
+    const hints = getActionHintsForPerformer(currentPerformer, f.key);
+    
+    if (hints.length === 0) {
+      modal.style.display = 'none';
+      showBtn.style.display = 'none';
+      return;
+    }
+    
+    const titleEl = modal.querySelector('strong');
+    titleEl.innerHTML = `<i class="fa-solid fa-person-running"></i> 動作提示 (${f.label})`;
+    
+    const bodyEl = document.getElementById('actionHintBody');
+    if (hints.length === 1) {
+      bodyEl.innerHTML = `<p style="margin: 0; color: #000000; font-size: 11.5px; font-weight: 500;">${hints[0]}</p>`;
+    } else {
+      bodyEl.innerHTML = `<ul style="margin: 0; padding-left: 16px; color: #000000; font-size: 11.5px; font-weight: 500;">` +
+        hints.map(h => `<li style="margin-bottom: 4px; color: #000000;">${h}</li>`).join('') +
+        `</ul>`;
+    }
+    
+    if (hintModalClosed) {
+      modal.style.display = 'none';
+      showBtn.style.display = 'flex';
+    } else {
+      modal.style.display = 'block';
+      showBtn.style.display = 'none';
+    }
   }
 
   // Final sync check
