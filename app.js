@@ -2156,6 +2156,192 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // ── Setup Admin Panel Listeners ────────────────────────────────────
+  function setupAdminListeners() {
+    const adminBtn = document.getElementById('adminBtn');
+    const adminModal = document.getElementById('adminModal');
+    const closeAdminModalBtn = document.getElementById('closeAdminModalBtn');
+    const adminTabBtns = document.querySelectorAll('.admin-tab-btn');
+    const adminTabPanels = document.querySelectorAll('.admin-tab-panel');
+    const adminMessage = document.getElementById('adminMessage');
+    
+    // Forms
+    const dayperformerForm = document.getElementById('dayperformerForm');
+    const performerForm = document.getElementById('performerForm');
+    
+    // Helper to show messages
+    function showMsg(text, type) {
+      adminMessage.textContent = text;
+      adminMessage.className = `admin-msg-box ${type}`;
+      adminMessage.style.display = 'block';
+    }
+    
+    function clearMsg() {
+      adminMessage.style.display = 'none';
+      adminMessage.className = 'admin-msg-box';
+      adminMessage.textContent = '';
+    }
+
+    if (!adminBtn || !adminModal) return;
+
+    // Open Admin Modal
+    adminBtn.addEventListener('click', () => {
+      clearMsg();
+      // Pre-fill if we have an active performer currently queried on screen
+      if (currentPerformer) {
+        document.getElementById('adminDayId').value = currentPerformer.id;
+        document.getElementById('adminId').value = currentPerformer.id;
+        
+        // Auto-query performer coords too
+        document.getElementById('adminCircle').value = currentPerformer.circle || '';
+        document.getElementById('adminXingYuan').value = currentPerformer.xingYuan || '';
+        document.getElementById('adminJingSi').value = currentPerformer.jingSi || '';
+        document.getElementById('adminLamp').value = currentPerformer.lamp || '';
+        document.getElementById('adminNoBoat').value = currentPerformer.noBoat || '';
+        document.getElementById('adminBigV').value = currentPerformer.bigV || '';
+      }
+      adminModal.style.display = 'flex';
+    });
+
+    // Close Admin Modal
+    closeAdminModalBtn.addEventListener('click', () => {
+      adminModal.style.display = 'none';
+    });
+
+    adminModal.addEventListener('click', (e) => {
+      if (e.target === adminModal) {
+        adminModal.style.display = 'none';
+      }
+    });
+
+    // Switch Admin Tabs
+    adminTabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        clearMsg();
+        adminTabBtns.forEach(b => b.classList.remove('active'));
+        adminTabPanels.forEach(p => {
+          p.classList.remove('active');
+          p.style.display = 'none';
+        });
+        
+        btn.classList.add('active');
+        const targetTab = btn.getAttribute('data-admin-tab');
+        const targetPanel = document.getElementById(`adminPanel-${targetTab}`);
+        if (targetPanel) {
+          targetPanel.classList.add('active');
+          targetPanel.style.display = 'flex';
+        }
+      });
+    });
+
+    // Query Performer Coordinates in Memory
+    const queryPerformerBtn = document.getElementById('queryPerformerBtn');
+    queryPerformerBtn.addEventListener('click', () => {
+      clearMsg();
+      const enteredId = document.getElementById('adminId').value.trim();
+      if (!enteredId) {
+        showMsg('請輸入身分證編號後再進行查詢！', 'error');
+        return;
+      }
+      
+      const p = performersData.find(x => x.id === enteredId);
+      if (p) {
+        document.getElementById('adminCircle').value = p.circle || '';
+        document.getElementById('adminXingYuan').value = p.xingYuan || '';
+        document.getElementById('adminJingSi').value = p.jingSi || '';
+        document.getElementById('adminLamp').value = p.lamp || '';
+        document.getElementById('adminNoBoat').value = p.noBoat || '';
+        document.getElementById('adminBigV').value = p.bigV || '';
+        showMsg('已成功載入該表演者現有座標！', 'success');
+      } else {
+        showMsg(`找不到身分證編號為 "${enteredId}" 的表演者！`, 'error');
+      }
+    });
+
+    // Submit Dayperformer (Modify Name)
+    dayperformerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      clearMsg();
+      
+      const session = document.getElementById('adminDaySession').value;
+      const id = document.getElementById('adminDayId').value.trim();
+      const name = document.getElementById('adminDayName').value.trim();
+      
+      const submitBtn = document.getElementById('submitDayBtn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = '儲存中...';
+
+      fetch('/api/update-dayperformer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ session, id, name })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          showMsg('姓名修改成功！網頁將在 2 秒後自動重新整理載入新資料...', 'success');
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+        } else {
+          showMsg('錯誤: ' + (data.error || '未知錯誤'), 'error');
+          submitBtn.disabled = false;
+          submitBtn.textContent = '儲存修改';
+        }
+      })
+      .catch(err => {
+        showMsg('無法連線至後端伺服器！請確認 server.py 正在運行中。', 'error');
+        submitBtn.disabled = false;
+        submitBtn.textContent = '儲存修改';
+      });
+    });
+
+    // Submit Performer (Modify Coordinates)
+    performerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      clearMsg();
+      
+      const id = document.getElementById('adminId').value.trim();
+      const circle = document.getElementById('adminCircle').value.trim();
+      const xingYuan = document.getElementById('adminXingYuan').value.trim();
+      const jingSi = document.getElementById('adminJingSi').value.trim();
+      const lamp = document.getElementById('adminLamp').value.trim();
+      const noBoat = document.getElementById('adminNoBoat').value.trim();
+      const bigV = document.getElementById('adminBigV').value.trim();
+      
+      const submitBtn = document.getElementById('submitPerfBtn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = '儲存中...';
+
+      fetch('/api/update-performer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, circle, xingYuan, jingSi, lamp, noBoat, bigV })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          showMsg('座標修改成功！網頁將在 2 秒後自動重新整理載入新資料...', 'success');
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+        } else {
+          showMsg('錯誤: ' + (data.error || '未知錯誤'), 'error');
+          submitBtn.disabled = false;
+          submitBtn.textContent = '儲存座標修改';
+        }
+      })
+      .catch(err => {
+        showMsg('無法連線至後端伺服器！請確認 server.py 正在運行中。', 'error');
+        submitBtn.disabled = false;
+        submitBtn.textContent = '儲存座標修改';
+      });
+    });
+  }
+
+  // Setup Admin Listeners
+  setupAdminListeners();
+
   // Final sync check
   syncActiveCardAndStep();
 });

@@ -84,6 +84,9 @@
               <button id="refreshBtn" class="header-refresh-btn" title="重新整理">
                 <i class="fa-solid fa-rotate"></i> 重新整理
               </button>
+              <button id="adminBtn" class="header-manual-btn" title="後台管理" style="background: rgba(14, 165, 233, 0.08); border-color: rgba(14, 165, 233, 0.2); color: #0ea5e9;">
+                <i class="fa-solid fa-user-gear"></i> 後台管理
+              </button>
               <a href="使用手冊.pdf" target="_blank" class="header-manual-btn" title="使用手冊">
                 <i class="fa-solid fa-book-open"></i> 使用手冊
               </a>
@@ -512,6 +515,92 @@
             <p>&copy; 2026 大巨蛋演繹種子團隊</p>
             <p class="sub">舞台中線位於 X = -8，以第四象限絕對地標網格標註</p>
           </footer>
+        </div>
+      </div>
+
+      <!-- Admin Management Modal -->
+      <div id="adminModal" class="modal-overlay" style="display: none;">
+        <div class="modal-container admin-modal-container">
+          <div class="modal-header">
+            <h3><i class="fa-solid fa-user-gear"></i> 後台資料維護</h3>
+            <button id="closeAdminModalBtn" class="close-btn"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+          <div class="modal-body" style="padding: 20px; overflow-y: auto;">
+            <!-- Navigation Sub-tabs inside Admin Panel -->
+            <div class="admin-tabs">
+              <button class="admin-tab-btn active" data-admin-tab="dayperformers">修改姓名 (dayperformers.csv)</button>
+              <button class="admin-tab-btn" data-admin-tab="performers">修改座標 (performers.csv)</button>
+            </div>
+            
+            <!-- Tab 1: Dayperformers (modify name) -->
+            <div class="admin-tab-panel active" id="adminPanel-dayperformers">
+              <form id="dayperformerForm" onsubmit="event.preventDefault();">
+                <div class="admin-form-group">
+                  <label for="adminDaySession">選擇場次</label>
+                  <select id="adminDaySession" style="width: 100%;" required>
+                    <option value="1112">11/12(四)</option>
+                    <option value="1113">11/13(五)</option>
+                    <option value="1114">11/14(六)</option>
+                    <option value="1115">11/15(日)</option>
+                  </select>
+                </div>
+                <div class="admin-form-group">
+                  <label for="adminDayId">身分證編號 (如: 4-50)</label>
+                  <input type="text" id="adminDayId" placeholder="輸入身分證，如: 4-50" style="width: 100%;" required>
+                </div>
+                <div class="admin-form-group">
+                  <label for="adminDayName">新姓名</label>
+                  <input type="text" id="adminDayName" placeholder="輸入新姓名" style="width: 100%;" required>
+                </div>
+                <button type="submit" id="submitDayBtn" class="admin-submit-btn" style="margin-top: 10px;">儲存修改</button>
+              </form>
+            </div>
+            
+            <!-- Tab 2: Performers (modify coordinates) -->
+            <div class="admin-tab-panel" id="adminPanel-performers" style="display: none;">
+              <form id="performerForm" onsubmit="event.preventDefault();">
+                <div class="admin-form-group">
+                  <label for="adminId">身分證編號 (如: 4-50)</label>
+                  <div style="display: flex; gap: 8px;">
+                    <input type="text" id="adminId" placeholder="輸入身分證，如: 4-50" style="flex: 1;" required>
+                    <button type="button" id="queryPerformerBtn" class="admin-query-btn" style="margin: 0; padding: 0 15px;">查詢現有座標</button>
+                  </div>
+                </div>
+                
+                <hr class="admin-divider">
+                
+                <div class="coord-grid">
+                  <div class="admin-form-group">
+                    <label for="adminCircle">01圓形 座標 (X-Y)</label>
+                    <input type="text" id="adminCircle" placeholder="例如: 2.2-49.2" required>
+                  </div>
+                  <div class="admin-form-group">
+                    <label for="adminXingYuan">02行願 座標 (X-Y)</label>
+                    <input type="text" id="adminXingYuan" placeholder="例如: 2-52.2" required>
+                  </div>
+                  <div class="admin-form-group">
+                    <label for="adminJingSi">04靜思家風 座標 (X-Y)</label>
+                    <input type="text" id="adminJingSi" placeholder="例如: 4-50" required>
+                  </div>
+                  <div class="admin-form-group">
+                    <label for="adminLamp">05-1有法船 座標 (X-Y)</label>
+                    <input type="text" id="adminLamp" placeholder="例如: 11.6-44.8" required>
+                  </div>
+                  <div class="admin-form-group">
+                    <label for="adminNoBoat">05-2無法船 座標 (X-Y)</label>
+                    <input type="text" id="adminNoBoat" placeholder="例如: 11.6-44.8" required>
+                  </div>
+                  <div class="admin-form-group">
+                    <label for="adminBigV">06四弘誓願 座標 (X-Y)</label>
+                    <input type="text" id="adminBigV" placeholder="例如: 1.5-53.2" required>
+                  </div>
+                </div>
+                <button type="submit" id="submitPerfBtn" class="admin-submit-btn" style="margin-top: 15px;">儲存座標修改</button>
+              </form>
+            </div>
+            
+            <div id="adminMessage" class="admin-msg-box" style="display: none;"></div>
+          </div>
         </div>
       </div>
 

@@ -2338,3 +2338,152 @@ svg {
 .show-hint-btn:hover {
   background: rgba(255, 255, 255, 0.7);
 }
+
+/* Admin Modal Styles */
+.admin-modal-container {
+  max-width: 600px;
+}
+
+.admin-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--panel-border);
+  padding-bottom: 10px;
+}
+
+.admin-tab-btn {
+  flex: 1;
+  padding: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-tab-btn.active {
+  color: var(--blue-color);
+  border-bottom-color: var(--blue-color);
+}
+
+.admin-tab-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px 5px;
+}
+
+.admin-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.admin-form-group label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.admin-form-group input, .admin-form-group select {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--panel-border);
+  background: var(--input-bg);
+  color: var(--text-primary);
+  font-size: 14px;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.admin-form-group input:focus, .admin-form-group select:focus {
+  border-color: var(--blue-color);
+  outline: none;
+  background: var(--white-color);
+}
+
+.coord-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 480px) {
+  .coord-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.admin-divider {
+  border: 0;
+  border-top: 1px dashed var(--panel-border);
+  margin: 15px 0;
+}
+
+.admin-query-btn {
+  background: rgba(2, 132, 199, 0.08);
+  border: 1px solid rgba(2, 132, 199, 0.2);
+  color: var(--blue-color);
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.admin-query-btn:hover {
+  background: rgba(2, 132, 199, 0.16);
+}
+
+.admin-submit-btn {
+  width: 100%;
+  background: var(--blue-color);
+  border: none;
+  color: var(--white-color);
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2);
+}
+
+.admin-submit-btn:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+.admin-submit-btn:active {
+  transform: translateY(0);
+}
+
+.admin-msg-box {
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.admin-msg-box.success {
+  background: rgba(22, 163, 74, 0.1);
+  color: var(--green-color);
+  border: 1px solid rgba(22, 163, 74, 0.2);
+}
+
+.admin-msg-box.error {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--red-color);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
