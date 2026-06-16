@@ -1912,14 +1912,28 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
     
-    // Drag/Pan Logic
+    // Drag/Pan & Pinch/Zoom Logic
     let isDragging = false;
+    let isPinching = false;
+    let startTouchDist = 0;
+    let startZoomLevel = 1.0;
     let startX = 0;
     let startY = 0;
     let startPanX = 0;
     let startPanY = 0;
     
     function startDrag(e) {
+      if (e.touches && e.touches.length === 2) {
+        isDragging = false;
+        isPinching = true;
+        startTouchDist = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+        startZoomLevel = zoomLevel;
+        return;
+      }
+      
       if (zoomLevel <= 1.0) return;
       
       // Disable dragging if starting on a landmark node
@@ -1938,6 +1952,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function moveDrag(e) {
+      if (e.touches && e.touches.length === 2) {
+        if (!isPinching) {
+          isDragging = false;
+          isPinching = true;
+          startTouchDist = Math.hypot(
+            e.touches[0].clientX - e.touches[1].clientX,
+            e.touches[0].clientY - e.touches[1].clientY
+          );
+          startZoomLevel = zoomLevel;
+        } else {
+          const dist = Math.hypot(
+            e.touches[0].clientX - e.touches[1].clientX,
+            e.touches[0].clientY - e.touches[1].clientY
+          );
+          if (startTouchDist > 0) {
+            const ratio = dist / startTouchDist;
+            zoomLevel = Math.max(0.5, Math.min(startZoomLevel * ratio, 4.0));
+            updateSvgViewBox(svgEl);
+          }
+        }
+        if (e.cancelable) {
+          e.preventDefault();
+        }
+        return;
+      }
+
       if (!isDragging) return;
       
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -1959,9 +1999,16 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
     
-    function endDrag() {
-      if (isDragging) {
+    function endDrag(e) {
+      if (e && e.touches && e.touches.length > 0) {
+        if (e.touches.length < 2) {
+          isPinching = false;
+          startTouchDist = 0;
+        }
+      } else {
         isDragging = false;
+        isPinching = false;
+        startTouchDist = 0;
         svgEl.classList.remove('dragging');
       }
     }
