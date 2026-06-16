@@ -629,7 +629,7 @@ body {
 
 .dot-legend.center-home { background-color: var(--red-color); box-shadow: 0 0 6px var(--red-color); }
 .dot-legend.prev-pos { background-color: var(--blue-color); box-shadow: 0 0 6px var(--blue-color); }
-.dot-legend.current-pos { background-color: var(--gold-color); box-shadow: 0 0 6px var(--gold-color); }
+.dot-legend.current-pos { background-color: var(--red-color); box-shadow: 0 0 6px var(--red-color); }
 
 .svg-wrapper {
   width: 100%;
@@ -850,7 +850,7 @@ svg {
 }
 
 .path-node-glow.glow-current {
-  fill: var(--gold-color);
+  fill: var(--red-color);
   opacity: 0.5;
 }
 
@@ -868,7 +868,7 @@ svg {
 
 .path-label-bg.bg-current {
   fill: rgba(15, 23, 42, 0.95);
-  stroke: rgba(245, 158, 11, 0.3);
+  stroke: rgba(239, 68, 68, 0.3);
   stroke-width: 0.75;
 }
 
@@ -880,7 +880,7 @@ svg {
 }
 
 .path-label-text.label-current {
-  fill: #fbbf24;
+  fill: #ef4444;
   font-weight: 800;
 }
 
@@ -943,8 +943,8 @@ svg {
 }
 
 .nav-step-item.active .nav-step-dot {
-  background: var(--gold-color);
-  box-shadow: 0 0 6px var(--gold-color);
+  background: var(--red-color);
+  box-shadow: 0 0 6px var(--red-color);
   transform: scale(1.2);
 }
 
@@ -1575,13 +1575,13 @@ svg {
 }
 
 .map-coord-item.active-node {
-  background: rgba(245, 158, 11, 0.08);
-  border-color: rgba(245, 158, 11, 0.30);
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.30);
 }
 
 .map-coord-item.active-node .val {
-  color: var(--gold-color);
-  text-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
+  color: var(--red-color);
+  text-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
 }
 
 /* Map Action Buttons below SVG map */

@@ -1634,7 +1634,7 @@ document.addEventListener('DOMContentLoaded', () => {
             fill: #0284c7;
           }
           .path-node-glow.glow-current {
-            fill: #d97706;
+            fill: #ef4444;
             opacity: 0.5;
           }
           .svg-sticker-image {
@@ -1648,7 +1648,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           .path-label-bg.bg-current {
             fill: rgba(15, 23, 42, 0.95);
-            stroke: rgba(245, 158, 11, 0.3);
+            stroke: rgba(239, 68, 68, 0.3);
             stroke-width: 0.75px;
           }
           .path-label-text {
@@ -1659,7 +1659,7 @@ document.addEventListener('DOMContentLoaded', () => {
             text-anchor: middle;
           }
           .path-label-text.label-current {
-            fill: #fbbf24;
+            fill: #ef4444;
             font-weight: 800;
           }
           .path-label-text.label-prev {
