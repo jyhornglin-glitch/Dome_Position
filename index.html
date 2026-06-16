@@ -557,7 +557,10 @@
                   </div>
                   <div class="admin-form-group">
                     <label for="adminDayId">身分證編號 (如: 4-50)</label>
-                    <input type="text" id="adminDayId" placeholder="輸入身分證，如: 4-50" style="width: 100%;" required>
+                    <div style="display: flex; gap: 8px;">
+                      <input type="text" id="adminDayId" placeholder="輸入身分證，如: 4-50" style="flex: 1;" required>
+                      <button type="button" id="queryDayPerformerBtn" class="admin-query-btn" style="margin: 0; padding: 0 15px;">查詢現有名稱</button>
+                    </div>
                   </div>
                   <div class="admin-form-group">
                     <label for="adminDayName">新姓名</label>

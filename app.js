@@ -2272,6 +2272,28 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
+    // Query Performer Name in Memory
+    const queryDayPerformerBtn = document.getElementById('queryDayPerformerBtn');
+    queryDayPerformerBtn.addEventListener('click', () => {
+      clearMsg();
+      const session = document.getElementById('adminDaySession').value;
+      const enteredId = document.getElementById('adminDayId').value.trim();
+      if (!enteredId) {
+        showMsg('請輸入身分證編號後再進行查詢！', 'error');
+        return;
+      }
+      
+      const list = DAY_PERFORMERS[session] || [];
+      const p = list.find(x => x.id === enteredId);
+      if (p) {
+        document.getElementById('adminDayName').value = p.name || '';
+        showMsg(`查詢成功！目前儲存姓名為「${p.name}」`, 'success');
+      } else {
+        document.getElementById('adminDayName').value = '';
+        showMsg(`在此場次中找不到身分證為 "${enteredId}" 的表演者姓名，您可以直接輸入並新增。`, 'error');
+      }
+    });
+
     // Query Performer Coordinates in Memory
     const queryPerformerBtn = document.getElementById('queryPerformerBtn');
     queryPerformerBtn.addEventListener('click', () => {
