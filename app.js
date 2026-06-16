@@ -576,8 +576,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Draw Dynamic SVG Landmark Image inside grid map using PNG stickers
   function drawSvgLandmarkImage(parentGroup, type, category, x, y, size, isMainSvg = true) {
+    let displayType = type;
+    if ((selectedSessionKey === '1113' || selectedSessionKey === '1115') && type === 'noBoat') {
+      displayType = 'lamp';
+    }
     const img = document.createElementNS('http://www.w3.org/2000/svg', 'image');
-    img.setAttributeNS('http://www.w3.org/1999/xlink', 'href', `images/stickers/${type}_${category}.png`);
+    img.setAttributeNS('http://www.w3.org/1999/xlink', 'href', `images/stickers/${displayType}_${category}.png`);
     img.setAttribute('x', x - size / 2);
     img.setAttribute('y', y - size / 2);
     img.setAttribute('width', size);
@@ -1293,8 +1297,12 @@ document.addEventListener('DOMContentLoaded', () => {
     wrapper.style.alignItems = 'center';
     wrapper.style.justifyContent = 'center';
     
+    let displayType = type;
+    if ((selectedSessionKey === '1113' || selectedSessionKey === '1115') && type === 'noBoat') {
+      displayType = 'lamp';
+    }
     const img = document.createElement('img');
-    img.src = `images/stickers/${type}_${category}.png`;
+    img.src = `images/stickers/${displayType}_${category}.png`;
     img.className = 'landmark-sticker-img';
     img.alt = `${type} sticker`;
     
