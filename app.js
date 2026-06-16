@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let panY = 0;
   let rotationAngle = 0;
   let selectedSessionKey = null; // Currently selected day key (e.g. '1114')
-  let hintModalClosed = false;
+  let hintModalClosed = true;
 
   // Relative Grid coordinate configuration
   const GRID_CENTER_X = 180;
@@ -109,38 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   function getActionHintsForPerformer(performer, key) {
-    const list = ACTION_HINTS[key] || [];
-    if (list.length === 0) return [];
-    
-    const cat = performer.category || '';
-    const result = [];
-    
-    // Always include orientation if present
-    const orientation = list.find(item => item.includes('面向'));
-    if (orientation) {
-      result.push(orientation);
-    }
-    
-    // Filter others based on stage / category
-    list.forEach(item => {
-      if (item.includes('面向')) return;
-      
-      if (cat.startsWith('A')) {
-        if (item.includes('甲舞台')) {
-          result.push(item);
-        }
-      } else if (cat.startsWith('B')) {
-        if (item.includes('乙舞台')) {
-          result.push(item);
-        }
-      } else if (cat.startsWith('法師')) {
-        if (item.includes('法師')) {
-          result.push(item);
-        }
-      }
-    });
-    
-    return result;
+    return ACTION_HINTS[key] || [];
   }
 
   // Get coordinate and name from performer record.
@@ -513,7 +482,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function selectPerformer(performer, dayOverrideName) {
     currentPerformer = performer;
     activeFormationIdx = 0;
-    hintModalClosed = false; // Reset close state on new performer selection
+    hintModalClosed = true; // Initially closed by default as per request
     resetZoomAndPan();
     
     const showFullTrajectory = document.getElementById('showFullTrajectory');

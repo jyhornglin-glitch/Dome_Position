@@ -2292,6 +2292,8 @@ svg {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   pointer-events: auto;
   text-align: left;
+  max-height: 80%;
+  overflow-y: auto;
 }
 
 .action-hint-close-btn {
