@@ -798,12 +798,12 @@ svg {
 .local-path-line {
   fill: none;
   stroke: url(#local-path-grad);
-  stroke-width: 0.35;
+  stroke-width: 1.4;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-dasharray: 1.2, 0.8;
+  stroke-dasharray: 4.8, 3.2;
   animation: pathDashFlow 15s linear infinite;
-  filter: drop-shadow(0 0 1px rgba(217, 119, 6, 0.5));
+  filter: drop-shadow(0 0 3px rgba(217, 119, 6, 0.5));
 }
 
 .local-path-line-static {

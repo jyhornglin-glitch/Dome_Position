@@ -1067,9 +1067,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let endX = endPt.pos.x;
         let endY = endPt.pos.y;
         if (i + 1 === fIdx) {
-          // Reduce length by 90% (only 10% of distance remains)
-          endX = startPt.pos.x + 0.1 * (endPt.pos.x - startPt.pos.x);
-          endY = startPt.pos.y + 0.1 * (endPt.pos.y - startPt.pos.y);
+          // Reduce length by 10% (90% of distance remains)
+          endX = startPt.pos.x + 0.9 * (endPt.pos.x - startPt.pos.x);
+          endY = startPt.pos.y + 0.9 * (endPt.pos.y - startPt.pos.y);
         }
         const pathD = `M ${startPt.pos.x} ${startPt.pos.y} L ${endX} ${endY}`;
         
@@ -1084,7 +1084,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (i + 1 === fIdx) {
           path.setAttribute('class', 'local-path-line');
           path.setAttribute('marker-end', `url(#local-arrow-${targetKey})`);
-          path.style.filter = `drop-shadow(0 0 1px ${color})`;
+          path.style.filter = `drop-shadow(0 0 3px ${color})`;
         } else {
           path.setAttribute('class', 'local-path-line-static');
           path.setAttribute('marker-end', `url(#local-arrow-static-${targetKey})`);
@@ -1647,10 +1647,10 @@ document.addEventListener('DOMContentLoaded', () => {
           .local-path-line {
             fill: none;
             stroke: url(#local-path-grad);
-            stroke-width: 0.35px;
+            stroke-width: 1.4px;
             stroke-linecap: round;
             stroke-linejoin: round;
-            stroke-dasharray: 1.2, 0.8;
+            stroke-dasharray: 4.8, 3.2;
           }
           .local-path-line-static {
             fill: none;
