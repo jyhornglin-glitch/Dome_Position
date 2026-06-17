@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let x = parseFloat(match[1]);
       let y = parseFloat(match[2]);
       if (selectedTeam === 'west') {
-        x = (x + 6) * -1;
+        x = -12 - x;
       }
       return {
         x: x,
