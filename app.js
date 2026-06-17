@@ -2410,8 +2410,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Define floating action hints modal initialization
   function setupActionHintsOverlay() {
+    const phoneScreen = document.querySelector('.phone-screen');
     const svgWrapper = document.querySelector('.svg-wrapper');
-    if (!svgWrapper) return;
+    if (!phoneScreen) return;
     
     if (document.getElementById('actionHintModal')) return;
     
@@ -2420,11 +2421,11 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.className = 'action-hint-modal';
     modal.style.display = 'none';
     modal.innerHTML = `
-      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
-        <strong style="font-size: 12px; color: #000000;"><i class="fa-solid fa-person-running"></i> 動作提示</strong>
+      <div class="action-hint-header">
+        <strong style="font-size: 14px; color: #000000;"><i class="fa-solid fa-person-running"></i> 動作提示</strong>
         <button class="action-hint-close-btn" id="closeHintBtn">&times;</button>
       </div>
-      <div id="actionHintBody" style="color: #000000;"></div>
+      <div class="action-hint-body" id="actionHintBody" style="color: #000000;"></div>
     `;
     
     const showBtn = document.createElement('button');
@@ -2433,15 +2434,19 @@ document.addEventListener('DOMContentLoaded', () => {
     showBtn.style.display = 'none';
     showBtn.innerHTML = '<i class="fa-solid fa-circle-info"></i> 動作提示';
     
-    svgWrapper.appendChild(modal);
-    svgWrapper.appendChild(showBtn);
+    phoneScreen.appendChild(modal);
+    if (svgWrapper) {
+      svgWrapper.appendChild(showBtn);
+    }
     
     // Stop propagation of touch/mouse events so panning/zooming isn't triggered
     const stopProp = (e) => e.stopPropagation();
     modal.addEventListener('mousedown', stopProp);
     modal.addEventListener('touchstart', stopProp);
-    showBtn.addEventListener('mousedown', stopProp);
-    showBtn.addEventListener('touchstart', stopProp);
+    if (svgWrapper) {
+      showBtn.addEventListener('mousedown', stopProp);
+      showBtn.addEventListener('touchstart', stopProp);
+    }
     
     document.getElementById('closeHintBtn').addEventListener('click', (e) => {
       e.stopPropagation();
@@ -2496,7 +2501,7 @@ document.addEventListener('DOMContentLoaded', () => {
       item.details.forEach(detail => {
         if (detail.type === 'text') {
           const p = document.createElement('p');
-          p.style.cssText = 'margin: 0 0 4px 0; color: #333333; font-size: 11px; font-weight: 500; line-height: 1.4;';
+          p.style.cssText = 'margin: 0 0 4px 0; color: #333333; font-size: 11.5px; font-weight: 500; line-height: 1.4;';
           p.textContent = detail.content;
           itemDiv.appendChild(p);
         } else if (detail.type === 'image') {
