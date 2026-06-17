@@ -15,6 +15,25 @@ if not os.path.exists(csv_path):
     print("A藍,4-46,范志偉,5.2-46.2,2-49,4-46,12.4-41.6,3-49.6")
     print("B白,19-54,柯博文,16.8-54.2,18-58,19-54,31-30,23.8-39")
 else:
+    def clean_coord(val):
+        if not val:
+            return ""
+        val = val.strip()
+        import re
+        # 1. Chinese date format: "X月Y日" -> "X-Y"
+        m1 = re.match(r'^(\d+)月(\d+)日$', val)
+        if m1:
+            return f"{m1.group(1)}-{m1.group(2)}"
+        # 2. Slash date format: "X/Y" -> "X-Y" or "YYYY/X/Y" -> "X-Y"
+        m2 = re.match(r'^(\d+)/(\d+)$', val)
+        if m2:
+            return f"{m2.group(1)}-{m2.group(2)}"
+        m3 = re.match(r'^(\d+)/(\d+)/(\d+)$', val)
+        if m3:
+            if len(m3.group(1)) == 4:
+                return f"{int(m3.group(2))}-{int(m3.group(3))}"
+        return val
+
     performers = []
     # Using utf-8-sig to automatically handle Excel BOM if present
     with open(csv_path, mode='r', encoding='utf-8-sig') as f:
@@ -23,15 +42,15 @@ else:
             # Clean and strip values
             p = {
                 "category": (row.get("category") or row.get("身分別") or "").strip(),
-                "id": (row.get("id") or row.get("身份證") or "").strip(),
+                "id": clean_coord(row.get("id") or row.get("身份證") or ""),
                 "name": "",  # 姓名由 dayperformers.csv 帶入，此欄固定為空
                 "team": (row.get("team") or row.get("班別") or row.get("東西班") or row.get("組別") or "東班").strip(),
-                "circle": (row.get("circle") or row.get("01圓形") or "").strip(),
-                "xingYuan": (row.get("xingYuan") or row.get("02行願") or "").strip(),
-                "jingSi": (row.get("jingSi") or row.get("04靜思家風") or "").strip(),
-                "lamp": (row.get("lamp") or row.get("05-1有法船") or "").strip(),
-                "noBoat": (row.get("noBoat") or row.get("05-2無法船") or "").strip(),
-                "bigV": (row.get("bigV") or row.get("06四弘誓願") or "").strip()
+                "circle": clean_coord(row.get("circle") or row.get("01圓形") or ""),
+                "xingYuan": clean_coord(row.get("xingYuan") or row.get("02行願") or ""),
+                "jingSi": clean_coord(row.get("jingSi") or row.get("04靜思家風") or ""),
+                "lamp": clean_coord(row.get("lamp") or row.get("05-1有法船") or ""),
+                "noBoat": clean_coord(row.get("noBoat") or row.get("05-2無法船") or ""),
+                "bigV": clean_coord(row.get("bigV") or row.get("06四弘誓願") or "")
             }
             # Add only if id is present (name is always empty; comes from dayperformers.csv)
             if p["id"]:

@@ -25,6 +25,25 @@ def esc(s):
     """Escape a string for safe JS single-quoted string embedding."""
     return s.replace('\\', '\\\\').replace("'", "\\'").replace('\n', '\\n').replace('\r', '')
 
+def clean_coord(val):
+    if not val:
+        return ""
+    val = val.strip()
+    import re
+    # 1. Chinese date format: "X月Y日" -> "X-Y"
+    m1 = re.match(r'^(\d+)月(\d+)日$', val)
+    if m1:
+        return f"{m1.group(1)}-{m1.group(2)}"
+    # 2. Slash date format: "X/Y" -> "X-Y" or "YYYY/X/Y" -> "X-Y"
+    m2 = re.match(r'^(\d+)/(\d+)$', val)
+    if m2:
+        return f"{m2.group(1)}-{m2.group(2)}"
+    m3 = re.match(r'^(\d+)/(\d+)/(\d+)$', val)
+    if m3:
+        if len(m3.group(1)) == 4:
+            return f"{int(m3.group(2))}-{int(m3.group(3))}"
+    return val
+
 def main():
     if not os.path.exists(CSV_FILE):
         print(f'錯誤：找不到 {CSV_FILE}')
@@ -40,7 +59,7 @@ def main():
         reader = csv.DictReader(f)
         for row in reader:
             date = row.get('日期', '').strip()
-            pid  = row.get('身份證', '').strip()
+            pid  = clean_coord(row.get('身份證', ''))
             name = row.get('姓名', '').strip()
             team = (row.get('班別') or row.get('東西班') or row.get('組別') or row.get('team') or '東班').strip()
             if not pid:
