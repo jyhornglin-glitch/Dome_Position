@@ -509,19 +509,11 @@ document.addEventListener('DOMContentLoaded', () => {
       // Render HTML landmark icons
       drawHtmlLandmarkIcon(iconWrapper, f.key, currentPerformer.category, currentDisplayName || fields.coordinate);
       
-      // Render lyrics inside Card
+      // Render lyrics inside Card (Disabled per user request)
       let lyricsItem = card.querySelector('.lyrics-item');
-      if (!lyricsItem) {
-        lyricsItem = document.createElement('div');
-        lyricsItem.className = 'lyrics-item';
-        lyricsItem.innerHTML = `
-          <div class="lyrics-title"><i class="fa-solid fa-microphone"></i> 唱誦提示</div>
-          <div class="lyrics-text"></div>
-        `;
-        card.querySelector('.card-body').appendChild(lyricsItem);
+      if (lyricsItem) {
+        lyricsItem.remove();
       }
-      const lyricsLines = (typeof chantLyrics !== 'undefined' ? chantLyrics[f.key] : []) || [];
-      lyricsItem.querySelector('.lyrics-text').textContent = lyricsLines.join('\n');
       
       const currentCoord = parseCoordinate(coordStr);
       const basicCoord = parseCoordinate(fields.coordinate);
@@ -1264,17 +1256,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      // Update lyrics guide text below the map
+      // Update lyrics guide text below the map (Disabled per user request)
       const mapLyricsGuide = document.getElementById('mapLyricsGuide');
       if (mapLyricsGuide) {
-        const f = formations[activeFormationIdx];
-        const lyricsLines = (typeof chantLyrics !== 'undefined' ? chantLyrics[f.key] : []) || [];
-        if (lyricsLines.length > 0) {
-          mapLyricsGuide.innerHTML = `<div class="lyrics-title"><i class="fa-solid fa-microphone"></i> <strong>唱誦提示</strong> (${f.label})</div><div class="lyrics-text">${lyricsLines.join('\n')}</div>`;
-          mapLyricsGuide.style.display = 'block';
-        } else {
-          mapLyricsGuide.style.display = 'none';
-        }
+        mapLyricsGuide.style.display = 'none';
       }
     }
     
