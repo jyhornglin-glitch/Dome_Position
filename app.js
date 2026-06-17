@@ -1960,6 +1960,17 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
       }
+
+      // Preload all sticker images
+      const stickerImages = {};
+      for (let idx = 0; idx < formations.length; idx++) {
+        const f = formations[idx];
+        const src = `images/stickers/${f.key}_${currentPerformer.category}.png`;
+        const img = await loadImage(src);
+        if (img) {
+          stickerImages[f.key] = img;
+        }
+      }
       
       // Canvas pages list
       const pdfPages = [];
@@ -2009,11 +2020,74 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // 2. Column 1 (專屬地標)
         page.ctx.save();
-        page.ctx.font = "bold 16px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
-        page.ctx.fillStyle = '#1e3a8a';
+        const stickerImg = stickerImages[f.key];
+        const stickerSize = 65;
+        const col1CenterX = 270;
+        const contentH = 85; // combination of sticker (65px) + text (20px)
+        const startY = rowY + (rowH - contentH) / 2;
+        
+        if (stickerImg) {
+          page.ctx.drawImage(stickerImg, col1CenterX - stickerSize / 2, startY, stickerSize, stickerSize);
+          
+          // If basic formation, draw the green/red coordinate overlay
+          if (f.key === 'basic') {
+            page.ctx.save();
+            const isCatA = currentPerformer.category.startsWith('A');
+            const overlayColor = isCatA ? '#e65537' : '#7dbf32';
+            
+            const overlayCenterX = col1CenterX;
+            const overlayCenterY = startY + stickerSize / 2;
+            const overlayRadius = 24;
+            
+            // Draw filled circle
+            page.ctx.beginPath();
+            page.ctx.arc(overlayCenterX, overlayCenterY, overlayRadius, 0, 2 * Math.PI);
+            page.ctx.fillStyle = overlayColor;
+            page.ctx.fill();
+            
+            // Draw coordinate text split in half
+            const coordVal = fields.coordinate;
+            const parts = coordVal.split('-');
+            if (parts.length === 2) {
+              const topPart = parts[0].padStart(2, '0');
+              const bottomPart = parts[1].padStart(2, '0');
+              
+              page.ctx.fillStyle = '#ffffff';
+              page.ctx.font = "bold 13px sans-serif";
+              page.ctx.textAlign = 'center';
+              
+              // Top text
+              page.ctx.textBaseline = 'bottom';
+              page.ctx.fillText(topPart, overlayCenterX, overlayCenterY - 1);
+              
+              // Middle line
+              page.ctx.strokeStyle = '#ffffff';
+              page.ctx.lineWidth = 1;
+              page.ctx.beginPath();
+              page.ctx.moveTo(overlayCenterX - 14, overlayCenterY);
+              page.ctx.lineTo(overlayCenterX + 14, overlayCenterY);
+              page.ctx.stroke();
+              
+              // Bottom text
+              page.ctx.textBaseline = 'top';
+              page.ctx.fillText(bottomPart, overlayCenterX, overlayCenterY + 1);
+            } else {
+              page.ctx.fillStyle = '#ffffff';
+              page.ctx.font = "bold 13px sans-serif";
+              page.ctx.textAlign = 'center';
+              page.ctx.textBaseline = 'middle';
+              page.ctx.fillText(coordVal.padStart(2, '0'), overlayCenterX, overlayCenterY);
+            }
+            page.ctx.restore();
+          }
+        }
+        
+        // Draw the coordinate text below the sticker
+        page.ctx.fillStyle = '#475569';
+        page.ctx.font = "bold 12px 'Noto Sans TC', 'PingFang TC', sans-serif";
         page.ctx.textAlign = 'center';
-        page.ctx.textBaseline = 'middle';
-        page.ctx.fillText(coord, 270, rowY + rowH / 2);
+        page.ctx.textBaseline = 'top';
+        page.ctx.fillText(coord, col1CenterX, startY + stickerSize + 6);
         page.ctx.restore();
         
         // 3. Column 2 (動作提示)
