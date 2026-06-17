@@ -1708,18 +1708,366 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Download single SVG as a 1-page PDF
-  function downloadSvgAsPdf(svgEl, filename, stepName) {
-    return convertSvgToPngDataUrl(svgEl, stepName).then(pngDataUrl => {
+  // Preload an image from src url
+  function loadImage(src) {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => resolve(img);
+      img.onerror = () => resolve(null);
+      img.src = src;
+    });
+  }
+
+  // Wrap canvas text to wrap Chinese lines nicely
+  function wrapCanvasText(ctx, text, maxWidth) {
+    if (!text) return [];
+    const paragraphs = text.split('\n');
+    const allLines = [];
+    
+    paragraphs.forEach(p => {
+      const chars = p.split('');
+      let currentLine = '';
+      for (let i = 0; i < chars.length; i++) {
+        const char = chars[i];
+        const testLine = currentLine + char;
+        const metrics = ctx.measureText(testLine);
+        if (metrics.width > maxWidth) {
+          allLines.push(currentLine);
+          currentLine = char;
+        } else {
+          currentLine = testLine;
+        }
+      }
+      if (currentLine) {
+        allLines.push(currentLine);
+      }
+    });
+    
+    return allLines;
+  }
+
+  // Helper to create a new canvas page with title, metadata, and table header
+  function createPageCanvas(titleText, metadataText) {
+    const canvas = document.createElement('canvas');
+    canvas.width = 1200;
+    canvas.height = 1697;
+    const ctx = canvas.getContext('2d');
+    
+    // Fill white background
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, 1200, 1697);
+    
+    // Set standard font settings
+    ctx.textBaseline = 'top';
+    ctx.textAlign = 'left';
+    
+    // Draw Title (Centered)
+    ctx.save();
+    ctx.fillStyle = '#1e3a8a'; // Dark Blue
+    ctx.font = "bold 30px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
+    ctx.textAlign = 'center';
+    ctx.fillText(titleText, 600, 50);
+    ctx.restore();
+    
+    // Draw Metadata (Centered)
+    ctx.save();
+    ctx.fillStyle = '#475569'; // Slate-600
+    ctx.font = "18px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
+    ctx.textAlign = 'center';
+    ctx.fillText(metadataText, 600, 95);
+    ctx.restore();
+    
+    // Draw table header
+    const headerY = 135;
+    const headerH = 45;
+    ctx.fillStyle = '#f1f5f9'; // Light gray
+    ctx.fillRect(40, headerY, 1120, headerH);
+    
+    // Header border box
+    ctx.strokeStyle = '#cbd5e1';
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(40, headerY, 1120, headerH);
+    
+    // Column dividers for header
+    const cols = [40, 200, 340, 960, 1160];
+    ctx.beginPath();
+    for (let i = 1; i < cols.length - 1; i++) {
+      ctx.moveTo(cols[i], headerY);
+      ctx.lineTo(cols[i], headerY + headerH);
+    }
+    ctx.stroke();
+    
+    // Header labels
+    ctx.save();
+    ctx.fillStyle = '#0f172a';
+    ctx.font = "bold 16px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('跑位定點', 120, headerY + headerH / 2);
+    ctx.fillText('專屬地標', 270, headerY + headerH / 2);
+    ctx.fillText('動作提示', 650, headerY + headerH / 2);
+    ctx.fillText('網格定位', 1060, headerY + headerH / 2);
+    ctx.restore();
+    
+    return { canvas, ctx, currentY: 180 };
+  }
+
+  // Draw table lines at the end of drawing a page
+  function drawTableGridLines(ctx, endY) {
+    ctx.strokeStyle = '#cbd5e1';
+    ctx.lineWidth = 1.5;
+    
+    // Draw bottom horizontal line
+    ctx.beginPath();
+    ctx.moveTo(40, endY);
+    ctx.lineTo(1160, endY);
+    ctx.stroke();
+    
+    // Draw outer box
+    ctx.strokeRect(40, 135, 1120, endY - 135);
+    
+    // Draw vertical column lines
+    const cols = [40, 200, 340, 960, 1160];
+    ctx.beginPath();
+    for (let i = 1; i < cols.length - 1; i++) {
+      ctx.moveTo(cols[i], 135);
+      ctx.lineTo(cols[i], endY);
+    }
+    ctx.stroke();
+  }
+
+  // Draw action hints and inline images inside the text cell
+  function drawTextCell(ctx, items, x, y, width, isPreflight, preloadedImages) {
+    let currY = y + 15;
+    
+    items.forEach((item, itemIdx) => {
+      // Draw item title (e.g. "1.序，甲45度→乙")
+      ctx.save();
+      ctx.font = "bold 14px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
+      ctx.fillStyle = '#1e3a8a';
+      ctx.textBaseline = 'top';
+      ctx.textAlign = 'left';
+      const titleLines = wrapCanvasText(ctx, item.title, width);
+      titleLines.forEach(line => {
+        if (!isPreflight) {
+          ctx.fillText(line, x, currY);
+        }
+        currY += 18;
+      });
+      ctx.restore();
+      currY += 4;
+      
+      // Draw details (lyrics & sub-actions)
+      ctx.save();
+      ctx.font = "500 13px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
+      ctx.fillStyle = '#333333';
+      ctx.textBaseline = 'top';
+      ctx.textAlign = 'left';
+      
+      item.details.forEach(detail => {
+        if (detail.type === 'text') {
+          const lines = wrapCanvasText(ctx, detail.content, width);
+          lines.forEach(line => {
+            if (!isPreflight) {
+              ctx.fillText(line, x, currY);
+            }
+            currY += 17;
+          });
+          currY += 4;
+        } else if (detail.type === 'image') {
+          const img = preloadedImages[detail.src];
+          if (img) {
+            // Scale image to fit within width (max width 280px)
+            const maxImgW = 280;
+            let imgW = img.width;
+            let imgH = img.height;
+            if (imgW > maxImgW) {
+              imgH = (maxImgW / imgW) * imgH;
+              imgW = maxImgW;
+            }
+            
+            if (!isPreflight) {
+              // Center image horizontally in Column 2 width
+              const imgX = x + (width - imgW) / 2;
+              ctx.drawImage(img, imgX, currY, imgW, imgH);
+            }
+            currY += imgH + 10;
+          }
+        }
+      });
+      ctx.restore();
+      
+      // Spacer between items
+      if (itemIdx < items.length - 1) {
+        currY += 8;
+      }
+    });
+    
+    return currY - y + 15;
+  }
+
+  // Generate and download a unified positioning table PDF
+  async function downloadPerformerTablePdf(btnElement) {
+    if (!currentPerformer) return;
+    
+    // Disable button and show loader
+    btnElement.disabled = true;
+    const originalHtml = btnElement.innerHTML;
+    btnElement.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> 產出中...`;
+    
+    try {
+      const fields = getPerformerFields(currentPerformer);
+      const titleText = "大巨蛋演繹個人跑位定位表";
+      const metadataText = `姓名：${currentDisplayName || '無'}      身分：${currentPerformer.category || '無'}      起點座標：${fields.coordinate}`;
+      
       const { jsPDF } = window.jspdf;
       const pdf = new jsPDF({
         orientation: 'portrait',
-        unit: 'px',
-        format: [720, 720]
+        unit: 'pt',
+        format: 'a4'
       });
-      pdf.addImage(pngDataUrl, 'PNG', 0, 0, 720, 720);
+      
+      // Preload all grid images (render from SVG previews in modalBody)
+      const gridImages = [];
+      for (let idx = 0; idx < formations.length; idx++) {
+        const card = document.getElementById('modalBody').children[idx];
+        if (card) {
+          const svg = card.querySelector('svg');
+          if (svg) {
+            const pngDataUrl = await convertSvgToPngDataUrl(svg, null);
+            const img = await loadImage(pngDataUrl);
+            gridImages.push(img);
+          } else {
+            gridImages.push(null);
+          }
+        } else {
+          gridImages.push(null);
+        }
+      }
+      
+      // Preload all action hint images
+      const hintImages = {};
+      for (let idx = 0; idx < formations.length; idx++) {
+        const f = formations[idx];
+        const items = getActionHintsForPerformer(currentPerformer, f.key);
+        for (const item of items) {
+          for (const detail of item.details) {
+            if (detail.type === 'image' && !hintImages[detail.src]) {
+              const img = await loadImage(detail.src);
+              hintImages[detail.src] = img;
+            }
+          }
+        }
+      }
+      
+      // Canvas pages list
+      const pdfPages = [];
+      
+      // Initialize first page
+      let page = createPageCanvas(titleText, metadataText);
+      pdfPages.push(page);
+      
+      // Draw rows
+      for (let idx = 0; idx < formations.length; idx++) {
+        const f = formations[idx];
+        const coord = getFormationCoordStr(currentPerformer, f.key) || '無';
+        const items = getActionHintsForPerformer(currentPerformer, f.key);
+        
+        // Pre-calculate text height in Column 2
+        page.ctx.save();
+        page.ctx.font = "500 13px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
+        page.ctx.textBaseline = 'top';
+        page.ctx.textAlign = 'left';
+        const textCellHeight = drawTextCell(page.ctx, items, 355, 0, 590, true, hintImages);
+        page.ctx.restore();
+        
+        // Grid image height is 170px, so min row height is 190px
+        const rowH = Math.max(190, textCellHeight);
+        
+        // Check for page overflow
+        if (page.currentY + rowH > 1580) {
+          // Close guidelines on current page
+          drawTableGridLines(page.ctx, page.currentY);
+          
+          // Create new page
+          page = createPageCanvas(titleText, metadataText);
+          pdfPages.push(page);
+        }
+        
+        const rowY = page.currentY;
+        
+        // 1. Column 0 (跑位定點)
+        page.ctx.save();
+        page.ctx.font = "bold 15px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
+        page.ctx.fillStyle = '#0f172a';
+        page.ctx.textAlign = 'center';
+        page.ctx.textBaseline = 'middle';
+        const stepNum = String(idx + 1).padStart(2, '0');
+        page.ctx.fillText(`${stepNum}.${f.label}`, 120, rowY + rowH / 2);
+        page.ctx.restore();
+        
+        // 2. Column 1 (專屬地標)
+        page.ctx.save();
+        page.ctx.font = "bold 16px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
+        page.ctx.fillStyle = '#1e3a8a';
+        page.ctx.textAlign = 'center';
+        page.ctx.textBaseline = 'middle';
+        page.ctx.fillText(coord, 270, rowY + rowH / 2);
+        page.ctx.restore();
+        
+        // 3. Column 2 (動作提示)
+        page.ctx.save();
+        page.ctx.textBaseline = 'top';
+        page.ctx.textAlign = 'left';
+        drawTextCell(page.ctx, items, 355, rowY, 590, false, hintImages);
+        page.ctx.restore();
+        
+        // 4. Column 3 (網格定位)
+        const gridImg = gridImages[idx];
+        if (gridImg) {
+          const imgSize = 170;
+          const imgX = 960 + (200 - imgSize) / 2;
+          const imgY = rowY + (rowH - imgSize) / 2;
+          page.ctx.drawImage(gridImg, imgX, imgY, imgSize, imgSize);
+        }
+        
+        // Draw dividing horizontal line
+        page.ctx.strokeStyle = '#cbd5e1';
+        page.ctx.lineWidth = 1.0;
+        page.ctx.beginPath();
+        page.ctx.moveTo(40, rowY + rowH);
+        page.ctx.lineTo(1160, rowY + rowH);
+        page.ctx.stroke();
+        
+        page.currentY += rowH;
+      }
+      
+      // Close last page table guidelines
+      drawTableGridLines(page.ctx, page.currentY);
+      
+      // Render all pages to the PDF document
+      for (let pIdx = 0; pIdx < pdfPages.length; pIdx++) {
+        const p = pdfPages[pIdx];
+        if (pIdx > 0) {
+          pdf.addPage();
+        }
+        const pageImgData = p.canvas.toDataURL('image/jpeg', 0.95);
+        pdf.addImage(pageImgData, 'JPEG', 0, 0, 595, 842);
+      }
+      
+      const filename = `${currentDisplayName || fields.coordinate}_${fields.coordinate}_個人定位表.pdf`;
       pdf.save(filename);
-    });
+      btnElement.innerHTML = `<i class="fa-solid fa-check"></i> 下載成功`;
+    } catch (err) {
+      console.error(err);
+      btnElement.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> 錯誤`;
+    }
+    
+    setTimeout(() => {
+      btnElement.disabled = false;
+      btnElement.innerHTML = originalHtml;
+    }, 2000);
   }
 
   // Setup Download & Modal Event Listeners
@@ -1736,10 +2084,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!currentPerformer) return;
       const fields = getPerformerFields(currentPerformer);
       
-      modalTitle.textContent = `${currentDisplayName || fields.coordinate} (${fields.coordinate}) - 所有隊形定點圖`;
+      modalTitle.textContent = `${currentDisplayName || fields.coordinate} (${fields.coordinate}) - 個人定位表`;
       modalBody.innerHTML = '';
       
-      // Render 6 previews inside modal
+      // Render previews inside modal
       formations.forEach((f, idx) => {
         const card = document.createElement('div');
         card.className = 'modal-map-card';
@@ -1769,17 +2117,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Download button
         const dlBtn = document.createElement('button');
         dlBtn.className = 'control-btn modal-map-btn';
-        dlBtn.innerHTML = `<i class="fa-solid fa-download"></i> 下載 PDF`;
+        dlBtn.innerHTML = `<i class="fa-solid fa-download"></i> 下載定位表`;
         dlBtn.addEventListener('click', () => {
-          const filename = `${currentDisplayName || fields.coordinate}_${fields.coordinate}_${idx + 1}_${f.label}.pdf`;
-          dlBtn.disabled = true;
-          dlBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i>...`;
-          const stepName = `${String(idx + 1).padStart(2, '0')}. ${f.name}`;
-          downloadSvgAsPdf(previewSvg, filename, stepName)
-            .finally(() => {
-              dlBtn.disabled = false;
-              dlBtn.innerHTML = `<i class="fa-solid fa-download"></i> 下載 PDF`;
-            });
+          downloadPerformerTablePdf(dlBtn);
         });
         
         card.appendChild(title);
@@ -1803,55 +2143,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // 4. Download All combined as a single multi-page PDF
+    // 4. Download unified positioning table PDF
     downloadAllBtn.addEventListener('click', async () => {
-      if (!currentPerformer) return;
-      downloadAllBtn.disabled = true;
-      const originalText = downloadAllBtn.innerHTML;
-      
-      const fields = getPerformerFields(currentPerformer);
-      
-      try {
-        const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF({
-          orientation: 'portrait',
-          unit: 'px',
-          format: [720, 720]
-        });
-        
-        for (let idx = 0; idx < formations.length; idx++) {
-          downloadAllBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> 轉換中 (${idx + 1}/${formations.length})`;
-          
-          const card = modalBody.children[idx];
-          if (card) {
-            const svg = card.querySelector('svg');
-            if (svg) {
-              const f = formations[idx];
-              const stepName = `${String(idx + 1).padStart(2, '0')}. ${f.name}`;
-              const pngDataUrl = await convertSvgToPngDataUrl(svg, stepName);
-              if (idx > 0) {
-                pdf.addPage([720, 720]);
-              }
-              pdf.addImage(pngDataUrl, 'PNG', 0, 0, 720, 720);
-            }
-          }
-          // Small delay to allow canvas rendering thread to breathe
-          await new Promise(r => setTimeout(r, 100));
-        }
-        
-        const filename = `${currentDisplayName || fields.coordinate}_${fields.coordinate}_所有定點.pdf`;
-        pdf.save(filename);
-        
-        downloadAllBtn.innerHTML = `<i class="fa-solid fa-check"></i> 下載完成`;
-      } catch (err) {
-        console.error('Failed to download combined PDF', err);
-        downloadAllBtn.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> 錯誤`;
-      }
-      
-      setTimeout(() => {
-        downloadAllBtn.disabled = false;
-        downloadAllBtn.innerHTML = originalText;
-      }, 2000);
+      downloadPerformerTablePdf(downloadAllBtn);
     });
   }
 
