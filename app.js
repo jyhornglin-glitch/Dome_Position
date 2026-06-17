@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let selectedSessionKey = null; // Currently selected day key (e.g. '1114')
   let selectedTeam = 'east'; // Currently selected team: 'east' or 'west'
   let hintModalClosed = true;
+  let hintZoomLevel = 1.0;
 
   // Relative Grid coordinate configuration
   const GRID_CENTER_X = 180;
@@ -2507,11 +2508,51 @@ document.addEventListener('DOMContentLoaded', () => {
     // Stop propagation of touch/mouse events so panning/zooming isn't triggered
     const stopProp = (e) => e.stopPropagation();
     modal.addEventListener('mousedown', stopProp);
-    modal.addEventListener('touchstart', stopProp);
     if (svgWrapper) {
       showBtn.addEventListener('mousedown', stopProp);
       showBtn.addEventListener('touchstart', stopProp);
     }
+
+    // Touch event listeners for pinch-to-zoom on the modal
+    let startHintTouchDist = 0;
+    let startHintZoom = 1.0;
+
+    modal.addEventListener('touchstart', (e) => {
+      e.stopPropagation();
+      if (e.touches && e.touches.length === 2) {
+        startHintTouchDist = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+        startHintZoom = hintZoomLevel;
+      }
+    }, { passive: false });
+
+    modal.addEventListener('touchmove', (e) => {
+      e.stopPropagation();
+      if (e.touches && e.touches.length === 2) {
+        e.preventDefault(); // prevent default browser pinch zoom
+        const dist = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+        if (startHintTouchDist > 0) {
+          const ratio = dist / startHintTouchDist;
+          hintZoomLevel = Math.max(0.7, Math.min(3.0, startHintZoom * ratio));
+          const zoomContent = document.getElementById('actionHintZoomContent');
+          if (zoomContent) {
+            zoomContent.style.zoom = hintZoomLevel;
+          }
+        }
+      }
+    }, { passive: false });
+
+    modal.addEventListener('touchend', (e) => {
+      e.stopPropagation();
+      if (e.touches && e.touches.length < 2) {
+        startHintTouchDist = 0;
+      }
+    });
     
     document.getElementById('closeHintBtn').addEventListener('click', (e) => {
       e.stopPropagation();
@@ -2547,7 +2588,9 @@ document.addEventListener('DOMContentLoaded', () => {
     titleEl.innerHTML = `<i class="fa-solid fa-person-running"></i> 動作提示 (${f.label})`;
     
     const bodyEl = document.getElementById('actionHintBody');
-    bodyEl.innerHTML = ''; // Clear previous content
+    bodyEl.innerHTML = `<div id="actionHintZoomContent" style="transform-origin: top left; transition: zoom 0.05s ease;"></div>`;
+    const zoomContent = document.getElementById('actionHintZoomContent');
+    zoomContent.style.zoom = hintZoomLevel;
     
     items.forEach((item, itemIdx) => {
       const itemDiv = document.createElement('div');
@@ -2577,7 +2620,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
       
-      bodyEl.appendChild(itemDiv);
+      zoomContent.appendChild(itemDiv);
     });
     
     if (hintModalClosed) {
