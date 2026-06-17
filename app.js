@@ -289,11 +289,16 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       clearSearchBtn.style.display = 'block';
-      // Build search list from selected day's performers (by id/name)
-      // then look up in performersData for coordinate data
-      const dayList = (typeof DAY_PERFORMERS !== 'undefined' && selectedSessionKey)
+      let dayList = (typeof DAY_PERFORMERS !== 'undefined' && selectedSessionKey)
         ? (DAY_PERFORMERS[selectedSessionKey] || [])
         : [];
+
+      // Filter dayList by selectedTeam ('east' -> '東班', 'west' -> '西班')
+      const targetTeamChinese = (selectedTeam === 'west') ? '西班' : '東班';
+      dayList = dayList.filter(d => {
+        const t = d.team || '東班';
+        return t === targetTeamChinese;
+      });
 
       // Build a quick lookup: id -> dayName
       const dayNameMap = {};
@@ -304,6 +309,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const normalizedVal = val.replace(/^0+(\d+)/, '$1').replace(/-0+(\d+)/, '-$1');
 
       const filtered = performersData.filter(p => {
+        // Filter by selectedTeam
+        const performerTeam = (p.team === '西班') ? 'west' : 'east';
+        if (performerTeam !== selectedTeam) return false;
+
         if (category !== 'all' && p.category !== category) return false;
         const normalizedId = p.id.replace(/^0+(\d+)/, '$1').replace(/-0+(\d+)/, '-$1');
         const fields = getPerformerFields(p);
@@ -1220,6 +1229,10 @@ document.addEventListener('DOMContentLoaded', () => {
               const targetX = myBasicCoord.x + col.xOffset;
               performersData.forEach(p => {
                 if (p === currentPerformer && col.xOffset === 0) return;
+                // Only consider performers belonging to the currently selected team
+                const pTeam = (p.team === '西班') ? 'west' : 'east';
+                if (pTeam !== selectedTeam) return;
+
                 const basicCoord = parseCoordinate(p.id);
                 if (basicCoord.isText || basicCoord.x === null) return;
                 const dx = Math.abs(basicCoord.x - targetX);
