@@ -1580,8 +1580,8 @@ svg {
 }
 
 .map-coord-item.active-node .val {
-  color: var(--red-color);
-  text-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
 }
 
 /* Map Action Buttons below SVG map */
