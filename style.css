@@ -2280,7 +2280,7 @@ svg {
   left: 0;
   right: 0;
   bottom: 0;
-  background: #ffffff;
+  background: #fffbeb;
   color: #000000;
   z-index: 150;
   display: flex;
@@ -2296,7 +2296,7 @@ svg {
   align-items: center;
   padding: 0 16px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-  background: #ffffff;
+  background: #fffbeb;
   flex-shrink: 0;
 }
 
