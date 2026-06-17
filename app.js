@@ -375,7 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
       teamFilter.addEventListener('change', () => {
         selectedTeam = teamFilter.value;
         if (currentPerformer) {
-          selectPerformer(currentPerformer, currentDisplayName);
+          selectPerformer(currentPerformer, currentDisplayName, selectedTeam);
         }
       });
     }
@@ -461,7 +461,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Select performer and query details
   // dayOverrideName: name from the day's roster (may be blank)
-  function selectPerformer(performer, dayOverrideName) {
+  function selectPerformer(performer, dayOverrideName, forceTeam = null) {
     currentPerformer = performer;
     activeFormationIdx = 0;
     hintModalClosed = true; // Initially closed by default as per request
@@ -473,6 +473,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (showNeighborDots) showNeighborDots.checked = false;
     const showNeighborNamesEl = document.getElementById('showNeighborNames');
     if (showNeighborNamesEl) showNeighborNamesEl.checked = false;
+
+    // Automatically detect and set the team class from database
+    let performerTeam = '東班';
+    if (performer && performer.team) {
+      performerTeam = performer.team;
+    }
+    if (selectedSessionKey && typeof DAY_PERFORMERS !== 'undefined') {
+      const dayList = DAY_PERFORMERS[selectedSessionKey] || [];
+      const match = dayList.find(d => d.id === performer.id);
+      if (match && match.team) {
+        performerTeam = match.team;
+      }
+    }
+    
+    selectedTeam = forceTeam ? forceTeam : ((performerTeam === '西班') ? 'west' : 'east');
+    if (teamFilter) {
+      teamFilter.value = selectedTeam;
+    }
 
     
     const fields = getPerformerFields(performer);

@@ -25,6 +25,7 @@ else:
                 "category": (row.get("category") or row.get("身分別") or "").strip(),
                 "id": (row.get("id") or row.get("身份證") or "").strip(),
                 "name": "",  # 姓名由 dayperformers.csv 帶入，此欄固定為空
+                "team": (row.get("team") or row.get("班別") or row.get("東西班") or row.get("組別") or "東班").strip(),
                 "circle": (row.get("circle") or row.get("01圓形") or "").strip(),
                 "xingYuan": (row.get("xingYuan") or row.get("02行願") or "").strip(),
                 "jingSi": (row.get("jingSi") or row.get("04靜思家風") or "").strip(),
@@ -43,7 +44,7 @@ else:
     js_content = "// Performer Stage Formations Database\nconst performersData = [\n"
     for idx, p in enumerate(performers):
         comma = "," if idx < len(performers) - 1 else ""
-        js_content += f'  {{ category: "{esc(p["category"])}", id: "{esc(p["id"])}", name: "{esc(p["name"])}", circle: "{esc(p["circle"])}", xingYuan: "{esc(p["xingYuan"])}", jingSi: "{esc(p["jingSi"])}", lamp: "{esc(p["lamp"])}", noBoat: "{esc(p["noBoat"])}", bigV: "{esc(p["bigV"])}" }}{comma}\n'
+        js_content += f'  {{ category: "{esc(p["category"])}", id: "{esc(p["id"])}", name: "{esc(p["name"])}", team: "{esc(p["team"])}", circle: "{esc(p["circle"])}", xingYuan: "{esc(p["xingYuan"])}", jingSi: "{esc(p["jingSi"])}", lamp: "{esc(p["lamp"])}", noBoat: "{esc(p["noBoat"])}", bigV: "{esc(p["bigV"])}" }}{comma}\n'
     js_content += "];\n\n// Export if in node environment, otherwise make it global\nif (typeof module !== 'undefined' && module.exports) {\n  module.exports = performersData;\n}\n"
     
     with open(js_path, mode='w', encoding='utf-8') as f:

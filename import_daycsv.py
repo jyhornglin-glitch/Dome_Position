@@ -42,13 +42,14 @@ def main():
             date = row.get('日期', '').strip()
             pid  = row.get('身份證', '').strip()
             name = row.get('姓名', '').strip()
+            team = (row.get('班別') or row.get('東西班') or row.get('組別') or row.get('team') or '東班').strip()
             if not pid:
                 continue
             
             # Find the session this row belongs to
             for sess in DAY_SESSIONS_DEF:
                 if date in sess['allowed_dates']:
-                    day_map[sess['key']].append({'id': pid, 'name': name})
+                    day_map[sess['key']].append({'id': pid, 'name': name, 'team': team})
                     total += 1
                     break
 
@@ -71,7 +72,7 @@ def main():
         performers = day_map.get(sess['key'], [])
         lines.append(f"  '{sess['key']}': [")
         for p in performers:
-            lines.append(f"    {{ id: '{esc(p['id'])}', name: '{esc(p['name'])}' }},")
+            lines.append(f"    {{ id: '{esc(p['id'])}', name: '{esc(p['name'])}', team: '{esc(p['team'])}' }},")
         lines.append('  ],')
     lines.append('};')
 
