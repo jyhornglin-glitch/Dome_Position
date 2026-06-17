@@ -73,41 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
     { key: 'bigV', name: '06四弘誓願', label: '四弘誓願' }
   ];
 
-  const ACTION_HINTS = {
-    'circle': [
-      '1.序，甲45度→乙',
-      '2.生，甲45度',
-      '3.老，乙',
-      '4.病，乙',
-      '5.死，乙',
-      '6.六度'
-    ],
-    'xingYuan': [
-      '7.海濤澎湃 駭浪洶湧',
-      '8.開經偈/面向法師45度'
-    ],
-    'jingSi': [
-      '9.扛天下米籮/甲45度',
-      '10.靜思家風/面向法師45度'
-    ],
-    'lamp': [
-      '11.點一盞燈/ 面向法師45度'
-    ],
-    'noBoat': [],
-    'bigV': [
-      '12.菜市場的五毛錢/乙',
-      '13.是諸眾生',
-      '14.地藏經/面向乙舞台',
-      '15.醫療',
-      '16.四弘誓願，V/藍/甲-法師',
-      '【骨捐】',
-      '【大醫王】',
-      '【大體捐贈】'
-    ]
-  };
-
   function getActionHintsForPerformer(performer, key) {
-    return ACTION_HINTS[key] || [];
+    return (typeof ACTION_HINTS_DATA !== 'undefined' && ACTION_HINTS_DATA[key]) || [];
   }
 
   // Get coordinate and name from performer record.
@@ -2130,9 +2097,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!modal || !showBtn || !currentPerformer) return;
     
     const f = formations[activeFormationIdx];
-    const hints = getActionHintsForPerformer(currentPerformer, f.key);
+    const items = getActionHintsForPerformer(currentPerformer, f.key);
     
-    if (hints.length === 0) {
+    if (items.length === 0) {
       modal.style.display = 'none';
       showBtn.style.display = 'none';
       return;
@@ -2142,13 +2109,38 @@ document.addEventListener('DOMContentLoaded', () => {
     titleEl.innerHTML = `<i class="fa-solid fa-person-running"></i> 動作提示 (${f.label})`;
     
     const bodyEl = document.getElementById('actionHintBody');
-    if (hints.length === 1) {
-      bodyEl.innerHTML = `<p style="margin: 0; color: #000000; font-size: 11.5px; font-weight: 500;">${hints[0]}</p>`;
-    } else {
-      bodyEl.innerHTML = `<ul style="margin: 0; padding-left: 16px; color: #000000; font-size: 11.5px; font-weight: 500;">` +
-        hints.map(h => `<li style="margin-bottom: 4px; color: #000000;">${h}</li>`).join('') +
-        `</ul>`;
-    }
+    bodyEl.innerHTML = ''; // Clear previous content
+    
+    items.forEach((item, itemIdx) => {
+      const itemDiv = document.createElement('div');
+      itemDiv.className = 'action-hint-item';
+      
+      // Add a border separator if this is not the last item
+      const isLast = itemIdx === items.length - 1;
+      const borderStyle = isLast ? '' : 'border-bottom: 1px solid rgba(0, 0, 0, 0.15); margin-bottom: 10px; padding-bottom: 10px;';
+      itemDiv.style.cssText = borderStyle;
+      
+      const itemTitle = document.createElement('div');
+      itemTitle.style.cssText = 'font-weight: bold; color: #1e3a8a; font-size: 12px; margin-bottom: 6px;';
+      itemTitle.textContent = item.title;
+      itemDiv.appendChild(itemTitle);
+      
+      item.details.forEach(detail => {
+        if (detail.type === 'text') {
+          const p = document.createElement('p');
+          p.style.cssText = 'margin: 0 0 4px 0; color: #333333; font-size: 11px; font-weight: 500; line-height: 1.4;';
+          p.textContent = detail.content;
+          itemDiv.appendChild(p);
+        } else if (detail.type === 'image') {
+          const img = document.createElement('img');
+          img.src = detail.src;
+          img.style.cssText = 'max-width: 100%; height: auto; display: block; border-radius: 6px; margin: 8px 0; border: 1px solid rgba(0, 0, 0, 0.12);';
+          itemDiv.appendChild(img);
+        }
+      });
+      
+      bodyEl.appendChild(itemDiv);
+    });
     
     if (hintModalClosed) {
       modal.style.display = 'none';
