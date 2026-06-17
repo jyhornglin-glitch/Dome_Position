@@ -133,13 +133,23 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
 
       card.addEventListener('click', () => {
-        document.querySelectorAll('.session-card').forEach(c => c.classList.remove('selected'));
+        document.querySelectorAll('#sessionCards .session-card').forEach(c => c.classList.remove('selected'));
         card.classList.add('selected');
         selectedSessionKey = sess.key;
         confirmBtn.disabled = false;
       });
 
       cardsContainer.appendChild(card);
+    });
+
+    // Setup team card clicks
+    const teamCards = document.querySelectorAll('#sessionTeamCards .session-card');
+    teamCards.forEach(card => {
+      card.addEventListener('click', () => {
+        teamCards.forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        selectedTeam = card.dataset.team;
+      });
     });
 
     confirmBtn.addEventListener('click', () => {
@@ -149,6 +159,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (sessionBadge && sess) {
         sessionBadge.textContent = sess.label;
         sessionBadge.style.display = 'inline-block';
+      }
+      // Sync to dropdown
+      const teamFilter = document.getElementById('teamFilter');
+      if (teamFilter) {
+        teamFilter.value = selectedTeam;
       }
       // Hide overlay with fade
       overlay.style.transition = 'opacity 0.35s ease';

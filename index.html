@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <!-- FontAwesome for professional icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css?v=1.5.4">
+  <link rel="stylesheet" href="style.css?v=1.5.5">
 </head>
 <body>
   <!-- Ambient background glow behind the phone -->
@@ -61,6 +61,20 @@
             </div>
             <!-- Day cards (rendered by JS) -->
             <div class="session-cards" id="sessionCards"></div>
+
+            <!-- Team Selection -->
+            <p class="session-title" style="margin-top: 10px; margin-bottom: 2px;">👥 請選擇所屬班別</p>
+            <div class="session-cards" id="sessionTeamCards" style="margin-bottom: 10px;">
+              <div class="session-card selected" data-team="east">
+                <span class="session-card-weekday">EAST TEAM</span>
+                <span class="session-card-date" style="font-size: 20px; margin-top: 4px;">東班</span>
+              </div>
+              <div class="session-card" data-team="west">
+                <span class="session-card-weekday">WEST TEAM</span>
+                <span class="session-card-date" style="font-size: 20px; margin-top: 4px;">西班</span>
+              </div>
+            </div>
+
             <!-- Confirm button -->
             <button id="sessionConfirmBtn" class="session-confirm-btn" disabled>
               <i class="fa-solid fa-circle-check"></i> 確認進入
@@ -651,11 +665,11 @@
   </div>
 
   <!-- Load Scripts -->
-  <script src="data.js?v=1.5.4"></script>
-  <script src="lyrics.js?v=1.5.4"></script>
-  <script src="daydata.js?v=1.5.4"></script>
-  <script src="action_hints_data.js?v=1.5.4"></script>
+  <script src="data.js?v=1.5.5"></script>
+  <script src="lyrics.js?v=1.5.5"></script>
+  <script src="daydata.js?v=1.5.5"></script>
+  <script src="action_hints_data.js?v=1.5.5"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="app.js?v=1.5.4"></script>
+  <script src="app.js?v=1.5.5"></script>
 </body>
 </html>
