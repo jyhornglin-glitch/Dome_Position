@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <!-- FontAwesome for professional icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css?v=1.5.0">
+  <link rel="stylesheet" href="style.css?v=1.5.1">
 </head>
 <body>
   <!-- Ambient background glow behind the phone -->
@@ -104,14 +104,22 @@
               <!-- Autocomplete Dropdown -->
               <div id="autocompleteList" class="autocomplete-dropdown" style="display: none;"></div>
 
-              <div class="filter-group">
-                <select id="categoryFilter">
-                  <option value="all">所有組別 (A白/A藍/B白/B藍)</option>
-                  <option value="A白">A白 (Stage A White)</option>
-                  <option value="A藍">A藍 (Stage A Blue)</option>
-                  <option value="B白">B白 (Stage B White)</option>
-                  <option value="B藍">B藍 (Stage B Blue)</option>
-                </select>
+              <div class="filter-group-row" style="display: flex; gap: 8px;">
+                <div class="filter-group" style="flex: 1;">
+                  <select id="categoryFilter">
+                    <option value="all">所有組別 (A白/A藍/B白/B藍)</option>
+                    <option value="A白">A白 (Stage A White)</option>
+                    <option value="A藍">A藍 (Stage A Blue)</option>
+                    <option value="B白">B白 (Stage B White)</option>
+                    <option value="B藍">B藍 (Stage B Blue)</option>
+                  </select>
+                </div>
+                <div class="filter-group" style="flex: 1;">
+                  <select id="teamFilter">
+                    <option value="east">東班 (East Team)</option>
+                    <option value="west">西班 (West Team)</option>
+                  </select>
+                </div>
               </div>
             </div>
             
@@ -273,7 +281,7 @@
                   </div>
                   <div id="mapMovementGuide" class="map-movement-guide"></div>
                   <div id="mapLyricsGuide" class="map-lyrics-guide"></div>
-                  <div class="stage-instruction">
+                  <div class="stage-instruction" id="stageInstruction">
                     <i class="fa-solid fa-circle-info"></i> 舞台中線位於 X = -6，乙舞台中心點為 (-6,38)，表演位置在第四象限。網格標註為絕對舞台座標。
                   </div>
                   <div class="map-action-buttons">
@@ -643,11 +651,11 @@
   </div>
 
   <!-- Load Scripts -->
-  <script src="data.js?v=1.5.0"></script>
-  <script src="lyrics.js?v=1.5.0"></script>
-  <script src="daydata.js?v=1.5.0"></script>
-  <script src="action_hints_data.js?v=1.5.0"></script>
+  <script src="data.js?v=1.5.1"></script>
+  <script src="lyrics.js?v=1.5.1"></script>
+  <script src="daydata.js?v=1.5.1"></script>
+  <script src="action_hints_data.js?v=1.5.1"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="app.js?v=1.5.0"></script>
+  <script src="app.js?v=1.5.1"></script>
 </body>
 </html>

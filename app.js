@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const clearSearchBtn = document.getElementById('clearSearchBtn');
   const autocompleteList = document.getElementById('autocompleteList');
   const categoryFilter = document.getElementById('categoryFilter');
+  const teamFilter = document.getElementById('teamFilter');
+  const stageInstruction = document.getElementById('stageInstruction');
   const mainContent = document.getElementById('mainContent');
   const emptyState = document.getElementById('emptyState');
   
@@ -54,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let panY = 0;
   let rotationAngle = 0;
   let selectedSessionKey = null; // Currently selected day key (e.g. '1114')
+  let selectedTeam = 'east'; // Currently selected team: 'east' or 'west'
   let hintModalClosed = true;
 
   // Relative Grid coordinate configuration
@@ -193,9 +196,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // optionally ignoring text separator characters in the middle
     const match = cleanStr.match(/(-?[0-9.]+)[^0-9.-]*-(-?[0-9.]+)/);
     if (match) {
+      let x = parseFloat(match[1]);
+      let y = parseFloat(match[2]);
+      if (selectedTeam === 'west') {
+        x = (x + 6) * -1;
+      }
       return {
-        x: parseFloat(match[1]),
-        y: parseFloat(match[2]),
+        x: x,
+        y: y,
         isText: false,
         text: coordStr
       };
@@ -362,6 +370,15 @@ document.addEventListener('DOMContentLoaded', () => {
       clearSearchBtn.style.display = 'none';
       autocompleteList.style.display = 'none';
     });
+    
+    if (teamFilter) {
+      teamFilter.addEventListener('change', () => {
+        selectedTeam = teamFilter.value;
+        if (currentPerformer) {
+          selectPerformer(currentPerformer, currentDisplayName);
+        }
+      });
+    }
   }
 
 
@@ -474,6 +491,14 @@ document.addEventListener('DOMContentLoaded', () => {
     perfCategory.className = `meta-badge cat-${performer.category}`;
     perfID.textContent = `起點座標: ${fields.coordinate}`;
     
+    if (stageInstruction) {
+      if (selectedTeam === 'west') {
+        stageInstruction.innerHTML = `<i class="fa-solid fa-circle-info"></i> 舞台中線位於 X = -6，乙舞台中心點為 (-6,38)，表演位置在第三象限。網格標註為絕對舞台座標。`;
+      } else {
+        stageInstruction.innerHTML = `<i class="fa-solid fa-circle-info"></i> 舞台中線位於 X = -6，乙舞台中心點為 (-6,38)，表演位置在第四象限。網格標註為絕對舞台座標。`;
+      }
+    }
+    
     // Show main view
     emptyState.style.display = 'none';
     mainContent.style.display = 'flex';
@@ -554,7 +579,12 @@ document.addEventListener('DOMContentLoaded', () => {
       parts.push(`${direction}走 ${Math.abs(dy).toFixed(1)} 步`);
     }
     if (dx !== 0) {
-      const direction = dx > 0 ? '向右 (往右側)' : '向左 (往中線)';
+      let direction = '';
+      if (selectedTeam === 'west') {
+        direction = dx > 0 ? '向右 (往中線)' : '向左 (往左側)';
+      } else {
+        direction = dx > 0 ? '向右 (往右側)' : '向左 (往中線)';
+      }
       parts.push(`${direction}走 ${Math.abs(dx).toFixed(1)} 步`);
     }
     
