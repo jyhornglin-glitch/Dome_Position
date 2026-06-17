@@ -2420,7 +2420,10 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.id = 'actionHintModal';
     modal.className = 'action-hint-modal';
     modal.style.display = 'none';
-    modal.style.backgroundColor = '#fffbeb';
+    modal.style.setProperty('background-color', '#fffbeb', 'important');
+    modal.style.setProperty('background', '#fffbeb', 'important');
+    modal.style.setProperty('opacity', '1', 'important');
+    modal.style.setProperty('z-index', '999', 'important');
     modal.innerHTML = `
       <div class="action-hint-header">
         <strong style="font-size: 14px; color: #000000;"><i class="fa-solid fa-person-running"></i> 動作提示</strong>

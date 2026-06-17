@@ -2280,9 +2280,11 @@ svg {
   left: 0;
   right: 0;
   bottom: 0;
-  background: #fffbeb;
-  color: #000000;
-  z-index: 150;
+  background-color: #fffbeb !important;
+  background: #fffbeb !important;
+  color: #000000 !important;
+  opacity: 1 !important;
+  z-index: 999 !important;
   display: flex;
   flex-direction: column;
   pointer-events: auto;
@@ -2296,7 +2298,8 @@ svg {
   align-items: center;
   padding: 0 16px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-  background: #fffbeb;
+  background-color: #fffbeb !important;
+  background: #fffbeb !important;
   flex-shrink: 0;
 }
 
@@ -2304,6 +2307,8 @@ svg {
   flex: 1;
   overflow-y: auto;
   padding: 16px;
+  background-color: #fffbeb !important;
+  background: #fffbeb !important;
 }
 
 .action-hint-close-btn {
