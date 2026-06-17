@@ -15,10 +15,10 @@ OUTPUT_FILE = 'daydata.js'
 
 # 四個場次的固定定義（順序固定）
 DAY_SESSIONS_DEF = [
-    { 'key': '1112', 'label': '11/12(四)', 'date': '1/12(四)' },
-    { 'key': '1113', 'label': '11/13(五)', 'date': '1/13(五)' },
-    { 'key': '1114', 'label': '11/14(六)', 'date': '1/14(六)' },
-    { 'key': '1115', 'label': '11/15(日)', 'date': '1/15(日)' },
+    { 'key': '1112', 'label': '11/12(四)', 'date': '11/12(四)', 'allowed_dates': ['1/12(四)', '11/12(四)'] },
+    { 'key': '1113', 'label': '11/13(五)', 'date': '11/13(五)', 'allowed_dates': ['1/13(五)', '11/13(五)'] },
+    { 'key': '1114', 'label': '11/14(六)', 'date': '11/14(六)', 'allowed_dates': ['1/14(六)', '11/14(六)'] },
+    { 'key': '1115', 'label': '11/15(日)', 'date': '11/15(日)', 'allowed_dates': ['1/15(日)', '11/15(日)'] },
 ]
 
 def esc(s):
@@ -30,10 +30,10 @@ def main():
         print(f'錯誤：找不到 {CSV_FILE}')
         return
 
-    # Build a map: date_label -> list of {id, name}
+    # Build a map: session_key -> list of {id, name}
     day_map = {}
     for sess in DAY_SESSIONS_DEF:
-        day_map[sess['date']] = []
+        day_map[sess['key']] = []
 
     total = 0
     with open(CSV_FILE, newline='', encoding='utf-8-sig') as f:
@@ -44,10 +44,13 @@ def main():
             name = row.get('姓名', '').strip()
             if not pid:
                 continue
-            if date in day_map:
-                day_map[date].append({'id': pid, 'name': name})
-                total += 1
-            # Unknown dates are silently ignored
+            
+            # Find the session this row belongs to
+            for sess in DAY_SESSIONS_DEF:
+                if date in sess['allowed_dates']:
+                    day_map[sess['key']].append({'id': pid, 'name': name})
+                    total += 1
+                    break
 
     # Build JS output
     lines = []
@@ -57,7 +60,7 @@ def main():
     # DAY_SESSIONS array
     lines.append('const DAY_SESSIONS = [')
     for sess in DAY_SESSIONS_DEF:
-        count = len(day_map.get(sess['date'], []))
+        count = len(day_map.get(sess['key'], []))
         lines.append(f"  {{ key: '{sess['key']}', label: '{sess['label']}', date: '{sess['date']}', count: {count} }},")
     lines.append('];')
     lines.append('')
@@ -65,7 +68,7 @@ def main():
     # DAY_PERFORMERS object
     lines.append('const DAY_PERFORMERS = {')
     for sess in DAY_SESSIONS_DEF:
-        performers = day_map.get(sess['date'], [])
+        performers = day_map.get(sess['key'], [])
         lines.append(f"  '{sess['key']}': [")
         for p in performers:
             lines.append(f"    {{ id: '{esc(p['id'])}', name: '{esc(p['name'])}' }},")
@@ -78,7 +81,7 @@ def main():
 
     print(f'成功！已將場次名單寫入 {OUTPUT_FILE}')
     for sess in DAY_SESSIONS_DEF:
-        count = len(day_map.get(sess['date'], []))
+        count = len(day_map.get(sess['key'], []))
         print(f"  {sess['label']}: {count} 筆")
     print(f'  合計: {total} 筆')
 

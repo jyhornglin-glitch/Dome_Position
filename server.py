@@ -28,10 +28,17 @@ DAY_CSV = os.path.join(BASE_DIR, 'dayperformers.csv')
 PERF_CSV = os.path.join(BASE_DIR, 'performers.csv')
 
 SESS_MAP = {
-    '1112': '1/12(四)',
-    '1113': '1/13(五)',
-    '1114': '1/14(六)',
-    '1115': '1/15(日)',
+    '1112': '11/12(四)',
+    '1113': '11/13(五)',
+    '1114': '11/14(六)',
+    '1115': '11/15(日)',
+}
+
+SESS_ALLOWED_DATES = {
+    '1112': {'1/12(四)', '11/12(四)'},
+    '1113': {'1/13(五)', '11/13(五)'},
+    '1114': {'1/14(六)', '11/14(六)'},
+    '1115': {'1/15(日)', '11/15(日)'},
 }
 
 class AdminRequestHandler(SimpleHTTPRequestHandler):
@@ -70,8 +77,8 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                 self.send_json_response(400, {"success": False, "error": "Missing required fields"})
                 return
 
-            target_date = SESS_MAP.get(session_key)
-            if not target_date:
+            allowed_dates = SESS_ALLOWED_DATES.get(session_key)
+            if not allowed_dates:
                 self.send_json_response(400, {"success": False, "error": "Invalid session key"})
                 return
 
@@ -85,13 +92,15 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                     reader = csv.DictReader(f)
                     headers = reader.fieldnames or headers
                     for row in reader:
-                        if row.get('日期', '').strip() == target_date and row.get('身份證', '').strip() == target_id:
+                        row_date = row.get('日期', '').strip()
+                        if row_date in allowed_dates and row.get('身份證', '').strip() == target_id:
                             row['姓名'] = new_name
                             found = True
                         rows.append(row)
 
             if not found:
-                rows.append({'日期': target_date, '身份證': target_id, '姓名': new_name})
+                default_date = SESS_MAP.get(session_key)
+                rows.append({'日期': default_date, '身份證': target_id, '姓名': new_name})
 
             with open(DAY_CSV, mode='w', encoding='utf-8-sig', newline='') as f:
                 writer = csv.DictWriter(f, fieldnames=headers)
