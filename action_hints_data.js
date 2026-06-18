@@ -2,7 +2,7 @@
 const ACTION_HINTS_DATA = {
   "circle": [
     {
-      "title": "1.序，甲45度→乙",
+      "title": "序，甲45度→乙",
       "details": [
         {
           "type": "image",
@@ -10,11 +10,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "第"
-        },
-        {
-          "type": "text",
-          "content": "一波-靜寂清澄志玄虛漠"
+          "content": "第一波-靜寂清澄志玄虛漠"
         },
         {
           "type": "text",
@@ -266,6 +262,10 @@ const ACTION_HINTS_DATA = {
           "src": "images/action_hints/hint_8.png"
         },
         {
+          "type": "image",
+          "src": "images/action_hints/hint_9.png"
+        },
+        {
           "type": "text",
           "content": "【開經偈】"
         },
@@ -294,7 +294,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_9.png"
+          "src": "images/action_hints/hint_10.png"
         },
         {
           "type": "text",
@@ -331,7 +331,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_10.png"
+          "src": "images/action_hints/hint_11.png"
         }
       ]
     }
@@ -340,6 +340,10 @@ const ACTION_HINTS_DATA = {
     {
       "title": "11.點一盞燈/ 面向法師45度",
       "details": [
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_12.png"
+        },
         {
           "type": "text",
           "content": "在黑暗角落點一盞燈"
@@ -370,7 +374,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_11.png"
+          "src": "images/action_hints/hint_13.png"
         },
         {
           "type": "text",
@@ -402,6 +406,14 @@ const ACTION_HINTS_DATA = {
       "title": "13.是諸眾生",
       "details": [
         {
+          "type": "image",
+          "src": "images/action_hints/hint_14.png"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_15.png"
+        },
+        {
           "type": "text",
           "content": "【慈善ending 無量義經．德行品】"
         },
@@ -418,6 +430,10 @@ const ACTION_HINTS_DATA = {
     {
       "title": "14.地藏經/面向乙舞台",
       "details": [
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_16.png"
+        },
         {
           "type": "text",
           "content": "病苦眾生在呐喊人間地獄悉現前貧病相因必須斷 促成建院的因緣"
@@ -438,6 +454,10 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "人生最珍貴 莫過於生命！"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_17.png"
         },
         {
           "type": "text",
@@ -474,7 +494,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_12.png"
+          "src": "images/action_hints/hint_18.png"
         },
         {
           "type": "text",
