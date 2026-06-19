@@ -128,7 +128,7 @@
                     <option value="B藍">B藍 (Stage B Blue)</option>
                   </select>
                 </div>
-                <div class="filter-group" style="flex: 1; display: none;">
+                <div class="filter-group" style="flex: 1;">
                   <select id="teamFilter">
                     <option value="east">東班 (East Team)</option>
                     <option value="west">西班 (West Team)</option>
@@ -583,6 +583,10 @@
                       <input type="text" id="adminDayId" placeholder="輸入身分證，如: 4-50" style="flex: 1;" required>
                       <button type="button" id="queryDayPerformerBtn" class="admin-query-btn" style="margin: 0; padding: 0 15px;">查詢現有名稱</button>
                     </div>
+                  </div>
+                  <div class="admin-form-group">
+                    <label for="adminDayOldName">原姓名 (現有名稱)</label>
+                    <input type="text" id="adminDayOldName" placeholder="尚未查詢" style="width: 100%; opacity: 0.65; cursor: not-allowed;" readonly>
                   </div>
                   <div class="admin-form-group">
                     <label for="adminDayName">新姓名</label>

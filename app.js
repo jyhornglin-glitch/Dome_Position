@@ -402,6 +402,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentPerformer) {
           selectPerformer(currentPerformer, currentDisplayName, selectedTeam);
         }
+        if (searchInput.value.trim()) {
+          searchInput.dispatchEvent(new Event('input'));
+        }
       });
     }
   }
@@ -2756,15 +2759,18 @@ document.addEventListener('DOMContentLoaded', () => {
       const enteredId = document.getElementById('adminDayId').value.trim();
       if (!enteredId) {
         showMsg('請輸入身分證編號後再進行查詢！', 'error');
+        alert('請輸入身分證編號後再進行查詢！');
         return;
       }
       
       const list = DAY_PERFORMERS[session] || [];
       const p = list.find(x => x.id === enteredId);
       if (p) {
+        document.getElementById('adminDayOldName').value = p.name || '';
         document.getElementById('adminDayName').value = p.name || '';
         showMsg(`查詢成功！目前儲存姓名為「${p.name}」`, 'success');
       } else {
+        document.getElementById('adminDayOldName').value = '（查無資料）';
         document.getElementById('adminDayName').value = '';
         showMsg(`在此場次中找不到身分證為 "${enteredId}" 的表演者姓名，您可以直接輸入並新增。`, 'error');
       }
@@ -2816,17 +2822,20 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(data => {
         if (data.success) {
           showMsg('姓名修改成功！網頁將在 2 秒後自動重新整理載入新資料...', 'success');
+          alert('姓名修改成功！');
           setTimeout(() => {
             window.location.reload();
           }, 2000);
         } else {
           showMsg('錯誤: ' + (data.error || '未知錯誤'), 'error');
+          alert('儲存失敗：' + (data.error || '未知錯誤'));
           submitBtn.disabled = false;
           submitBtn.textContent = '儲存修改';
         }
       })
       .catch(err => {
-        showMsg('無法連線至後端伺服器！請確認 server.py 正在運行中。', 'error');
+        showMsg('無法連線至後端伺服器！請確認伺服器正在運行中。', 'error');
+        alert('儲存失敗：無法連線至伺服器！');
         submitBtn.disabled = false;
         submitBtn.textContent = '儲存修改';
       });
@@ -2858,17 +2867,20 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(data => {
         if (data.success) {
           showMsg('座標修改成功！網頁將在 2 秒後自動重新整理載入新資料...', 'success');
+          alert('座標修改成功！');
           setTimeout(() => {
             window.location.reload();
           }, 2000);
         } else {
           showMsg('錯誤: ' + (data.error || '未知錯誤'), 'error');
+          alert('儲存失敗：' + (data.error || '未知錯誤'));
           submitBtn.disabled = false;
           submitBtn.textContent = '儲存座標修改';
         }
       })
       .catch(err => {
-        showMsg('無法連線至後端伺服器！請確認 server.py 正在運行中。', 'error');
+        showMsg('無法連線至後端伺服器！請確認伺服器正在運行中。', 'error');
+        alert('儲存失敗：無法連線至伺服器！');
         submitBtn.disabled = false;
         submitBtn.textContent = '儲存座標修改';
       });
