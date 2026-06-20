@@ -1010,37 +1010,41 @@ document.addEventListener('DOMContentLoaded', () => {
         const dx_rel = roundedX - homeCoord.x;
         const dy_rel = roundedY - homeCoord.y;
         
-        // Draw vertical red line at x = roundedX
+        // Draw vertical red line at x = roundedX (extend 10 units up/down from roundedY)
         const vRedLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        const vY1 = GRID_CENTER_Y + Math.max(-MAX_GRID_COORD, dy_rel - 10) * GRID_SPACING;
+        const vY2 = GRID_CENTER_Y + Math.min(MAX_GRID_COORD, dy_rel + 10) * GRID_SPACING;
         vRedLine.setAttribute('x1', GRID_CENTER_X + dx_rel * GRID_SPACING);
-        vRedLine.setAttribute('y1', GRID_CENTER_Y - MAX_GRID_COORD * GRID_SPACING);
+        vRedLine.setAttribute('y1', vY1);
         vRedLine.setAttribute('x2', GRID_CENTER_X + dx_rel * GRID_SPACING);
-        vRedLine.setAttribute('y2', GRID_CENTER_Y + MAX_GRID_COORD * GRID_SPACING);
-        vRedLine.setAttribute('style', 'stroke: #ef4444 !important; stroke-width: 3px !important;');
+        vRedLine.setAttribute('y2', vY2);
+        vRedLine.setAttribute('style', 'stroke: orangered !important; stroke-width: 3px !important;');
         linesGroup.appendChild(vRedLine);
         
-        // Draw horizontal red line at y = roundedY
+        // Draw horizontal red line at y = roundedY (extend 10 units left/right from roundedX)
         const hRedLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        hRedLine.setAttribute('x1', GRID_CENTER_X - MAX_GRID_COORD * GRID_SPACING);
+        const hX1 = GRID_CENTER_X + Math.max(-MAX_GRID_COORD, dx_rel - 10) * GRID_SPACING;
+        const hX2 = GRID_CENTER_X + Math.min(MAX_GRID_COORD, dx_rel + 10) * GRID_SPACING;
+        hRedLine.setAttribute('x1', hX1);
         hRedLine.setAttribute('y1', GRID_CENTER_Y + dy_rel * GRID_SPACING);
-        hRedLine.setAttribute('x2', GRID_CENTER_X + MAX_GRID_COORD * GRID_SPACING);
+        hRedLine.setAttribute('x2', hX2);
         hRedLine.setAttribute('y2', GRID_CENTER_Y + dy_rel * GRID_SPACING);
-        hRedLine.setAttribute('style', 'stroke: #ef4444 !important; stroke-width: 3px !important;');
+        hRedLine.setAttribute('style', 'stroke: orangered !important; stroke-width: 3px !important;');
         linesGroup.appendChild(hRedLine);
         
-        // Label for vertical red line (place near bottom edge)
+        // Label for vertical red line (place in fourth quadrant: dy_rel + 3)
         const vRedText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         vRedText.setAttribute('x', GRID_CENTER_X + dx_rel * GRID_SPACING + 4);
-        vRedText.setAttribute('y', GRID_CENTER_Y + MAX_GRID_COORD * GRID_SPACING - 8);
-        vRedText.setAttribute('style', 'fill: #ef4444 !important; font-size: 11px !important; font-weight: 800 !important; font-family: Outfit, sans-serif !important;');
+        vRedText.setAttribute('y', GRID_CENTER_Y + (dy_rel + 3) * GRID_SPACING);
+        vRedText.setAttribute('style', 'fill: orangered !important; font-size: 11px !important; font-weight: 800 !important; font-family: Outfit, sans-serif !important;');
         vRedText.textContent = `x=${roundedX}`;
         linesGroup.appendChild(vRedText);
         
-        // Label for horizontal red line (place near right edge)
+        // Label for horizontal red line (place in fourth quadrant: dx_rel + 3)
         const hRedText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        hRedText.setAttribute('x', GRID_CENTER_X + MAX_GRID_COORD * GRID_SPACING - 32);
+        hRedText.setAttribute('x', GRID_CENTER_X + (dx_rel + 3) * GRID_SPACING);
         hRedText.setAttribute('y', GRID_CENTER_Y + dy_rel * GRID_SPACING - 5);
-        hRedText.setAttribute('style', 'fill: #ef4444 !important; font-size: 11px !important; font-weight: 800 !important; font-family: Outfit, sans-serif !important;');
+        hRedText.setAttribute('style', 'fill: orangered !important; font-size: 11px !important; font-weight: 800 !important; font-family: Outfit, sans-serif !important;');
         hRedText.textContent = `y=${roundedY}`;
         linesGroup.appendChild(hRedText);
       }
@@ -1373,7 +1377,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (currentCoord && !currentCoord.isText) {
             const rx = Math.trunc(currentCoord.x);
             const ry = Math.trunc(currentCoord.y);
-            roundingText = ` <span style="color:#ef4444; font-weight:bold;">(對齊紅線：x=${rx}, y=${ry})</span>`;
+            roundingText = ` <span style="color: orangered; font-weight:bold;">(對齊紅線：x=${rx}, y=${ry})</span>`;
           }
           mapMovementGuide.innerHTML = `<i class="fa-solid fa-street-view" style="color: var(--red-color); margin-right: 5px;"></i><strong>起點就位</strong>：至起點座標點 <strong>(${coordStr})</strong>${roundingText} 就定位。`;
         } else {
@@ -1390,7 +1394,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (currentCoord && !currentCoord.isText) {
             const rx = Math.trunc(currentCoord.x);
             const ry = Math.trunc(currentCoord.y);
-            roundingText = ` <span style="color:#ef4444; font-weight:bold;">(對齊紅線：x=${rx}, y=${ry})</span>`;
+            roundingText = ` <span style="color: orangered; font-weight:bold;">(對齊紅線：x=${rx}, y=${ry})</span>`;
           }
           
           mapMovementGuide.innerHTML = `<i class="fa-solid fa-route" style="color: var(--red-color); margin-right: 5px;"></i><strong>隊形移動</strong>：從 ${prevName} <strong>(${prevCoordStr})</strong> 移動至 ${f.name.split(' ')[0]} <strong>(${coordStr})</strong>${roundingText}。<br>跑法：<strong>${movement}</strong>。`;
