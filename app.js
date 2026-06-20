@@ -998,6 +998,54 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Center coordinate label removed by request
     
+    // Draw bold red lines for the rounded target coordinates
+    let targetForm = formations[fIdx];
+    if (targetForm) {
+      let targetCoordStr = getFormationCoordStr(currentPerformer, targetForm.key);
+      let targetCoord = parseCoordinate(targetCoordStr);
+      if (targetCoord && !targetCoord.isText && !homeCoord.isText) {
+        const roundedX = Math.round(targetCoord.x);
+        const roundedY = Math.round(targetCoord.y);
+        
+        const dx_rel = roundedX - homeCoord.x;
+        const dy_rel = roundedY - homeCoord.y;
+        
+        // Draw vertical red line at x = roundedX
+        const vRedLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        vRedLine.setAttribute('x1', GRID_CENTER_X + dx_rel * GRID_SPACING);
+        vRedLine.setAttribute('y1', GRID_CENTER_Y - MAX_GRID_COORD * GRID_SPACING);
+        vRedLine.setAttribute('x2', GRID_CENTER_X + dx_rel * GRID_SPACING);
+        vRedLine.setAttribute('y2', GRID_CENTER_Y + MAX_GRID_COORD * GRID_SPACING);
+        vRedLine.setAttribute('style', 'stroke: #ef4444 !important; stroke-width: 3px !important;');
+        linesGroup.appendChild(vRedLine);
+        
+        // Draw horizontal red line at y = roundedY
+        const hRedLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        hRedLine.setAttribute('x1', GRID_CENTER_X - MAX_GRID_COORD * GRID_SPACING);
+        hRedLine.setAttribute('y1', GRID_CENTER_Y + dy_rel * GRID_SPACING);
+        hRedLine.setAttribute('x2', GRID_CENTER_X + MAX_GRID_COORD * GRID_SPACING);
+        hRedLine.setAttribute('y2', GRID_CENTER_Y + dy_rel * GRID_SPACING);
+        hRedLine.setAttribute('style', 'stroke: #ef4444 !important; stroke-width: 3px !important;');
+        linesGroup.appendChild(hRedLine);
+        
+        // Label for vertical red line (place near bottom edge)
+        const vRedText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        vRedText.setAttribute('x', GRID_CENTER_X + dx_rel * GRID_SPACING + 4);
+        vRedText.setAttribute('y', GRID_CENTER_Y + MAX_GRID_COORD * GRID_SPACING - 8);
+        vRedText.setAttribute('style', 'fill: #ef4444 !important; font-size: 11px !important; font-weight: 800 !important; font-family: Outfit, sans-serif !important;');
+        vRedText.textContent = `x=${roundedX}`;
+        linesGroup.appendChild(vRedText);
+        
+        // Label for horizontal red line (place near right edge)
+        const hRedText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        hRedText.setAttribute('x', GRID_CENTER_X + MAX_GRID_COORD * GRID_SPACING - 32);
+        hRedText.setAttribute('y', GRID_CENTER_Y + dy_rel * GRID_SPACING - 5);
+        hRedText.setAttribute('style', 'fill: #ef4444 !important; font-size: 11px !important; font-weight: 800 !important; font-family: Outfit, sans-serif !important;');
+        hRedText.textContent = `y=${roundedY}`;
+        linesGroup.appendChild(hRedText);
+      }
+    }
+    
     // Calculate relative coordinates and map to SVG coords
     const allPoints = formations.map((f, idx) => {
       let coordStr = getFormationCoordStr(currentPerformer, f.key);
@@ -1321,7 +1369,13 @@ document.addEventListener('DOMContentLoaded', () => {
         let coordStr = getFormationCoordStr(currentPerformer, f.key);
 
         if (activeFormationIdx === 0) {
-          mapMovementGuide.innerHTML = `<i class="fa-solid fa-street-view" style="color: var(--red-color); margin-right: 5px;"></i><strong>起點就位</strong>：至起點座標點 <strong>(${coordStr})</strong> 就定位。`;
+          let roundingText = '';
+          if (currentCoord && !currentCoord.isText) {
+            const rx = Math.round(currentCoord.x);
+            const ry = Math.round(currentCoord.y);
+            roundingText = ` <span style="color:#ef4444; font-weight:bold;">(對齊紅線：x=${rx}, y=${ry})</span>`;
+          }
+          mapMovementGuide.innerHTML = `<i class="fa-solid fa-street-view" style="color: var(--red-color); margin-right: 5px;"></i><strong>起點就位</strong>：至起點座標點 <strong>(${coordStr})</strong>${roundingText} 就定位。`;
         } else {
           const prevKey = formations[activeFormationIdx - 1].key;
           let prevCoordStr = getFormationCoordStr(currentPerformer, prevKey);
@@ -1332,7 +1386,14 @@ document.addEventListener('DOMContentLoaded', () => {
           const movement = getVectorDescription(prevCoord, currentCoord);
           const prevName = formations[activeFormationIdx - 1].name.split(' ')[0];
           
-          mapMovementGuide.innerHTML = `<i class="fa-solid fa-route" style="color: var(--red-color); margin-right: 5px;"></i><strong>隊形移動</strong>：從 ${prevName} <strong>(${prevCoordStr})</strong> 移動至 ${f.name.split(' ')[0]} <strong>(${coordStr})</strong>。<br>跑法：<strong>${movement}</strong>。`;
+          let roundingText = '';
+          if (currentCoord && !currentCoord.isText) {
+            const rx = Math.round(currentCoord.x);
+            const ry = Math.round(currentCoord.y);
+            roundingText = ` <span style="color:#ef4444; font-weight:bold;">(對齊紅線：x=${rx}, y=${ry})</span>`;
+          }
+          
+          mapMovementGuide.innerHTML = `<i class="fa-solid fa-route" style="color: var(--red-color); margin-right: 5px;"></i><strong>隊形移動</strong>：從 ${prevName} <strong>(${prevCoordStr})</strong> 移動至 ${f.name.split(' ')[0]} <strong>(${coordStr})</strong>${roundingText}。<br>跑法：<strong>${movement}</strong>。`;
         }
       }
 
