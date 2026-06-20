@@ -1045,13 +1045,13 @@ document.addEventListener('DOMContentLoaded', () => {
         hRedLine.setAttribute('style', 'stroke: orangered !important; stroke-width: 3px !important;');
         linesGroup.appendChild(hRedLine);
         
-        // Label for coordinate intersection (place in fourth quadrant: dx_rel + 4, dy_rel + 3)
+        // Label for coordinate intersection (place in fourth quadrant: dx_rel + 5, dy_rel + 3)
         const coordText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        coordText.setAttribute('x', GRID_CENTER_X + (dx_rel + 4) * GRID_SPACING);
+        coordText.setAttribute('x', GRID_CENTER_X + (dx_rel + 5) * GRID_SPACING);
         coordText.setAttribute('y', GRID_CENTER_Y + (dy_rel + 3) * GRID_SPACING + 6);
         coordText.setAttribute('text-anchor', 'middle');
         coordText.setAttribute('style', 'fill: orangered !important; font-size: 16.5px !important; font-weight: 800 !important; font-family: Outfit, sans-serif !important;');
-        coordText.textContent = `(${roundedX}, ${roundedY})`;
+        coordText.textContent = `${roundedX}, ${roundedY}`;
         linesGroup.appendChild(coordText);
       }
     }
