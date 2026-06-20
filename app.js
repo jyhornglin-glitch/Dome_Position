@@ -3,6 +3,10 @@
 document.addEventListener('DOMContentLoaded', () => {
   // DOM Elements
   const searchInput = document.getElementById('searchInput');
+  if (searchInput) {
+    searchInput.disabled = true;
+    searchInput.placeholder = "請先點選上方演出場次";
+  }
   const refreshBtn = document.getElementById('refreshBtn');
   if (refreshBtn) {
     refreshBtn.addEventListener('click', () => {
@@ -10,6 +14,31 @@ document.addEventListener('DOMContentLoaded', () => {
       const url = new URL(window.location.href);
       url.searchParams.set('t', Date.now().toString());
       window.location.href = url.toString();
+    });
+  }
+  const reSearchBtn = document.getElementById('reSearchBtn');
+  if (reSearchBtn) {
+    reSearchBtn.addEventListener('click', () => {
+      const overlay = document.getElementById('sessionOverlay');
+      if (overlay) {
+        overlay.style.display = 'flex';
+        overlay.style.opacity = '1';
+        
+        // Restore temp selected state to current active performer
+        tempSelectedPerformer = currentPerformer;
+        tempDayOverrideName = currentDisplayName;
+        
+        const confirmBtn = document.getElementById('sessionConfirmBtn');
+        if (confirmBtn) {
+          confirmBtn.disabled = !tempSelectedPerformer;
+        }
+        
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+          searchInput.focus();
+          searchInput.select();
+        }
+      }
     });
   }
   const clearSearchBtn = document.getElementById('clearSearchBtn');
@@ -59,6 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let selectedTeam = 'east'; // Currently selected team: 'east' or 'west'
   let hintModalClosed = true;
   let hintZoomLevel = 1.0;
+  let hintsExpanded = false;
+  let tempSelectedPerformer = null; // 暫存選中的表演者
+  let tempDayOverrideName = '';     // 暫存選中的當日姓名
 
   // Relative Grid coordinate configuration
   const GRID_CENTER_X = 180;
@@ -106,8 +138,9 @@ document.addEventListener('DOMContentLoaded', () => {
     return performer[key] || '';
   }
 
-  // Initialize App — session overlay first
+  // Initialize App — session overlay and logic immediately
   setupSessionOverlay();
+  init();
 
   // ─── Session Selection Overlay ───────────────────────────────────────────
   function setupSessionOverlay() {
@@ -137,7 +170,15 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('#sessionCards .session-card').forEach(c => c.classList.remove('selected'));
         card.classList.add('selected');
         selectedSessionKey = sess.key;
-        confirmBtn.disabled = false;
+        confirmBtn.disabled = !tempSelectedPerformer;
+        
+        // Enable and Focus search input
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+          searchInput.disabled = false;
+          searchInput.placeholder = "請輸入起點座標 (如: 4-46)";
+          searchInput.focus();
+        }
       });
 
       cardsContainer.appendChild(card);
@@ -150,11 +191,26 @@ document.addEventListener('DOMContentLoaded', () => {
         teamCards.forEach(c => c.classList.remove('selected'));
         card.classList.add('selected');
         selectedTeam = card.dataset.team;
+        
+        // Auto-focus search input and trigger search if has text
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+          searchInput.focus();
+          if (searchInput.value.trim()) {
+            searchInput.dispatchEvent(new Event('input'));
+          }
+        }
       });
     });
 
     confirmBtn.addEventListener('click', () => {
       if (!selectedSessionKey) return;
+
+      // Actually load the performer data now on manual confirmation
+      if (tempSelectedPerformer) {
+        selectPerformer(tempSelectedPerformer, tempDayOverrideName);
+      }
+
       const sess = DAY_SESSIONS.find(s => s.key === selectedSessionKey);
       // Show badge in header
       if (sessionBadge && sess) {
@@ -170,8 +226,6 @@ document.addEventListener('DOMContentLoaded', () => {
       overlay.style.transition = 'opacity 0.35s ease';
       overlay.style.opacity = '0';
       setTimeout(() => { overlay.style.display = 'none'; }, 360);
-      // Start main app
-      init();
     });
   }
   // ─────────────────────────────────────────────────────────────────────────
@@ -294,6 +348,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Autocomplete functionality
   function setupAutocomplete() {
     searchInput.addEventListener('input', (e) => {
+      // Reset temp selected states on manual text change
+      tempSelectedPerformer = null;
+      tempDayOverrideName = '';
+      const confirmBtn = document.getElementById('sessionConfirmBtn');
+      if (confirmBtn) {
+        confirmBtn.disabled = true;
+      }
+
       const val = e.target.value.trim().toLowerCase();
       if (!val) {
         autocompleteList.style.display = 'none';
@@ -389,9 +451,15 @@ document.addEventListener('DOMContentLoaded', () => {
       div.appendChild(badge);
       
       div.addEventListener('click', () => {
-        selectPerformer(p, dayName);
+        tempSelectedPerformer = p;
+        tempDayOverrideName = dayName;
         searchInput.value = displayName || fields.coordinate;
         autocompleteList.style.display = 'none';
+        
+        const confirmBtn = document.getElementById('sessionConfirmBtn');
+        if (confirmBtn) {
+          confirmBtn.disabled = false;
+        }
       });
       
       autocompleteList.appendChild(div);
@@ -450,7 +518,12 @@ document.addEventListener('DOMContentLoaded', () => {
       searchInput.value = '';
       clearSearchBtn.style.display = 'none';
       autocompleteList.style.display = 'none';
-      resetToEmptyState();
+      tempSelectedPerformer = null;
+      tempDayOverrideName = '';
+      const confirmBtn = document.getElementById('sessionConfirmBtn');
+      if (confirmBtn) {
+        confirmBtn.disabled = true;
+      }
     });
 
     prevBtn.addEventListener('click', () => {
@@ -2598,167 +2671,135 @@ document.addEventListener('DOMContentLoaded', () => {
     svgEl.addEventListener('touchstart', startDrag, { passive: false });
     window.addEventListener('touchmove', moveDrag, { passive: false });
     window.addEventListener('touchend', endDrag);
-  }
 
-  // Define floating action hints modal initialization
-  function setupActionHintsOverlay() {
-    const appScreen = document.querySelector('.app-screen');
-    const svgWrapper = document.querySelector('.svg-wrapper');
-    if (!appScreen) return;
+    // Swipe gestures on SVG wrapper to switch steps
+    let swipeStartX = 0;
+    let swipeStartY = 0;
     
-    if (document.getElementById('actionHintModal')) return;
-    
-    const modal = document.createElement('div');
-    modal.id = 'actionHintModal';
-    modal.className = 'action-hint-modal';
-    modal.style.display = 'none';
-    modal.style.setProperty('background-color', '#fffbeb', 'important');
-    modal.style.setProperty('background', '#fffbeb', 'important');
-    modal.style.setProperty('opacity', '1', 'important');
-    modal.style.setProperty('z-index', '999', 'important');
-    modal.innerHTML = `
-      <div class="action-hint-header">
-        <strong style="font-size: 14px; color: #000000;"><i class="fa-solid fa-person-running"></i> 動作提示</strong>
-        <button class="action-hint-close-btn" id="closeHintBtn">&times;</button>
-      </div>
-      <div class="action-hint-body" id="actionHintBody" style="color: #000000;"></div>
-    `;
-    
-    const showBtn = document.createElement('button');
-    showBtn.id = 'showHintBtn';
-    showBtn.className = 'show-hint-btn';
-    showBtn.style.display = 'none';
-    showBtn.innerHTML = '<i class="fa-solid fa-circle-info"></i> 動作提示';
-    
-    appScreen.appendChild(modal);
-    if (svgWrapper) {
-      svgWrapper.appendChild(showBtn);
-    }
-    
-    // Stop propagation of touch/mouse events so panning/zooming isn't triggered
-    const stopProp = (e) => e.stopPropagation();
-    modal.addEventListener('mousedown', stopProp);
-    if (svgWrapper) {
-      showBtn.addEventListener('mousedown', stopProp);
-      showBtn.addEventListener('touchstart', stopProp);
-    }
-
-    // Touch event listeners for pinch-to-zoom on the modal
-    let startHintTouchDist = 0;
-    let startHintZoom = 1.0;
-
-    modal.addEventListener('touchstart', (e) => {
-      e.stopPropagation();
-      if (e.touches && e.touches.length === 2) {
-        startHintTouchDist = Math.hypot(
-          e.touches[0].clientX - e.touches[1].clientX,
-          e.touches[0].clientY - e.touches[1].clientY
-        );
-        startHintZoom = hintZoomLevel;
+    wrapper.addEventListener('touchstart', (e) => {
+      if (e.touches && e.touches.length === 1) {
+        swipeStartX = e.touches[0].clientX;
+        swipeStartY = e.touches[0].clientY;
       }
-    }, { passive: false });
-
-    modal.addEventListener('touchmove', (e) => {
-      e.stopPropagation();
-      if (e.touches && e.touches.length === 2) {
-        e.preventDefault(); // prevent default browser pinch zoom
-        const dist = Math.hypot(
-          e.touches[0].clientX - e.touches[1].clientX,
-          e.touches[0].clientY - e.touches[1].clientY
-        );
-        if (startHintTouchDist > 0) {
-          const ratio = dist / startHintTouchDist;
-          hintZoomLevel = Math.max(0.7, Math.min(3.0, startHintZoom * ratio));
-          const zoomContent = document.getElementById('actionHintZoomContent');
-          if (zoomContent) {
-            zoomContent.style.zoom = hintZoomLevel;
+    }, { passive: true });
+    
+    wrapper.addEventListener('touchend', (e) => {
+      if (e.changedTouches && e.changedTouches.length === 1) {
+        const deltaX = e.changedTouches[0].clientX - swipeStartX;
+        const deltaY = e.changedTouches[0].clientY - swipeStartY;
+        
+        // Check if it's a horizontal swipe and map is NOT zoomed in
+        if (zoomLevel <= 1.0 && Math.abs(deltaX) > 50 && Math.abs(deltaY) < 60) {
+          if (deltaX < 0) {
+            // Swipe Left -> Next step
+            if (activeFormationIdx < formations.length - 1) {
+              activeFormationIdx++;
+              updateFormationControls();
+              drawLocalGridPath();
+            }
+          } else {
+            // Swipe Right -> Prev step
+            if (activeFormationIdx > 0) {
+              activeFormationIdx--;
+              updateFormationControls();
+              drawLocalGridPath();
+            }
           }
         }
       }
-    }, { passive: false });
-
-    modal.addEventListener('touchend', (e) => {
-      e.stopPropagation();
-      if (e.touches && e.touches.length < 2) {
-        startHintTouchDist = 0;
-      }
-    });
-    
-    document.getElementById('closeHintBtn').addEventListener('click', (e) => {
-      e.stopPropagation();
-      hintModalClosed = true;
-      modal.style.display = 'none';
-      showBtn.style.display = 'flex';
-    });
-    
-    showBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      hintModalClosed = false;
-      modal.style.display = 'block';
-      showBtn.style.display = 'none';
-    });
+    }, { passive: true });
   }
 
-  // Update floating action hints based on current step & performer
+  // Define floating action hints modal initialization (Disabled/replaced by inline hints)
+  function setupActionHintsOverlay() {
+    // Replaced by inline action hints container, no floating modal needed.
+  }
+
+  // Update inline action hints based on current step & performer
   function updateActionHintsDisplay() {
-    const modal = document.getElementById('actionHintModal');
-    const showBtn = document.getElementById('showHintBtn');
-    if (!modal || !showBtn || !currentPerformer) return;
+    const inlineContainer = document.getElementById('inlineActionHints');
+    if (!inlineContainer || !currentPerformer) return;
     
     const f = formations[activeFormationIdx];
     const items = getActionHintsForPerformer(currentPerformer, f.key);
     
     if (items.length === 0) {
-      modal.style.display = 'none';
-      showBtn.style.display = 'none';
+      inlineContainer.innerHTML = `
+        <div class="hint-title">
+          <span><i class="fa-solid fa-person-running"></i> 動作提示 (${f.label})</span>
+        </div>
+        <div class="no-hints">此步驟無動作提示</div>
+      `;
       return;
     }
     
-    const titleEl = modal.querySelector('strong');
-    titleEl.innerHTML = `<i class="fa-solid fa-person-running"></i> 動作提示 (${f.label})`;
+    // Header title and toggle button
+    let headerHtml = `
+      <div class="hint-title">
+        <span><i class="fa-solid fa-person-running"></i> 動作提示 (${f.label})</span>
+    `;
+    if (items.length > 2) {
+      headerHtml += `<button id="toggleHintsBtn" class="toggle-btn">${hintsExpanded ? '收合部分' : '展開更多'}</button>`;
+    }
+    headerHtml += `</div>`;
     
-    const bodyEl = document.getElementById('actionHintBody');
-    bodyEl.innerHTML = `<div id="actionHintZoomContent" style="transform-origin: top left; transition: zoom 0.05s ease;"></div>`;
-    const zoomContent = document.getElementById('actionHintZoomContent');
-    zoomContent.style.zoom = hintZoomLevel;
+    // Hints list body
+    const bodyContainer = document.createElement('div');
+    bodyContainer.className = 'hints-body-list';
     
-    items.forEach((item, itemIdx) => {
+    const visibleCount = hintsExpanded ? items.length : Math.min(2, items.length);
+    for (let i = 0; i < visibleCount; i++) {
+      const item = items[i];
       const itemDiv = document.createElement('div');
       itemDiv.className = 'action-hint-item';
       
-      // Add a border separator if this is not the last item
-      const isLast = itemIdx === items.length - 1;
-      const borderStyle = isLast ? '' : 'border-bottom: 1px solid rgba(0, 0, 0, 0.15); margin-bottom: 10px; padding-bottom: 10px;';
-      itemDiv.style.cssText = borderStyle;
-      
       const itemTitle = document.createElement('div');
-      itemTitle.style.cssText = 'font-weight: bold; color: #1e3a8a; font-size: 12px; margin-bottom: 6px;';
+      itemTitle.style.cssText = 'font-weight: bold; color: #b45309; font-size: 13.5px; margin-bottom: 6px;';
       itemTitle.textContent = item.title;
       itemDiv.appendChild(itemTitle);
       
       item.details.forEach(detail => {
         if (detail.type === 'text') {
           const p = document.createElement('p');
-          p.style.cssText = 'margin: 0 0 4px 0; color: #333333; font-size: 11.5px; font-weight: 500; line-height: 1.4;';
+          p.style.cssText = 'margin: 0 0 4px 0; color: #1e293b; font-size: 13px; font-weight: 500; line-height: 1.45;';
           p.textContent = detail.content;
           itemDiv.appendChild(p);
         } else if (detail.type === 'image') {
           const img = document.createElement('img');
           img.src = detail.src;
-          img.style.cssText = 'max-width: 100%; height: auto; display: block; border-radius: 6px; margin: 8px 0; border: 1px solid rgba(0, 0, 0, 0.12);';
+          img.style.cssText = 'max-width: 100%; height: auto; display: block; border-radius: 8px; margin: 8px 0; border: 1px solid rgba(180, 83, 9, 0.15);';
           itemDiv.appendChild(img);
         }
       });
-      
-      zoomContent.appendChild(itemDiv);
-    });
+      bodyContainer.appendChild(itemDiv);
+    }
     
-    if (hintModalClosed) {
-      modal.style.display = 'none';
-      showBtn.style.display = 'flex';
-    } else {
-      modal.style.display = 'block';
-      showBtn.style.display = 'none';
+    if (items.length > 2 && !hintsExpanded) {
+      const moreDiv = document.createElement('div');
+      moreDiv.style.cssText = 'color: #64748b; font-style: italic; text-align: center; font-size: 12px; padding: 6px 0; cursor: pointer;';
+      moreDiv.textContent = `...還有 ${items.length - 2} 項提示，點擊上方展開`;
+      moreDiv.addEventListener('click', (e) => {
+        e.stopPropagation();
+        hintsExpanded = true;
+        updateActionHintsDisplay();
+      });
+      bodyContainer.appendChild(moreDiv);
+    }
+    
+    inlineContainer.innerHTML = '';
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = headerHtml;
+    inlineContainer.appendChild(tempDiv.firstElementChild);
+    inlineContainer.appendChild(bodyContainer);
+    
+    // Add event listener to toggle button
+    const toggleBtn = document.getElementById('toggleHintsBtn');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        hintsExpanded = !hintsExpanded;
+        updateActionHintsDisplay();
+      });
     }
   }
 
