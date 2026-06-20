@@ -1,38 +1,43 @@
 import csv
 import os
+import re
 
-# Use script's directory as base path to ensure it works when run from any folder
-base_dir = os.path.dirname(os.path.abspath(__file__))
-csv_path = os.path.join(base_dir, "performers.csv")
-js_path = os.path.join(base_dir, "data.js")
+def clean_coord(val):
+    if not val:
+        return ""
+    val = val.strip()
+    # 1. Chinese date format: "X月Y日" -> "X-Y"
+    m1 = re.match(r'^(\d+)月(\d+)日$', val)
+    if m1:
+        return f"{m1.group(1)}-{m1.group(2)}"
+    # 2. Slash date format: "X/Y" -> "X-Y" or "YYYY/X/Y" -> "X-Y"
+    m2 = re.match(r'^(\d+)/(\d+)$', val)
+    if m2:
+        return f"{m2.group(1)}-{m2.group(2)}"
+    m3 = re.match(r'^(\d+)/(\d+)/(\d+)$', val)
+    if m3:
+        if len(m3.group(1)) == 4:
+            return f"{int(m3.group(2))}-{int(m3.group(3))}"
+    return val
 
-if not os.path.exists(csv_path):
-    print("請先在專案目錄下建立 'performers.csv' 檔案！")
-    print("CSV 欄位格式（第一列標頭）請採用以下英文名稱：")
-    print("category,id,name,circle,xingYuan,jingSi,lamp,bigV")
-    print("\n範例資料內容：")
-    print("category,id,name,circle,xingYuan,jingSi,lamp,bigV")
-    print("A藍,4-46,范志偉,5.2-46.2,2-49,4-46,12.4-41.6,3-49.6")
-    print("B白,19-54,柯博文,16.8-54.2,18-58,19-54,31-30,23.8-39")
-else:
-    def clean_coord(val):
-        if not val:
-            return ""
-        val = val.strip()
-        import re
-        # 1. Chinese date format: "X月Y日" -> "X-Y"
-        m1 = re.match(r'^(\d+)月(\d+)日$', val)
-        if m1:
-            return f"{m1.group(1)}-{m1.group(2)}"
-        # 2. Slash date format: "X/Y" -> "X-Y" or "YYYY/X/Y" -> "X-Y"
-        m2 = re.match(r'^(\d+)/(\d+)$', val)
-        if m2:
-            return f"{m2.group(1)}-{m2.group(2)}"
-        m3 = re.match(r'^(\d+)/(\d+)/(\d+)$', val)
-        if m3:
-            if len(m3.group(1)) == 4:
-                return f"{int(m3.group(2))}-{int(m3.group(3))}"
-        return val
+def esc(s):
+    return s.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\r', '\\r')
+
+def main():
+    # Use script's directory as base path to ensure it works when run from any folder
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    csv_path = os.path.join(base_dir, "performers.csv")
+    js_path = os.path.join(base_dir, "data.js")
+
+    if not os.path.exists(csv_path):
+        print("請先在專案目錄下建立 'performers.csv' 檔案！")
+        print("CSV 欄位格式（第一列標頭）請採用以下英文名稱：")
+        print("category,id,name,circle,xingYuan,jingSi,lamp,bigV")
+        print("\n範例資料內容：")
+        print("category,id,name,circle,xingYuan,jingSi,lamp,bigV")
+        print("A藍,4-46,范志偉,5.2-46.2,2-49,4-46,12.4-41.6,3-49.6")
+        print("B白,19-54,柯博文,16.8-54.2,18-58,19-54,31-30,23.8-39")
+        return
 
     performers = []
     # Using utf-8-sig to automatically handle Excel BOM if present
@@ -57,9 +62,6 @@ else:
                 performers.append(p)
                 
     # Generate data.js format content
-    def esc(s):
-        return s.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\r', '\\r')
-
     js_content = "// Performer Stage Formations Database\nconst performersData = [\n"
     for idx, p in enumerate(performers):
         comma = "," if idx < len(performers) - 1 else ""
@@ -70,3 +72,6 @@ else:
         f.write(js_content)
         
     print(f"成功！已批次匯入 {len(performers)} 筆表演者名單至 data.js 檔案！")
+
+if __name__ == '__main__':
+    main()

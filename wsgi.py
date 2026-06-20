@@ -12,6 +12,8 @@ import csv
 import json
 import subprocess
 import mimetypes
+import import_csv
+import import_daycsv
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, BASE_DIR)
@@ -90,9 +92,10 @@ def handle_update_dayperformer(data):
         writer.writerows(rows)
 
     # Run regeneration script
-    result = subprocess.run([sys.executable, os.path.join(BASE_DIR, 'import_daycsv.py')], capture_output=True, text=True)
-    if result.returncode != 0:
-        return 500, {"success": False, "error": f"Failed to regenerate daydata.js: {result.stderr}"}
+    try:
+        import_daycsv.main()
+    except Exception as e:
+        return 500, {"success": False, "error": f"Failed to regenerate daydata.js: {str(e)}"}
 
     return 200, {"success": True}
 
@@ -141,9 +144,10 @@ def handle_update_performer(data):
         writer.writerows(rows)
 
     # Run regeneration script
-    result = subprocess.run([sys.executable, os.path.join(BASE_DIR, 'import_csv.py')], capture_output=True, text=True)
-    if result.returncode != 0:
-        return 500, {"success": False, "error": f"Failed to regenerate data.js: {result.stderr}"}
+    try:
+        import_csv.main()
+    except Exception as e:
+        return 500, {"success": False, "error": f"Failed to regenerate data.js: {str(e)}"}
 
     return 200, {"success": True}
 

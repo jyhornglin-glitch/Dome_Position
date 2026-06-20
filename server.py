@@ -13,6 +13,8 @@ import csv
 import json
 import subprocess
 from http.server import SimpleHTTPRequestHandler, HTTPServer
+import import_csv
+import import_daycsv
 
 PORT = 8000
 if len(sys.argv) > 1:
@@ -108,9 +110,10 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                 writer.writerows(rows)
 
             # Regenerate daydata.js
-            result = subprocess.run([sys.executable, 'import_daycsv.py'], capture_output=True, text=True)
-            if result.returncode != 0:
-                self.send_json_response(500, {"success": False, "error": f"Failed to regenerate daydata.js: {result.stderr}"})
+            try:
+                import_daycsv.main()
+            except Exception as e:
+                self.send_json_response(500, {"success": False, "error": f"Failed to regenerate daydata.js: {str(e)}"})
                 return
 
             self.send_json_response(200, {"success": True})
@@ -174,9 +177,10 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                 writer.writerows(rows)
 
             # Regenerate data.js
-            result = subprocess.run([sys.executable, 'import_csv.py'], capture_output=True, text=True)
-            if result.returncode != 0:
-                self.send_json_response(500, {"success": False, "error": f"Failed to regenerate data.js: {result.stderr}"})
+            try:
+                import_csv.main()
+            except Exception as e:
+                self.send_json_response(500, {"success": False, "error": f"Failed to regenerate data.js: {str(e)}"})
                 return
 
             self.send_json_response(200, {"success": True})

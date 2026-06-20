@@ -10,8 +10,9 @@ import csv
 import json
 import os
 
-CSV_FILE = 'dayperformers.csv'
-OUTPUT_FILE = 'daydata.js'
+base_dir = os.path.dirname(os.path.abspath(__file__))
+CSV_FILE = os.path.join(base_dir, 'dayperformers.csv')
+OUTPUT_FILE = os.path.join(base_dir, 'daydata.js')
 
 # 四個場次的固定定義（順序固定）
 DAY_SESSIONS_DEF = [
