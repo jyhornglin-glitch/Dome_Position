@@ -67,7 +67,8 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
             data = json.loads(post_data.decode('utf-8'))
 
             # Verify password
-            if data.get('password') != 'tzuchi60':
+            pwd = data.get('password')
+            if pwd != 'tzuchi60' and pwd != 'tzuchi6060':
                 self.send_json_response(403, {"success": False, "error": "密碼錯誤，拒絕存取！"})
                 return
 
@@ -130,7 +131,7 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
             data = json.loads(post_data.decode('utf-8'))
 
             # Verify password
-            if data.get('password') != 'tzuchi60':
+            if data.get('password') != 'tzuchi6060':
                 self.send_json_response(403, {"success": False, "error": "密碼錯誤，拒絕存取！"})
                 return
 

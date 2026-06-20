@@ -2651,6 +2651,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const verifyAdminPasswordBtn = document.getElementById('verifyAdminPasswordBtn');
     
     let isAuthed = false;
+    let currentAdminPassword = '';
 
     // Forms
     const dayperformerForm = document.getElementById('dayperformerForm');
@@ -2702,10 +2703,26 @@ document.addEventListener('DOMContentLoaded', () => {
     function handlePasswordVerify() {
       clearMsg();
       const pwd = adminPasswordInput.value;
-      if (pwd === 'tzuchi60') {
+      if (pwd === 'tzuchi60' || pwd === 'tzuchi6060') {
         isAuthed = true;
+        currentAdminPassword = pwd;
         adminAuthScreen.style.display = 'none';
         adminMainContent.style.display = 'flex';
+
+        const adminTabs = document.querySelector('.admin-tabs');
+        const performersTabBtn = document.querySelector('.admin-tab-btn[data-admin-tab="performers"]');
+        const dayperformersTabBtn = document.querySelector('.admin-tab-btn[data-admin-tab="dayperformers"]');
+
+        if (pwd === 'tzuchi60') {
+          // Hide switcher (only modify names is allowed)
+          if (adminTabs) adminTabs.style.display = 'none';
+          if (dayperformersTabBtn) dayperformersTabBtn.click();
+        } else {
+          // Show switcher (both modify names & coordinates allowed)
+          if (adminTabs) adminTabs.style.display = 'flex';
+          if (performersTabBtn) performersTabBtn.style.display = '';
+          if (dayperformersTabBtn) dayperformersTabBtn.click();
+        }
       } else {
         showMsg('密碼錯誤，請重新輸入！', 'error');
         adminPasswordInput.value = '';
@@ -2797,6 +2814,25 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('adminLamp').value = p.lamp || '';
         document.getElementById('adminNoBoat').value = p.noBoat || '';
         document.getElementById('adminBigV').value = p.bigV || '';
+        
+        // Find Performer Name dynamically from session data across all sessions
+        let foundName = '';
+        if (selectedSessionKey && typeof DAY_PERFORMERS !== 'undefined') {
+          const list = DAY_PERFORMERS[selectedSessionKey] || [];
+          const match = list.find(x => x.id === enteredId && x.team === team);
+          if (match) foundName = match.name || '';
+        }
+        if (!foundName && typeof DAY_PERFORMERS !== 'undefined') {
+          for (const skey in DAY_PERFORMERS) {
+            const list = DAY_PERFORMERS[skey] || [];
+            const match = list.find(x => x.id === enteredId && x.team === team);
+            if (match && match.name) {
+              foundName = match.name;
+              break;
+            }
+          }
+        }
+        document.getElementById('adminNameDisplay').value = foundName || '（查無此場次之姓名登記）';
         showMsg('已成功載入該表演者現有座標！', 'success');
       } else {
         document.getElementById('adminCircle').value = '';
@@ -2805,6 +2841,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('adminLamp').value = '';
         document.getElementById('adminNoBoat').value = '';
         document.getElementById('adminBigV').value = '';
+        document.getElementById('adminNameDisplay').value = '';
         showMsg(`找不到身分證編號為 "${enteredId}" 且屬於 "${team}" 的表演者！`, 'error');
       }
     });
@@ -2826,7 +2863,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/api/update-dayperformer', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ session, id, name, team, password: 'tzuchi60' })
+        body: JSON.stringify({ session, id, name, team, password: currentAdminPassword })
       })
       .then(res => res.json())
       .then(data => {
@@ -2872,7 +2909,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/api/update-performer', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, circle, xingYuan, jingSi, lamp, noBoat, bigV, team, password: 'tzuchi60' })
+        body: JSON.stringify({ id, circle, xingYuan, jingSi, lamp, noBoat, bigV, team, password: currentAdminPassword })
       })
       .then(res => res.json())
       .then(data => {

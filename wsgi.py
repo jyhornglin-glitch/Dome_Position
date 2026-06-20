@@ -53,7 +53,8 @@ def clean_coord(val):
     return val
 
 def handle_update_dayperformer(data):
-    if data.get('password') != 'tzuchi60':
+    pwd = data.get('password')
+    if pwd != 'tzuchi60' and pwd != 'tzuchi6060':
         return 403, {"success": False, "error": "密碼錯誤，拒絕存取！"}
 
     session_key = data.get('session')
@@ -102,7 +103,7 @@ def handle_update_dayperformer(data):
     return 200, {"success": True}
 
 def handle_update_performer(data):
-    if data.get('password') != 'tzuchi60':
+    if data.get('password') != 'tzuchi6060':
         return 403, {"success": False, "error": "密碼錯誤，拒絕存取！"}
 
     target_id = str(data.get('id', '')).strip()
