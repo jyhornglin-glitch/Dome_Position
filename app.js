@@ -1457,6 +1457,9 @@ document.addEventListener('DOMContentLoaded', () => {
     currentLine.setAttribute('stroke-linecap', 'round');
     currentLine.setAttribute('style', `stroke: ${currentColor} !important; stroke-width: 5.5px !important; stroke-linecap: round !important;`);
     svgEl.appendChild(currentLine);
+    if (isMainSvg) {
+      updateSvgViewBox(svgEl);
+    }
   }
 
   // Draw Card Landmark Icon in HTML using the cropped PNG stickers
@@ -2391,6 +2394,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const x = 180 - (180 / zoomLevel) + panX;
     const y = 180 - (180 / zoomLevel) + panY;
     svgEl.setAttribute('viewBox', `${x} ${y} ${w} ${h}`);
+
+    // Update the position of the legend line if it exists (so it remains static in viewport)
+    const legendLine = svgEl.querySelector('#nextPointGuideLegendLine');
+    if (legendLine) {
+      const x2 = (x + w) - (15 / zoomLevel);
+      const x1 = x2 - (100 / zoomLevel);
+      const yVal = (y + h) - (15 / zoomLevel);
+      const thickness = 5.5 / zoomLevel;
+      
+      legendLine.setAttribute('x1', String(x1));
+      legendLine.setAttribute('y1', String(yVal));
+      legendLine.setAttribute('x2', String(x2));
+      legendLine.setAttribute('y2', String(yVal));
+      legendLine.setAttribute('stroke-width', `${thickness}px`);
+      
+      const currentColor = legendLine.getAttribute('stroke') || '#fbbf24';
+      legendLine.setAttribute('style', `stroke: ${currentColor} !important; stroke-width: ${thickness}px !important; stroke-linecap: round !important;`);
+    }
   }
 
   // Apply rotation transform to local grid content group
