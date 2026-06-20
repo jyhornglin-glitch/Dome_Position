@@ -23,20 +23,21 @@ def clean_coord(val):
 def esc(s):
     return s.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\r', '\\r')
 
-def main():
+def main(verbose=True):
     # Use script's directory as base path to ensure it works when run from any folder
     base_dir = os.path.dirname(os.path.abspath(__file__))
     csv_path = os.path.join(base_dir, "performers.csv")
     js_path = os.path.join(base_dir, "data.js")
 
     if not os.path.exists(csv_path):
-        print("請先在專案目錄下建立 'performers.csv' 檔案！")
-        print("CSV 欄位格式（第一列標頭）請採用以下英文名稱：")
-        print("category,id,name,circle,xingYuan,jingSi,lamp,bigV")
-        print("\n範例資料內容：")
-        print("category,id,name,circle,xingYuan,jingSi,lamp,bigV")
-        print("A藍,4-46,范志偉,5.2-46.2,2-49,4-46,12.4-41.6,3-49.6")
-        print("B白,19-54,柯博文,16.8-54.2,18-58,19-54,31-30,23.8-39")
+        if verbose:
+            print("請先在專案目錄下建立 'performers.csv' 檔案！")
+            print("CSV 欄位格式（第一列標頭）請採用以下英文名稱：")
+            print("category,id,name,circle,xingYuan,jingSi,lamp,bigV")
+            print("\n範例資料內容：")
+            print("category,id,name,circle,xingYuan,jingSi,lamp,bigV")
+            print("A藍,4-46,范志偉,5.2-46.2,2-49,4-46,12.4-41.6,3-49.6")
+            print("B白,19-54,柯博文,16.8-54.2,18-58,19-54,31-30,23.8-39")
         return
 
     performers = []
@@ -71,7 +72,8 @@ def main():
     with open(js_path, mode='w', encoding='utf-8') as f:
         f.write(js_content)
         
-    print(f"成功！已批次匯入 {len(performers)} 筆表演者名單至 data.js 檔案！")
+    if verbose:
+        print(f"成功！已批次匯入 {len(performers)} 筆表演者名單至 data.js 檔案！")
 
 if __name__ == '__main__':
     main()

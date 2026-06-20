@@ -45,9 +45,10 @@ def clean_coord(val):
             return f"{int(m3.group(2))}-{int(m3.group(3))}"
     return val
 
-def main():
+def main(verbose=True):
     if not os.path.exists(CSV_FILE):
-        print(f'錯誤：找不到 {CSV_FILE}')
+        if verbose:
+            print(f'錯誤：找不到 {CSV_FILE}')
         return
 
     # Build a map: session_key -> list of {id, name}
@@ -100,11 +101,12 @@ def main():
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
         f.write(output)
 
-    print(f'成功！已將場次名單寫入 {OUTPUT_FILE}')
-    for sess in DAY_SESSIONS_DEF:
-        count = len(day_map.get(sess['key'], []))
-        print(f"  {sess['label']}: {count} 筆")
-    print(f'  合計: {total} 筆')
+    if verbose:
+        print(f'成功！已將場次名單寫入 {OUTPUT_FILE}')
+        for sess in DAY_SESSIONS_DEF:
+            count = len(day_map.get(sess['key'], []))
+            print(f"  {sess['label']}: {count} 筆")
+        print(f'  合計: {total} 筆')
 
 if __name__ == '__main__':
     main()

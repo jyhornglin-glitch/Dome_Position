@@ -93,7 +93,7 @@ def handle_update_dayperformer(data):
 
     # Run regeneration script
     try:
-        import_daycsv.main()
+        import_daycsv.main(verbose=False)
     except Exception as e:
         return 500, {"success": False, "error": f"Failed to regenerate daydata.js: {str(e)}"}
 
@@ -145,7 +145,7 @@ def handle_update_performer(data):
 
     # Run regeneration script
     try:
-        import_csv.main()
+        import_csv.main(verbose=False)
     except Exception as e:
         return 500, {"success": False, "error": f"Failed to regenerate data.js: {str(e)}"}
 

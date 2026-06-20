@@ -111,7 +111,7 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
 
             # Regenerate daydata.js
             try:
-                import_daycsv.main()
+                import_daycsv.main(verbose=False)
             except Exception as e:
                 self.send_json_response(500, {"success": False, "error": f"Failed to regenerate daydata.js: {str(e)}"})
                 return
@@ -178,7 +178,7 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
 
             # Regenerate data.js
             try:
-                import_csv.main()
+                import_csv.main(verbose=False)
             except Exception as e:
                 self.send_json_response(500, {"success": False, "error": f"Failed to regenerate data.js: {str(e)}"})
                 return
