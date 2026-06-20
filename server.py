@@ -74,8 +74,9 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
             session_key = data.get('session')
             target_id = str(data.get('id', '')).strip()
             new_name = str(data.get('name', '')).strip()
+            team = str(data.get('team', '')).strip()
 
-            if not session_key or not target_id or not new_name:
+            if not session_key or not target_id or not new_name or not team:
                 self.send_json_response(400, {"success": False, "error": "Missing required fields"})
                 return
 
@@ -86,7 +87,7 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
 
             # Read and Update dayperformers.csv
             rows = []
-            headers = ['日期', '身份證', '姓名']
+            headers = ['班別', '日期', '身份證', '姓名']
             found = False
             
             if os.path.exists(DAY_CSV):
@@ -95,14 +96,15 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                     headers = reader.fieldnames or headers
                     for row in reader:
                         row_date = row.get('日期', '').strip()
-                        if row_date in allowed_dates and row.get('身份證', '').strip() == target_id:
+                        row_team = row.get('班別', '').strip()
+                        if row_date in allowed_dates and row.get('身份證', '').strip() == target_id and row_team == team:
                             row['姓名'] = new_name
                             found = True
                         rows.append(row)
 
             if not found:
                 default_date = SESS_MAP.get(session_key)
-                rows.append({'日期': default_date, '身份證': target_id, '姓名': new_name})
+                rows.append({'班別': team, '日期': default_date, '身份證': target_id, '姓名': new_name})
 
             with open(DAY_CSV, mode='w', encoding='utf-8-sig', newline='') as f:
                 writer = csv.DictWriter(f, fieldnames=headers)
@@ -139,9 +141,10 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
             lamp = str(data.get('lamp', '')).strip()
             no_boat = str(data.get('noBoat', '')).strip()
             big_v = str(data.get('bigV', '')).strip()
+            team = str(data.get('team', '')).strip()
 
-            if not target_id:
-                self.send_json_response(400, {"success": False, "error": "Missing performer ID"})
+            if not target_id or not team:
+                self.send_json_response(400, {"success": False, "error": "Missing performer ID or team"})
                 return
 
             # Read and Update performers.csv
@@ -157,7 +160,8 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                 reader = csv.DictReader(f)
                 headers = reader.fieldnames or headers
                 for row in reader:
-                    if row.get('身份證', '').strip() == target_id:
+                    row_team = row.get('班別', '').strip()
+                    if row.get('身份證', '').strip() == target_id and row_team == team:
                         row['01圓形'] = circle
                         row['02行願'] = xing_yuan
                         row['04靜思家風'] = jing_si
@@ -168,7 +172,7 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                     rows.append(row)
 
             if not found:
-                self.send_json_response(404, {"success": False, "error": f"身分證 {target_id} 不存在於 performers.csv 中"})
+                self.send_json_response(404, {"success": False, "error": f"身分證 {target_id} 且屬於 {team} 不存在於 performers.csv 中"})
                 return
 
             with open(PERF_CSV, mode='w', encoding='utf-8-sig', newline='') as f:

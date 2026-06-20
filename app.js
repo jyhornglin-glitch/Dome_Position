@@ -2756,6 +2756,7 @@ document.addEventListener('DOMContentLoaded', () => {
     queryDayPerformerBtn.addEventListener('click', () => {
       clearMsg();
       const session = document.getElementById('adminDaySession').value;
+      const team = document.getElementById('adminDayTeam').value;
       const enteredId = document.getElementById('adminDayId').value.trim();
       if (!enteredId) {
         showMsg('請輸入身分證編號後再進行查詢！', 'error');
@@ -2764,7 +2765,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       const list = DAY_PERFORMERS[session] || [];
-      const p = list.find(x => x.id === enteredId);
+      const p = list.find(x => x.id === enteredId && x.team === team);
       if (p) {
         document.getElementById('adminDayOldName').value = p.name || '';
         document.getElementById('adminDayName').value = p.name || '';
@@ -2772,7 +2773,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         document.getElementById('adminDayOldName').value = '（查無資料）';
         document.getElementById('adminDayName').value = '';
-        showMsg(`在此場次中找不到身分證為 "${enteredId}" 的表演者姓名，您可以直接輸入並新增。`, 'error');
+        showMsg(`在此場次中找不到身分證為 "${enteredId}" 且屬於 "${team}" 的表演者姓名，您可以直接輸入並新增。`, 'error');
       }
     });
 
@@ -2780,13 +2781,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const queryPerformerBtn = document.getElementById('queryPerformerBtn');
     queryPerformerBtn.addEventListener('click', () => {
       clearMsg();
+      const team = document.getElementById('adminTeam').value;
       const enteredId = document.getElementById('adminId').value.trim();
       if (!enteredId) {
         showMsg('請輸入身分證編號後再進行查詢！', 'error');
+        alert('請輸入身分證編號後再進行查詢！');
         return;
       }
       
-      const p = performersData.find(x => x.id === enteredId);
+      const p = performersData.find(x => x.id === enteredId && x.team === team);
       if (p) {
         document.getElementById('adminCircle').value = p.circle || '';
         document.getElementById('adminXingYuan').value = p.xingYuan || '';
@@ -2796,7 +2799,13 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('adminBigV').value = p.bigV || '';
         showMsg('已成功載入該表演者現有座標！', 'success');
       } else {
-        showMsg(`找不到身分證編號為 "${enteredId}" 的表演者！`, 'error');
+        document.getElementById('adminCircle').value = '';
+        document.getElementById('adminXingYuan').value = '';
+        document.getElementById('adminJingSi').value = '';
+        document.getElementById('adminLamp').value = '';
+        document.getElementById('adminNoBoat').value = '';
+        document.getElementById('adminBigV').value = '';
+        showMsg(`找不到身分證編號為 "${enteredId}" 且屬於 "${team}" 的表演者！`, 'error');
       }
     });
 
@@ -2806,6 +2815,7 @@ document.addEventListener('DOMContentLoaded', () => {
       clearMsg();
       
       const session = document.getElementById('adminDaySession').value;
+      const team = document.getElementById('adminDayTeam').value;
       const id = document.getElementById('adminDayId').value.trim();
       const name = document.getElementById('adminDayName').value.trim();
       
@@ -2816,7 +2826,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/api/update-dayperformer', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ session, id, name, password: 'tzuchi60' })
+        body: JSON.stringify({ session, id, name, team, password: 'tzuchi60' })
       })
       .then(res => res.json())
       .then(data => {
@@ -2846,6 +2856,7 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       clearMsg();
       
+      const team = document.getElementById('adminTeam').value;
       const id = document.getElementById('adminId').value.trim();
       const circle = document.getElementById('adminCircle').value.trim();
       const xingYuan = document.getElementById('adminXingYuan').value.trim();
@@ -2861,7 +2872,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/api/update-performer', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, circle, xingYuan, jingSi, lamp, noBoat, bigV, password: 'tzuchi60' })
+        body: JSON.stringify({ id, circle, xingYuan, jingSi, lamp, noBoat, bigV, team, password: 'tzuchi60' })
       })
       .then(res => res.json())
       .then(data => {

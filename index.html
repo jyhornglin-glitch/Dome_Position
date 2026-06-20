@@ -578,6 +578,13 @@
                     </select>
                   </div>
                   <div class="admin-form-group">
+                    <label for="adminDayTeam">選擇班別</label>
+                    <select id="adminDayTeam" style="width: 100%;" required>
+                      <option value="東班">東班 (East Team)</option>
+                      <option value="西班">西班 (West Team)</option>
+                    </select>
+                  </div>
+                  <div class="admin-form-group">
                     <label for="adminDayId">身分證編號 (如: 4-50)</label>
                     <div style="display: flex; gap: 8px;">
                       <input type="text" id="adminDayId" placeholder="輸入身分證，如: 4-50" style="flex: 1;" required>
@@ -599,6 +606,13 @@
               <!-- Tab 2: Performers (modify coordinates) -->
               <div class="admin-tab-panel" id="adminPanel-performers" style="display: none;">
                 <form id="performerForm" onsubmit="event.preventDefault();">
+                  <div class="admin-form-group">
+                    <label for="adminTeam">選擇班別</label>
+                    <select id="adminTeam" style="width: 100%;" required>
+                      <option value="東班">東班 (East Team)</option>
+                      <option value="西班">西班 (West Team)</option>
+                    </select>
+                  </div>
                   <div class="admin-form-group">
                     <label for="adminId">身分證編號 (如: 4-50)</label>
                     <div style="display: flex; gap: 8px;">
