@@ -1067,7 +1067,7 @@ document.addEventListener('DOMContentLoaded', () => {
         coordText.setAttribute('y', GRID_CENTER_Y + (dy_rel + 3) * GRID_SPACING + 6);
         coordText.setAttribute('text-anchor', 'middle');
         coordText.setAttribute('style', 'fill: orangered !important; font-size: 16.5px !important; font-weight: 800 !important; font-family: Outfit, sans-serif !important;');
-        coordText.textContent = `${roundedX}, ${roundedY}`;
+        coordText.textContent = `${roundedX}-${roundedY}`;
         linesGroup.appendChild(coordText);
       }
     }
@@ -1419,10 +1419,10 @@ document.addEventListener('DOMContentLoaded', () => {
           if (currentCoord && !currentCoord.isText && showGuides) {
             const rx = Math.trunc(currentCoord.x);
             const ry = Math.trunc(currentCoord.y);
-            roundingText = ` <span style="color: orangered; font-weight:bold;">(對齊紅線：(${rx}, ${ry}))</span>`;
+            roundingText = ` <span style="color: orangered; font-weight:bold;">(對齊紅線：${rx}-${ry})</span>`;
           }
           
-          mapMovementGuide.innerHTML = `<i class="fa-solid fa-route" style="color: var(--red-color); margin-right: 5px;"></i><strong>隊形移動</strong>：從 ${prevName} <strong>(${prevCoordStr})</strong> 移動至 ${f.name.split(' ')[0]} <strong>(${coordStr})</strong>${roundingText}。<br>跑法：<strong>${movement}</strong>。`;
+          mapMovementGuide.innerHTML = `<i class="fa-solid fa-route" style="color: var(--red-color); margin-right: 5px;"></i><strong>隊形移動</strong>：從 ${prevName} <strong>${prevCoordStr}</strong> 移動至 ${f.name.split(' ')[0]} <strong>${coordStr}</strong>${roundingText}。<br>跑法：<strong>${movement}</strong>。`;
         }
       }
 
@@ -1640,7 +1640,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const movement = getVectorDescription(prevCoord, currentCoord);
         const prevName = formations[idx - 1].name.split(' ')[0];
         
-        descr.innerHTML = `<strong>隊形移動</strong>：從 ${prevName} <strong>(${prevCoordStr})</strong> 移動至 ${f.name.split(' ')[0]} <strong>(${coordStr})</strong>。跑法：<strong>${movement}</strong>。`;
+        descr.innerHTML = `<strong>隊形移動</strong>：從 ${prevName} <strong>${prevCoordStr}</strong> 移動至 ${f.name.split(' ')[0]} <strong>${coordStr}</strong>。跑法：<strong>${movement}</strong>。`;
       }
       
       content.appendChild(descr);
