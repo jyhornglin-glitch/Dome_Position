@@ -479,6 +479,13 @@ document.addEventListener('DOMContentLoaded', () => {
         drawLocalGridPath();
       });
     }
+
+    const showAlignmentGuides = document.getElementById('showAlignmentGuides');
+    if (showAlignmentGuides) {
+      showAlignmentGuides.addEventListener('change', () => {
+        drawLocalGridPath();
+      });
+    }
   }
 
   function resetToEmptyState() {
@@ -999,8 +1006,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Center coordinate label removed by request
     
     // Draw bold red lines for the rounded target coordinates
+    const showGuidesToggle = document.getElementById('showAlignmentGuides');
+    const showGuides = showGuidesToggle ? showGuidesToggle.checked : true;
     let targetForm = formations[fIdx];
-    if (targetForm) {
+    if (targetForm && showGuides) {
       let targetCoordStr = getFormationCoordStr(currentPerformer, targetForm.key);
       let targetCoord = parseCoordinate(targetCoordStr);
       if (targetCoord && !targetCoord.isText && !homeCoord.isText) {
@@ -1032,9 +1041,9 @@ document.addEventListener('DOMContentLoaded', () => {
         hRedLine.setAttribute('style', 'stroke: orangered !important; stroke-width: 3px !important;');
         linesGroup.appendChild(hRedLine);
         
-        // Label for coordinate intersection (place in fourth quadrant: dx_rel + 3, dy_rel + 3)
+        // Label for coordinate intersection (place in fourth quadrant: dx_rel + 4, dy_rel + 3)
         const coordText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        coordText.setAttribute('x', GRID_CENTER_X + (dx_rel + 3) * GRID_SPACING);
+        coordText.setAttribute('x', GRID_CENTER_X + (dx_rel + 4) * GRID_SPACING);
         coordText.setAttribute('y', GRID_CENTER_Y + (dy_rel + 3) * GRID_SPACING + 6);
         coordText.setAttribute('text-anchor', 'middle');
         coordText.setAttribute('style', 'fill: orangered !important; font-size: 16.5px !important; font-weight: 800 !important; font-family: Outfit, sans-serif !important;');
@@ -1151,8 +1160,8 @@ document.addEventListener('DOMContentLoaded', () => {
       g.setAttribute('class', `path-point pt-${pt.key} role-${pt.role} ${pt.key === formations[fIdx].key ? 'active-formation' : ''}`);
       g.setAttribute('id', `local-point-${pt.key}`);
       
-      // Calculate dynamic landmark size based on grid spacing (scaled down by another 80%)
-      const landmarkSize = Math.max(12, Math.min(32, GRID_SPACING * 1.8)) * 0.8;
+      // Calculate dynamic landmark size based on grid spacing (enlarged by 25%, i.e., removing the 80% scaling down factor)
+      const landmarkSize = Math.max(12, Math.min(32, GRID_SPACING * 1.8));
       
       // Render the sticker image dynamically sized
       drawSvgLandmarkImage(g, pt.key, category, pt.pos.x, pt.pos.y, landmarkSize, isMainSvg);
@@ -1364,10 +1373,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if (mapMovementGuide) {
         const f = formations[activeFormationIdx];
         let coordStr = getFormationCoordStr(currentPerformer, f.key);
+        
+        const showGuidesToggle = document.getElementById('showAlignmentGuides');
+        const showGuides = showGuidesToggle ? showGuidesToggle.checked : true;
 
         if (activeFormationIdx === 0) {
           let roundingText = '';
-          if (currentCoord && !currentCoord.isText) {
+          if (currentCoord && !currentCoord.isText && showGuides) {
             const rx = Math.trunc(currentCoord.x);
             const ry = Math.trunc(currentCoord.y);
             roundingText = ` <span style="color: orangered; font-weight:bold;">(對齊紅線：(${rx}, ${ry}))</span>`;
@@ -1384,7 +1396,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const prevName = formations[activeFormationIdx - 1].name.split(' ')[0];
           
           let roundingText = '';
-          if (currentCoord && !currentCoord.isText) {
+          if (currentCoord && !currentCoord.isText && showGuides) {
             const rx = Math.trunc(currentCoord.x);
             const ry = Math.trunc(currentCoord.y);
             roundingText = ` <span style="color: orangered; font-weight:bold;">(對齊紅線：(${rx}, ${ry}))</span>`;
