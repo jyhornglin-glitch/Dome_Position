@@ -2815,24 +2815,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('adminNoBoat').value = p.noBoat || '';
         document.getElementById('adminBigV').value = p.bigV || '';
         
-        // Find Performer Name dynamically from session data across all sessions
-        let foundName = '';
-        if (selectedSessionKey && typeof DAY_PERFORMERS !== 'undefined') {
-          const list = DAY_PERFORMERS[selectedSessionKey] || [];
-          const match = list.find(x => x.id === enteredId && x.team === team);
-          if (match) foundName = match.name || '';
-        }
-        if (!foundName && typeof DAY_PERFORMERS !== 'undefined') {
-          for (const skey in DAY_PERFORMERS) {
-            const list = DAY_PERFORMERS[skey] || [];
-            const match = list.find(x => x.id === enteredId && x.team === team);
-            if (match && match.name) {
-              foundName = match.name;
-              break;
-            }
-          }
-        }
-        document.getElementById('adminNameDisplay').value = foundName || '（查無此場次之姓名登記）';
         showMsg('已成功載入該表演者現有座標！', 'success');
       } else {
         document.getElementById('adminCircle').value = '';
@@ -2841,7 +2823,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('adminLamp').value = '';
         document.getElementById('adminNoBoat').value = '';
         document.getElementById('adminBigV').value = '';
-        document.getElementById('adminNameDisplay').value = '';
         showMsg(`找不到身分證編號為 "${enteredId}" 且屬於 "${team}" 的表演者！`, 'error');
       }
     });
