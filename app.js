@@ -1004,8 +1004,8 @@ document.addEventListener('DOMContentLoaded', () => {
       let targetCoordStr = getFormationCoordStr(currentPerformer, targetForm.key);
       let targetCoord = parseCoordinate(targetCoordStr);
       if (targetCoord && !targetCoord.isText && !homeCoord.isText) {
-        const roundedX = Math.round(targetCoord.x);
-        const roundedY = Math.round(targetCoord.y);
+        const roundedX = Math.trunc(targetCoord.x);
+        const roundedY = Math.trunc(targetCoord.y);
         
         const dx_rel = roundedX - homeCoord.x;
         const dy_rel = roundedY - homeCoord.y;
@@ -1371,8 +1371,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (activeFormationIdx === 0) {
           let roundingText = '';
           if (currentCoord && !currentCoord.isText) {
-            const rx = Math.round(currentCoord.x);
-            const ry = Math.round(currentCoord.y);
+            const rx = Math.trunc(currentCoord.x);
+            const ry = Math.trunc(currentCoord.y);
             roundingText = ` <span style="color:#ef4444; font-weight:bold;">(對齊紅線：x=${rx}, y=${ry})</span>`;
           }
           mapMovementGuide.innerHTML = `<i class="fa-solid fa-street-view" style="color: var(--red-color); margin-right: 5px;"></i><strong>起點就位</strong>：至起點座標點 <strong>(${coordStr})</strong>${roundingText} 就定位。`;
@@ -1388,8 +1388,8 @@ document.addEventListener('DOMContentLoaded', () => {
           
           let roundingText = '';
           if (currentCoord && !currentCoord.isText) {
-            const rx = Math.round(currentCoord.x);
-            const ry = Math.round(currentCoord.y);
+            const rx = Math.trunc(currentCoord.x);
+            const ry = Math.trunc(currentCoord.y);
             roundingText = ` <span style="color:#ef4444; font-weight:bold;">(對齊紅線：x=${rx}, y=${ry})</span>`;
           }
           
