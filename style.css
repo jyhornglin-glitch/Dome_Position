@@ -1420,11 +1420,12 @@ svg {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(15, 23, 42, 0.4);
-  border: 1px solid var(--panel-border);
-  padding: 8px 12px;
+  background: #fef08a !important;
+  border: 1px solid #eab308 !important;
+  padding: 4px 10px !important;
   border-radius: 10px;
-  margin-bottom: 8px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .control-btn {
@@ -1440,6 +1441,26 @@ svg {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.map-control-bar .control-btn {
+  padding: 4px 8px !important;
+  background: rgba(2, 132, 199, 0.06) !important;
+  border: 1px solid rgba(2, 132, 199, 0.2) !important;
+  color: #0284c7 !important;
+}
+
+.map-control-bar .control-btn:hover:not(:disabled) {
+  background: rgba(2, 132, 199, 0.12) !important;
+  color: #0369a1 !important;
+  border-color: #0284c7 !important;
+}
+
+.map-control-bar .control-btn:disabled {
+  opacity: 0.35 !important;
+  color: #a1a1aa !important;
+  border-color: #e4e4e7 !important;
+  background: rgba(0, 0, 0, 0.02) !important;
 }
 
 .control-btn:hover:not(:disabled) {
@@ -1474,11 +1495,20 @@ svg {
   text-shadow: 0 0 6px rgba(245, 158, 11, 0.3);
 }
 
+.map-control-bar .active-formation-num {
+  color: #b45309 !important;
+  text-shadow: none !important;
+}
+
 .active-formation-title {
   font-size: 10px;
   font-weight: 600;
   color: var(--text-primary);
   margin-top: 2px;
+}
+
+.map-control-bar .active-formation-title {
+  color: #451a03 !important;
 }
 
 /* Sticker image inside formation cards */
