@@ -128,7 +128,7 @@
                     <option value="B藍">B藍 (Stage B Blue)</option>
                   </select>
                 </div>
-                <div class="filter-group" style="flex: 1;">
+                <div class="filter-group" style="flex: 1; display: none;">
                   <select id="teamFilter">
                     <option value="east">東班 (East Team)</option>
                     <option value="west">西班 (West Team)</option>
@@ -170,15 +170,7 @@
                   <h3><i class="fa-solid fa-compress"></i> 個人相對網格 (起點為中心)</h3>
                 </div>
                 
-                <!-- Step-by-Step Formation Toggle Controls -->
-                <div class="map-control-bar">
-                  <button id="prevBtn" class="control-btn"><i class="fa-solid fa-chevron-left"></i> 上一個</button>
-                  <div class="active-formation-display">
-                    <span class="active-formation-num" id="activeFormNum">01</span>
-                    <span class="active-formation-title" id="activeFormTitle">起點 (基本隊形)</span>
-                  </div>
-                  <button id="nextBtn" class="control-btn">下一個 <i class="fa-solid fa-chevron-right"></i></button>
-                </div>
+
 
                 <div class="map-display-area">
                   <div class="stage-legend">
@@ -292,6 +284,16 @@
                     <button id="rotateCcwBtn" class="control-btn-circle" title="逆時針旋轉 45°"><i class="fa-solid fa-rotate-left"></i></button>
                     <button id="rotateCwBtn" class="control-btn-circle" title="順時針旋轉 45°"><i class="fa-solid fa-rotate-right"></i></button>
                     <button id="zoomResetBtn" class="control-btn-circle" title="重設"><i class="fa-solid fa-arrows-to-dot"></i></button>
+                  </div>
+                  
+                  <!-- Step-by-Step Formation Toggle Controls -->
+                  <div class="map-control-bar" style="margin-top: 10px; margin-bottom: 10px;">
+                    <button id="prevBtn" class="control-btn"><i class="fa-solid fa-chevron-left"></i> 上一個</button>
+                    <div class="active-formation-display">
+                      <span class="active-formation-num" id="activeFormNum">01</span>
+                      <span class="active-formation-title" id="activeFormTitle">起點 (基本隊形)</span>
+                    </div>
+                    <button id="nextBtn" class="control-btn">下一個 <i class="fa-solid fa-chevron-right"></i></button>
                   </div>
                   <div id="mapMovementGuide" class="map-movement-guide"></div>
                   <div id="mapLyricsGuide" class="map-lyrics-guide"></div>

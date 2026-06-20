@@ -1578,13 +1578,17 @@ svg {
 }
 
 .map-coord-item.active-node {
-  background: rgba(239, 68, 68, 0.08);
-  border-color: rgba(239, 68, 68, 0.30);
+  background: #fef08a !important;
+  border-color: #eab308 !important;
+}
+
+.map-coord-item.active-node .label {
+  color: #854d0e !important;
 }
 
 .map-coord-item.active-node .val {
-  color: #ffffff;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+  color: #451a03 !important;
+  text-shadow: none !important;
 }
 
 /* Map Action Buttons below SVG map */
