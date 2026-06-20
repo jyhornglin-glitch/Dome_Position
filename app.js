@@ -1448,7 +1448,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const currentLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
     currentLine.setAttribute('id', 'nextPointGuideLegendLine');
-    currentLine.setAttribute('x1', '315');
+    currentLine.setAttribute('x1', '245');
     currentLine.setAttribute('y1', '345');
     currentLine.setAttribute('x2', '345');
     currentLine.setAttribute('y2', '345');
