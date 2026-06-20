@@ -1032,21 +1032,14 @@ document.addEventListener('DOMContentLoaded', () => {
         hRedLine.setAttribute('style', 'stroke: orangered !important; stroke-width: 3px !important;');
         linesGroup.appendChild(hRedLine);
         
-        // Label for vertical red line (place in fourth quadrant: dy_rel + 3)
-        const vRedText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        vRedText.setAttribute('x', GRID_CENTER_X + dx_rel * GRID_SPACING + 4);
-        vRedText.setAttribute('y', GRID_CENTER_Y + (dy_rel + 3) * GRID_SPACING);
-        vRedText.setAttribute('style', 'fill: orangered !important; font-size: 11px !important; font-weight: 800 !important; font-family: Outfit, sans-serif !important;');
-        vRedText.textContent = `x=${roundedX}`;
-        linesGroup.appendChild(vRedText);
-        
-        // Label for horizontal red line (place in fourth quadrant: dx_rel + 3)
-        const hRedText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        hRedText.setAttribute('x', GRID_CENTER_X + (dx_rel + 3) * GRID_SPACING);
-        hRedText.setAttribute('y', GRID_CENTER_Y + dy_rel * GRID_SPACING - 5);
-        hRedText.setAttribute('style', 'fill: orangered !important; font-size: 11px !important; font-weight: 800 !important; font-family: Outfit, sans-serif !important;');
-        hRedText.textContent = `y=${roundedY}`;
-        linesGroup.appendChild(hRedText);
+        // Label for coordinate intersection (place in fourth quadrant: dx_rel + 3, dy_rel + 3)
+        const coordText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        coordText.setAttribute('x', GRID_CENTER_X + (dx_rel + 3) * GRID_SPACING);
+        coordText.setAttribute('y', GRID_CENTER_Y + (dy_rel + 3) * GRID_SPACING + 4);
+        coordText.setAttribute('text-anchor', 'middle');
+        coordText.setAttribute('style', 'fill: orangered !important; font-size: 11px !important; font-weight: 800 !important; font-family: Outfit, sans-serif !important;');
+        coordText.textContent = `(${roundedX}, ${roundedY})`;
+        linesGroup.appendChild(coordText);
       }
     }
     
@@ -1377,7 +1370,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (currentCoord && !currentCoord.isText) {
             const rx = Math.trunc(currentCoord.x);
             const ry = Math.trunc(currentCoord.y);
-            roundingText = ` <span style="color: orangered; font-weight:bold;">(對齊紅線：x=${rx}, y=${ry})</span>`;
+            roundingText = ` <span style="color: orangered; font-weight:bold;">(對齊紅線：(${rx}, ${ry}))</span>`;
           }
           mapMovementGuide.innerHTML = `<i class="fa-solid fa-street-view" style="color: var(--red-color); margin-right: 5px;"></i><strong>起點就位</strong>：至起點座標點 <strong>(${coordStr})</strong>${roundingText} 就定位。`;
         } else {
@@ -1394,7 +1387,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (currentCoord && !currentCoord.isText) {
             const rx = Math.trunc(currentCoord.x);
             const ry = Math.trunc(currentCoord.y);
-            roundingText = ` <span style="color: orangered; font-weight:bold;">(對齊紅線：x=${rx}, y=${ry})</span>`;
+            roundingText = ` <span style="color: orangered; font-weight:bold;">(對齊紅線：(${rx}, ${ry}))</span>`;
           }
           
           mapMovementGuide.innerHTML = `<i class="fa-solid fa-route" style="color: var(--red-color); margin-right: 5px;"></i><strong>隊形移動</strong>：從 ${prevName} <strong>(${prevCoordStr})</strong> 移動至 ${f.name.split(' ')[0]} <strong>(${coordStr})</strong>${roundingText}。<br>跑法：<strong>${movement}</strong>。`;
