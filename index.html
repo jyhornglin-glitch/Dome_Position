@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <!-- FontAwesome for professional icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css?v=1.6.3">
+  <link rel="stylesheet" href="style.css?v=1.6.5">
 </head>
 <body>
   <!-- Ambient background glow behind the phone -->
@@ -20,28 +20,14 @@
     <div class="glow-circle gold"></div>
   </div>
 
-  <!-- Phone Mockup Frame Wrapper -->
-  <div class="phone-wrapper">
-    <div class="phone-mockup">
-      <!-- Phone Bezel Details (Notch & Status bar) -->
-      <div class="phone-notch"></div>
-      <div class="phone-header">
-        <span class="phone-time" id="phoneTime">15:20</span>
-        <div class="phone-status-icons">
-          <i class="fa-solid fa-signal"></i>
-          <i class="fa-solid fa-wifi"></i>
-          <i class="fa-solid fa-battery-three-quarters"></i>
-        </div>
-      </div>
-
-      <!-- Actual Application Screen -->
-      <div class="phone-screen">
+  <!-- Main Application Screen -->
+  <div class="app-screen">
 
         <!-- ===== Session Selection Overlay ===== -->
         <div id="sessionOverlay" class="session-overlay">
           <div class="session-overlay-inner">
             <!-- Logo icon -->
-            <div class="session-logo">
+            <div class="session-logo" id="sessionLogo">
               <i class="fa-solid fa-calendar-days"></i>
             </div>
             <!-- Main system name -->
@@ -680,11 +666,6 @@
         </div>
       </div>
 
-      <!-- Phone Bezel Details (Home Indicator Bar) -->
-      <div class="phone-footer">
-        <div class="phone-home-indicator"></div>
-      </div>
-    </div>
   </div>
 
   <script>

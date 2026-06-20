@@ -46,10 +46,11 @@ body {
   background-color: var(--bg-color);
   color: var(--text-primary);
   font-family: var(--font-family-sans);
+  height: 100vh;
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   overflow: hidden;
 }
 
@@ -98,106 +99,30 @@ body {
   transform: translate(-50%, -50%);
 }
 
-/* Phone Mockup Bezel & Wrapper */
-.phone-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* App Main Container (Centered on iPad/PC, full-bleed on phone) */
+.app-screen {
   width: 100%;
-  height: 100vh;
-  padding: 20px;
-}
-
-.phone-mockup {
-  width: 100%;
-  max-width: 375px;
+  max-width: 520px;
   height: 100%;
-  max-height: 812px;
-  aspect-ratio: 375 / 812;
-  border: 12px solid #0f172a;
-  border-radius: 40px;
-  background: var(--bg-color);
-  position: relative;
-  box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.15),
-              0 0 0 4px #0f172a,
-              0 0 40px rgba(2, 132, 199, 0.05);
-  overflow: hidden;
   display: flex;
   flex-direction: column;
-}
-
-/* Status Bar & Notch */
-.phone-header {
-  height: 44px;
+  position: relative;
   background: var(--bg-color);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 24px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-primary);
-  user-select: none;
-  z-index: 100;
-}
-
-.phone-notch {
-  width: 150px;
-  height: 20px;
-  background: #1e293b;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 101;
-}
-
-.phone-status-icons {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-}
-
-.phone-status-icons i {
-  font-size: 11px;
-}
-
-/* App screen container inside phone bezel */
-.phone-screen {
-  flex: 1;
+  box-shadow: 0 0 40px rgba(15, 23, 42, 0.08);
   overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  position: relative;
 }
 
-/* Hide scrollbar for clean app design */
-.phone-screen::-webkit-scrollbar {
+/* Scrollbar styling for the app container */
+.app-screen::-webkit-scrollbar {
   width: 5px;
 }
-.phone-screen::-webkit-scrollbar-track {
+.app-screen::-webkit-scrollbar-track {
   background: transparent;
 }
-.phone-screen::-webkit-scrollbar-thumb {
+.app-screen::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.1);
   border-radius: 10px;
 }
-
-.phone-footer {
-  height: 24px;
-  background: var(--bg-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 100;
-}
-
-.phone-home-indicator {
-  width: 120px;
-  height: 5px;
-  background: #475569;
   border-radius: 10px;
 }
 
@@ -1543,24 +1468,7 @@ svg {
   background: rgba(15, 23, 42, 0.85);
 }
 
-/* Mobile-First Layout Override (When loaded on actual mobile screens) */
-@media (max-width: 500px) {
-  .phone-wrapper {
-    padding: 0;
-  }
-  
-  .phone-mockup {
-    width: 100vw;
-    height: 100vh;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-  }
-  
-  .phone-header, .phone-notch, .phone-footer {
-    display: none; /* Hide device bezel elements on real mobile screens */
-  }
-}
+/* Mobile-First Layout Override (Removed phone bezel wrappers) */
 
 /* Map Coordinates Display Bar (指示圖上方位置標示) */
 .map-coord-display-bar {
@@ -2009,6 +1917,7 @@ svg {
   100% { background-position: -200% 0; }
 }
 
+/*.session-logo base style clickable trigger */
 .session-logo {
   width: 60px;
   height: 60px;
@@ -2022,6 +1931,7 @@ svg {
   color: #fff;
   box-shadow: 0 0 32px rgba(6,182,212,0.5), 0 0 64px rgba(6,182,212,0.2);
   margin-top: 8px;
+  cursor: pointer;
 }
 
 /* Main system title */
@@ -2558,6 +2468,7 @@ svg {
 }
 
 .session-admin-btn {
+  display: none; /* Hidden by default, shown by JS trigger */
   width: 100%;
   padding: 14px;
   border-radius: 14px;
@@ -2569,7 +2480,6 @@ svg {
   font-weight: 800;
   cursor: pointer;
   transition: all 0.25s ease;
-  display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
@@ -2656,13 +2566,20 @@ svg {
     gap: 6px;
   }
   .session-logo {
-    display: none;
+    width: 22px;
+    height: 22px;
+    font-size: 10px;
+    margin-top: 4px;
+    border-radius: 6px;
+    display: flex;
   }
   .session-system-name {
     font-size: 15px;
   }
   .session-system-name span {
-    display: none;
+    font-size: 9px;
+    display: block;
+    letter-spacing: 0.5px;
   }
   .session-hint {
     display: none;

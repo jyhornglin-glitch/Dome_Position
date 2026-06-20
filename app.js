@@ -191,6 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Real-time status bar clock
   function setupTime() {
     const timeEl = document.getElementById('phoneTime');
+    if (!timeEl) return;
     function updateClock() {
       const now = new Date();
       const hrs = String(now.getHours()).padStart(2, '0');
@@ -568,7 +569,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (defaultMobileTab) defaultMobileTab.click();
     
     // Scroll to top of app screen
-    document.querySelector('.phone-screen').scrollTo({ top: 0, behavior: 'smooth' });
+    const appScreen = document.querySelector('.app-screen');
+    if (appScreen) {
+      appScreen.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 
   // Update detail cards values & icons
@@ -2545,9 +2549,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Define floating action hints modal initialization
   function setupActionHintsOverlay() {
-    const phoneScreen = document.querySelector('.phone-screen');
+    const appScreen = document.querySelector('.app-screen');
     const svgWrapper = document.querySelector('.svg-wrapper');
-    if (!phoneScreen) return;
+    if (!appScreen) return;
     
     if (document.getElementById('actionHintModal')) return;
     
@@ -2573,7 +2577,7 @@ document.addEventListener('DOMContentLoaded', () => {
     showBtn.style.display = 'none';
     showBtn.innerHTML = '<i class="fa-solid fa-circle-info"></i> 動作提示';
     
-    phoneScreen.appendChild(modal);
+    appScreen.appendChild(modal);
     if (svgWrapper) {
       svgWrapper.appendChild(showBtn);
     }
@@ -2741,6 +2745,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (!adminBtn || !adminModal) return;
+
+    // Logo click counter to show Admin button
+    const sessionLogo = document.getElementById('sessionLogo');
+    if (sessionLogo) {
+      let clickCount = 0;
+      sessionLogo.addEventListener('click', () => {
+        clickCount++;
+        if (clickCount >= 10) {
+          adminBtn.style.display = 'flex';
+        }
+      });
+    }
 
     // Open Admin Modal
     adminBtn.addEventListener('click', () => {
