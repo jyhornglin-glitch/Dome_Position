@@ -280,6 +280,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Get English category name for sticker filename compatibility (e.g. Synology NAS Web Server)
+  function getEnglishCategory(category) {
+    switch (category) {
+      case 'A白': return 'A_white';
+      case 'A藍': return 'A_blue';
+      case 'B白': return 'B_white';
+      case 'B藍': return 'B_blue';
+      default: return category;
+    }
+  }
+
   // Autocomplete functionality
   function setupAutocomplete() {
     searchInput.addEventListener('input', (e) => {
@@ -663,7 +674,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Draw Dynamic SVG Landmark Image inside grid map using PNG stickers
   function drawSvgLandmarkImage(parentGroup, type, category, x, y, size, isMainSvg = true) {
     const img = document.createElementNS('http://www.w3.org/2000/svg', 'image');
-    img.setAttributeNS('http://www.w3.org/1999/xlink', 'href', `images/stickers/${type}_${category}.png`);
+    img.setAttributeNS('http://www.w3.org/1999/xlink', 'href', `images/stickers/${type}_${getEnglishCategory(category)}.png`);
     img.setAttribute('x', x - size / 2);
     img.setAttribute('y', y - size / 2);
     img.setAttribute('width', size);
@@ -1471,12 +1482,12 @@ document.addEventListener('DOMContentLoaded', () => {
     wrapper.style.justifyContent = 'center';
     
     const img = document.createElement('img');
-    img.src = `images/stickers/${type}_${category}.png`;
+    img.src = `images/stickers/${type}_${getEnglishCategory(category)}.png`;
     img.className = 'landmark-sticker-img';
     img.alt = `${type} sticker`;
     
     img.onerror = () => {
-      console.error(`Failed to load sticker: images/stickers/${type}_${category}.png`);
+      console.error(`Failed to load sticker: images/stickers/${type}_${getEnglishCategory(category)}.png`);
       wrapper.textContent = type;
     };
     
@@ -2128,7 +2139,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const stickerImages = {};
       for (let idx = 0; idx < formations.length; idx++) {
         const f = formations[idx];
-        const src = `images/stickers/${f.key}_${currentPerformer.category}.png`;
+        const src = `images/stickers/${f.key}_${getEnglishCategory(currentPerformer.category)}.png`;
         const img = await loadImage(src);
         if (img) {
           stickerImages[f.key] = img;
