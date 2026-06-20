@@ -681,10 +681,11 @@
     </div>
   </div>
 
-  <!-- Load Scripts -->
-  <script src="data.js?v=1.6.3"></script>
+  <script>
+    document.write('<script src="data.js?v=' + Date.now() + '"><\/script>');
+    document.write('<script src="daydata.js?v=' + Date.now() + '"><\/script>');
+  </script>
   <script src="lyrics.js?v=1.6.3"></script>
-  <script src="daydata.js?v=1.6.3"></script>
   <script src="action_hints_data.js?v=1.6.3"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="app.js?v=1.6.3"></script>

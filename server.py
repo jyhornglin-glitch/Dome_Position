@@ -46,7 +46,8 @@ SESS_ALLOWED_DATES = {
 class AdminRequestHandler(SimpleHTTPRequestHandler):
     def end_headers(self):
         # Prevent caching of JS databases for instant frontend updates
-        if self.path.endswith('.js') or self.path.endswith('.css'):
+        clean_path = self.path.split('?')[0]
+        if clean_path.endswith('.js') or clean_path.endswith('.css'):
             self.send_header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
             self.send_header('Pragma', 'no-cache')
             self.send_header('Expires', '0')
