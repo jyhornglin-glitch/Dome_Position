@@ -1426,6 +1426,8 @@ svg {
   border-radius: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 .control-btn {
@@ -1564,11 +1566,13 @@ svg {
   display: flex;
   align-items: stretch;
   gap: 4px;
-  background: rgba(15, 23, 42, 0.5);
-  border: 1px solid var(--panel-border);
+  background: #1e40af !important;
+  border: 1px solid #3b82f6 !important;
   border-radius: 10px;
   padding: 4px 8px;
-  margin: 4px 15px 3px 15px;
+  margin: 4px 0 3px 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
   backdrop-filter: blur(10px);
 }
 
@@ -1581,8 +1585,8 @@ svg {
   flex: 1;
   min-width: 0;
   padding: 3px 8px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
   border-radius: 7px;
   white-space: nowrap;
 }
@@ -1592,7 +1596,7 @@ svg {
 }
 
 .map-coord-item .label {
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.75) !important;
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -1600,7 +1604,7 @@ svg {
 }
 
 .map-coord-item .val {
-  color: var(--text-primary);
+  color: #ffffff !important;
   font-weight: 800;
   font-family: 'Outfit', monospace;
   font-size: 13px;
