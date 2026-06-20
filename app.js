@@ -817,6 +817,11 @@ document.addEventListener('DOMContentLoaded', () => {
     pathSegmentsGroup.innerHTML = '';
     pathPointsGroup.innerHTML = '';
     
+    const existingLegend = svgEl.querySelector('#nextPointGuideLegendLine');
+    if (existingLegend) {
+      existingLegend.remove();
+    }
+    
     // Update grid clipping path rect
     const gridClipRect = svgEl.querySelector('#gridClipRect') || svgEl.querySelector('clipPath rect');
     if (gridClipRect) {
@@ -1435,6 +1440,24 @@ document.addEventListener('DOMContentLoaded', () => {
       // Restore previous scale for preview renders to keep main SVG state pure
       MAX_GRID_COORD = originalMaxGridCoord;
       GRID_SPACING = originalGridSpacing;
+    }
+
+    // Draw next point guide line legend in bottom-right blank area of SVG (unaffected by grid rotation)
+    if (fIdx + 1 < formations.length) {
+      const nextKey = formations[fIdx + 1].key;
+      const nextColor = formationColors[nextKey] || '#fbbf24';
+      
+      const nextLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      nextLine.setAttribute('id', 'nextPointGuideLegendLine');
+      nextLine.setAttribute('x1', '335');
+      nextLine.setAttribute('y1', '345');
+      nextLine.setAttribute('x2', '345');
+      nextLine.setAttribute('y2', '345');
+      nextLine.setAttribute('stroke', nextColor);
+      nextLine.setAttribute('stroke-width', '5.5px');
+      nextLine.setAttribute('stroke-linecap', 'round');
+      nextLine.setAttribute('style', `stroke: ${nextColor} !important; stroke-width: 5.5px !important; stroke-linecap: round !important;`);
+      svgEl.appendChild(nextLine);
     }
   }
 
