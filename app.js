@@ -1474,6 +1474,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (mapMovementGuide) {
         const f = formations[activeFormationIdx];
         let coordStr = getFormationCoordStr(currentPerformer, f.key);
+        const currentCoord = parseCoordinate(coordStr);
         
         const showGuidesToggle = document.getElementById('showAlignmentGuides');
         const showGuides = showGuidesToggle ? showGuidesToggle.checked : true;
@@ -1491,7 +1492,6 @@ document.addEventListener('DOMContentLoaded', () => {
           let prevCoordStr = getFormationCoordStr(currentPerformer, prevKey);
           
           const prevCoord = parseCoordinate(prevCoordStr);
-          const currentCoord = parseCoordinate(coordStr);
           
           const movement = getVectorDescription(prevCoord, currentCoord);
           const prevName = formations[activeFormationIdx - 1].name.split(' ')[0];
