@@ -21,6 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
     reSearchBtn.addEventListener('click', () => {
       const overlay = document.getElementById('sessionOverlay');
       if (overlay) {
+        if (appContainer) {
+          appContainer.style.display = 'none';
+        }
         overlay.style.display = 'flex';
         overlay.style.opacity = '1';
         
@@ -48,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const stageInstruction = document.getElementById('stageInstruction');
   const mainContent = document.getElementById('mainContent');
   const emptyState = document.getElementById('emptyState');
+  const appContainer = document.getElementById('appContainer');
   
   // Performer Summary Elements
   const perfAvatar = document.getElementById('perfAvatar');
@@ -209,6 +213,10 @@ document.addEventListener('DOMContentLoaded', () => {
       // Actually load the performer data now on manual confirmation
       if (tempSelectedPerformer) {
         selectPerformer(tempSelectedPerformer, tempDayOverrideName);
+      }
+
+      if (appContainer) {
+        appContainer.style.display = 'flex';
       }
 
       const sess = DAY_SESSIONS.find(s => s.key === selectedSessionKey);
