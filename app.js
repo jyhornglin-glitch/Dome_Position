@@ -2901,11 +2901,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     closeAdminModalBtn.addEventListener('click', closeAdminModal);
 
-    adminModal.addEventListener('click', (e) => {
-      if (e.target === adminModal) {
-        closeAdminModal();
-      }
-    });
+    // Disable click outside to close as per request
+    // adminModal.addEventListener('click', (e) => {
+    //   if (e.target === adminModal) {
+    //     closeAdminModal();
+    //   }
+    // });
 
     const adminFinishBtn = document.getElementById('adminFinishBtn');
     if (adminFinishBtn) {

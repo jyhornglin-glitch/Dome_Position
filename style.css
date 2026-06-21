@@ -2328,6 +2328,12 @@ svg {
   max-width: 580px;
 }
 
+@media (min-width: 768px) {
+  .admin-modal-container {
+    max-width: 760px;
+  }
+}
+
 .admin-modal-body {
   display: block !important;
   padding: 16px !important;
@@ -2417,6 +2423,13 @@ svg {
   display: grid;
   grid-template-columns: 1fr;
   gap: 12px;
+}
+
+@media (min-width: 768px) {
+  .coord-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
 }
 
 .admin-divider {
