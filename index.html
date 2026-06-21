@@ -171,7 +171,15 @@
                     <div id="mapMovementGuide" class="map-movement-guide" style="margin-top: 0; margin-bottom: 0; font-size: 11.5px; padding: 4px 6px;"></div>
                   </div>
 
-                  <div class="toggle-row">
+                  <!-- 行動手勢提示與展開設定按鈕 -->
+                  <div class="map-hint-and-toggle-row">
+                    <span class="map-hint-text"><i class="fa-solid fa-circle-info"></i> 可用手指雙指縮放或單指拖移網格</span>
+                    <button id="toggleSettingsBtn" type="button" class="control-btn settings-toggle-btn" onclick="const row = document.getElementById('settingsToggleRow'); const isHidden = row.style.display === 'none'; row.style.display = isHidden ? 'flex' : 'none'; this.classList.toggle('active', isHidden);">
+                      <i class="fa-solid fa-sliders"></i> 顯示設定
+                    </button>
+                  </div>
+
+                  <div class="toggle-row collapsible-settings" id="settingsToggleRow" style="display: none;">
                     <div class="trajectory-toggle-container">
                       <input type="checkbox" id="showFullTrajectory" autocomplete="off">
                       <label for="showFullTrajectory">完整 7 點</label>

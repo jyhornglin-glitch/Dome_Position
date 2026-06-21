@@ -560,7 +560,7 @@ body {
 
 .svg-wrapper {
   width: 100%;
-  max-width: 320px;
+  max-width: 440px;
   height: auto;
   display: flex;
   justify-content: center;
@@ -2714,4 +2714,218 @@ svg {
   font-style: italic;
   text-align: center;
   padding: 8px 0;
+}
+
+/* ==========================================================================
+   精簡化版面配置與行動端優化 (Compact Layout & Mobile Optimization)
+   ========================================================================== */
+
+/* 顯示設定切換按鈕及其提示樣式 */
+.map-hint-and-toggle-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 4px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.map-hint-text {
+  font-size: 10.5px;
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0.85;
+}
+
+.settings-toggle-btn {
+  padding: 3px 8px !important;
+  font-size: 10.5px !important;
+  background: rgba(56, 189, 248, 0.06) !important;
+  border: 1px solid rgba(56, 189, 248, 0.2) !important;
+  color: var(--blue-color) !important;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 12px !important;
+  transition: all 0.2s ease;
+}
+
+.settings-toggle-btn.active {
+  background: var(--blue-color) !important;
+  color: #ffffff !important;
+  border-color: var(--blue-color) !important;
+}
+
+/* 行動端與窄螢幕排版精簡優化 */
+@media (max-width: 480px) {
+  /* 縮小容器與主內容間距 */
+  .app-container {
+    padding: 8px 8px !important;
+    gap: 8px !important;
+  }
+
+  .main-content {
+    gap: 8px !important;
+  }
+
+  /* 頂部 Header 改為單排精簡版 */
+  .app-header {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 6px !important;
+    padding-bottom: 4px !important;
+  }
+
+  .header-logo {
+    gap: 6px !important;
+  }
+
+  .logo-icon {
+    font-size: 18px !important;
+    filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.4)) !important;
+  }
+
+  .logo-text h1 {
+    font-size: 13px !important;
+    white-space: nowrap !important;
+  }
+
+  .logo-text p {
+    display: none !important; /* 隱藏英文副標題 */
+  }
+
+  .header-actions {
+    width: auto !important;
+    gap: 4px !important;
+  }
+
+  .header-refresh-btn, .header-manual-btn {
+    padding: 3px 6px !important;
+    font-size: 10px !important;
+    border-radius: 12px !important;
+  }
+
+  .header-refresh-btn i, .header-manual-btn i {
+    font-size: 10px !important;
+  }
+
+  /* 人員摘要卡精簡 */
+  .performer-summary-card {
+    padding: 5px 8px !important;
+    border-radius: 10px !important;
+  }
+
+  .performer-avatar {
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 11px !important;
+  }
+
+  .performer-details h2 {
+    font-size: 12px !important;
+  }
+
+  .meta-badges {
+    margin-top: 1px !important;
+    gap: 4px !important;
+  }
+
+  .meta-badge {
+    font-size: 9px !important;
+    padding: 0px 4px !important;
+  }
+
+  /* 導覽標籤列橫排，省去垂直高度 */
+  .mobile-tabs-bar {
+    padding: 2px !important;
+    border-radius: 8px !important;
+  }
+
+  .mobile-tab-btn {
+    flex-direction: row !important; /* 橫向排列圖示與文字 */
+    justify-content: center !important;
+    gap: 4px !important;
+    padding: 5px 2px !important;
+    font-size: 10px !important;
+  }
+
+  .mobile-tab-btn i {
+    font-size: 11px !important;
+  }
+
+  /* 網格定位卡片隱藏重複標題、壓縮邊距 */
+  #panel-localGrid .card-title-bar {
+    display: none !important; /* 隱藏重複標題 */
+  }
+
+  #panel-localGrid .map-card {
+    padding: 8px !important;
+    border-radius: 10px !important;
+  }
+
+  .map-display-area {
+    padding: 8px !important;
+  }
+
+  /* 地圖控制列壓縮 */
+  .map-control-bar {
+    padding: 2px 6px !important;
+    margin-top: 2px !important;
+    margin-bottom: 2px !important;
+    border-radius: 8px !important;
+  }
+
+  .active-formation-display {
+    line-height: 1.1 !important;
+  }
+
+  .active-formation-num {
+    font-size: 11px !important;
+  }
+
+  .active-formation-title {
+    font-size: 10px !important;
+  }
+
+  .active-formation-coord {
+    font-size: 10px !important;
+  }
+
+  .control-btn {
+    padding: 4px 6px !important;
+    font-size: 10px !important;
+    border-radius: 6px !important;
+  }
+
+  .map-movement-guide {
+    font-size: 10px !important;
+    padding: 2px 4px !important;
+  }
+
+  /* 讓地圖 SVG 能 100% 滿版擴大 */
+  .svg-wrapper {
+    max-width: 100% !important;
+  }
+
+  /* 設定面板微調 */
+  .toggle-row {
+    gap: 4px !important;
+    padding: 2px 0 !important;
+    justify-content: flex-start !important;
+  }
+
+  .toggle-row .trajectory-toggle-container {
+    font-size: 9px !important;
+    gap: 3px !important;
+  }
+
+  .toggle-row .trajectory-toggle-container input[type="checkbox"] {
+    width: 11px !important;
+    height: 11px !important;
+  }
 }
