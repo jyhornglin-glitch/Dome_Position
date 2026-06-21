@@ -2486,7 +2486,7 @@ const DAY_PERFORMERS = {
     { id: '4-47', name: '穆傳傑', team: '東班' },
     { id: '4-48', name: '曾界豪', team: '東班' },
     { id: '4-49', name: '歐陽容安', team: '東班' },
-    { id: '4-50', name: '林志弘AA', team: '東班' },
+    { id: '4-50', name: '林志弘BB', team: '東班' },
     { id: '4-51', name: '廖學登', team: '東班' },
     { id: '5-46', name: '許景勝', team: '東班' },
     { id: '5-47', name: '張雲龍', team: '東班' },
