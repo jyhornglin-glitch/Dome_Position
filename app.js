@@ -2788,6 +2788,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let isAuthed = false;
     let currentAdminPassword = '';
+    let hasModified = false;
 
     // Forms
     const dayperformerForm = document.getElementById('dayperformerForm');
@@ -2823,6 +2824,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Open Admin Modal
     adminBtn.addEventListener('click', () => {
       clearMsg();
+      hasModified = false;
+      const finishBtn = document.getElementById('adminFinishBtn');
+      if (finishBtn) finishBtn.style.display = 'none';
       
       // Reset Auth Screen state
       isAuthed = false;
@@ -2886,15 +2890,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Close Admin Modal
-    closeAdminModalBtn.addEventListener('click', () => {
-      adminModal.style.display = 'none';
-    });
+    function closeAdminModal() {
+      if (hasModified) {
+        alert('修改作業已結束，網頁將自動重新整理以套用新資料！');
+        window.location.reload();
+      } else {
+        adminModal.style.display = 'none';
+      }
+    }
+
+    closeAdminModalBtn.addEventListener('click', closeAdminModal);
 
     adminModal.addEventListener('click', (e) => {
       if (e.target === adminModal) {
-        adminModal.style.display = 'none';
+        closeAdminModal();
       }
     });
+
+    const adminFinishBtn = document.getElementById('adminFinishBtn');
+    if (adminFinishBtn) {
+      adminFinishBtn.addEventListener('click', () => {
+        window.location.reload();
+      });
+    }
 
     // Switch Admin Tabs
     adminTabBtns.forEach(btn => {
@@ -2997,11 +3015,17 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(res => res.json())
       .then(data => {
         if (data.success) {
-          showMsg('姓名修改成功！網頁將在 2 秒後自動重新整理載入新資料...', 'success');
-          alert('姓名修改成功！');
-          setTimeout(() => {
-            window.location.reload();
-          }, 2000);
+          hasModified = true;
+          const finishBtn = document.getElementById('adminFinishBtn');
+          if (finishBtn) finishBtn.style.display = 'block';
+          showMsg('姓名修改成功！您可以輸入新身份證編號繼續修改下一筆。全部修改完成後，請點選下方的「完成修改並重新整理」以套用變更。', 'success');
+          alert('姓名修改成功！已可繼續修改下一筆。');
+          submitBtn.disabled = false;
+          submitBtn.textContent = '儲存修改';
+          
+          // Clear query fields to allow next edit easily
+          document.getElementById('adminDayOldName').value = '尚未查詢';
+          document.getElementById('adminDayName').value = '';
         } else {
           showMsg('錯誤: ' + (data.error || '未知錯誤'), 'error');
           alert('儲存失敗：' + (data.error || '未知錯誤'));
@@ -3043,11 +3067,13 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(res => res.json())
       .then(data => {
         if (data.success) {
-          showMsg('座標修改成功！網頁將在 2 秒後自動重新整理載入新資料...', 'success');
-          alert('座標修改成功！');
-          setTimeout(() => {
-            window.location.reload();
-          }, 2000);
+          hasModified = true;
+          const finishBtn = document.getElementById('adminFinishBtn');
+          if (finishBtn) finishBtn.style.display = 'block';
+          showMsg('座標修改成功！您可以輸入新身份證編號繼續修改下一筆。全部修改完成後，請點選下方的「完成修改並重新整理」以套用變更。', 'success');
+          alert('座標修改成功！已可繼續修改下一筆。');
+          submitBtn.disabled = false;
+          submitBtn.textContent = '儲存座標修改';
         } else {
           showMsg('錯誤: ' + (data.error || '未知錯誤'), 'error');
           alert('儲存失敗：' + (data.error || '未知錯誤'));
