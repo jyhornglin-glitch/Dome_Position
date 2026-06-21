@@ -139,11 +139,29 @@
               </div>
             </div>
 
-            <!-- Mobile Navigation Tab Bar (3 tabs now) -->
-            <div class="mobile-tabs-bar" id="mobileTabsBar">
-              <button class="mobile-tab-btn active" data-tab="localGrid"><i class="fa-solid fa-compress"></i> 網格定位</button>
-              <button class="mobile-tab-btn" data-tab="walkthrough"><i class="fa-solid fa-person-running"></i> 動作提示</button>
-              <button class="mobile-tab-btn" data-tab="cards"><i class="fa-solid fa-list-ol"></i> 隊形詳情</button>
+            <!-- Sticky Header Group (Sticks together at the top on mobile) -->
+            <div class="sticky-header-group">
+              <!-- Mobile Navigation Tab Bar (3 tabs now) -->
+              <div class="mobile-tabs-bar" id="mobileTabsBar">
+                <button class="mobile-tab-btn active" data-tab="localGrid"><i class="fa-solid fa-compress"></i> 網格定位</button>
+                <button class="mobile-tab-btn" data-tab="walkthrough"><i class="fa-solid fa-person-running"></i> 動作提示</button>
+                <button class="mobile-tab-btn" data-tab="cards"><i class="fa-solid fa-list-ol"></i> 隊形詳情</button>
+              </div>
+
+              <!-- Shared Step Switcher Controls & Landmark Guide -->
+              <div class="sticky-controls-wrapper" id="sharedControlsWrapper">
+                <!-- Step-by-Step Formation Toggle Controls -->
+                <div class="map-control-bar" style="margin-top: 0; margin-bottom: 5px;">
+                  <button id="prevBtn" class="control-btn"><i class="fa-solid fa-chevron-left"></i> 上一個</button>
+                  <div class="active-formation-display">
+                    <span class="active-formation-num" id="activeFormNum">01</span>
+                    <span class="active-formation-title" id="activeFormTitle">起點 (基本隊形)</span>
+                    <span class="active-formation-coord" id="activeFormCoord">座標: ---</span>
+                  </div>
+                  <button id="nextBtn" class="control-btn">下一個 <i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+                <div id="mapMovementGuide" class="map-movement-guide" style="margin-top: 0; margin-bottom: 0; font-size: 11.5px; padding: 4px 6px;"></div>
+              </div>
             </div>
 
             <!-- Panel 1: Local Grid Map (Always centered at performer's basic ID coord) -->
@@ -156,20 +174,6 @@
 
 
                 <div class="map-display-area">
-                  <!-- Sticky control wrapper at the top of the map area -->
-                  <div class="sticky-controls-wrapper">
-                    <!-- Step-by-Step Formation Toggle Controls -->
-                    <div class="map-control-bar" style="margin-top: 0; margin-bottom: 5px;">
-                      <button id="prevBtn" class="control-btn"><i class="fa-solid fa-chevron-left"></i> 上一個</button>
-                      <div class="active-formation-display">
-                        <span class="active-formation-num" id="activeFormNum">01</span>
-                        <span class="active-formation-title" id="activeFormTitle">起點 (基本隊形)</span>
-                        <span class="active-formation-coord" id="activeFormCoord">座標: ---</span>
-                      </div>
-                      <button id="nextBtn" class="control-btn">下一個 <i class="fa-solid fa-chevron-right"></i></button>
-                    </div>
-                    <div id="mapMovementGuide" class="map-movement-guide" style="margin-top: 0; margin-bottom: 0; font-size: 11.5px; padding: 4px 6px;"></div>
-                  </div>
 
                   <!-- 行動手勢提示與展開設定按鈕 -->
                   <div class="map-hint-and-toggle-row">

@@ -467,10 +467,8 @@ body {
   border: 1px solid var(--panel-border);
   border-radius: 10px;
   padding: 4px;
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .mobile-tab-btn {
@@ -3059,5 +3057,46 @@ svg {
   
   .action-hint-item p {
     font-size: 11.5px !important;
+  }
+}
+
+/* ==========================================
+   Sticky Header Group & Shared Switcher
+   ========================================== */
+.sticky-header-group {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--bg-color);
+  padding: 10px 0 6px 0;
+  border-bottom: 1px solid var(--panel-border);
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.04);
+}
+
+.sticky-header-group .mobile-tabs-bar {
+  margin: 0 4px;
+}
+
+.sticky-header-group .sticky-controls-wrapper {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 8px;
+  margin: 0 4px;
+  box-shadow: var(--card-shadow);
+}
+
+@media (max-width: 480px) {
+  .sticky-header-group {
+    padding: 6px 0 4px 0 !important;
+    gap: 4px !important;
+  }
+  
+  .sticky-header-group .sticky-controls-wrapper {
+    padding: 4px 6px !important;
+    border-radius: 8px !important;
   }
 }

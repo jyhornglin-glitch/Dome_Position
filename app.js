@@ -516,6 +516,8 @@ document.addEventListener('DOMContentLoaded', () => {
         activeTab = targetTab;
         if (activeTab === 'localGrid' && currentPerformer) {
           drawLocalGridPath();
+        } else if ((activeTab === 'walkthrough' || activeTab === 'cards') && currentPerformer) {
+          syncActiveCardAndStep();
         }
       });
     });
@@ -1566,7 +1568,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Detail Card Highlight and Auto-scroll
     unhighlightAllCards();
     const card = document.getElementById(`card-${activeKey}`);
-    if (card) {
+    if (card && activeTab === 'cards') {
       // Scroll into view but do not highlight/change color as per request
       card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
@@ -1576,7 +1578,9 @@ document.addEventListener('DOMContentLoaded', () => {
     hintCards.forEach((c, idx) => {
       if (idx === activeFormationIdx) {
         c.classList.add('active-step-card');
-        c.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        if (activeTab === 'walkthrough') {
+          c.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
       } else {
         c.classList.remove('active-step-card');
       }
