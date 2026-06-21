@@ -69,8 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileTabBtns = document.querySelectorAll('.mobile-tab-btn');
   const mobileTabPanels = document.querySelectorAll('.mobile-tab-panel');
   
-  // Navigation Steps Flow
-  const navStepsFlow = document.getElementById('navStepsFlow');
+  // Action Hints Flow
+  const actionHintsFlow = document.getElementById('actionHintsFlow');
   
   // Map Control Elements
   const prevBtn = document.getElementById('prevBtn');
@@ -1417,7 +1417,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isMainSvg) {
       // (mapCoordDisplayBar rendering removed as it is merged into switcher)
 
-      // Update movement guide text below the map
+      // Update landmark guide text below the map
       const mapMovementGuide = document.getElementById('mapMovementGuide');
       if (mapMovementGuide) {
         const f = formations[activeFormationIdx];
@@ -1427,32 +1427,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const showGuidesToggle = document.getElementById('showAlignmentGuides');
         const showGuides = showGuidesToggle ? showGuidesToggle.checked : true;
 
-        if (activeFormationIdx === 0) {
-          let roundingText = '';
-          if (currentCoord && !currentCoord.isText && showGuides) {
-            const rx = Math.trunc(currentCoord.x);
-            const ry = Math.trunc(currentCoord.y);
-            roundingText = ` <span style="color: orangered; font-weight:bold;">(對齊紅線：(${rx}, ${ry}))</span>`;
-          }
-          mapMovementGuide.innerHTML = `<i class="fa-solid fa-street-view" style="color: var(--red-color); margin-right: 5px;"></i><strong>起點就位</strong>：至起點座標點 <strong>(${coordStr})</strong>${roundingText} 就定位。`;
-        } else {
-          const prevKey = formations[activeFormationIdx - 1].key;
-          let prevCoordStr = getFormationCoordStr(currentPerformer, prevKey);
-          
-          const prevCoord = parseCoordinate(prevCoordStr);
-          
-          const movement = getVectorDescription(prevCoord, currentCoord);
-          const prevName = formations[activeFormationIdx - 1].name.split(' ')[0];
-          
-          let roundingText = '';
-          if (currentCoord && !currentCoord.isText && showGuides) {
-            const rx = Math.trunc(currentCoord.x);
-            const ry = Math.trunc(currentCoord.y);
-            roundingText = ` <span style="color: orangered; font-weight:bold;">(對齊紅線：${rx}-${ry})</span>`;
-          }
-          
-          mapMovementGuide.innerHTML = `<i class="fa-solid fa-route" style="color: var(--red-color); margin-right: 5px;"></i><strong>隊形移動</strong>：從 ${prevName} <strong>${prevCoordStr}</strong> 移動至 ${f.name.split(' ')[0]} <strong>${coordStr}</strong>${roundingText}。<br>跑法：<strong>${movement}</strong>。`;
+        let roundingText = '';
+        if (currentCoord && !currentCoord.isText && showGuides) {
+          const rx = Math.trunc(currentCoord.x);
+          const ry = Math.trunc(currentCoord.y);
+          roundingText = ` <span style="color: orangered; font-weight:bold;">(對齊紅線：${rx}-${ry})</span>`;
         }
+
+        const split = splitLandmarkAndCoordinate(coordStr);
+        const landmarkName = split.landmark || '無';
+        const coordinateVal = split.coordinate || coordStr || '---';
+
+        mapMovementGuide.innerHTML = `<i class="fa-solid fa-location-dot" style="color: var(--red-color); margin-right: 5px;"></i><strong>地標指引</strong>：<strong>${landmarkName}</strong> (座標: <strong>${coordinateVal}</strong>)${roundingText}`;
       }
 
       // Update lyrics guide text below the map (Disabled per user request)
@@ -1585,14 +1571,14 @@ document.addEventListener('DOMContentLoaded', () => {
       card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
     
-    // Walkthrough Step Highlight
-    const steps = document.querySelectorAll('.nav-step-item');
-    steps.forEach((s, idx) => {
+    // Action Hint Step Card Highlight
+    const hintCards = document.querySelectorAll('.action-hint-step-card');
+    hintCards.forEach((c, idx) => {
       if (idx === activeFormationIdx) {
-        s.classList.add('active');
-        s.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        c.classList.add('active-step-card');
+        c.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       } else {
-        s.classList.remove('active');
+        c.classList.remove('active-step-card');
       }
     });
     
@@ -1627,75 +1613,91 @@ document.addEventListener('DOMContentLoaded', () => {
     if (localPt) localPt.classList.add('active-formation');
   }
 
-  // Render step navigation flow walkthrough list
+  // Render step navigation flow walkthrough list as Action Hints
   function updateNavigationSteps() {
-    navStepsFlow.innerHTML = '';
-    const fields = getPerformerFields(currentPerformer);
+    if (!actionHintsFlow || !currentPerformer) return;
+    actionHintsFlow.innerHTML = '';
     
     formations.forEach((f, idx) => {
-      const item = document.createElement('div');
-      item.className = 'nav-step-item';
-      
-      const dot = document.createElement('div');
-      dot.className = 'nav-step-dot';
-      item.appendChild(dot);
-      
-      const content = document.createElement('div');
-      content.className = 'nav-step-content';
-      
-      const title = document.createElement('div');
-      title.className = 'nav-step-title';
-      
-      let coordStr = getFormationCoordStr(currentPerformer, f.key);
-      
-      const stepName = document.createElement('span');
-      stepName.className = 'step-name';
-      stepName.textContent = `${idx + 1}. ${f.name}`;
-      
-      const stepCoord = document.createElement('span');
-      stepCoord.className = 'step-coord';
-      stepCoord.textContent = coordStr;
-      
-      title.appendChild(stepName);
-      title.appendChild(stepCoord);
-      content.appendChild(title);
-      
-      const descr = document.createElement('div');
-      descr.className = 'nav-step-descr';
-      
-      if (f.key === 'basic') {
-        descr.innerHTML = `<strong>起點就位</strong>：至起點座標點 <strong>(${coordStr})</strong> 就定位。`;
-      } else {
-        const prevKey = formations[idx - 1].key;
-        let prevCoordStr = getFormationCoordStr(currentPerformer, prevKey);
-        
-        const prevCoord = parseCoordinate(prevCoordStr);
-        const currentCoord = parseCoordinate(coordStr);
-        
-        const movement = getVectorDescription(prevCoord, currentCoord);
-        const prevName = formations[idx - 1].name.split(' ')[0];
-        
-        descr.innerHTML = `<strong>隊形移動</strong>：從 ${prevName} <strong>${prevCoordStr}</strong> 移動至 ${f.name.split(' ')[0]} <strong>${coordStr}</strong>。跑法：<strong>${movement}</strong>。`;
+      const card = document.createElement('div');
+      card.className = 'action-hint-step-card card';
+      if (idx === activeFormationIdx) {
+        card.classList.add('active-step-card');
       }
       
-      content.appendChild(descr);
-      item.appendChild(content);
+      const header = document.createElement('div');
+      header.className = 'action-hint-step-header';
       
-      item.addEventListener('click', () => {
+      const titleSpan = document.createElement('span');
+      titleSpan.className = 'action-hint-step-title';
+      titleSpan.innerHTML = `<strong>${String(idx + 1).padStart(2, '0')}. ${f.name}</strong>`;
+      
+      header.appendChild(titleSpan);
+      card.appendChild(header);
+      
+      const body = document.createElement('div');
+      body.className = 'action-hint-step-body';
+      
+      const items = getActionHintsForPerformer(currentPerformer, f.key);
+      
+      if (items.length === 0) {
+        const noHints = document.createElement('div');
+        noHints.className = 'no-hints-placeholder';
+        noHints.textContent = '此步驟無動作提示';
+        body.appendChild(noHints);
+      } else {
+        items.forEach(item => {
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'action-hint-item';
+          itemDiv.style.cssText = 'padding: 8px 0; border-bottom: 1px dashed rgba(180, 83, 9, 0.1);';
+          
+          const itemTitle = document.createElement('div');
+          itemTitle.style.cssText = 'font-weight: bold; color: #b45309; font-size: 13px; margin-bottom: 4px;';
+          itemTitle.textContent = item.title;
+          itemDiv.appendChild(itemTitle);
+          
+          item.details.forEach(detail => {
+            if (detail.type === 'text') {
+              const p = document.createElement('p');
+              p.style.cssText = 'margin: 0 0 4px 0; color: #1e293b; font-size: 12.5px; line-height: 1.45; font-weight: 500;';
+              p.textContent = detail.content;
+              itemDiv.appendChild(p);
+            } else if (detail.type === 'image') {
+              const img = document.createElement('img');
+              img.src = detail.src;
+              img.style.cssText = 'max-width: 100%; height: auto; display: block; border-radius: 6px; margin: 6px 0; border: 1px solid rgba(180, 83, 9, 0.1);';
+              itemDiv.appendChild(img);
+            }
+          });
+          
+          body.appendChild(itemDiv);
+        });
+        
+        if (body.lastChild) {
+          body.lastChild.style.borderBottom = 'none';
+        }
+      }
+      
+      card.appendChild(body);
+      
+      // Click event to switch back to Tab 1 (Grid view)
+      card.addEventListener('click', () => {
         activeFormationIdx = idx;
         updateFormationControls();
         drawLocalGridPath();
-        syncActiveCardAndStep();
         
-        // Switch tab to grid to show visual changes
+        // Highlight active step card in Tab 2
+        document.querySelectorAll('.action-hint-step-card').forEach((c, cIdx) => {
+          c.classList.toggle('active-step-card', cIdx === idx);
+        });
+        
+        // Switch to grid tab
         const tabGrid = document.querySelector('.mobile-tab-btn[data-tab="localGrid"]');
         if (tabGrid) tabGrid.click();
       });
       
-      navStepsFlow.appendChild(item);
+      actionHintsFlow.appendChild(card);
     });
-    
-    syncActiveCardAndStep();
   }
 
   // Get base64 representation of an HTML image element

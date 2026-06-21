@@ -142,7 +142,7 @@
             <!-- Mobile Navigation Tab Bar (3 tabs now) -->
             <div class="mobile-tabs-bar" id="mobileTabsBar">
               <button class="mobile-tab-btn active" data-tab="localGrid"><i class="fa-solid fa-compress"></i> 網格定位</button>
-              <button class="mobile-tab-btn" data-tab="walkthrough"><i class="fa-solid fa-route"></i> 跑位引導</button>
+              <button class="mobile-tab-btn" data-tab="walkthrough"><i class="fa-solid fa-person-running"></i> 動作提示</button>
               <button class="mobile-tab-btn" data-tab="cards"><i class="fa-solid fa-list-ol"></i> 隊形詳情</button>
             </div>
 
@@ -297,17 +297,15 @@
                   <div class="map-action-buttons">
                     <button id="viewAllMapsBtn" class="control-btn action-btn-gold"><i class="fa-solid fa-images"></i> 查看與下載定位表</button>
                   </div>
-                  <!-- Collapsible Inline Action Hints directly displayed at the bottom -->
-                  <div id="inlineActionHints" class="inline-action-hints card"></div>
                 </div>
               </div>
             </section>
 
-            <!-- Panel 2: Walkthrough -->
+            <!-- Panel 2: Action Hints (Replaces Walkthrough) -->
             <section class="visual-column mobile-tab-panel" id="panel-walkthrough">
-              <div class="navigation-walkthrough card glow-border-gold">
-                <h3><i class="fa-solid fa-route"></i> 跑位引導步驟</h3>
-                <div class="nav-steps-flow" id="navStepsFlow"></div>
+              <div class="action-hints-container card glow-border-gold">
+                <h3><i class="fa-solid fa-person-running"></i> 動作提示列表</h3>
+                <div class="action-hints-flow" id="actionHintsFlow"></div>
               </div>
             </section>
 
