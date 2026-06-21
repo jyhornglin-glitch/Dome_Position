@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <!-- FontAwesome for professional icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css?v=1.6.6">
+  <link rel="stylesheet" href="style.css?v=1.6.7">
 </head>
 <body>
   <!-- Ambient background glow behind the phone -->
@@ -164,6 +164,7 @@
                       <div class="active-formation-display">
                         <span class="active-formation-num" id="activeFormNum">01</span>
                         <span class="active-formation-title" id="activeFormTitle">起點 (基本隊形)</span>
+                        <span class="active-formation-coord" id="activeFormCoord">座標: ---</span>
                       </div>
                       <button id="nextBtn" class="control-btn">下一個 <i class="fa-solid fa-chevron-right"></i></button>
                     </div>
@@ -188,7 +189,7 @@
                       <label for="showAlignmentGuides">對齊軸線</label>
                     </div>
                   </div>
-                  <div id="mapCoordDisplayBar" class="map-coord-display-bar"></div>
+                  <!-- mapCoordDisplayBar merged into activeFormCoord -->
 
                   <div class="svg-wrapper">
  
@@ -669,9 +670,9 @@
     document.write('<script src="data.js?v=' + Date.now() + '"><\/script>');
     document.write('<script src="daydata.js?v=' + Date.now() + '"><\/script>');
   </script>
-  <script src="lyrics.js?v=1.6.6"></script>
-  <script src="action_hints_data.js?v=1.6.6"></script>
+  <script src="lyrics.js?v=1.6.7"></script>
+  <script src="action_hints_data.js?v=1.6.7"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="app.js?v=1.6.6"></script>
+  <script src="app.js?v=1.6.7"></script>
 </body>
 </html>

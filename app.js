@@ -77,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const nextBtn = document.getElementById('nextBtn');
   const activeFormNum = document.getElementById('activeFormNum');
   const activeFormTitle = document.getElementById('activeFormTitle');
+  const activeFormCoord = document.getElementById('activeFormCoord');
   
   // State variables
   let currentPerformer = null;
@@ -1414,60 +1415,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     // ───────────────────────────────────────────────────────────────
     if (isMainSvg) {
-      // Update top coordinate display bar
-      const coordBar = document.getElementById('mapCoordDisplayBar');
-      if (coordBar) {
-
-        coordBar.innerHTML = '';
-        
-        const coordBarPoints = [];
-        coordBarPoints.push({
-          ...allPoints[0],
-          role: 'basic',
-          roleLabel: '起點'
-        });
-        
-        if (activeFormationIdx > 0) {
-          const prevIdx = activeFormationIdx - 1;
-          if (prevIdx > 0) {
-            coordBarPoints.push({
-              ...allPoints[prevIdx],
-              role: 'prev',
-              roleLabel: `上一個: ${allPoints[prevIdx].label}`
-            });
-          } else {
-            coordBarPoints[0].roleLabel = '起點 (上一個位置)';
-            coordBarPoints[0].isAlsoPrev = true;
-          }
-          
-          coordBarPoints.push({
-            ...allPoints[activeFormationIdx],
-            role: 'current',
-            roleLabel: `目前: ${allPoints[activeFormationIdx].label}`
-          });
-        } else {
-          coordBarPoints[0].roleLabel = '目前位置 (起點)';
-          coordBarPoints[0].role = 'current';
-        }
-        
-        coordBarPoints.forEach(pt => {
-          const itemDiv = document.createElement('div');
-          itemDiv.className = `map-coord-item ${pt.role === 'current' ? 'active-node' : ''}`;
-          
-          const labelSpan = document.createElement('span');
-          labelSpan.className = 'label';
-          labelSpan.textContent = pt.roleLabel;
-          
-          const valSpan = document.createElement('span');
-          valSpan.className = 'val';
-          // 3個點都只要顯示身分證位置，不要顯示真實座標
-          valSpan.textContent = pt.coord.text;
-          
-          itemDiv.appendChild(labelSpan);
-          itemDiv.appendChild(valSpan);
-          coordBar.appendChild(itemDiv);
-        });
-      }
+      // (mapCoordDisplayBar rendering removed as it is merged into switcher)
 
       // Update movement guide text below the map
       const mapMovementGuide = document.getElementById('mapMovementGuide');
@@ -1614,6 +1562,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const f = formations[activeFormationIdx];
     activeFormNum.textContent = String(activeFormationIdx + 1).padStart(2, '0');
     activeFormTitle.textContent = f.name;
+    
+    // Update step coordinate display
+    if (activeFormCoord && currentPerformer) {
+      const coordStr = getFormationCoordStr(currentPerformer, f.key) || '---';
+      activeFormCoord.textContent = `座標: ${coordStr}`;
+    }
     
     prevBtn.disabled = (activeFormationIdx === 0);
     nextBtn.disabled = (activeFormationIdx === formations.length - 1);
