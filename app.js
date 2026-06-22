@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let GRID_SPACING = 15; // 1 coord unit = 15 pixels
   let MAX_GRID_COORD = 10;
 
-  // 7 Formations metadata
+  // 8 Formations metadata
   const formations = [
     { key: 'basic', name: '起點 (基本隊形)', label: '基本' },
     { key: 'circle', name: '01圓形', label: '圓形' },
@@ -111,6 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { key: 'jingSi', name: '04靜思家風', label: '靜思' },
     { key: 'lamp', name: '05-1有法船', label: '有法船' },
     { key: 'noBoat', name: '05-2無法船', label: '無法船' },
+    { key: 'noBoat3', name: '05-3無法船', label: '無法船3' },
     { key: 'bigV', name: '06四弘誓願', label: '四弘誓願' }
   ];
 
@@ -130,17 +131,68 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Get coordinate string for a given formation key, applying session overrides.
-  // For '1113' (11/13五) and '1115' (11/15日), the 'noBoat' (05-2無法船) position
-  // is overridden to be the same as 'lamp' (05-1有法船).
+  // For '1113' (11/13五) and '1115' (11/15日), both 'noBoat' (05-2無法船) and 'noBoat3'
+  // positions are overridden to be the same as 'lamp' (05-1有法船).
+  // For other sessions, noBoat3 uses the same coordinate as noBoat.
   function getFormationCoordStr(performer, key) {
     if (!performer) return '';
     if (key === 'basic') {
       return getPerformerFields(performer).coordinate;
     }
-    if ((selectedSessionKey === '1113' || selectedSessionKey === '1115') && key === 'noBoat') {
-      return performer.lamp || '';
+    if (selectedSessionKey === '1113' || selectedSessionKey === '1115') {
+      if (key === 'noBoat' || key === 'noBoat3') {
+        return performer.lamp || '';
+      }
+    }
+    if (key === 'noBoat3') {
+      return performer.noBoat || '';
     }
     return performer[key] || '';
+  }
+
+  // Get sticker filename type mapped for dynamic session layout
+  function getDisplayType(key) {
+    if (selectedSessionKey === '1113' || selectedSessionKey === '1115') {
+      if (key === 'noBoat' || key === 'noBoat3') {
+        return 'lamp';
+      }
+    }
+    if (key === 'noBoat3') {
+      return 'noBoat';
+    }
+    return key;
+  }
+
+  // Update dynamic formation metadata and DOM elements labels on session selection
+  function updateFormationDynamicLabels() {
+    const isBoatDay = (selectedSessionKey === '1113' || selectedSessionKey === '1115');
+    const noBoat3Form = formations.find(f => f.key === 'noBoat3');
+    if (noBoat3Form) {
+      if (isBoatDay) {
+        noBoat3Form.name = '05-3有法船';
+        noBoat3Form.label = '有法船3';
+      } else {
+        noBoat3Form.name = '05-3無法船';
+        noBoat3Form.label = '無法船3';
+      }
+    }
+    
+    const titleEl = document.getElementById('title-noBoat3');
+    const subEl = document.getElementById('sub-noBoat3');
+    const prevLabelEl = document.getElementById('label-noBoat3-prev');
+    const bigVPrevLabelEl = document.getElementById('label-bigV-prev');
+    
+    if (isBoatDay) {
+      if (titleEl) titleEl.textContent = '05-3有法船';
+      if (subEl) subEl.textContent = 'Dharma Boat (with boat 3)';
+      if (prevLabelEl) prevLabelEl.textContent = '從無法船：';
+      if (bigVPrevLabelEl) bigVPrevLabelEl.textContent = '從有法船：';
+    } else {
+      if (titleEl) titleEl.textContent = '05-3無法船';
+      if (subEl) subEl.textContent = 'Dharma Boat (no boat 3)';
+      if (prevLabelEl) prevLabelEl.textContent = '從無法船：';
+      if (bigVPrevLabelEl) bigVPrevLabelEl.textContent = '從無法船：';
+    }
   }
 
   // Initialize App — session overlay and logic immediately
@@ -594,6 +646,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // dayOverrideName: name from the day's roster (may be blank)
   function selectPerformer(performer, dayOverrideName, forceTeam = null) {
     currentPerformer = performer;
+    updateFormationDynamicLabels();
     activeFormationIdx = 0;
     hintModalClosed = true; // Initially closed by default as per request
     resetZoomAndPan();
@@ -758,7 +811,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Draw Dynamic SVG Landmark Image inside grid map using PNG stickers
   function drawSvgLandmarkImage(parentGroup, type, category, x, y, size, isMainSvg = true) {
     const img = document.createElementNS('http://www.w3.org/2000/svg', 'image');
-    img.setAttributeNS('http://www.w3.org/1999/xlink', 'href', `images/stickers/${type}_${getEnglishCategory(category)}.png`);
+    const displayType = getDisplayType(type);
+    img.setAttributeNS('http://www.w3.org/1999/xlink', 'href', `images/stickers/${displayType}_${getEnglishCategory(category)}.png`);
     img.setAttribute('x', x - size / 2);
     img.setAttribute('y', y - size / 2);
     img.setAttribute('width', size);
@@ -1498,13 +1552,14 @@ document.addEventListener('DOMContentLoaded', () => {
     wrapper.style.alignItems = 'center';
     wrapper.style.justifyContent = 'center';
     
+    const displayType = getDisplayType(type);
     const img = document.createElement('img');
-    img.src = `images/stickers/${type}_${getEnglishCategory(category)}.png`;
+    img.src = `images/stickers/${displayType}_${getEnglishCategory(category)}.png`;
     img.className = 'landmark-sticker-img';
     img.alt = `${type} sticker`;
     
     img.onerror = () => {
-      console.error(`Failed to load sticker: images/stickers/${type}_${getEnglishCategory(category)}.png`);
+      console.error(`Failed to load sticker: images/stickers/${displayType}_${getEnglishCategory(category)}.png`);
       wrapper.textContent = type;
     };
     
@@ -2180,7 +2235,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const stickerImages = {};
       for (let idx = 0; idx < formations.length; idx++) {
         const f = formations[idx];
-        const src = `images/stickers/${f.key}_${getEnglishCategory(currentPerformer.category)}.png`;
+        const displayType = getDisplayType(f.key);
+        const src = `images/stickers/${displayType}_${getEnglishCategory(currentPerformer.category)}.png`;
         const img = await loadImage(src);
         if (img) {
           stickerImages[f.key] = img;
