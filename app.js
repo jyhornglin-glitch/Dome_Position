@@ -131,8 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Get coordinate string for a given formation key, applying session overrides.
-  // For '1113' (11/13五) and '1115' (11/15日), both 'noBoat' (05-2無法船) and 'noBoat3'
-  // positions are overridden to be the same as 'lamp' (05-1有法船).
+  // For '1113' (11/13五) and '1115' (11/15日), 'noBoat3' position is overridden
+  // to be the same as 'lamp' (05-1有法船).
   // For other sessions, noBoat3 uses the same coordinate as noBoat.
   function getFormationCoordStr(performer, key) {
     if (!performer) return '';
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return getPerformerFields(performer).coordinate;
     }
     if (selectedSessionKey === '1113' || selectedSessionKey === '1115') {
-      if (key === 'noBoat' || key === 'noBoat3') {
+      if (key === 'noBoat3') {
         return performer.lamp || '';
       }
     }
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Get sticker filename type mapped for dynamic session layout
   function getDisplayType(key) {
     if (selectedSessionKey === '1113' || selectedSessionKey === '1115') {
-      if (key === 'noBoat' || key === 'noBoat3') {
+      if (key === 'noBoat3') {
         return 'lamp';
       }
     }
