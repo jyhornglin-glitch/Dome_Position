@@ -78,9 +78,9 @@ def main():
                 return 'xingYuan'
             if col0_text == '04靜思家風' or (9 <= row_idx <= 10):
                 return 'jingSi'
-            if col0_text == '05-1有法船' or row_idx == 11:
+            if col0_text.startswith('05-1有法船') or row_idx == 11:
                 return 'lamp'
-            if col0_text == '05-2無法船' or row_idx == 12:
+            if col0_text.startswith('05-2無法船') or row_idx == 12:
                 return 'noBoat'
             if col0_text == '06四弘誓願' or row_idx >= 13:
                 return 'bigV'

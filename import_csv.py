@@ -54,8 +54,8 @@ def main(verbose=True):
                 "circle": clean_coord(row.get("circle") or row.get("01圓形") or ""),
                 "xingYuan": clean_coord(row.get("xingYuan") or row.get("02行願") or ""),
                 "jingSi": clean_coord(row.get("jingSi") or row.get("04靜思家風") or ""),
-                "lamp": clean_coord(row.get("lamp") or row.get("05-1有法船") or ""),
-                "noBoat": clean_coord(row.get("noBoat") or row.get("05-2無法船") or ""),
+                "lamp": clean_coord(row.get("lamp") or row.get("05-1有法船") or row.get("05-1有法船（點一盞燈）") or ""),
+                "noBoat": clean_coord(row.get("noBoat") or row.get("05-2無法船") or row.get("05-2無法船（菜市場5毛錢）") or ""),
                 "bigV": clean_coord(row.get("bigV") or row.get("06四弘誓願") or "")
             }
             # Add only if id is present (name is always empty; comes from dayperformers.csv)

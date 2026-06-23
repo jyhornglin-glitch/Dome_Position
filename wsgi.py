@@ -119,7 +119,7 @@ def handle_update_performer(data):
         return 400, {"success": False, "error": "Missing performer ID or team"}
 
     rows = []
-    headers = ['身分別', '身份證', '姓名', '01圓形', '02行願', '04靜思家風', '05-1有法船', '05-2無法船', '06四弘誓願']
+    headers = ['身分別', '身份證', '姓名', '01圓形', '02行願', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願']
     found = False
 
     if not os.path.exists(PERF_CSV):
@@ -134,8 +134,8 @@ def handle_update_performer(data):
                 row['01圓形'] = circle
                 row['02行願'] = xing_yuan
                 row['04靜思家風'] = jing_si
-                row['05-1有法船'] = lamp
-                row['05-2無法船'] = no_boat
+                row['05-1有法船（點一盞燈）'] = lamp
+                row['05-2無法船（菜市場5毛錢）'] = no_boat
                 row['06四弘誓願'] = big_v
                 found = True
             rows.append(row)

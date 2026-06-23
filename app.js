@@ -109,9 +109,9 @@ document.addEventListener('DOMContentLoaded', () => {
     { key: 'circle', name: '01圓形', label: '圓形' },
     { key: 'xingYuan', name: '02行願', label: '行願' },
     { key: 'jingSi', name: '04靜思家風', label: '靜思' },
-    { key: 'lamp', name: '05-1有法船', label: '有法船' },
-    { key: 'noBoat', name: '05-2無法船', label: '無法船' },
-    { key: 'noBoat3', name: '05-3無法船', label: '無法船3' },
+    { key: 'lamp', name: '05-1有法船（點一盞燈）', label: '有法船' },
+    { key: 'noBoat', name: '05-2無法船（菜市場5毛錢）', label: '無法船' },
+    { key: 'noBoat3', name: '05-3無法船(是諸眾生)', label: '無法船3' },
     { key: 'bigV', name: '06四弘誓願', label: '四弘誓願' }
   ];
 
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Get coordinate string for a given formation key, applying session overrides.
   // For '1113' (11/13五) and '1115' (11/15日), 'noBoat3' position is overridden
-  // to be the same as 'lamp' (05-1有法船).
+  // to be the same as 'lamp' (05-1有法船（點一盞燈）).
   // For other sessions, noBoat3 uses the same coordinate as noBoat.
   function getFormationCoordStr(performer, key) {
     if (!performer) return '';
@@ -169,10 +169,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const noBoat3Form = formations.find(f => f.key === 'noBoat3');
     if (noBoat3Form) {
       if (isBoatDay) {
-        noBoat3Form.name = '05-3有法船';
+        noBoat3Form.name = '05-3有法船(是諸眾生)';
         noBoat3Form.label = '有法船3';
       } else {
-        noBoat3Form.name = '05-3無法船';
+        noBoat3Form.name = '05-3無法船(是諸眾生)';
         noBoat3Form.label = '無法船3';
       }
     }
@@ -183,12 +183,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const bigVPrevLabelEl = document.getElementById('label-bigV-prev');
     
     if (isBoatDay) {
-      if (titleEl) titleEl.textContent = '05-3有法船';
+      if (titleEl) titleEl.textContent = '05-3有法船(是諸眾生)';
       if (subEl) subEl.textContent = 'Dharma Boat (with boat 3)';
       if (prevLabelEl) prevLabelEl.textContent = '從無法船：';
       if (bigVPrevLabelEl) bigVPrevLabelEl.textContent = '從有法船：';
     } else {
-      if (titleEl) titleEl.textContent = '05-3無法船';
+      if (titleEl) titleEl.textContent = '05-3無法船(是諸眾生)';
       if (subEl) subEl.textContent = 'Dharma Boat (no boat 3)';
       if (prevLabelEl) prevLabelEl.textContent = '從無法船：';
       if (bigVPrevLabelEl) bigVPrevLabelEl.textContent = '從無法船：';
