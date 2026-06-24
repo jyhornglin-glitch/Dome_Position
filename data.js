@@ -1114,7 +1114,7 @@ const performersData = [
   { category: "B藍", id: "24-48", name: "", team: "東班", circle: "22-54.5", xingYuan: "18-44", jingSi: "24-48", lamp: "23-40", noBoat: "23-40.8", bigV: "27.3-41.5" },
   { category: "B藍", id: "24-49", name: "", team: "東班", circle: "21.5-55.5", xingYuan: "18-43", jingSi: "24-49", lamp: "23-41", noBoat: "23-41.5", bigV: "27-42.5" },
   { category: "B藍", id: "24-56", name: "", team: "東班", circle: "17-61", xingYuan: "21-48.6", jingSi: "24-56", lamp: "24.3-46.5", noBoat: "24.3-46.5", bigV: "24-48.7" },
-  { category: "B藍", id: "24-57", name: "", team: "東班", circle: "16.5-61.8", xingYuan: "21.5-49", jingSi: "24-57", lamp: "23.8-47.2", noBoat: "23.8-47.2", bigV: "23.5-47.7" },
+  { category: "B藍", id: "24-57", name: "", team: "東班", circle: "16.5-61.8", xingYuan: "21.5-49", jingSi: "24-57", lamp: "23.8-47.2", noBoat: "23.8-47.2", bigV: "23.5-49.6" },
   { category: "B藍", id: "24-58", name: "", team: "東班", circle: "15.8-63.5", xingYuan: "22-50", jingSi: "24-58", lamp: "23.3-48", noBoat: "23.3-48", bigV: "23-50.5" },
   { category: "B藍", id: "24-59", name: "", team: "東班", circle: "15-63.2", xingYuan: "22.2-50.5", jingSi: "24-59", lamp: "22.8-48.7", noBoat: "22.8-48.7", bigV: "22.5-51.4" },
   { category: "B藍", id: "24-60", name: "", team: "東班", circle: "14.1-64", xingYuan: "22.5-51.2", jingSi: "24-60", lamp: "22.3-49.4", noBoat: "22.3-49.4", bigV: "22.1-52.2" },
