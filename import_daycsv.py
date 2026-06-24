@@ -60,9 +60,9 @@ def main(verbose=True):
     with open(CSV_FILE, newline='', encoding='utf-8-sig') as f:
         reader = csv.DictReader(f)
         for row in reader:
-            date = row.get('日期', '').strip()
-            pid  = clean_coord(row.get('身份證', ''))
-            name = row.get('姓名', '').strip()
+            date = (row.get('日期') or '').strip()
+            pid  = clean_coord(row.get('身份證') or '')
+            name = (row.get('姓名') or '').strip()
             team = (row.get('班別') or row.get('東西班') or row.get('組別') or row.get('team') or '東班').strip()
             if not pid:
                 continue

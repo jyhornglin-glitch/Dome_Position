@@ -97,9 +97,9 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                     reader = csv.DictReader(f)
                     headers = reader.fieldnames or headers
                     for row in reader:
-                        row_date = row.get('日期', '').strip()
-                        row_team = row.get('班別', '').strip()
-                        if row_date in allowed_dates and row.get('身份證', '').strip() == target_id and row_team == team:
+                        row_date = (row.get('日期') or '').strip()
+                        row_team = (row.get('班別') or '').strip()
+                        if row_date in allowed_dates and (row.get('身份證') or '').strip() == target_id and row_team == team:
                             row['姓名'] = new_name
                             found = True
                         rows.append(row)
@@ -162,8 +162,8 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                 reader = csv.DictReader(f)
                 headers = reader.fieldnames or headers
                 for row in reader:
-                    row_team = row.get('班別', '').strip()
-                    if row.get('身份證', '').strip() == target_id and row_team == team:
+                    row_team = (row.get('班別') or '').strip()
+                    if (row.get('身份證') or '').strip() == target_id and row_team == team:
                         row['01圓形'] = circle
                         row['02行願'] = xing_yuan
                         row['04靜思家風'] = jing_si
