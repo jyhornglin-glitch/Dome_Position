@@ -4,11 +4,7 @@ const DAY_SESSIONS = [
   { key: '1112', label: '11/12(四)', date: '11/12(四)', count: 1234 },
   { key: '1113', label: '11/13(五)', date: '11/13(五)', count: 1249 },
   { key: '1114', label: '11/14(六)', date: '11/14(六)', count: 1237 },
-<<<<<<< HEAD
   { key: '1115', label: '11/15(日)', date: '11/15(日)', count: 413 },
-=======
-  { key: '1115', label: '11/15(日)', date: '11/15(日)', count: 114 },
->>>>>>> d03cc86 (Auto-commit: Wed Jun 24 20:01:01 CST 2026)
 ];
 
 const DAY_PERFORMERS = {
