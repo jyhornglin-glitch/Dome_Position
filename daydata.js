@@ -3,11 +3,7 @@
 const DAY_SESSIONS = [
   { key: '1112', label: '11/12(四)', date: '11/12(四)', count: 1234 },
   { key: '1113', label: '11/13(五)', date: '11/13(五)', count: 1235 },
-<<<<<<< HEAD
-  { key: '1114', label: '11/14(六)', date: '11/14(六)', count: 1235 },
-=======
   { key: '1114', label: '11/14(六)', date: '11/14(六)', count: 1237 },
->>>>>>> 2690301 (Auto-commit: Tue Jun 23 20:01:02 CST 2026)
   { key: '1115', label: '11/15(日)', date: '11/15(日)', count: 113 },
 ];
 
@@ -3721,11 +3717,8 @@ const DAY_PERFORMERS = {
     { id: '30-49', name: '陳秀珍', team: '東班' },
     { id: '34-43', name: '黃惠卿', team: '東班' },
     { id: '34-44', name: '黃淑敏', team: '東班' },
-<<<<<<< HEAD
-=======
     { id: '7-30', name: '葉莉涵', team: '東班' },
     { id: '4-30', name: '江文章', team: '東班' },
->>>>>>> 2690301 (Auto-commit: Tue Jun 23 20:01:02 CST 2026)
   ],
   '1115': [
     { id: '1-62', name: '黃輝耀', team: '東班' },
