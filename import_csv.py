@@ -56,7 +56,16 @@ def main(verbose=True):
                 "jingSi": clean_coord(row.get("jingSi") or row.get("04靜思家風") or ""),
                 "lamp": clean_coord(row.get("lamp") or row.get("05-1有法船") or row.get("05-1有法船（點一盞燈）") or ""),
                 "noBoat": clean_coord(row.get("noBoat") or row.get("05-2無法船") or row.get("05-2無法船（菜市場5毛錢）") or ""),
-                "bigV": clean_coord(row.get("bigV") or row.get("06四弘誓願") or "")
+                "bigV": clean_coord(row.get("bigV") or row.get("06四弘誓願") or ""),
+                "daChuanShi": clean_coord(row.get("daChuanShi") or row.get("07大船師") or ""),
+                "eduWaterSlash": clean_coord(row.get("eduWaterSlash") or row.get("08-1教育(水滴＋斜線)") or ""),
+                "eduWaterArc": clean_coord(row.get("eduWaterArc") or row.get("08-2教育(水滴＋弧線)") or ""),
+                "eduBigLotus": clean_coord(row.get("eduBigLotus") or row.get("08-3教育(大蓮花)") or ""),
+                "eduMidSmallLotus": clean_coord(row.get("eduMidSmallLotus") or row.get("08-4教育(中小蓮花)") or ""),
+                "humanities": clean_coord(row.get("humanities") or row.get("09人文") or ""),
+                "fiveContinents1": clean_coord(row.get("fiveContinents1") or row.get("10-1五大洲") or ""),
+                "fiveContinents2": clean_coord(row.get("fiveContinents2") or row.get("10-2五大洲") or ""),
+                "flyingApsaras": clean_coord(row.get("flyingApsaras") or row.get("11飛天") or "")
             }
             # Add only if id is present (name is always empty; comes from dayperformers.csv)
             if p["id"]:
@@ -66,7 +75,7 @@ def main(verbose=True):
     js_content = "// Performer Stage Formations Database\nconst performersData = [\n"
     for idx, p in enumerate(performers):
         comma = "," if idx < len(performers) - 1 else ""
-        js_content += f'  {{ category: "{esc(p["category"])}", id: "{esc(p["id"])}", name: "{esc(p["name"])}", team: "{esc(p["team"])}", circle: "{esc(p["circle"])}", xingYuan: "{esc(p["xingYuan"])}", jingSi: "{esc(p["jingSi"])}", lamp: "{esc(p["lamp"])}", noBoat: "{esc(p["noBoat"])}", bigV: "{esc(p["bigV"])}" }}{comma}\n'
+        js_content += f'  {{ category: "{esc(p["category"])}", id: "{esc(p["id"])}", name: "{esc(p["name"])}", team: "{esc(p["team"])}", circle: "{esc(p["circle"])}", xingYuan: "{esc(p["xingYuan"])}", jingSi: "{esc(p["jingSi"])}", lamp: "{esc(p["lamp"])}", noBoat: "{esc(p["noBoat"])}", bigV: "{esc(p["bigV"])}", daChuanShi: "{esc(p["daChuanShi"])}", eduWaterSlash: "{esc(p["eduWaterSlash"])}", eduWaterArc: "{esc(p["eduWaterArc"])}", eduBigLotus: "{esc(p["eduBigLotus"])}", eduMidSmallLotus: "{esc(p["eduMidSmallLotus"])}", humanities: "{esc(p["humanities"])}", fiveContinents1: "{esc(p["fiveContinents1"])}", fiveContinents2: "{esc(p["fiveContinents2"])}", flyingApsaras: "{esc(p["flyingApsaras"])}" }}{comma}\n'
     js_content += "];\n\n// Export if in node environment, otherwise make it global\nif (typeof module !== 'undefined' && module.exports) {\n  module.exports = performersData;\n}\n"
     
     with open(js_path, mode='w', encoding='utf-8') as f:

@@ -114,13 +114,22 @@ def handle_update_performer(data):
     lamp = str(data.get('lamp', '')).strip()
     no_boat = str(data.get('noBoat', '')).strip()
     big_v = str(data.get('bigV', '')).strip()
+    da_chuan_shi = str(data.get('daChuanShi', '')).strip()
+    edu_water_slash = str(data.get('eduWaterSlash', '')).strip()
+    edu_water_arc = str(data.get('eduWaterArc', '')).strip()
+    edu_big_lotus = str(data.get('eduBigLotus', '')).strip()
+    edu_mid_small_lotus = str(data.get('eduMidSmallLotus', '')).strip()
+    humanities = str(data.get('humanities', '')).strip()
+    five_continents1 = str(data.get('fiveContinents1', '')).strip()
+    five_continents2 = str(data.get('fiveContinents2', '')).strip()
+    flying_apsaras = str(data.get('flyingApsaras', '')).strip()
     team = str(data.get('team', '')).strip()
 
     if not target_id or not team:
         return 400, {"success": False, "error": "Missing performer ID or team"}
 
     rows = []
-    headers = ['身分別', '身份證', '姓名', '01圓形', '02行願', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願']
+    headers = ['身分別', '身份證', '姓名', '01圓形', '02行願', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願', '07大船師', '08-1教育(水滴＋斜線)', '08-2教育(水滴＋弧線)', '08-3教育(大蓮花)', '08-4教育(中小蓮花)', '09人文', '10-1五大洲', '10-2五大洲', '11飛天']
     found = False
 
     if not os.path.exists(PERF_CSV):
@@ -138,6 +147,15 @@ def handle_update_performer(data):
                 row['05-1有法船（點一盞燈）'] = lamp
                 row['05-2無法船（菜市場5毛錢）'] = no_boat
                 row['06四弘誓願'] = big_v
+                row['07大船師'] = da_chuan_shi
+                row['08-1教育(水滴＋斜線)'] = edu_water_slash
+                row['08-2教育(水滴＋弧線)'] = edu_water_arc
+                row['08-3教育(大蓮花)'] = edu_big_lotus
+                row['08-4教育(中小蓮花)'] = edu_mid_small_lotus
+                row['09人文'] = humanities
+                row['10-1五大洲'] = five_continents1
+                row['10-2五大洲'] = five_continents2
+                row['11飛天'] = flying_apsaras
                 found = True
             rows.append(row)
 
@@ -205,7 +223,7 @@ def handle_admin_save_row(data):
     elif table_type == 'performers':
         csv_path = PERF_CSV
         key_fields = ['班別', '身份證']
-        headers = ['班別', '身分別', '身份證', '姓名', '01圓形', '02行願', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願']
+        headers = ['班別', '身分別', '身份證', '姓名', '01圓形', '02行願', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願', '07大船師', '08-1教育(水滴＋斜線)', '08-2教育(水滴＋弧線)', '08-3教育(大蓮花)', '08-4教育(中小蓮花)', '09人文', '10-1五大洲', '10-2五大洲', '11飛天']
     else:
         return 400, {"success": False, "error": "無效的表格類型"}
 

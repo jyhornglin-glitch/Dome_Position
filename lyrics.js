@@ -85,7 +85,16 @@ const chantLyrics = {
     "能捨一切諸難捨財寶妻子及國城於法內外無所吝頭目髓腦悉施人",
     "遍學一切眾道法智慧深入眾生根遍學一切眾道法智慧深入眾生根",
     "遍學一切眾道法智慧深入眾生根 於如來地 堅固不動 安住願力 廣淨佛國"
-  ]
+  ],
+  "daChuanShi": [],
+  "eduWaterSlash": [],
+  "eduWaterArc": [],
+  "eduBigLotus": [],
+  "eduMidSmallLotus": [],
+  "humanities": [],
+  "fiveContinents1": [],
+  "fiveContinents2": [],
+  "flyingApsaras": []
 };
 
 if (typeof module !== 'undefined' && module.exports) {

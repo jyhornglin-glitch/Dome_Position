@@ -168,56 +168,58 @@ body {
   gap: 8px;
 }
 
-.header-refresh-btn {
+.header-refresh-btn, .header-manual-btn {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  background: rgba(56, 189, 248, 0.08);
-  border: 1px solid rgba(56, 189, 248, 0.2);
-  color: var(--blue-color, #38bdf8);
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 11px;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  padding: 0;
   font-weight: 600;
   text-decoration: none;
   transition: all 0.2s ease;
   cursor: pointer;
 }
 
-.header-refresh-btn:hover {
-  background: rgba(56, 189, 248, 0.16);
-  border-color: var(--blue-color);
-  transform: translateY(-1px);
+#reSearchBtn {
+  background: rgba(217, 119, 6, 0.15);
+  border: 2px solid rgba(217, 119, 6, 0.6);
+  color: #d97706;
 }
 
-.header-refresh-btn i {
-  font-size: 11px;
+#reSearchBtn:hover {
+  background: rgba(217, 119, 6, 0.3);
+  border-color: #d97706;
+  transform: translateY(-1.5px);
+}
+
+#refreshBtn {
+  background: rgba(2, 132, 199, 0.15);
+  border: 2px solid rgba(2, 132, 199, 0.6);
+  color: #0284c7;
+}
+
+#refreshBtn:hover {
+  background: rgba(2, 132, 199, 0.3);
+  border-color: #0284c7;
+  transform: translateY(-1.5px);
 }
 
 .header-manual-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: rgba(251, 191, 36, 0.08);
-  border: 1px solid rgba(251, 191, 36, 0.2);
-  color: var(--gold-color, #fbbf24);
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  cursor: pointer;
+  background: rgba(180, 83, 9, 0.15);
+  border: 2px solid rgba(180, 83, 9, 0.6);
+  color: #b45309;
 }
 
 .header-manual-btn:hover {
-  background: rgba(251, 191, 36, 0.16);
-  border-color: var(--gold-color);
-  transform: translateY(-1px);
+  background: rgba(180, 83, 9, 0.3);
+  border-color: #b45309;
+  transform: translateY(-1.5px);
 }
 
-.header-manual-btn i {
-  font-size: 11px;
+.header-refresh-btn i, .header-manual-btn i {
+  font-size: 16px;
 }
 
 .header-logo {
@@ -2816,13 +2818,14 @@ svg {
   }
 
   .header-refresh-btn, .header-manual-btn {
-    padding: 3px 6px !important;
-    font-size: 10px !important;
-    border-radius: 12px !important;
+    width: 32px !important;
+    height: 32px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
   }
 
   .header-refresh-btn i, .header-manual-btn i {
-    font-size: 10px !important;
+    font-size: 14px !important;
   }
 
   /* 人員摘要卡精簡 */

@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let GRID_SPACING = 15; // 1 coord unit = 15 pixels
   let MAX_GRID_COORD = 10;
 
-  // 8 Formations metadata
+  // 17 Formations metadata
   const formations = [
     { key: 'basic', name: '起點 (基本隊形)', label: '基本' },
     { key: 'circle', name: '01圓形', label: '圓形' },
@@ -112,7 +112,16 @@ document.addEventListener('DOMContentLoaded', () => {
     { key: 'lamp', name: '05-1有法船（點一盞燈）', label: '有法船' },
     { key: 'noBoat', name: '05-2無法船（菜市場5毛錢）', label: '無法船' },
     { key: 'noBoat3', name: '05-3無法船(是諸眾生)', label: '無法船3' },
-    { key: 'bigV', name: '06四弘誓願', label: '四弘誓願' }
+    { key: 'bigV', name: '06四弘誓願', label: '四弘誓願' },
+    { key: 'daChuanShi', name: '07大船師', label: '大船師' },
+    { key: 'eduWaterSlash', name: '08-1教育(水滴＋斜線)', label: '教育(斜線)' },
+    { key: 'eduWaterArc', name: '08-2教育(水滴＋弧線)', label: '教育(弧線)' },
+    { key: 'eduBigLotus', name: '08-3教育(大蓮花)', label: '教育(大蓮花)' },
+    { key: 'eduMidSmallLotus', name: '08-4教育(中小蓮花)', label: '教育(中小蓮花)' },
+    { key: 'humanities', name: '09人文', label: '人文' },
+    { key: 'fiveContinents1', name: '10-1五大洲', label: '五大洲1' },
+    { key: 'fiveContinents2', name: '10-2五大洲', label: '五大洲2' },
+    { key: 'flyingApsaras', name: '11飛天', label: '飛天' }
   ];
 
   function getActionHintsForPerformer(performer, key) {
@@ -1262,12 +1271,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Define custom colors for each formation key
     const formationColors = {
       basic: '#eab308',      // 黃色
-      circle: '#854d0e',     // 棕色
-      xingYuan: '#16a34a',   // 綠色
-      jingSi: '#eab308',     // 黃色
-      lamp: '#4ade80',       // 淺綠色
-      noBoat: '#3b82f6',     // 藍色
-      bigV: '#ec4899'        // 粉紅色
+      circle: '#BE6C50',     // 暖紅棕色
+      xingYuan: '#0B954B',   // 綠色
+      jingSi: '#80CEF3',     // 天藍色
+      lamp: '#ACCE22',       // 嫩綠色
+      noBoat: '#ACCE22',     // 嫩綠色
+      noBoat3: '#ACCE22',    // 嫩綠色
+      bigV: '#F19EA8',       // 粉紅色
+      daChuanShi: '#FDD100',  // 黃色
+      eduWaterSlash: '#A6ADD6', // 藍紫色
+      eduWaterArc: '#BE6C50',   // 暖紅棕色
+      eduBigLotus: '#BE6C50',   // 暖紅棕色
+      eduMidSmallLotus: '#BE6C50', // 暖紅棕色
+      humanities: '#0061AE',   // 藍色
+      fiveContinents1: '#AF9DA8', // 灰紫色
+      fiveContinents2: '#AF9DA8', // 灰紫色
+      flyingApsaras: '#E62129'  // 紅色
     };
     
     // Draw all transition path segments sequentially
@@ -2902,6 +2921,15 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('adminLamp').value = currentPerformer.lamp || '';
         document.getElementById('adminNoBoat').value = currentPerformer.noBoat || '';
         document.getElementById('adminBigV').value = currentPerformer.bigV || '';
+        document.getElementById('adminDaChuanShi').value = currentPerformer.daChuanShi || '';
+        document.getElementById('adminEduWaterSlash').value = currentPerformer.eduWaterSlash || '';
+        document.getElementById('adminEduWaterArc').value = currentPerformer.eduWaterArc || '';
+        document.getElementById('adminEduBigLotus').value = currentPerformer.eduBigLotus || '';
+        document.getElementById('adminEduMidSmallLotus').value = currentPerformer.eduMidSmallLotus || '';
+        document.getElementById('adminHumanities').value = currentPerformer.humanities || '';
+        document.getElementById('adminFiveContinents1').value = currentPerformer.fiveContinents1 || '';
+        document.getElementById('adminFiveContinents2').value = currentPerformer.fiveContinents2 || '';
+        document.getElementById('adminFlyingApsaras').value = currentPerformer.flyingApsaras || '';
       }
       adminModal.style.display = 'flex';
       adminPasswordInput.focus();
@@ -3037,6 +3065,15 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('adminLamp').value = p.lamp || '';
         document.getElementById('adminNoBoat').value = p.noBoat || '';
         document.getElementById('adminBigV').value = p.bigV || '';
+        document.getElementById('adminDaChuanShi').value = p.daChuanShi || '';
+        document.getElementById('adminEduWaterSlash').value = p.eduWaterSlash || '';
+        document.getElementById('adminEduWaterArc').value = p.eduWaterArc || '';
+        document.getElementById('adminEduBigLotus').value = p.eduBigLotus || '';
+        document.getElementById('adminEduMidSmallLotus').value = p.eduMidSmallLotus || '';
+        document.getElementById('adminHumanities').value = p.humanities || '';
+        document.getElementById('adminFiveContinents1').value = p.fiveContinents1 || '';
+        document.getElementById('adminFiveContinents2').value = p.fiveContinents2 || '';
+        document.getElementById('adminFlyingApsaras').value = p.flyingApsaras || '';
         
         showMsg('已成功載入該表演者現有座標！', 'success');
       } else {
@@ -3046,6 +3083,15 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('adminLamp').value = '';
         document.getElementById('adminNoBoat').value = '';
         document.getElementById('adminBigV').value = '';
+        document.getElementById('adminDaChuanShi').value = '';
+        document.getElementById('adminEduWaterSlash').value = '';
+        document.getElementById('adminEduWaterArc').value = '';
+        document.getElementById('adminEduBigLotus').value = '';
+        document.getElementById('adminEduMidSmallLotus').value = '';
+        document.getElementById('adminHumanities').value = '';
+        document.getElementById('adminFiveContinents1').value = '';
+        document.getElementById('adminFiveContinents2').value = '';
+        document.getElementById('adminFlyingApsaras').value = '';
         showMsg(`找不到身分證編號為 "${enteredId}" 且屬於 "${team}" 的表演者！`, 'error');
       }
     });
@@ -3111,6 +3157,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const lamp = document.getElementById('adminLamp').value.trim();
       const noBoat = document.getElementById('adminNoBoat').value.trim();
       const bigV = document.getElementById('adminBigV').value.trim();
+      const daChuanShi = document.getElementById('adminDaChuanShi').value.trim();
+      const eduWaterSlash = document.getElementById('adminEduWaterSlash').value.trim();
+      const eduWaterArc = document.getElementById('adminEduWaterArc').value.trim();
+      const eduBigLotus = document.getElementById('adminEduBigLotus').value.trim();
+      const eduMidSmallLotus = document.getElementById('adminEduMidSmallLotus').value.trim();
+      const humanities = document.getElementById('adminHumanities').value.trim();
+      const fiveContinents1 = document.getElementById('adminFiveContinents1').value.trim();
+      const fiveContinents2 = document.getElementById('adminFiveContinents2').value.trim();
+      const flyingApsaras = document.getElementById('adminFlyingApsaras').value.trim();
       
       const submitBtn = document.getElementById('submitPerfBtn');
       submitBtn.disabled = true;
@@ -3119,7 +3174,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/api/update-performer', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, circle, xingYuan, jingSi, lamp, noBoat, bigV, team, password: currentAdminPassword })
+        body: JSON.stringify({ id, circle, xingYuan, jingSi, lamp, noBoat, bigV, daChuanShi, eduWaterSlash, eduWaterArc, eduBigLotus, eduMidSmallLotus, humanities, fiveContinents1, fiveContinents2, flyingApsaras, team, password: currentAdminPassword })
       })
       .then(res => res.json())
       .then(data => {

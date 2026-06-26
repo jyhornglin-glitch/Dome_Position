@@ -871,7 +871,7 @@
           <div id="dropzone" class="dropzone-container" onclick="document.getElementById('csvFileInput').click();">
             <i class="fa-solid fa-cloud-arrow-up dropzone-icon"></i>
             <div class="dropzone-text">將 CSV 檔案拖曳至此處，或點擊選擇檔案</div>
-            <div class="dropzone-subtext">檔案格式必須為 UTF-8 編碼的 CSV 格式</div>
+            <div class="dropzone-subtext">檔案格式必須為 UTF-8 編碼的 CSV 格式（檔名可為任意名稱，系統會主動識別並更新）</div>
             <input type="file" id="csvFileInput" style="display: none;" accept=".csv" onchange="handleFileSelect(event);">
           </div>
 
@@ -1305,10 +1305,24 @@
       
       const reader = new FileReader();
       reader.onload = function(evt) {
-        selectedCSVContent = evt.target.result;
-        validateAndPreviewCSV(selectedCSVContent);
+        const arrayBuffer = evt.target.result;
+        try {
+          // 使用 TextDecoder 驗證是否為 UTF-8 編碼 (若非 UTF-8，fatal: true 會拋出例外)
+          const decoder = new TextDecoder('utf-8', { fatal: true });
+          const text = decoder.decode(arrayBuffer);
+          selectedCSVContent = text;
+          validateAndPreviewCSV(selectedCSVContent);
+        } catch (err) {
+          showValidationAlert("⚠️ 檔案編碼錯誤！請確認上傳的檔案是 UTF-8 編碼格式。<br><small style='color: var(--text-secondary);'>提示：請在儲存或匯出 CSV 時，將編碼選擇為「UTF-8」或「帶 BOM 的 UTF-8」。</small>");
+          selectedCSVContent = null;
+          document.getElementById('csvPreviewContainer').style.display = 'none';
+          document.getElementById('importActions').style.display = 'none';
+        }
       };
-      reader.readAsText(file);
+      reader.onerror = function() {
+        showValidationAlert("⚠️ 讀取檔案失敗！");
+      };
+      reader.readAsArrayBuffer(file);
     }
 
     function clearSelectedFile() {
