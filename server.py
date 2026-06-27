@@ -597,21 +597,21 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                         exist_row = existing_rows[exist_idx]
                         
                         changed = False
-                        if exist_row.get('01圓形') != circle: exist_row['01圓形'] = circle; changed = True
-                        if exist_row.get('02行願') != xingyuan: exist_row['02行願'] = xingyuan; changed = True
-                        if exist_row.get('04靜思家風') != jingsi: exist_row['04靜思家風'] = jingsi; changed = True
-                        if exist_row.get('05-1有法船（點一盞燈）') != lamp: exist_row['05-1有法船（點一盞燈）'] = lamp; changed = True
-                        if exist_row.get('05-2無法船（菜市場5毛錢）') != noboat: exist_row['05-2無法船（菜市場5毛錢）'] = noboat; changed = True
-                        if exist_row.get('06四弘誓願') != bigv: exist_row['06四弘誓願'] = bigv; changed = True
-                        if exist_row.get('07大船師') != dachuan: exist_row['07大船師'] = dachuan; changed = True
-                        if exist_row.get('08-1教育(水滴＋斜線)') != eduslash: exist_row['08-1教育(水滴＋斜線)'] = eduslash; changed = True
-                        if exist_row.get('08-2教育(水滴＋弧線)') != eduarc: exist_row['08-2教育(水滴＋弧線)'] = eduarc; changed = True
-                        if exist_row.get('08-3教育(大蓮花)') != edubiglotus: exist_row['08-3教育(大蓮花)'] = edubiglotus; changed = True
-                        if exist_row.get('08-4教育(中小蓮花)') != edumidsmalllotus: exist_row['08-4教育(中小蓮花)'] = edumidsmalllotus; changed = True
-                        if exist_row.get('09人文') != humanities: exist_row['09人文'] = humanities; changed = True
-                        if exist_row.get('10-1五大洲') != fivecontinents1: exist_row['10-1五大洲'] = fivecontinents1; changed = True
-                        if exist_row.get('10-2五大洲') != fivecontinents2: exist_row['10-2五大洲'] = fivecontinents2; changed = True
-                        if exist_row.get('11飛天') != flyingapsaras: exist_row['11飛天'] = flyingapsaras; changed = True
+                        if circle_col in r and exist_row.get('01圓形') != circle: exist_row['01圓形'] = circle; changed = True
+                        if xingyuan_col in r and exist_row.get('02行願') != xingyuan: exist_row['02行願'] = xingyuan; changed = True
+                        if jingsi_col in r and exist_row.get('04靜思家風') != jingsi: exist_row['04靜思家風'] = jingsi; changed = True
+                        if lamp_col in r and exist_row.get('05-1有法船（點一盞燈）') != lamp: exist_row['05-1有法船（點一盞燈）'] = lamp; changed = True
+                        if noboat_col in r and exist_row.get('05-2無法船（菜市場5毛錢）') != noboat: exist_row['05-2無法船（菜市場5毛錢）'] = noboat; changed = True
+                        if bigv_col in r and exist_row.get('06四弘誓願') != bigv: exist_row['06四弘誓願'] = bigv; changed = True
+                        if dachuan_col in r and exist_row.get('07大船師') != dachuan: exist_row['07大船師'] = dachuan; changed = True
+                        if eduslash_col in r and exist_row.get('08-1教育(水滴＋斜線)') != eduslash: exist_row['08-1教育(水滴＋斜線)'] = eduslash; changed = True
+                        if eduarc_col in r and exist_row.get('08-2教育(水滴＋弧線)') != eduarc: exist_row['08-2教育(水滴＋弧線)'] = eduarc; changed = True
+                        if edubiglotus_col in r and exist_row.get('08-3教育(大蓮花)') != edubiglotus: exist_row['08-3教育(大蓮花)'] = edubiglotus; changed = True
+                        if edumidsmalllotus_col in r and exist_row.get('08-4教育(中小蓮花)') != edumidsmalllotus: exist_row['08-4教育(中小蓮花)'] = edumidsmalllotus; changed = True
+                        if humanities_col in r and exist_row.get('09人文') != humanities: exist_row['09人文'] = humanities; changed = True
+                        if fivecontinents1_col in r and exist_row.get('10-1五大洲') != fivecontinents1: exist_row['10-1五大洲'] = fivecontinents1; changed = True
+                        if fivecontinents2_col in r and exist_row.get('10-2五大洲') != fivecontinents2: exist_row['10-2五大洲'] = fivecontinents2; changed = True
+                        if flyingapsaras_col in r and exist_row.get('11飛天') != flyingapsaras: exist_row['11飛天'] = flyingapsaras; changed = True
                         
                         if cat_col in r and exist_row.get('身分別') != cat: exist_row['身分別'] = cat; changed = True
                         if name_col_perf in r and exist_row.get('姓名') != pname: exist_row['姓名'] = pname; changed = True
