@@ -705,6 +705,8 @@
 
     .form-modal-body {
       padding: 24px;
+      max-height: 65vh;
+      overflow-y: auto;
     }
 
     .form-modal-footer {
@@ -1001,6 +1003,15 @@
                   <th>05-1法船</th>
                   <th>05-2無船</th>
                   <th>06四弘</th>
+                  <th>07大船師</th>
+                  <th>08-1教育(斜)</th>
+                  <th>08-2教育(弧)</th>
+                  <th>08-3大蓮花</th>
+                  <th>08-4中小蓮</th>
+                  <th>09人文</th>
+                  <th>10-1五大洲1</th>
+                  <th>10-2五大洲2</th>
+                  <th>11飛天</th>
                   <th style="min-width: 110px;">操作</th>
                 </tr>
               </thead>
@@ -1114,6 +1125,48 @@
           <div class="form-group">
             <label for="formPerfBigV">06四弘 座標</label>
             <input type="text" id="formPerfBigV" class="form-control" placeholder="X-Y">
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="formPerfDaChuan">07大船師 座標</label>
+            <input type="text" id="formPerfDaChuan" class="form-control" placeholder="X-Y">
+          </div>
+          <div class="form-group">
+            <label for="formPerfEduSlash">08-1教育(斜) 座標</label>
+            <input type="text" id="formPerfEduSlash" class="form-control" placeholder="X-Y">
+          </div>
+          <div class="form-group">
+            <label for="formPerfEduArc">08-2教育(弧) 座標</label>
+            <input type="text" id="formPerfEduArc" class="form-control" placeholder="X-Y">
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="formPerfEduBigLotus">08-3大蓮花 座標</label>
+            <input type="text" id="formPerfEduBigLotus" class="form-control" placeholder="X-Y">
+          </div>
+          <div class="form-group">
+            <label for="formPerfEduMidSmallLotus">08-4中小蓮 座標</label>
+            <input type="text" id="formPerfEduMidSmallLotus" class="form-control" placeholder="X-Y">
+          </div>
+          <div class="form-group">
+            <label for="formPerfHumanities">09人文 座標</label>
+            <input type="text" id="formPerfHumanities" class="form-control" placeholder="X-Y">
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="formPerfFiveContinents1">10-1五大洲1 座標</label>
+            <input type="text" id="formPerfFiveContinents1" class="form-control" placeholder="X-Y">
+          </div>
+          <div class="form-group">
+            <label for="formPerfFiveContinents2">10-2五大洲2 座標</label>
+            <input type="text" id="formPerfFiveContinents2" class="form-control" placeholder="X-Y">
+          </div>
+          <div class="form-group">
+            <label for="formPerfFlyingApsaras">11飛天 座標</label>
+            <input type="text" id="formPerfFlyingApsaras" class="form-control" placeholder="X-Y">
           </div>
         </div>
       </div>
@@ -1643,7 +1696,7 @@
       const pageData = filteredCoords.slice(start, end);
 
       if (pageData.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="11" style="text-align: center; color: var(--text-secondary);">沒有符合條件的資料</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="20" style="text-align: center; color: var(--text-secondary);">沒有符合條件的資料</td></tr>`;
         document.getElementById('coordsPaginationInfo').textContent = `顯示第 0 筆，共 0 筆`;
         document.getElementById('btnPrevCoords').disabled = true;
         document.getElementById('btnNextCoords').disabled = true;
@@ -1669,6 +1722,15 @@
             <td><input type="text" class="table-edit-input" id="editLamp_${uniqueKey}" value="${p['05-1有法船（點一盞燈）'] || ''}" style="width: 70px;"></td>
             <td><input type="text" class="table-edit-input" id="editNoBoat_${uniqueKey}" value="${p['05-2無法船（菜市場5毛錢）'] || ''}" style="width: 70px;"></td>
             <td><input type="text" class="table-edit-input" id="editBigV_${uniqueKey}" value="${p['06四弘誓願'] || ''}" style="width: 70px;"></td>
+            <td><input type="text" class="table-edit-input" id="editDaChuan_${uniqueKey}" value="${p['07大船師'] || ''}" style="width: 70px;"></td>
+            <td><input type="text" class="table-edit-input" id="editEduSlash_${uniqueKey}" value="${p['08-1教育(水滴＋斜線)'] || ''}" style="width: 70px;"></td>
+            <td><input type="text" class="table-edit-input" id="editEduArc_${uniqueKey}" value="${p['08-2教育(水滴＋弧線)'] || ''}" style="width: 70px;"></td>
+            <td><input type="text" class="table-edit-input" id="editEduBigLotus_${uniqueKey}" value="${p['08-3教育(大蓮花)'] || ''}" style="width: 70px;"></td>
+            <td><input type="text" class="table-edit-input" id="editEduMidSmallLotus_${uniqueKey}" value="${p['08-4教育(中小蓮花)'] || ''}" style="width: 70px;"></td>
+            <td><input type="text" class="table-edit-input" id="editHumanities_${uniqueKey}" value="${p['09人文'] || ''}" style="width: 70px;"></td>
+            <td><input type="text" class="table-edit-input" id="editFiveContinents1_${uniqueKey}" value="${p['10-1五大洲'] || ''}" style="width: 70px;"></td>
+            <td><input type="text" class="table-edit-input" id="editFiveContinents2_${uniqueKey}" value="${p['10-2五大洲'] || ''}" style="width: 70px;"></td>
+            <td><input type="text" class="table-edit-input" id="editFlyingApsaras_${uniqueKey}" value="${p['11飛天'] || ''}" style="width: 70px;"></td>
             <td>
               <div class="row-actions">
                 <button class="btn-row-action save-btn" onclick="saveInlineEdit('performers', '${uniqueKey}', { '班別': '${p['班別']}', '身份證': '${p['身份證']}' });">
@@ -1692,6 +1754,15 @@
             <td>${p['05-1有法船（點一盞燈）'] || ''}</td>
             <td>${p['05-2無法船（菜市場5毛錢）'] || ''}</td>
             <td>${p['06四弘誓願'] || ''}</td>
+            <td>${p['07大船師'] || ''}</td>
+            <td>${p['08-1教育(水滴＋斜線)'] || ''}</td>
+            <td>${p['08-2教育(水滴＋弧線)'] || ''}</td>
+            <td>${p['08-3教育(大蓮花)'] || ''}</td>
+            <td>${p['08-4教育(中小蓮花)'] || ''}</td>
+            <td>${p['09人文'] || ''}</td>
+            <td>${p['10-1五大洲'] || ''}</td>
+            <td>${p['10-2五大洲'] || ''}</td>
+            <td>${p['11飛天'] || ''}</td>
             <td>
               <div class="row-actions">
                 <button class="btn-row-action edit-btn" onclick="startInlineEdit('${uniqueKey}');">
@@ -1752,6 +1823,15 @@
         row['05-1有法船（點一盞燈）'] = document.getElementById(`editLamp_${uniqueKey}`).value.trim();
         row['05-2無法船（菜市場5毛錢）'] = document.getElementById(`editNoBoat_${uniqueKey}`).value.trim();
         row['06四弘誓願'] = document.getElementById(`editBigV_${uniqueKey}`).value.trim();
+        row['07大船師'] = document.getElementById(`editDaChuan_${uniqueKey}`).value.trim();
+        row['08-1教育(水滴＋斜線)'] = document.getElementById(`editEduSlash_${uniqueKey}`).value.trim();
+        row['08-2教育(水滴＋弧線)'] = document.getElementById(`editEduArc_${uniqueKey}`).value.trim();
+        row['08-3教育(大蓮花)'] = document.getElementById(`editEduBigLotus_${uniqueKey}`).value.trim();
+        row['08-4教育(中小蓮花)'] = document.getElementById(`editEduMidSmallLotus_${uniqueKey}`).value.trim();
+        row['09人文'] = document.getElementById(`editHumanities_${uniqueKey}`).value.trim();
+        row['10-1五大洲'] = document.getElementById(`editFiveContinents1_${uniqueKey}`).value.trim();
+        row['10-2五大洲'] = document.getElementById(`editFiveContinents2_${uniqueKey}`).value.trim();
+        row['11飛天'] = document.getElementById(`editFlyingApsaras_${uniqueKey}`).value.trim();
       }
 
       fetch('/api/admin/save-row', {
@@ -1858,6 +1938,15 @@
         document.getElementById('formPerfLamp').value = '';
         document.getElementById('formPerfNoBoat').value = '';
         document.getElementById('formPerfBigV').value = '';
+        document.getElementById('formPerfDaChuan').value = '';
+        document.getElementById('formPerfEduSlash').value = '';
+        document.getElementById('formPerfEduArc').value = '';
+        document.getElementById('formPerfEduBigLotus').value = '';
+        document.getElementById('formPerfEduMidSmallLotus').value = '';
+        document.getElementById('formPerfHumanities').value = '';
+        document.getElementById('formPerfFiveContinents1').value = '';
+        document.getElementById('formPerfFiveContinents2').value = '';
+        document.getElementById('formPerfFlyingApsaras').value = '';
       }
     }
 
@@ -1890,6 +1979,15 @@
         row['05-1有法船（點一盞燈）'] = document.getElementById('formPerfLamp').value.trim();
         row['05-2無法船（菜市場5毛錢）'] = document.getElementById('formPerfNoBoat').value.trim();
         row['06四弘誓願'] = document.getElementById('formPerfBigV').value.trim();
+        row['07大船師'] = document.getElementById('formPerfDaChuan').value.trim();
+        row['08-1教育(水滴＋斜線)'] = document.getElementById('formPerfEduSlash').value.trim();
+        row['08-2教育(水滴＋弧線)'] = document.getElementById('formPerfEduArc').value.trim();
+        row['08-3教育(大蓮花)'] = document.getElementById('formPerfEduBigLotus').value.trim();
+        row['08-4教育(中小蓮花)'] = document.getElementById('formPerfEduMidSmallLotus').value.trim();
+        row['09人文'] = document.getElementById('formPerfHumanities').value.trim();
+        row['10-1五大洲'] = document.getElementById('formPerfFiveContinents1').value.trim();
+        row['10-2五大洲'] = document.getElementById('formPerfFiveContinents2').value.trim();
+        row['11飛天'] = document.getElementById('formPerfFlyingApsaras').value.trim();
 
         if (!row['身份證']) {
           alert('請填寫身份證網格編號！');
