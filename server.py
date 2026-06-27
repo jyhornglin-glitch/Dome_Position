@@ -453,7 +453,13 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
             row_idx = 1
             for row in reader:
                 row_idx += 1
-                row_class = str(row.get(class_col, '')).strip()
+                # 清洗列資料中所有 Key 與 Value 的前後空白與換行符
+                clean_row = {}
+                for k, v in row.items():
+                    if k is not None:
+                        clean_row[k.strip()] = v.strip() if v is not None else ""
+
+                row_class = str(clean_row.get(class_col, '')).strip()
                 
                 # Validate Class consistency
                 if row_class != class_val:
@@ -465,7 +471,7 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                 
                 # Validate Date consistency (only for dayperformers)
                 if import_type == 'dayperformers':
-                    row_date = str(row.get(date_col, '')).strip()
+                    row_date = str(clean_row.get(date_col, '')).strip()
                     if row_date != date_val:
                         self.send_json_response(400, {
                             "success": False,
@@ -473,7 +479,7 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                         })
                         return
                 
-                csv_rows.append(row)
+                csv_rows.append(clean_row)
 
             total_read = len(csv_rows)
             added_count = 0
