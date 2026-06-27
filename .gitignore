@@ -4,3 +4,7 @@ __pycache__/
 .git/
 .github/
 node_modules/
+data.js
+daydata.js
+performers.csv
+dayperformers.csv
