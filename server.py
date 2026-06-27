@@ -116,10 +116,17 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                 default_date = SESS_MAP.get(session_key)
                 rows.append({'班別': team, '日期': default_date, '身份證': target_id, '姓名': new_name})
 
+            # 過濾 headers 以移除空字串 (防禦性處理)
+            headers = [h for h in headers if h is not None and h.strip() != '']
+            cleaned_rows = []
+            for r in rows:
+                cleaned_r = {k: v for k, v in r.items() if k in headers}
+                cleaned_rows.append(cleaned_r)
+
             with open(DAY_CSV, mode='w', encoding='utf-8-sig', newline='') as f:
                 writer = csv.DictWriter(f, fieldnames=headers)
                 writer.writeheader()
-                writer.writerows(rows)
+                writer.writerows(cleaned_rows)
 
             # Regenerate daydata.js
             try:
@@ -204,10 +211,17 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                 self.send_json_response(404, {"success": False, "error": f"身分證 {target_id} 且屬於 {team} 不存在於 performers.csv 中"})
                 return
 
+            # 過濾 headers 以移除空字串 (防禦性處理)
+            headers = [h for h in headers if h is not None and h.strip() != '']
+            cleaned_rows = []
+            for r in rows:
+                cleaned_r = {k: v for k, v in r.items() if k in headers}
+                cleaned_rows.append(cleaned_r)
+
             with open(PERF_CSV, mode='w', encoding='utf-8-sig', newline='') as f:
                 writer = csv.DictWriter(f, fieldnames=headers)
                 writer.writeheader()
-                writer.writerows(rows)
+                writer.writerows(cleaned_rows)
 
             # Regenerate data.js
             try:
@@ -350,10 +364,16 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                     error_msg = "找不到要刪除的資料"
 
             if success:
+                # 清洗 rows，移除不在 final_headers 中的 key (防禦性過濾空字串等怪鍵)
+                cleaned_rows = []
+                for r in rows:
+                    cleaned_r = {k: v for k, v in r.items() if k in final_headers}
+                    cleaned_rows.append(cleaned_r)
+
                 with open(csv_path, mode='w', encoding='utf-8-sig', newline='') as f:
                     writer = csv.DictWriter(f, fieldnames=final_headers)
                     writer.writeheader()
-                    writer.writerows(rows)
+                    writer.writerows(cleaned_rows)
 
                 try:
                     if table_type == 'dayperformers':
@@ -633,10 +653,15 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                         added_count += 1
 
                 with open(PERF_CSV, mode='w', encoding='utf-8-sig', newline='') as f_out:
-                    clean_headers = [h for h in existing_headers if h is not None]
+                    clean_headers = [h for h in existing_headers if h is not None and h.strip() != '']
+                    cleaned_existing_rows = []
+                    for r in existing_rows:
+                        cleaned_r = {k: v for k, v in r.items() if k in clean_headers}
+                        cleaned_existing_rows.append(cleaned_r)
+
                     writer = csv.DictWriter(f_out, fieldnames=clean_headers)
                     writer.writeheader()
-                    writer.writerows(existing_rows)
+                    writer.writerows(cleaned_existing_rows)
 
                 import_csv.main(verbose=False)
 
