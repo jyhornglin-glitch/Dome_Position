@@ -3229,7 +3229,7 @@ const DAY_PERFORMERS = {
     { id: '27-45', name: '謝湘嵐', team: '東班' },
     { id: '31-31', name: '洪麗娟', team: '東班' },
     { id: '31-32', name: '邱春蘭', team: '東班' },
-    { id: '31-33', name: '缺', team: '東班' },
+    { id: '31-33', name: '鄭宜庭', team: '東班' },
     { id: '31-34', name: '周郁婷', team: '東班' },
     { id: '31-35', name: '洪麵粉', team: '東班' },
     { id: '32-30', name: '江鈴琴', team: '東班' },
