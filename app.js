@@ -1691,6 +1691,37 @@ document.addEventListener('DOMContentLoaded', () => {
     if (localPt) localPt.classList.add('active-formation');
   }
 
+  // Get YouTube video ID from URL
+  function getYouTubeVideoId(url) {
+    if (!url) return null;
+    const match = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i);
+    return match ? match[1] : null;
+  }
+
+  // Open YouTube app on mobile, or fallback to browser
+  function openYouTubeVideo(videoId, originalUrl) {
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (isMobile) {
+      const isiOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+      let appUrl = '';
+      if (isiOS) {
+        appUrl = `youtube://watch?v=${videoId}`;
+      } else {
+        appUrl = `intent://www.youtube.com/watch?v=${videoId}#Intent;package=com.google.android.youtube;scheme=https;end`;
+      }
+      
+      // Try redirecting to custom URL scheme
+      window.location.href = appUrl;
+      
+      // Fallback redirect after 1.5 seconds if target app did not wake up
+      setTimeout(() => {
+        window.open(originalUrl, '_blank');
+      }, 1500);
+    } else {
+      window.open(originalUrl, '_blank');
+    }
+  }
+
   // Render step navigation flow walkthrough list as Action Hints
   function updateNavigationSteps() {
     if (!actionHintsFlow || !currentPerformer) return;
@@ -1736,10 +1767,23 @@ document.addEventListener('DOMContentLoaded', () => {
           
           item.details.forEach(detail => {
             if (detail.type === 'text') {
-              const p = document.createElement('p');
-              p.style.cssText = 'margin: 0 0 4px 0; color: #1e293b; font-size: 12.5px; line-height: 1.45; font-weight: 500;';
-              p.textContent = detail.content;
-              itemDiv.appendChild(p);
+              const ytId = getYouTubeVideoId(detail.content);
+              if (ytId) {
+                const btn = document.createElement('a');
+                btn.className = 'yt-hint-btn';
+                btn.href = 'javascript:void(0);';
+                btn.innerHTML = '<i class="fa-brands fa-youtube yt-icon"></i> 播放提示影片';
+                btn.addEventListener('click', (e) => {
+                  e.stopPropagation();
+                  openYouTubeVideo(ytId, detail.content);
+                });
+                itemDiv.appendChild(btn);
+              } else {
+                const p = document.createElement('p');
+                p.style.cssText = 'margin: 0 0 4px 0; color: #1e293b; font-size: 12.5px; line-height: 1.45; font-weight: 500;';
+                p.textContent = detail.content;
+                itemDiv.appendChild(p);
+              }
             } else if (detail.type === 'image') {
               const img = document.createElement('img');
               img.src = detail.src;
@@ -2803,10 +2847,23 @@ document.addEventListener('DOMContentLoaded', () => {
       
       item.details.forEach(detail => {
         if (detail.type === 'text') {
-          const p = document.createElement('p');
-          p.style.cssText = 'margin: 0 0 4px 0; color: #1e293b; font-size: 13px; font-weight: 500; line-height: 1.45;';
-          p.textContent = detail.content;
-          itemDiv.appendChild(p);
+          const ytId = getYouTubeVideoId(detail.content);
+          if (ytId) {
+            const btn = document.createElement('a');
+            btn.className = 'yt-hint-btn';
+            btn.href = 'javascript:void(0);';
+            btn.innerHTML = '<i class="fa-brands fa-youtube yt-icon"></i> 播放提示影片';
+            btn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              openYouTubeVideo(ytId, detail.content);
+            });
+            itemDiv.appendChild(btn);
+          } else {
+            const p = document.createElement('p');
+            p.style.cssText = 'margin: 0 0 4px 0; color: #1e293b; font-size: 13px; font-weight: 500; line-height: 1.45;';
+            p.textContent = detail.content;
+            itemDiv.appendChild(p);
+          }
         } else if (detail.type === 'image') {
           const img = document.createElement('img');
           img.src = detail.src;

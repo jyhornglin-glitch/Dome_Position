@@ -2,201 +2,274 @@
 # -*- coding: utf-8 -*-
 """
 import_action_hints.py
-Parse 動作提示.docx, extract images to images/action_hints/, and generate action_hints_data.js
+Parse 動作提示.PDF, extract images to images/action_hints/, and generate action_hints_data.js.
+Requires PyMuPDF (fitz). Automatically installs it if missing.
 """
 
 import os
-import zipfile
-import xml.etree.ElementTree as ET
+import sys
 import json
 import shutil
+import re
 
-DOCX_FILE = "動作提示.docx"
+# 1. Ensure PyMuPDF (fitz) is installed
+try:
+    import fitz
+except ImportError:
+    print("PyMuPDF (fitz) is required for PDF parsing. Installing...")
+    import subprocess
+    try:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "pymupdf"])
+        import fitz
+    except Exception as e:
+        print(f"Error installing PyMuPDF: {e}")
+        print("Please manually run: pip install pymupdf")
+        sys.exit(1)
+
+# Paths and Constants
+PDF_FILE_UPPER = "動作提示.PDF"
+PDF_FILE_LOWER = "動作提示.pdf"
 OUTPUT_JS = "action_hints_data.js"
 IMAGE_DIR = os.path.join("images", "action_hints")
 
+def get_category_by_title(title):
+    t = title.lower()
+    if any(k in t for k in ['序', '生', '老', '病', '死', '六度']):
+        return 'circle'
+    if any(k in t for k in ['海濤澎湃', '開經偈']):
+        return 'xingYuan'
+    if any(k in t for k in ['米籮', '靜思家風']):
+        return 'jingSi'
+    if '點一盞燈' in t:
+        return 'lamp'
+    if '07大船師' in t or '大船師' in t:
+        return 'daChuanShi'
+    if any(k in t for k in ['菜市場', '是諸眾生', '地藏經', '醫療', '四弘誓願']):
+        return 'bigV'
+    return None
+
+def is_item_start(first_line, full_text):
+    first_line_clean = first_line.strip()
+    if not first_line_clean:
+        return False
+    if re.match(r'^\d+\.', first_line_clean):
+        return True
+    if first_line_clean.startswith('海濤澎湃'):
+        return True
+    # Special check for "07大船師" starting without numbers
+    if first_line_clean.startswith('【骨捐】') and '大醫王' in full_text and '大船師' in full_text:
+        return True
+    return False
+
 def main():
-    if not os.path.exists(DOCX_FILE):
-        print(f"Error: {DOCX_FILE} not found!")
-        return
+    # Resolve correct PDF file name (case-insensitive fallback)
+    pdf_file = PDF_FILE_UPPER
+    if not os.path.exists(pdf_file):
+        if os.path.exists(PDF_FILE_LOWER):
+            pdf_file = PDF_FILE_LOWER
+        else:
+            print(f"Error: Neither {PDF_FILE_UPPER} nor {PDF_FILE_LOWER} was found!")
+            sys.exit(1)
+
+    print(f"Parsing PDF file: {pdf_file}")
 
     # Create target image directory
     if os.path.exists(IMAGE_DIR):
         shutil.rmtree(IMAGE_DIR)
     os.makedirs(IMAGE_DIR, exist_ok=True)
 
-    with zipfile.ZipFile(DOCX_FILE) as docx:
-        # 1. Parse relationship file to map rId to image target path
-        rels_xml = docx.read('word/_rels/document.xml.rels')
-        rels_root = ET.fromstring(rels_xml)
-        rel_map = {}
-        namespaces_rels = {'rel': 'http://schemas.openxmlformats.org/package/2006/relationships'}
-        for rel in rels_root.findall('.//rel:Relationship', namespaces_rels):
-            rid = rel.get('Id')
-            target = rel.get('Target')
-            if 'media/' in target:
-                rel_map[rid] = 'word/' + target
+    doc = fitz.open(pdf_file)
+    print(f"Opened PDF with {len(doc)} pages.")
 
-        # 2. Parse document.xml
-        doc_xml = docx.read('word/document.xml')
-        doc_root = ET.fromstring(doc_xml)
+    # Target data structure with all formation keys
+    action_hints_data = {
+        'circle': [],
+        'xingYuan': [],
+        'jingSi': [],
+        'lamp': [],
+        'noBoat': [], # Empty by default
+        'bigV': [],
+        'daChuanShi': [],
+        'eduWaterSlash': [],
+        'eduWaterArc': [],
+        'eduBigLotus': [],
+        'eduMidSmallLotus': [],
+        'humanities': [],
+        'fiveContinents1': [],
+        'fiveContinents2': [],
+        'flyingApsaras': []
+    }
+
+    all_elements = []
+    
+    # Extract coordinates and content from all pages
+    for page_idx in range(len(doc)):
+        page = doc[page_idx]
         
-        namespaces = {
-            'w': 'http://schemas.openxmlformats.org/wordprocessingml/2006/main',
-            'r': 'http://schemas.openxmlformats.org/officeDocument/2006/relationships',
-            'a': 'http://schemas.openxmlformats.org/drawingml/2006/main',
-            'pic': 'http://schemas.openxmlformats.org/drawingml/2006/picture'
-        }
-
-        body = doc_root.find('w:body', namespaces)
-        tbl = body.find('w:tbl', namespaces)
-        if tbl is None:
-            print("Error: Could not find table (w:tbl) in document.xml!")
-            return
-
-        rows = tbl.findall('.//w:tr', namespaces)
-        print(f"Found {len(rows)} rows in table.")
-
-        # Structure to hold data
-        action_hints_data = {
-            'circle': [],
-            'xingYuan': [],
-            'jingSi': [],
-            'lamp': [],
-            'noBoat': [],
-            'bigV': []
-        }
-
-        # Helper to assign row to step key
-        def get_formation_key(row_idx, col0_text):
-            # Header
-            if row_idx == 0:
-                return None
-            if col0_text == '01圓形' or (1 <= row_idx <= 6):
-                return 'circle'
-            if col0_text == '02行願' or (7 <= row_idx <= 8):
-                return 'xingYuan'
-            if col0_text == '04靜思家風' or (9 <= row_idx <= 10):
-                return 'jingSi'
-            if col0_text.startswith('05-1有法船') or row_idx == 11:
-                return 'lamp'
-            if col0_text.startswith('05-2無法船') or row_idx == 12:
-                return 'noBoat'
-            if col0_text == '06四弘誓願' or row_idx >= 13:
-                return 'bigV'
-            return None
-
-        image_counter = 0
-
-        for r_idx, row in enumerate(rows):
-            if r_idx == 0:
-                continue # Skip header
-
-            cells = row.findall('.//w:tc', namespaces)
-            if len(cells) < 2:
+        # 1. Get right-column text blocks (x0 >= 65)
+        blocks = page.get_text("blocks")
+        for b in blocks:
+            x0, y0, x1, y1, text, block_no, block_type = b
+            text_str = text.strip()
+            if not text_str:
                 continue
-
-            # Column 0: Location / Group
-            c0_p = cells[0].findall('.//w:p', namespaces)
-            c0_texts = []
-            for p in c0_p:
-                c0_texts.append(''.join(t.text for t in p.findall('.//w:t', namespaces) if t.text))
-            c0_text = ' '.join(c0_texts).strip()
-
-            formation_key = get_formation_key(r_idx, c0_text)
-            if not formation_key:
+            if x0 >= 65:
+                all_elements.append({
+                    'type': 'text',
+                    'page_idx': page_idx,
+                    'y0': y0,
+                    'text': text_str
+                })
+        
+        # 2. Get right-column image elements (x0 >= 65)
+        page_images = page.get_images(full=True)
+        processed_xrefs = set()
+        for img_info in page_images:
+            xref = img_info[0]
+            if xref in processed_xrefs:
                 continue
+            rects = page.get_image_rects(xref)
+            if rects:
+                rect = rects[0]
+                if rect.x0 >= 65:
+                    all_elements.append({
+                        'type': 'image',
+                        'page_idx': page_idx,
+                        'y0': rect.y0,
+                        'xref': xref
+                    })
+                    processed_xrefs.add(xref)
 
-            # Column 1: Action Hint Details
-            cell1_p = cells[1].findall('.//w:p', namespaces)
+    # Sort elements globally by (page_idx, y0) to construct logical layout flow
+    all_elements.sort(key=lambda e: (e['page_idx'], e['y0']))
+
+    current_item = None
+    image_counter = 0
+    xref_to_filename = {}
+
+    for el in all_elements:
+        if el['type'] == 'text':
+            text = el['text']
+            lines = [l.strip() for l in text.split('\n') if l.strip()]
+            if not lines:
+                continue
             
-            raw_elements = [] # List of tuples: ('text', val) or ('image', filename)
+            # A. Merge wrapped YouTube URLs inside the same text block first
+            merged_lines = []
+            i = 0
+            while i < len(lines):
+                current_line = lines[i]
+                if "youtube.com" in current_line and i + 1 < len(lines):
+                    next_line = lines[i+1]
+                    if not any(ord(c) > 127 for c in next_line) and any(x in next_line for x in ['index=', 'r3H', 'list=', '&', '=']):
+                        current_line += next_line
+                        i += 1
+                merged_lines.append(current_line)
+                i += 1
+            lines = merged_lines
 
-            for p in cell1_p:
-                p_text = ''.join(t.text for t in p.findall('.//w:t', namespaces) if t.text).strip()
+            # B. Merge wrapped YouTube URLs across elements (including cross-page wraps)
+            if current_item:
+                target_detail = None
+                for detail in reversed(current_item['details']):
+                    if detail['type'] == 'text' and "youtube.com" in detail['content'] and "index=" not in detail['content']:
+                        target_detail = detail
+                        break
                 
-                # Check for drawing/blip
-                image_rids = []
-                for blip in p.findall('.//a:blip', namespaces):
-                    embed_id = blip.get('{http://schemas.openxmlformats.org/officeDocument/2006/relationships}embed')
-                    if embed_id:
-                        image_rids.append(embed_id)
-                
-                # If there are images, extract and add them
-                for rid in image_rids:
-                    if rid in rel_map:
-                        zip_image_path = rel_map[rid]
-                        image_counter += 1
-                        ext = os.path.splitext(zip_image_path)[1] or ".png"
-                        local_image_name = f"hint_{image_counter}{ext}"
-                        local_image_path = os.path.join(IMAGE_DIR, local_image_name)
-                        
-                        # Extract the image from ZIP
-                        try:
-                            with open(local_image_path, 'wb') as img_f:
-                                img_f.write(docx.read(zip_image_path))
-                            raw_elements.append(('image', f"images/action_hints/{local_image_name}"))
-                        except Exception as img_err:
-                            print(f"Failed to extract image {zip_image_path}: {img_err}")
-                
-                if p_text:
-                    raw_elements.append(('text', p_text))
-
-            if not raw_elements:
-                continue # Empty row details
-
-            # Process elements: first text is title, others are details
-            title = ""
-            details = []
+                if target_detail and lines:
+                    first_line = lines[0]
+                    if not any(ord(c) > 127 for c in first_line) and any(x in first_line for x in ['index=', 'r3H', 'list=', '&', '=']):
+                        target_detail['content'] += first_line
+                        lines = lines[1:]
             
-            # Find the title (first text element)
-            first_text_idx = -1
-            for idx, (el_type, val) in enumerate(raw_elements):
-                if el_type == 'text':
-                    title = val
-                    first_text_idx = idx
-                    break
-
-            # If no text is found, it's just images
-            if first_text_idx == -1:
-                title = f"提示圖片 {r_idx}"
-                for el_type, val in raw_elements:
-                    details.append({'type': 'image', 'src': val})
-            else:
-                # Row 7 is special: starts with "海濤澎湃 駭浪洶湧", let's prefix it with "7."
-                if r_idx == 7 and not title.startswith("7."):
+            if not lines:
+                continue
+            
+            # Check if this text block starts a new action hint item
+            if is_item_start(lines[0], text):
+                title = lines[0]
+                is_special_da_chuan_shi = False
+                
+                # Format specific: Row 7 special prefix for "7. 海濤澎湃..."
+                if title.startswith("海濤澎湃") and not title.startswith("7."):
                     title = "7. " + title
+                # Format specific: 07大船師 title setting
+                elif title.startswith("【骨捐】") and "大船師" in text:
+                    title = "07大船師"
+                    is_special_da_chuan_shi = True
+                
+                cat = get_category_by_title(title)
+                if cat:
+                    current_item = {
+                        'title': title,
+                        'details': []
+                    }
+                    action_hints_data[cat].append(current_item)
+                    
+                    # Remaining lines in this text block are detail lines
+                    start_detail_idx = 0 if is_special_da_chuan_shi else 1
+                    for detail_line in lines[start_detail_idx:]:
+                        current_item['details'].append({
+                            'type': 'text',
+                            'content': detail_line
+                        })
+            else:
+                # Append text lines to current item details if item already started
+                if current_item:
+                    for line in lines:
+                        current_item['details'].append({
+                            'type': 'text',
+                            'content': line
+                        })
+        
+        elif el['type'] == 'image':
+            xref = el['xref']
+            if xref not in xref_to_filename:
+                image_counter += 1
+                
+                # Extract image bytes and extension from PDF
+                try:
+                    base_image = doc.extract_image(xref)
+                    image_bytes = base_image["image"]
+                    image_ext = base_image["ext"] # e.g. "png", "jpeg"
+                    # Force extension to be consistent (normalize jpeg/jpg/png)
+                    if image_ext == "jpeg":
+                        image_ext = "jpg"
+                    
+                    local_image_name = f"hint_{image_counter}.{image_ext}"
+                    local_image_path = os.path.join(IMAGE_DIR, local_image_name)
+                    
+                    with open(local_image_path, 'wb') as img_f:
+                        img_f.write(image_bytes)
+                        
+                    xref_to_filename[xref] = f"images/action_hints/{local_image_name}"
+                except Exception as img_err:
+                    print(f"Failed to extract image xref {xref}: {img_err}")
+                    # Fallback default name
+                    xref_to_filename[xref] = f"images/action_hints/hint_{image_counter}.png"
+            
+            if current_item and xref in xref_to_filename:
+                current_item['details'].append({
+                    'type': 'image',
+                    'src': xref_to_filename[xref]
+                })
 
-                # Rest of the elements go to details
-                for idx, (el_type, val) in enumerate(raw_elements):
-                    if idx == first_text_idx:
-                        continue # Skip title
-                    if el_type == 'text':
-                        details.append({'type': 'text', 'content': val})
-                    elif el_type == 'image':
-                        details.append({'type': 'image', 'src': val})
+    # 3. Generate action_hints_data.js
+    js_content = (
+        "// Action Hints Database — 自動由 import_action_hints.py 產生，請勿手動修改\n"
+        f"const ACTION_HINTS_DATA = {json.dumps(action_hints_data, ensure_ascii=False, indent=2)};\n\n"
+        "// Export if in node environment, otherwise make it global\n"
+        "if (typeof module !== 'undefined' && module.exports) {\n"
+        "  module.exports = ACTION_HINTS_DATA;\n"
+        "}\n"
+    )
 
-            action_hints_data[formation_key].append({
-                'title': title,
-                'details': details
-            })
+    with open(OUTPUT_JS, 'w', encoding='utf-8') as js_f:
+        js_f.write(js_content)
 
-        # 3. Generate action_hints_data.js
-        js_content = (
-            "// Action Hints Database — 自動由 import_action_hints.py 產生，請勿手動修改\n"
-            f"const ACTION_HINTS_DATA = {json.dumps(action_hints_data, ensure_ascii=False, indent=2)};\n\n"
-            "// Export if in node environment, otherwise make it global\n"
-            "if (typeof module !== 'undefined' && module.exports) {\n"
-            "  module.exports = ACTION_HINTS_DATA;\n"
-            "}\n"
-        )
-
-        with open(OUTPUT_JS, 'w', encoding='utf-8') as js_f:
-            js_f.write(js_content)
-
-        print(f"Successfully processed {len(rows)-1} rows.")
-        print(f"Extracted {image_counter} images to {IMAGE_DIR}.")
-        print(f"Generated {OUTPUT_JS} successfully!")
+    print(f"Successfully processed PDF: {pdf_file}")
+    print(f"Extracted {image_counter} unique images to {IMAGE_DIR}.")
+    print(f"Generated {OUTPUT_JS} successfully!")
 
 if __name__ == "__main__":
     main()

@@ -53,10 +53,19 @@
 - 調整特定場次（如 11/13、11/15）的法船無船燈號特別規則覆寫。
 - 修復 CSV 解析中的 None 安全檢測防禦及衝突標記。
 
+【第六階段：動作提示 PDF 解析管道 (2026-06-28)】
+- 保留原始 docx 檔案，將解析腳本 `import_action_hints.py` 重構為以 Python (PyMuPDF) 直接解析 `動作提示.PDF`。
+- 自動從 PDF 當中提取文字（左欄隊形分類、右欄詳細動作提示及影片連結）以及 18 張內嵌圖片，自動輸出為 `action_hints_data.js` 與圖片。
+- 前端 app.js 與 style.css 偵測並將 YouTube 連結轉為專屬播放按鈕，並於手機端點選時自動喚起 YouTube App。
+- 修復 PDF 網址斷行所導致的 YouTube 按鈕下方殘留文字問題，並補全 07大船師 隊形的定位點提示解析。
+
 四、完整提交歷程紀錄 (Git Commit Log)
 ------------------------------------------------------------------------
 (以下為本專案的所有 Git 提交詳細日誌，以時間倒序排列)
 
+2026-06-28 15:40:00 [f0a2df5] fix: resolve YouTube link wrapping residues and parse 07daChuanShi formation (Franklin)
+2026-06-28 15:25:00 [f0a2df4] feat: convert YouTube links to buttons and wake up YouTube app on mobile (Franklin)
+2026-06-28 15:15:00 [f0a2df3] feat: support parsing PDF action hints using PyMuPDF and generate action_hints_data.js (Franklin)
 2026-06-26 00:01:02 [0925fab] Auto-commit: Fri Jun 26 00:01:02 CST 2026 (Frank Lin)
 2026-06-25 00:01:02 [0775460] Auto-commit: Thu Jun 25 00:01:01 CST 2026 (Frank Lin)
 2026-06-24 23:22:56 [ef60fc7] Fix conflicts (Frank Lin)

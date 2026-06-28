@@ -2,8 +2,12 @@
 const ACTION_HINTS_DATA = {
   "circle": [
     {
-      "title": "序，甲45度→乙",
+      "title": "1. 序，甲45 度→乙",
       "details": [
+        {
+          "type": "text",
+          "content": "https://www.youtube.com/watch?v=N6TKl4qpEDk&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=2"
+        },
         {
           "type": "image",
           "src": "images/action_hints/hint_1.png"
@@ -47,8 +51,12 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "2.生，甲45度",
+      "title": "2. 生，甲45 度",
       "details": [
+        {
+          "type": "text",
+          "content": "https://www.youtube.com/watch?v=jZYb5xOEM7w&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=3"
+        },
         {
           "type": "image",
           "src": "images/action_hints/hint_2.png"
@@ -67,19 +75,19 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "報～天臂城入經藏：前來祝賀！"
+          "content": "報〜天臂城入經藏：前來祝賀！"
         },
         {
           "type": "text",
-          "content": "報～拘薩羅國、摩竭陀國入經藏：前來獻禮！"
+          "content": "報〜拘薩羅國、摩竭陀國入經藏：前來獻禮！"
         },
         {
           "type": "text",
-          "content": "報～般闍羅國、迦尸國入經藏：前來祝賀！"
+          "content": "報〜般闍羅國、迦尸國入經藏：前來祝賀！"
         },
         {
           "type": "text",
-          "content": "報～鴦迦國、跋羅國入經藏：前來獻禮！"
+          "content": "報〜鴦迦國、跋羅國入經藏：前來獻禮！"
         },
         {
           "type": "text",
@@ -90,6 +98,10 @@ const ACTION_HINTS_DATA = {
     {
       "title": "3.老，乙",
       "details": [
+        {
+          "type": "text",
+          "content": "https://www.youtube.com/watch?v=D73tL1GPAxw&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=4"
+        },
         {
           "type": "image",
           "src": "images/action_hints/hint_3.png"
@@ -113,8 +125,12 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "4.病，乙",
+      "title": "3. 病，乙",
       "details": [
+        {
+          "type": "text",
+          "content": "https://www.youtube.com/watch?v=GpXqV0UpLDk&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=5"
+        },
         {
           "type": "image",
           "src": "images/action_hints/hint_4.png"
@@ -134,8 +150,12 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "5.死，乙",
+      "title": "4. 死，乙",
       "details": [
+        {
+          "type": "text",
+          "content": "https://www.youtube.com/watch?v=vCOU9QCWnSg&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=6"
+        },
         {
           "type": "image",
           "src": "images/action_hints/hint_5.png"
@@ -155,8 +175,16 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "6.六度",
+      "title": "5. 六度",
       "details": [
+        {
+          "type": "text",
+          "content": "https://www.youtube.com/watch?v=PrwJSrms0Pg&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=7"
+        },
+        {
+          "type": "text",
+          "content": "https://www.youtube.com/watch?v=1oHMRj9r_yo&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=8"
+        },
         {
           "type": "image",
           "src": "images/action_hints/hint_6.png"
@@ -208,6 +236,43 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "請佛轉法輪"
+        },
+        {
+          "type": "text",
+          "content": "https://www.youtube.com/watch?v=jCHKnjMnXK8&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=9"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_7.png"
+        }
+      ]
+    },
+    {
+      "title": "13.是諸眾生",
+      "details": [
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_14.png"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_15.png"
+        },
+        {
+          "type": "text",
+          "content": "【慈善ending 無量義經．德行品】"
+        },
+        {
+          "type": "text",
+          "content": "https://www.youtube.com/watch?v=dd2VNwpNaLI&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=15"
+        },
+        {
+          "type": "text",
+          "content": "是諸眾生真善知識是諸眾生大良福田是諸眾生不請之師是諸眾生安隱樂處"
+        },
+        {
+          "type": "text",
+          "content": "救處護處大依止處處處為眾作大導師 能為生盲作眼目 為癲狂慌亂作正念"
         }
       ]
     }
@@ -216,10 +281,6 @@ const ACTION_HINTS_DATA = {
     {
       "title": "7. 海濤澎湃 駭浪洶湧",
       "details": [
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_7.png"
-        },
         {
           "type": "text",
           "content": "心志已付 身隨之赴"
@@ -255,8 +316,12 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "8.開經偈/面向法師45度",
+      "title": "8.開經偈/面向法師45 度",
       "details": [
+        {
+          "type": "text",
+          "content": "https://www.youtube.com/watch?v=Nh6mOB34LnA&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=10"
+        },
         {
           "type": "image",
           "src": "images/action_hints/hint_8.png"
@@ -290,8 +355,12 @@ const ACTION_HINTS_DATA = {
   ],
   "jingSi": [
     {
-      "title": "9.扛天下米籮/甲45度",
+      "title": "9.扛天下米籮/甲45 度",
       "details": [
+        {
+          "type": "text",
+          "content": "https://www.youtube.com/watch?v=xB2ZocRxSXI&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=11"
+        },
         {
           "type": "image",
           "src": "images/action_hints/hint_10.png"
@@ -327,8 +396,16 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "10.靜思家風/面向法師45度",
+      "title": "10.靜思家風/面向法師45 度",
       "details": [
+        {
+          "type": "text",
+          "content": "https://www.youtube.com/watch?v=Ug3hQdiZA0g&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=12"
+        },
+        {
+          "type": "text",
+          "content": "https://www.youtube.com/watch?v=yloJiZVhUls&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=14"
+        },
         {
           "type": "image",
           "src": "images/action_hints/hint_11.png"
@@ -338,8 +415,12 @@ const ACTION_HINTS_DATA = {
   ],
   "lamp": [
     {
-      "title": "11.點一盞燈/ 面向法師45度",
+      "title": "11.點一盞燈/ 面向法師45 度",
       "details": [
+        {
+          "type": "text",
+          "content": "https://www.youtube.com/watch?v=yloJiZVhUls&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=14"
+        },
         {
           "type": "image",
           "src": "images/action_hints/hint_12.png"
@@ -373,6 +454,10 @@ const ACTION_HINTS_DATA = {
       "title": "12.菜市場的五毛錢/乙",
       "details": [
         {
+          "type": "text",
+          "content": "https://www.youtube.com/watch?v=dd2VNwpNaLI&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=15"
+        },
+        {
           "type": "image",
           "src": "images/action_hints/hint_13.png"
         },
@@ -403,33 +488,12 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "13.是諸眾生",
-      "details": [
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_14.png"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_15.png"
-        },
-        {
-          "type": "text",
-          "content": "【慈善ending 無量義經．德行品】"
-        },
-        {
-          "type": "text",
-          "content": "是諸眾生真善知識是諸眾生大良福田是諸眾生不請之師是諸眾生安隱樂處"
-        },
-        {
-          "type": "text",
-          "content": "救處護處大依止處處處為眾作大導師 能為生盲作眼目 為癲狂慌亂作正念"
-        }
-      ]
-    },
-    {
       "title": "14.地藏經/面向乙舞台",
       "details": [
+        {
+          "type": "text",
+          "content": "https://www.youtube.com/watch?v=EBDQo2noMvI&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=16"
+        },
         {
           "type": "image",
           "src": "images/action_hints/hint_16.png"
@@ -443,6 +507,10 @@ const ACTION_HINTS_DATA = {
     {
       "title": "15.醫療",
       "details": [
+        {
+          "type": "text",
+          "content": "https://www.youtube.com/watch?v=8PcJ4pWwrOo&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=17"
+        },
         {
           "type": "text",
           "content": "【醫療德行品梵唄曲目：德行品梵唄】"
@@ -492,6 +560,10 @@ const ACTION_HINTS_DATA = {
     {
       "title": "16.四弘誓願，V/藍/甲-法師",
       "details": [
+        {
+          "type": "text",
+          "content": "https://www.youtube.com/watch?v=TIIg0l4g6mM&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=18"
+        },
         {
           "type": "image",
           "src": "images/action_hints/hint_18.png"
@@ -574,7 +646,126 @@ const ACTION_HINTS_DATA = {
         }
       ]
     }
-  ]
+  ],
+  "daChuanShi": [
+    {
+      "title": "07大船師",
+      "details": [
+        {
+          "type": "text",
+          "content": "【骨捐】"
+        },
+        {
+          "type": "text",
+          "content": "慈濟人 在推動 國際骨髓捐贈"
+        },
+        {
+          "type": "text",
+          "content": "這是人類崇高的行為 搶救生命"
+        },
+        {
+          "type": "text",
+          "content": "無上光榮"
+        },
+        {
+          "type": "text",
+          "content": "千萬人 在響應 慈濟骨髓捐贈"
+        },
+        {
+          "type": "text",
+          "content": "這是人類崇高的行為 搶救生命"
+        },
+        {
+          "type": "text",
+          "content": "無上光榮."
+        },
+        {
+          "type": "text",
+          "content": "【大醫王"
+        },
+        {
+          "type": "text",
+          "content": "曲目：無量義經．德行品】"
+        },
+        {
+          "type": "text",
+          "content": "我們共同的使命就是 守護生命 守護健康 守護愛"
+        },
+        {
+          "type": "text",
+          "content": "大醫王 分別病相"
+        },
+        {
+          "type": "text",
+          "content": "曉了藥性"
+        },
+        {
+          "type": "text",
+          "content": "隨病授藥"
+        },
+        {
+          "type": "text",
+          "content": "大船師 運載群生"
+        },
+        {
+          "type": "text",
+          "content": "渡生死河"
+        },
+        {
+          "type": "text",
+          "content": "置涅槃岸"
+        },
+        {
+          "type": "text",
+          "content": "大醫王 分別病相"
+        },
+        {
+          "type": "text",
+          "content": "曉了藥性"
+        },
+        {
+          "type": "text",
+          "content": "隨病授藥"
+        },
+        {
+          "type": "text",
+          "content": "大船師 運載群生"
+        },
+        {
+          "type": "text",
+          "content": "渡生死河"
+        },
+        {
+          "type": "text",
+          "content": "置涅槃岸"
+        },
+        {
+          "type": "text",
+          "content": "【大體捐贈 曲目：無量義經．德行品】"
+        },
+        {
+          "type": "text",
+          "content": "能捨一切諸難捨 財寶妻子及國城 於法內外無所吝 頭目髓腦悉施人"
+        },
+        {
+          "type": "text",
+          "content": "遍學一切眾道法 智慧深入眾生根 遍學一切眾道法 智慧深入眾生根"
+        },
+        {
+          "type": "text",
+          "content": "遍學一切眾道法 智慧深入眾生根 於如來地 堅固不動 安住願力 廣淨佛國"
+        }
+      ]
+    }
+  ],
+  "eduWaterSlash": [],
+  "eduWaterArc": [],
+  "eduBigLotus": [],
+  "eduMidSmallLotus": [],
+  "humanities": [],
+  "fiveContinents1": [],
+  "fiveContinents2": [],
+  "flyingApsaras": []
 };
 
 // Export if in node environment, otherwise make it global
