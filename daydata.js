@@ -3368,7 +3368,6 @@ const DAY_PERFORMERS = {
     { id: '6-35', name: '缺', team: '東班' },
     { id: '6-36', name: '缺', team: '東班' },
     { id: '6-37', name: '缺', team: '東班' },
-    { id: '6-38', name: '缺', team: '東班' },
     { id: '38-36', name: '胡雅娟', team: '東班' },
     { id: '38-37', name: '陳如敏', team: '東班' },
     { id: '6-39', name: '缺', team: '東班' },
@@ -3741,6 +3740,7 @@ const DAY_PERFORMERS = {
     { id: '3-58', name: '缺', team: '東班' },
     { id: '7-30', name: '葉莉涵', team: '東班' },
     { id: '4-52', name: '吳錦福', team: '東班' },
+    { id: '6-38', name: '柯奕賢', team: '東班' },
   ],
   '1115': [
     { id: '1-56', name: '甄國輝', team: '東班' },
