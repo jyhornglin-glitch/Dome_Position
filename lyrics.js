@@ -88,6 +88,7 @@ const chantLyrics = {
     "遍學一切眾道法智慧深入眾生根 於如來地 堅固不動 安住願力 廣淨佛國"
   ],
   "daChuanShi": [],
+  "boneDonation": [],
   "edu": [],
   "humanities": [],
   "fiveContinents1": [],

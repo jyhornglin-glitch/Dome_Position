@@ -114,7 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
     { key: 'noBoat', name: '05-2無法船（菜市場5毛錢）', label: '無法船' },
     { key: 'noBoat3', name: '05-3無法船(是諸眾生)', label: '無法船3' },
     { key: 'bigV', name: '06四弘誓願', label: '四弘誓願' },
-    { key: 'daChuanShi', name: '07大船師', label: '大船師' },
+    { key: 'daChuanShi', name: '07-1大船師', label: '大船師' },
+    { key: 'boneDonation', name: '07-2骨捐能捨', label: '骨捐' },
     { key: 'edu', name: '08教育', label: '教育' },
     { key: 'humanities', name: '09人文', label: '人文' },
     { key: 'fiveContinents1', name: '10-1五大洲', label: '五大洲1' },
@@ -161,6 +162,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function getDisplayType(key) {
     if (key === 'miLuo') {
       return 'basic';
+    }
+    if (key === 'boneDonation') {
+      return 'bigV';
     }
     if (key === 'edu') {
       return 'eduWaterSlash';
@@ -1284,6 +1288,7 @@ document.addEventListener('DOMContentLoaded', () => {
       noBoat3: '#ACCE22',    // 嫩綠色
       bigV: '#F19EA8',       // 粉紅色
       daChuanShi: '#FDD100',  // 黃色
+      boneDonation: '#F19EA8', // 骨捐沿用四弘誓願的粉紅色
       edu: '#A6ADD6',          // 沿用原先 08-1 的藍紫色
       humanities: '#0061AE',   // 藍色
       fiveContinents1: '#AF9DA8', // 灰紫色
@@ -2983,6 +2988,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('adminNoBoat').value = currentPerformer.noBoat || '';
         document.getElementById('adminBigV').value = currentPerformer.bigV || '';
         document.getElementById('adminDaChuanShi').value = currentPerformer.daChuanShi || '';
+        document.getElementById('adminBoneDonation').value = currentPerformer.boneDonation || '';
         document.getElementById('adminEdu').value = currentPerformer.edu || '';
         document.getElementById('adminHumanities').value = currentPerformer.humanities || '';
         document.getElementById('adminFiveContinents1').value = currentPerformer.fiveContinents1 || '';
@@ -3125,6 +3131,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('adminNoBoat').value = p.noBoat || '';
         document.getElementById('adminBigV').value = p.bigV || '';
         document.getElementById('adminDaChuanShi').value = p.daChuanShi || '';
+        document.getElementById('adminBoneDonation').value = p.boneDonation || '';
         document.getElementById('adminEdu').value = p.edu || '';
         document.getElementById('adminHumanities').value = p.humanities || '';
         document.getElementById('adminFiveContinents1').value = p.fiveContinents1 || '';
@@ -3141,6 +3148,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('adminNoBoat').value = '';
         document.getElementById('adminBigV').value = '';
         document.getElementById('adminDaChuanShi').value = '';
+        document.getElementById('adminBoneDonation').value = '';
         document.getElementById('adminEdu').value = '';
         document.getElementById('adminHumanities').value = '';
         document.getElementById('adminFiveContinents1').value = '';
@@ -3213,6 +3221,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const noBoat = document.getElementById('adminNoBoat').value.trim();
       const bigV = document.getElementById('adminBigV').value.trim();
       const daChuanShi = document.getElementById('adminDaChuanShi').value.trim();
+      const boneDonation = document.getElementById('adminBoneDonation').value.trim();
       const edu = document.getElementById('adminEdu').value.trim();
       const humanities = document.getElementById('adminHumanities').value.trim();
       const fiveContinents1 = document.getElementById('adminFiveContinents1').value.trim();
@@ -3226,7 +3235,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/api/update-performer', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, circle, xingYuan, miLuo, jingSi, lamp, noBoat, bigV, daChuanShi, edu, humanities, fiveContinents1, fiveContinents2, flyingApsaras, team, password: currentAdminPassword })
+        body: JSON.stringify({ id, circle, xingYuan, miLuo, jingSi, lamp, noBoat, bigV, daChuanShi, boneDonation, edu, humanities, fiveContinents1, fiveContinents2, flyingApsaras, team, password: currentAdminPassword })
       })
       .then(res => res.json())
       .then(data => {

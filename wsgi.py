@@ -116,6 +116,7 @@ def handle_update_performer(data):
     no_boat = str(data.get('noBoat', '')).strip()
     big_v = str(data.get('bigV', '')).strip()
     da_chuan_shi = str(data.get('daChuanShi', '')).strip()
+    bone_donation = str(data.get('boneDonation', '')).strip()
     edu = str(data.get('edu', '')).strip()
     humanities = str(data.get('humanities', '')).strip()
     five_continents1 = str(data.get('fiveContinents1', '')).strip()
@@ -127,7 +128,7 @@ def handle_update_performer(data):
         return 400, {"success": False, "error": "Missing performer ID or team"}
 
     rows = []
-    headers = ['身分別', '身份證', '姓名', '01圓形', '02行願', '03米蘿', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願', '07大船師', '08教育', '09人文', '10-1五大洲', '10-2五大洲', '11飛天']
+    headers = ['身分別', '身份證', '姓名', '01圓形', '02行願', '03米蘿', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願', '07-1大船師', '07-2骨捐能捨', '08教育', '09人文', '10-1五大洲', '10-2五大洲', '11飛天']
     found = False
 
     if not os.path.exists(PERF_CSV):
@@ -146,7 +147,8 @@ def handle_update_performer(data):
                 row['05-1有法船（點一盞燈）'] = lamp
                 row['05-2無法船（菜市場5毛錢）'] = no_boat
                 row['06四弘誓願'] = big_v
-                row['07大船師'] = da_chuan_shi
+                row['07-1大船師'] = da_chuan_shi
+                row['07-2骨捐能捨'] = bone_donation
                 row['08教育'] = edu
                 row['09人文'] = humanities
                 row['10-1五大洲'] = five_continents1
@@ -219,7 +221,7 @@ def handle_admin_save_row(data):
     elif table_type == 'performers':
         csv_path = PERF_CSV
         key_fields = ['班別', '身份證']
-        headers = ['班別', '身分別', '身份證', '姓名', '01圓形', '02行願', '03米蘿', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願', '07大船師', '08教育', '09人文', '10-1五大洲', '10-2五大洲', '11飛天']
+        headers = ['班別', '身分別', '身份證', '姓名', '01圓形', '02行願', '03米蘿', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願', '07-1大船師', '07-2骨捐能捨', '08教育', '09人文', '10-1五大洲', '10-2五大洲', '11飛天']
     else:
         return 400, {"success": False, "error": "無效的表格類型"}
 
@@ -428,7 +430,7 @@ def handle_admin_import_csv(data):
 
     else: # performers
         existing_rows = []
-        default_headers = ['班別', '身分別', '身份證', '姓名', '01圓形', '02行願', '03米蘿', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願', '07大船師', '08教育', '09人文']
+        default_headers = ['班別', '身分別', '身份證', '姓名', '01圓形', '02行願', '03米蘿', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願', '07-1大船師', '07-2骨捐能捨', '08教育', '09人文']
         existing_headers = default_headers
         if os.path.exists(PERF_CSV):
             with open(PERF_CSV, mode='r', encoding='utf-8-sig') as f_exist:
@@ -451,7 +453,8 @@ def handle_admin_import_csv(data):
         lamp_col = find_field(['05-1有法船', '05-1有法船（點一盞燈）', 'lamp']) or '05-1有法船（點一盞燈）'
         noboat_col = find_field(['05-2無法船', '05-2無法船（菜市場5毛錢）', 'noBoat']) or '05-2無法船（菜市場5毛錢）'
         bigv_col = find_field(['06四弘誓願', 'bigV']) or '06四弘誓願'
-        dachuan_col = find_field(['07大船師', 'daChuanShi']) or '07大船師'
+        dachuan_col = find_field(['07-1大船師', 'daChuanShi']) or '07-1大船師'
+        bonedonation_col = find_field(['07-2骨捐能捨', 'boneDonation']) or '07-2骨捐能捨'
         edu_col = find_field(['08教育', 'edu']) or '08教育'
         humanities_col = find_field(['09人文', 'humanities']) or '09人文'
         fivecontinents1_col = find_field(['10-1五大洲', 'fiveContinents1']) or '10-1五大洲'
@@ -477,6 +480,7 @@ def handle_admin_import_csv(data):
             noboat = clean_coord(r.get(noboat_col, ''))
             bigv = clean_coord(r.get(bigv_col, ''))
             dachuan = clean_coord(r.get(dachuan_col, ''))
+            bone_donation = clean_coord(r.get(bonedonation_col, ''))
             edu = clean_coord(r.get(edu_col, ''))
             humanities = clean_coord(r.get(humanities_col, ''))
             fivecontinents1 = clean_coord(r.get(fivecontinents1_col, ''))
@@ -495,7 +499,8 @@ def handle_admin_import_csv(data):
                 if lamp_col in r and exist_row.get('05-1有法船（點一盞燈）') != lamp: exist_row['05-1有法船（點一盞燈）'] = lamp; changed = True
                 if noboat_col in r and exist_row.get('05-2無法船（菜市場5毛錢）') != noboat: exist_row['05-2無法船（菜市場5毛錢）'] = noboat; changed = True
                 if bigv_col in r and exist_row.get('06四弘誓願') != bigv: exist_row['06四弘誓願'] = bigv; changed = True
-                if dachuan_col in r and exist_row.get('07大船師') != dachuan: exist_row['07大船師'] = dachuan; changed = True
+                if dachuan_col in r and exist_row.get('07-1大船師') != dachuan: exist_row['07-1大船師'] = dachuan; changed = True
+                if bonedonation_col in r and exist_row.get('07-2骨捐能捨') != bone_donation: exist_row['07-2骨捐能捨'] = bone_donation; changed = True
                 if edu_col in r and exist_row.get('08教育') != edu: exist_row['08教育'] = edu; changed = True
                 if humanities_col in r and exist_row.get('09人文') != humanities: exist_row['09人文'] = humanities; changed = True
                 if fivecontinents1_col in r and exist_row.get('10-1五大洲') != fivecontinents1: exist_row['10-1五大洲'] = fivecontinents1; changed = True
@@ -527,7 +532,8 @@ def handle_admin_import_csv(data):
                     elif clean_h == '05-1有法船（點一盞燈）': new_row[h] = lamp
                     elif clean_h == '05-2無法船（菜市場5毛錢）': new_row[h] = noboat
                     elif clean_h == '06四弘誓願': new_row[h] = bigv
-                    elif clean_h == '07大船師': new_row[h] = dachuan
+                    elif clean_h == '07-1大船師': new_row[h] = dachuan
+                    elif clean_h == '07-2骨捐能捨': new_row[h] = bone_donation
                     elif clean_h == '08教育': new_row[h] = edu
                     elif clean_h == '09人文': new_row[h] = humanities
                     elif clean_h == '10-1五大洲': new_row[h] = fivecontinents1

@@ -1004,7 +1004,8 @@
                   <th>05-1法船</th>
                   <th>05-2無船</th>
                   <th>06四弘</th>
-                  <th>07大船師</th>
+                  <th>07-1大船師</th>
+                  <th>07-2骨捐</th>
                   <th>08教育</th>
                   <th>09人文</th>
                   <th>10-1五大洲1</th>
@@ -1131,19 +1132,23 @@
         </div>
         <div class="form-grid">
           <div class="form-group">
-            <label for="formPerfDaChuan">07大船師 座標</label>
+            <label for="formPerfDaChuan">07-1大船師 座標</label>
             <input type="text" id="formPerfDaChuan" class="form-control" placeholder="X-Y">
+          </div>
+          <div class="form-group">
+            <label for="formPerfBoneDonation">07-2骨捐 座標</label>
+            <input type="text" id="formPerfBoneDonation" class="form-control" placeholder="X-Y">
           </div>
           <div class="form-group">
             <label for="formPerfEdu">08教育 座標</label>
             <input type="text" id="formPerfEdu" class="form-control" placeholder="X-Y">
           </div>
+        </div>
+        <div class="form-grid">
           <div class="form-group">
             <label for="formPerfHumanities">09人文 座標</label>
             <input type="text" id="formPerfHumanities" class="form-control" placeholder="X-Y">
           </div>
-        </div>
-        <div class="form-grid">
           <div class="form-group">
             <label for="formPerfFiveContinents1">10-1五大洲1 座標</label>
             <input type="text" id="formPerfFiveContinents1" class="form-control" placeholder="X-Y">
@@ -1152,6 +1157,8 @@
             <label for="formPerfFiveContinents2">10-2五大洲2 座標</label>
             <input type="text" id="formPerfFiveContinents2" class="form-control" placeholder="X-Y">
           </div>
+        </div>
+        <div class="form-grid">
           <div class="form-group">
             <label for="formPerfFlyingApsaras">11飛天 座標</label>
             <input type="text" id="formPerfFlyingApsaras" class="form-control" placeholder="X-Y">
@@ -1711,7 +1718,8 @@
             <td><input type="text" class="table-edit-input" id="editLamp_${uniqueKey}" value="${p['05-1有法船（點一盞燈）'] || ''}" style="width: 70px;"></td>
             <td><input type="text" class="table-edit-input" id="editNoBoat_${uniqueKey}" value="${p['05-2無法船（菜市場5毛錢）'] || ''}" style="width: 70px;"></td>
             <td><input type="text" class="table-edit-input" id="editBigV_${uniqueKey}" value="${p['06四弘誓願'] || ''}" style="width: 70px;"></td>
-            <td><input type="text" class="table-edit-input" id="editDaChuan_${uniqueKey}" value="${p['07大船師'] || ''}" style="width: 70px;"></td>
+            <td><input type="text" class="table-edit-input" id="editDaChuan_${uniqueKey}" value="${p['07-1大船師'] || ''}" style="width: 70px;"></td>
+            <td><input type="text" class="table-edit-input" id="editBoneDonation_${uniqueKey}" value="${p['07-2骨捐能捨'] || ''}" style="width: 70px;"></td>
             <td><input type="text" class="table-edit-input" id="editEdu_${uniqueKey}" value="${p['08教育'] || ''}" style="width: 70px;"></td>
             <td><input type="text" class="table-edit-input" id="editHumanities_${uniqueKey}" value="${p['09人文'] || ''}" style="width: 70px;"></td>
             <td><input type="text" class="table-edit-input" id="editFiveContinents1_${uniqueKey}" value="${p['10-1五大洲'] || ''}" style="width: 70px;"></td>
@@ -1741,7 +1749,8 @@
             <td>${p['05-1有法船（點一盞燈）'] || ''}</td>
             <td>${p['05-2無法船（菜市場5毛錢）'] || ''}</td>
             <td>${p['06四弘誓願'] || ''}</td>
-            <td>${p['07大船師'] || ''}</td>
+            <td>${p['07-1大船師'] || ''}</td>
+            <td>${p['07-2骨捐能捨'] || ''}</td>
             <td>${p['08教育'] || ''}</td>
             <td>${p['09人文'] || ''}</td>
             <td>${p['10-1五大洲'] || ''}</td>
@@ -1808,7 +1817,8 @@
         row['05-1有法船（點一盞燈）'] = document.getElementById(`editLamp_${uniqueKey}`).value.trim();
         row['05-2無法船（菜市場5毛錢）'] = document.getElementById(`editNoBoat_${uniqueKey}`).value.trim();
         row['06四弘誓願'] = document.getElementById(`editBigV_${uniqueKey}`).value.trim();
-        row['07大船師'] = document.getElementById(`editDaChuan_${uniqueKey}`).value.trim();
+        row['07-1大船師'] = document.getElementById(`editDaChuan_${uniqueKey}`).value.trim();
+        row['07-2骨捐能捨'] = document.getElementById(`editBoneDonation_${uniqueKey}`).value.trim();
         row['08教育'] = document.getElementById(`editEdu_${uniqueKey}`).value.trim();
         row['09人文'] = document.getElementById(`editHumanities_${uniqueKey}`).value.trim();
         row['10-1五大洲'] = document.getElementById(`editFiveContinents1_${uniqueKey}`).value.trim();
@@ -1934,10 +1944,8 @@
         document.getElementById('formPerfNoBoat').value = '';
         document.getElementById('formPerfBigV').value = '';
         document.getElementById('formPerfDaChuan').value = '';
-        document.getElementById('formPerfEduSlash').value = '';
-        document.getElementById('formPerfEduArc').value = '';
-        document.getElementById('formPerfEduBigLotus').value = '';
-        document.getElementById('formPerfEduMidSmallLotus').value = '';
+        document.getElementById('formPerfBoneDonation').value = '';
+        document.getElementById('formPerfEdu').value = '';
         document.getElementById('formPerfHumanities').value = '';
         document.getElementById('formPerfFiveContinents1').value = '';
         document.getElementById('formPerfFiveContinents2').value = '';
@@ -1975,7 +1983,8 @@
         row['05-1有法船（點一盞燈）'] = document.getElementById('formPerfLamp').value.trim();
         row['05-2無法船（菜市場5毛錢）'] = document.getElementById('formPerfNoBoat').value.trim();
         row['06四弘誓願'] = document.getElementById('formPerfBigV').value.trim();
-        row['07大船師'] = document.getElementById('formPerfDaChuan').value.trim();
+        row['07-1大船師'] = document.getElementById('formPerfDaChuan').value.trim();
+        row['07-2骨捐能捨'] = document.getElementById('formPerfBoneDonation').value.trim();
         row['08教育'] = document.getElementById('formPerfEdu').value.trim();
         row['09人文'] = document.getElementById('formPerfHumanities').value.trim();
         row['10-1五大洲'] = document.getElementById('formPerfFiveContinents1').value.trim();
