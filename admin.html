@@ -999,15 +999,13 @@
                   <th>姓名</th>
                   <th>01圓形</th>
                   <th>02行願</th>
+                  <th>03米蘿</th>
                   <th>04靜思</th>
                   <th>05-1法船</th>
                   <th>05-2無船</th>
                   <th>06四弘</th>
                   <th>07大船師</th>
-                  <th>08-1教育(斜)</th>
-                  <th>08-2教育(弧)</th>
-                  <th>08-3大蓮花</th>
-                  <th>08-4中小蓮</th>
+                  <th>08教育</th>
                   <th>09人文</th>
                   <th>10-1五大洲1</th>
                   <th>10-2五大洲2</th>
@@ -1109,6 +1107,10 @@
             <input type="text" id="formPerfXing" class="form-control" placeholder="X-Y">
           </div>
           <div class="form-group">
+            <label for="formPerfMiLuo">03米蘿 座標</label>
+            <input type="text" id="formPerfMiLuo" class="form-control" placeholder="自動與起點一致" readonly style="background-color: #e9ecef; cursor: not-allowed;">
+          </div>
+          <div class="form-group">
             <label for="formPerfJing">04靜思 座標</label>
             <input type="text" id="formPerfJing" class="form-control" placeholder="X-Y">
           </div>
@@ -1133,22 +1135,8 @@
             <input type="text" id="formPerfDaChuan" class="form-control" placeholder="X-Y">
           </div>
           <div class="form-group">
-            <label for="formPerfEduSlash">08-1教育(斜) 座標</label>
-            <input type="text" id="formPerfEduSlash" class="form-control" placeholder="X-Y">
-          </div>
-          <div class="form-group">
-            <label for="formPerfEduArc">08-2教育(弧) 座標</label>
-            <input type="text" id="formPerfEduArc" class="form-control" placeholder="X-Y">
-          </div>
-        </div>
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="formPerfEduBigLotus">08-3大蓮花 座標</label>
-            <input type="text" id="formPerfEduBigLotus" class="form-control" placeholder="X-Y">
-          </div>
-          <div class="form-group">
-            <label for="formPerfEduMidSmallLotus">08-4中小蓮 座標</label>
-            <input type="text" id="formPerfEduMidSmallLotus" class="form-control" placeholder="X-Y">
+            <label for="formPerfEdu">08教育 座標</label>
+            <input type="text" id="formPerfEdu" class="form-control" placeholder="X-Y">
           </div>
           <div class="form-group">
             <label for="formPerfHumanities">09人文 座標</label>
@@ -1718,15 +1706,13 @@
             <td><input type="text" class="table-edit-input" id="editName2_${uniqueKey}" value="${p['姓名'] || '缺'}" style="width: 65px;"></td>
             <td><input type="text" class="table-edit-input" id="editCircle_${uniqueKey}" value="${p['01圓形'] || ''}" style="width: 70px;"></td>
             <td><input type="text" class="table-edit-input" id="editXing_${uniqueKey}" value="${p['02行願'] || ''}" style="width: 70px;"></td>
+            <td><input type="text" class="table-edit-input" id="editMiLuo_${uniqueKey}" value="${p['03米蘿'] || ''}" style="width: 70px; background-color: #f3f4f6; border: none; outline: none; cursor: not-allowed;" readonly></td>
             <td><input type="text" class="table-edit-input" id="editJing_${uniqueKey}" value="${p['04靜思家風'] || ''}" style="width: 70px;"></td>
             <td><input type="text" class="table-edit-input" id="editLamp_${uniqueKey}" value="${p['05-1有法船（點一盞燈）'] || ''}" style="width: 70px;"></td>
             <td><input type="text" class="table-edit-input" id="editNoBoat_${uniqueKey}" value="${p['05-2無法船（菜市場5毛錢）'] || ''}" style="width: 70px;"></td>
             <td><input type="text" class="table-edit-input" id="editBigV_${uniqueKey}" value="${p['06四弘誓願'] || ''}" style="width: 70px;"></td>
             <td><input type="text" class="table-edit-input" id="editDaChuan_${uniqueKey}" value="${p['07大船師'] || ''}" style="width: 70px;"></td>
-            <td><input type="text" class="table-edit-input" id="editEduSlash_${uniqueKey}" value="${p['08-1教育(水滴＋斜線)'] || ''}" style="width: 70px;"></td>
-            <td><input type="text" class="table-edit-input" id="editEduArc_${uniqueKey}" value="${p['08-2教育(水滴＋弧線)'] || ''}" style="width: 70px;"></td>
-            <td><input type="text" class="table-edit-input" id="editEduBigLotus_${uniqueKey}" value="${p['08-3教育(大蓮花)'] || ''}" style="width: 70px;"></td>
-            <td><input type="text" class="table-edit-input" id="editEduMidSmallLotus_${uniqueKey}" value="${p['08-4教育(中小蓮花)'] || ''}" style="width: 70px;"></td>
+            <td><input type="text" class="table-edit-input" id="editEdu_${uniqueKey}" value="${p['08教育'] || ''}" style="width: 70px;"></td>
             <td><input type="text" class="table-edit-input" id="editHumanities_${uniqueKey}" value="${p['09人文'] || ''}" style="width: 70px;"></td>
             <td><input type="text" class="table-edit-input" id="editFiveContinents1_${uniqueKey}" value="${p['10-1五大洲'] || ''}" style="width: 70px;"></td>
             <td><input type="text" class="table-edit-input" id="editFiveContinents2_${uniqueKey}" value="${p['10-2五大洲'] || ''}" style="width: 70px;"></td>
@@ -1750,15 +1736,13 @@
             <td>${p['姓名'] || '缺'}</td>
             <td>${p['01圓形'] || ''}</td>
             <td>${p['02行願'] || ''}</td>
+            <td>${p['03米蘿'] || ''}</td>
             <td>${p['04靜思家風'] || ''}</td>
             <td>${p['05-1有法船（點一盞燈）'] || ''}</td>
             <td>${p['05-2無法船（菜市場5毛錢）'] || ''}</td>
             <td>${p['06四弘誓願'] || ''}</td>
             <td>${p['07大船師'] || ''}</td>
-            <td>${p['08-1教育(水滴＋斜線)'] || ''}</td>
-            <td>${p['08-2教育(水滴＋弧線)'] || ''}</td>
-            <td>${p['08-3教育(大蓮花)'] || ''}</td>
-            <td>${p['08-4教育(中小蓮花)'] || ''}</td>
+            <td>${p['08教育'] || ''}</td>
             <td>${p['09人文'] || ''}</td>
             <td>${p['10-1五大洲'] || ''}</td>
             <td>${p['10-2五大洲'] || ''}</td>
@@ -1819,15 +1803,13 @@
         row['姓名'] = document.getElementById(`editName2_${uniqueKey}`).value.trim();
         row['01圓形'] = document.getElementById(`editCircle_${uniqueKey}`).value.trim();
         row['02行願'] = document.getElementById(`editXing_${uniqueKey}`).value.trim();
+        row['03米蘿'] = document.getElementById(`editMiLuo_${uniqueKey}`).value.trim();
         row['04靜思家風'] = document.getElementById(`editJing_${uniqueKey}`).value.trim();
         row['05-1有法船（點一盞燈）'] = document.getElementById(`editLamp_${uniqueKey}`).value.trim();
         row['05-2無法船（菜市場5毛錢）'] = document.getElementById(`editNoBoat_${uniqueKey}`).value.trim();
         row['06四弘誓願'] = document.getElementById(`editBigV_${uniqueKey}`).value.trim();
         row['07大船師'] = document.getElementById(`editDaChuan_${uniqueKey}`).value.trim();
-        row['08-1教育(水滴＋斜線)'] = document.getElementById(`editEduSlash_${uniqueKey}`).value.trim();
-        row['08-2教育(水滴＋弧線)'] = document.getElementById(`editEduArc_${uniqueKey}`).value.trim();
-        row['08-3教育(大蓮花)'] = document.getElementById(`editEduBigLotus_${uniqueKey}`).value.trim();
-        row['08-4教育(中小蓮花)'] = document.getElementById(`editEduMidSmallLotus_${uniqueKey}`).value.trim();
+        row['08教育'] = document.getElementById(`editEdu_${uniqueKey}`).value.trim();
         row['09人文'] = document.getElementById(`editHumanities_${uniqueKey}`).value.trim();
         row['10-1五大洲'] = document.getElementById(`editFiveContinents1_${uniqueKey}`).value.trim();
         row['10-2五大洲'] = document.getElementById(`editFiveContinents2_${uniqueKey}`).value.trim();
@@ -1898,6 +1880,19 @@
         alert('網路連線失敗，無法刪除');
       });
     }
+
+    // Sync formPerfId to formPerfMiLuo
+    document.addEventListener('DOMContentLoaded', () => {
+      const formPerfId = document.getElementById('formPerfId');
+      if (formPerfId) {
+        formPerfId.addEventListener('input', (e) => {
+          const formPerfMiLuo = document.getElementById('formPerfMiLuo');
+          if (formPerfMiLuo) {
+            formPerfMiLuo.value = e.target.value.trim();
+          }
+        });
+      }
+    });
 
     // ==========================================
     // ADD NEW ROW LOGIC (MODAL)
@@ -1975,15 +1970,13 @@
         row['姓名'] = document.getElementById('formPerfName').value.trim();
         row['01圓形'] = document.getElementById('formPerfCircle').value.trim();
         row['02行願'] = document.getElementById('formPerfXing').value.trim();
+        row['03米蘿'] = document.getElementById('formPerfMiLuo').value.trim();
         row['04靜思家風'] = document.getElementById('formPerfJing').value.trim();
         row['05-1有法船（點一盞燈）'] = document.getElementById('formPerfLamp').value.trim();
         row['05-2無法船（菜市場5毛錢）'] = document.getElementById('formPerfNoBoat').value.trim();
         row['06四弘誓願'] = document.getElementById('formPerfBigV').value.trim();
         row['07大船師'] = document.getElementById('formPerfDaChuan').value.trim();
-        row['08-1教育(水滴＋斜線)'] = document.getElementById('formPerfEduSlash').value.trim();
-        row['08-2教育(水滴＋弧線)'] = document.getElementById('formPerfEduArc').value.trim();
-        row['08-3教育(大蓮花)'] = document.getElementById('formPerfEduBigLotus').value.trim();
-        row['08-4教育(中小蓮花)'] = document.getElementById('formPerfEduMidSmallLotus').value.trim();
+        row['08教育'] = document.getElementById('formPerfEdu').value.trim();
         row['09人文'] = document.getElementById('formPerfHumanities').value.trim();
         row['10-1五大洲'] = document.getElementById('formPerfFiveContinents1').value.trim();
         row['10-2五大洲'] = document.getElementById('formPerfFiveContinents2').value.trim();

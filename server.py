@@ -155,15 +155,13 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
             target_id = str(data.get('id', '')).strip()
             circle = str(data.get('circle', '')).strip()
             xing_yuan = str(data.get('xingYuan', '')).strip()
+            mi_luo = str(data.get('miLuo', '')).strip()
             jing_si = str(data.get('jingSi', '')).strip()
             lamp = str(data.get('lamp', '')).strip()
             no_boat = str(data.get('noBoat', '')).strip()
             big_v = str(data.get('bigV', '')).strip()
             da_chuan_shi = str(data.get('daChuanShi', '')).strip()
-            edu_water_slash = str(data.get('eduWaterSlash', '')).strip()
-            edu_water_arc = str(data.get('eduWaterArc', '')).strip()
-            edu_big_lotus = str(data.get('eduBigLotus', '')).strip()
-            edu_mid_small_lotus = str(data.get('eduMidSmallLotus', '')).strip()
+            edu = str(data.get('edu', '')).strip()
             humanities = str(data.get('humanities', '')).strip()
             five_continents1 = str(data.get('fiveContinents1', '')).strip()
             five_continents2 = str(data.get('fiveContinents2', '')).strip()
@@ -176,7 +174,7 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
 
             # Read and Update performers.csv
             rows = []
-            headers = ['身分別', '身份證', '姓名', '01圓形', '02行願', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願', '07大船師', '08-1教育(水滴＋斜線)', '08-2教育(水滴＋弧線)', '08-3教育(大蓮花)', '08-4教育(中小蓮花)', '09人文', '10-1五大洲', '10-2五大洲', '11飛天']
+            headers = ['身分別', '身份證', '姓名', '01圓形', '02行願', '03米蘿', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願', '07大船師', '08教育', '09人文', '10-1五大洲', '10-2五大洲', '11飛天']
             found = False
 
             if not os.path.exists(PERF_CSV):
@@ -191,15 +189,13 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                     if (row.get('身份證') or '').strip() == target_id and row_team == team:
                         row['01圓形'] = circle
                         row['02行願'] = xing_yuan
+                        row['03米蘿'] = target_id  # 強制與起點一致
                         row['04靜思家風'] = jing_si
                         row['05-1有法船（點一盞燈）'] = lamp
                         row['05-2無法船（菜市場5毛錢）'] = no_boat
                         row['06四弘誓願'] = big_v
                         row['07大船師'] = da_chuan_shi
-                        row['08-1教育(水滴＋斜線)'] = edu_water_slash
-                        row['08-2教育(水滴＋弧線)'] = edu_water_arc
-                        row['08-3教育(大蓮花)'] = edu_big_lotus
-                        row['08-4教育(中小蓮花)'] = edu_mid_small_lotus
+                        row['08教育'] = edu
                         row['09人文'] = humanities
                         row['10-1五大洲'] = five_continents1
                         row['10-2五大洲'] = five_continents2
@@ -303,7 +299,7 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
             elif table_type == 'performers':
                 csv_path = PERF_CSV
                 key_fields = ['班別', '身份證']
-                headers = ['班別', '身分別', '身份證', '姓名', '01圓形', '02行願', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願', '07大船師', '08-1教育(水滴＋斜線)', '08-2教育(水滴＋弧線)', '08-3教育(大蓮花)', '08-4教育(中小蓮花)', '09人文', '10-1五大洲', '10-2五大洲', '11飛天']
+                headers = ['班別', '身分別', '身份證', '姓名', '01圓形', '02行願', '03米蘿', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願', '07大船師', '08教育', '09人文', '10-1五大洲', '10-2五大洲', '11飛天']
             else:
                 self.send_json_response(400, {"success": False, "error": "無效的表格類型"})
                 return
@@ -329,6 +325,7 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
             
             if '身份證' in row_data:
                 row_data['身份證'] = self.clean_coord_val(row_data['身份證'])
+                row_data['03米蘿'] = row_data['身份證']  # 強制與起點一致
 
             if action == 'add':
                 duplicate = any(row_matches(r, row_data) for r in rows)
@@ -539,7 +536,7 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
 
             else: # performers
                 existing_rows = []
-                default_headers = ['班別', '身分別', '身份證', '姓名', '01圓形', '02行願', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願', '07大船師', '08-1教育(水滴＋斜線)', '08-2教育(水滴＋弧線)', '08-3教育(大蓮花)', '08-4教育(中小蓮花)', '09人文', '10-1五大洲', '10-2五大洲', '11飛天']
+                default_headers = ['班別', '身分別', '身份證', '姓名', '01圓形', '02行願', '03米蘿', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願', '07大船師', '08教育', '09人文', '10-1五大洲', '10-2五大洲', '11飛天']
                 existing_headers = default_headers
                 if os.path.exists(PERF_CSV):
                     with open(PERF_CSV, mode='r', encoding='utf-8-sig') as f_exist:
@@ -557,15 +554,13 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                 name_col_perf = find_field(['姓名', 'name']) or '姓名'
                 circle_col = find_field(['01圓形', 'circle']) or '01圓形'
                 xingyuan_col = find_field(['02行願', 'xingYuan']) or '02行願'
+                miluo_col = find_field(['03米蘿', 'miLuo']) or '03米蘿'
                 jingsi_col = find_field(['04靜思家風', 'jingSi']) or '04靜思家風'
                 lamp_col = find_field(['05-1有法船', '05-1有法船（點一盞燈）', 'lamp']) or '05-1有法船（點一盞燈）'
                 noboat_col = find_field(['05-2無法船', '05-2無法船（菜市場5毛錢）', 'noBoat']) or '05-2無法船（菜市場5毛錢）'
                 bigv_col = find_field(['06四弘誓願', 'bigV']) or '06四弘誓願'
                 dachuan_col = find_field(['07大船師', 'daChuanShi']) or '07大船師'
-                eduslash_col = find_field(['08-1教育(水滴＋斜線)', 'eduWaterSlash']) or '08-1教育(水滴＋斜線)'
-                eduarc_col = find_field(['08-2教育(水滴＋弧線)', 'eduWaterArc']) or '08-2教育(水滴＋弧線)'
-                edubiglotus_col = find_field(['08-3教育(大蓮花)', 'eduBigLotus']) or '08-3教育(大蓮花)'
-                edumidsmalllotus_col = find_field(['08-4教育(中小蓮花)', 'eduMidSmallLotus']) or '08-4教育(中小蓮花)'
+                edu_col = find_field(['08教育', 'edu']) or '08教育'
                 humanities_col = find_field(['09人文', 'humanities']) or '09人文'
                 fivecontinents1_col = find_field(['10-1五大洲', 'fiveContinents1']) or '10-1五大洲'
                 fivecontinents2_col = find_field(['10-2五大洲', 'fiveContinents2']) or '10-2五大洲'
@@ -584,15 +579,13 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                     pname = str(r.get(name_col_perf, '')).strip() if name_col_perf in r else '缺'
                     circle = self.clean_coord_val(r.get(circle_col, ''))
                     xingyuan = self.clean_coord_val(r.get(xingyuan_col, ''))
+                    miluo = pid  # 強制與起點一致
                     jingsi = self.clean_coord_val(r.get(jingsi_col, ''))
                     lamp = self.clean_coord_val(r.get(lamp_col, ''))
                     noboat = self.clean_coord_val(r.get(noboat_col, ''))
                     bigv = self.clean_coord_val(r.get(bigv_col, ''))
                     dachuan = self.clean_coord_val(r.get(dachuan_col, ''))
-                    eduslash = self.clean_coord_val(r.get(eduslash_col, ''))
-                    eduarc = self.clean_coord_val(r.get(eduarc_col, ''))
-                    edubiglotus = self.clean_coord_val(r.get(edubiglotus_col, ''))
-                    edumidsmalllotus = self.clean_coord_val(r.get(edumidsmalllotus_col, ''))
+                    edu = self.clean_coord_val(r.get(edu_col, ''))
                     humanities = self.clean_coord_val(r.get(humanities_col, ''))
                     fivecontinents1 = self.clean_coord_val(r.get(fivecontinents1_col, ''))
                     fivecontinents2 = self.clean_coord_val(r.get(fivecontinents2_col, ''))
@@ -605,15 +598,13 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                         changed = False
                         if circle_col in r and exist_row.get('01圓形') != circle: exist_row['01圓形'] = circle; changed = True
                         if xingyuan_col in r and exist_row.get('02行願') != xingyuan: exist_row['02行願'] = xingyuan; changed = True
+                        if miluo_col in r and exist_row.get('03米蘿') != miluo: exist_row['03米蘿'] = miluo; changed = True
                         if jingsi_col in r and exist_row.get('04靜思家風') != jingsi: exist_row['04靜思家風'] = jingsi; changed = True
                         if lamp_col in r and exist_row.get('05-1有法船（點一盞燈）') != lamp: exist_row['05-1有法船（點一盞燈）'] = lamp; changed = True
                         if noboat_col in r and exist_row.get('05-2無法船（菜市場5毛錢）') != noboat: exist_row['05-2無法船（菜市場5毛錢）'] = noboat; changed = True
                         if bigv_col in r and exist_row.get('06四弘誓願') != bigv: exist_row['06四弘誓願'] = bigv; changed = True
                         if dachuan_col in r and exist_row.get('07大船師') != dachuan: exist_row['07大船師'] = dachuan; changed = True
-                        if eduslash_col in r and exist_row.get('08-1教育(水滴＋斜線)') != eduslash: exist_row['08-1教育(水滴＋斜線)'] = eduslash; changed = True
-                        if eduarc_col in r and exist_row.get('08-2教育(水滴＋弧線)') != eduarc: exist_row['08-2教育(水滴＋弧線)'] = eduarc; changed = True
-                        if edubiglotus_col in r and exist_row.get('08-3教育(大蓮花)') != edubiglotus: exist_row['08-3教育(大蓮花)'] = edubiglotus; changed = True
-                        if edumidsmalllotus_col in r and exist_row.get('08-4教育(中小蓮花)') != edumidsmalllotus: exist_row['08-4教育(中小蓮花)'] = edumidsmalllotus; changed = True
+                        if edu_col in r and exist_row.get('08教育') != edu: exist_row['08教育'] = edu; changed = True
                         if humanities_col in r and exist_row.get('09人文') != humanities: exist_row['09人文'] = humanities; changed = True
                         if fivecontinents1_col in r and exist_row.get('10-1五大洲') != fivecontinents1: exist_row['10-1五大洲'] = fivecontinents1; changed = True
                         if fivecontinents2_col in r and exist_row.get('10-2五大洲') != fivecontinents2: exist_row['10-2五大洲'] = fivecontinents2; changed = True
@@ -639,15 +630,13 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                             elif clean_h == '姓名': new_row[h] = pname
                             elif clean_h == '01圓形': new_row[h] = circle
                             elif clean_h == '02行願': new_row[h] = xingyuan
+                            elif clean_h == '03米蘿': new_row[h] = miluo
                             elif clean_h == '04靜思家風': new_row[h] = jingsi
                             elif clean_h == '05-1有法船（點一盞燈）': new_row[h] = lamp
                             elif clean_h == '05-2無法船（菜市場5毛錢）': new_row[h] = noboat
                             elif clean_h == '06四弘誓願': new_row[h] = bigv
                             elif clean_h == '07大船師': new_row[h] = dachuan
-                            elif clean_h == '08-1教育(水滴＋斜線)': new_row[h] = eduslash
-                            elif clean_h == '08-2教育(水滴＋弧線)': new_row[h] = eduarc
-                            elif clean_h == '08-3教育(大蓮花)': new_row[h] = edubiglotus
-                            elif clean_h == '08-4教育(中小蓮花)': new_row[h] = edumidsmalllotus
+                            elif clean_h == '08教育': new_row[h] = edu
                             elif clean_h == '09人文': new_row[h] = humanities
                             elif clean_h == '10-1五大洲': new_row[h] = fivecontinents1
                             elif clean_h == '10-2五大洲': new_row[h] = fivecontinents2

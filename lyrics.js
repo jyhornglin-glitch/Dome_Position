@@ -37,6 +37,7 @@ const chantLyrics = {
     "【開經偈】",
     "無上甚深微妙法百千萬劫難遭遇我今見聞得受持願解如來真實義"
   ],
+  "miLuo": [],
   "jingSi": [
     "【扛天下米籮 無量義經．德行品】",
     "潤漬眾生諸有善根布善種(厚子)遍功德(厚田)",
@@ -87,10 +88,7 @@ const chantLyrics = {
     "遍學一切眾道法智慧深入眾生根 於如來地 堅固不動 安住願力 廣淨佛國"
   ],
   "daChuanShi": [],
-  "eduWaterSlash": [],
-  "eduWaterArc": [],
-  "eduBigLotus": [],
-  "eduMidSmallLotus": [],
+  "edu": [],
   "humanities": [],
   "fiveContinents1": [],
   "fiveContinents2": [],
