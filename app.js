@@ -348,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let x = parseFloat(match[1]);
       let y = parseFloat(match[2]);
       if (selectedTeam === 'west') {
-        x = -12 - x;
+        x = -x;
       }
       return {
         x: x,
@@ -401,6 +401,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Format coordinate string to always display X coordinate as positive for West team
+  function formatCoordinateForDisplay(coordStr) {
+    if (!coordStr) return '';
+    if (selectedTeam === 'west') {
+      const split = splitLandmarkAndCoordinate(coordStr);
+      if (split.coordinate) {
+        const numMatch = split.coordinate.match(/(-?[0-9.]+)[^0-9.-]*-(-?[0-9.]+)/);
+        if (numMatch) {
+          const xVal = parseFloat(numMatch[1]);
+          const yVal = parseFloat(numMatch[2]);
+          const absX = Math.abs(xVal);
+          const landmarkPart = split.landmark ? split.landmark + '-' : '';
+          return `${landmarkPart}${absX}-${yVal}`;
+        }
+      }
+    }
+    return coordStr;
+  }
+
   // Color mapping helper
   function getCategoryColor(category) {
     switch(category) {
@@ -449,7 +468,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // Filter dayList by selectedTeam ('east' -> '東班', 'west' -> '西班')
       const targetTeamChinese = (selectedTeam === 'west') ? '西班' : '東班';
       dayList = dayList.filter(d => {
-        const t = d.team || '東班';
+        const orig = performersData.find(p => p.id === d.id);
+        const t = (orig && orig.team) ? orig.team : (d.team || '東班');
         return t === targetTeamChinese;
       });
 
@@ -519,7 +539,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const textDiv = document.createElement('div');
       textDiv.className = 'name-id';
-      textDiv.innerHTML = `${displayName} <span>(${fields.coordinate})</span>`;
+      textDiv.innerHTML = `${displayName} <span>(${formatCoordinateForDisplay(fields.coordinate)})</span>`;
       
       const badge = document.createElement('span');
       badge.className = `category-badge cat-${p.category}`;
@@ -531,7 +551,7 @@ document.addEventListener('DOMContentLoaded', () => {
       div.addEventListener('click', () => {
         tempSelectedPerformer = p;
         tempDayOverrideName = dayName;
-        searchInput.value = displayName || fields.coordinate;
+        searchInput.value = displayName || formatCoordinateForDisplay(fields.coordinate);
         autocompleteList.style.display = 'none';
         
         const confirmBtn = document.getElementById('sessionConfirmBtn');
@@ -679,8 +699,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let performerTeam = '東班';
     if (performer && performer.team) {
       performerTeam = performer.team;
-    }
-    if (selectedSessionKey && typeof DAY_PERFORMERS !== 'undefined') {
+    } else if (selectedSessionKey && typeof DAY_PERFORMERS !== 'undefined') {
       const dayList = DAY_PERFORMERS[selectedSessionKey] || [];
       const match = dayList.find(d => d.id === performer.id);
       if (match && match.team) {
@@ -708,11 +727,11 @@ document.addEventListener('DOMContentLoaded', () => {
     perfName.textContent = displayName;
     perfCategory.textContent = performer.category;
     perfCategory.className = `meta-badge cat-${performer.category}`;
-    perfID.textContent = `起點座標: ${fields.coordinate}`;
+    perfID.textContent = `起點座標: ${formatCoordinateForDisplay(fields.coordinate)}`;
     
     if (stageInstruction) {
       if (selectedTeam === 'west') {
-        stageInstruction.innerHTML = `<i class="fa-solid fa-circle-info"></i> 舞台中線位於 X = -6，乙舞台中心點為 (-6,38)，表演位置在第三象限。網格標註為絕對舞台座標。`;
+        stageInstruction.innerHTML = `<i class="fa-solid fa-circle-info"></i> 舞台中線位於 X = 6，乙舞台中心點為 (6,38)，表演位置在第三象限。網格標註為絕對舞台座標。`;
       } else {
         stageInstruction.innerHTML = `<i class="fa-solid fa-circle-info"></i> 舞台中線位於 X = -6，乙舞台中心點為 (-6,38)，表演位置在第四象限。網格標註為絕對舞台座標。`;
       }
@@ -751,7 +770,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const vectorPrev = document.getElementById(`vector-${f.key}-prev`);
       
       let coordStr = getFormationCoordStr(currentPerformer, f.key);
-      coordBadge.textContent = coordStr;
+      coordBadge.textContent = formatCoordinateForDisplay(coordStr);
       
       // Render HTML landmark icons
       drawHtmlLandmarkIcon(iconWrapper, f.key, currentPerformer.category, currentDisplayName || fields.coordinate);
@@ -860,7 +879,8 @@ document.addEventListener('DOMContentLoaded', () => {
       overlayCircle.setAttribute('fill', centerColor);
       parentGroup.appendChild(overlayCircle);
       
-      const parts = fields.coordinate.split('-');
+      const formattedCoord = formatCoordinateForDisplay(fields.coordinate);
+      const parts = formattedCoord.split('-');
       if (parts.length === 2) {
         // Draw white dividing line
         const midLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
@@ -898,7 +918,7 @@ document.addEventListener('DOMContentLoaded', () => {
         overlayText.setAttribute('text-anchor', 'middle');
         overlayText.setAttribute('class', 'sticker-coord-text');
         overlayText.setAttribute('style', `font-size: ${(size * 0.208).toFixed(2)}px`);
-        overlayText.textContent = fields.coordinate.padStart(2, '0');
+        overlayText.textContent = formattedCoord.padStart(2, '0');
         parentGroup.appendChild(overlayText);
       }
     }
@@ -923,6 +943,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Home coordinates
     const homeCoord = parseCoordinate(fields.coordinate);
     const category = currentPerformer.category;
+    const centerLineX = (selectedTeam === 'west') ? 6 : -6;
 
     // Calculate dynamic scale based on maximum coordinate offset of points to display
     let maxOffset = 0;
@@ -947,9 +968,9 @@ document.addEventListener('DOMContentLoaded', () => {
       maxOffset = Math.max(maxOffset, Math.abs(pt.dx_rel), Math.abs(pt.dy_rel));
     });
     
-    // Always include Stage B center (-6, 38) in the visible map area
+    // Always include Stage B center in the visible map area
     if (!homeCoord.isText) {
-      const stageB_dx_rel = -6 - homeCoord.x;
+      const stageB_dx_rel = centerLineX - homeCoord.x;
       const stageB_dy_rel = 38 - homeCoord.y;
       maxOffset = Math.max(maxOffset, Math.abs(stageB_dx_rel), Math.abs(stageB_dy_rel));
     }
@@ -1000,7 +1021,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Draw Stage B blueprint watermark background
     if (!homeCoord.isText) {
       // 0. Draw Stage Background to mask the grid lines underneath
-      const bg_x1_rel = -9 - homeCoord.x;
+      const bg_x1_rel = (centerLineX - 3) - homeCoord.x;
       const bg_y1_rel = -MAX_GRID_COORD;
       const bg_svgTopLeft = gridToSvg(bg_x1_rel, bg_y1_rel);
       const bg_width = 6 * GRID_SPACING;
@@ -1014,8 +1035,8 @@ document.addEventListener('DOMContentLoaded', () => {
       bgRect.setAttribute('class', 'watermark-bg');
       wmkGroup.appendChild(bgRect);
       
-      // Stage B Circular Background: Col = -6, Row = 38, Radius = 9.8 (outermost step, inner gap=-0.6 toward stage, diameter=19.6)
-      const stageB_dx_rel = -6 - homeCoord.x;
+      // Stage B Circular Background: Col = centerLineX, Row = 38, Radius = 9.8 (outermost step, inner gap=-0.6 toward stage, diameter=19.6)
+      const stageB_dx_rel = centerLineX - homeCoord.x;
       const stageB_dy_rel = 38 - homeCoord.y;
       const stageB_svg = gridToSvg(stageB_dx_rel, stageB_dy_rel);
       
@@ -1026,8 +1047,8 @@ document.addEventListener('DOMContentLoaded', () => {
       bgCircle.setAttribute('class', 'watermark-bg');
       wmkGroup.appendChild(bgCircle);
 
-      // 1. Draw Runway Central Rectangle: Col = -9 to -3, Row = 33 to 43
-      const rect_x1_rel = -9 - homeCoord.x;
+      // 1. Draw Runway Central Rectangle: Col = (centerLineX - 3) to (centerLineX + 3), Row = 33 to 43
+      const rect_x1_rel = (centerLineX - 3) - homeCoord.x;
       const rect_y1_rel = 33 - homeCoord.y;
       const rect_svgTopLeft = gridToSvg(rect_x1_rel, rect_y1_rel);
       const rect_width = 6 * GRID_SPACING;
@@ -1058,9 +1079,9 @@ document.addEventListener('DOMContentLoaded', () => {
           const R_i = 7.4 + i * 0.4;
           const W_i = 3.4 + i * 0.4;
           
-          const col_top = -6 + side * W_i - homeCoord.x;
-          const col_mid = -6 + side * R_i - homeCoord.x;
-          const col_bottom = -6 + side * W_i - homeCoord.x;
+          const col_top = centerLineX + side * W_i - homeCoord.x;
+          const col_mid = centerLineX + side * R_i - homeCoord.x;
+          const col_bottom = centerLineX + side * W_i - homeCoord.x;
           
           const row_top_start = -MAX_GRID_COORD;
           const row_top_curve = 38 - 12 - homeCoord.y;
@@ -1102,7 +1123,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
       
-      // 3. Draw radial stairs/steps on Stage B: radiating from center (-6, 38) on BOTH sides
+      // 3. Draw radial stairs/steps on Stage B: radiating from center (6, 38) on BOTH sides
       const rightAngles = [-45, -30, -15, 0, 15, 30, 45];
       const leftAngles = [135, 150, 165, 180, 195, 210, 225];
       const allAngles = [...rightAngles, ...leftAngles];
@@ -1121,7 +1142,7 @@ document.addEventListener('DOMContentLoaded', () => {
         wmkGroup.appendChild(line);
       });
       
-      // 4. Draw Faint text label "乙舞台" centered at (-6, 38)
+      // 4. Draw Faint text label "乙舞台" centered at (6, 38)
       const stageBText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
       stageBText.setAttribute('x', stageB_svg.x);
       stageBText.setAttribute('y', stageB_svg.y + 3);
@@ -1158,7 +1179,10 @@ document.addEventListener('DOMContentLoaded', () => {
         xText.setAttribute('x', GRID_CENTER_X + posOffset);
         xText.setAttribute('y', GRID_CENTER_Y + 11);
         if (!homeCoord.isText) {
-          const val = homeCoord.x + i;
+          let val = homeCoord.x + i;
+          if (selectedTeam === 'west') {
+            val = Math.abs(val);
+          }
           xText.textContent = val.toFixed(1).replace('.0', '');
         } else {
           xText.textContent = i > 0 ? `右${i}` : `左${Math.abs(i)}`;
@@ -1222,7 +1246,7 @@ document.addEventListener('DOMContentLoaded', () => {
         coordText.setAttribute('y', GRID_CENTER_Y + (dy_rel + 3) * GRID_SPACING + 6);
         coordText.setAttribute('text-anchor', 'middle');
         coordText.setAttribute('style', 'fill: orangered !important; font-size: 16.5px !important; font-weight: 800 !important; font-family: Outfit, sans-serif !important;');
-        coordText.textContent = `${roundedX}-${roundedY}`;
+        coordText.textContent = `${Math.abs(roundedX)}-${roundedY}`;
         linesGroup.appendChild(coordText);
       }
     }
@@ -1352,10 +1376,11 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // Draw coordinate label under the node (scaled down to 62.5% of original, i.e., 25% larger than 50%)
       if (pt.coord && pt.coord.text) {
-        const split = splitLandmarkAndCoordinate(pt.coord.text);
+        const formattedText = formatCoordinateForDisplay(pt.coord.text);
+        const split = splitLandmarkAndCoordinate(formattedText);
         let labelToShow = '';
         if (pt.role === 'current') {
-          labelToShow = pt.coord.text;
+          labelToShow = formattedText;
         } else {
           labelToShow = split.landmark;
         }
