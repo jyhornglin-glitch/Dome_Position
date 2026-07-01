@@ -405,11 +405,51 @@ body {
 }
 
 /* Performer summary card styling */
+.performer-header-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
 .performer-summary-card {
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 8px 12px !important;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+.teach-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #0b954b 0%, #0061ae 100%);
+  color: white !important;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(11, 149, 75, 0.2);
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.teach-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(11, 149, 75, 0.35);
+  background: linear-gradient(135deg, #0da654 0%, #0072cb 100%);
+}
+
+.teach-btn:active {
+  transform: translateY(0);
 }
 
 .performer-avatar {
@@ -2829,9 +2869,20 @@ svg {
   }
 
   /* 人員摘要卡精簡 */
+  .performer-header-wrapper {
+    gap: 8px !important;
+  }
+  
   .performer-summary-card {
     padding: 5px 8px !important;
     border-radius: 10px !important;
+  }
+
+  .teach-btn {
+    height: 34px !important;
+    font-size: 11px !important;
+    border-radius: 8px !important;
+    gap: 4px !important;
   }
 
   .performer-avatar {
