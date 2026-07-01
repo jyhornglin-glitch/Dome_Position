@@ -51,7 +51,7 @@
             <!-- Team Selection -->
             <p class="session-title" style="margin-top: 10px; margin-bottom: 2px;">👥 請選擇所屬班別</p>
             <div class="session-cards" id="sessionTeamCards" style="margin-bottom: 10px;">
-              <div class="session-card selected" data-team="east">
+              <div class="session-card" data-team="east">
                 <span class="session-card-weekday">EAST TEAM</span>
                 <span class="session-card-date" style="font-size: 20px; margin-top: 4px;">東班</span>
               </div>
@@ -62,11 +62,11 @@
             </div>
 
             <!-- Coordinate Search (Moved from main screen) -->
-            <p class="session-title" style="margin-top: 15px; margin-bottom: 5px;">🔍 請輸入起點座標開始查詢</p>
+            <p class="session-title" style="margin-top: 15px; margin-bottom: 5px;">🔍 請輸入身分證位置座標查詢</p>
             <div class="search-inputs-overlay" style="margin-bottom: 15px; position: relative; width: 100%;">
               <div class="input-group search-box" style="position: relative;">
                 <i class="fa-solid fa-magnifying-glass input-icon" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-secondary);"></i>
-                <input type="text" id="searchInput" placeholder="請輸入起點座標 (如: 4-46)" autocomplete="off" style="width: 100%; padding: 10px 10px 10px 35px; border-radius: 8px; border: 1px solid var(--panel-border); background: var(--input-bg); color: var(--text-primary); font-size: 14px;">
+                <input type="text" id="searchInput" placeholder="請輸入身分證位置座標查詢 (如: 4-46)" autocomplete="off" style="width: 100%; padding: 10px 10px 10px 35px; border-radius: 8px; border: 1px solid var(--panel-border); background: var(--input-bg); color: var(--text-primary); font-size: 14px;">
                 <button id="clearSearchBtn" class="clear-btn" style="display: none; position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-secondary);"><i class="fa-solid fa-xmark"></i></button>
               </div>
               <div id="autocompleteList" class="autocomplete-dropdown" style="display: none; position: absolute; width: 100%; max-height: 200px; overflow-y: auto; background: var(--dropdown-bg); border: 1px solid var(--dropdown-border); border-radius: 8px; box-shadow: var(--dropdown-shadow); z-index: 1001; text-align: left;"></div>

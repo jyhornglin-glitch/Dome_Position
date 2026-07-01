@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const confirmBtn = document.getElementById('sessionConfirmBtn');
         if (confirmBtn) {
-          confirmBtn.disabled = !tempSelectedPerformer;
+          confirmBtn.disabled = !(tempSelectedPerformer && selectedTeam);
         }
         
         const searchInput = document.getElementById('searchInput');
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let panY = 0;
   let rotationAngle = 0;
   let selectedSessionKey = null; // Currently selected day key (e.g. '1114')
-  let selectedTeam = 'east'; // Currently selected team: 'east' or 'west'
+  let selectedTeam = null; // Currently selected team: 'east' or 'west'
   let hintModalClosed = true;
   let hintZoomLevel = 1.0;
   let hintsExpanded = false;
@@ -244,13 +244,13 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('#sessionCards .session-card').forEach(c => c.classList.remove('selected'));
         card.classList.add('selected');
         selectedSessionKey = sess.key;
-        confirmBtn.disabled = !tempSelectedPerformer;
+        confirmBtn.disabled = !(tempSelectedPerformer && selectedTeam);
         
         // Enable and Focus search input
         const searchInput = document.getElementById('searchInput');
         if (searchInput) {
           searchInput.disabled = false;
-          searchInput.placeholder = "請輸入起點座標 (如: 4-46)";
+          searchInput.placeholder = "請輸入身分證位置座標查詢 (如: 4-46)";
           searchInput.focus();
         }
       });
@@ -265,6 +265,11 @@ document.addEventListener('DOMContentLoaded', () => {
         teamCards.forEach(c => c.classList.remove('selected'));
         card.classList.add('selected');
         selectedTeam = card.dataset.team;
+        
+        // Update confirm button disabled state dynamically
+        if (confirmBtn) {
+          confirmBtn.disabled = !(tempSelectedPerformer && selectedTeam);
+        }
         
         // Auto-focus search input and trigger search if has text
         const searchInput = document.getElementById('searchInput');
@@ -556,7 +561,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const confirmBtn = document.getElementById('sessionConfirmBtn');
         if (confirmBtn) {
-          confirmBtn.disabled = false;
+          confirmBtn.disabled = !(tempSelectedPerformer && selectedTeam);
         }
       });
       
