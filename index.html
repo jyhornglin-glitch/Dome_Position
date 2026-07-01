@@ -149,21 +149,21 @@
               <!-- Mobile Navigation Tab Bar (3 tabs now) -->
               <div class="mobile-tabs-bar" id="mobileTabsBar">
                 <button class="mobile-tab-btn active" data-tab="localGrid"><i class="fa-solid fa-compress"></i> 網格定位</button>
-                <button class="mobile-tab-btn" data-tab="walkthrough"><i class="fa-solid fa-person-running"></i> 動作提示</button>
-                <button class="mobile-tab-btn" data-tab="cards"><i class="fa-solid fa-list-ol"></i> 隊形詳情</button>
+                <button class="mobile-tab-btn" data-tab="walkthrough"><i class="fa-solid fa-person-running"></i> 演繹內容</button>
+                <button class="mobile-tab-btn" data-tab="cards"><i class="fa-solid fa-list-ol"></i> 地標圖示</button>
               </div>
 
               <!-- Shared Step Switcher Controls & Landmark Guide -->
               <div class="sticky-controls-wrapper" id="sharedControlsWrapper">
                 <!-- Step-by-Step Formation Toggle Controls -->
                 <div class="map-control-bar" style="margin-top: 0; margin-bottom: 5px;">
-                  <button id="prevBtn" class="control-btn"><i class="fa-solid fa-chevron-left"></i> 上一個</button>
+                  <button id="prevBtn" class="control-btn"><i class="fa-solid fa-chevron-left"></i> 上一景</button>
                   <div class="active-formation-display">
                     <span class="active-formation-num" id="activeFormNum">01</span>
                     <span class="active-formation-title" id="activeFormTitle">起點 (基本隊形)</span>
                     <span class="active-formation-coord" id="activeFormCoord">座標: ---</span>
                   </div>
-                  <button id="nextBtn" class="control-btn">下一個 <i class="fa-solid fa-chevron-right"></i></button>
+                  <button id="nextBtn" class="control-btn">下一景 <i class="fa-solid fa-chevron-right"></i></button>
                 </div>
                 <div id="mapMovementGuide" class="map-movement-guide" style="margin-top: 0; margin-bottom: 0; font-size: 11.5px; padding: 4px 6px;"></div>
               </div>
@@ -373,7 +373,7 @@
             <!-- Panel 2: Action Hints (Replaces Walkthrough) -->
             <section class="visual-column mobile-tab-panel" id="panel-walkthrough">
               <div class="action-hints-container card glow-border-gold">
-                <h3><i class="fa-solid fa-person-running"></i> 動作提示列表</h3>
+                <h3><i class="fa-solid fa-person-running"></i> 演繹內容列表</h3>
                 <div class="action-hints-flow" id="actionHintsFlow"></div>
               </div>
             </section>
@@ -381,7 +381,7 @@
             <!-- Panel 3: Cards Details -->
             <section class="detail-column mobile-tab-panel" id="panel-cards">
               <div class="section-title-bar">
-                <h3><i class="fa-solid fa-layer-group"></i> 7 大隊形點位詳情</h3>
+                <h3><i class="fa-solid fa-layer-group"></i> 隊形地標圖示</h3>
               </div>
 
               <div class="formation-cards-grid">

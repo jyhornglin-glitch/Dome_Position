@@ -1581,9 +1581,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const currentLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
     currentLine.setAttribute('id', 'nextPointGuideLegendLine');
-    currentLine.setAttribute('x1', '245');
+    const isWest = (selectedTeam === 'west');
+    const x1Val = isWest ? '15' : '245';
+    const x2Val = isWest ? '115' : '345';
+    currentLine.setAttribute('x1', x1Val);
     currentLine.setAttribute('y1', '345');
-    currentLine.setAttribute('x2', '345');
+    currentLine.setAttribute('x2', x2Val);
     currentLine.setAttribute('y2', '345');
     currentLine.setAttribute('stroke', currentColor);
     currentLine.setAttribute('stroke-width', '5.5px');
@@ -1785,7 +1788,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (items.length === 0) {
         const noHints = document.createElement('div');
         noHints.className = 'no-hints-placeholder';
-        noHints.textContent = '此步驟無動作提示';
+        noHints.textContent = '此步驟無演繹內容';
         body.appendChild(noHints);
       } else {
         items.forEach(item => {
@@ -2172,7 +2175,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.textBaseline = 'middle';
     ctx.fillText('跑位定點', 120, headerY + headerH / 2);
     ctx.fillText('專屬地標', 270, headerY + headerH / 2);
-    ctx.fillText('動作提示', 650, headerY + headerH / 2);
+    ctx.fillText('演繹內容', 650, headerY + headerH / 2);
     ctx.fillText('網格定位', 1060, headerY + headerH / 2);
     ctx.restore();
     
@@ -2457,7 +2460,7 @@ document.addEventListener('DOMContentLoaded', () => {
         page.ctx.fillText(coord, col1CenterX, startY + stickerSize + 6);
         page.ctx.restore();
         
-        // 3. Column 2 (動作提示)
+        // 3. Column 2 (演繹內容)
         page.ctx.save();
         page.ctx.textBaseline = 'top';
         page.ctx.textAlign = 'left';
@@ -2602,8 +2605,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update the position of the legend line if it exists (so it remains static in viewport)
     const legendLine = svgEl.querySelector('#nextPointGuideLegendLine');
     if (legendLine) {
-      const x2 = (x + w) - (15 / zoomLevel);
-      const x1 = x2 - (100 / zoomLevel);
+      const isWest = (selectedTeam === 'west');
+      let x1, x2;
+      if (isWest) {
+        x1 = x + (15 / zoomLevel);
+        x2 = x1 + (100 / zoomLevel);
+      } else {
+        x2 = (x + w) - (15 / zoomLevel);
+        x1 = x2 - (100 / zoomLevel);
+      }
       const yVal = (y + h) - (15 / zoomLevel);
       const thickness = 5.5 / zoomLevel;
       
@@ -2846,9 +2856,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (items.length === 0) {
       inlineContainer.innerHTML = `
         <div class="hint-title">
-          <span><i class="fa-solid fa-person-running"></i> 動作提示 (${f.label})</span>
+          <span><i class="fa-solid fa-person-running"></i> 演繹內容 (${f.label})</span>
         </div>
-        <div class="no-hints">此步驟無動作提示</div>
+        <div class="no-hints">此步驟無演繹內容</div>
       `;
       return;
     }
@@ -2856,7 +2866,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Header title and toggle button
     let headerHtml = `
       <div class="hint-title">
-        <span><i class="fa-solid fa-person-running"></i> 動作提示 (${f.label})</span>
+        <span><i class="fa-solid fa-person-running"></i> 演繹內容 (${f.label})</span>
     `;
     if (items.length > 2) {
       headerHtml += `<button id="toggleHintsBtn" class="toggle-btn">${hintsExpanded ? '收合部分' : '展開更多'}</button>`;
