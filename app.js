@@ -323,6 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupDownloadListeners();
     setupZoomAndPan();
     setupActionHintsOverlay();
+    setupActionHintsZoom();
   }
 
   // Real-time status bar clock
@@ -1891,21 +1892,21 @@ document.addEventListener('DOMContentLoaded', () => {
           itemDiv.style.cssText = 'padding: 8px 0; border-bottom: 1px dashed rgba(180, 83, 9, 0.1);';
           
           const itemTitle = document.createElement('div');
-          itemTitle.style.cssText = 'font-weight: bold; color: #b45309; font-size: 13px; margin-bottom: 4px;';
+          itemTitle.style.cssText = 'font-weight: bold; color: #b45309; font-size: calc(13px * var(--hints-scale, 1)); margin-bottom: 4px;';
           itemTitle.innerHTML = formatTextWithYtButtons(item.title);
           itemDiv.appendChild(itemTitle);
           
           item.details.forEach(detail => {
             if (detail.type === 'text') {
-              const p = document.createElement('p');
-              p.style.cssText = 'margin: 0 0 4px 0; color: #1e293b; font-size: 12.5px; line-height: 1.45; font-weight: 500;';
-              p.innerHTML = formatTextWithYtButtons(detail.content);
-              itemDiv.appendChild(p);
+               const p = document.createElement('p');
+               p.style.cssText = 'margin: 0 0 4px 0; color: #1e293b; font-size: calc(12.5px * var(--hints-scale, 1)); line-height: 1.45; font-weight: 500;';
+               p.innerHTML = formatTextWithYtButtons(detail.content);
+               itemDiv.appendChild(p);
             } else if (detail.type === 'image') {
-              const img = document.createElement('img');
-              img.src = detail.src;
-              img.style.cssText = 'max-width: 100%; height: auto; display: block; border-radius: 6px; margin: 6px 0; border: 1px solid rgba(180, 83, 9, 0.1);';
-              itemDiv.appendChild(img);
+               const img = document.createElement('img');
+               img.src = detail.src;
+               img.style.cssText = 'width: calc(100% * var(--hints-scale, 1)); max-width: none; height: auto; display: block; border-radius: 6px; margin: 6px 0; border: 1px solid rgba(180, 83, 9, 0.1);';
+               itemDiv.appendChild(img);
             }
           });
           
@@ -2926,6 +2927,60 @@ document.addEventListener('DOMContentLoaded', () => {
     // Replaced by inline action hints container, no floating modal needed.
   }
 
+  // Set up pinch to zoom for action hints containers
+  function setupActionHintsZoom() {
+    const containers = [
+      document.getElementById('actionHintsFlow'),
+      document.getElementById('inlineActionHints')
+    ].filter(Boolean);
+    
+    let currentScale = parseFloat(localStorage.getItem('actionHintsScale') || '1.0');
+    
+    function applyScale(scale) {
+      document.documentElement.style.setProperty('--hints-scale', scale);
+    }
+    
+    applyScale(currentScale);
+    
+    containers.forEach(container => {
+      let isPinching = false;
+      let startTouchDist = 0;
+      let startScale = 1.0;
+      
+      container.addEventListener('touchstart', (e) => {
+        if (e.touches && e.touches.length === 2) {
+          isPinching = true;
+          startTouchDist = Math.hypot(
+            e.touches[0].clientX - e.touches[1].clientX,
+            e.touches[0].clientY - e.touches[1].clientY
+          );
+          startScale = currentScale;
+        }
+      }, { passive: true });
+      
+      container.addEventListener('touchmove', (e) => {
+        if (isPinching && e.touches && e.touches.length === 2) {
+          const dist = Math.hypot(
+            e.touches[0].clientX - e.touches[1].clientX,
+            e.touches[0].clientY - e.touches[1].clientY
+          );
+          if (startTouchDist > 0) {
+            const ratio = dist / startTouchDist;
+            currentScale = Math.max(0.8, Math.min(startScale * ratio, 2.5));
+            applyScale(currentScale);
+            localStorage.setItem('actionHintsScale', currentScale.toString());
+          }
+        }
+      }, { passive: true });
+      
+      container.addEventListener('touchend', (e) => {
+        if (isPinching && (!e.touches || e.touches.length < 2)) {
+          isPinching = false;
+        }
+      });
+    });
+  }
+
   // Update inline action hints based on current step & performer
   function updateActionHintsDisplay() {
     const inlineContainer = document.getElementById('inlineActionHints');
@@ -2965,7 +3020,7 @@ document.addEventListener('DOMContentLoaded', () => {
       itemDiv.className = 'action-hint-item';
       
       const itemTitle = document.createElement('div');
-      itemTitle.style.cssText = 'font-weight: bold; color: #b45309; font-size: 13.5px; margin-bottom: 6px;';
+      itemTitle.style.cssText = 'font-weight: bold; color: #b45309; font-size: calc(13.5px * var(--hints-scale, 1)); margin-bottom: 6px;';
       itemTitle.textContent = item.title;
       itemDiv.appendChild(itemTitle);
       
@@ -2984,14 +3039,15 @@ document.addEventListener('DOMContentLoaded', () => {
             itemDiv.appendChild(btn);
           } else {
             const p = document.createElement('p');
-            p.style.cssText = 'margin: 0 0 4px 0; color: #1e293b; font-size: 13px; font-weight: 500; line-height: 1.45;';
+            p.style.cssText = 'margin: 0 0 4px 0; color: #1e293b; font-size: calc(13px * var(--hints-scale, 1)); font-weight: 500; line-height: 1.45;';
             p.textContent = detail.content;
             itemDiv.appendChild(p);
           }
         } else if (detail.type === 'image') {
           const img = document.createElement('img');
           img.src = detail.src;
-          img.style.cssText = 'max-width: 100%; height: auto; display: block; border-radius: 8px; margin: 8px 0; border: 1px solid rgba(180, 83, 9, 0.15);';
+          img.style.cssText = 'width: calc(100% * var(--hints-scale, 1)); max-width: none; height: auto; display: block; border-radius: 8px; margin: 8px 0; border: 1px solid rgba(180, 83, 9, 0.15);';
+          img.className = 'hint-image';
           itemDiv.appendChild(img);
         }
       });
@@ -3000,7 +3056,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (items.length > 2 && !hintsExpanded) {
       const moreDiv = document.createElement('div');
-      moreDiv.style.cssText = 'color: #64748b; font-style: italic; text-align: center; font-size: 12px; padding: 6px 0; cursor: pointer;';
+      moreDiv.style.cssText = 'color: #64748b; font-style: italic; text-align: center; font-size: calc(12px * var(--hints-scale, 1)); padding: 6px 0; cursor: pointer;';
       moreDiv.textContent = `...還有 ${items.length - 2} 項提示，點擊上方展開`;
       moreDiv.addEventListener('click', (e) => {
         e.stopPropagation();
