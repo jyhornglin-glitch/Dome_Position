@@ -1,12 +1,12 @@
-// Action Hints Database — 自動由 import_action_hints.py 產生，請勿手動修改
+// Action Hints Database — 自動由 import_docx_action_hints.py 產生，請勿手動修改
 const ACTION_HINTS_DATA = {
   "circle": [
     {
-      "title": "1. 序，甲45 度→乙",
+      "title": "序，甲45度→乙",
       "details": [
         {
           "type": "text",
-          "content": "https://www.youtube.com/watch?v=N6TKl4qpEDk&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=2"
+          "content": "https://www.youtube.com/watch?v=9xXoD2XVbNY"
         },
         {
           "type": "image",
@@ -14,49 +14,101 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "第一波-靜寂清澄志玄虛漠"
+          "content": "全場萬人齊聲唱頌梵唄"
         },
         {
           "type": "text",
-          "content": "第二波-守之不動億百千劫"
+          "content": "OS:靈山法會不散 無量義經廣傳 (法師)"
         },
         {
           "type": "text",
-          "content": "第三波-無量法門悉現在前"
+          "content": "其心禪寂 常在三昧"
         },
         {
           "type": "text",
-          "content": "第四波-得大智慧通達諸法"
+          "content": "恬安澹泊 無為無欲"
         },
         {
           "type": "text",
-          "content": "曉了分別性相真實"
+          "content": "顛倒亂想 不復得入"
         },
         {
           "type": "text",
-          "content": "有無長短明現顯白"
+          "content": "大聲唱誦"
         },
         {
           "type": "text",
-          "content": "又能善知諸根性"
+          "content": "靜寂清澄志玄虛漠 守之不動億百千劫"
         },
         {
           "type": "text",
-          "content": "欲以陀羅尼無礙辯才"
+          "content": "無量法門悉現在前 得大智慧通達諸法"
+        },
+        {
+          "type": "text",
+          "content": "曉了分別性相真實 有無長短明現顯白"
+        },
+        {
+          "type": "text",
+          "content": "又能善知諸根性欲 以陀羅尼無礙辯才"
         },
         {
           "type": "text",
           "content": "請佛轉法輪"
+        },
+        {
+          "type": "text",
+          "content": "45°面向甲舞台"
+        },
+        {
+          "type": "text",
+          "content": "內轉向圓心 合掌拿燈(不開燈)"
+        },
+        {
+          "type": "text",
+          "content": "◎分四波："
+        },
+        {
+          "type": "text",
+          "content": "第一波(白藍白)開黃燈.合掌慢慢舉高、其餘定格"
+        },
+        {
+          "type": "text",
+          "content": "第二波(藍白藍)開黃燈.合掌慢慢舉高、其餘定格"
+        },
+        {
+          "type": "text",
+          "content": "第三波(白藍白藍)開黃燈.合掌慢慢舉高、其餘定格"
+        },
+        {
+          "type": "text",
+          "content": "第四波(其餘)開黃燈.合掌慢慢舉高、其餘定格"
+        },
+        {
+          "type": "text",
+          "content": "合掌往下到胸前"
+        },
+        {
+          "type": "text",
+          "content": "合掌慢慢舉高"
+        },
+        {
+          "type": "text",
+          "content": "合掌往下到胸前"
+        },
+        {
+          "type": "text",
+          "content": "合掌右轉(朝圓圈線)"
+        },
+        {
+          "type": "text",
+          "content": "合掌舉高、右手開花.出右腳.左腳跟踮起.看圓心"
         }
       ]
     },
     {
-      "title": "2. 生，甲45 度",
+      "title": "生，甲45度",
       "details": [
-        {
-          "type": "text",
-          "content": "https://www.youtube.com/watch?v=jZYb5xOEM7w&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=3"
-        },
         {
           "type": "image",
           "src": "images/action_hints/hint_2.png"
@@ -75,19 +127,19 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "報〜天臂城入經藏：前來祝賀！"
+          "content": "報～天臂城入經藏：前來祝賀！"
         },
         {
           "type": "text",
-          "content": "報〜拘薩羅國、摩竭陀國入經藏：前來獻禮！"
+          "content": "報～拘薩羅國、摩竭陀國入經藏：前來獻禮！"
         },
         {
           "type": "text",
-          "content": "報〜般闍羅國、迦尸國入經藏：前來祝賀！"
+          "content": "報～般闍羅國、迦尸國入經藏：前來祝賀！"
         },
         {
           "type": "text",
-          "content": "報〜鴦迦國、跋羅國入經藏：前來獻禮！"
+          "content": "報～鴦迦國、跋羅國入經藏：前來獻禮！"
         },
         {
           "type": "text",
@@ -96,11 +148,11 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "3.老，乙",
+      "title": "老，乙",
       "details": [
         {
           "type": "text",
-          "content": "https://www.youtube.com/watch?v=D73tL1GPAxw&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=4"
+          "content": "https://youtu.be/LJZo0hH3nos?si=rOFauQHLk1LPkEEB"
         },
         {
           "type": "image",
@@ -125,11 +177,11 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "3. 病，乙",
+      "title": "病，乙",
       "details": [
         {
           "type": "text",
-          "content": "https://www.youtube.com/watch?v=GpXqV0UpLDk&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=5"
+          "content": "https://youtu.be/glh-1pF4StQ?si=G0NyEX6luvvFIvey"
         },
         {
           "type": "image",
@@ -150,11 +202,11 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "4. 死，乙",
+      "title": "5.死，乙",
       "details": [
         {
           "type": "text",
-          "content": "https://www.youtube.com/watch?v=vCOU9QCWnSg&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=6"
+          "content": "https://youtu.be/gx0R8wK_Wkg?si=GT0b3-ZUYE0VlTVW"
         },
         {
           "type": "image",
@@ -170,40 +222,48 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "死亡的苦嘆 醒思生命的意涵"
+          "content": "死亡的苦嘆 省思生命的意涵"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_6.jpg"
         }
       ]
     },
     {
-      "title": "5. 六度",
+      "title": "6.六度",
       "details": [
         {
           "type": "text",
-          "content": "https://www.youtube.com/watch?v=PrwJSrms0Pg&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=7"
-        },
-        {
-          "type": "text",
-          "content": "https://www.youtube.com/watch?v=1oHMRj9r_yo&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=8"
+          "content": "https://youtu.be/gZ9C6HM6keg?si=m0uxjBZjhnyM9lhq&t=5"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_6.png"
+          "src": "images/action_hints/hint_7.png"
         },
         {
           "type": "text",
-          "content": "藍:右轉"
+          "content": "再說六(合掌)度波羅蜜(轉)"
         },
         {
           "type": "text",
-          "content": "開示悟入(布施 持戒 理契機)"
+          "content": "OS:去除無明行六度"
         },
         {
           "type": "text",
-          "content": "悲智願行(忍辱 精進 緊相繫)"
+          "content": "白：左轉；藍:右轉"
         },
         {
           "type": "text",
-          "content": "運載群(厚生)(禪定 智慧 無明離)"
+          "content": "開示悟入理契機(布施 持戒)"
+        },
+        {
+          "type": "text",
+          "content": "悲智願行緊相繫(忍辱 精進)"
+        },
+        {
+          "type": "text",
+          "content": "運載群生(厚) 無明離(禪定 智慧)"
         },
         {
           "type": "text",
@@ -218,69 +278,28 @@ const ACTION_HINTS_DATA = {
           "content": "轉識成智 成佛道"
         },
         {
-          "type": "text",
-          "content": "靜寂清澄志玄虛漠守之不動億百千劫"
-        },
-        {
-          "type": "text",
-          "content": "無量法門悉現在前得大智慧通達諸法"
-        },
-        {
-          "type": "text",
-          "content": "曉了分別性相真實有無長短明現顯白"
-        },
-        {
-          "type": "text",
-          "content": "又能善知諸根性欲以陀羅尼無礙辯才"
-        },
-        {
-          "type": "text",
-          "content": "請佛轉法輪"
-        },
-        {
-          "type": "text",
-          "content": "https://www.youtube.com/watch?v=jCHKnjMnXK8&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=9"
-        },
-        {
           "type": "image",
-          "src": "images/action_hints/hint_7.png"
-        }
-      ]
-    },
-    {
-      "title": "13.是諸眾生",
-      "details": [
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_14.png"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_15.png"
-        },
-        {
-          "type": "text",
-          "content": "【慈善ending 無量義經．德行品】"
-        },
-        {
-          "type": "text",
-          "content": "https://www.youtube.com/watch?v=dd2VNwpNaLI&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=15"
-        },
-        {
-          "type": "text",
-          "content": "是諸眾生真善知識是諸眾生大良福田是諸眾生不請之師是諸眾生安隱樂處"
-        },
-        {
-          "type": "text",
-          "content": "救處護處大依止處處處為眾作大導師 能為生盲作眼目 為癲狂慌亂作正念"
+          "src": "images/action_hints/hint_8.jpg"
         }
       ]
     }
   ],
   "xingYuan": [
     {
-      "title": "7. 海濤澎湃 駭浪洶湧",
+      "title": "7.行願",
       "details": [
+        {
+          "type": "text",
+          "content": "https://youtu.be/9up0Hn_Z8LA?si=fA0XCTnEvWScSCEB"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_9.png"
+        },
+        {
+          "type": "text",
+          "content": "海濤澎湃 駭浪洶湧"
+        },
         {
           "type": "text",
           "content": "心志已付 身隨之赴"
@@ -312,27 +331,107 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "佛 法 廣 傳 在 人 間  行~~願"
+        },
+        {
+          "type": "text",
+          "content": "船-內側"
+        },
+        {
+          "type": "text",
+          "content": "船-槳"
+        },
+        {
+          "type": "text",
+          "content": "海浪-白"
+        },
+        {
+          "type": "text",
+          "content": "海浪-藍"
+        },
+        {
+          "type": "text",
+          "content": "."
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_10.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_11.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_12.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_13.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_14.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_15.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_16.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_17.jpg"
         }
       ]
     },
     {
-      "title": "8.開經偈/面向法師45 度",
+      "title": "8.開經偈",
       "details": [
         {
+          "type": "image",
+          "src": "images/action_hints/hint_18.png"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_19.jpg"
+        },
+        {
           "type": "text",
-          "content": "https://www.youtube.com/watch?v=Nh6mOB34LnA&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=10"
+          "content": "優人音效"
         },
         {
-          "type": "image",
-          "src": "images/action_hints/hint_8.png"
+          "type": "text",
+          "content": "第一聲「 哐」回正、 手放大腿二側"
         },
         {
-          "type": "image",
-          "src": "images/action_hints/hint_9.png"
+          "type": "text",
+          "content": "第二聲「哐」不合掌轉走，合併成開經偈隊形"
+        },
+        {
+          "type": "text",
+          "content": "千百億劫以來(合掌)，仿若實境再現"
+        },
+        {
+          "type": "text",
+          "content": "仿若實境(拿燈)再現(開綠燈)"
         },
         {
           "type": "text",
           "content": "【開經偈】"
+        },
+        {
+          "type": "text",
+          "content": "第一聲「哐」右後轉向甲舞台"
+        },
+        {
+          "type": "text",
+          "content": "第二聲「哐」頭抬高、腰挺直"
+        },
+        {
+          "type": "text",
+          "content": "第三聲「哐」"
         },
         {
           "type": "text",
@@ -349,21 +448,38 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "願解如來真實義"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_20.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_21.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_22.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_23.jpg"
         }
       ]
     }
   ],
+  "miLuo": [],
   "jingSi": [
     {
-      "title": "9.扛天下米籮/甲45 度",
+      "title": "9.扛天下米籮/甲45度",
       "details": [
         {
           "type": "text",
-          "content": "https://www.youtube.com/watch?v=xB2ZocRxSXI&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=11"
+          "content": "https://youtu.be/xmwAu0XBonE?si=-YdInFEcAXPHisjt"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_10.png"
+          "src": "images/action_hints/hint_24.jpg"
         },
         {
           "type": "text",
@@ -371,11 +487,15 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "布善種(厚子)遍功德(厚田)"
+          "content": "布善種子(厚)遍功德田(厚)"
         },
         {
           "type": "text",
-          "content": "普令一(厚切)發菩提(厚萌)智慧日月 方便時節"
+          "content": "普令一切(厚)發菩提萌(厚)"
+        },
+        {
+          "type": "text",
+          "content": "智慧日月 方便時節"
         },
         {
           "type": "text",
@@ -392,43 +512,52 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "讓人人都能力行菩薩道"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_25.jpg"
         }
       ]
     },
     {
-      "title": "10.靜思家風/面向法師45 度",
+      "title": "10.靜思家風/舞台正向法師，其餘面向法師45度",
       "details": [
         {
           "type": "text",
-          "content": "https://www.youtube.com/watch?v=Ug3hQdiZA0g&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=12"
-        },
-        {
-          "type": "text",
-          "content": "https://www.youtube.com/watch?v=yloJiZVhUls&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=14"
+          "content": "https://youtu.be/FxOew30sJoU?si=YqIyM1A3CgdNCrtm"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_11.png"
+          "src": "images/action_hints/hint_26.png"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_27.jpg"
         }
       ]
     }
   ],
   "lamp": [
     {
-      "title": "11.點一盞燈/ 面向法師45 度",
+      "title": "11.點一盞燈",
       "details": [
         {
           "type": "text",
-          "content": "https://www.youtube.com/watch?v=yloJiZVhUls&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=14"
+          "content": "https://youtu.be/qBMy7Q4ol7U?si=i2qvUDJx1Xpv9yHo"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_12.png"
+          "src": "images/action_hints/hint_28.jpg"
         },
         {
-          "type": "text",
-          "content": "在黑暗角落點一盞燈"
-        },
+          "type": "image",
+          "src": "images/action_hints/hint_29.jpg"
+        }
+      ]
+    },
+    {
+      "title": "在黑暗角落點一盞燈",
+      "details": [
         {
           "type": "text",
           "content": "慈悲智慧的化身"
@@ -448,22 +577,17 @@ const ACTION_HINTS_DATA = {
       ]
     }
   ],
-  "noBoat": [],
-  "bigV": [
+  "noBoat": [
     {
-      "title": "12.菜市場的五毛錢/乙",
+      "title": "12.菜市場的五毛錢/面相乙舞台",
       "details": [
         {
           "type": "text",
-          "content": "https://www.youtube.com/watch?v=dd2VNwpNaLI&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=15"
+          "content": "https://youtu.be/pzkatOInyss?si=DQnk_77EYyAawLzt&t=5"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_13.png"
-        },
-        {
-          "type": "text",
-          "content": "我也要參加"
+          "src": "images/action_hints/hint_30.png"
         },
         {
           "type": "text",
@@ -484,36 +608,178 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "會眾群體：我也要參加！"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_31.png"
         }
       ]
     },
+    {
+      "title": "13.是諸眾生(第一三天-圍爐)",
+      "details": [
+        {
+          "type": "text",
+          "content": "https://youtu.be/vYxBbQ5FWu0?si=ECAovE17EjbU3aSP"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_32.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_33.jpg"
+        },
+        {
+          "type": "text",
+          "content": "【慈善ending 無量義經．德行品】"
+        },
+        {
+          "type": "text",
+          "content": "是諸眾生真善知識"
+        },
+        {
+          "type": "text",
+          "content": "是諸眾生大良福田"
+        },
+        {
+          "type": "text",
+          "content": "是諸眾生不請之師"
+        },
+        {
+          "type": "text",
+          "content": "是諸眾生安隱樂處"
+        },
+        {
+          "type": "text",
+          "content": "救處護處大依止處"
+        },
+        {
+          "type": "text",
+          "content": "處處為眾作大導師"
+        },
+        {
+          "type": "text",
+          "content": "能為生盲作眼目"
+        },
+        {
+          "type": "text",
+          "content": "為癲狂慌亂作正念"
+        }
+      ]
+    }
+  ],
+  "noBoat3": [
+    {
+      "title": "13.是諸眾生(第二四天-米甕與大魚)",
+      "details": [
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_34.jpg"
+        },
+        {
+          "type": "text",
+          "content": "【慈善ending 無量義經．德行品】"
+        },
+        {
+          "type": "text",
+          "content": "是諸眾生真善知識"
+        },
+        {
+          "type": "text",
+          "content": "是諸眾生大良福田"
+        },
+        {
+          "type": "text",
+          "content": "是諸眾生不請之師"
+        },
+        {
+          "type": "text",
+          "content": "是諸眾生安隱樂處"
+        },
+        {
+          "type": "text",
+          "content": "救處護處大依止處"
+        },
+        {
+          "type": "text",
+          "content": "處處為眾作大導師"
+        },
+        {
+          "type": "text",
+          "content": "能為生盲作眼目"
+        },
+        {
+          "type": "text",
+          "content": "為癲狂慌亂作正念"
+        },
+        {
+          "type": "text",
+          "content": "非LOGO者做手語動作"
+        },
+        {
+          "type": "text",
+          "content": "LOGO者同點一盞燈動作"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_35.jpg"
+        }
+      ]
+    }
+  ],
+  "bigV": [
     {
       "title": "14.地藏經/面向乙舞台",
       "details": [
         {
           "type": "text",
-          "content": "https://www.youtube.com/watch?v=EBDQo2noMvI&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=16"
+          "content": "https://youtu.be/zb5CV8hthEo?si=sqn-Y27D1C1va39k"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_16.png"
+          "src": "images/action_hints/hint_36.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_37.jpg"
         },
         {
           "type": "text",
-          "content": "病苦眾生在呐喊人間地獄悉現前貧病相因必須斷 促成建院的因緣"
+          "content": "病苦眾生在呐喊"
+        },
+        {
+          "type": "text",
+          "content": "人間地獄悉現前"
+        },
+        {
+          "type": "text",
+          "content": "貧病相因必須斷"
+        },
+        {
+          "type": "text",
+          "content": "促成建院的因緣"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_38.jpg"
         }
       ]
     },
     {
-      "title": "15.醫療",
+      "title": "15.醫療梵唄/面乙舞台；小V+大V內側跪",
       "details": [
         {
           "type": "text",
-          "content": "https://www.youtube.com/watch?v=8PcJ4pWwrOo&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=17"
+          "content": "https://youtu.be/vsf-UEEjM_Q?si=T7rqDWumAg87efZW&t=5"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_39.jpg"
         },
         {
           "type": "text",
-          "content": "【醫療德行品梵唄曲目：德行品梵唄】"
+          "content": "【德行品梵唄】"
         },
         {
           "type": "text",
@@ -524,16 +790,12 @@ const ACTION_HINTS_DATA = {
           "content": "人生最珍貴 莫過於生命！"
         },
         {
-          "type": "image",
-          "src": "images/action_hints/hint_17.png"
-        },
-        {
           "type": "text",
           "content": "船師 大船師 運載群生"
         },
         {
           "type": "text",
-          "content": "渡生死河置  涅槃岸"
+          "content": "渡生死河置涅槃岸"
         },
         {
           "type": "text",
@@ -554,35 +816,172 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "師子勇猛 威伏眾獸 難可沮壞"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_40.jpg"
         }
       ]
     },
     {
-      "title": "16.四弘誓願，V/藍/甲-法師",
+      "title": "16.四弘誓願/藍向甲舞台斜線；白向法師斜線",
+      "details": [
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_41.jpg"
+        }
+      ]
+    },
+    {
+      "title": "【四弘誓願】",
       "details": [
         {
           "type": "text",
-          "content": "https://www.youtube.com/watch?v=TIIg0l4g6mM&list=PLazkM1bajKbyCr4wncaazJ6acNAsR0r3H&index=18"
+          "content": "OS:師父您怎麼說，我怎麼做(上舞台者出發)"
+        },
+        {
+          "type": "text",
+          "content": "聽說蓋醫院需要很多錢，現在是募到多少啦!"
+        },
+        {
+          "type": "text",
+          "content": "蛤?三千萬還不到？不過，萬里長城也是從一塊磚開始的。"
+        },
+        {
+          "type": "text",
+          "content": "四 弘 誓 願"
+        },
+        {
+          "type": "text",
+          "content": "眾生無邊誓願度"
+        },
+        {
+          "type": "text",
+          "content": "煩惱無盡誓願斷"
+        },
+        {
+          "type": "text",
+          "content": "法門無量誓願學"
+        },
+        {
+          "type": "text",
+          "content": "佛道無上誓願成"
+        },
+        {
+          "type": "text",
+          "content": "誠心 正心 信心 實心"
+        },
+        {
+          "type": "text",
+          "content": "度眾生 斷煩惱"
+        },
+        {
+          "type": "text",
+          "content": "學法門成佛道"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_18.png"
+          "src": "images/action_hints/hint_42.jpg"
+        }
+      ]
+    }
+  ],
+  "daChuanShi": [
+    {
+      "title": "19.大醫王",
+      "details": [
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_43.jpg"
+        }
+      ]
+    },
+    {
+      "title": "【大醫王曲目：無量義經．德行品】",
+      "details": [
+        {
+          "type": "text",
+          "content": "我們共同的使命就是"
         },
         {
           "type": "text",
-          "content": "【四弘誓願】"
+          "content": "守護生命 守護健康 守護愛"
         },
         {
           "type": "text",
-          "content": "眾生無邊誓願度煩惱無盡誓願斷法門無量誓願學佛道無上誓願成"
+          "content": "大醫王分別病相曉了藥性隨病授藥"
         },
         {
           "type": "text",
-          "content": "誠心 正心 信心 實心 度眾生斷煩惱學法門成佛道"
+          "content": "大船師運載群生渡生死河置涅槃岸"
         },
         {
           "type": "text",
-          "content": "【骨捐】"
+          "content": "大醫王分別病相曉了藥性隨病授藥"
+        },
+        {
+          "type": "text",
+          "content": "大船師運載群生渡生死河置涅槃岸"
+        },
+        {
+          "type": "text",
+          "content": "船"
+        },
+        {
+          "type": "text",
+          "content": "海浪"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_44.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_45.jpg"
+        }
+      ]
+    }
+  ],
+  "boneDonation": [
+    {
+      "title": "17.骨捐",
+      "details": [
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_46.jpg"
+        }
+      ]
+    },
+    {
+      "title": "【骨捐】",
+      "details": [
+        {
+          "type": "text",
+          "content": "有愛心的人那麼多，我一定要呼籲"
+        },
+        {
+          "type": "text",
+          "content": "來 我願意(小V)"
+        },
+        {
+          "type": "text",
+          "content": "來 我願意(大V)"
+        },
+        {
+          "type": "text",
+          "content": "來 我願意(C組)"
+        },
+        {
+          "type": "text",
+          "content": "救人一命無損己身(收)"
+        },
+        {
+          "type": "text",
+          "content": "慈濟和我正在找一個人"
+        },
+        {
+          "type": "text",
+          "content": "那個人就是你"
         },
         {
           "type": "text",
@@ -590,11 +989,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "這是人類崇高的行為 搶救生命"
+          "content": "這是人類崇高的行為"
         },
         {
           "type": "text",
-          "content": "無上光榮"
+          "content": "搶救生命 無上光榮"
         },
         {
           "type": "text",
@@ -602,158 +1001,85 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "這是人類崇高的行為 搶救生命無上光榮."
+          "content": "這是人類崇高的行為"
         },
         {
           "type": "text",
-          "content": "【大醫王曲目：無量義經．德行品】"
+          "content": "搶救生命 無上光榮(最後面相乙舞台)"
         },
         {
-          "type": "text",
-          "content": "我們共同的使命就是 守護生命 守護健康 守護愛"
-        },
-        {
-          "type": "text",
-          "content": "大醫王分別病相曉了藥性隨病授藥"
-        },
-        {
-          "type": "text",
-          "content": "大船師運載群生渡生死河置涅槃岸"
-        },
-        {
-          "type": "text",
-          "content": "大醫王分別病相曉了藥性隨病授藥"
-        },
-        {
-          "type": "text",
-          "content": "大船師運載群生渡生死河置涅槃岸"
-        },
-        {
-          "type": "text",
-          "content": "【大體捐贈 曲目：無量義經．德行品】"
-        },
-        {
-          "type": "text",
-          "content": "能捨一切諸難捨財寶妻子及國城於法內外無所吝頭目髓腦悉施人"
-        },
-        {
-          "type": "text",
-          "content": "遍學一切眾道法智慧深入眾生根遍學一切眾道法智慧深入眾生根"
-        },
-        {
-          "type": "text",
-          "content": "遍學一切眾道法智慧深入眾生根 於如來地 堅固不動 安住願力 廣淨佛國"
+          "type": "image",
+          "src": "images/action_hints/hint_47.jpg"
         }
       ]
-    }
-  ],
-  "daChuanShi": [
+    },
     {
-      "title": "07大船師",
+      "title": "18.能捨",
+      "details": [
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_48.jpg"
+        }
+      ]
+    },
+    {
+      "title": "【能捨一切諸難捨】",
       "details": [
         {
           "type": "text",
-          "content": "【骨捐】"
+          "content": "能捨一切諸難捨"
         },
         {
           "type": "text",
-          "content": "慈濟人 在推動 國際骨髓捐贈"
+          "content": "財寶妻子及國城"
         },
         {
           "type": "text",
-          "content": "這是人類崇高的行為 搶救生命"
+          "content": "於法內外無所吝"
         },
         {
           "type": "text",
-          "content": "無上光榮"
+          "content": "頭目髓腦悉施人(收2轉2轉2)"
         },
         {
           "type": "text",
-          "content": "千萬人 在響應 慈濟骨髓捐贈"
+          "content": "遍學一切眾道法"
         },
         {
           "type": "text",
-          "content": "這是人類崇高的行為 搶救生命"
+          "content": "智慧深入眾生根"
         },
         {
           "type": "text",
-          "content": "無上光榮."
+          "content": "遍學一切眾道法"
         },
         {
           "type": "text",
-          "content": "【大醫王"
+          "content": "智慧深入眾生根"
         },
         {
           "type": "text",
-          "content": "曲目：無量義經．德行品】"
+          "content": "遍學一切眾道法"
         },
         {
           "type": "text",
-          "content": "我們共同的使命就是 守護生命 守護健康 守護愛"
+          "content": "智慧深入眾生根"
         },
         {
           "type": "text",
-          "content": "大醫王 分別病相"
+          "content": "(間奏)拿燈"
         },
         {
           "type": "text",
-          "content": "曉了藥性"
+          "content": "於如來地 堅固不動"
         },
         {
           "type": "text",
-          "content": "隨病授藥"
+          "content": "安住願力 廣淨佛國"
         },
         {
-          "type": "text",
-          "content": "大船師 運載群生"
-        },
-        {
-          "type": "text",
-          "content": "渡生死河"
-        },
-        {
-          "type": "text",
-          "content": "置涅槃岸"
-        },
-        {
-          "type": "text",
-          "content": "大醫王 分別病相"
-        },
-        {
-          "type": "text",
-          "content": "曉了藥性"
-        },
-        {
-          "type": "text",
-          "content": "隨病授藥"
-        },
-        {
-          "type": "text",
-          "content": "大船師 運載群生"
-        },
-        {
-          "type": "text",
-          "content": "渡生死河"
-        },
-        {
-          "type": "text",
-          "content": "置涅槃岸"
-        },
-        {
-          "type": "text",
-          "content": "【大體捐贈 曲目：無量義經．德行品】"
-        },
-        {
-          "type": "text",
-          "content": "能捨一切諸難捨 財寶妻子及國城 於法內外無所吝 頭目髓腦悉施人"
-        },
-        {
-          "type": "text",
-          "content": "遍學一切眾道法 智慧深入眾生根 遍學一切眾道法 智慧深入眾生根"
-        },
-        {
-          "type": "text",
-          "content": "遍學一切眾道法 智慧深入眾生根 於如來地 堅固不動 安住願力 廣淨佛國"
+          "type": "image",
+          "src": "images/action_hints/hint_49.jpg"
         }
       ]
     }

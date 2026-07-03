@@ -1147,36 +1147,82 @@ document.addEventListener('DOMContentLoaded', () => {
         wmkGroup.appendChild(line);
       });
       
-      // 4. Draw Faint text label "乙舞台" centered at (6, 38)
-      const stageBText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      stageBText.setAttribute('x', stageB_svg.x);
-      stageBText.setAttribute('y', stageB_svg.y + 3);
-      stageBText.setAttribute('class', 'watermark-text');
-      stageBText.textContent = '乙舞台';
-      wmkGroup.appendChild(stageBText);
+      // 4. Draw Floating Labels
+      function drawFloatingLabel(text, gridX, gridY) {
+        const dx_rel = gridX - homeCoord.x;
+        const dy_rel = gridY - homeCoord.y;
+        const pt_svg = gridToSvg(dx_rel, dy_rel);
+        
+        const rectW = 44;
+        const rectH = 16;
+        
+        // Draw the background rectangle for the floating effect
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('x', pt_svg.x - rectW / 2);
+        rect.setAttribute('y', pt_svg.y - rectH / 2);
+        rect.setAttribute('width', rectW);
+        rect.setAttribute('height', rectH);
+        rect.setAttribute('rx', 3);
+        rect.setAttribute('ry', 3);
+        rect.setAttribute('style', 'fill: #ffffff; stroke: #475569; stroke-width: 1px; fill-opacity: 0.95;');
+        wmkGroup.appendChild(rect);
+        
+        // Draw the centered text label
+        const txt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        txt.setAttribute('x', pt_svg.x);
+        txt.setAttribute('y', pt_svg.y + 3.5);
+        txt.setAttribute('class', 'watermark-text');
+        txt.setAttribute('style', 'fill: #0f172a; font-size: 8px; font-weight: bold; text-anchor: middle;');
+        txt.textContent = text;
+        wmkGroup.appendChild(txt);
+      }
+
+      // Draw stage and master labels
+      drawFloatingLabel('甲舞台', centerLineX, 2);
+      drawFloatingLabel('乙舞台', centerLineX, 38);
+      drawFloatingLabel('法師', centerLineX, 78);
     }
     
     // Draw background grid lines (centered at 180, 180) - horizontal and vertical
     for (let i = -MAX_GRID_COORD; i <= MAX_GRID_COORD; i++) {
       const posOffset = i * GRID_SPACING;
       
-      // Vertical line
+      // Vertical line (truncated to y between -20 and 95)
+      let vY1 = GRID_CENTER_Y - MAX_GRID_COORD * GRID_SPACING;
+      let vY2 = GRID_CENTER_Y + MAX_GRID_COORD * GRID_SPACING;
+      if (!homeCoord.isText) {
+        const relY1 = Math.max(-MAX_GRID_COORD, -20 - homeCoord.y);
+        const relY2 = Math.min(MAX_GRID_COORD, 95 - homeCoord.y);
+        vY1 = GRID_CENTER_Y + relY1 * GRID_SPACING;
+        vY2 = GRID_CENTER_Y + relY2 * GRID_SPACING;
+      }
+      
       const vLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
       vLine.setAttribute('x1', GRID_CENTER_X + posOffset);
-      vLine.setAttribute('y1', GRID_CENTER_Y - MAX_GRID_COORD * GRID_SPACING);
+      vLine.setAttribute('y1', vY1);
       vLine.setAttribute('x2', GRID_CENTER_X + posOffset);
-      vLine.setAttribute('y2', GRID_CENTER_Y + MAX_GRID_COORD * GRID_SPACING);
+      vLine.setAttribute('y2', vY2);
       if (i === 0) vLine.setAttribute('class', 'axis');
       linesGroup.appendChild(vLine);
       
-      // Horizontal line
-      const hLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      hLine.setAttribute('x1', GRID_CENTER_X - MAX_GRID_COORD * GRID_SPACING);
-      hLine.setAttribute('y1', GRID_CENTER_Y + posOffset);
-      hLine.setAttribute('x2', GRID_CENTER_X + MAX_GRID_COORD * GRID_SPACING);
-      hLine.setAttribute('y2', GRID_CENTER_Y + posOffset);
-      if (i === 0) hLine.setAttribute('class', 'axis');
-      linesGroup.appendChild(hLine);
+      // Horizontal line (only draw if absolute y is between -20 and 95)
+      let shouldDrawHLine = true;
+      if (!homeCoord.isText) {
+        const absY = homeCoord.y + i;
+        if (absY < -20 || absY > 95) {
+          shouldDrawHLine = false;
+        }
+      }
+      
+      if (shouldDrawHLine) {
+        const hLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        hLine.setAttribute('x1', GRID_CENTER_X - MAX_GRID_COORD * GRID_SPACING);
+        hLine.setAttribute('y1', GRID_CENTER_Y + posOffset);
+        hLine.setAttribute('x2', GRID_CENTER_X + MAX_GRID_COORD * GRID_SPACING);
+        hLine.setAttribute('y2', GRID_CENTER_Y + posOffset);
+        if (i === 0) hLine.setAttribute('class', 'axis');
+        linesGroup.appendChild(hLine);
+      }
       
       // Grid coordinates labels
       if (i % labelStep === 0 && i !== 0) {
@@ -1194,16 +1240,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         linesGroup.appendChild(xText);
         
-        const yText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        yText.setAttribute('x', GRID_CENTER_X - 10);
-        yText.setAttribute('y', GRID_CENTER_Y + posOffset + 3);
+        let shouldDrawYText = true;
         if (!homeCoord.isText) {
           const val = homeCoord.y + i;
-          yText.textContent = val.toFixed(1).replace('.0', '');
-        } else {
-          yText.textContent = i > 0 ? `後${i}` : `前${Math.abs(i)}`;
+          if (val < -20 || val > 95) {
+            shouldDrawYText = false;
+          }
         }
-        linesGroup.appendChild(yText);
+        
+        if (shouldDrawYText) {
+          const yText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          yText.setAttribute('x', GRID_CENTER_X - 10);
+          yText.setAttribute('y', GRID_CENTER_Y + posOffset + 3);
+          if (!homeCoord.isText) {
+            const val = homeCoord.y + i;
+            yText.textContent = val.toFixed(1).replace('.0', '');
+          } else {
+            yText.textContent = i > 0 ? `後${i}` : `前${Math.abs(i)}`;
+          }
+          linesGroup.appendChild(yText);
+        }
       }
     }
     
@@ -1768,6 +1824,38 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateNavigationSteps() {
     if (!actionHintsFlow || !currentPerformer) return;
     actionHintsFlow.innerHTML = '';
+
+    // Function to parse YouTube links and replace them with button HTML
+    function formatTextWithYtButtons(text) {
+      if (!text) return '';
+      let escaped = text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+      
+      const ytRegex = /(https?:\/\/(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})(?:[^\s]*))/gi;
+      return escaped.replace(ytRegex, function(match, url, videoId) {
+        return `<button class="yt-red-btn" data-video-id="${videoId}" data-url="${url}"><i class="fa-brands fa-youtube"></i> 播放</button>`;
+      });
+    }
+
+    // Setup event delegation for red buttons if not yet set up
+    if (!actionHintsFlow.dataset.hasYtClick) {
+      actionHintsFlow.dataset.hasYtClick = "true";
+      actionHintsFlow.addEventListener('click', (e) => {
+        const btn = e.target.closest('.yt-red-btn');
+        if (btn) {
+          e.stopPropagation();
+          const videoId = btn.getAttribute('data-video-id');
+          const url = btn.getAttribute('data-url');
+          if (videoId && typeof openYouTubeVideo === 'function') {
+            openYouTubeVideo(videoId, url);
+          }
+        }
+      });
+    }
     
     formations.forEach((f, idx) => {
       const card = document.createElement('div');
@@ -1804,28 +1892,15 @@ document.addEventListener('DOMContentLoaded', () => {
           
           const itemTitle = document.createElement('div');
           itemTitle.style.cssText = 'font-weight: bold; color: #b45309; font-size: 13px; margin-bottom: 4px;';
-          itemTitle.textContent = item.title;
+          itemTitle.innerHTML = formatTextWithYtButtons(item.title);
           itemDiv.appendChild(itemTitle);
           
           item.details.forEach(detail => {
             if (detail.type === 'text') {
-              const ytId = getYouTubeVideoId(detail.content);
-              if (ytId) {
-                const btn = document.createElement('a');
-                btn.className = 'yt-hint-btn';
-                btn.href = 'javascript:void(0);';
-                btn.innerHTML = '<i class="fa-brands fa-youtube yt-icon"></i> 播放提示影片';
-                btn.addEventListener('click', (e) => {
-                  e.stopPropagation();
-                  openYouTubeVideo(ytId, detail.content);
-                });
-                itemDiv.appendChild(btn);
-              } else {
-                const p = document.createElement('p');
-                p.style.cssText = 'margin: 0 0 4px 0; color: #1e293b; font-size: 12.5px; line-height: 1.45; font-weight: 500;';
-                p.textContent = detail.content;
-                itemDiv.appendChild(p);
-              }
+              const p = document.createElement('p');
+              p.style.cssText = 'margin: 0 0 4px 0; color: #1e293b; font-size: 12.5px; line-height: 1.45; font-weight: 500;';
+              p.innerHTML = formatTextWithYtButtons(detail.content);
+              itemDiv.appendChild(p);
             } else if (detail.type === 'image') {
               const img = document.createElement('img');
               img.src = detail.src;
@@ -2666,7 +2741,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Zoom In
     zoomInBtn.addEventListener('click', () => {
-      zoomLevel = Math.min(zoomLevel * 1.25, 4.0);
+      zoomLevel = Math.min(zoomLevel * 1.25, 5.0);
       updateSvgViewBox(svgEl);
     });
     
@@ -2753,7 +2828,7 @@ document.addEventListener('DOMContentLoaded', () => {
           );
           if (startTouchDist > 0) {
             const ratio = dist / startTouchDist;
-            zoomLevel = Math.max(0.5, Math.min(startZoomLevel * ratio, 4.0));
+            zoomLevel = Math.max(0.5, Math.min(startZoomLevel * ratio, 5.0));
             updateSvgViewBox(svgEl);
           }
         }
