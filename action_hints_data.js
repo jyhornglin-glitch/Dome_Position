@@ -18,7 +18,15 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "OS:靈山法會不散 無量義經廣傳 (法師)"
+          "content": "45°面向甲舞台"
+        },
+        {
+          "type": "text",
+          "content": "OS:靈山法會「不散」(內轉向圓心)"
+        },
+        {
+          "type": "text",
+          "content": "無量義經廣傳 (合掌拿燈，不開燈)"
         },
         {
           "type": "text",
@@ -38,71 +46,39 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "靜寂清澄志玄虛漠 守之不動億百千劫"
+          "content": "靜寂清澄志玄虛漠 (第一波開黃燈，合掌舉高)"
         },
         {
           "type": "text",
-          "content": "無量法門悉現在前 得大智慧通達諸法"
+          "content": "守之不動億百千劫 (第二波開黃燈，合掌舉高)"
         },
         {
           "type": "text",
-          "content": "曉了分別性相真實 有無長短明現顯白"
+          "content": "無量法門悉現在前 (第三波開黃燈，合掌舉高)"
         },
         {
           "type": "text",
-          "content": "又能善知諸根性欲 以陀羅尼無礙辯才"
+          "content": "得大智慧通達諸法 (第四波開黃燈，合掌舉高)"
         },
         {
           "type": "text",
-          "content": "請佛轉法輪"
+          "content": "曉了分別性相真實 (合掌往下到胸前)"
         },
         {
           "type": "text",
-          "content": "45°面向甲舞台"
+          "content": "有無長短明現顯白 (合掌舉高)"
         },
         {
           "type": "text",
-          "content": "內轉向圓心 合掌拿燈(不開燈)"
+          "content": "又能善知諸根性欲 (合掌往下到胸前)"
         },
         {
           "type": "text",
-          "content": "◎分四波："
+          "content": "以陀羅尼(合掌右轉朝圓圈線)無礙辯才"
         },
         {
           "type": "text",
-          "content": "第一波(白藍白)開黃燈.合掌慢慢舉高、其餘定格"
-        },
-        {
-          "type": "text",
-          "content": "第二波(藍白藍)開黃燈.合掌慢慢舉高、其餘定格"
-        },
-        {
-          "type": "text",
-          "content": "第三波(白藍白藍)開黃燈.合掌慢慢舉高、其餘定格"
-        },
-        {
-          "type": "text",
-          "content": "第四波(其餘)開黃燈.合掌慢慢舉高、其餘定格"
-        },
-        {
-          "type": "text",
-          "content": "合掌往下到胸前"
-        },
-        {
-          "type": "text",
-          "content": "合掌慢慢舉高"
-        },
-        {
-          "type": "text",
-          "content": "合掌往下到胸前"
-        },
-        {
-          "type": "text",
-          "content": "合掌右轉(朝圓圈線)"
-        },
-        {
-          "type": "text",
-          "content": "合掌舉高、右手開花.出右腳.左腳跟踮起.看圓心"
+          "content": "請佛轉法(合掌舉高)輪(右手開花.出右腳.左腳跟踮起.看圓心)"
         }
       ]
     },
@@ -334,22 +310,6 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "船-內側"
-        },
-        {
-          "type": "text",
-          "content": "船-槳"
-        },
-        {
-          "type": "text",
-          "content": "海浪-白"
-        },
-        {
-          "type": "text",
-          "content": "海浪-藍"
-        },
-        {
-          "type": "text",
           "content": "."
         },
         {
@@ -468,8 +428,7 @@ const ACTION_HINTS_DATA = {
       ]
     }
   ],
-  "miLuo": [],
-  "jingSi": [
+  "miLuo": [
     {
       "title": "9.扛天下米籮/甲45度",
       "details": [
@@ -518,7 +477,9 @@ const ACTION_HINTS_DATA = {
           "src": "images/action_hints/hint_25.jpg"
         }
       ]
-    },
+    }
+  ],
+  "jingSi": [
     {
       "title": "10.靜思家風/舞台正向法師，其餘面向法師45度",
       "details": [
@@ -579,7 +540,7 @@ const ACTION_HINTS_DATA = {
   ],
   "noBoat": [
     {
-      "title": "12.菜市場的五毛錢/面相乙舞台",
+      "title": "12.菜市場的五毛錢/面向乙舞台",
       "details": [
         {
           "type": "text",
@@ -743,7 +704,12 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_37.jpg"
-        },
+        }
+      ]
+    },
+    {
+      "title": "【地藏經啟航】",
+      "details": [
         {
           "type": "text",
           "content": "病苦眾生在呐喊"
@@ -928,10 +894,6 @@ const ACTION_HINTS_DATA = {
           "content": "船"
         },
         {
-          "type": "text",
-          "content": "海浪"
-        },
-        {
           "type": "image",
           "src": "images/action_hints/hint_44.jpg"
         },
@@ -1005,7 +967,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "搶救生命 無上光榮(最後面相乙舞台)"
+          "content": "搶救生命 無上光榮(最後面向乙舞台)"
         },
         {
           "type": "image",

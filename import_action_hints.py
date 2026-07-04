@@ -38,13 +38,21 @@ def get_category_by_title(title):
         return 'circle'
     if any(k in t for k in ['海濤澎湃', '開經偈']):
         return 'xingYuan'
-    if any(k in t for k in ['米籮', '靜思家風']):
+    if '米籮' in t:
+        return 'miLuo'
+    if '靜思家風' in t:
         return 'jingSi'
     if '點一盞燈' in t:
         return 'lamp'
-    if '07大船師' in t or '大船師' in t:
+    if '菜市場' in t or '圍爐' in t or '是諸眾生(第一三天' in t:
+        return 'noBoat'
+    if '米甕與大魚' in t or '是諸眾生(第二四天' in t:
+        return 'noBoat3'
+    if '07大船師' in t or '大船師' in t or '大醫王' in t:
         return 'daChuanShi'
-    if any(k in t for k in ['菜市場', '是諸眾生', '地藏經', '醫療', '四弘誓願']):
+    if '骨捐' in t or '能捨' in t:
+        return 'boneDonation'
+    if any(k in t for k in ['地藏經', '醫療', '四弘誓願']):
         return 'bigV'
     return None
 
@@ -85,11 +93,14 @@ def main():
     action_hints_data = {
         'circle': [],
         'xingYuan': [],
+        'miLuo': [],
         'jingSi': [],
         'lamp': [],
-        'noBoat': [], # Empty by default
+        'noBoat': [],
+        'noBoat3': [],
         'bigV': [],
         'daChuanShi': [],
+        'boneDonation': [],
         'eduWaterSlash': [],
         'eduWaterArc': [],
         'eduBigLotus': [],

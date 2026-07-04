@@ -21,10 +21,11 @@ IMAGE_DIR = os.path.join("images", "action_hints")
 CATEGORY_MAPPING = {
     '01圓形': 'circle',
     '02行願': 'xingYuan',
+    '03米籮': 'miLuo',
     '04靜思家風': 'jingSi',
-    '05 -1 有法船': 'lamp',
+    '05-1有法船(點一盞燈)': 'lamp',
     '05-2無法船(菜市場5毛錢)': 'noBoat',
-    '05-3有法船': 'noBoat3',
+    '05-3有法船(是諸眾生)': 'noBoat3',
     '06四弘誓願': 'bigV',
     '07-1大船師': 'daChuanShi',
     '07-2骨捐能捨': 'boneDonation'
@@ -136,11 +137,13 @@ def main():
     for r in range(1, R):
         # 1. Resolve current location
         loc_cell = table.rows[r].cells[0]
-        loc_text = loc_cell.text.strip().replace("\n", " ")
+        loc_text = loc_cell.text.strip()
         if loc_text:
             current_location = loc_text
             
-        cat = CATEGORY_MAPPING.get(current_location)
+        # Clean whitespaces and newlines
+        loc_clean = re.sub(r'\s+', '', current_location) if current_location else ""
+        cat = CATEGORY_MAPPING.get(loc_clean)
         if not cat:
             # Skip if location is not mapped
             continue
