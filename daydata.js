@@ -1,10 +1,10 @@
 // daydata.js — 自動由 import_daycsv.py 產生，請勿手動修改
 
 const DAY_SESSIONS = [
-  { key: '1112', label: '11/12(四)', date: '11/12(四)', count: 1234 },
-  { key: '1113', label: '11/13(五)', date: '11/13(五)', count: 1259 },
-  { key: '1114', label: '11/14(六)', date: '11/14(六)', count: 1236 },
-  { key: '1115', label: '11/15(日)', date: '11/15(日)', count: 414 },
+  { key: '1112', label: '11/12(四)', date: '11/12(四)', count: 1238 },
+  { key: '1113', label: '11/13(五)', date: '11/13(五)', count: 1263 },
+  { key: '1114', label: '11/14(六)', date: '11/14(六)', count: 1240 },
+  { key: '1115', label: '11/15(日)', date: '11/15(日)', count: 418 },
 ];
 
 const DAY_PERFORMERS = {
@@ -1243,6 +1243,10 @@ const DAY_PERFORMERS = {
     { id: '32-45', name: '', team: '東班' },
     { id: '33-44', name: '', team: '東班' },
     { id: '33-45', name: '', team: '東班' },
+    { id: '34-26', name: '許淑雲', team: '東班' },
+    { id: '35-26', name: '范錦蓮', team: '東班' },
+    { id: '36-26', name: '張漢倫', team: '東班' },
+    { id: '40-26', name: '廖文菁', team: '東班' },
   ],
   '1113': [
     { id: '1-49', name: '吳東穎', team: '東班' },
@@ -2504,6 +2508,10 @@ const DAY_PERFORMERS = {
     { id: '12-29', name: '張素蘭', team: '東班' },
     { id: '12-30', name: '王玉玲', team: '東班' },
     { id: '12-31', name: '白素琴', team: '東班' },
+    { id: '34-26', name: '張玉芳', team: '東班' },
+    { id: '35-26', name: '陳瑞凰', team: '東班' },
+    { id: '36-26', name: '蔡春蘭', team: '東班' },
+    { id: '40-26', name: '鍾桂算', team: '東班' },
   ],
   '1114': [
     { id: '4-46', name: '范志偉', team: '東班' },
@@ -3742,6 +3750,10 @@ const DAY_PERFORMERS = {
     { id: '4-30', name: '蕭進聰', team: '東班' },
     { id: '3-58', name: '林明煥', team: '東班' },
     { id: '4-52', name: '吳錦福', team: '東班' },
+    { id: '34-26', name: '吳秀蘭', team: '東班' },
+    { id: '35-26', name: '羅素娥', team: '東班' },
+    { id: '36-26', name: '蔡萬俊', team: '東班' },
+    { id: '40-26', name: '何菊妹', team: '東班' },
   ],
   '1115': [
     { id: '1-56', name: '甄國輝', team: '東班' },
@@ -4158,5 +4170,9 @@ const DAY_PERFORMERS = {
     { id: '34-43', name: '鄭淑精', team: '東班' },
     { id: '34-44', name: '蘇美雲', team: '東班' },
     { id: '29-43', name: '缺', team: '東班' },
+    { id: '34-26', name: '邱薪蓉', team: '東班' },
+    { id: '35-26', name: '羅素娥', team: '東班' },
+    { id: '36-26', name: '張漢倫', team: '東班' },
+    { id: '40-26', name: '何菊妹', team: '東班' },
   ],
 };
