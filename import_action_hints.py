@@ -52,6 +52,8 @@ def get_category_by_title(title):
         return 'daChuanShi'
     if '骨捐' in t or '能捨' in t:
         return 'boneDonation'
+    if '教育' in t or '說法品' in t:
+        return 'edu'
     if any(k in t for k in ['地藏經', '醫療', '四弘誓願']):
         return 'bigV'
     return None
@@ -101,6 +103,7 @@ def main():
         'bigV': [],
         'daChuanShi': [],
         'boneDonation': [],
+        'edu': [],
         'eduWaterSlash': [],
         'eduWaterArc': [],
         'eduBigLotus': [],

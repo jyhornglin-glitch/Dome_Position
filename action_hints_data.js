@@ -99,6 +99,10 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
+          "content": "隨從：遵命！"
+        },
+        {
+          "type": "text",
           "content": "入經藏：恭喜國王、賀喜國王！"
         },
         {
@@ -119,7 +123,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "淨飯王：哈哈！同喜，同喜啊！"
+          "content": "淨飯王：哈哈！同喜，同喜！"
         }
       ]
     },
@@ -273,6 +277,10 @@ const ACTION_HINTS_DATA = {
           "src": "images/action_hints/hint_9.png"
         },
         {
+          "type": "image",
+          "src": "images/action_hints/hint_10.jpg"
+        },
+        {
           "type": "text",
           "content": "海濤澎湃 駭浪洶湧"
         },
@@ -309,14 +317,6 @@ const ACTION_HINTS_DATA = {
           "content": "佛 法 廣 傳 在 人 間  行~~願"
         },
         {
-          "type": "text",
-          "content": "."
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_10.jpg"
-        },
-        {
           "type": "image",
           "src": "images/action_hints/hint_11.jpg"
         },
@@ -343,6 +343,10 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_17.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_18.jpg"
         }
       ]
     },
@@ -351,11 +355,11 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_18.png"
+          "src": "images/action_hints/hint_19.png"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_19.jpg"
+          "src": "images/action_hints/hint_20.jpg"
         },
         {
           "type": "text",
@@ -411,10 +415,6 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_20.jpg"
-        },
-        {
-          "type": "image",
           "src": "images/action_hints/hint_21.jpg"
         },
         {
@@ -424,6 +424,10 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_23.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_24.jpg"
         }
       ]
     }
@@ -438,7 +442,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_24.jpg"
+          "src": "images/action_hints/hint_25.jpg"
         },
         {
           "type": "text",
@@ -474,7 +478,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_25.jpg"
+          "src": "images/action_hints/hint_26.jpg"
         }
       ]
     }
@@ -489,11 +493,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_26.png"
+          "src": "images/action_hints/hint_27.png"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_27.jpg"
+          "src": "images/action_hints/hint_28.jpg"
         }
       ]
     }
@@ -508,11 +512,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_28.jpg"
+          "src": "images/action_hints/hint_29.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_29.jpg"
+          "src": "images/action_hints/hint_30.jpg"
         }
       ]
     },
@@ -548,7 +552,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_30.png"
+          "src": "images/action_hints/hint_31.png"
         },
         {
           "type": "text",
@@ -556,7 +560,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "菜販：嘿呦只要五毛錢就可以救人喔！這樣我也要！"
+          "content": "菜販：唉呦!只要五毛錢就可以救人喔！這樣我也要參加！"
         },
         {
           "type": "text",
@@ -572,7 +576,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_31.png"
+          "src": "images/action_hints/hint_32.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_33.jpg"
         }
       ]
     },
@@ -585,11 +593,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_32.jpg"
+          "src": "images/action_hints/hint_34.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_33.jpg"
+          "src": "images/action_hints/hint_35.jpg"
         },
         {
           "type": "text",
@@ -636,7 +644,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_34.jpg"
+          "src": "images/action_hints/hint_36.jpg"
         },
         {
           "type": "text",
@@ -684,7 +692,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_35.jpg"
+          "src": "images/action_hints/hint_37.jpg"
         }
       ]
     }
@@ -699,11 +707,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_36.jpg"
+          "src": "images/action_hints/hint_38.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_37.jpg"
+          "src": "images/action_hints/hint_39.jpg"
         }
       ]
     },
@@ -728,7 +736,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_38.jpg"
+          "src": "images/action_hints/hint_40.jpg"
         }
       ]
     },
@@ -741,7 +749,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_39.jpg"
+          "src": "images/action_hints/hint_41.jpg"
         },
         {
           "type": "text",
@@ -785,7 +793,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_40.jpg"
+          "src": "images/action_hints/hint_42.jpg"
         }
       ]
     },
@@ -794,7 +802,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_41.jpg"
+          "src": "images/action_hints/hint_43.jpg"
         }
       ]
     },
@@ -803,7 +811,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "OS:師父您怎麼說，我怎麼做(上舞台者出發)"
+          "content": "OS:師父您怎麼說，我怎麼做(上舞台者出發，全部的人到位先面向甲舞台)"
         },
         {
           "type": "text",
@@ -811,11 +819,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "蛤?三千萬還不到？不過，萬里長城也是從一塊磚開始的。"
+          "content": "蛤?三千萬還不到？不過，「萬里長城」(白色內轉至法師方向)也是從一塊磚開始的。"
         },
         {
           "type": "text",
-          "content": "四 弘 誓 願"
+          "content": "大聲喊：四 弘 誓 願"
         },
         {
           "type": "text",
@@ -847,7 +855,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_42.jpg"
+          "src": "images/action_hints/hint_44.jpg"
         }
       ]
     }
@@ -858,7 +866,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_43.jpg"
+          "src": "images/action_hints/hint_45.jpg"
         }
       ]
     },
@@ -890,16 +898,12 @@ const ACTION_HINTS_DATA = {
           "content": "大船師運載群生渡生死河置涅槃岸"
         },
         {
-          "type": "text",
-          "content": "船"
+          "type": "image",
+          "src": "images/action_hints/hint_46.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_44.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_45.jpg"
+          "src": "images/action_hints/hint_47.jpg"
         }
       ]
     }
@@ -910,7 +914,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_46.jpg"
+          "src": "images/action_hints/hint_48.jpg"
         }
       ]
     },
@@ -971,7 +975,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_47.jpg"
+          "src": "images/action_hints/hint_49.jpg"
         }
       ]
     },
@@ -980,7 +984,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_48.jpg"
+          "src": "images/action_hints/hint_50.jpg"
         }
       ]
     },
@@ -1041,7 +1045,50 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_49.jpg"
+          "src": "images/action_hints/hint_51.jpg"
+        }
+      ]
+    }
+  ],
+  "edu": [
+    {
+      "title": "19.說法品梵唄",
+      "details": [
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_52.jpg"
+        },
+        {
+          "type": "text",
+          "content": "菩薩摩訶薩"
+        },
+        {
+          "type": "text",
+          "content": "安住如是 真實相已"
+        },
+        {
+          "type": "text",
+          "content": "所發慈悲 明諦不虛"
+        },
+        {
+          "type": "text",
+          "content": "於眾生所 真能拔苦"
+        },
+        {
+          "type": "text",
+          "content": "苦既拔已 復為說法"
+        },
+        {
+          "type": "text",
+          "content": "苦既拔已 復為說法"
+        },
+        {
+          "type": "text",
+          "content": "令諸眾生 受於快樂"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_53.jpg"
         }
       ]
     }

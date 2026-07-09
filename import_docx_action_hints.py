@@ -25,10 +25,12 @@ CATEGORY_MAPPING = {
     '04靜思家風': 'jingSi',
     '05-1有法船(點一盞燈)': 'lamp',
     '05-2無法船(菜市場5毛錢)': 'noBoat',
-    '05-3有法船(是諸眾生)': 'noBoat3',
+    '05-3有法船(is諸眾生)': 'noBoat3',
+    '05-3有法船(是諸眾生)': 'noBoat3', # Support both formatting
     '06四弘誓願': 'bigV',
     '07-1大船師': 'daChuanShi',
-    '07-2骨捐能捨': 'boneDonation'
+    '07-2骨捐能捨': 'boneDonation',
+    '08教育': 'edu'
 }
 
 def get_images_from_cell(cell, doc, image_counter):
@@ -113,6 +115,7 @@ def main():
         'bigV': [],
         'daChuanShi': [],
         'boneDonation': [],
+        'edu': [],
         'eduWaterSlash': [],
         'eduWaterArc': [],
         'eduBigLotus': [],
