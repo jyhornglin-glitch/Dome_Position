@@ -422,13 +422,22 @@ body {
   box-sizing: border-box;
 }
 
+.teach-btn-group {
+  flex: 1;
+  display: flex;
+  gap: 12px;
+}
+
 .teach-btn {
   flex: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   gap: 8px;
-  height: 48px;
+  padding: 6px 12px;
+  min-height: 48px;
+  height: auto;
   border-radius: 12px;
   background: linear-gradient(135deg, #0b954b 0%, #0061ae 100%);
   color: white !important;
@@ -439,7 +448,8 @@ body {
   box-shadow: 0 4px 12px rgba(11, 149, 75, 0.2);
   border: none;
   cursor: pointer;
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-all;
 }
 
 .teach-btn:hover {
@@ -450,6 +460,16 @@ body {
 
 .teach-btn:active {
   transform: translateY(0);
+}
+
+.teach-btn.second-phase {
+  background: linear-gradient(135deg, #0061ae 0%, #7c3aed 100%);
+  box-shadow: 0 4px 12px rgba(0, 97, 174, 0.2);
+}
+
+.teach-btn.second-phase:hover {
+  background: linear-gradient(135deg, #0072cb 0%, #8b5cf6 100%);
+  box-shadow: 0 6px 20px rgba(0, 97, 174, 0.35);
 }
 
 .performer-avatar {
@@ -2878,11 +2898,18 @@ svg {
     border-radius: 10px !important;
   }
 
+  .teach-btn-group {
+    flex-direction: column !important;
+    gap: 6px !important;
+  }
+
   .teach-btn {
-    height: 34px !important;
+    height: auto !important;
+    min-height: 38px !important;
     font-size: 11px !important;
     border-radius: 8px !important;
     gap: 4px !important;
+    padding: 6px 8px !important;
   }
 
   .performer-avatar {
