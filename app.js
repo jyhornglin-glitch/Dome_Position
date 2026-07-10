@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { key: 'basic', name: '起點 (基本隊形)', label: '基本' },
     { key: 'circle', name: '01圓形', label: '圓形' },
     { key: 'xingYuan', name: '02行願', label: '行願' },
-    { key: 'miLuo', name: '03米蘿', label: '米蘿' },
+    { key: 'miLuo', name: '03米籮', label: '米籮' },
     { key: 'jingSi', name: '04靜思家風', label: '靜思' },
     { key: 'lamp', name: '05-1有法船（點一盞燈）', label: '有法船' },
     { key: 'noBoat', name: '05-2無法船（菜市場5毛錢）', label: '無法船' },

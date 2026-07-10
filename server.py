@@ -175,7 +175,7 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
 
             # Read and Update performers.csv
             rows = []
-            headers = ['身分別', '身份證', '姓名', '01圓形', '02行願', '03米蘿', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願', '07-1大船師', '07-2骨捐能捨', '08教育', '09人文', '10-1五大洲', '10-2五大洲', '11飛天']
+            headers = ['身分別', '身份證', '姓名', '01圓形', '02行願', '03米籮', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願', '07-1大船師', '07-2骨捐能捨', '08教育', '09人文', '10-1五大洲', '10-2五大洲', '11飛天']
             found = False
 
             if not os.path.exists(PERF_CSV):
@@ -190,7 +190,7 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                     if (row.get('身份證') or '').strip() == target_id and row_team == team:
                         row['01圓形'] = circle
                         row['02行願'] = xing_yuan
-                        row['03米蘿'] = target_id  # 強制與起點一致
+                        row['03米籮'] = target_id  # 強制與起點一致
                         row['04靜思家風'] = jing_si
                         row['05-1有法船（點一盞燈）'] = lamp
                         row['05-2無法船（菜市場5毛錢）'] = no_boat
@@ -301,7 +301,7 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
             elif table_type == 'performers':
                 csv_path = PERF_CSV
                 key_fields = ['班別', '身份證']
-                headers = ['班別', '身分別', '身份證', '姓名', '01圓形', '02行願', '03米蘿', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願', '07-1大船師', '07-2骨捐能捨', '08教育', '09人文', '10-1五大洲', '10-2五大洲', '11飛天']
+                headers = ['班別', '身分別', '身份證', '姓名', '01圓形', '02行願', '03米籮', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願', '07-1大船師', '07-2骨捐能捨', '08教育', '09人文', '10-1五大洲', '10-2五大洲', '11飛天']
             else:
                 self.send_json_response(400, {"success": False, "error": "無效的表格類型"})
                 return
@@ -327,7 +327,7 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
             
             if '身份證' in row_data:
                 row_data['身份證'] = self.clean_coord_val(row_data['身份證'])
-                row_data['03米蘿'] = row_data['身份證']  # 強制與起點一致
+                row_data['03米籮'] = row_data['身份證']  # 強制與起點一致
 
             if action == 'add':
                 duplicate = any(row_matches(r, row_data) for r in rows)
@@ -538,7 +538,7 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
 
             else: # performers
                 existing_rows = []
-                default_headers = ['班別', '身分別', '身份證', '姓名', '01圓形', '02行願', '03米蘿', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願', '07-1大船師', '07-2骨捐能捨', '08教育', '09人文', '10-1五大洲', '10-2五大洲', '11飛天']
+                default_headers = ['班別', '身分別', '身份證', '姓名', '01圓形', '02行願', '03米籮', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願', '07-1大船師', '07-2骨捐能捨', '08教育', '09人文', '10-1五大洲', '10-2五大洲', '11飛天']
                 existing_headers = default_headers
                 if os.path.exists(PERF_CSV):
                     with open(PERF_CSV, mode='r', encoding='utf-8-sig') as f_exist:
@@ -556,7 +556,7 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                 name_col_perf = find_field(['姓名', 'name']) or '姓名'
                 circle_col = find_field(['01圓形', 'circle']) or '01圓形'
                 xingyuan_col = find_field(['02行願', 'xingYuan']) or '02行願'
-                miluo_col = find_field(['03米蘿', 'miLuo']) or '03米蘿'
+                miluo_col = find_field(['03米籮', '03米蘿', 'miLuo']) or '03米籮'
                 jingsi_col = find_field(['04靜思家風', 'jingSi']) or '04靜思家風'
                 lamp_col = find_field(['05-1有法船', '05-1有法船（點一盞燈）', 'lamp']) or '05-1有法船（點一盞燈）'
                 noboat_col = find_field(['05-2無法船', '05-2無法船（菜市場5毛錢）', 'noBoat']) or '05-2無法船（菜市場5毛錢）'
@@ -602,7 +602,8 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                         changed = False
                         if circle_col in r and exist_row.get('01圓形') != circle: exist_row['01圓形'] = circle; changed = True
                         if xingyuan_col in r and exist_row.get('02行願') != xingyuan: exist_row['02行願'] = xingyuan; changed = True
-                        if miluo_col in r and exist_row.get('03米蘿') != miluo: exist_row['03米蘿'] = miluo; changed = True
+                        miluo_key_in_row = '03米籮' if '03米籮' in exist_row else ('03米蘿' if '03米蘿' in exist_row else miluo_col)
+                        if miluo_col in r and exist_row.get(miluo_key_in_row) != miluo: exist_row[miluo_key_in_row] = miluo; changed = True
                         if jingsi_col in r and exist_row.get('04靜思家風') != jingsi: exist_row['04靜思家風'] = jingsi; changed = True
                         if lamp_col in r and exist_row.get('05-1有法船（點一盞燈）') != lamp: exist_row['05-1有法船（點一盞燈）'] = lamp; changed = True
                         if noboat_col in r and exist_row.get('05-2無法船（菜市場5毛錢）') != noboat: exist_row['05-2無法船（菜市場5毛錢）'] = noboat; changed = True
@@ -635,7 +636,7 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                             elif clean_h == '姓名': new_row[h] = pname
                             elif clean_h == '01圓形': new_row[h] = circle
                             elif clean_h == '02行願': new_row[h] = xingyuan
-                            elif clean_h == '03米蘿': new_row[h] = miluo
+                            elif clean_h in ['03米蘿', '03米籮']: new_row[h] = miluo
                             elif clean_h == '04靜思家風': new_row[h] = jingsi
                             elif clean_h == '05-1有法船（點一盞燈）': new_row[h] = lamp
                             elif clean_h == '05-2無法船（菜市場5毛錢）': new_row[h] = noboat

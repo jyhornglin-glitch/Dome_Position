@@ -999,7 +999,7 @@
                   <th>姓名</th>
                   <th>01圓形</th>
                   <th>02行願</th>
-                  <th>03米蘿</th>
+                  <th>03米籮</th>
                   <th>04靜思</th>
                   <th>05-1法船</th>
                   <th>05-2無船</th>
@@ -1108,7 +1108,7 @@
             <input type="text" id="formPerfXing" class="form-control" placeholder="X-Y">
           </div>
           <div class="form-group">
-            <label for="formPerfMiLuo">03米蘿 座標</label>
+            <label for="formPerfMiLuo">03米籮 座標</label>
             <input type="text" id="formPerfMiLuo" class="form-control" placeholder="自動與起點一致" readonly style="background-color: #e9ecef; cursor: not-allowed;">
           </div>
           <div class="form-group">
@@ -1713,7 +1713,7 @@
             <td><input type="text" class="table-edit-input" id="editName2_${uniqueKey}" value="${p['姓名'] || '缺'}" style="width: 65px;"></td>
             <td><input type="text" class="table-edit-input" id="editCircle_${uniqueKey}" value="${p['01圓形'] || ''}" style="width: 70px;"></td>
             <td><input type="text" class="table-edit-input" id="editXing_${uniqueKey}" value="${p['02行願'] || ''}" style="width: 70px;"></td>
-            <td><input type="text" class="table-edit-input" id="editMiLuo_${uniqueKey}" value="${p['03米蘿'] || ''}" style="width: 70px; background-color: #f3f4f6; border: none; outline: none; cursor: not-allowed;" readonly></td>
+            <td><input type="text" class="table-edit-input" id="editMiLuo_${uniqueKey}" value="${p['03米籮'] || ''}" style="width: 70px; background-color: #f3f4f6; border: none; outline: none; cursor: not-allowed;" readonly></td>
             <td><input type="text" class="table-edit-input" id="editJing_${uniqueKey}" value="${p['04靜思家風'] || ''}" style="width: 70px;"></td>
             <td><input type="text" class="table-edit-input" id="editLamp_${uniqueKey}" value="${p['05-1有法船（點一盞燈）'] || ''}" style="width: 70px;"></td>
             <td><input type="text" class="table-edit-input" id="editNoBoat_${uniqueKey}" value="${p['05-2無法船（菜市場5毛錢）'] || ''}" style="width: 70px;"></td>
@@ -1744,7 +1744,7 @@
             <td>${p['姓名'] || '缺'}</td>
             <td>${p['01圓形'] || ''}</td>
             <td>${p['02行願'] || ''}</td>
-            <td>${p['03米蘿'] || ''}</td>
+            <td>${p['03米籮'] || ''}</td>
             <td>${p['04靜思家風'] || ''}</td>
             <td>${p['05-1有法船（點一盞燈）'] || ''}</td>
             <td>${p['05-2無法船（菜市場5毛錢）'] || ''}</td>
@@ -1812,7 +1812,7 @@
         row['姓名'] = document.getElementById(`editName2_${uniqueKey}`).value.trim();
         row['01圓形'] = document.getElementById(`editCircle_${uniqueKey}`).value.trim();
         row['02行願'] = document.getElementById(`editXing_${uniqueKey}`).value.trim();
-        row['03米蘿'] = document.getElementById(`editMiLuo_${uniqueKey}`).value.trim();
+        row['03米籮'] = document.getElementById(`editMiLuo_${uniqueKey}`).value.trim();
         row['04靜思家風'] = document.getElementById(`editJing_${uniqueKey}`).value.trim();
         row['05-1有法船（點一盞燈）'] = document.getElementById(`editLamp_${uniqueKey}`).value.trim();
         row['05-2無法船（菜市場5毛錢）'] = document.getElementById(`editNoBoat_${uniqueKey}`).value.trim();
@@ -1978,7 +1978,7 @@
         row['姓名'] = document.getElementById('formPerfName').value.trim();
         row['01圓形'] = document.getElementById('formPerfCircle').value.trim();
         row['02行願'] = document.getElementById('formPerfXing').value.trim();
-        row['03米蘿'] = document.getElementById('formPerfMiLuo').value.trim();
+        row['03米籮'] = document.getElementById('formPerfMiLuo').value.trim();
         row['04靜思家風'] = document.getElementById('formPerfJing').value.trim();
         row['05-1有法船（點一盞燈）'] = document.getElementById('formPerfLamp').value.trim();
         row['05-2無法船（菜市場5毛錢）'] = document.getElementById('formPerfNoBoat').value.trim();
