@@ -693,6 +693,12 @@ document.addEventListener('DOMContentLoaded', () => {
     currentPerformer = null;
     mainContent.style.display = 'none';
     emptyState.style.display = 'flex';
+    
+    // 方案 B：重置實景座位查詢的輔助提示
+    const helperText = document.getElementById('seatLookupHelperText');
+    const copyBtn = document.getElementById('copyPerformerIdBtn');
+    if (helperText) helperText.textContent = '請先搜尋表演者，可在此複製編號並於下方查詢';
+    if (copyBtn) copyBtn.style.display = 'none';
   }
 
   // Select performer and query details
@@ -772,6 +778,46 @@ document.addEventListener('DOMContentLoaded', () => {
     const appScreen = document.querySelector('.app-screen');
     if (appScreen) {
       appScreen.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // 方案 B：更新實景座位查詢的輔助提示與一鍵複製按鈕
+    const helperText = document.getElementById('seatLookupHelperText');
+    const copyBtn = document.getElementById('copyPerformerIdBtn');
+    if (helperText && copyBtn) {
+      if (performer) {
+        const perfNameStr = displayName ? `${displayName}` : `編號 ${fields.coordinate}`;
+        helperText.innerHTML = `<i class="fa-solid fa-circle-info"></i> 當前人員: <strong>${perfNameStr}</strong> (編號: <strong style="color: var(--blue-color);">${fields.coordinate}</strong>)`;
+        copyBtn.style.display = 'inline-flex';
+        
+        // 點擊複製編號、變更按鈕狀態並切換 Tab
+        copyBtn.onclick = () => {
+          navigator.clipboard.writeText(fields.coordinate).then(() => {
+            const originalHtml = copyBtn.innerHTML;
+            copyBtn.innerHTML = `<i class="fa-solid fa-check"></i> 已複製`;
+            copyBtn.style.background = 'var(--gold-color)';
+            copyBtn.style.borderColor = 'var(--gold-color)';
+            copyBtn.style.color = '#1e1b4b'; // 深色文字
+            
+            setTimeout(() => {
+              copyBtn.innerHTML = originalHtml;
+              copyBtn.style.background = '';
+              copyBtn.style.borderColor = '';
+              copyBtn.style.color = '';
+            }, 1500);
+
+            // 自動切換至實景/動線 Tab
+            const seatLookupTab = document.querySelector('.mobile-tab-btn[data-tab="seatLookup"]');
+            if (seatLookupTab) {
+              seatLookupTab.click();
+            }
+          }).catch(err => {
+            console.error('複製失敗:', err);
+          });
+        };
+      } else {
+        helperText.textContent = '請先搜尋表演者，可在此複製編號並於下方查詢';
+        copyBtn.style.display = 'none';
+      }
     }
   }
 
