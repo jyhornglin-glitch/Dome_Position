@@ -173,7 +173,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (key === 'edu') {
       return 'eduWaterSlash';
     }
-    if (key === 'humanities1' || key === 'humanities2') {
+    if (key === 'humanities1') {
+      return 'basic';
+    }
+    if (key === 'humanities2') {
       return 'humanities';
     }
     if (selectedSessionKey === '1113' || selectedSessionKey === '1115') {
@@ -1690,7 +1693,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     wrapper.appendChild(img);
 
-    if ((type === 'basic' || type === 'miLuo') && currentPerformer) {
+    if ((type === 'basic' || type === 'miLuo' || type === 'humanities1') && currentPerformer) {
       const fields = getPerformerFields(currentPerformer);
       const circleOverlay = document.createElement('div');
       circleOverlay.className = 'sticker-circle-overlay';
@@ -2489,8 +2492,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (stickerImg) {
           page.ctx.drawImage(stickerImg, col1CenterX - stickerSize / 2, startY, stickerSize, stickerSize);
           
-          // If basic formation, draw the green/red coordinate overlay
-          if (f.key === 'basic') {
+          // If basic formation or humanities1, draw the green/red coordinate overlay
+          if (f.key === 'basic' || f.key === 'humanities1') {
             page.ctx.save();
             const isCatA = currentPerformer.category.startsWith('A');
             const overlayColor = isCatA ? '#e65537' : '#7dbf32';
