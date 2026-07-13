@@ -269,7 +269,10 @@
                         <marker id="local-arrow-eduMidSmallLotus" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                           <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#BE6C50" />
                         </marker>
-                        <marker id="local-arrow-humanities" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                        <marker id="local-arrow-humanities1" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                          <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#0061AE" />
+                        </marker>
+                        <marker id="local-arrow-humanities2" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                           <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#0061AE" />
                         </marker>
                         <marker id="local-arrow-fiveContinents1" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -322,7 +325,10 @@
                         <marker id="local-arrow-static-eduMidSmallLotus" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
                           <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#BE6C50" />
                         </marker>
-                        <marker id="local-arrow-static-humanities" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                        <marker id="local-arrow-static-humanities1" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                          <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#0061AE" />
+                        </marker>
+                        <marker id="local-arrow-static-humanities2" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
                           <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#0061AE" />
                         </marker>
                         <marker id="local-arrow-static-fiveContinents1" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
@@ -736,30 +742,59 @@
                   </div>
                 </div>
 
-                <!-- Card 14: humanities -->
-                <div class="formation-card card" id="card-humanities">
+                <!-- Card 14: humanities1 -->
+                <div class="formation-card card" id="card-humanities1">
                   <div class="card-glow"></div>
                   <div class="card-header">
-                    <div class="formation-num">10</div>
+                    <div class="formation-num">10-1</div>
                     <div class="formation-title">
-                      <h4>09人文</h4>
-                      <p>Humanities</p>
+                      <h4>09-1人文(基本隊形)</h4>
+                      <p>Humanities (Basic)</p>
                     </div>
-                    <div class="coord-badge" id="coord-humanities">---</div>
+                    <div class="coord-badge" id="coord-humanities1">---</div>
                   </div>
                   <div class="card-body">
                     <div class="landmark-container">
                       <div class="landmark-title">專屬地標圖樣</div>
-                      <div class="landmark-icon-wrapper" id="icon-humanities"></div>
+                      <div class="landmark-icon-wrapper" id="icon-humanities1"></div>
                     </div>
                     <div class="vector-details">
                       <div class="vector-item home">
                         <span class="label">相對起點：</span>
-                        <span class="val" id="vector-humanities-home">---</span>
+                        <span class="val" id="vector-humanities1-home">---</span>
                       </div>
                       <div class="vector-item prev">
                         <span class="label">從教育：</span>
-                        <span class="val" id="vector-humanities-prev">---</span>
+                        <span class="val" id="vector-humanities1-prev">---</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 14-2: humanities2 -->
+                <div class="formation-card card" id="card-humanities2">
+                  <div class="card-glow"></div>
+                  <div class="card-header">
+                    <div class="formation-num">10-2</div>
+                    <div class="formation-title">
+                      <h4>09-2人文(主機板)</h4>
+                      <p>Humanities (Mainboard)</p>
+                    </div>
+                    <div class="coord-badge" id="coord-humanities2">---</div>
+                  </div>
+                  <div class="card-body">
+                    <div class="landmark-container">
+                      <div class="landmark-title">專屬地標圖樣</div>
+                      <div class="landmark-icon-wrapper" id="icon-humanities2"></div>
+                    </div>
+                    <div class="vector-details">
+                      <div class="vector-item home">
+                        <span class="label">相對起點：</span>
+                        <span class="val" id="vector-humanities2-home">---</span>
+                      </div>
+                      <div class="vector-item prev">
+                        <span class="label">從人文(基本)：</span>
+                        <span class="val" id="vector-humanities2-prev">---</span>
                       </div>
                     </div>
                   </div>
@@ -787,7 +822,7 @@
                         <span class="val" id="vector-fiveContinents1-home">---</span>
                       </div>
                       <div class="vector-item prev">
-                        <span class="label">從人文：</span>
+                        <span class="label">從人文(主機板)：</span>
                         <span class="val" id="vector-fiveContinents1-prev">---</span>
                       </div>
                     </div>
@@ -1001,8 +1036,12 @@
                       <input type="text" id="adminEdu" placeholder="例如: 3.5-39.2" required>
                     </div>
                     <div class="admin-form-group">
-                      <label for="adminHumanities">09人文 座標 (X-Y)</label>
-                      <input type="text" id="adminHumanities" placeholder="例如: 6-43.5" required>
+                      <label for="adminHumanities1">09-1人文(基本隊形) 座標 (X-Y)</label>
+                      <input type="text" id="adminHumanities1" placeholder="與起點一致" readonly style="background-color: #f3f4f6; cursor: not-allowed;">
+                    </div>
+                    <div class="admin-form-group">
+                      <label for="adminHumanities2">09-2人文(主機板) 座標 (X-Y)</label>
+                      <input type="text" id="adminHumanities2" placeholder="例如: 6-43.5" required>
                     </div>
                     <div class="admin-form-group">
                       <label for="adminFiveContinents1">10-1五大洲 座標 (X-Y)</label>

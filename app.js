@@ -117,7 +117,8 @@ document.addEventListener('DOMContentLoaded', () => {
     { key: 'daChuanShi', name: '07-1大船師', label: '大船師' },
     { key: 'boneDonation', name: '07-2骨捐能捨', label: '骨捐' },
     { key: 'edu', name: '08教育', label: '教育' },
-    { key: 'humanities', name: '09人文', label: '人文' },
+    { key: 'humanities1', name: '09-1人文(基本隊形)', label: '人文(基本)' },
+    { key: 'humanities2', name: '09-2人文(主機板)', label: '人文(主機板)' },
     { key: 'fiveContinents1', name: '10-1五大洲', label: '五大洲1' },
     { key: 'fiveContinents2', name: '10-2五大洲', label: '五大洲2' },
     { key: 'flyingApsaras', name: '11飛天', label: '飛天' }
@@ -147,6 +148,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (key === 'basic') {
       return getPerformerFields(performer).coordinate;
     }
+    if (key === 'humanities1') {
+      return performer.id || ''; // 直接以身分證座標(ID)為資料
+    }
     if (selectedSessionKey === '1113' || selectedSessionKey === '1115') {
       if (key === 'noBoat3') {
         return performer.lamp || '';
@@ -168,6 +172,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (key === 'edu') {
       return 'eduWaterSlash';
+    }
+    if (key === 'humanities1' || key === 'humanities2') {
+      return 'humanities';
     }
     if (selectedSessionKey === '1113' || selectedSessionKey === '1115') {
       if (key === 'noBoat3') {
@@ -1377,7 +1384,8 @@ document.addEventListener('DOMContentLoaded', () => {
       daChuanShi: '#FDD100',  // 黃色
       boneDonation: '#F19EA8', // 骨捐沿用四弘誓願的粉紅色
       edu: '#A6ADD6',          // 沿用原先 08-1 的藍紫色
-      humanities: '#0061AE',   // 藍色
+      humanities1: '#0061AE',  // 藍色
+      humanities2: '#0061AE',  // 藍色
       fiveContinents1: '#AF9DA8', // 灰紫色
       fiveContinents2: '#AF9DA8', // 灰紫色
       flyingApsaras: '#E62129'  // 紅色
@@ -3162,7 +3170,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('adminDaChuanShi').value = currentPerformer.daChuanShi || '';
         document.getElementById('adminBoneDonation').value = currentPerformer.boneDonation || '';
         document.getElementById('adminEdu').value = currentPerformer.edu || '';
-        document.getElementById('adminHumanities').value = currentPerformer.humanities || '';
+        document.getElementById('adminHumanities1').value = currentPerformer.id;
+        document.getElementById('adminHumanities2').value = currentPerformer.humanities2 || '';
         document.getElementById('adminFiveContinents1').value = currentPerformer.fiveContinents1 || '';
         document.getElementById('adminFiveContinents2').value = currentPerformer.fiveContinents2 || '';
         document.getElementById('adminFlyingApsaras').value = currentPerformer.flyingApsaras || '';
@@ -3305,7 +3314,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('adminDaChuanShi').value = p.daChuanShi || '';
         document.getElementById('adminBoneDonation').value = p.boneDonation || '';
         document.getElementById('adminEdu').value = p.edu || '';
-        document.getElementById('adminHumanities').value = p.humanities || '';
+        document.getElementById('adminHumanities1').value = p.id || '';
+        document.getElementById('adminHumanities2').value = p.humanities2 || '';
         document.getElementById('adminFiveContinents1').value = p.fiveContinents1 || '';
         document.getElementById('adminFiveContinents2').value = p.fiveContinents2 || '';
         document.getElementById('adminFlyingApsaras').value = p.flyingApsaras || '';
@@ -3322,7 +3332,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('adminDaChuanShi').value = '';
         document.getElementById('adminBoneDonation').value = '';
         document.getElementById('adminEdu').value = '';
-        document.getElementById('adminHumanities').value = '';
+        document.getElementById('adminHumanities1').value = '';
+        document.getElementById('adminHumanities2').value = '';
         document.getElementById('adminFiveContinents1').value = '';
         document.getElementById('adminFiveContinents2').value = '';
         document.getElementById('adminFlyingApsaras').value = '';
@@ -3395,7 +3406,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const daChuanShi = document.getElementById('adminDaChuanShi').value.trim();
       const boneDonation = document.getElementById('adminBoneDonation').value.trim();
       const edu = document.getElementById('adminEdu').value.trim();
-      const humanities = document.getElementById('adminHumanities').value.trim();
+      const humanities2 = document.getElementById('adminHumanities2').value.trim();
       const fiveContinents1 = document.getElementById('adminFiveContinents1').value.trim();
       const fiveContinents2 = document.getElementById('adminFiveContinents2').value.trim();
       const flyingApsaras = document.getElementById('adminFlyingApsaras').value.trim();
@@ -3407,7 +3418,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/api/update-performer', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, circle, xingYuan, miLuo, jingSi, lamp, noBoat, bigV, daChuanShi, boneDonation, edu, humanities, fiveContinents1, fiveContinents2, flyingApsaras, team, password: currentAdminPassword })
+        body: JSON.stringify({ id, circle, xingYuan, miLuo, jingSi, lamp, noBoat, bigV, daChuanShi, boneDonation, edu, humanities2, fiveContinents1, fiveContinents2, flyingApsaras, team, password: currentAdminPassword })
       })
       .then(res => res.json())
       .then(data => {

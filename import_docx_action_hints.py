@@ -120,7 +120,8 @@ def main():
         'eduWaterArc': [],
         'eduBigLotus': [],
         'eduMidSmallLotus': [],
-        'humanities': [],
+        'humanities1': [],
+        'humanities2': [],
         'fiveContinents1': [],
         'fiveContinents2': [],
         'flyingApsaras': []

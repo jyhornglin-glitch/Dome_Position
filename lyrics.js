@@ -90,7 +90,8 @@ const chantLyrics = {
   "daChuanShi": [],
   "boneDonation": [],
   "edu": [],
-  "humanities": [],
+  "humanities1": [],
+  "humanities2": [],
   "fiveContinents1": [],
   "fiveContinents2": [],
   "flyingApsaras": []

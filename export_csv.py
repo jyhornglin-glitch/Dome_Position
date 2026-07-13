@@ -44,13 +44,13 @@ def decompile_performers(base_dir):
     headers_chinese = [
         "班別", "身分別", "身份證", "姓名", "01圓形", "02行願", "03米籮", "04靜思家風",
         "05-1有法船（點一盞燈）", "05-2無法船（菜市場5毛錢）", "06四弘誓願",
-        "07-1大船師", "07-2骨捐能捨", "08教育", "09人文", "10-1五大洲", 
+        "07-1大船師", "07-2骨捐能捨", "08教育", "09-1人文(基本隊形)", "09-2人文(主機板)", "10-1五大洲", 
         "10-2五大洲", "11飛天", ""
     ]
     
     js_fields = [
         "team", "category", "id", "name", "circle", "xingYuan", "miLuo", "jingSi",
-        "lamp", "noBoat", "bigV", "daChuanShi", "boneDonation", "edu", "humanities", "fiveContinents1",
+        "lamp", "noBoat", "bigV", "daChuanShi", "boneDonation", "edu", "humanities1", "humanities2", "fiveContinents1",
         "fiveContinents2", "flyingApsaras", ""
     ]
     

@@ -62,7 +62,8 @@ def main(verbose=True):
                 "daChuanShi": clean_coord(row.get("daChuanShi") or row.get("07-1大船師") or ""),
                 "boneDonation": clean_coord(row.get("boneDonation") or row.get("07-2骨捐能捨") or ""),
                 "edu": clean_coord(row.get("edu") or row.get("08教育") or ""),
-                "humanities": clean_coord(row.get("humanities") or row.get("09人文") or ""),
+                "humanities1": pid_val,  # 直接以身份證座標(ID)為資料
+                "humanities2": clean_coord(row.get("humanities2") or row.get("09-2人文") or row.get("09-2人文(主機板)") or ""),
                 "fiveContinents1": clean_coord(row.get("fiveContinents1") or row.get("10-1五大洲") or ""),
                 "fiveContinents2": clean_coord(row.get("fiveContinents2") or row.get("10-2五大洲") or ""),
                 "flyingApsaras": clean_coord(row.get("flyingApsaras") or row.get("11飛天") or "")
@@ -75,7 +76,7 @@ def main(verbose=True):
     js_content = "// Performer Stage Formations Database\nconst performersData = [\n"
     for idx, p in enumerate(performers):
         comma = "," if idx < len(performers) - 1 else ""
-        js_content += f'  {{ category: "{esc(p["category"])}", id: "{esc(p["id"])}", name: "{esc(p["name"])}", team: "{esc(p["team"])}", circle: "{esc(p["circle"])}", xingYuan: "{esc(p["xingYuan"])}", miLuo: "{esc(p["miLuo"])}", jingSi: "{esc(p["jingSi"])}", lamp: "{esc(p["lamp"])}", noBoat: "{esc(p["noBoat"])}", bigV: "{esc(p["bigV"])}", daChuanShi: "{esc(p["daChuanShi"])}", boneDonation: "{esc(p["boneDonation"])}", edu: "{esc(p["edu"])}", humanities: "{esc(p["humanities"])}", fiveContinents1: "{esc(p["fiveContinents1"])}", fiveContinents2: "{esc(p["fiveContinents2"])}", flyingApsaras: "{esc(p["flyingApsaras"])}" }}{comma}\n'
+        js_content += f'  {{ category: "{esc(p["category"])}", id: "{esc(p["id"])}", name: "{esc(p["name"])}", team: "{esc(p["team"])}", circle: "{esc(p["circle"])}", xingYuan: "{esc(p["xingYuan"])}", miLuo: "{esc(p["miLuo"])}", jingSi: "{esc(p["jingSi"])}", lamp: "{esc(p["lamp"])}", noBoat: "{esc(p["noBoat"])}", bigV: "{esc(p["bigV"])}", daChuanShi: "{esc(p["daChuanShi"])}", boneDonation: "{esc(p["boneDonation"])}", edu: "{esc(p["edu"])}", humanities1: "{esc(p["humanities1"])}", humanities2: "{esc(p["humanities2"])}", fiveContinents1: "{esc(p["fiveContinents1"])}", fiveContinents2: "{esc(p["fiveContinents2"])}", flyingApsaras: "{esc(p["flyingApsaras"])}" }}{comma}\n'
     js_content += "];\n\n// Export if in node environment, otherwise make it global\nif (typeof module !== 'undefined' && module.exports) {\n  module.exports = performersData;\n}\n"
     
     with open(js_path, mode='w', encoding='utf-8') as f:

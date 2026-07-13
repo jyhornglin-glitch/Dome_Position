@@ -163,7 +163,7 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
             da_chuan_shi = str(data.get('daChuanShi', '')).strip()
             bone_donation = str(data.get('boneDonation', '')).strip()
             edu = str(data.get('edu', '')).strip()
-            humanities = str(data.get('humanities', '')).strip()
+            humanities2 = str(data.get('humanities2', '')).strip()
             five_continents1 = str(data.get('fiveContinents1', '')).strip()
             five_continents2 = str(data.get('fiveContinents2', '')).strip()
             flying_apsaras = str(data.get('flyingApsaras', '')).strip()
@@ -175,7 +175,7 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
 
             # Read and Update performers.csv
             rows = []
-            headers = ['身分別', '身份證', '姓名', '01圓形', '02行願', '03米籮', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願', '07-1大船師', '07-2骨捐能捨', '08教育', '09人文', '10-1五大洲', '10-2五大洲', '11飛天']
+            headers = ['身分別', '身份證', '姓名', '01圓形', '02行願', '03米籮', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願', '07-1大船師', '07-2骨捐能捨', '08教育', '09-1人文(基本隊形)', '09-2人文(主機板)', '10-1五大洲', '10-2五大洲', '11飛天']
             found = False
 
             if not os.path.exists(PERF_CSV):
@@ -198,7 +198,8 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                         row['07-1大船師'] = da_chuan_shi
                         row['07-2骨捐能捨'] = bone_donation
                         row['08教育'] = edu
-                        row['09人文'] = humanities
+                        row['09-1人文(基本隊形)'] = target_id  # 強制與身份證一致
+                        row['09-2人文(主機板)'] = humanities2
                         row['10-1五大洲'] = five_continents1
                         row['10-2五大洲'] = five_continents2
                         row['11飛天'] = flying_apsaras
@@ -301,7 +302,7 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
             elif table_type == 'performers':
                 csv_path = PERF_CSV
                 key_fields = ['班別', '身份證']
-                headers = ['班別', '身分別', '身份證', '姓名', '01圓形', '02行願', '03米籮', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願', '07-1大船師', '07-2骨捐能捨', '08教育', '09人文', '10-1五大洲', '10-2五大洲', '11飛天']
+                headers = ['班別', '身分別', '身份證', '姓名', '01圓形', '02行願', '03米籮', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願', '07-1大船師', '07-2骨捐能捨', '08教育', '09-1人文(基本隊形)', '09-2人文(主機板)', '10-1五大洲', '10-2五大洲', '11飛天']
             else:
                 self.send_json_response(400, {"success": False, "error": "無效的表格類型"})
                 return
@@ -328,6 +329,7 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
             if '身份證' in row_data:
                 row_data['身份證'] = self.clean_coord_val(row_data['身份證'])
                 row_data['03米籮'] = row_data['身份證']  # 強制與起點一致
+                row_data['09-1人文(基本隊形)'] = row_data['身份證']  # 強制與起點一致
 
             if action == 'add':
                 duplicate = any(row_matches(r, row_data) for r in rows)
@@ -538,7 +540,7 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
 
             else: # performers
                 existing_rows = []
-                default_headers = ['班別', '身分別', '身份證', '姓名', '01圓形', '02行願', '03米籮', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願', '07-1大船師', '07-2骨捐能捨', '08教育', '09人文', '10-1五大洲', '10-2五大洲', '11飛天']
+                default_headers = ['班別', '身分別', '身份證', '姓名', '01圓形', '02行願', '03米籮', '04靜思家風', '05-1有法船（點一盞燈）', '05-2無法船（菜市場5毛錢）', '06四弘誓願', '07-1大船師', '07-2骨捐能捨', '08教育', '09-1人文(基本隊形)', '09-2人文(主機板)', '10-1五大洲', '10-2五大洲', '11飛天']
                 existing_headers = default_headers
                 if os.path.exists(PERF_CSV):
                     with open(PERF_CSV, mode='r', encoding='utf-8-sig') as f_exist:
@@ -564,7 +566,8 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                 dachuan_col = find_field(['07-1大船師', 'daChuanShi']) or '07-1大船師'
                 bonedonation_col = find_field(['07-2骨捐能捨', 'boneDonation']) or '07-2骨捐能捨'
                 edu_col = find_field(['08教育', 'edu']) or '08教育'
-                humanities_col = find_field(['09人文', 'humanities']) or '09人文'
+                humanities1_col = find_field(['09-1人文', '09-1人文(基本隊形)', 'humanities1']) or '09-1人文(基本隊形)'
+                humanities2_col = find_field(['09-2人文', '09-2人文(主機板)', 'humanities2']) or '09-2人文(主機板)'
                 fivecontinents1_col = find_field(['10-1五大洲', 'fiveContinents1']) or '10-1五大洲'
                 fivecontinents2_col = find_field(['10-2五大洲', 'fiveContinents2']) or '10-2五大洲'
                 flyingapsaras_col = find_field(['11飛天', 'flyingApsaras']) or '11飛天'
@@ -590,7 +593,8 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                     dachuan = self.clean_coord_val(r.get(dachuan_col, ''))
                     bone_donation = self.clean_coord_val(r.get(bonedonation_col, ''))
                     edu = self.clean_coord_val(r.get(edu_col, ''))
-                    humanities = self.clean_coord_val(r.get(humanities_col, ''))
+                    humanities1 = pid  # 強制與起點一致
+                    humanities2 = self.clean_coord_val(r.get(humanities2_col, ''))
                     fivecontinents1 = self.clean_coord_val(r.get(fivecontinents1_col, ''))
                     fivecontinents2 = self.clean_coord_val(r.get(fivecontinents2_col, ''))
                     flyingapsaras = self.clean_coord_val(r.get(flyingapsaras_col, ''))
@@ -611,7 +615,13 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                         if dachuan_col in r and exist_row.get('07-1大船師') != dachuan: exist_row['07-1大船師'] = dachuan; changed = True
                         if bonedonation_col in r and exist_row.get('07-2骨捐能捨') != bone_donation: exist_row['07-2骨捐能捨'] = bone_donation; changed = True
                         if edu_col in r and exist_row.get('08教育') != edu: exist_row['08教育'] = edu; changed = True
-                        if humanities_col in r and exist_row.get('09人文') != humanities: exist_row['09人文'] = humanities; changed = True
+                        
+                        h1_key = '09-1人文(基本隊形)' if '09-1人文(基本隊形)' in exist_row else ('09-1人文' if '09-1人文' in exist_row else humanities1_col)
+                        if exist_row.get(h1_key) != humanities1: exist_row[h1_key] = humanities1; changed = True
+                        
+                        h2_key = '09-2人文(主機板)' if '09-2人文(主機板)' in exist_row else ('09-2人文' if '09-2人文' in exist_row else humanities2_col)
+                        if humanities2_col in r and exist_row.get(h2_key) != humanities2: exist_row[h2_key] = humanities2; changed = True
+
                         if fivecontinents1_col in r and exist_row.get('10-1五大洲') != fivecontinents1: exist_row['10-1五大洲'] = fivecontinents1; changed = True
                         if fivecontinents2_col in r and exist_row.get('10-2五大洲') != fivecontinents2: exist_row['10-2五大洲'] = fivecontinents2; changed = True
                         if flyingapsaras_col in r and exist_row.get('11飛天') != flyingapsaras: exist_row['11飛天'] = flyingapsaras; changed = True
@@ -644,7 +654,8 @@ class AdminRequestHandler(SimpleHTTPRequestHandler):
                             elif clean_h == '07-1大船師': new_row[h] = dachuan
                             elif clean_h == '07-2骨捐能捨': new_row[h] = bone_donation
                             elif clean_h == '08教育': new_row[h] = edu
-                            elif clean_h == '09人文': new_row[h] = humanities
+                            elif clean_h in ['09-1人文', '09-1人文(基本隊形)']: new_row[h] = humanities1
+                            elif clean_h in ['09-2人文', '09-2人文(主機板)']: new_row[h] = humanities2
                             elif clean_h == '10-1五大洲': new_row[h] = fivecontinents1
                             elif clean_h == '10-2五大洲': new_row[h] = fivecontinents2
                             elif clean_h == '11飛天': new_row[h] = flyingapsaras

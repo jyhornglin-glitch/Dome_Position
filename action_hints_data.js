@@ -1097,7 +1097,8 @@ const ACTION_HINTS_DATA = {
   "eduWaterArc": [],
   "eduBigLotus": [],
   "eduMidSmallLotus": [],
-  "humanities": [],
+  "humanities1": [],
+  "humanities2": [],
   "fiveContinents1": [],
   "fiveContinents2": [],
   "flyingApsaras": []
