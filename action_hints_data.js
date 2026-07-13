@@ -2,7 +2,7 @@
 const ACTION_HINTS_DATA = {
   "circle": [
     {
-      "title": "序，甲45度→乙",
+      "title": "序，面甲舞台圓弧線→乙",
       "details": [
         {
           "type": "text",
@@ -18,7 +18,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "45°面向甲舞台"
+          "content": "面向甲舞台圓弧線"
         },
         {
           "type": "text",
@@ -79,11 +79,15 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "請佛轉法(合掌舉高)輪(右手開花.出右腳.左腳跟踮起.看圓心)"
+        },
+        {
+          "type": "text",
+          "content": "(結束轉向圓心)"
         }
       ]
     },
     {
-      "title": "生，甲45度",
+      "title": "生，甲舞台圓弧線",
       "details": [
         {
           "type": "image",
@@ -153,6 +157,10 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "老去的苦悶，分秒蹉跎的警鐘"
+        },
+        {
+          "type": "text",
+          "content": "OS：人註定會老，真是「苦啊」!"
         }
       ]
     },
@@ -169,6 +177,10 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
+          "content": "os 失神喪志，呻吟哀嘆，骨瘦呤叮毀容顏"
+        },
+        {
+          "type": "text",
           "content": "病症摧殘、身心扭轉、"
         },
         {
@@ -178,6 +190,10 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "患病的苦難，無常環伺的凶險"
+        },
+        {
+          "type": "text",
+          "content": "OS：人一旦得病，更是「苦啊」!"
         }
       ]
     },
@@ -194,19 +210,31 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "人生苦短 無可愛戀"
+          "content": "OS：命有限，難拖延，貧富窮通同一般"
         },
         {
           "type": "text",
-          "content": "壽終必然 誰能避免"
+          "content": "人生苦短、無可愛戀、壽終必然、誰能避免，死亡的苦嘆，省思生命的意涵"
         },
         {
           "type": "text",
-          "content": "死亡的苦嘆 省思生命的意涵"
+          "content": "OS：生老病死，實在「苦不堪言」。(全體回正)"
+        },
+        {
+          "type": "text",
+          "content": "「北門前」(全體合掌轉面向法師之圓弧線)竹林間，修行道人相莊嚴。"
+        },
+        {
+          "type": "text",
+          "content": "「夜深人靜」(轉面向圓心，腳尖對線)離宮殿，不悟真理誓不還。"
+        },
+        {
+          "type": "text",
+          "content": "OS：我要為眾生尋求解脫之道→講完手放大腿邊"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_6.jpg"
+          "src": "images/action_hints/hint_6.png"
         }
       ]
     },
@@ -278,7 +306,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_10.jpg"
+          "src": "images/action_hints/hint_10.png"
         },
         {
           "type": "text",
@@ -478,7 +506,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_26.jpg"
+          "src": "images/action_hints/hint_26.png"
         }
       ]
     }
@@ -494,6 +522,22 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_27.png"
+        },
+        {
+          "type": "text",
+          "content": "OS：你去煮麵線(台語)→舞臺的人上舞台"
+        },
+        {
+          "type": "text",
+          "content": "OS：我的師父自己沒東西吃，卻是念念眾生的苦。"
+        },
+        {
+          "type": "text",
+          "content": "嗯! 「我認定」了這個師父了 (台語) →合掌轉向法師"
+        },
+        {
+          "type": "text",
+          "content": "結束後下舞台，全體回基本隊形正面向甲舞臺。"
         },
         {
           "type": "image",
@@ -517,12 +561,39 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_30.jpg"
-        }
-      ]
-    },
-    {
-      "title": "在黑暗角落點一盞燈",
-      "details": [
+        },
+        {
+          "type": "text",
+          "content": "OS:咦!這裡怎麼有一灘血啊? 換成LOGO隊形，到位先面向甲舞台"
+        },
+        {
+          "type": "text",
+          "content": "OS:師父我們需要「你」→轉自己的方向"
+        },
+        {
+          "type": "text",
+          "content": "如果你幫助我……我永遠不離開花蓮"
+        },
+        {
+          "type": "text",
+          "content": "音樂下"
+        },
+        {
+          "type": "text",
+          "content": "音效噔、噔：開黃燈；八正道與框合十拿燈；船、浪、帆及非LOGO開燈放口袋"
+        },
+        {
+          "type": "text",
+          "content": "音效匡：該跪的跪；非LOGO一起合掌跪"
+        },
+        {
+          "type": "text",
+          "content": "音效噔，在黑暗角落「點一盞燈」: 非LOGO坐"
+        },
+        {
+          "type": "text",
+          "content": "在黑暗角落點一盞燈"
+        },
         {
           "type": "text",
           "content": "慈悲智慧的化身"
@@ -560,7 +631,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "菜販：唉呦!只要五毛錢就可以救人喔！這樣我也要參加！"
+          "content": "菜販：唉呦!只要五毛錢就可以救人喔！這樣我也要(參加)！"
         },
         {
           "type": "text",
@@ -645,6 +716,18 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_36.jpg"
+        },
+        {
+          "type": "text",
+          "content": "OS:「菩薩所緣」，緣苦眾生→LOGO上舞台，其他人轉向該轉的地方。"
+        },
+        {
+          "type": "text",
+          "content": "這是我的願，你吃我的肉啃我的骨，彼此結下師徒法緣，但願將來一起為天下的苦難人付出，力行「菩薩道」→開燈；要跪的跪。"
+        },
+        {
+          "type": "text",
+          "content": "音樂前奏→外圍坐，合掌。"
         },
         {
           "type": "text",
@@ -855,7 +938,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_44.jpg"
+          "src": "images/action_hints/hint_44.png"
         }
       ]
     }
@@ -864,6 +947,10 @@ const ACTION_HINTS_DATA = {
     {
       "title": "19.大醫王",
       "details": [
+        {
+          "type": "text",
+          "content": "https://youtu.be/ExmRPh65YqY?si=SuZicPWrNSf0pL7s"
+        },
         {
           "type": "image",
           "src": "images/action_hints/hint_45.jpg"
@@ -883,19 +970,35 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "大醫王分別病相曉了藥性隨病授藥"
+          "content": "大醫王 分別病相"
         },
         {
           "type": "text",
-          "content": "大船師運載群生渡生死河置涅槃岸"
+          "content": "曉了藥性 隨病授藥"
         },
         {
           "type": "text",
-          "content": "大醫王分別病相曉了藥性隨病授藥"
+          "content": "大船師 運載群生"
         },
         {
           "type": "text",
-          "content": "大船師運載群生渡生死河置涅槃岸"
+          "content": "渡生死河 置涅槃岸"
+        },
+        {
+          "type": "text",
+          "content": "大醫王 分別病相"
+        },
+        {
+          "type": "text",
+          "content": "曉了藥性 隨病授藥"
+        },
+        {
+          "type": "text",
+          "content": "大船師 運載群生"
+        },
+        {
+          "type": "text",
+          "content": "渡生死河 置涅槃岸"
         },
         {
           "type": "image",
@@ -912,6 +1015,10 @@ const ACTION_HINTS_DATA = {
     {
       "title": "17.骨捐",
       "details": [
+        {
+          "type": "text",
+          "content": "https://youtu.be/RT-6CGsLSXk?si=oCbwIuQmBzsq1lLg"
+        },
         {
           "type": "image",
           "src": "images/action_hints/hint_48.jpg"
@@ -983,6 +1090,10 @@ const ACTION_HINTS_DATA = {
       "title": "18.能捨",
       "details": [
         {
+          "type": "text",
+          "content": "https://youtu.be/pu8qEPp-sng?si=xDeJiPydk4rYpEWs"
+        },
+        {
           "type": "image",
           "src": "images/action_hints/hint_50.jpg"
         }
@@ -1045,7 +1156,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_51.jpg"
+          "src": "images/action_hints/hint_51.png"
         }
       ]
     }
@@ -1056,7 +1167,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_52.jpg"
+          "src": "images/action_hints/hint_52.png"
         },
         {
           "type": "text",
@@ -1091,15 +1202,692 @@ const ACTION_HINTS_DATA = {
           "src": "images/action_hints/hint_53.jpg"
         }
       ]
+    },
+    {
+      "title": "20.無量易經終曲~無語良師VCR",
+      "details": [
+        {
+          "type": "text",
+          "content": "https://youtu.be/N6cBLAu1few?si=_84i2oiVtOnDmkBx"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_54.png"
+        },
+        {
+          "type": "text",
+          "content": "【曲目： 無量義經終曲】"
+        },
+        {
+          "type": "text",
+          "content": "大慈大悲無量義"
+        },
+        {
+          "type": "text",
+          "content": "靜寂清澄如琉璃"
+        },
+        {
+          "type": "text",
+          "content": "守之不動起敬意"
+        },
+        {
+          "type": "text",
+          "content": "必令廣行閻浮提"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_55.png"
+        }
+      ]
+    },
+    {
+      "title": "21.大體老師捨身育才",
+      "details": [
+        {
+          "type": "text",
+          "content": "https://youtu.be/_WHbKMU04Rs?si=jfChGKr80xAr7jT1"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_56.png"
+        },
+        {
+          "type": "text",
+          "content": "【曲目：慈大校歌】"
+        },
+        {
+          "type": "text",
+          "content": "誓願將心比心想"
+        },
+        {
+          "type": "text",
+          "content": "眾生平安解我憂勞痛創"
+        },
+        {
+          "type": "text",
+          "content": "誓願眾生為至親"
+        },
+        {
+          "type": "text",
+          "content": "醫病醫心醫得平安共享"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_57.png"
+        }
+      ]
+    },
+    {
+      "title": "22.慈濟中小學-小樹啊!",
+      "details": [
+        {
+          "type": "text",
+          "content": "https://youtu.be/pLSPo2sfaD4?si=VKtScfeX4g0SAWwV"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_58.png"
+        },
+        {
+          "type": "text",
+          "content": "【曲目： 種樹】"
+        },
+        {
+          "type": "text",
+          "content": "小樹啊"
+        },
+        {
+          "type": "text",
+          "content": "我要你成為"
+        },
+        {
+          "type": "text",
+          "content": "一顆頂天立地的大樹"
+        },
+        {
+          "type": "text",
+          "content": "我的期望和期盼"
+        },
+        {
+          "type": "text",
+          "content": "也隨著他"
+        },
+        {
+          "type": "text",
+          "content": "成長和堅韌"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_59.png"
+        }
+      ]
+    },
+    {
+      "title": "23.人文畢業典禮組曲-成長",
+      "details": [
+        {
+          "type": "text",
+          "content": "https://youtu.be/_TfFOhQev8Q?si=bVSoPHw88K7Y5BiP"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_60.png"
+        },
+        {
+          "type": "text",
+          "content": "【曲目：成長】"
+        },
+        {
+          "type": "text",
+          "content": "曾經我的腳步"
+        },
+        {
+          "type": "text",
+          "content": "有您殷殷善誘和陪伴"
+        },
+        {
+          "type": "text",
+          "content": "當我走向新的旅程"
+        },
+        {
+          "type": "text",
+          "content": "滿心感恩不能忘"
+        },
+        {
+          "type": "text",
+          "content": "我終將張開翅膀"
+        },
+        {
+          "type": "text",
+          "content": "飛向更寬闊的遠方"
+        },
+        {
+          "type": "text",
+          "content": "成長路不管多難"
+        },
+        {
+          "type": "text",
+          "content": "愛是我的行囊"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_61.png"
+        }
+      ]
+    },
+    {
+      "title": "24.人文畢業典禮組曲-感恩",
+      "details": [
+        {
+          "type": "text",
+          "content": "https://youtu.be/yXNNtT4xq-w?si=kwlV3QBvSpuSUSJt"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_62.png"
+        },
+        {
+          "type": "text",
+          "content": "【曲目：感恩】"
+        },
+        {
+          "type": "text",
+          "content": "我將牢記離別的意義"
+        },
+        {
+          "type": "text",
+          "content": "寬厚人生延續你的培育"
+        },
+        {
+          "type": "text",
+          "content": "不會將你忘記"
+        },
+        {
+          "type": "text",
+          "content": "不會將你忘記"
+        },
+        {
+          "type": "text",
+          "content": "我們會是慈濟的延續"
+        },
+        {
+          "type": "text",
+          "content": "感謝叮嚀 感恩有你"
+        },
+        {
+          "type": "text",
+          "content": "我們會是慈濟的延續"
+        },
+        {
+          "type": "text",
+          "content": "感謝叮嚀 感恩有你"
+        },
+        {
+          "type": "text",
+          "content": "我們會是慈濟的延續"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_63.png"
+        }
+      ]
+    },
+    {
+      "title": "25.教聯會曲目：藥草喻",
+      "details": [
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_64.png"
+        },
+        {
+          "type": "text",
+          "content": "【曲目：藥草喻】"
+        },
+        {
+          "type": "text",
+          "content": "藥草分三等"
+        },
+        {
+          "type": "text",
+          "content": "隨其大小潤根苗"
+        },
+        {
+          "type": "text",
+          "content": "轉輪聖王小藥草"
+        },
+        {
+          "type": "text",
+          "content": "聲聞緣覺中藥草"
+        },
+        {
+          "type": "text",
+          "content": "常隨佛學上藥草"
+        },
+        {
+          "type": "text",
+          "content": "樹木有兩種"
+        },
+        {
+          "type": "text",
+          "content": "順其高矮享甘露"
+        },
+        {
+          "type": "text",
+          "content": "常行慈悲小樹木"
+        },
+        {
+          "type": "text",
+          "content": "度化眾生大樹木"
+        },
+        {
+          "type": "text",
+          "content": "皆為菩薩行六度"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_65.png"
+        }
+      ]
     }
   ],
   "eduWaterSlash": [],
   "eduWaterArc": [],
   "eduBigLotus": [],
   "eduMidSmallLotus": [],
-  "humanities1": [],
-  "humanities2": [],
-  "fiveContinents1": [],
+  "humanities1": [
+    {
+      "title": "26.慈誠隊歌",
+      "details": [
+        {
+          "type": "text",
+          "content": "https://youtu.be/oWOkGfo1HaA?si=nQoje7a5Wsx-4wqU"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_66.png"
+        },
+        {
+          "type": "text",
+          "content": "【慈誠隊歌】"
+        },
+        {
+          "type": "text",
+          "content": "慈誠慈誠 護法金剛"
+        },
+        {
+          "type": "text",
+          "content": "慈悲喜捨 誠正信實"
+        },
+        {
+          "type": "text",
+          "content": "犧牲奉獻 相互成就"
+        },
+        {
+          "type": "text",
+          "content": "持十戒 修十善"
+        },
+        {
+          "type": "text",
+          "content": "護持慈濟世界"
+        },
+        {
+          "type": "text",
+          "content": "敬愛上人 感恩上人"
+        },
+        {
+          "type": "text",
+          "content": "耐力毅力 身行供養"
+        },
+        {
+          "type": "text",
+          "content": "祝福植福 信解行證"
+        },
+        {
+          "type": "text",
+          "content": "悲憫心 持威儀"
+        },
+        {
+          "type": "text",
+          "content": "創造慈濟世界"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_67.png"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_68.png"
+        }
+      ]
+    },
+    {
+      "title": "27.父母恩重難報經(六日場專有)",
+      "details": [
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_69.png"
+        },
+        {
+          "type": "text",
+          "content": "【曲目：父母恩重難報經．因緣】"
+        },
+        {
+          "type": "text",
+          "content": "法師對小朋友說"
+        },
+        {
+          "type": "text",
+          "content": "佛告阿難應諦聽"
+        },
+        {
+          "type": "text",
+          "content": "分別為你說分明"
+        },
+        {
+          "type": "text",
+          "content": "枯骨因緣溯前世"
+        },
+        {
+          "type": "text",
+          "content": "或是多生父母親"
+        },
+        {
+          "type": "text",
+          "content": "父為子女苦營生"
+        },
+        {
+          "type": "text",
+          "content": "勞心勞力兩霜鬢"
+        },
+        {
+          "type": "text",
+          "content": "養兒育女慈母心"
+        },
+        {
+          "type": "text",
+          "content": "一生茹苦又含辛"
+        },
+        {
+          "type": "text",
+          "content": "法師：對父母要知恩 感恩 報恩"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_70.png"
+        },
+        {
+          "type": "text",
+          "content": "【曲目：父母恩重難報經．跪羊圖】"
+        },
+        {
+          "type": "text",
+          "content": "小朋友回應"
+        },
+        {
+          "type": "text",
+          "content": "古聖先賢孝為宗"
+        },
+        {
+          "type": "text",
+          "content": "萬善之門孝為基"
+        },
+        {
+          "type": "text",
+          "content": "禮敬尊親如活佛"
+        },
+        {
+          "type": "text",
+          "content": "成就生命大意義"
+        },
+        {
+          "type": "text",
+          "content": "父母恩德重如山"
+        },
+        {
+          "type": "text",
+          "content": "知恩報恩不忘本"
+        },
+        {
+          "type": "text",
+          "content": "做人飲水要思源"
+        },
+        {
+          "type": "text",
+          "content": "才不愧對父母恩"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_71.png"
+        }
+      ]
+    }
+  ],
+  "humanities2": [
+    {
+      "title": "28.大愛讓世界亮起來",
+      "details": [
+        {
+          "type": "text",
+          "content": "https://youtu.be/SM7ZEOxHPfI?si=VuUGQOAcxqbCaBAj"
+        },
+        {
+          "type": "text",
+          "content": "【曲目：大愛讓世界亮起來】"
+        },
+        {
+          "type": "text",
+          "content": "感恩的心"
+        },
+        {
+          "type": "text",
+          "content": "守著每一個平安的夜晚"
+        },
+        {
+          "type": "text",
+          "content": "期待明天"
+        },
+        {
+          "type": "text",
+          "content": "大愛讓世界亮~起~來~"
+        },
+        {
+          "type": "text",
+          "content": "上人：期待淨化人心的節目，能灌注進每一個家庭，大愛能讓世界亮起來。"
+        },
+        {
+          "type": "text",
+          "content": "大愛讓世界亮起來"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_72.png"
+        }
+      ]
+    },
+    {
+      "title": "29.天空破了洞",
+      "details": [
+        {
+          "type": "text",
+          "content": "https://youtu.be/BXKq16WyqcE?si=zIpS1VLsZlKeRtsl"
+        },
+        {
+          "type": "text",
+          "content": "【曲目：天空破了洞】"
+        },
+        {
+          "type": "text",
+          "content": "天空破了洞"
+        },
+        {
+          "type": "text",
+          "content": "破了洞 破了洞 破了洞 破了洞 破 了 洞"
+        },
+        {
+          "type": "text",
+          "content": "天空破了洞誰不傷心"
+        },
+        {
+          "type": "text",
+          "content": "青山流了淚誰不悲泣"
+        },
+        {
+          "type": "text",
+          "content": "補天的女媧哪裡找"
+        },
+        {
+          "type": "text",
+          "content": "大地的園丁何處尋"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_73.png"
+        }
+      ]
+    },
+    {
+      "title": "30.環保志工",
+      "details": [
+        {
+          "type": "text",
+          "content": "【曲目：無量義經說法品】"
+        },
+        {
+          "type": "text",
+          "content": "用鼓掌的雙手 做環保"
+        },
+        {
+          "type": "text",
+          "content": "法譬如水能洗垢 海上撈垃圾"
+        },
+        {
+          "type": "text",
+          "content": "若井若池若江河 觀音垃圾山"
+        },
+        {
+          "type": "text",
+          "content": "溪渠大海悉能洗 海邊淨灘"
+        },
+        {
+          "type": "text",
+          "content": "洗垢法水亦如是 清流繞全球"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_74.png"
+        }
+      ]
+    },
+    {
+      "title": "31.代謝不住",
+      "details": [
+        {
+          "type": "text",
+          "content": "【曲目：無量義經說法品】"
+        },
+        {
+          "type": "text",
+          "content": "佛轉法輪四真諦"
+        },
+        {
+          "type": "text",
+          "content": "諸法本來是空寂"
+        },
+        {
+          "type": "text",
+          "content": "代謝不住 念念生滅"
+        },
+        {
+          "type": "text",
+          "content": "文辭是一 眾生解異"
+        },
+        {
+          "type": "text",
+          "content": "法性無差 眾生四相"
+        },
+        {
+          "type": "text",
+          "content": "文理真正 尊無過上"
+        },
+        {
+          "type": "text",
+          "content": "一生無量 無量一生"
+        },
+        {
+          "type": "text",
+          "content": "佛法廣演 眾生普應"
+        },
+        {
+          "type": "text",
+          "content": "如是甚深 無上大乘"
+        },
+        {
+          "type": "text",
+          "content": "菩薩當修 無量義經"
+        },
+        {
+          "type": "text",
+          "content": "如是甚深 無上大乘"
+        },
+        {
+          "type": "text",
+          "content": "菩薩當修 無量義經"
+        },
+        {
+          "type": "text",
+          "content": "無量義經"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_75.png"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_76.png"
+        }
+      ]
+    },
+    {
+      "title": "32.開經書",
+      "details": [
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_77.png"
+        }
+      ]
+    }
+  ],
+  "fiveContinents1": [
+    {
+      "title": "說明",
+      "details": [
+        {
+          "type": "text",
+          "content": "【曲目：無量義經功德品】"
+        },
+        {
+          "type": "text",
+          "content": "無量義經佛宅來"
+        },
+        {
+          "type": "text",
+          "content": "去到一切眾生心"
+        },
+        {
+          "type": "text",
+          "content": "諸住菩薩所行處"
+        },
+        {
+          "type": "text",
+          "content": "十大功德潤蒼生"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_78.png"
+        }
+      ]
+    }
+  ],
   "fiveContinents2": [],
   "flyingApsaras": []
 };

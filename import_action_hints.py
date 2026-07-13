@@ -54,6 +54,12 @@ def get_category_by_title(title):
         return 'boneDonation'
     if '教育' in t or '說法品' in t:
         return 'edu'
+    if '09-1人文' in t or '人文(基本' in t:
+        return 'humanities1'
+    if '09-2人文' in t or '人文(主機板' in t:
+        return 'humanities2'
+    if '10-1五大洲' in t or '五大洲' in t:
+        return 'fiveContinents1'
     if any(k in t for k in ['地藏經', '醫療', '四弘誓願']):
         return 'bigV'
     return None
