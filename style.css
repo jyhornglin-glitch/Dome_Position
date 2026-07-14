@@ -2098,6 +2098,23 @@ svg {
   width: 100%;
 }
 
+#sessionTeamCards {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.link-card {
+  border-color: rgba(239, 68, 68, 0.2) !important;
+  background: rgba(239, 68, 68, 0.03) !important;
+  transition: all 0.22s cubic-bezier(.34,1.56,.64,1);
+}
+
+.link-card:hover {
+  border-color: rgba(239, 68, 68, 0.65) !important;
+  background: rgba(239, 68, 68, 0.09) !important;
+  box-shadow: 0 6px 24px rgba(239, 68, 68, 0.25) !important;
+  transform: translateY(-2px);
+}
+
 .session-card {
   background: rgba(255,255,255,0.04);
   border: 2px solid rgba(255,255,255,0.12);

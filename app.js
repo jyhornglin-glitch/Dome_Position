@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Setup team card clicks
-    const teamCards = document.querySelectorAll('#sessionTeamCards .session-card');
+    const teamCards = document.querySelectorAll('#sessionTeamCards .session-card[data-team]');
     teamCards.forEach(card => {
       card.addEventListener('click', () => {
         teamCards.forEach(c => c.classList.remove('selected'));
