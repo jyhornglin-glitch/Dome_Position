@@ -153,12 +153,11 @@
 
             <!-- Sticky Header Group (Sticks together at the top on mobile) -->
             <div class="sticky-header-group">
-              <!-- Mobile Navigation Tab Bar (4 tabs now) -->
+              <!-- Mobile Navigation Tab Bar (3 tabs now) -->
               <div class="mobile-tabs-bar" id="mobileTabsBar">
                 <button class="mobile-tab-btn active" data-tab="localGrid"><i class="fa-solid fa-compress"></i> 網格定位</button>
                 <button class="mobile-tab-btn" data-tab="walkthrough"><i class="fa-solid fa-person-running"></i> 演繹內容</button>
                 <button class="mobile-tab-btn" data-tab="cards"><i class="fa-solid fa-list-ol"></i> 地標圖示</button>
-                <button class="mobile-tab-btn" data-tab="seatLookup"><i class="fa-solid fa-map-location-dot"></i> 實景/動線</button>
               </div>
 
               <!-- Shared Step Switcher Controls & Landmark Guide -->
@@ -886,24 +885,6 @@
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </section>
-
-            <!-- Panel 4: Seat Lookup Webpage (Embedded via iframe) -->
-            <section class="visual-column mobile-tab-panel" id="panel-seatLookup">
-              <div class="iframe-container-card card glow-border-blue">
-                <div class="iframe-helper-bar">
-                  <div class="helper-info">
-                    <i class="fa-solid fa-circle-info"></i>
-                    <span id="seatLookupHelperText">請先搜尋表演者，可在此複製編號並於下方查詢</span>
-                  </div>
-                  <button id="copyPerformerIdBtn" class="control-btn action-btn-blue" style="display: none;">
-                    <i class="fa-solid fa-copy"></i> 複製編號並前往
-                  </button>
-                </div>
-                <div class="iframe-wrapper">
-                  <iframe src="https://seat-lookup.qori.workers.dev/seat_lookup" id="seatLookupIframe" title="大巨蛋座位查詢" referrerpolicy="no-referrer"></iframe>
                 </div>
               </div>
             </section>
