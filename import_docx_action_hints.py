@@ -30,7 +30,9 @@ CATEGORY_MAPPING = {
     '07-1大船師': 'daChuanShi',
     '07-2骨捐能捨': 'boneDonation',
     '08教育': 'edu',
+    '09-1人文': 'humanities1',
     '09-1人文(基本隊形)': 'humanities1',
+    '09-2人文': 'humanities2',
     '09-2人文(主機板)': 'humanities2',
     '10-1五大洲': 'fiveContinents1',
     '10-2五大洲': 'fiveContinents2'
@@ -63,6 +65,22 @@ def get_images_from_cell(cell, doc, image_counter):
             except Exception as e:
                 print(f"Failed to extract image {embed_id}: {e}")
     return extracted_images, image_counter
+
+def split_east_west_lines(lines):
+    processed = []
+    for line in lines:
+        if "東班" in line and "西班" in line and ("youtu" in line or "http" in line):
+            parts = line.split("西班")
+            if len(parts) == 2:
+                part1 = parts[0].strip()
+                part2 = "西班" + parts[1].strip()
+                processed.append(part1)
+                processed.append(part2)
+            else:
+                processed.append(line)
+        else:
+            processed.append(line)
+    return processed
 
 def is_item_start(text):
     text_clean = text.strip()
@@ -190,7 +208,7 @@ def main():
                 title = lines[0] if lines else "動作提示"
                 
                 # Remove title line from details if it was the first line
-                details_text = lines[1:] if len(lines) > 1 else []
+                details_text = split_east_west_lines(lines[1:]) if len(lines) > 1 else []
                 
                 new_item = {
                     "title": title,
@@ -225,7 +243,7 @@ def main():
                     action_hints_data[cat].append(item)
                     current_items[cat] = item
                 
-                lines = [l.strip() for l in cell_text.split('\n') if l.strip()]
+                lines = split_east_west_lines([l.strip() for l in cell_text.split('\n') if l.strip()])
                 for line in lines:
                     item["details"].append({
                         "type": "text",

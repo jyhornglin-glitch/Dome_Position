@@ -3042,7 +3042,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const btn = document.createElement('a');
             btn.className = 'yt-hint-btn';
             btn.href = 'javascript:void(0);';
-            btn.innerHTML = '<i class="fa-brands fa-youtube yt-icon"></i> 播放提示影片';
+            let btnText = '播放提示影片';
+            if (detail.content.includes('東班')) {
+              btnText = '播放東班影片';
+            } else if (detail.content.includes('西班')) {
+              btnText = '播放西班影片';
+            }
+            btn.innerHTML = `<i class="fa-brands fa-youtube yt-icon"></i> ${btnText}`;
             btn.addEventListener('click', (e) => {
               e.stopPropagation();
               openYouTubeVideo(ytId, detail.content);

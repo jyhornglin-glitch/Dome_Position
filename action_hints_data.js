@@ -1166,6 +1166,14 @@ const ACTION_HINTS_DATA = {
       "title": "19.說法品梵唄",
       "details": [
         {
+          "type": "text",
+          "content": "東班https://youtu.be/ZSzzxOEqoOs"
+        },
+        {
+          "type": "text",
+          "content": "西班https://youtu.be/OAvy1CPy1Eo"
+        },
+        {
           "type": "image",
           "src": "images/action_hints/hint_52.png"
         },
@@ -1380,7 +1388,11 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "https://youtu.be/yXNNtT4xq-w?si=kwlV3QBvSpuSUSJt"
+          "content": "東班https://youtu.be/DwHBrN8fmJE"
+        },
+        {
+          "type": "text",
+          "content": "西班https://youtu.be/Uq29ZgsvxaM"
         },
         {
           "type": "image",
@@ -1564,6 +1576,10 @@ const ACTION_HINTS_DATA = {
       "title": "27.父母恩重難報經(六日場專有)",
       "details": [
         {
+          "type": "text",
+          "content": "https://youtu.be/rB_MHSQ5lcU"
+        },
+        {
           "type": "image",
           "src": "images/action_hints/hint_69.png"
         },
@@ -1671,6 +1687,10 @@ const ACTION_HINTS_DATA = {
           "content": "https://youtu.be/SM7ZEOxHPfI?si=VuUGQOAcxqbCaBAj"
         },
         {
+          "type": "image",
+          "src": "images/action_hints/hint_72.png"
+        },
+        {
           "type": "text",
           "content": "【曲目：大愛讓世界亮起來】"
         },
@@ -1700,7 +1720,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_72.png"
+          "src": "images/action_hints/hint_73.png"
         }
       ]
     },
@@ -1710,6 +1730,10 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "https://youtu.be/BXKq16WyqcE?si=zIpS1VLsZlKeRtsl"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_74.png"
         },
         {
           "type": "text",
@@ -1741,13 +1765,21 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_73.png"
+          "src": "images/action_hints/hint_75.png"
         }
       ]
     },
     {
       "title": "30.環保志工",
       "details": [
+        {
+          "type": "text",
+          "content": "https://youtu.be/UvAfTVN9A2c"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_76.png"
+        },
         {
           "type": "text",
           "content": "【曲目：無量義經說法品】"
@@ -1774,7 +1806,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_74.png"
+          "src": "images/action_hints/hint_77.png"
         }
       ]
     },
@@ -1783,67 +1815,91 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "text",
+          "content": "https://youtu.be/7oX93yKqvuo"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_78.png"
+        },
+        {
+          "type": "text",
           "content": "【曲目：無量義經說法品】"
         },
         {
           "type": "text",
-          "content": "佛轉法輪四真諦"
+          "content": "「佛轉」法輪是真諦（合掌從甲舞台轉向箭頭方向）"
         },
         {
           "type": "text",
-          "content": "諸法本來是空寂"
+          "content": "諸法本來是「空寂」（依照阿妙師姊所定義的框高跪）"
         },
         {
           "type": "text",
-          "content": "代謝不住 念念生滅"
+          "content": "等登等登（高跪變坐跪）"
         },
         {
           "type": "text",
-          "content": "文辭是一 眾生解異"
+          "content": "等登等登（站者開始踏步）"
         },
         {
           "type": "text",
-          "content": "法性無差 眾生四相"
+          "content": "代謝不住，念念生滅，"
         },
         {
           "type": "text",
-          "content": "文理真正 尊無過上"
+          "content": "文辭是一，眾生解異，"
         },
         {
           "type": "text",
-          "content": "一生無量 無量一生"
+          "content": "法性無差，眾生四相，"
         },
         {
           "type": "text",
-          "content": "佛法廣演 眾生普應"
+          "content": "文理真正，"
         },
         {
           "type": "text",
-          "content": "如是甚深 無上大乘"
+          "content": "尊無過上（合十34、站的右後轉180度、跪的僅合十）"
         },
         {
           "type": "text",
-          "content": "菩薩當修 無量義經"
+          "content": "一生無量，無量一生，"
         },
         {
           "type": "text",
-          "content": "如是甚深 無上大乘"
+          "content": "佛法廣演，眾生普應，"
         },
         {
           "type": "text",
-          "content": "菩薩當修 無量義經"
+          "content": "如是甚深，無上大乘，"
         },
         {
           "type": "text",
-          "content": "無量義經"
+          "content": "菩薩當修，無量義經。"
+        },
+        {
+          "type": "text",
+          "content": "如是甚深（站者腳停合十，跪者壓腿起合十）"
+        },
+        {
+          "type": "text",
+          "content": "無上大乘（站的合十右後轉180度向箭頭方向、由跪而起立者，因方向本就朝向箭頭方向，故方向維持不動）"
+        },
+        {
+          "type": "text",
+          "content": "菩薩當修，無量義經。（比動作）"
+        },
+        {
+          "type": "text",
+          "content": "無量（拿燈）義經（燈舉高）。"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_75.png"
+          "src": "images/action_hints/hint_79.png"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_76.png"
+          "src": "images/action_hints/hint_80.png"
         }
       ]
     },
@@ -1851,8 +1907,16 @@ const ACTION_HINTS_DATA = {
       "title": "32.開經書",
       "details": [
         {
+          "type": "text",
+          "content": "東班https://youtu.be/p2KSIGqj5VE"
+        },
+        {
+          "type": "text",
+          "content": "西班https://youtu.be/dyWGw6dC88I"
+        },
+        {
           "type": "image",
-          "src": "images/action_hints/hint_77.png"
+          "src": "images/action_hints/hint_81.png"
         }
       ]
     }
@@ -1883,7 +1947,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_78.png"
+          "src": "images/action_hints/hint_82.png"
         }
       ]
     }
