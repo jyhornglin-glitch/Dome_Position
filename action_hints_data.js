@@ -1046,7 +1046,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "救人一命無損己身(收)"
+          "content": "來唷!...(聽到OS就收)"
         },
         {
           "type": "text",
@@ -1253,7 +1253,11 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "https://youtu.be/_WHbKMU04Rs?si=jfChGKr80xAr7jT1"
+          "content": "東班https://youtu.be/h_7S9z72tGg"
+        },
+        {
+          "type": "text",
+          "content": "西班https://youtu.be/zfGeXvsB6n0"
         },
         {
           "type": "image",
@@ -1290,7 +1294,11 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "https://youtu.be/pLSPo2sfaD4?si=VKtScfeX4g0SAWwV"
+          "content": "東班https://youtu.be/h_27YO8HSWc"
+        },
+        {
+          "type": "text",
+          "content": "西班https://youtu.be/cu3U0lXUKbs"
         },
         {
           "type": "image",
@@ -1335,7 +1343,11 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "https://youtu.be/_TfFOhQev8Q?si=bVSoPHw88K7Y5BiP"
+          "content": "東班https://youtu.be/mCzywnjw7w4"
+        },
+        {
+          "type": "text",
+          "content": "西班https://youtu.be/TPAmJ9mh0LY"
         },
         {
           "type": "image",
@@ -1447,6 +1459,10 @@ const ACTION_HINTS_DATA = {
     {
       "title": "25.教聯會曲目：藥草喻",
       "details": [
+        {
+          "type": "text",
+          "content": "https://www.youtube.com/watch?v=8ks62kXmDV4"
+        },
         {
           "type": "image",
           "src": "images/action_hints/hint_64.png"
@@ -1790,19 +1806,35 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "法譬如水能洗垢 海上撈垃圾"
+          "content": "法譬如水能洗垢"
         },
         {
           "type": "text",
-          "content": "若井若池若江河 觀音垃圾山"
+          "content": "「海」上撈垃「圾」"
         },
         {
           "type": "text",
-          "content": "溪渠大海悉能洗 海邊淨灘"
+          "content": "若井若池若江河"
         },
         {
           "type": "text",
-          "content": "洗垢法水亦如是 清流繞全球"
+          "content": "「觀」音垃圾「山」"
+        },
+        {
+          "type": "text",
+          "content": "溪渠大海悉能洗"
+        },
+        {
+          "type": "text",
+          "content": "「海」邊淨「灘」"
+        },
+        {
+          "type": "text",
+          "content": "洗垢法水亦如是"
+        },
+        {
+          "type": "text",
+          "content": "清流繞全球"
         },
         {
           "type": "image",
@@ -1894,6 +1926,14 @@ const ACTION_HINTS_DATA = {
           "content": "無量（拿燈）義經（燈舉高）。"
         },
         {
+          "type": "text",
+          "content": "OS:留給子孫一個乾淨的地球"
+        },
+        {
+          "type": "text",
+          "content": "一粒毫芒即為種 漸成菩提功德林(講完收燈)"
+        },
+        {
           "type": "image",
           "src": "images/action_hints/hint_79.png"
         },
@@ -1902,7 +1942,9 @@ const ACTION_HINTS_DATA = {
           "src": "images/action_hints/hint_80.png"
         }
       ]
-    },
+    }
+  ],
+  "fiveContinents1": [
     {
       "title": "32.開經書",
       "details": [
@@ -1917,14 +1959,7 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_81.png"
-        }
-      ]
-    }
-  ],
-  "fiveContinents1": [
-    {
-      "title": "說明",
-      "details": [
+        },
         {
           "type": "text",
           "content": "【曲目：無量義經功德品】"
