@@ -22,11 +22,15 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
+          "content": "巴利文唱頌無量義經(合掌拿燈，不開燈)"
+        },
+        {
+          "type": "text",
           "content": "OS:靈山法會「不散」(內轉向圓心)"
         },
         {
           "type": "text",
-          "content": "無量義經廣傳 (合掌拿燈，不開燈)"
+          "content": "無量義經廣傳"
         },
         {
           "type": "text",
@@ -177,7 +181,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "os 失神喪志，呻吟哀嘆，骨瘦呤叮毀容顏"
+          "content": "OS: 失神喪志，呻吟哀嘆，骨瘦呤叮毀容顏"
         },
         {
           "type": "text",
@@ -525,7 +529,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "OS：你去煮麵線(台語)→舞臺的人上舞台"
+          "content": "OS：你去煮麵線(台語)→舞臺的人上舞台面向甲舞台"
         },
         {
           "type": "text",
@@ -537,7 +541,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "結束後下舞台，全體回基本隊形正面向甲舞臺。"
+          "content": "結束後下舞台，全體回基本隊形45度面向甲舞臺。"
         },
         {
           "type": "image",
@@ -647,7 +651,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_32.jpg"
+          "src": "images/action_hints/hint_32.png"
         },
         {
           "type": "image",
@@ -794,7 +798,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_39.jpg"
+          "src": "images/action_hints/hint_39.png"
         }
       ]
     },
@@ -884,6 +888,10 @@ const ACTION_HINTS_DATA = {
       "title": "16.四弘誓願/藍向甲舞台斜線；白向法師斜線",
       "details": [
         {
+          "type": "text",
+          "content": "https://youtu.be/FHv_4kQxo9M?si=wUykg41LX2zTjyJy&t=5"
+        },
+        {
           "type": "image",
           "src": "images/action_hints/hint_43.jpg"
         }
@@ -902,7 +910,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "蛤?三千萬還不到？不過，「萬里長城」(白色內轉至法師方向)也是從一塊磚開始的。"
+          "content": "蛤?三千萬還不到？不過，「萬里長城」(白色轉向法師方向，藍色轉向甲舞台)也是從一塊磚開始的。"
         },
         {
           "type": "text",
@@ -1054,7 +1062,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "那個人就是你"
+          "content": "那個人就是你(講完轉向甲舞台，兩腳夾線)"
         },
         {
           "type": "text",
@@ -1082,7 +1090,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_49.jpg"
+          "src": "images/action_hints/hint_49.png"
         }
       ]
     },
@@ -1095,13 +1103,21 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_50.jpg"
+          "src": "images/action_hints/hint_50.png"
         }
       ]
     },
     {
       "title": "【能捨一切諸難捨】",
       "details": [
+        {
+          "type": "text",
+          "content": "「那一念」(合掌轉向：小V面法師；大V內側面甲舞台；大V外側不轉)"
+        },
+        {
+          "type": "text",
+          "content": "救人一命，無損己身。"
+        },
         {
           "type": "text",
           "content": "能捨一切諸難捨"
@@ -1286,6 +1302,10 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_57.png"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_58.png"
         }
       ]
     },
@@ -1302,7 +1322,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_58.png"
+          "src": "images/action_hints/hint_59.png"
         },
         {
           "type": "text",
@@ -1334,7 +1354,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_59.png"
+          "src": "images/action_hints/hint_60.png"
         }
       ]
     },
@@ -1351,7 +1371,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_60.png"
+          "src": "images/action_hints/hint_61.png"
         },
         {
           "type": "text",
@@ -1391,7 +1411,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_61.png"
+          "src": "images/action_hints/hint_62.png"
         }
       ]
     },
@@ -1408,7 +1428,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_62.png"
+          "src": "images/action_hints/hint_63.png"
         },
         {
           "type": "text",
@@ -1452,7 +1472,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_63.png"
+          "src": "images/action_hints/hint_64.png"
         }
       ]
     },
@@ -1465,7 +1485,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_64.png"
+          "src": "images/action_hints/hint_65.png"
         },
         {
           "type": "text",
@@ -1513,7 +1533,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_65.png"
+          "src": "images/action_hints/hint_66.png"
         }
       ]
     }
@@ -1532,7 +1552,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_66.png"
+          "src": "images/action_hints/hint_67.png"
         },
         {
           "type": "text",
@@ -1580,11 +1600,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_67.png"
+          "src": "images/action_hints/hint_68.png"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_68.png"
+          "src": "images/action_hints/hint_69.png"
         }
       ]
     },
@@ -1597,7 +1617,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_69.png"
+          "src": "images/action_hints/hint_70.png"
         },
         {
           "type": "text",
@@ -1645,7 +1665,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_70.png"
+          "src": "images/action_hints/hint_71.png"
         },
         {
           "type": "text",
@@ -1689,7 +1709,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_71.png"
+          "src": "images/action_hints/hint_72.png"
         }
       ]
     }
@@ -1704,7 +1724,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_72.png"
+          "src": "images/action_hints/hint_73.png"
         },
         {
           "type": "text",
@@ -1736,7 +1756,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_73.png"
+          "src": "images/action_hints/hint_74.png"
         }
       ]
     },
@@ -1749,7 +1769,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_74.png"
+          "src": "images/action_hints/hint_75.png"
         },
         {
           "type": "text",
@@ -1781,7 +1801,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_75.png"
+          "src": "images/action_hints/hint_76.png"
         }
       ]
     },
@@ -1794,7 +1814,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_76.png"
+          "src": "images/action_hints/hint_77.png"
         },
         {
           "type": "text",
@@ -1838,7 +1858,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_77.png"
+          "src": "images/action_hints/hint_78.png"
         }
       ]
     },
@@ -1851,7 +1871,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_78.png"
+          "src": "images/action_hints/hint_79.png"
         },
         {
           "type": "text",
@@ -1935,11 +1955,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_79.png"
+          "src": "images/action_hints/hint_80.png"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_80.png"
+          "src": "images/action_hints/hint_81.png"
         }
       ]
     }
@@ -1958,7 +1978,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_81.png"
+          "src": "images/action_hints/hint_82.png"
         },
         {
           "type": "text",
@@ -1982,7 +2002,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_82.png"
+          "src": "images/action_hints/hint_83.png"
         }
       ]
     }
