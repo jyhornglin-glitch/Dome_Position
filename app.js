@@ -2139,16 +2139,19 @@ document.addEventListener('DOMContentLoaded', () => {
         img.onload = () => {
           try {
             const canvas = document.createElement('canvas');
-            canvas.width = 720;
-            canvas.height = 720;
+            const scale = 3;
+            canvas.width = 360 * scale; // 1080px
+            canvas.height = 360 * scale; // 1080px
             const ctx = canvas.getContext('2d');
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
             
             // Fill solid white background
             ctx.fillStyle = '#ffffff';
-            ctx.fillRect(0, 0, 720, 720);
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
             
             // Draw SVG
-            ctx.drawImage(img, 0, 0, 720, 720);
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
             
             // Clean URL
             URL.revokeObjectURL(blobURL);
@@ -2211,10 +2214,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Helper to create a new canvas page with title, metadata, and table header
   function createPageCanvas(titleText, metadataText) {
+    const scale = 2.5; // High resolution scale factor for 300+ DPI crisp rendering
     const canvas = document.createElement('canvas');
-    canvas.width = 1200;
-    canvas.height = 1697;
+    canvas.width = Math.round(1200 * scale);
+    canvas.height = Math.round(1697 * scale);
     const ctx = canvas.getContext('2d');
+    
+    ctx.scale(scale, scale);
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
     
     // Fill white background
     ctx.fillStyle = '#ffffff';
@@ -2589,8 +2597,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (pIdx > 0) {
           pdf.addPage();
         }
-        const pageImgData = p.canvas.toDataURL('image/jpeg', 0.95);
-        pdf.addImage(pageImgData, 'JPEG', 0, 0, 595, 842);
+        const pageImgData = p.canvas.toDataURL('image/png');
+        pdf.addImage(pageImgData, 'PNG', 0, 0, 595.28, 841.89, undefined, 'FAST');
       }
       
       const filename = `${currentDisplayName || fields.coordinate}_${fields.coordinate}_個人定位表.pdf`;
@@ -2925,11 +2933,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const totalHeight = headerHeight + totalTableH + footerHeight;
 
-    // Create target canvas
+    // Create target canvas with high resolution scale
+    const scale = 2.5;
     const canvas = document.createElement('canvas');
-    canvas.width = canvasWidth;
-    canvas.height = totalHeight;
+    canvas.width = Math.round(canvasWidth * scale);
+    canvas.height = Math.round(totalHeight * scale);
     const ctx = canvas.getContext('2d');
+
+    ctx.scale(scale, scale);
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
 
     // 1. Main Background (White Theme for printing)
     ctx.fillStyle = '#ffffff';
@@ -3409,7 +3422,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const fields = getPerformerFields(currentPerformer);
           const { jsPDF } = window.jspdf;
           
-          const imgData = canvas.toDataURL('image/jpeg', 0.95);
+          const imgData = canvas.toDataURL('image/png');
           const pdfWidth = 595.28; // A4 pt width
           const pdfHeight = (canvas.height / canvas.width) * pdfWidth;
 
@@ -3419,7 +3432,7 @@ document.addEventListener('DOMContentLoaded', () => {
             format: [pdfWidth, pdfHeight]
           });
 
-          pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+          pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight, undefined, 'FAST');
           pdf.save(`${currentDisplayName || fields.coordinate}_${fields.coordinate}_演繹隨身提醒小紙條.pdf`);
 
           downloadPocketSlipPdfBtn.innerHTML = `<i class="fa-solid fa-check"></i> 下載成功`;
