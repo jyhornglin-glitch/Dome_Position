@@ -2691,7 +2691,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Calculate movement vector and direction arrow text & angle
   function calculateMovementVector(prevCoordStr, currCoordStr) {
-    if (!prevCoordStr) {
+    if (!prevCoordStr || prevCoordStr === '無' || prevCoordStr === '起點' || !currCoordStr || currCoordStr === '無') {
       return {
         dx: 0, dy: 0, dist: 0,
         dirText: '📍 起點就位',
@@ -2714,9 +2714,12 @@ document.addEventListener('DOMContentLoaded', () => {
       };
     }
 
-    const dx = c2.x - c1.x; // positive = right
-    const dy = c2.y - c1.y; // positive = upstage (forward)
-    const dist = Math.sqrt(dx * dx + dy * dy);
+    // 以面向甲舞台方線為基準 (Facing Stage A):
+    // 方線 (X 軸): c2.x > c1.x 為「向右」，c2.x < c1.x 為「向左」
+    // 縱線 (Y 軸): c2.y < c1.y 往甲舞台 (Y=0) 前進為「向前」，c2.y > c1.y 為「向後」
+    const dx = c2.x - c1.x;
+    const dyStageA = c1.y - c2.y; // 正值代表往甲舞台前進 (向前)
+    const dist = Math.sqrt(dx * dx + (c2.y - c1.y) * (c2.y - c1.y));
 
     if (dist < 0.1) {
       return {
@@ -2731,8 +2734,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let nsText = '';
     let ewText = '';
 
-    if (dy > 0.3) nsText = '前';
-    else if (dy < -0.3) nsText = '後';
+    if (dyStageA > 0.3) nsText = '前';
+    else if (dyStageA < -0.3) nsText = '後';
 
     if (dx > 0.3) ewText = '右';
     else if (dx < -0.3) ewText = '左';
@@ -2749,12 +2752,12 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (ewText === '左') arrowEmoji = '⬅️';
     else if (ewText === '右') arrowEmoji = '➡️';
 
-    // Canvas angle calculation (dy is positive upwards in stage coords, so angle = atan2(-dy, dx))
-    const angleRad = Math.atan2(-dy, dx);
+    // Canvas 向量箭頭角度 (面向甲舞台: 向前為畫面上方 -dyStageA)
+    const angleRad = Math.atan2(-dyStageA, dx);
 
     return {
       dx: dx,
-      dy: dy,
+      dy: dyStageA,
       dist: dist,
       dirText: `${arrowEmoji} 向${dirName} ${dist.toFixed(1)}步`,
       angleRad: angleRad,
@@ -2900,9 +2903,9 @@ document.addEventListener('DOMContentLoaded', () => {
         effectiveLineCount = Math.ceil(wrappedLines.length / 2);
       }
 
-      // Calculate row height (min 168px to comfortably hold Col 1 super enlarged elements)
+      // Calculate row height (min 190px to guarantee 0 overlap for Col 1 bottom badge)
       const textH = 24 + effectiveLineCount * 29;
-      const rowH = Math.max(168, textH);
+      const rowH = Math.max(190, textH);
 
       rowHeights.push(rowH);
       rowData.push({
@@ -3015,12 +3018,12 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.fillStyle = '#ffffff';
     ctx.textBaseline = 'middle';
 
-    // Col 1 Title (第一欄標題放大 20%: 25px bold)
-    ctx.font = "bold 25px 'Noto Sans TC', sans-serif";
+    // Col 1 Title (明確標註面向甲舞台方線)
+    ctx.font = "bold 20.5px 'Noto Sans TC', sans-serif";
     ctx.textAlign = 'center';
-    ctx.fillText("定點 / 跑位指引", padding + col1W / 2, tableStartY + tableHeaderH / 2);
+    ctx.fillText("定點 / 跑位 (面向甲舞台)", padding + col1W / 2, tableStartY + tableHeaderH / 2);
 
-    // Col 2 Title (70% 寬度: 21px bold)
+    // Col 2 Title (21px bold)
     ctx.font = "bold 21px 'Noto Sans TC', sans-serif";
     ctx.textAlign = 'left';
     ctx.fillText("面向與燈具動作要領", padding + col1W + 18, tableStartY + tableHeaderH / 2);
@@ -3050,33 +3053,33 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.lineWidth = 1;
       ctx.strokeRect(padding, rY, contentWidth, rowH);
 
-      // --- Column 1: Merged Spot, Coordinate, Movement & Guide Line Color Block (無重疊流式排版) ---
+      // --- Column 1: Merged Spot, Coordinate, Movement & Guide Line Color Block (零重疊嚴格縱向流式排版) ---
       const col1X = padding;
       const stepNumStr = String(idx + 1).padStart(2, '0');
       
-      // 1. Step Title Text (獨立第 1 行: 滿寬 220px，絕不與色塊重疊)
+      // 1. Step Title Text (第 1 行: y = rY + 10)
       ctx.fillStyle = '#0f172a';
       ctx.font = "bold 21.5px 'Noto Sans TC', sans-serif";
       ctx.textAlign = 'left';
       ctx.textBaseline = 'top';
       ctx.fillText(`${stepNumStr}.${f.label || f.name}`, col1X + 10, rY + 10);
 
-      // 2. Totem Sticker Image (52px) + Coordinate Pill (154px) (第 2 行)
+      // 2. Totem Sticker Image (50px) + Coordinate Pill (154px) (第 2 行: y = rY + 38)
       const stickerImg = stickerImages[f.key];
-      const stickerSize = 52;
+      const stickerSize = 50;
       const stickerX = col1X + 10;
-      const stickerY = rY + 42;
+      const stickerY = rY + 38;
 
       if (stickerImg) {
         ctx.drawImage(stickerImg, stickerX, stickerY, stickerSize, stickerSize);
 
-        // Overlay circle if basic / miLuo / humanities1 (radius 18px)
+        // Overlay circle if basic / miLuo / humanities1 (radius 17.5px)
         if (f.key === 'basic' || f.key === 'miLuo' || f.key === 'humanities1') {
           const isCatA = perfCategory.startsWith('A');
           const overlayColor = isCatA ? '#e65537' : '#7dbf32';
           const circleX = stickerX + stickerSize / 2;
           const circleY = stickerY + stickerSize / 2;
-          const circleR = 18;
+          const circleR = 17.5;
 
           ctx.beginPath();
           ctx.arc(circleX, circleY, circleR, 0, 2 * Math.PI);
@@ -3089,31 +3092,31 @@ document.addEventListener('DOMContentLoaded', () => {
           ctx.textAlign = 'center';
 
           if (parts.length === 2) {
-            ctx.font = "bold 12.5px sans-serif";
+            ctx.font = "bold 12px sans-serif";
             ctx.textBaseline = 'bottom';
             ctx.fillText(parts[0].padStart(2, '0'), circleX, circleY);
 
             ctx.strokeStyle = '#ffffff';
             ctx.lineWidth = 1.2;
             ctx.beginPath();
-            ctx.moveTo(circleX - 11, circleY);
-            ctx.lineTo(circleX + 11, circleY);
+            ctx.moveTo(circleX - 10, circleY);
+            ctx.lineTo(circleX + 10, circleY);
             ctx.stroke();
 
             ctx.textBaseline = 'top';
             ctx.fillText(parts[1].padStart(2, '0'), circleX, circleY + 0.5);
           } else {
-            ctx.font = "bold 13px sans-serif";
+            ctx.font = "bold 12.5px sans-serif";
             ctx.textBaseline = 'middle';
             ctx.fillText(coordVal.padStart(2, '0'), circleX, circleY);
           }
         }
       }
 
-      // Coordinate Pill (放在貼紙右側: font 24px monospace bold, 寬 154px, 高 40px)
+      // Coordinate Pill (y = rY + 42, font 24px monospace bold, width 154px, height 40px)
       const coordStr = data.coord || '---';
       const coordBoxX = col1X + 68;
-      const coordBoxY = rY + 44;
+      const coordBoxY = rY + 42;
       ctx.fillStyle = '#0284c7';
       drawCanvasRoundRect(ctx, coordBoxX, coordBoxY, 154, 40, 8, true, false);
 
@@ -3123,27 +3126,24 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.textBaseline = 'middle';
       ctx.fillText(coordStr, coordBoxX + 77, coordBoxY + 20);
 
-      // 3. Movement Vector & Direction Arrow Diagram (第 3、4 行)
+      // 3. Previous Spot Coordinate text (第 3 行: y = rY + 95)
       const lineColorInfo = FORMATION_COLORS[f.key] || { hex: '#d97706', name: '黃線' };
-
-      // Previous Spot Coordinate text
       ctx.fillStyle = '#475569';
-      ctx.font = "16.5px 'Outfit', sans-serif";
+      ctx.font = "16px 'Outfit', sans-serif";
       ctx.textAlign = 'left';
       ctx.textBaseline = 'top';
-      ctx.fillText(`自: ${data.vec.prevText}`, col1X + 54, rY + 92);
+      ctx.fillText(`自: ${data.vec.prevText}`, col1X + 54, rY + 95);
 
-      // Direction Arrow Graphic Diagram (radius 18px)
-      drawCanvasDirectionArrow(ctx, col1X + 26, rY + 120, 18, data.vec.angleRad, data.vec.isStationary, lineColorInfo.hex);
+      // 4. Direction Arrow & Text (第 4 行: y = rY + 118 ~ 144)
+      drawCanvasDirectionArrow(ctx, col1X + 26, rY + 128, 16, data.vec.angleRad, data.vec.isStationary, lineColorInfo.hex);
 
-      // Direction Text (20px bold)
       ctx.fillStyle = '#0f172a';
-      ctx.font = "bold 20px 'Noto Sans TC', sans-serif";
+      ctx.font = "bold 19.5px 'Noto Sans TC', sans-serif";
       ctx.textAlign = 'left';
       ctx.textBaseline = 'top';
-      ctx.fillText(data.vec.dirText, col1X + 54, rY + 114);
+      ctx.fillText(data.vec.dirText, col1X + 54, rY + 118);
 
-      // 4. Rectangular Color Block Badge for Guide Line Color (左欄最底獨立滿寬色塊 220px × 28px)
+      // 5. Rectangular Color Block Badge for Guide Line Color (第 5 行: 底部獨立滿寬色塊 y = rY + rowH - 34)
       const colorBadgeX = col1X + 10;
       const colorBadgeY = rY + rowH - 34;
       const badgeW = 220;
@@ -3154,7 +3154,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const isLightColor = ['#eab308', '#80CEF3', '#ACCE22', '#F19EA8', '#FDD100', '#A6ADD6', '#AF9DA8'].includes(lineColorInfo.hex);
       ctx.fillStyle = isLightColor ? '#0f172a' : '#ffffff';
-      ctx.font = "bold 16px 'Noto Sans TC', sans-serif";
+      ctx.font = "bold 15.5px 'Noto Sans TC', sans-serif";
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(`指引線: ${lineColorInfo.name}`, colorBadgeX + badgeW / 2, colorBadgeY + badgeH / 2);
