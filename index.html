@@ -382,6 +382,7 @@
                   </div>
                   <div class="map-action-buttons">
                     <button id="viewAllMapsBtn" class="control-btn action-btn-gold"><i class="fa-solid fa-images"></i> 查看與下載定位表</button>
+                    <button id="downloadPocketSlipOpenBtn" class="control-btn action-btn-teal"><i class="fa-solid fa-receipt"></i> 下載隨身提醒小紙條</button>
                   </div>
                 </div>
               </div>
@@ -1084,9 +1085,31 @@
           </div>
           <div class="modal-actions-top">
             <button id="downloadAllBtn" class="control-btn download-all-btn"><i class="fa-solid fa-download"></i> 下載個人定位表</button>
+            <button id="modalDownloadPocketSlipBtn" class="control-btn action-btn-teal" style="margin-left: 8px;"><i class="fa-solid fa-receipt"></i> 隨身提醒小紙條</button>
           </div>
           <div class="modal-body" id="modalBody">
             <!-- Will be filled dynamically -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Pocket Slip Cheat Sheet Modal -->
+      <div id="pocketSlipModal" class="modal-overlay" style="display: none;">
+        <div class="modal-container pocket-slip-modal-container">
+          <div class="modal-header">
+            <h3 id="pocketSlipModalTitle"><i class="fa-solid fa-receipt"></i> 演繹隨身提醒小紙條</h3>
+            <button id="closePocketSlipModalBtn" class="close-btn"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+          <div class="pocket-slip-action-bar">
+            <button id="downloadPocketSlipPngBtn" class="control-btn download-all-btn" style="background: linear-gradient(135deg, #0284c7, #2563eb);">
+              <i class="fa-solid fa-file-image"></i> 下載相簿圖檔 (PNG)
+            </button>
+            <button id="downloadPocketSlipPdfBtn" class="control-btn download-all-btn" style="background: linear-gradient(135deg, #059669, #10b981); margin-left: 8px;">
+              <i class="fa-solid fa-file-pdf"></i> 下載口袋小卡 (PDF)
+            </button>
+          </div>
+          <div class="pocket-slip-preview-wrapper" id="pocketSlipPreviewWrapper">
+            <div class="slip-loading"><i class="fa-solid fa-spinner fa-spin"></i> 小紙條產出中...</div>
           </div>
         </div>
       </div>

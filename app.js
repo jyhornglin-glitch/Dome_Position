@@ -2607,6 +2607,625 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2000);
   }
 
+  // Helper to draw rounded rectangle on Canvas
+  function drawCanvasRoundRect(ctx, x, y, width, height, radius = 8, fill = true, stroke = false) {
+    let r = radius;
+    if (typeof r === 'number') {
+      r = { tl: r, tr: r, br: r, bl: r };
+    } else {
+      r = Object.assign({ tl: 0, tr: 0, br: 0, bl: 0 }, r);
+    }
+    ctx.beginPath();
+    ctx.moveTo(x + r.tl, y);
+    ctx.lineTo(x + width - r.tr, y);
+    ctx.quadraticCurveTo(x + width, y, x + width, y + r.tr);
+    ctx.lineTo(x + width, y + height - r.br);
+    ctx.quadraticCurveTo(x + width, y + height, x + width - r.br, y + height);
+    ctx.lineTo(x + r.bl, y + height);
+    ctx.quadraticCurveTo(x, y + height, x, y + height - r.bl);
+    ctx.lineTo(x, y + r.tl);
+    ctx.quadraticCurveTo(x, y, x + r.tl, y);
+    ctx.closePath();
+    if (fill) ctx.fill();
+    if (stroke) ctx.stroke();
+  }
+
+  // Helper to extract concise facing direction and lamp/hand action hints
+  function extractConciseActionHints(hints) {
+    const results = [];
+    const keywords = [
+      '面向', '轉向', '轉身', '右轉', '左轉', '圓心', '圓圈', '面甲', '面乙', '向內', '向外', '弧線',
+      '燈', '合掌', '舉高', '胸前', '下放', '捧燈', '捧心', '開花', '開黃燈', '不開燈', '關燈', '點燈',
+      '跪', '立', '弓箭步', '動作'
+    ];
+
+    if (!hints || !Array.isArray(hints)) {
+      return ['配合隊形定位指示動作，面向上舞台'];
+    }
+
+    hints.forEach(item => {
+      // 1. Check title for facing direction notes
+      if (item && item.title) {
+        const titleMatches = item.title.match(/面[甲乙].*|向.*|轉.*/);
+        if (titleMatches && titleMatches[0]) {
+          const cleanTitle = titleMatches[0].trim();
+          if (!results.includes(cleanTitle)) {
+            results.push(cleanTitle);
+          }
+        }
+      }
+
+      // 2. Check text details
+      if (item && item.details && Array.isArray(item.details)) {
+        item.details.forEach(d => {
+          if (d && d.type === 'text' && d.content && !d.content.startsWith('http')) {
+            const text = d.content.trim();
+            
+            // Extract parenthesized notes (e.g. (合掌拿燈，不開燈), (第一波開黃燈，合掌舉高))
+            const parenMatches = text.match(/\([^)]+\)/g) || text.match(/（[^）]+）/g);
+            if (parenMatches) {
+              parenMatches.forEach(m => {
+                const cleaned = m.replace(/[()（）]/g, '').trim();
+                if (cleaned && !results.includes(cleaned)) {
+                  results.push(cleaned);
+                }
+              });
+            } else {
+              // Check if full line contains keywords and is not pure long chant lyrics
+              const hasKeyword = keywords.some(kw => text.includes(kw));
+              if (hasKeyword && text.length < 32 && !results.includes(text)) {
+                results.push(text);
+              }
+            }
+          }
+        });
+      }
+    });
+
+    if (results.length === 0) {
+      results.push('配合隊形定位指示動作，面向上舞台');
+    }
+
+    return results;
+  }
+
+  // Calculate movement vector and direction arrow text & angle
+  function calculateMovementVector(prevCoordStr, currCoordStr) {
+    if (!prevCoordStr) {
+      return {
+        dx: 0, dy: 0, dist: 0,
+        dirText: '📍 起點就位',
+        angleRad: 0,
+        isStationary: true,
+        prevText: '起點'
+      };
+    }
+
+    const c1 = parseCoordinate(prevCoordStr);
+    const c2 = parseCoordinate(currCoordStr);
+
+    if (c1.isText || c2.isText || c1.x === null || c2.x === null) {
+      return {
+        dx: 0, dy: 0, dist: 0,
+        dirText: '依隊形移動',
+        angleRad: 0,
+        isStationary: true,
+        prevText: prevCoordStr
+      };
+    }
+
+    const dx = c2.x - c1.x; // positive = right
+    const dy = c2.y - c1.y; // positive = upstage (forward)
+    const dist = Math.sqrt(dx * dx + dy * dy);
+
+    if (dist < 0.1) {
+      return {
+        dx: 0, dy: 0, dist: 0,
+        dirText: '📍 原地不動',
+        angleRad: 0,
+        isStationary: true,
+        prevText: c1.text || prevCoordStr
+      };
+    }
+
+    let nsText = '';
+    let ewText = '';
+
+    if (dy > 0.3) nsText = '前';
+    else if (dy < -0.3) nsText = '後';
+
+    if (dx > 0.3) ewText = '右';
+    else if (dx < -0.3) ewText = '左';
+
+    let arrowEmoji = '➡️';
+    let dirName = `${ewText}${nsText}`;
+
+    if (nsText === '前' && ewText === '右') arrowEmoji = '↗️';
+    else if (nsText === '前' && ewText === '左') arrowEmoji = '↖️';
+    else if (nsText === '後' && ewText === '右') arrowEmoji = '↘️';
+    else if (nsText === '後' && ewText === '左') arrowEmoji = '↙️';
+    else if (nsText === '前') arrowEmoji = '⬆️';
+    else if (nsText === '後') arrowEmoji = '⬇️';
+    else if (ewText === '左') arrowEmoji = '⬅️';
+    else if (ewText === '右') arrowEmoji = '➡️';
+
+    // Canvas angle calculation (dy is positive upwards in stage coords, so angle = atan2(-dy, dx))
+    const angleRad = Math.atan2(-dy, dx);
+
+    return {
+      dx: dx,
+      dy: dy,
+      dist: dist,
+      dirText: `${arrowEmoji} 向${dirName} ${dist.toFixed(1)}步`,
+      angleRad: angleRad,
+      isStationary: false,
+      prevText: c1.text || prevCoordStr
+    };
+  }
+
+  const FORMATION_COLORS = {
+    basic: { hex: '#eab308', name: '黃線' },
+    circle: { hex: '#BE6C50', name: '紅棕線' },
+    xingYuan: { hex: '#0B954B', name: '綠線' },
+    miLuo: { hex: '#F48220', name: '橘線' },
+    jingSi: { hex: '#80CEF3', name: '天藍線' },
+    lamp: { hex: '#ACCE22', name: '嫩綠線' },
+    noBoat: { hex: '#ACCE22', name: '嫩綠線' },
+    noBoat3: { hex: '#ACCE22', name: '嫩綠線' },
+    bigV: { hex: '#F19EA8', name: '粉紅線' },
+    daChuanShi: { hex: '#FDD100', name: '亮黃線' },
+    boneDonation: { hex: '#F19EA8', name: '粉紅線' },
+    edu: { hex: '#A6ADD6', name: '藍紫線' },
+    humanities1: { hex: '#0061AE', name: '藍線' },
+    humanities2: { hex: '#0061AE', name: '藍線' },
+    fiveContinents1: { hex: '#AF9DA8', name: '灰紫線' },
+    fiveContinents2: { hex: '#AF9DA8', name: '灰紫線' },
+    flyingApsaras: { hex: '#E62129', name: '紅線' }
+  };
+
+  // Helper to draw Canvas Arrow Diagram
+  function drawCanvasDirectionArrow(ctx, centerX, centerY, radius, angleRad, isStationary, lineColor = '#38bdf8') {
+    ctx.save();
+    ctx.translate(centerX, centerY);
+
+    // Draw background node circle
+    ctx.beginPath();
+    ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+    ctx.fillStyle = '#1e293b';
+    ctx.fill();
+    ctx.strokeStyle = lineColor;
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    if (isStationary) {
+      // Draw stationary dot
+      ctx.beginPath();
+      ctx.arc(0, 0, 3.5, 0, 2 * Math.PI);
+      ctx.fillStyle = lineColor;
+      ctx.fill();
+    } else {
+      ctx.rotate(angleRad);
+
+      // Draw arrow line
+      ctx.strokeStyle = lineColor;
+      ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      ctx.moveTo(-radius + 5, 0);
+      ctx.lineTo(radius - 5, 0);
+      ctx.stroke();
+
+      // Draw arrowhead
+      ctx.fillStyle = lineColor;
+      ctx.beginPath();
+      ctx.moveTo(radius - 3, 0);
+      ctx.lineTo(radius - 8, -4.5);
+      ctx.lineTo(radius - 8, 4.5);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    ctx.restore();
+  }
+
+  // Generate Pocket Slip Canvas in 5-Column Table Grid format for Performer
+  async function generatePocketSlipCanvas(performer) {
+    if (!performer) return null;
+
+    const fields = getPerformerFields(performer);
+    const canvasWidth = 840;
+    const padding = 20;
+    const contentWidth = canvasWidth - padding * 2; // 800px
+    const perfCategory = performer.category || 'A白';
+
+    // Preload sticker images
+    const stickerImages = {};
+    for (let idx = 0; idx < formations.length; idx++) {
+      const f = formations[idx];
+      const displayType = getDisplayType(f.key);
+      const src = `images/stickers/${displayType}_${getEnglishCategory(perfCategory)}.png`;
+      const img = await loadImage(src);
+      if (img) {
+        stickerImages[f.key] = img;
+      }
+    }
+
+    // Column widths: Total = 800px
+    const col1W = 130; // 定點與圖騰
+    const col2W = 110; // 本景座標
+    const col3W = 155; // 移動方向與箭頭
+    const col4W = 145; // 地標與對齊指引
+    const col5W = 260; // 面向與燈具動作要領
+
+    // Measure rows and calculate height
+    const dummyCanvas = document.createElement('canvas');
+    const dummyCtx = dummyCanvas.getContext('2d');
+
+    const headerHeight = 150;
+    const tableHeaderH = 36;
+    const footerHeight = 44;
+
+    const rowHeights = [];
+    const rowData = [];
+
+    for (let idx = 0; idx < formations.length; idx++) {
+      const f = formations[idx];
+      const currCoordStr = getFormationCoordStr(performer, f.key) || '無';
+      const prevCoordStr = idx > 0 ? getFormationCoordStr(performer, formations[idx - 1].key) : '';
+      
+      const vec = calculateMovementVector(prevCoordStr, currCoordStr);
+      const split = splitLandmarkAndCoordinate(currCoordStr);
+      const parsed = parseCoordinate(currCoordStr);
+      const hints = getActionHintsForPerformer(performer, f.key);
+
+      // Extract concise facing & lamp hints
+      const conciseHints = extractConciseActionHints(hints);
+
+      // Wrap lines for column 5
+      dummyCtx.font = "13px 'Noto Sans TC', sans-serif";
+      const wrappedLines = [];
+      conciseHints.forEach(hText => {
+        const lines = wrapCanvasText(dummyCtx, `• ${hText}`, col5W - 20);
+        wrappedLines.push(...lines);
+      });
+
+      // Calculate row height (min 70px)
+      const textH = 14 + wrappedLines.length * 20;
+      const rowH = Math.max(70, textH);
+
+      rowHeights.push(rowH);
+      rowData.push({
+        formation: f,
+        coord: currCoordStr,
+        prevCoordStr: prevCoordStr,
+        vec: vec,
+        split: split,
+        parsed: parsed,
+        wrappedLines: wrappedLines
+      });
+    }
+
+    let totalTableH = tableHeaderH;
+    rowHeights.forEach(h => totalTableH += h);
+
+    const totalHeight = headerHeight + totalTableH + footerHeight;
+
+    // Create target canvas
+    const canvas = document.createElement('canvas');
+    canvas.width = canvasWidth;
+    canvas.height = totalHeight;
+    const ctx = canvas.getContext('2d');
+
+    // 1. Main Background
+    ctx.fillStyle = '#0f172a'; // Deep slate dark blue background
+    ctx.fillRect(0, 0, canvasWidth, totalHeight);
+
+    // 2. Header Box
+    const headerGrad = ctx.createLinearGradient(0, 0, canvasWidth, headerHeight);
+    headerGrad.addColorStop(0, '#1e293b');
+    headerGrad.addColorStop(1, '#0f172a');
+    ctx.fillStyle = headerGrad;
+    ctx.fillRect(0, 0, canvasWidth, headerHeight);
+
+    // Shimmer Top Line
+    const shimmerGrad = ctx.createLinearGradient(0, 0, canvasWidth, 0);
+    shimmerGrad.addColorStop(0, '#0d9488');
+    shimmerGrad.addColorStop(0.5, '#38bdf8');
+    shimmerGrad.addColorStop(1, '#fbbf24');
+    ctx.fillStyle = shimmerGrad;
+    ctx.fillRect(0, 0, canvasWidth, 5);
+
+    // Title
+    ctx.fillStyle = '#fbbf24';
+    ctx.font = "bold 22px 'Noto Sans TC', sans-serif";
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    ctx.fillText("🎭 慈濟大巨蛋演繹 個人隨身提醒小紙條", canvasWidth / 2, 18);
+
+    // Subtitle
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = "500 12.5px 'Outfit', sans-serif";
+    const sessionStr = selectedSessionKey || '未指定場次';
+    const teamStr = selectedTeam === 'east' ? '東班' : (selectedTeam === 'west' ? '西班' : '全場');
+    ctx.fillText(`Dome Stage Position Navigator  •  演出場次: ${sessionStr} (${teamStr})`, canvasWidth / 2, 46);
+
+    // Performer Info Card Box
+    const infoBoxY = 70;
+    const infoBoxH = 64;
+    ctx.fillStyle = '#1e293b';
+    ctx.strokeStyle = '#334155';
+    ctx.lineWidth = 1;
+    drawCanvasRoundRect(ctx, padding, infoBoxY, contentWidth, infoBoxH, 10, true, true);
+
+    // Performer Name
+    const nameStr = currentDisplayName || fields.coordinate || '演繹人員';
+    ctx.fillStyle = '#ffffff';
+    ctx.font = "bold 19px 'Noto Sans TC', sans-serif";
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(nameStr, padding + 16, infoBoxY + infoBoxH / 2);
+
+    const nameW = ctx.measureText(nameStr).width;
+    const idX = padding + 16 + nameW + 14;
+
+    // ID Badge
+    ctx.fillStyle = '#0284c7';
+    drawCanvasRoundRect(ctx, idX, infoBoxY + 15, 92, 34, 8, true, false);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = "bold 15px 'Outfit', monospace";
+    ctx.textAlign = 'center';
+    ctx.fillText(fields.coordinate || '---', idX + 46, infoBoxY + infoBoxH / 2);
+
+    // Category Badge
+    const catStr = performer.category || '演繹身分';
+    let catBg = '#475569';
+    let catColor = '#ffffff';
+    if (catStr === 'A藍') { catBg = '#1d4ed8'; catColor = '#ffffff'; }
+    else if (catStr === 'A白') { catBg = '#f1f5f9'; catColor = '#0f172a'; }
+    else if (catStr === 'B白') { catBg = '#d97706'; catColor = '#ffffff'; }
+    else if (catStr === 'B藍') { catBg = '#0d9488'; catColor = '#ffffff'; }
+
+    const catX = idX + 104;
+    ctx.fillStyle = catBg;
+    drawCanvasRoundRect(ctx, catX, infoBoxY + 15, 72, 34, 8, true, false);
+    ctx.fillStyle = catColor;
+    ctx.font = "bold 15px 'Noto Sans TC', sans-serif";
+    ctx.textAlign = 'center';
+    ctx.fillText(catStr, catX + 36, infoBoxY + infoBoxH / 2);
+
+    // 3. Draw Table Grid Header
+    const tableStartY = headerHeight + 10;
+    
+    // Table Header Background
+    ctx.fillStyle = '#1e3a8a'; // Deep indigo header
+    ctx.strokeStyle = '#3b82f6';
+    ctx.lineWidth = 1;
+    drawCanvasRoundRect(ctx, padding, tableStartY, contentWidth, tableHeaderH, { tl: 8, tr: 8, bl: 0, br: 0 }, true, true);
+
+    // Column Titles
+    ctx.fillStyle = '#ffffff';
+    ctx.font = "bold 13px 'Noto Sans TC', sans-serif";
+    ctx.textBaseline = 'middle';
+
+    // Col 1 Title
+    ctx.textAlign = 'center';
+    ctx.fillText("定點 / 圖騰", padding + col1W / 2, tableStartY + tableHeaderH / 2);
+
+    // Col 2 Title
+    ctx.fillText("本景座標", padding + col1W + col2W / 2, tableStartY + tableHeaderH / 2);
+
+    // Col 3 Title
+    ctx.fillText("移動方向與箭頭", padding + col1W + col2W + col3W / 2, tableStartY + tableHeaderH / 2);
+
+    // Col 4 Title
+    ctx.fillText("地標與對齊指引", padding + col1W + col2W + col3W + col4W / 2, tableStartY + tableHeaderH / 2);
+
+    // Col 5 Title
+    ctx.textAlign = 'left';
+    ctx.fillText("面向與燈具動作要領", padding + col1W + col2W + col3W + col4W + 14, tableStartY + tableHeaderH / 2);
+
+    // Column Dividers for Header
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+    ctx.beginPath();
+    ctx.moveTo(padding + col1W, tableStartY);
+    ctx.lineTo(padding + col1W, tableStartY + tableHeaderH);
+    ctx.moveTo(padding + col1W + col2W, tableStartY);
+    ctx.lineTo(padding + col1W + col2W, tableStartY + tableHeaderH);
+    ctx.moveTo(padding + col1W + col2W + col3W, tableStartY);
+    ctx.lineTo(padding + col1W + col2W + col3W, tableStartY + tableHeaderH);
+    ctx.moveTo(padding + col1W + col2W + col3W + col4W, tableStartY);
+    ctx.lineTo(padding + col1W + col2W + col3W + col4W, tableStartY + tableHeaderH);
+    ctx.stroke();
+
+    // 4. Draw Table Rows
+    let currentY = tableStartY + tableHeaderH;
+
+    for (let idx = 0; idx < rowData.length; idx++) {
+      const data = rowData[idx];
+      const f = data.formation;
+      const rowH = rowHeights[idx];
+      const rY = currentY;
+
+      // Alternating row background
+      ctx.fillStyle = idx % 2 === 0 ? '#1e293b' : '#0f172a';
+      ctx.fillRect(padding, rY, contentWidth, rowH);
+
+      // Row Border
+      ctx.strokeStyle = '#334155';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(padding, rY, contentWidth, rowH);
+
+      // --- Column 1: Spot & Totem Sticker ---
+      const col1X = padding;
+      const stepNumStr = String(idx + 1).padStart(2, '0');
+      
+      // Step Title Text
+      ctx.fillStyle = '#f8fafc';
+      ctx.font = "bold 12px 'Noto Sans TC', sans-serif";
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'top';
+      ctx.fillText(`${stepNumStr}.${f.label || f.name}`, col1X + 8, rY + 8);
+
+      // Totem Sticker Image
+      const stickerImg = stickerImages[f.key];
+      const stickerSize = 36;
+      const stickerX = col1X + 8;
+      const stickerY = rY + 24;
+
+      if (stickerImg) {
+        ctx.drawImage(stickerImg, stickerX, stickerY, stickerSize, stickerSize);
+
+        // Overlay circle if basic / miLuo / humanities1
+        if (f.key === 'basic' || f.key === 'miLuo' || f.key === 'humanities1') {
+          const isCatA = perfCategory.startsWith('A');
+          const overlayColor = isCatA ? '#e65537' : '#7dbf32';
+          const circleX = stickerX + stickerSize / 2;
+          const circleY = stickerY + stickerSize / 2;
+          const circleR = 12;
+
+          ctx.beginPath();
+          ctx.arc(circleX, circleY, circleR, 0, 2 * Math.PI);
+          ctx.fillStyle = overlayColor;
+          ctx.fill();
+
+          const coordVal = f.key === 'miLuo' ? (getFormationCoordStr(performer, 'miLuo') || fields.coordinate) : fields.coordinate;
+          const parts = coordVal.split('-');
+          ctx.fillStyle = '#ffffff';
+          ctx.textAlign = 'center';
+
+          if (parts.length === 2) {
+            ctx.font = "bold 7.5px sans-serif";
+            ctx.textBaseline = 'bottom';
+            ctx.fillText(parts[0].padStart(2, '0'), circleX, circleY);
+
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 0.8;
+            ctx.beginPath();
+            ctx.moveTo(circleX - 7, circleY);
+            ctx.lineTo(circleX + 7, circleY);
+            ctx.stroke();
+
+            ctx.textBaseline = 'top';
+            ctx.fillText(parts[1].padStart(2, '0'), circleX, circleY + 0.5);
+          } else {
+            ctx.font = "bold 8px sans-serif";
+            ctx.textBaseline = 'middle';
+            ctx.fillText(coordVal.padStart(2, '0'), circleX, circleY);
+          }
+        }
+      }
+
+      // --- Column 2: Spot Coordinate ---
+      const col2X = padding + col1W;
+      const col2CenterX = col2X + col2W / 2;
+      const coordStr = data.coord || '---';
+
+      // Draw Coordinate Pill/Badge
+      ctx.fillStyle = '#0284c7';
+      drawCanvasRoundRect(ctx, col2CenterX - 42, rY + (rowH - 26) / 2, 84, 26, 6, true, false);
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = "bold 13.5px 'Outfit', monospace";
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(coordStr, col2CenterX, rY + rowH / 2);
+
+      // --- Column 3: Movement Vector, Graphical Arrow & Line Color ---
+      const col3X = padding + col1W + col2W;
+      const lineColorInfo = FORMATION_COLORS[f.key] || { hex: '#fbbf24', name: '黃線' };
+      
+      // Draw Previous Spot Coordinate text
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = "10.5px 'Outfit', sans-serif";
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'top';
+      ctx.fillText(`自: ${data.vec.prevText}`, col3X + 38, rY + 11);
+
+      // Draw Direction Arrow Graphic Diagram using formation line color
+      drawCanvasDirectionArrow(ctx, col3X + 20, rY + rowH / 2, 13, data.vec.angleRad, data.vec.isStationary, lineColorInfo.hex);
+
+      // Draw Direction Text
+      ctx.fillStyle = '#fbbf24';
+      ctx.font = "bold 11px 'Noto Sans TC', sans-serif";
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'top';
+      ctx.fillText(data.vec.dirText, col3X + 38, rY + 27);
+
+      // Draw Guide Line Color Text under movement
+      ctx.beginPath();
+      ctx.arc(col3X + 43, rY + 47, 3.5, 0, 2 * Math.PI);
+      ctx.fillStyle = lineColorInfo.hex;
+      ctx.fill();
+
+      ctx.fillStyle = lineColorInfo.hex;
+      ctx.font = "bold 10.5px 'Noto Sans TC', sans-serif";
+      ctx.fillText(`指引線: ${lineColorInfo.name}`, col3X + 51, rY + 42);
+
+      // --- Column 4: Landmark & Alignment Lines ---
+      const col4X = padding + col1W + col2W + col3W;
+      ctx.textAlign = 'left';
+
+      // Landmark Name
+      const landmarkText = data.split.landmark || '預設地標';
+      ctx.fillStyle = '#ffffff';
+      ctx.font = "bold 12px 'Noto Sans TC', sans-serif";
+      ctx.textBaseline = 'top';
+      ctx.fillText(landmarkText, col4X + 8, rY + 15);
+
+      // Alignment Guide Text (X, Y integer red line alignment)
+      if (!data.parsed.isText && data.parsed.x !== null) {
+        const rx = Math.trunc(data.parsed.x);
+        const ry = Math.trunc(data.parsed.y);
+        ctx.fillStyle = '#ff6b6b';
+        ctx.font = "bold 11px 'Outfit', sans-serif";
+        ctx.fillText(`對齊: X=${rx}, Y=${ry}`, col4X + 8, rY + 34);
+      } else {
+        ctx.fillStyle = '#64748b';
+        ctx.font = "11px 'Noto Sans TC', sans-serif";
+        ctx.fillText(`自由對齊`, col4X + 8, rY + 34);
+      }
+
+      // --- Column 5: Facing & Lamp Action Hints ---
+      const col5X = padding + col1W + col2W + col3W + col4W;
+      ctx.font = "13px 'Noto Sans TC', sans-serif";
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'top';
+
+      let lineY = rY + (rowH - data.wrappedLines.length * 19) / 2;
+      if (lineY < rY + 8) lineY = rY + 8;
+
+      data.wrappedLines.forEach(line => {
+        ctx.fillStyle = line.includes('開燈') || line.includes('黃燈') || line.includes('舉高') ? '#fbbf24' : '#e2e8f0';
+        ctx.fillText(line, col5X + 14, lineY);
+        lineY += 19;
+      });
+
+      // Draw Grid Column Dividers
+      ctx.strokeStyle = '#334155';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(col2X, rY);
+      ctx.lineTo(col2X, rY + rowH);
+      ctx.moveTo(col3X, rY);
+      ctx.lineTo(col3X, rY + rowH);
+      ctx.moveTo(col4X, rY);
+      ctx.lineTo(col4X, rY + rowH);
+      ctx.moveTo(col5X, rY);
+      ctx.lineTo(col5X, rY + rowH);
+      ctx.stroke();
+
+      currentY += rowH;
+    }
+
+    // 5. Draw Footer
+    ctx.fillStyle = '#64748b';
+    ctx.font = "12px 'Noto Sans TC', sans-serif";
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText("慈濟大巨蛋演繹個人定位系統  •  隨身提醒小紙條 (5欄完整版)  •  座標/向量箭頭/對齊線/面向燈具備查", canvasWidth / 2, totalHeight - 20);
+
+    return canvas;
+  }
+
   // Setup Download & Modal Event Listeners
   function setupDownloadListeners() {
     const viewAllMapsBtn = document.getElementById('viewAllMapsBtn');
@@ -2684,6 +3303,133 @@ document.addEventListener('DOMContentLoaded', () => {
     downloadAllBtn.addEventListener('click', async () => {
       downloadPerformerTablePdf(downloadAllBtn);
     });
+
+    // 5. Pocket Slip Cheat Sheet Modal Event Listeners
+    const downloadPocketSlipOpenBtn = document.getElementById('downloadPocketSlipOpenBtn');
+    const modalDownloadPocketSlipBtn = document.getElementById('modalDownloadPocketSlipBtn');
+    const pocketSlipModal = document.getElementById('pocketSlipModal');
+    const closePocketSlipModalBtn = document.getElementById('closePocketSlipModalBtn');
+    const downloadPocketSlipPngBtn = document.getElementById('downloadPocketSlipPngBtn');
+    const downloadPocketSlipPdfBtn = document.getElementById('downloadPocketSlipPdfBtn');
+    const pocketSlipPreviewWrapper = document.getElementById('pocketSlipPreviewWrapper');
+
+    async function openPocketSlipModal() {
+      if (!currentPerformer) return;
+      pocketSlipModal.style.display = 'flex';
+      pocketSlipPreviewWrapper.innerHTML = `<div class="slip-loading"><i class="fa-solid fa-spinner fa-spin"></i> 小紙條產出中...</div>`;
+
+      try {
+        const canvas = await generatePocketSlipCanvas(currentPerformer);
+        if (canvas) {
+          pocketSlipPreviewWrapper.innerHTML = '';
+          pocketSlipPreviewWrapper.appendChild(canvas);
+        } else {
+          pocketSlipPreviewWrapper.innerHTML = `<div class="slip-loading" style="color:#ef4444;"><i class="fa-solid fa-triangle-exclamation"></i> 無法產出小紙條</div>`;
+        }
+      } catch (err) {
+        console.error("Pocket slip generation error:", err);
+        const errMsg = err && err.message ? err.message : String(err);
+        pocketSlipPreviewWrapper.innerHTML = `<div class="slip-loading" style="color:#ef4444;"><i class="fa-solid fa-triangle-exclamation"></i> 產出小紙條時發生錯誤：<br><span style="font-size:12px;color:#fca5a5;margin-top:6px;display:block;">${errMsg}</span></div>`;
+      }
+    }
+
+    if (downloadPocketSlipOpenBtn) {
+      downloadPocketSlipOpenBtn.addEventListener('click', openPocketSlipModal);
+    }
+    if (modalDownloadPocketSlipBtn) {
+      modalDownloadPocketSlipBtn.addEventListener('click', () => {
+        const allMapsModal = document.getElementById('allMapsModal');
+        if (allMapsModal) allMapsModal.style.display = 'none';
+        openPocketSlipModal();
+      });
+    }
+    if (closePocketSlipModalBtn) {
+      closePocketSlipModalBtn.addEventListener('click', () => {
+        pocketSlipModal.style.display = 'none';
+      });
+    }
+    if (pocketSlipModal) {
+      pocketSlipModal.addEventListener('click', (e) => {
+        if (e.target === pocketSlipModal) {
+          pocketSlipModal.style.display = 'none';
+        }
+      });
+    }
+
+    // Download PNG
+    if (downloadPocketSlipPngBtn) {
+      downloadPocketSlipPngBtn.addEventListener('click', async () => {
+        if (!currentPerformer) return;
+        const canvas = pocketSlipPreviewWrapper.querySelector('canvas');
+        if (!canvas) return;
+
+        downloadPocketSlipPngBtn.disabled = true;
+        const originalHtml = downloadPocketSlipPngBtn.innerHTML;
+        downloadPocketSlipPngBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> 下載中...`;
+
+        try {
+          const fields = getPerformerFields(currentPerformer);
+          const dataUrl = canvas.toDataURL('image/png');
+          const link = document.createElement('a');
+          link.download = `${currentDisplayName || fields.coordinate}_${fields.coordinate}_演繹隨身提醒小紙條.png`;
+          link.href = dataUrl;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+
+          downloadPocketSlipPngBtn.innerHTML = `<i class="fa-solid fa-check"></i> 下載成功`;
+        } catch (err) {
+          console.error(err);
+          downloadPocketSlipPngBtn.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> 錯誤`;
+        }
+
+        setTimeout(() => {
+          downloadPocketSlipPngBtn.disabled = false;
+          downloadPocketSlipPngBtn.innerHTML = originalHtml;
+        }, 2000);
+      });
+    }
+
+    // Download PDF
+    if (downloadPocketSlipPdfBtn) {
+      downloadPocketSlipPdfBtn.addEventListener('click', async () => {
+        if (!currentPerformer) return;
+        const canvas = pocketSlipPreviewWrapper.querySelector('canvas');
+        if (!canvas) return;
+
+        downloadPocketSlipPdfBtn.disabled = true;
+        const originalHtml = downloadPocketSlipPdfBtn.innerHTML;
+        downloadPocketSlipPdfBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> 產出 PDF...`;
+
+        try {
+          const fields = getPerformerFields(currentPerformer);
+          const { jsPDF } = window.jspdf;
+          
+          const imgData = canvas.toDataURL('image/jpeg', 0.95);
+          const pdfWidth = 595.28; // A4 pt width
+          const pdfHeight = (canvas.height / canvas.width) * pdfWidth;
+
+          const pdf = new jsPDF({
+            orientation: 'portrait',
+            unit: 'pt',
+            format: [pdfWidth, pdfHeight]
+          });
+
+          pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+          pdf.save(`${currentDisplayName || fields.coordinate}_${fields.coordinate}_演繹隨身提醒小紙條.pdf`);
+
+          downloadPocketSlipPdfBtn.innerHTML = `<i class="fa-solid fa-check"></i> 下載成功`;
+        } catch (err) {
+          console.error(err);
+          downloadPocketSlipPdfBtn.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> 錯誤`;
+        }
+
+        setTimeout(() => {
+          downloadPocketSlipPdfBtn.disabled = false;
+          downloadPocketSlipPdfBtn.innerHTML = originalHtml;
+        }, 2000);
+      });
+    }
   }
 
   // Update viewBox of SVG based on zoom and pan offsets
