@@ -12942,7 +12942,7 @@ const DAY_PERFORMERS = {
     { id: '6-53', name: '謝運松', team: '東班' },
     { id: '6-54', name: '阮張榮', team: '東班' },
     { id: '6-55', name: '侯柏安', team: '東班' },
-    { id: '6-56', name: '顏煌彬', team: '東班' },
+    { id: '6-56', name: '呂美香', team: '東班' },
     { id: '10-52', name: '鍾美錦', team: '東班' },
     { id: '10-53', name: '郭碧霞', team: '東班' },
     { id: '10-54', name: '鍾睿玲', team: '東班' },
