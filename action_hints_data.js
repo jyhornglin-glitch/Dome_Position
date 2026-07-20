@@ -568,7 +568,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "OS:咦!這裡怎麼有一灘血啊? 換成LOGO隊形，到位先面向甲舞台"
+          "content": "OS:三位修女 換成LOGO隊形，到位先面向甲舞台"
         },
         {
           "type": "text",
@@ -739,6 +739,10 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
+          "content": "(非LOGO者做手語動作；LOGO者同點一盞燈動作)"
+        },
+        {
+          "type": "text",
           "content": "是諸眾生真善知識"
         },
         {
@@ -768,14 +772,6 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "為癲狂慌亂作正念"
-        },
-        {
-          "type": "text",
-          "content": "非LOGO者做手語動作"
-        },
-        {
-          "type": "text",
-          "content": "LOGO者同點一盞燈動作"
         },
         {
           "type": "image",
@@ -1224,6 +1220,10 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_53.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_54.png"
         }
       ]
     },
@@ -1236,7 +1236,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_54.png"
+          "src": "images/action_hints/hint_55.png"
         },
         {
           "type": "text",
@@ -1260,7 +1260,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_55.png"
+          "src": "images/action_hints/hint_56.png"
         }
       ]
     },
@@ -1277,7 +1277,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_56.png"
+          "src": "images/action_hints/hint_57.png"
         },
         {
           "type": "text",
@@ -1301,11 +1301,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_57.png"
+          "src": "images/action_hints/hint_58.png"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_58.png"
+          "src": "images/action_hints/hint_59.png"
         }
       ]
     },
@@ -1322,7 +1322,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_59.png"
+          "src": "images/action_hints/hint_60.png"
         },
         {
           "type": "text",
@@ -1354,7 +1354,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_60.png"
+          "src": "images/action_hints/hint_61.png"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_62.png"
         }
       ]
     },
@@ -1371,7 +1375,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_61.png"
+          "src": "images/action_hints/hint_63.png"
         },
         {
           "type": "text",
@@ -1411,7 +1415,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_62.png"
+          "src": "images/action_hints/hint_64.png"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_65.png"
         }
       ]
     },
@@ -1428,7 +1436,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_63.png"
+          "src": "images/action_hints/hint_66.png"
         },
         {
           "type": "text",
@@ -1472,7 +1480,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_64.png"
+          "src": "images/action_hints/hint_67.png"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_68.png"
         }
       ]
     },
@@ -1485,7 +1497,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_65.png"
+          "src": "images/action_hints/hint_69.png"
         },
         {
           "type": "text",
@@ -1533,7 +1545,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_66.png"
+          "src": "images/action_hints/hint_70.png"
         }
       ]
     }
@@ -1552,7 +1564,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_67.png"
+          "src": "images/action_hints/hint_71.png"
         },
         {
           "type": "text",
@@ -1600,11 +1612,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_68.png"
+          "src": "images/action_hints/hint_72.png"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_69.png"
+          "src": "images/action_hints/hint_73.png"
         }
       ]
     },
@@ -1617,7 +1629,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_70.png"
+          "src": "images/action_hints/hint_74.png"
         },
         {
           "type": "text",
@@ -1665,7 +1677,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_71.png"
+          "src": "images/action_hints/hint_75.png"
         },
         {
           "type": "text",
@@ -1709,7 +1721,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_72.png"
+          "src": "images/action_hints/hint_76.png"
         }
       ]
     }
@@ -1724,7 +1736,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_73.png"
+          "src": "images/action_hints/hint_77.png"
         },
         {
           "type": "text",
@@ -1756,7 +1768,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_74.png"
+          "src": "images/action_hints/hint_78.png"
         }
       ]
     },
@@ -1769,7 +1781,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_75.png"
+          "src": "images/action_hints/hint_79.png"
         },
         {
           "type": "text",
@@ -1801,7 +1813,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_76.png"
+          "src": "images/action_hints/hint_80.png"
         }
       ]
     },
@@ -1814,7 +1826,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_77.png"
+          "src": "images/action_hints/hint_81.png"
         },
         {
           "type": "text",
@@ -1858,7 +1870,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_78.png"
+          "src": "images/action_hints/hint_82.png"
         }
       ]
     },
@@ -1871,7 +1883,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_79.png"
+          "src": "images/action_hints/hint_83.png"
         },
         {
           "type": "text",
@@ -1879,7 +1891,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "「佛轉」法輪是真諦（合掌從甲舞台轉向箭頭方向）"
+          "content": "「佛轉」(合掌)"
+        },
+        {
+          "type": "text",
+          "content": "法輪「四真諦」（從甲舞台轉向箭頭方向）"
         },
         {
           "type": "text",
@@ -1943,11 +1959,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "無量（拿燈）義經（燈舉高）。"
+          "content": "無量（拿燈）義經（藍色燈舉高；白色合掌在胸口）。"
         },
         {
           "type": "text",
-          "content": "OS:留給子孫一個乾淨的地球"
+          "content": "OS:留給子孫一個「乾淨的地球」。(藍色合掌在胸口；白色燈舉高)"
         },
         {
           "type": "text",
@@ -1955,11 +1971,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_80.png"
+          "src": "images/action_hints/hint_84.png"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_81.png"
+          "src": "images/action_hints/hint_85.png"
         }
       ]
     }
@@ -1978,7 +1994,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_82.png"
+          "src": "images/action_hints/hint_86.png"
         },
         {
           "type": "text",
@@ -2002,7 +2018,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_83.png"
+          "src": "images/action_hints/hint_87.png"
         }
       ]
     }
