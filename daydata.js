@@ -8839,7 +8839,7 @@ const DAY_PERFORMERS = {
     { id: '30-38', name: '江秀春', team: '東班' },
     { id: '2-55', name: '張宸瑋', team: '東班' },
     { id: '2-56', name: '黃靖凱', team: '東班' },
-    { id: '2-57', name: '缺', team: '東班' },
+    { id: '2-57', name: '劉惜寬', team: '東班' },
     { id: '2-58', name: '陳治瀚', team: '東班' },
     { id: '2-59', name: '楊騰崴', team: '東班' },
     { id: '2-60', name: '謝志穎', team: '東班' },
