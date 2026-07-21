@@ -86,7 +86,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "(結束轉向圓心)"
+          "content": "(結束轉向甲舞台)"
         }
       ]
     },
@@ -222,15 +222,19 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "OS：生老病死，實在「苦不堪言」。(全體回正)"
+          "content": "OS：生老病死，實在「苦不堪言」。(合十回正)"
         },
         {
           "type": "text",
-          "content": "「北門前」(全體合掌轉面向法師之圓弧線)竹林間，修行道人相莊嚴。"
+          "content": "「北門前」(轉面向法師之圓弧線)竹林間 修行道人相莊嚴"
         },
         {
           "type": "text",
-          "content": "「夜深人靜」(轉面向圓心，腳尖對線)離宮殿，不悟真理誓不還。"
+          "content": "「夜深人靜」(轉面向圓心，腳尖對線)離宮殿 不悟真理誓不還"
+        },
+        {
+          "type": "text",
+          "content": "以上4句「北門前~誓不還」一定一定一定要大聲唱誦"
         },
         {
           "type": "text",
@@ -283,11 +287,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "黃老師OS："
-        },
-        {
-          "type": "text",
-          "content": "轉識成智 成佛道"
+          "content": "黃老師OS：轉識成智 成佛道"
         },
         {
           "type": "image",
@@ -311,6 +311,10 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_10.png"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_11.png"
         },
         {
           "type": "text",
@@ -350,10 +354,6 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_11.jpg"
-        },
-        {
-          "type": "image",
           "src": "images/action_hints/hint_12.jpg"
         },
         {
@@ -362,11 +362,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_14.jpg"
+          "src": "images/action_hints/hint_14.png"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_15.jpg"
+          "src": "images/action_hints/hint_15.png"
         },
         {
           "type": "image",
@@ -379,6 +379,10 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_18.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_19.jpg"
         }
       ]
     },
@@ -387,11 +391,11 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_19.png"
+          "src": "images/action_hints/hint_20.png"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_20.jpg"
+          "src": "images/action_hints/hint_21.jpg"
         },
         {
           "type": "text",
@@ -399,7 +403,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "第一聲「 哐」回正、 手放大腿二側"
+          "content": "第一聲「哐」回正、 手放大腿二側"
         },
         {
           "type": "text",
@@ -411,7 +415,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "仿若實境(拿燈)再現(開綠燈)"
+          "content": "仿若實境(拿燈)再「現」(開綠燈)"
         },
         {
           "type": "text",
@@ -447,10 +451,6 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_21.jpg"
-        },
-        {
-          "type": "image",
           "src": "images/action_hints/hint_22.jpg"
         },
         {
@@ -460,6 +460,10 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_24.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_25.jpg"
         }
       ]
     }
@@ -474,7 +478,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_25.jpg"
+          "src": "images/action_hints/hint_26.jpg"
+        },
+        {
+          "type": "text",
+          "content": "OS: 只要有人間菩薩，貧窮與苦難的人，就有機會得到救助，我要把佛法推向人間"
         },
         {
           "type": "text",
@@ -498,19 +506,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "我決定要消弭貧窮"
-        },
-        {
-          "type": "text",
-          "content": "扛天下米籮"
-        },
-        {
-          "type": "text",
-          "content": "讓人人都能力行菩薩道"
+          "content": "OS:我決定要消滅貧窮，「扛天下米籮」，讓人人力行「菩薩道」。"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_26.png"
+          "src": "images/action_hints/hint_27.png"
         }
       ]
     }
@@ -525,19 +525,51 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_27.png"
+          "src": "images/action_hints/hint_28.png"
         },
         {
           "type": "text",
-          "content": "OS：你去煮麵線(台語)→舞臺的人上舞台面向甲舞台"
+          "content": "OS:「你去煮麵線」→舞臺的人上舞台面向甲舞台"
         },
         {
           "type": "text",
-          "content": "OS：我的師父自己沒東西吃，卻是念念眾生的苦。"
+          "content": "多煮一些，吃完才會飽，啊油要多放一些，胃比較舒服。下一餐都不知道在哪裡？油和麵線先去和普明寺借，割草的工資是借的，啊這!又要借，借的難道不用還嗎，我的師父自己沒得吃，卻是念念眾生的苦。"
         },
         {
           "type": "text",
-          "content": "嗯! 「我認定」了這個師父了 (台語) →合掌轉向法師"
+          "content": "嗯!「我認定」這個師父了"
+        },
+        {
+          "type": "text",
+          "content": "→合掌轉向法師"
+        },
+        {
+          "type": "text",
+          "content": "靜思家風，一日不作，一日不食。"
+        },
+        {
+          "type": "text",
+          "content": "法身大士，慈悲菩薩"
+        },
+        {
+          "type": "text",
+          "content": "其心禪寂，常在三昧"
+        },
+        {
+          "type": "text",
+          "content": "恬安淡泊，無為無欲"
+        },
+        {
+          "type": "text",
+          "content": "顛倒亂想，不復得入"
+        },
+        {
+          "type": "text",
+          "content": "克勤、克儉、克難，菩薩行"
+        },
+        {
+          "type": "text",
+          "content": "守志奉道，刻苦修行"
         },
         {
           "type": "text",
@@ -545,7 +577,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_28.jpg"
+          "src": "images/action_hints/hint_29.jpg"
         }
       ]
     }
@@ -560,19 +592,19 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_29.jpg"
-        },
-        {
-          "type": "image",
           "src": "images/action_hints/hint_30.jpg"
         },
         {
-          "type": "text",
-          "content": "OS:三位修女 換成LOGO隊形，到位先面向甲舞台"
+          "type": "image",
+          "src": "images/action_hints/hint_31.jpg"
         },
         {
           "type": "text",
-          "content": "OS:師父我們需要「你」→轉自己的方向"
+          "content": "OS:咦，怎麼會有一灘血……「三位修女」→換成LOGO隊形，到位先面向甲舞台"
+        },
+        {
+          "type": "text",
+          "content": "OS:師父我們「需要你」→轉自己的方向"
         },
         {
           "type": "text",
@@ -627,7 +659,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_31.png"
+          "src": "images/action_hints/hint_32.png"
         },
         {
           "type": "text",
@@ -651,11 +683,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_32.png"
+          "src": "images/action_hints/hint_33.png"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_33.jpg"
+          "src": "images/action_hints/hint_34.jpg"
         }
       ]
     },
@@ -668,11 +700,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_34.jpg"
+          "src": "images/action_hints/hint_35.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_35.jpg"
+          "src": "images/action_hints/hint_36.jpg"
         },
         {
           "type": "text",
@@ -719,7 +751,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_36.jpg"
+          "src": "images/action_hints/hint_37.jpg"
         },
         {
           "type": "text",
@@ -775,7 +807,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_37.jpg"
+          "src": "images/action_hints/hint_38.jpg"
         }
       ]
     }
@@ -790,11 +822,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_38.jpg"
+          "src": "images/action_hints/hint_39.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_39.png"
+          "src": "images/action_hints/hint_40.png"
         }
       ]
     },
@@ -819,7 +851,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_40.jpg"
+          "src": "images/action_hints/hint_41.jpg"
         }
       ]
     },
@@ -832,7 +864,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_41.jpg"
+          "src": "images/action_hints/hint_42.jpg"
         },
         {
           "type": "text",
@@ -876,7 +908,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_42.jpg"
+          "src": "images/action_hints/hint_43.jpg"
         }
       ]
     },
@@ -889,7 +921,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_43.jpg"
+          "src": "images/action_hints/hint_44.jpg"
         }
       ]
     },
@@ -898,7 +930,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "OS:師父您怎麼說，我怎麼做(上舞台者出發，全部的人到位先面向甲舞台)"
+          "content": "OS:師父您怎麼說，「我怎麼做」(上舞台者出發，全部的人到位先面向甲舞台)"
         },
         {
           "type": "text",
@@ -942,7 +974,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_44.png"
+          "src": "images/action_hints/hint_45.png"
         }
       ]
     }
@@ -957,7 +989,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_45.jpg"
+          "src": "images/action_hints/hint_46.jpg"
         }
       ]
     },
@@ -1006,11 +1038,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_46.jpg"
+          "src": "images/action_hints/hint_47.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_47.jpg"
+          "src": "images/action_hints/hint_48.jpg"
         }
       ]
     }
@@ -1025,7 +1057,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_48.jpg"
+          "src": "images/action_hints/hint_49.jpg"
         }
       ]
     },
@@ -1086,7 +1118,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_49.png"
+          "src": "images/action_hints/hint_50.png"
         }
       ]
     },
@@ -1099,7 +1131,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_50.png"
+          "src": "images/action_hints/hint_51.png"
         }
       ]
     },
@@ -1168,7 +1200,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_51.png"
+          "src": "images/action_hints/hint_52.png"
         }
       ]
     }
@@ -1187,7 +1219,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_52.png"
+          "src": "images/action_hints/hint_53.png"
+        },
+        {
+          "type": "text",
+          "content": "【說法品梵唄】"
         },
         {
           "type": "text",
@@ -1219,11 +1255,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_53.jpg"
+          "src": "images/action_hints/hint_54.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_54.png"
+          "src": "images/action_hints/hint_55.png"
         }
       ]
     },
@@ -1236,7 +1272,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_55.png"
+          "src": "images/action_hints/hint_56.png"
         },
         {
           "type": "text",
@@ -1260,7 +1296,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_56.png"
+          "src": "images/action_hints/hint_57.png"
         }
       ]
     },
@@ -1277,7 +1313,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_57.png"
+          "src": "images/action_hints/hint_58.png"
         },
         {
           "type": "text",
@@ -1301,11 +1337,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_58.png"
+          "src": "images/action_hints/hint_59.png"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_59.png"
+          "src": "images/action_hints/hint_60.png"
         }
       ]
     },
@@ -1322,7 +1358,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_60.png"
+          "src": "images/action_hints/hint_61.png"
         },
         {
           "type": "text",
@@ -1354,11 +1390,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_61.png"
+          "src": "images/action_hints/hint_62.png"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_62.png"
+          "src": "images/action_hints/hint_63.png"
         }
       ]
     },
@@ -1375,7 +1411,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_63.png"
+          "src": "images/action_hints/hint_64.png"
         },
         {
           "type": "text",
@@ -1415,11 +1451,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_64.png"
+          "src": "images/action_hints/hint_65.png"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_65.png"
+          "src": "images/action_hints/hint_66.png"
         }
       ]
     },
@@ -1436,7 +1472,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_66.png"
+          "src": "images/action_hints/hint_67.png"
         },
         {
           "type": "text",
@@ -1480,11 +1516,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_67.png"
+          "src": "images/action_hints/hint_68.png"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_68.png"
+          "src": "images/action_hints/hint_69.png"
         }
       ]
     },
@@ -1497,7 +1533,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_69.png"
+          "src": "images/action_hints/hint_70.png"
         },
         {
           "type": "text",
@@ -1545,7 +1581,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_70.png"
+          "src": "images/action_hints/hint_71.png"
         }
       ]
     }
@@ -1564,7 +1600,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_71.png"
+          "src": "images/action_hints/hint_72.png"
         },
         {
           "type": "text",
@@ -1612,11 +1648,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_72.png"
+          "src": "images/action_hints/hint_73.png"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_73.png"
+          "src": "images/action_hints/hint_74.png"
         }
       ]
     },
@@ -1629,7 +1665,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_74.png"
+          "src": "images/action_hints/hint_75.png"
         },
         {
           "type": "text",
@@ -1677,7 +1713,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_75.png"
+          "src": "images/action_hints/hint_76.png"
         },
         {
           "type": "text",
@@ -1721,7 +1757,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_76.png"
+          "src": "images/action_hints/hint_77.png"
         }
       ]
     }
@@ -1736,7 +1772,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_77.png"
+          "src": "images/action_hints/hint_78.png"
         },
         {
           "type": "text",
@@ -1768,7 +1804,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_78.png"
+          "src": "images/action_hints/hint_79.png"
         }
       ]
     },
@@ -1781,7 +1817,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_79.png"
+          "src": "images/action_hints/hint_80.png"
         },
         {
           "type": "text",
@@ -1813,7 +1849,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_80.png"
+          "src": "images/action_hints/hint_81.png"
         }
       ]
     },
@@ -1826,7 +1862,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_81.png"
+          "src": "images/action_hints/hint_82.png"
         },
         {
           "type": "text",
@@ -1870,7 +1906,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_82.png"
+          "src": "images/action_hints/hint_83.png"
         }
       ]
     },
@@ -1883,7 +1919,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_83.png"
+          "src": "images/action_hints/hint_84.png"
         },
         {
           "type": "text",
@@ -1971,11 +2007,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_84.png"
+          "src": "images/action_hints/hint_85.png"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_85.png"
+          "src": "images/action_hints/hint_86.png"
         }
       ]
     }
@@ -1994,7 +2030,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_86.png"
+          "src": "images/action_hints/hint_87.png"
         },
         {
           "type": "text",
@@ -2018,7 +2054,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_87.png"
+          "src": "images/action_hints/hint_88.png"
         }
       ]
     }
