@@ -2377,227 +2377,268 @@ document.addEventListener('DOMContentLoaded', () => {
     return currY - y + 15;
   }
 
-  // Generate and download a unified positioning table PDF
+  // Generate A4 Canvases array for Performer Positioning Table (A4 Multi-Page Split)
+  async function generatePerformerTablePages(performer) {
+    if (!performer) return [];
+
+    const fields = getPerformerFields(performer);
+    const titleText = "大巨蛋演繹個人跑位定位表";
+    const metadataText = `姓名：${currentDisplayName || '無'}      身分：${performer.category || '無'}      起點座標：${fields.coordinate}`;
+
+    // Preload all grid images (render from SVG previews)
+    const gridImages = [];
+    const dummySvg = document.getElementById('localGridSvg');
+    if (dummySvg) {
+      for (let idx = 0; idx < formations.length; idx++) {
+        const previewSvg = dummySvg.cloneNode(true);
+        previewSvg.setAttribute('viewBox', '0 0 360 360');
+        previewSvg.removeAttribute('id');
+        previewSvg.setAttribute('style', 'pointer-events: none;');
+        previewSvg.querySelector('.grid-lines').innerHTML = '';
+        previewSvg.querySelector('.stage-watermark').innerHTML = '';
+        previewSvg.querySelector('#localPathSegments').innerHTML = '';
+        previewSvg.querySelector('#localPathPoints').innerHTML = '';
+        
+        drawLocalGridPath(previewSvg, idx);
+
+        const pngDataUrl = await convertSvgToPngDataUrl(previewSvg, null);
+        const img = await loadImage(pngDataUrl);
+        gridImages.push(img);
+      }
+    } else {
+      for (let idx = 0; idx < formations.length; idx++) {
+        gridImages.push(null);
+      }
+    }
+
+    // Preload all action hint images
+    const hintImages = {};
+    for (let idx = 0; idx < formations.length; idx++) {
+      const f = formations[idx];
+      const items = getActionHintsForPerformer(performer, f.key);
+      for (const item of items) {
+        for (const detail of item.details) {
+          if (detail.type === 'image' && !hintImages[detail.src]) {
+            const img = await loadImage(detail.src);
+            hintImages[detail.src] = img;
+          }
+        }
+      }
+    }
+
+    // Preload all sticker images
+    const stickerImages = {};
+    for (let idx = 0; idx < formations.length; idx++) {
+      const f = formations[idx];
+      const displayType = getDisplayType(f.key);
+      const src = `images/stickers/${displayType}_${getEnglishCategory(performer.category)}.png`;
+      const img = await loadImage(src);
+      if (img) {
+        stickerImages[f.key] = img;
+      }
+    }
+
+    // Paginate rows
+    const pagesData = [];
+    let currentRows = [];
+    let currentTableH = 0;
+    const startY = 180;
+    const maxY = 1540; // Leave space for page footer
+
+    for (let idx = 0; idx < formations.length; idx++) {
+      const f = formations[idx];
+      const coord = getFormationCoordStr(performer, f.key) || '無';
+      const items = getActionHintsForPerformer(performer, f.key);
+
+      // Pre-calculate Column 2 text height
+      const measureCanvas = document.createElement('canvas');
+      const measureCtx = measureCanvas.getContext('2d');
+      measureCtx.font = "500 13px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
+      const textCellHeight = drawTextCell(measureCtx, items, 355, 0, 590, true, hintImages);
+      
+      const rowH = Math.max(190, textCellHeight);
+
+      if (currentRows.length > 0 && (startY + currentTableH + rowH > maxY)) {
+        pagesData.push(currentRows);
+        currentRows = [];
+        currentTableH = 0;
+      }
+
+      currentRows.push({
+        idx: idx,
+        formation: f,
+        coord: coord,
+        items: items,
+        rowH: rowH
+      });
+      currentTableH += rowH;
+    }
+    if (currentRows.length > 0) {
+      pagesData.push(currentRows);
+    }
+
+    const totalPages = pagesData.length;
+    const pageCanvases = [];
+
+    // Render A4 Pages
+    for (let pIdx = 0; pIdx < totalPages; pIdx++) {
+      const pageRows = pagesData[pIdx];
+      const pageNum = pIdx + 1;
+
+      const page = createPageCanvas(titleText, metadataText);
+      const ctx = page.ctx;
+
+      // Draw rows
+      let rowY = page.currentY;
+      pageRows.forEach(row => {
+        // Alternating row background
+        ctx.fillStyle = row.idx % 2 === 0 ? '#ffffff' : '#f8fafc';
+        ctx.fillRect(40, rowY, 1120, row.rowH);
+
+        // Border lines
+        ctx.strokeStyle = '#cbd5e1';
+        ctx.lineWidth = 1;
+        ctx.strokeRect(40, rowY, 1120, row.rowH);
+
+        // 1. Column 0 (跑位定點)
+        ctx.save();
+        ctx.font = "bold 15px 'Noto Sans TC', 'PingFang TC', sans-serif";
+        ctx.fillStyle = '#0f172a';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        const stepNum = String(row.idx + 1).padStart(2, '0');
+        ctx.fillText(`${stepNum}.${row.formation.label}`, 120, rowY + row.rowH / 2);
+        ctx.restore();
+
+        // 2. Column 1 (專屬地標)
+        ctx.save();
+        const stickerImg = stickerImages[row.formation.key];
+        const stickerSize = 65;
+        const col1CenterX = 270;
+        const stickerContentH = 85;
+        const stickerStartY = rowY + (row.rowH - stickerContentH) / 2;
+
+        if (stickerImg) {
+          ctx.drawImage(stickerImg, col1CenterX - stickerSize / 2, stickerStartY, stickerSize, stickerSize);
+
+          if (row.formation.key === 'basic' || row.formation.key === 'humanities1') {
+            ctx.save();
+            const isCatA = performer.category.startsWith('A');
+            const overlayColor = isCatA ? '#e65537' : '#7dbf32';
+            const overlayCenterX = col1CenterX;
+            const overlayCenterY = stickerStartY + stickerSize / 2;
+            const overlayRadius = 24;
+
+            ctx.beginPath();
+            ctx.arc(overlayCenterX, overlayCenterY, overlayRadius, 0, 2 * Math.PI);
+            ctx.fillStyle = overlayColor;
+            ctx.fill();
+
+            const coordVal = fields.coordinate;
+            const parts = coordVal.split('-');
+            if (parts.length === 2) {
+              ctx.fillStyle = '#ffffff';
+              ctx.font = "bold 13px sans-serif";
+              ctx.textAlign = 'center';
+              ctx.textBaseline = 'bottom';
+              ctx.fillText(parts[0].padStart(2, '0'), overlayCenterX, overlayCenterY - 1);
+
+              ctx.strokeStyle = '#ffffff';
+              ctx.lineWidth = 1;
+              ctx.beginPath();
+              ctx.moveTo(overlayCenterX - 14, overlayCenterY);
+              ctx.lineTo(overlayCenterX + 14, overlayCenterY);
+              ctx.stroke();
+
+              ctx.textBaseline = 'top';
+              ctx.fillText(parts[1].padStart(2, '0'), overlayCenterX, overlayCenterY + 1);
+            } else {
+              ctx.fillStyle = '#ffffff';
+              ctx.font = "bold 13px sans-serif";
+              ctx.textAlign = 'center';
+              ctx.textBaseline = 'middle';
+              ctx.fillText(coordVal.padStart(2, '0'), overlayCenterX, overlayCenterY);
+            }
+            ctx.restore();
+          }
+        }
+
+        ctx.fillStyle = '#475569';
+        ctx.font = "bold 12px 'Noto Sans TC', sans-serif";
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'top';
+        ctx.fillText(row.coord, col1CenterX, stickerStartY + stickerSize + 6);
+        ctx.restore();
+
+        // 3. Column 2 (演繹內容)
+        ctx.save();
+        ctx.textBaseline = 'top';
+        ctx.textAlign = 'left';
+        drawTextCell(ctx, row.items, 355, rowY, 590, false, hintImages);
+        ctx.restore();
+
+        // 4. Column 3 (網格定位)
+        const gridImg = gridImages[row.idx];
+        if (gridImg) {
+          const imgSize = 170;
+          const imgX = 960 + (200 - imgSize) / 2;
+          const imgY = rowY + (row.rowH - imgSize) / 2;
+          ctx.drawImage(gridImg, imgX, imgY, imgSize, imgSize);
+        }
+
+        // Draw dividing horizontal line
+        ctx.strokeStyle = '#cbd5e1';
+        ctx.lineWidth = 1.0;
+        ctx.beginPath();
+        ctx.moveTo(40, rowY + row.rowH);
+        ctx.lineTo(1160, rowY + row.rowH);
+        ctx.stroke();
+
+        rowY += row.rowH;
+      });
+
+      drawTableGridLines(ctx, rowY);
+
+      // 5. Draw Page Footer with page numbering
+      ctx.save();
+      ctx.fillStyle = '#64748b';
+      ctx.font = "14px 'Noto Sans TC', sans-serif";
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(`慈濟大巨蛋演繹個人定位系統  •  個人跑位定位表 (A4大字版)  •  頁次 ${pageNum} / ${totalPages}`, 600, 1640);
+      ctx.restore();
+
+      pageCanvases.push(page.canvas);
+    }
+
+    return pageCanvases;
+  }
+
+  // Generate and download a unified positioning table PDF (A4 Multi-Page PDF)
   async function downloadPerformerTablePdf(btnElement) {
     if (!currentPerformer) return;
     
     // Disable button and show loader
     btnElement.disabled = true;
     const originalHtml = btnElement.innerHTML;
-    btnElement.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> 產出中...`;
+    btnElement.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> 產出 A4 PDF...`;
     
     try {
       const fields = getPerformerFields(currentPerformer);
-      const titleText = "大巨蛋演繹個人跑位定位表";
-      const metadataText = `姓名：${currentDisplayName || '無'}      身分：${currentPerformer.category || '無'}      起點座標：${fields.coordinate}`;
+      const pageCanvases = await generatePerformerTablePages(currentPerformer);
       
       const { jsPDF } = window.jspdf;
       const pdf = new jsPDF({
         orientation: 'portrait',
         unit: 'pt',
-        format: 'a4'
+        format: 'a4' // A4 format (595.28 x 841.89 pt)
       });
       
-      // Preload all grid images (render from SVG previews in modalBody)
-      const gridImages = [];
-      for (let idx = 0; idx < formations.length; idx++) {
-        const card = document.getElementById('modalBody').children[idx];
-        if (card) {
-          const svg = card.querySelector('svg');
-          if (svg) {
-            const pngDataUrl = await convertSvgToPngDataUrl(svg, null);
-            const img = await loadImage(pngDataUrl);
-            gridImages.push(img);
-          } else {
-            gridImages.push(null);
-          }
-        } else {
-          gridImages.push(null);
-        }
-      }
-      
-      // Preload all action hint images
-      const hintImages = {};
-      for (let idx = 0; idx < formations.length; idx++) {
-        const f = formations[idx];
-        const items = getActionHintsForPerformer(currentPerformer, f.key);
-        for (const item of items) {
-          for (const detail of item.details) {
-            if (detail.type === 'image' && !hintImages[detail.src]) {
-              const img = await loadImage(detail.src);
-              hintImages[detail.src] = img;
-            }
-          }
-        }
-      }
-
-      // Preload all sticker images
-      const stickerImages = {};
-      for (let idx = 0; idx < formations.length; idx++) {
-        const f = formations[idx];
-        const displayType = getDisplayType(f.key);
-        const src = `images/stickers/${displayType}_${getEnglishCategory(currentPerformer.category)}.png`;
-        const img = await loadImage(src);
-        if (img) {
-          stickerImages[f.key] = img;
-        }
-      }
-      
-      // Canvas pages list
-      const pdfPages = [];
-      
-      // Initialize first page
-      let page = createPageCanvas(titleText, metadataText);
-      pdfPages.push(page);
-      
-      // Draw rows
-      for (let idx = 0; idx < formations.length; idx++) {
-        const f = formations[idx];
-        const coord = getFormationCoordStr(currentPerformer, f.key) || '無';
-        const items = getActionHintsForPerformer(currentPerformer, f.key);
-        
-        // Pre-calculate text height in Column 2
-        page.ctx.save();
-        page.ctx.font = "500 13px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
-        page.ctx.textBaseline = 'top';
-        page.ctx.textAlign = 'left';
-        const textCellHeight = drawTextCell(page.ctx, items, 355, 0, 590, true, hintImages);
-        page.ctx.restore();
-        
-        // Grid image height is 170px, so min row height is 190px
-        const rowH = Math.max(190, textCellHeight);
-        
-        // Check for page overflow
-        if (page.currentY + rowH > 1580) {
-          // Close guidelines on current page
-          drawTableGridLines(page.ctx, page.currentY);
-          
-          // Create new page
-          page = createPageCanvas(titleText, metadataText);
-          pdfPages.push(page);
-        }
-        
-        const rowY = page.currentY;
-        
-        // 1. Column 0 (跑位定點)
-        page.ctx.save();
-        page.ctx.font = "bold 15px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
-        page.ctx.fillStyle = '#0f172a';
-        page.ctx.textAlign = 'center';
-        page.ctx.textBaseline = 'middle';
-        const stepNum = String(idx + 1).padStart(2, '0');
-        page.ctx.fillText(`${stepNum}.${f.label}`, 120, rowY + rowH / 2);
-        page.ctx.restore();
-        
-        // 2. Column 1 (專屬地標)
-        page.ctx.save();
-        const stickerImg = stickerImages[f.key];
-        const stickerSize = 65;
-        const col1CenterX = 270;
-        const contentH = 85; // combination of sticker (65px) + text (20px)
-        const startY = rowY + (rowH - contentH) / 2;
-        
-        if (stickerImg) {
-          page.ctx.drawImage(stickerImg, col1CenterX - stickerSize / 2, startY, stickerSize, stickerSize);
-          
-          // If basic formation or humanities1, draw the green/red coordinate overlay
-          if (f.key === 'basic' || f.key === 'humanities1') {
-            page.ctx.save();
-            const isCatA = currentPerformer.category.startsWith('A');
-            const overlayColor = isCatA ? '#e65537' : '#7dbf32';
-            
-            const overlayCenterX = col1CenterX;
-            const overlayCenterY = startY + stickerSize / 2;
-            const overlayRadius = 24;
-            
-            // Draw filled circle
-            page.ctx.beginPath();
-            page.ctx.arc(overlayCenterX, overlayCenterY, overlayRadius, 0, 2 * Math.PI);
-            page.ctx.fillStyle = overlayColor;
-            page.ctx.fill();
-            
-            // Draw coordinate text split in half
-            const coordVal = fields.coordinate;
-            const parts = coordVal.split('-');
-            if (parts.length === 2) {
-              const topPart = parts[0].padStart(2, '0');
-              const bottomPart = parts[1].padStart(2, '0');
-              
-              page.ctx.fillStyle = '#ffffff';
-              page.ctx.font = "bold 13px sans-serif";
-              page.ctx.textAlign = 'center';
-              
-              // Top text
-              page.ctx.textBaseline = 'bottom';
-              page.ctx.fillText(topPart, overlayCenterX, overlayCenterY - 1);
-              
-              // Middle line
-              page.ctx.strokeStyle = '#ffffff';
-              page.ctx.lineWidth = 1;
-              page.ctx.beginPath();
-              page.ctx.moveTo(overlayCenterX - 14, overlayCenterY);
-              page.ctx.lineTo(overlayCenterX + 14, overlayCenterY);
-              page.ctx.stroke();
-              
-              // Bottom text
-              page.ctx.textBaseline = 'top';
-              page.ctx.fillText(bottomPart, overlayCenterX, overlayCenterY + 1);
-            } else {
-              page.ctx.fillStyle = '#ffffff';
-              page.ctx.font = "bold 13px sans-serif";
-              page.ctx.textAlign = 'center';
-              page.ctx.textBaseline = 'middle';
-              page.ctx.fillText(coordVal.padStart(2, '0'), overlayCenterX, overlayCenterY);
-            }
-            page.ctx.restore();
-          }
-        }
-        
-        // Draw the coordinate text below the sticker
-        page.ctx.fillStyle = '#475569';
-        page.ctx.font = "bold 12px 'Noto Sans TC', 'PingFang TC', sans-serif";
-        page.ctx.textAlign = 'center';
-        page.ctx.textBaseline = 'top';
-        page.ctx.fillText(coord, col1CenterX, startY + stickerSize + 6);
-        page.ctx.restore();
-        
-        // 3. Column 2 (演繹內容)
-        page.ctx.save();
-        page.ctx.textBaseline = 'top';
-        page.ctx.textAlign = 'left';
-        drawTextCell(page.ctx, items, 355, rowY, 590, false, hintImages);
-        page.ctx.restore();
-        
-        // 4. Column 3 (網格定位)
-        const gridImg = gridImages[idx];
-        if (gridImg) {
-          const imgSize = 170;
-          const imgX = 960 + (200 - imgSize) / 2;
-          const imgY = rowY + (rowH - imgSize) / 2;
-          page.ctx.drawImage(gridImg, imgX, imgY, imgSize, imgSize);
-        }
-        
-        // Draw dividing horizontal line
-        page.ctx.strokeStyle = '#cbd5e1';
-        page.ctx.lineWidth = 1.0;
-        page.ctx.beginPath();
-        page.ctx.moveTo(40, rowY + rowH);
-        page.ctx.lineTo(1160, rowY + rowH);
-        page.ctx.stroke();
-        
-        page.currentY += rowH;
-      }
-      
-      // Close last page table guidelines
-      drawTableGridLines(page.ctx, page.currentY);
-      
-      // Render all pages to the PDF document
-      for (let pIdx = 0; pIdx < pdfPages.length; pIdx++) {
-        const p = pdfPages[pIdx];
+      for (let pIdx = 0; pIdx < pageCanvases.length; pIdx++) {
         if (pIdx > 0) {
           pdf.addPage();
         }
-        const pageImgData = p.canvas.toDataURL('image/png');
+        const pageImgData = pageCanvases[pIdx].toDataURL('image/png');
         pdf.addImage(pageImgData, 'PNG', 0, 0, 595.28, 841.89, undefined, 'FAST');
       }
       
@@ -3294,56 +3335,48 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalBody = document.getElementById('modalBody');
     const modalTitle = document.getElementById('modalTitle');
 
-    // 1. Open Modal & render previews
-    viewAllMapsBtn.addEventListener('click', () => {
+    // 1. Open Modal & render previews (A4 standard pages preview)
+    viewAllMapsBtn.addEventListener('click', async () => {
       if (!currentPerformer) return;
       const fields = getPerformerFields(currentPerformer);
       
-      modalTitle.textContent = `${currentDisplayName || fields.coordinate} (${fields.coordinate}) - 個人定位表`;
-      modalBody.innerHTML = '';
-      
-      // Render previews inside modal
-      formations.forEach((f, idx) => {
-        const card = document.createElement('div');
-        card.className = 'modal-map-card';
-        
-        const title = document.createElement('div');
-        title.className = 'modal-map-title';
-        title.textContent = `${String(idx + 1).padStart(2, '0')}. ${f.name}`;
-        
-        const previewDiv = document.createElement('div');
-        previewDiv.className = 'modal-map-preview';
-        
-        // Clone main SVG structure
-        const previewSvg = document.getElementById('localGridSvg').cloneNode(true);
-        previewSvg.setAttribute('viewBox', '0 0 360 360');
-        previewSvg.removeAttribute('id');
-        previewSvg.setAttribute('style', 'pointer-events: none;');
-        previewSvg.querySelector('.grid-lines').innerHTML = '';
-        previewSvg.querySelector('.stage-watermark').innerHTML = '';
-        previewSvg.querySelector('#localPathSegments').innerHTML = '';
-        previewSvg.querySelector('#localPathPoints').innerHTML = '';
-        
-        // Render into clone SVG
-        drawLocalGridPath(previewSvg, idx);
-        
-        previewDiv.appendChild(previewSvg);
-        
-        // Download button
-        const dlBtn = document.createElement('button');
-        dlBtn.className = 'control-btn modal-map-btn';
-        dlBtn.innerHTML = `<i class="fa-solid fa-download"></i> 下載定位表`;
-        dlBtn.addEventListener('click', () => {
-          downloadPerformerTablePdf(dlBtn);
-        });
-        
-        card.appendChild(title);
-        card.appendChild(previewDiv);
-        card.appendChild(dlBtn);
-        modalBody.appendChild(card);
-      });
-      
+      modalTitle.textContent = `${currentDisplayName || fields.coordinate} (${fields.coordinate}) - 個人定位表 (A4分頁)`;
+      modalBody.innerHTML = `<div style="padding: 40px; text-align: center; color: #94a3b8;"><i class="fa-solid fa-spinner fa-spin fa-2x"></i><div style="margin-top: 10px;">正在產生 A4 分頁定位表...</div></div>`;
       allMapsModal.style.display = 'flex';
+
+      try {
+        const pages = await generatePerformerTablePages(currentPerformer);
+        modalBody.innerHTML = '';
+        
+        pages.forEach((pCanvas, pIdx) => {
+          const pageBox = document.createElement('div');
+          pageBox.style.marginBottom = '30px';
+          pageBox.style.display = 'flex';
+          pageBox.style.flexDirection = 'column';
+          pageBox.style.alignItems = 'center';
+          pageBox.style.width = '100%';
+
+          const label = document.createElement('div');
+          label.style.fontSize = '14.5px';
+          label.style.fontWeight = 'bold';
+          label.style.color = '#38bdf8';
+          label.style.marginBottom = '10px';
+          label.textContent = `📄 A4 標準紙張分頁  •  第 ${pIdx + 1} / ${pages.length} 頁`;
+
+          pCanvas.style.maxWidth = '90%';
+          pCanvas.style.height = 'auto';
+          pCanvas.style.borderRadius = '8px';
+          pCanvas.style.border = '1px solid #cbd5e1';
+          pCanvas.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.4)';
+
+          pageBox.appendChild(label);
+          pageBox.appendChild(pCanvas);
+          modalBody.appendChild(pageBox);
+        });
+      } catch (err) {
+        console.error(err);
+        modalBody.innerHTML = `<div style="padding: 30px; text-align: center; color: #ef4444;">產出定位表失敗: ${err.message}</div>`;
+      }
     });
 
     // 3. Close Modal
