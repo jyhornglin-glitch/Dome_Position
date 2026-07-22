@@ -2438,70 +2438,139 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Paginate rows by sub-item rows to prevent A4 page overflow on long actions (e.g. circle)
-    const pagesData = [];
-    let currentRows = [];
-    let currentTableH = 0;
-    const startY = 180;
-    const maxY = 1540; // Leave space for page footer
-
+    // Flatten all action details into sequential rendering elements for the Flowable Layout Engine
+    const elements = [];
     for (let idx = 0; idx < formations.length; idx++) {
       const f = formations[idx];
       const coord = getFormationCoordStr(performer, f.key) || '無';
       const items = getActionHintsForPerformer(performer, f.key);
 
       if (items.length === 0) {
-        // If no action hints, measure single row with default coordinates
-        const rowH = 190;
-        if (currentRows.length > 0 && (startY + currentTableH + rowH > maxY)) {
-          pagesData.push(currentRows);
-          currentRows = [];
-          currentTableH = 0;
-        }
-        currentRows.push({
-          idx: idx,
-          subIdx: 0,
-          totalSubs: 1,
+        // Empty placeholder element for formatting
+        elements.push({
+          type: 'empty',
           formation: f,
           coord: coord,
-          items: [],
-          rowH: rowH
+          formationIdx: idx
         });
-        currentTableH += rowH;
       } else {
-        // If has action hints, split into separate rows for each item in items array!
-        for (let subIdx = 0; subIdx < items.length; subIdx++) {
-          const item = items[subIdx];
-          
-          // Pre-calculate Column 2 text height for this single item
-          const measureCanvas = document.createElement('canvas');
-          const measureCtx = measureCanvas.getContext('2d');
-          measureCtx.font = "500 13px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
-          
-          const textCellHeight = drawTextCell(measureCtx, [item], 355, 0, 590, true, hintImages);
-          const rowH = Math.max(190, textCellHeight);
-
-          if (currentRows.length > 0 && (startY + currentTableH + rowH > maxY)) {
-            pagesData.push(currentRows);
-            currentRows = [];
-            currentTableH = 0;
+        items.forEach((item, itemIdx) => {
+          // 1. Add item title element
+          if (item.title) {
+            elements.push({
+              type: 'title',
+              content: item.title,
+              formation: f,
+              coord: coord,
+              formationIdx: idx
+            });
           }
-
-          currentRows.push({
-            idx: idx,
-            subIdx: subIdx,
-            totalSubs: items.length,
-            formation: f,
-            coord: coord,
-            items: [item],
-            rowH: rowH
+          // 2. Add each detail element (text or image)
+          item.details.forEach(detail => {
+            elements.push({
+              type: detail.type,
+              content: detail.content || '',
+              src: detail.src || '',
+              formation: f,
+              coord: coord,
+              formationIdx: idx
+            });
           });
-          currentTableH += rowH;
-        }
+        });
       }
     }
-    if (currentRows.length > 0) {
-      pagesData.push(currentRows);
+
+    // Helper function to measure element height on offscreen canvas
+    function measureElementH(element, measureCtx, hintImages) {
+      if (element.type === 'title') {
+        measureCtx.font = "bold 14px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
+        const titleLines = wrapCanvasText(measureCtx, element.content, 590);
+        return titleLines.length * 18 + 4;
+      } else if (element.type === 'text') {
+        measureCtx.font = "500 13px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
+        const lines = wrapCanvasText(measureCtx, element.content, 590);
+        return lines.length * 17 + 4;
+      } else if (element.type === 'image') {
+        const img = hintImages[element.src];
+        if (img) {
+          const maxImgW = 450; // Crisp rendering size for A4 page width
+          let imgW = img.width;
+          let imgH = img.height;
+          if (imgW > maxImgW) {
+            imgH = (maxImgW / imgW) * imgH;
+          }
+          return imgH + 10;
+        }
+        return 0;
+      }
+      return 0; // Empty placeholder has 0 intrinsic height
+    }
+
+    // Paginate elements into pages of segments
+    const pagesData = [];
+    let currentSegments = [];
+    let currentTableH = 0;
+    let activeSegment = null;
+    
+    const startY = 180;
+    const maxY = 1540; // Max table drawing height to prevent overlapping page footer
+    
+    const measureCanvas = document.createElement('canvas');
+    const measureCtx = measureCanvas.getContext('2d');
+
+    elements.forEach(element => {
+      const elementH = measureElementH(element, measureCtx, hintImages);
+      
+      if (activeSegment && activeSegment.idx === element.formationIdx) {
+        // Add to existing segment if it fits
+        const isOverflow = (currentTableH > 0) && (startY + currentTableH + elementH > maxY);
+        if (isOverflow) {
+          pagesData.push(currentSegments);
+          currentSegments = [];
+          currentTableH = 0;
+          
+          activeSegment = {
+            idx: element.formationIdx,
+            formation: element.formation,
+            coord: element.coord,
+            elements: [element],
+            height: elementH,
+            isContinuation: true
+          };
+          currentSegments.push(activeSegment);
+          currentTableH += elementH;
+        } else {
+          activeSegment.elements.push(element);
+          activeSegment.height += elementH;
+          currentTableH += elementH;
+        }
+      } else {
+        // Start a new segment for a new formation
+        // For non-empty segments, give a min row height of 190px on first appearance
+        const initialRowH = element.type === 'empty' ? 190 : Math.max(190, elementH);
+        const isOverflow = (currentTableH > 0) && (startY + currentTableH + initialRowH > maxY);
+        
+        if (isOverflow) {
+          pagesData.push(currentSegments);
+          currentSegments = [];
+          currentTableH = 0;
+        }
+        
+        activeSegment = {
+          idx: element.formationIdx,
+          formation: element.formation,
+          coord: element.coord,
+          elements: element.type === 'empty' ? [] : [element],
+          height: element.type === 'empty' ? 0 : elementH,
+          isContinuation: false
+        };
+        currentSegments.push(activeSegment);
+        currentTableH += element.type === 'empty' ? 190 : Math.max(190, elementH);
+      }
+    });
+    
+    if (currentSegments.length > 0) {
+      pagesData.push(currentSegments);
     }
 
     const totalPages = pagesData.length;
@@ -2509,23 +2578,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Render A4 Pages
     for (let pIdx = 0; pIdx < totalPages; pIdx++) {
-      const pageRows = pagesData[pIdx];
+      const pageSegments = pagesData[pIdx];
       const pageNum = pIdx + 1;
 
       const page = createPageCanvas(titleText, metadataText);
       const ctx = page.ctx;
 
-      // Draw rows
       let rowY = page.currentY;
-      pageRows.forEach(row => {
+      pageSegments.forEach(segment => {
+        // Calculate cell height for this segment
+        let segH = segment.isContinuation ? segment.height : Math.max(190, segment.height);
+        if (segment.elements.length === 0) {
+          segH = 190; // Default height for empty rows
+        }
+        
         // Alternating row background
-        ctx.fillStyle = row.idx % 2 === 0 ? '#ffffff' : '#f8fafc';
-        ctx.fillRect(40, rowY, 1120, row.rowH);
+        ctx.fillStyle = segment.idx % 2 === 0 ? '#ffffff' : '#f8fafc';
+        ctx.fillRect(40, rowY, 1120, segH);
 
         // Border lines
         ctx.strokeStyle = '#cbd5e1';
         ctx.lineWidth = 1;
-        ctx.strokeRect(40, rowY, 1120, row.rowH);
+        ctx.strokeRect(40, rowY, 1120, segH);
 
         // 1. Column 0 (跑位定點)
         ctx.save();
@@ -2533,25 +2607,25 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillStyle = '#0f172a';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        const stepNum = String(row.idx + 1).padStart(2, '0');
-        const displayLabel = row.subIdx === 0 ? `${stepNum}.${row.formation.label}` : `${stepNum}.${row.formation.label} (續)`;
-        ctx.fillText(displayLabel, 120, rowY + row.rowH / 2);
+        const stepNum = String(segment.idx + 1).padStart(2, '0');
+        const displayLabel = segment.isContinuation ? `${stepNum}.${segment.formation.label} (續)` : `${stepNum}.${segment.formation.label}`;
+        ctx.fillText(displayLabel, 120, rowY + segH / 2);
         ctx.restore();
 
         // 2. Column 1 (專屬地標)
         ctx.save();
         const col1CenterX = 270;
 
-        if (row.subIdx === 0) {
-          const stickerImg = stickerImages[row.formation.key];
+        if (!segment.isContinuation) {
+          const stickerImg = stickerImages[segment.formation.key];
           const stickerSize = 65;
           const stickerContentH = 85;
-          const stickerStartY = rowY + (row.rowH - stickerContentH) / 2;
+          const stickerStartY = rowY + (segH - stickerContentH) / 2;
 
           if (stickerImg) {
             ctx.drawImage(stickerImg, col1CenterX - stickerSize / 2, stickerStartY, stickerSize, stickerSize);
 
-            if (row.formation.key === 'basic' || row.formation.key === 'humanities1') {
+            if (segment.formation.key === 'basic' || segment.formation.key === 'humanities1') {
               ctx.save();
               const isCatA = performer.category.startsWith('A');
               const overlayColor = isCatA ? '#e65537' : '#7dbf32';
@@ -2597,41 +2671,80 @@ document.addEventListener('DOMContentLoaded', () => {
           ctx.font = "bold 12px 'Noto Sans TC', sans-serif";
           ctx.textAlign = 'center';
           ctx.textBaseline = 'top';
-          ctx.fillText(row.coord, col1CenterX, stickerStartY + stickerSize + 6);
+          ctx.fillText(segment.coord, col1CenterX, stickerStartY + stickerSize + 6);
         } else {
-          // If subIdx > 0, draw "(續)" instead of repeating sticker
           ctx.fillStyle = '#64748b';
           ctx.font = "bold 13px 'Noto Sans TC', sans-serif";
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
-          ctx.fillText("(續)", col1CenterX, rowY + row.rowH / 2);
+          ctx.fillText("(續)", col1CenterX, rowY + segH / 2);
         }
         ctx.restore();
 
-        // 3. Column 2 (演繹內容)
+        // 3. Column 2 (演繹內容 - 流式元素渲染)
         ctx.save();
-        ctx.textBaseline = 'top';
-        ctx.textAlign = 'left';
-        drawTextCell(ctx, row.items, 355, rowY, 590, false, hintImages);
+        let elementY = rowY + 15;
+        segment.elements.forEach(element => {
+          if (element.type === 'title') {
+            ctx.save();
+            ctx.font = "bold 14px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
+            ctx.fillStyle = '#1e3a8a';
+            ctx.textBaseline = 'top';
+            ctx.textAlign = 'left';
+            const titleLines = wrapCanvasText(ctx, element.content, 590);
+            titleLines.forEach(line => {
+              ctx.fillText(line, 355, elementY);
+              elementY += 18;
+            });
+            ctx.restore();
+            elementY += 4;
+          } else if (element.type === 'text') {
+            ctx.save();
+            ctx.font = "500 13px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
+            ctx.fillStyle = '#333333';
+            ctx.textBaseline = 'top';
+            ctx.textAlign = 'left';
+            const lines = wrapCanvasText(ctx, element.content, 590);
+            lines.forEach(line => {
+              ctx.fillText(line, 355, elementY);
+              elementY += 17;
+            });
+            ctx.restore();
+            elementY += 4;
+          } else if (element.type === 'image') {
+            const img = hintImages[element.src];
+            if (img) {
+              const maxImgW = 450;
+              let imgW = img.width;
+              let imgH = img.height;
+              if (imgW > maxImgW) {
+                imgH = (maxImgW / imgW) * imgH;
+                imgW = maxImgW;
+              }
+              const imgX = 355 + (590 - imgW) / 2;
+              ctx.drawImage(img, imgX, elementY, imgW, imgH);
+              elementY += imgH + 10;
+            }
+          }
+        });
         ctx.restore();
 
-        // 4. Column 3 (網格定位 - 僅在 subIdx === 0 時繪製一次定位圖)
-        if (row.subIdx === 0) {
-          const gridImg = gridImages[row.idx];
+        // 4. Column 3 (網格定位)
+        if (!segment.isContinuation) {
+          const gridImg = gridImages[segment.idx];
           if (gridImg) {
             const imgSize = 170;
             const imgX = 960 + (200 - imgSize) / 2;
-            const imgY = rowY + (row.rowH - imgSize) / 2;
+            const imgY = rowY + (segH - imgSize) / 2;
             ctx.drawImage(gridImg, imgX, imgY, imgSize, imgSize);
           }
         } else {
-          // Draw a small "(續)" placeholder in Column 3
           ctx.save();
           ctx.fillStyle = '#94a3b8';
           ctx.font = "12px 'Noto Sans TC', sans-serif";
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
-          ctx.fillText("(續)", 1060, rowY + row.rowH / 2);
+          ctx.fillText("(續)", 1060, rowY + segH / 2);
           ctx.restore();
         }
 
@@ -2639,11 +2752,11 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.strokeStyle = '#cbd5e1';
         ctx.lineWidth = 1.0;
         ctx.beginPath();
-        ctx.moveTo(40, rowY + row.rowH);
-        ctx.lineTo(1160, rowY + row.rowH);
+        ctx.moveTo(40, rowY + segH);
+        ctx.lineTo(1160, rowY + segH);
         ctx.stroke();
 
-        rowY += row.rowH;
+        rowY += segH;
       });
 
       drawTableGridLines(ctx, rowY);
