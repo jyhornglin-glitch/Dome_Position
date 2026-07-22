@@ -2438,7 +2438,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Paginate rows
+    // Paginate rows by sub-item rows to prevent A4 page overflow on long actions (e.g. circle)
     const pagesData = [];
     let currentRows = [];
     let currentTableH = 0;
@@ -2450,28 +2450,55 @@ document.addEventListener('DOMContentLoaded', () => {
       const coord = getFormationCoordStr(performer, f.key) || '無';
       const items = getActionHintsForPerformer(performer, f.key);
 
-      // Pre-calculate Column 2 text height
-      const measureCanvas = document.createElement('canvas');
-      const measureCtx = measureCanvas.getContext('2d');
-      measureCtx.font = "500 13px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
-      const textCellHeight = drawTextCell(measureCtx, items, 355, 0, 590, true, hintImages);
-      
-      const rowH = Math.max(190, textCellHeight);
+      if (items.length === 0) {
+        // If no action hints, measure single row with default coordinates
+        const rowH = 190;
+        if (currentRows.length > 0 && (startY + currentTableH + rowH > maxY)) {
+          pagesData.push(currentRows);
+          currentRows = [];
+          currentTableH = 0;
+        }
+        currentRows.push({
+          idx: idx,
+          subIdx: 0,
+          totalSubs: 1,
+          formation: f,
+          coord: coord,
+          items: [],
+          rowH: rowH
+        });
+        currentTableH += rowH;
+      } else {
+        // If has action hints, split into separate rows for each item in items array!
+        for (let subIdx = 0; subIdx < items.length; subIdx++) {
+          const item = items[subIdx];
+          
+          // Pre-calculate Column 2 text height for this single item
+          const measureCanvas = document.createElement('canvas');
+          const measureCtx = measureCanvas.getContext('2d');
+          measureCtx.font = "500 13px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
+          
+          const textCellHeight = drawTextCell(measureCtx, [item], 355, 0, 590, true, hintImages);
+          const rowH = Math.max(190, textCellHeight);
 
-      if (currentRows.length > 0 && (startY + currentTableH + rowH > maxY)) {
-        pagesData.push(currentRows);
-        currentRows = [];
-        currentTableH = 0;
+          if (currentRows.length > 0 && (startY + currentTableH + rowH > maxY)) {
+            pagesData.push(currentRows);
+            currentRows = [];
+            currentTableH = 0;
+          }
+
+          currentRows.push({
+            idx: idx,
+            subIdx: subIdx,
+            totalSubs: items.length,
+            formation: f,
+            coord: coord,
+            items: [item],
+            rowH: rowH
+          });
+          currentTableH += rowH;
+        }
       }
-
-      currentRows.push({
-        idx: idx,
-        formation: f,
-        coord: coord,
-        items: items,
-        rowH: rowH
-      });
-      currentTableH += rowH;
     }
     if (currentRows.length > 0) {
       pagesData.push(currentRows);
@@ -2507,67 +2534,78 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         const stepNum = String(row.idx + 1).padStart(2, '0');
-        ctx.fillText(`${stepNum}.${row.formation.label}`, 120, rowY + row.rowH / 2);
+        const displayLabel = row.subIdx === 0 ? `${stepNum}.${row.formation.label}` : `${stepNum}.${row.formation.label} (續)`;
+        ctx.fillText(displayLabel, 120, rowY + row.rowH / 2);
         ctx.restore();
 
         // 2. Column 1 (專屬地標)
         ctx.save();
-        const stickerImg = stickerImages[row.formation.key];
-        const stickerSize = 65;
         const col1CenterX = 270;
-        const stickerContentH = 85;
-        const stickerStartY = rowY + (row.rowH - stickerContentH) / 2;
 
-        if (stickerImg) {
-          ctx.drawImage(stickerImg, col1CenterX - stickerSize / 2, stickerStartY, stickerSize, stickerSize);
+        if (row.subIdx === 0) {
+          const stickerImg = stickerImages[row.formation.key];
+          const stickerSize = 65;
+          const stickerContentH = 85;
+          const stickerStartY = rowY + (row.rowH - stickerContentH) / 2;
 
-          if (row.formation.key === 'basic' || row.formation.key === 'humanities1') {
-            ctx.save();
-            const isCatA = performer.category.startsWith('A');
-            const overlayColor = isCatA ? '#e65537' : '#7dbf32';
-            const overlayCenterX = col1CenterX;
-            const overlayCenterY = stickerStartY + stickerSize / 2;
-            const overlayRadius = 24;
+          if (stickerImg) {
+            ctx.drawImage(stickerImg, col1CenterX - stickerSize / 2, stickerStartY, stickerSize, stickerSize);
 
-            ctx.beginPath();
-            ctx.arc(overlayCenterX, overlayCenterY, overlayRadius, 0, 2 * Math.PI);
-            ctx.fillStyle = overlayColor;
-            ctx.fill();
+            if (row.formation.key === 'basic' || row.formation.key === 'humanities1') {
+              ctx.save();
+              const isCatA = performer.category.startsWith('A');
+              const overlayColor = isCatA ? '#e65537' : '#7dbf32';
+              const overlayCenterX = col1CenterX;
+              const overlayCenterY = stickerStartY + stickerSize / 2;
+              const overlayRadius = 24;
 
-            const coordVal = fields.coordinate;
-            const parts = coordVal.split('-');
-            if (parts.length === 2) {
-              ctx.fillStyle = '#ffffff';
-              ctx.font = "bold 13px sans-serif";
-              ctx.textAlign = 'center';
-              ctx.textBaseline = 'bottom';
-              ctx.fillText(parts[0].padStart(2, '0'), overlayCenterX, overlayCenterY - 1);
-
-              ctx.strokeStyle = '#ffffff';
-              ctx.lineWidth = 1;
               ctx.beginPath();
-              ctx.moveTo(overlayCenterX - 14, overlayCenterY);
-              ctx.lineTo(overlayCenterX + 14, overlayCenterY);
-              ctx.stroke();
+              ctx.arc(overlayCenterX, overlayCenterY, overlayRadius, 0, 2 * Math.PI);
+              ctx.fillStyle = overlayColor;
+              ctx.fill();
 
-              ctx.textBaseline = 'top';
-              ctx.fillText(parts[1].padStart(2, '0'), overlayCenterX, overlayCenterY + 1);
-            } else {
-              ctx.fillStyle = '#ffffff';
-              ctx.font = "bold 13px sans-serif";
-              ctx.textAlign = 'center';
-              ctx.textBaseline = 'middle';
-              ctx.fillText(coordVal.padStart(2, '0'), overlayCenterX, overlayCenterY);
+              const coordVal = fields.coordinate;
+              const parts = coordVal.split('-');
+              if (parts.length === 2) {
+                ctx.fillStyle = '#ffffff';
+                ctx.font = "bold 13px sans-serif";
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'bottom';
+                ctx.fillText(parts[0].padStart(2, '0'), overlayCenterX, overlayCenterY - 1);
+
+                ctx.strokeStyle = '#ffffff';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(overlayCenterX - 14, overlayCenterY);
+                ctx.lineTo(overlayCenterX + 14, overlayCenterY);
+                ctx.stroke();
+
+                ctx.textBaseline = 'top';
+                ctx.fillText(parts[1].padStart(2, '0'), overlayCenterX, overlayCenterY + 1);
+              } else {
+                ctx.fillStyle = '#ffffff';
+                ctx.font = "bold 13px sans-serif";
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(coordVal.padStart(2, '0'), overlayCenterX, overlayCenterY);
+              }
+              ctx.restore();
             }
-            ctx.restore();
           }
-        }
 
-        ctx.fillStyle = '#475569';
-        ctx.font = "bold 12px 'Noto Sans TC', sans-serif";
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'top';
-        ctx.fillText(row.coord, col1CenterX, stickerStartY + stickerSize + 6);
+          ctx.fillStyle = '#475569';
+          ctx.font = "bold 12px 'Noto Sans TC', sans-serif";
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'top';
+          ctx.fillText(row.coord, col1CenterX, stickerStartY + stickerSize + 6);
+        } else {
+          // If subIdx > 0, draw "(續)" instead of repeating sticker
+          ctx.fillStyle = '#64748b';
+          ctx.font = "bold 13px 'Noto Sans TC', sans-serif";
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText("(續)", col1CenterX, rowY + row.rowH / 2);
+        }
         ctx.restore();
 
         // 3. Column 2 (演繹內容)
@@ -2577,13 +2615,24 @@ document.addEventListener('DOMContentLoaded', () => {
         drawTextCell(ctx, row.items, 355, rowY, 590, false, hintImages);
         ctx.restore();
 
-        // 4. Column 3 (網格定位)
-        const gridImg = gridImages[row.idx];
-        if (gridImg) {
-          const imgSize = 170;
-          const imgX = 960 + (200 - imgSize) / 2;
-          const imgY = rowY + (row.rowH - imgSize) / 2;
-          ctx.drawImage(gridImg, imgX, imgY, imgSize, imgSize);
+        // 4. Column 3 (網格定位 - 僅在 subIdx === 0 時繪製一次定位圖)
+        if (row.subIdx === 0) {
+          const gridImg = gridImages[row.idx];
+          if (gridImg) {
+            const imgSize = 170;
+            const imgX = 960 + (200 - imgSize) / 2;
+            const imgY = rowY + (row.rowH - imgSize) / 2;
+            ctx.drawImage(gridImg, imgX, imgY, imgSize, imgSize);
+          }
+        } else {
+          // Draw a small "(續)" placeholder in Column 3
+          ctx.save();
+          ctx.fillStyle = '#94a3b8';
+          ctx.font = "12px 'Noto Sans TC', sans-serif";
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText("(續)", 1060, rowY + row.rowH / 2);
+          ctx.restore();
         }
 
         // Draw dividing horizontal line
