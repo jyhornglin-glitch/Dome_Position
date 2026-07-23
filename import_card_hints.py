@@ -3,6 +3,7 @@
 """
 import_card_hints.py
 Parse 小卡關鍵字提示.docx and generate action_hints_data.js.
+Supports both old and new numbering in the Word document.
 """
 
 import os
@@ -12,27 +13,61 @@ import re
 import docx
 
 DOCX_FILE = "小卡關鍵字提示.docx"
-OUTPUT_JS = "action_hints_data.js"
+OUTPUT_JS = "card_hints_data.js"
 
 # Map Word location names to formation keys in app.js
+# Supports both old and new numbering (shifted by 1)
 CATEGORY_MAPPING = {
+    # Basic
     '基本': 'basic',
+    # Circle (圓形)
     '01圓形': 'circle',
+    '02圓形': 'circle',
+    # Xing Yuan (行願)
     '02行願': 'xingYuan',
+    '03行願': 'xingYuan',
+    # Mi Luo (米籮)
     '03米籮': 'miLuo',
+    '04米籮': 'miLuo',
+    # Jing Si (靜思家風)
     '04靜思家風': 'jingSi',
+    '05靜思家風': 'jingSi',
+    # Lamp (點一盞燈)
     '05-1有法船(點一盞燈)': 'lamp',
+    '06-1有法船(點一盞燈)': 'lamp',
+    # No Boat (無法船 - 菜市場5毛錢)
     '05-2無法船(菜市場5毛錢)': 'noBoat',
+    '06-2無法船(菜市場5毛錢)': 'noBoat',
+    # No Boat 3 (有法船 - 是諸眾生)
     '05-3有法船(是諸眾生)': 'noBoat3',
+    '06-3有法船(是諸眾生)': 'noBoat3',
+    # Big V (四弘誓願)
     '06四弘誓願': 'bigV',
+    '07四弘誓願': 'bigV',
+    # Da Chuan Shi (大船師)
     '07-1大船師': 'daChuanShi',
+    '08-1大船師': 'daChuanShi',
+    # Bone Donation (骨捐能捨)
     '07-2骨捐能捨': 'boneDonation',
+    '08-2骨捐能捨': 'boneDonation',
+    # Edu (教育)
     '08教育': 'edu',
+    '09教育': 'edu',
+    # Humanities 1 (人文 09-1 / 10-1)
     '09-1人文': 'humanities1',
+    '10-1人文': 'humanities1',
+    # Humanities 2 (人文 09-2 / 10-2)
     '09-2人文': 'humanities2',
+    '10-2人文': 'humanities2',
+    # Five Continents 1 (五大洲 10-1 / 11-1)
     '10-1五大洲': 'fiveContinents1',
+    '11-1五大洲': 'fiveContinents1',
+    # Five Continents 2 (五大洲 10-2 / 11-2)
     '10-2五大洲': 'fiveContinents2',
-    '11飛天': 'flyingApsaras'
+    '11-2五大洲': 'fiveContinents2',
+    # Flying Apsaras (飛天 11 / 12)
+    '11飛天': 'flyingApsaras',
+    '12飛天': 'flyingApsaras'
 }
 
 def main():
@@ -124,13 +159,13 @@ def main():
                         "content": line
                     })
 
-    # Save to action_hints_data.js
+    # Save to card_hints_data.js
     js_content = (
-        "// Action Hints Database — 自動由 import_card_hints.py 產生，請勿手動修改\n"
-        f"const ACTION_HINTS_DATA = {json.dumps(action_hints_data, ensure_ascii=False, indent=2)};\n\n"
+        "// Pocket Slip Card Hints Database — 自動由 import_card_hints.py 產生，請勿手動修改\n"
+        f"const CARD_HINTS_DATA = {json.dumps(action_hints_data, ensure_ascii=False, indent=2)};\n\n"
         "// Export if in node environment, otherwise make it global\n"
         "if (typeof module !== 'undefined' && module.exports) {\n"
-        "  module.exports = ACTION_HINTS_DATA;\n"
+        "  module.exports = CARD_HINTS_DATA;\n"
         "}\n"
     )
 

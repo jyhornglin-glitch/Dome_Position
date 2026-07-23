@@ -128,6 +128,10 @@ document.addEventListener('DOMContentLoaded', () => {
     return (typeof ACTION_HINTS_DATA !== 'undefined' && ACTION_HINTS_DATA[key]) || [];
   }
 
+  function getCardHintsForPerformer(performer, key) {
+    return (typeof CARD_HINTS_DATA !== 'undefined' && CARD_HINTS_DATA[key]) || [];
+  }
+
   // Get coordinate and name from performer record.
   // Since v1.2.8: name is always empty in performersData (supplied by dayperformers.csv).
   // id field always holds the stage coordinate (e.g. "1-49").
@@ -3074,10 +3078,22 @@ document.addEventListener('DOMContentLoaded', () => {
       const vec = calculateMovementVector(prevCoordStr, currCoordStr);
       const split = splitLandmarkAndCoordinate(currCoordStr);
       const parsed = parseCoordinate(currCoordStr);
-      const hints = getActionHintsForPerformer(performer, f.key);
+      const hints = getCardHintsForPerformer(performer, f.key);
 
-      // Extract concise facing & lamp hints
-      const conciseHints = extractConciseActionHints(hints);
+      // Collect all titles and detail texts from the concise card hints database
+      const conciseHints = [];
+      hints.forEach(item => {
+        if (item.title) {
+          conciseHints.push(item.title);
+        }
+        if (item.details) {
+          item.details.forEach(d => {
+            if (d.type === 'text' && d.content) {
+              conciseHints.push(d.content);
+            }
+          });
+        }
+      });
 
       // Wrap lines for column 2 (面向與動作要領提示 - 字體加大 15% 至 22px)
       dummyCtx.font = "22px 'Noto Sans TC', sans-serif";
