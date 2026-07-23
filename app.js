@@ -2235,22 +2235,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Draw Title (Centered)
     ctx.save();
     ctx.fillStyle = '#1e3a8a'; // Dark Blue
-    ctx.font = "bold 30px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
+    ctx.font = "bold 42px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
     ctx.textAlign = 'center';
-    ctx.fillText(titleText, 600, 50);
+    ctx.fillText(titleText, 600, 45);
     ctx.restore();
     
     // Draw Metadata (Centered)
     ctx.save();
     ctx.fillStyle = '#475569'; // Slate-600
-    ctx.font = "18px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
+    ctx.font = "25px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
     ctx.textAlign = 'center';
-    ctx.fillText(metadataText, 600, 95);
+    ctx.fillText(metadataText, 600, 100);
     ctx.restore();
     
     // Draw table header
-    const headerY = 135;
-    const headerH = 45;
+    const headerY = 140;
+    const headerH = 60;
     ctx.fillStyle = '#f1f5f9'; // Light gray
     ctx.fillRect(40, headerY, 1120, headerH);
     
@@ -2260,7 +2260,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.strokeRect(40, headerY, 1120, headerH);
     
     // Column dividers for header
-    const cols = [40, 200, 340, 960, 1160];
+    const cols = [40, 376, 1160];
     ctx.beginPath();
     for (let i = 1; i < cols.length - 1; i++) {
       ctx.moveTo(cols[i], headerY);
@@ -2271,16 +2271,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Header labels
     ctx.save();
     ctx.fillStyle = '#0f172a';
-    ctx.font = "bold 16px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
+    ctx.font = "bold 22px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('跑位定點', 120, headerY + headerH / 2);
-    ctx.fillText('專屬地標', 270, headerY + headerH / 2);
-    ctx.fillText('演繹內容', 650, headerY + headerH / 2);
-    ctx.fillText('網格定位', 1060, headerY + headerH / 2);
+    ctx.fillText('定點與定位指引', 208, headerY + headerH / 2);
+    ctx.fillText('演繹內容與動作要領', 768, headerY + headerH / 2);
     ctx.restore();
     
-    return { canvas, ctx, currentY: 180 };
+    return { canvas, ctx, currentY: 200 };
   }
 
   // Draw table lines at the end of drawing a page
@@ -2295,13 +2293,13 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.stroke();
     
     // Draw outer box
-    ctx.strokeRect(40, 135, 1120, endY - 135);
+    ctx.strokeRect(40, 140, 1120, endY - 140);
     
     // Draw vertical column lines
-    const cols = [40, 200, 340, 960, 1160];
+    const cols = [40, 376, 1160];
     ctx.beginPath();
     for (let i = 1; i < cols.length - 1; i++) {
-      ctx.moveTo(cols[i], 135);
+      ctx.moveTo(cols[i], 140);
       ctx.lineTo(cols[i], endY);
     }
     ctx.stroke();
@@ -2480,26 +2478,26 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Helper function to measure element height on offscreen canvas
+    // Helper function to measure element height on offscreen canvas (Enlarged by +50%)
     function measureElementH(element, measureCtx, hintImages) {
       if (element.type === 'title') {
-        measureCtx.font = "bold 14px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
-        const titleLines = wrapCanvasText(measureCtx, element.content, 590);
-        return titleLines.length * 18 + 4;
+        measureCtx.font = "bold 30px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
+        const titleLines = wrapCanvasText(measureCtx, element.content, 754);
+        return titleLines.length * 40 + 4;
       } else if (element.type === 'text') {
-        measureCtx.font = "500 13px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
-        const lines = wrapCanvasText(measureCtx, element.content, 590);
-        return lines.length * 17 + 4;
+        measureCtx.font = "500 27px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
+        const lines = wrapCanvasText(measureCtx, element.content, 754);
+        return lines.length * 35 + 4;
       } else if (element.type === 'image') {
         const img = hintImages[element.src];
         if (img) {
-          const maxImgW = 450; // Crisp rendering size for A4 page width
+          const maxImgW = 754; // Crisp rendering size for A4 page width
           let imgW = img.width;
           let imgH = img.height;
           if (imgW > maxImgW) {
             imgH = (maxImgW / imgW) * imgH;
           }
-          return imgH + 10;
+          return imgH + 14;
         }
         return 0;
       }
@@ -2512,8 +2510,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentTableH = 0;
     let activeSegment = null;
     
-    const startY = 180;
-    const maxY = 1540; // Max table drawing height to prevent overlapping page footer
+    const startY = 200;
+    const maxY = 1520; // Max table drawing height to prevent overlapping page footer
     
     const measureCanvas = document.createElement('canvas');
     const measureCtx = measureCanvas.getContext('2d');
@@ -2546,8 +2544,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       } else {
         // Start a new segment for a new formation
-        // For non-empty segments, give a min row height of 190px on first appearance
-        const initialRowH = element.type === 'empty' ? 190 : Math.max(190, elementH);
+        // For non-empty segments, give a min row height of 441px on first appearance
+        const initialRowH = element.type === 'empty' ? 441 : Math.max(441, elementH);
         const isOverflow = (currentTableH > 0) && (startY + currentTableH + initialRowH > maxY);
         
         if (isOverflow) {
@@ -2565,7 +2563,7 @@ document.addEventListener('DOMContentLoaded', () => {
           isContinuation: false
         };
         currentSegments.push(activeSegment);
-        currentTableH += element.type === 'empty' ? 190 : Math.max(190, elementH);
+        currentTableH += element.type === 'empty' ? 441 : Math.max(441, elementH);
       }
     });
     
@@ -2587,9 +2585,9 @@ document.addEventListener('DOMContentLoaded', () => {
       let rowY = page.currentY;
       pageSegments.forEach(segment => {
         // Calculate cell height for this segment
-        let segH = segment.isContinuation ? segment.height : Math.max(190, segment.height);
+        let segH = segment.isContinuation ? segment.height : Math.max(441, segment.height);
         if (segment.elements.length === 0) {
-          segH = 190; // Default height for empty rows
+          segH = 441; // Default height for empty rows
         }
         
         // Alternating row background
@@ -2601,26 +2599,26 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.lineWidth = 1;
         ctx.strokeRect(40, rowY, 1120, segH);
 
-        // 1. Column 0 (跑位定點)
-        ctx.save();
-        ctx.font = "bold 15px 'Noto Sans TC', 'PingFang TC', sans-serif";
-        ctx.fillStyle = '#0f172a';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
+        // 1. Column 0 (定點與定位指引 - 合併定點、地標貼紙、網格定位圖)
+        const col1CenterX = 208;
         const stepNum = String(segment.idx + 1).padStart(2, '0');
         const displayLabel = segment.isContinuation ? `${stepNum}.${segment.formation.label} (續)` : `${stepNum}.${segment.formation.label}`;
-        ctx.fillText(displayLabel, 120, rowY + segH / 2);
-        ctx.restore();
-
-        // 2. Column 1 (專屬地標)
-        ctx.save();
-        const col1CenterX = 270;
 
         if (!segment.isContinuation) {
+          // Draw Title
+          ctx.save();
+          ctx.font = "bold 23px 'Noto Sans TC', 'PingFang TC', sans-serif";
+          ctx.fillStyle = '#0f172a';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'top';
+          ctx.fillText(displayLabel, col1CenterX, rowY + 12);
+          ctx.restore();
+
+          // Draw Sticker & Coordinate Overlay
+          ctx.save();
           const stickerImg = stickerImages[segment.formation.key];
-          const stickerSize = 65;
-          const stickerContentH = 85;
-          const stickerStartY = rowY + (segH - stickerContentH) / 2;
+          const stickerSize = 98;
+          const stickerStartY = rowY + 42;
 
           if (stickerImg) {
             ctx.drawImage(stickerImg, col1CenterX - stickerSize / 2, stickerStartY, stickerSize, stickerSize);
@@ -2631,7 +2629,7 @@ document.addEventListener('DOMContentLoaded', () => {
               const overlayColor = isCatA ? '#e65537' : '#7dbf32';
               const overlayCenterX = col1CenterX;
               const overlayCenterY = stickerStartY + stickerSize / 2;
-              const overlayRadius = 24;
+              const overlayRadius = 36;
 
               ctx.beginPath();
               ctx.arc(overlayCenterX, overlayCenterY, overlayRadius, 0, 2 * Math.PI);
@@ -2642,23 +2640,23 @@ document.addEventListener('DOMContentLoaded', () => {
               const parts = coordVal.split('-');
               if (parts.length === 2) {
                 ctx.fillStyle = '#ffffff';
-                ctx.font = "bold 13px sans-serif";
+                ctx.font = "bold 20px sans-serif";
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'bottom';
-                ctx.fillText(parts[0].padStart(2, '0'), overlayCenterX, overlayCenterY - 1);
+                ctx.fillText(parts[0].padStart(2, '0'), overlayCenterX, overlayCenterY - 2);
 
                 ctx.strokeStyle = '#ffffff';
-                ctx.lineWidth = 1;
+                ctx.lineWidth = 1.2;
                 ctx.beginPath();
-                ctx.moveTo(overlayCenterX - 14, overlayCenterY);
-                ctx.lineTo(overlayCenterX + 14, overlayCenterY);
+                ctx.moveTo(overlayCenterX - 23, overlayCenterY);
+                ctx.lineTo(overlayCenterX + 23, overlayCenterY);
                 ctx.stroke();
 
                 ctx.textBaseline = 'top';
-                ctx.fillText(parts[1].padStart(2, '0'), overlayCenterX, overlayCenterY + 1);
+                ctx.fillText(parts[1].padStart(2, '0'), overlayCenterX, overlayCenterY + 2);
               } else {
                 ctx.fillStyle = '#ffffff';
-                ctx.font = "bold 13px sans-serif";
+                ctx.font = "bold 20px sans-serif";
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
                 ctx.fillText(coordVal.padStart(2, '0'), overlayCenterX, overlayCenterY);
@@ -2668,85 +2666,78 @@ document.addEventListener('DOMContentLoaded', () => {
           }
 
           ctx.fillStyle = '#475569';
-          ctx.font = "bold 12px 'Noto Sans TC', sans-serif";
+          ctx.font = "bold 18px 'Noto Sans TC', sans-serif";
           ctx.textAlign = 'center';
           ctx.textBaseline = 'top';
           ctx.fillText(segment.coord, col1CenterX, stickerStartY + stickerSize + 6);
+          ctx.restore();
+
+          // Draw Grid Map
+          const gridImg = gridImages[segment.idx];
+          if (gridImg) {
+            const imgSize = 255;
+            const imgX = col1CenterX - imgSize / 2;
+            const imgY = rowY + 164;
+            ctx.drawImage(gridImg, imgX, imgY, imgSize, imgSize);
+          }
         } else {
+          // Continuation Row Column 0
+          ctx.save();
+          ctx.font = "bold 23px 'Noto Sans TC', sans-serif";
           ctx.fillStyle = '#64748b';
-          ctx.font = "bold 13px 'Noto Sans TC', sans-serif";
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
-          ctx.fillText("(續)", col1CenterX, rowY + segH / 2);
+          ctx.fillText(displayLabel, col1CenterX, rowY + segH / 2);
+          ctx.restore();
         }
-        ctx.restore();
 
-        // 3. Column 2 (演繹內容 - 流式元素渲染)
+        // 2. Column 1 (演繹內容 - 流式元素渲染 - 放大 50%)
         ctx.save();
-        let elementY = rowY + 15;
+        let elementY = rowY + 20;
         segment.elements.forEach(element => {
           if (element.type === 'title') {
             ctx.save();
-            ctx.font = "bold 14px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
+            ctx.font = "bold 30px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
             ctx.fillStyle = '#1e3a8a';
             ctx.textBaseline = 'top';
             ctx.textAlign = 'left';
-            const titleLines = wrapCanvasText(ctx, element.content, 590);
+            const titleLines = wrapCanvasText(ctx, element.content, 754);
             titleLines.forEach(line => {
-              ctx.fillText(line, 355, elementY);
-              elementY += 18;
+              ctx.fillText(line, 391, elementY);
+              elementY += 40;
             });
             ctx.restore();
-            elementY += 4;
+            elementY += 6;
           } else if (element.type === 'text') {
             ctx.save();
-            ctx.font = "500 13px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
+            ctx.font = "500 27px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
             ctx.fillStyle = '#333333';
             ctx.textBaseline = 'top';
             ctx.textAlign = 'left';
-            const lines = wrapCanvasText(ctx, element.content, 590);
+            const lines = wrapCanvasText(ctx, element.content, 754);
             lines.forEach(line => {
-              ctx.fillText(line, 355, elementY);
-              elementY += 17;
+              ctx.fillText(line, 391, elementY);
+              elementY += 35;
             });
             ctx.restore();
-            elementY += 4;
+            elementY += 6;
           } else if (element.type === 'image') {
             const img = hintImages[element.src];
             if (img) {
-              const maxImgW = 450;
+              const maxImgW = 754;
               let imgW = img.width;
               let imgH = img.height;
               if (imgW > maxImgW) {
                 imgH = (maxImgW / imgW) * imgH;
                 imgW = maxImgW;
               }
-              const imgX = 355 + (590 - imgW) / 2;
+              const imgX = 391 + (754 - imgW) / 2;
               ctx.drawImage(img, imgX, elementY, imgW, imgH);
-              elementY += imgH + 10;
+              elementY += imgH + 14;
             }
           }
         });
         ctx.restore();
-
-        // 4. Column 3 (網格定位)
-        if (!segment.isContinuation) {
-          const gridImg = gridImages[segment.idx];
-          if (gridImg) {
-            const imgSize = 170;
-            const imgX = 960 + (200 - imgSize) / 2;
-            const imgY = rowY + (segH - imgSize) / 2;
-            ctx.drawImage(gridImg, imgX, imgY, imgSize, imgSize);
-          }
-        } else {
-          ctx.save();
-          ctx.fillStyle = '#94a3b8';
-          ctx.font = "12px 'Noto Sans TC', sans-serif";
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.fillText("(續)", 1060, rowY + segH / 2);
-          ctx.restore();
-        }
 
         // Draw dividing horizontal line
         ctx.strokeStyle = '#cbd5e1';
@@ -2764,7 +2755,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // 5. Draw Page Footer with page numbering
       ctx.save();
       ctx.fillStyle = '#64748b';
-      ctx.font = "14px 'Noto Sans TC', sans-serif";
+      ctx.font = "20px 'Noto Sans TC', sans-serif";
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(`慈濟大巨蛋演繹個人定位系統  •  個人跑位定位表 (A4大字版)  •  頁次 ${pageNum} / ${totalPages}`, 600, 1640);
@@ -3088,8 +3079,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // Extract concise facing & lamp hints
       const conciseHints = extractConciseActionHints(hints);
 
-      // Wrap lines for column 2 (面向與燈具動作要領 - 字體再加大 15% 至 22px)
-      dummyCtx.font = "22px 'Noto Sans TC', sans-serif";
+      // Wrap lines for column 2 (面向與動作要領提示 - 字體放大 50% 至 33px, 行高 50px)
+      dummyCtx.font = "33px 'Noto Sans TC', sans-serif";
       let wrappedLines = [];
       conciseHints.forEach(hText => {
         const lines = wrapCanvasText(dummyCtx, `• ${hText}`, col2W - 32);
@@ -3111,8 +3102,8 @@ document.addEventListener('DOMContentLoaded', () => {
         effectiveLineCount = Math.ceil(wrappedLines.length / 2);
       }
 
-      // Calculate row height (min 190px, line height 33px)
-      const textH = 24 + effectiveLineCount * 33;
+      // Calculate row height (min 190px, line height 50px)
+      const textH = 24 + effectiveLineCount * 50;
       const rowH = Math.max(190, textH);
 
       rowHeights.push(rowH);
@@ -3287,7 +3278,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Col 2 Title
       ctx.font = "bold 21px 'Noto Sans TC', sans-serif";
       ctx.textAlign = 'left';
-      ctx.fillText("面向與燈具動作要領", padding + col1W + 18, tableStartY + tableHeaderH / 2);
+      ctx.fillText("面向與動作要領提示", padding + col1W + 18, tableStartY + tableHeaderH / 2);
 
       // Divider
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
@@ -3412,9 +3403,9 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.textBaseline = 'middle';
         ctx.fillText(`指引線: ${lineColorInfo.name}`, colorBadgeX + badgeW / 2, colorBadgeY + badgeH / 2);
 
-        // --- Column 2 (字體放大 15% 至 22px，行高 33px) ---
+        // --- Column 2 (字體放大 50% 至 33px，行高 50px) ---
         const col2X = padding + col1W;
-        ctx.font = "22px 'Noto Sans TC', sans-serif";
+        ctx.font = "33px 'Noto Sans TC', sans-serif";
         ctx.textAlign = 'left';
         ctx.textBaseline = 'top';
 
@@ -3423,13 +3414,13 @@ document.addEventListener('DOMContentLoaded', () => {
           const subCol1Lines = data.wrappedLines.slice(0, halfCount);
           const subCol2Lines = data.wrappedLines.slice(halfCount);
 
-          let lineY1 = rY + (rowH - subCol1Lines.length * 33) / 2;
+          let lineY1 = rY + (rowH - subCol1Lines.length * 50) / 2;
           if (lineY1 < rY + 10) lineY1 = rY + 10;
 
           subCol1Lines.forEach(line => {
             ctx.fillStyle = line.includes('開燈') || line.includes('黃燈') || line.includes('舉高') || line.includes('點燈') ? '#b45309' : '#1e293b';
             ctx.fillText(line, col2X + 16, lineY1);
-            lineY1 += 33;
+            lineY1 += 50;
           });
 
           const subColDividerX = col2X + 275;
@@ -3440,22 +3431,22 @@ document.addEventListener('DOMContentLoaded', () => {
           ctx.lineTo(subColDividerX, rY + rowH - 6);
           ctx.stroke();
 
-          let lineY2 = rY + (rowH - subCol2Lines.length * 33) / 2;
+          let lineY2 = rY + (rowH - subCol2Lines.length * 50) / 2;
           if (lineY2 < rY + 10) lineY2 = rY + 10;
 
           subCol2Lines.forEach(line => {
             ctx.fillStyle = line.includes('開燈') || line.includes('黃燈') || line.includes('舉高') || line.includes('點燈') ? '#b45309' : '#1e293b';
             ctx.fillText(line, subColDividerX + 16, lineY2);
-            lineY2 += 33;
+            lineY2 += 50;
           });
         } else {
-          let lineY = rY + (rowH - data.wrappedLines.length * 33) / 2;
+          let lineY = rY + (rowH - data.wrappedLines.length * 50) / 2;
           if (lineY < rY + 10) lineY = rY + 10;
 
           data.wrappedLines.forEach(line => {
             ctx.fillStyle = line.includes('開燈') || line.includes('黃燈') || line.includes('舉高') || line.includes('點燈') ? '#b45309' : '#1e293b';
             ctx.fillText(line, col2X + 18, lineY);
-            lineY += 33;
+            lineY += 50;
           });
         }
 
