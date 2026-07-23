@@ -2478,16 +2478,16 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Helper function to measure element height on offscreen canvas (Enlarged by +50%)
+    // Helper function to measure element height on offscreen canvas
     function measureElementH(element, measureCtx, hintImages) {
       if (element.type === 'title') {
-        measureCtx.font = "bold 30px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
+        measureCtx.font = "bold 20px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
         const titleLines = wrapCanvasText(measureCtx, element.content, 754);
-        return titleLines.length * 40 + 4;
+        return titleLines.length * 25 + 4;
       } else if (element.type === 'text') {
-        measureCtx.font = "500 27px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
+        measureCtx.font = "500 18px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
         const lines = wrapCanvasText(measureCtx, element.content, 754);
-        return lines.length * 35 + 4;
+        return lines.length * 24 + 4;
       } else if (element.type === 'image') {
         const img = hintImages[element.src];
         if (img) {
@@ -2691,33 +2691,33 @@ document.addEventListener('DOMContentLoaded', () => {
           ctx.restore();
         }
 
-        // 2. Column 1 (演繹內容 - 流式元素渲染 - 放大 50%)
+        // 2. Column 1 (演繹內容 - 流式元素渲染)
         ctx.save();
         let elementY = rowY + 20;
         segment.elements.forEach(element => {
           if (element.type === 'title') {
             ctx.save();
-            ctx.font = "bold 30px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
+            ctx.font = "bold 20px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
             ctx.fillStyle = '#1e3a8a';
             ctx.textBaseline = 'top';
             ctx.textAlign = 'left';
             const titleLines = wrapCanvasText(ctx, element.content, 754);
             titleLines.forEach(line => {
               ctx.fillText(line, 391, elementY);
-              elementY += 40;
+              elementY += 25;
             });
             ctx.restore();
             elementY += 6;
           } else if (element.type === 'text') {
             ctx.save();
-            ctx.font = "500 27px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
+            ctx.font = "500 18px 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif";
             ctx.fillStyle = '#333333';
             ctx.textBaseline = 'top';
             ctx.textAlign = 'left';
             const lines = wrapCanvasText(ctx, element.content, 754);
             lines.forEach(line => {
               ctx.fillText(line, 391, elementY);
-              elementY += 35;
+              elementY += 24;
             });
             ctx.restore();
             elementY += 6;
@@ -3079,8 +3079,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // Extract concise facing & lamp hints
       const conciseHints = extractConciseActionHints(hints);
 
-      // Wrap lines for column 2 (面向與動作要領提示 - 字體放大 50% 至 33px, 行高 50px)
-      dummyCtx.font = "33px 'Noto Sans TC', sans-serif";
+      // Wrap lines for column 2 (面向與動作要領提示 - 字體加大 15% 至 22px)
+      dummyCtx.font = "22px 'Noto Sans TC', sans-serif";
       let wrappedLines = [];
       conciseHints.forEach(hText => {
         const lines = wrapCanvasText(dummyCtx, `• ${hText}`, col2W - 32);
@@ -3102,8 +3102,8 @@ document.addEventListener('DOMContentLoaded', () => {
         effectiveLineCount = Math.ceil(wrappedLines.length / 2);
       }
 
-      // Calculate row height (min 190px, line height 50px)
-      const textH = 24 + effectiveLineCount * 50;
+      // Calculate row height (min 190px, line height 33px)
+      const textH = 24 + effectiveLineCount * 33;
       const rowH = Math.max(190, textH);
 
       rowHeights.push(rowH);
@@ -3403,9 +3403,9 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.textBaseline = 'middle';
         ctx.fillText(`指引線: ${lineColorInfo.name}`, colorBadgeX + badgeW / 2, colorBadgeY + badgeH / 2);
 
-        // --- Column 2 (字體放大 50% 至 33px，行高 50px) ---
+        // --- Column 2 (字體放大 15% 至 22px，行高 33px) ---
         const col2X = padding + col1W;
-        ctx.font = "33px 'Noto Sans TC', sans-serif";
+        ctx.font = "22px 'Noto Sans TC', sans-serif";
         ctx.textAlign = 'left';
         ctx.textBaseline = 'top';
 
@@ -3414,13 +3414,13 @@ document.addEventListener('DOMContentLoaded', () => {
           const subCol1Lines = data.wrappedLines.slice(0, halfCount);
           const subCol2Lines = data.wrappedLines.slice(halfCount);
 
-          let lineY1 = rY + (rowH - subCol1Lines.length * 50) / 2;
+          let lineY1 = rY + (rowH - subCol1Lines.length * 33) / 2;
           if (lineY1 < rY + 10) lineY1 = rY + 10;
 
           subCol1Lines.forEach(line => {
             ctx.fillStyle = line.includes('開燈') || line.includes('黃燈') || line.includes('舉高') || line.includes('點燈') ? '#b45309' : '#1e293b';
             ctx.fillText(line, col2X + 16, lineY1);
-            lineY1 += 50;
+            lineY1 += 33;
           });
 
           const subColDividerX = col2X + 275;
@@ -3431,22 +3431,22 @@ document.addEventListener('DOMContentLoaded', () => {
           ctx.lineTo(subColDividerX, rY + rowH - 6);
           ctx.stroke();
 
-          let lineY2 = rY + (rowH - subCol2Lines.length * 50) / 2;
+          let lineY2 = rY + (rowH - subCol2Lines.length * 33) / 2;
           if (lineY2 < rY + 10) lineY2 = rY + 10;
 
           subCol2Lines.forEach(line => {
             ctx.fillStyle = line.includes('開燈') || line.includes('黃燈') || line.includes('舉高') || line.includes('點燈') ? '#b45309' : '#1e293b';
             ctx.fillText(line, subColDividerX + 16, lineY2);
-            lineY2 += 50;
+            lineY2 += 33;
           });
         } else {
-          let lineY = rY + (rowH - data.wrappedLines.length * 50) / 2;
+          let lineY = rY + (rowH - data.wrappedLines.length * 33) / 2;
           if (lineY < rY + 10) lineY = rY + 10;
 
           data.wrappedLines.forEach(line => {
             ctx.fillStyle = line.includes('開燈') || line.includes('黃燈') || line.includes('舉高') || line.includes('點燈') ? '#b45309' : '#1e293b';
             ctx.fillText(line, col2X + 18, lineY);
-            lineY += 50;
+            lineY += 33;
           });
         }
 
