@@ -8488,7 +8488,7 @@ const DAY_PERFORMERS = {
     { id: '11-29', name: '范秀娥', team: '東班' },
     { id: '11-30', name: '葉怡君', team: '東班' },
     { id: '13-36', name: '吳淑芬', team: '東班' },
-    { id: '13-37', name: '江麗芬', team: '東班' },
+    { id: '13-37', name: '缺', team: '東班' },
     { id: '13-38', name: '林淑純', team: '東班' },
     { id: '13-39', name: '邱燕君', team: '東班' },
     { id: '22-54', name: '賴金龍', team: '東班' },
