@@ -2384,7 +2384,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!performer) return [];
 
     const fields = getPerformerFields(performer);
-    const titleText = "大巨蛋演繹個人跑位定位表";
+    const titleText = "大巨蛋演繹個人隨身筆記";
     const metadataText = `姓名：${currentDisplayName || '無'}      身分：${performer.category || '無'}      起點座標：${fields.coordinate}`;
 
     // Preload all grid images (render from SVG previews)
@@ -2762,7 +2762,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.font = "20px 'Noto Sans TC', sans-serif";
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText(`慈濟大巨蛋演繹個人定位系統  •  個人跑位定位表 (A4大字版)  •  頁次 ${pageNum} / ${totalPages}`, 600, 1640);
+      ctx.fillText(`慈濟大巨蛋演繹個人定位系統  •  個人隨身筆記 (A4大字版)  •  頁次 ${pageNum} / ${totalPages}`, 600, 1640);
       ctx.restore();
 
       pageCanvases.push(page.canvas);
@@ -2799,7 +2799,7 @@ document.addEventListener('DOMContentLoaded', () => {
         pdf.addImage(pageImgData, 'PNG', 0, 0, 595.28, 841.89, undefined, 'FAST');
       }
       
-      const filename = `${currentDisplayName || fields.coordinate}_${fields.coordinate}_個人定位表.pdf`;
+      const filename = `${currentDisplayName || fields.coordinate}_${fields.coordinate}_個人隨身筆記.pdf`;
       pdf.save(filename);
       btnElement.innerHTML = `<i class="fa-solid fa-check"></i> 下載成功`;
     } catch (err) {
@@ -3034,6 +3034,205 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     ctx.restore();
+  }
+
+  // Generate Single Position Card Canvas for Performer (Business Card size: 450x750, portrait, no step count, combined coordinate & color)
+  async function generateSinglePositionCard(performer) {
+    if (!performer) return null;
+
+    const fields = getPerformerFields(performer);
+    
+    // 預載專屬地標定位貼圖 (stickers)
+    const perfCategory = performer.category || 'A白';
+    const stickerImages = {};
+    for (let idx = 0; idx < formations.length; idx++) {
+      const f = formations[idx];
+      const displayType = getDisplayType(f.key);
+      const src = `images/stickers/${displayType}_${getEnglishCategory(perfCategory)}.png`;
+      const img = await loadImage(src);
+      if (img) {
+        stickerImages[f.key] = img;
+      }
+    }
+
+    const canvasWidth = 450;
+    const canvasHeight = 750;
+    const scale = 2.5;
+
+    const canvas = document.createElement('canvas');
+    canvas.width = Math.round(canvasWidth * scale);
+    canvas.height = Math.round(canvasHeight * scale);
+    const ctx = canvas.getContext('2d');
+
+    ctx.scale(scale, scale);
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+
+    // 1. Background
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+
+    // 2. Draw border
+    ctx.strokeStyle = '#cbd5e1';
+    ctx.lineWidth = 1.2;
+    drawCanvasRoundRect(ctx, 12, 12, canvasWidth - 24, canvasHeight - 24, 8, false, true);
+
+    // 3. Header Text
+    ctx.fillStyle = '#0f172a';
+    ctx.font = "bold 12.5px 'Noto Sans TC', sans-serif";
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(`${currentDisplayName || '無'} (${performer.category || '無'})`, 22, 28);
+
+    ctx.textAlign = 'right';
+    ctx.fillText(`起點：${fields.coordinate}`, canvasWidth - 22, 28);
+
+    // 4. Table Dimensions
+    const startY = 48;
+    const endY = 722;
+    const startX = 20;
+    const endX = canvasWidth - 20;
+    const col1W = 195;
+    const col2StartX = 235;
+    const tableH = endY - startY; // 674
+
+    const headerH = 24;
+    const bodyH = tableH - headerH; // 650
+    const halfCount = Math.ceil(formations.length / 2); // 9
+    const rowH = bodyH / halfCount; // ~72.2
+
+    // 5. Table Borders and Headers
+    ctx.strokeStyle = '#cbd5e1';
+    ctx.lineWidth = 1.0;
+
+    // Draw Left Table Header background & border
+    ctx.fillStyle = '#f1f5f9';
+    ctx.fillRect(startX, startY, col1W, headerH);
+    ctx.strokeRect(startX, startY, col1W, tableH);
+    
+    // Draw Right Table Header background & border
+    ctx.fillStyle = '#f1f5f9';
+    ctx.fillRect(col2StartX, startY, col1W, tableH); // Fill header height
+    // Clear inner body background to white to avoid fill overlap, then draw stroke
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(col2StartX, startY + headerH, col1W, bodyH);
+    ctx.fillStyle = '#f1f5f9';
+    ctx.fillRect(col2StartX, startY, col1W, headerH);
+    ctx.strokeRect(col2StartX, startY, col1W, tableH);
+
+    // Draw table header horizontal lines
+    ctx.beginPath();
+    ctx.moveTo(startX, startY + headerH);
+    ctx.lineTo(startX + col1W, startY + headerH);
+    ctx.moveTo(col2StartX, startY + headerH);
+    ctx.lineTo(col2StartX + col1W, startY + headerH);
+    ctx.stroke();
+
+    // Table Header Texts
+    ctx.fillStyle = '#334155';
+    ctx.font = "bold 9.5px 'Noto Sans TC', sans-serif";
+    ctx.textBaseline = 'middle';
+    ctx.textAlign = 'left';
+    ctx.fillText(" 步驟 1 - 9 (定位資訊 / 方向)", startX + 6, startY + headerH / 2);
+    ctx.fillText(" 步驟 10 - 18 (定位資訊 / 方向)", col2StartX + 6, startY + headerH / 2);
+
+    // 6. Draw Table Rows (Double Column)
+    for (let idx = 0; idx < formations.length; idx++) {
+      const isRightCol = idx >= halfCount;
+      const colIdx = isRightCol ? idx - halfCount : idx;
+      
+      const colStartX = isRightCol ? col2StartX : startX;
+      const rY = startY + headerH + colIdx * rowH;
+
+      // Draw row bottom line
+      if (colIdx < halfCount - 1) {
+        ctx.strokeStyle = '#cbd5e1';
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(colStartX, rY + rowH);
+        ctx.lineTo(colStartX + col1W, rY + rowH);
+        ctx.stroke();
+      }
+
+      const f = formations[idx];
+      const rawCoord = getFormationCoordStr(performer, f.key) || '無';
+      const displayCoordStr = formatCoordinateForDisplay(rawCoord);
+      const split = splitLandmarkAndCoordinate(displayCoordStr);
+      
+      const prevCoordStr = idx > 0 ? getFormationCoordStr(performer, formations[idx - 1].key) : '';
+      const vec = calculateMovementVector(prevCoordStr, rawCoord);
+      const lineColorInfo = FORMATION_COLORS[f.key] || { hex: '#d97706', name: '黃線' };
+
+      let displayDir = '📍 原地';
+      if (idx === 0) {
+        displayDir = '📍 起點';
+      } else if (!vec.isStationary) {
+        const match = vec.dirText.match(/^(.*向[左右前後]+)/);
+        displayDir = match ? match[1] : vec.dirText;
+      }
+
+      // --- Left Column / Right Column Content Row ---
+      // A. 第一行：步驟名稱 (+ 專屬地標文字)
+      ctx.fillStyle = '#0f172a';
+      ctx.font = "bold 11px 'Noto Sans TC', sans-serif";
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'top';
+      
+      const fLabel = f.label || f.name.replace(/\(\w+\)/, '');
+      let titleText = `${idx + 1}. ${fLabel}`;
+      if (rawCoord !== '無' && rawCoord !== '-' && split.coordinate && split.landmark) {
+        titleText += ` (${split.landmark})`;
+      }
+      ctx.fillText(titleText, colStartX + 6, rY + 8);
+
+      // B. 第二行：地標圖形 + 座標與指引線色塊 + 方向
+      const stickerImg = stickerImages[f.key];
+      if (stickerImg) {
+        ctx.drawImage(stickerImg, colStartX + 6, rY + 28, 26, 26);
+      }
+
+      if (rawCoord !== '無' && rawCoord !== '-') {
+        const badgeX = colStartX + 38;
+        const badgeY = rY + 33;
+        const badgeW = 48;
+        const badgeH = 16;
+        
+        // 繪製指引線色彩圓角長方形色塊
+        ctx.fillStyle = lineColorInfo.hex;
+        drawCanvasRoundRect(ctx, badgeX, badgeY, badgeW, badgeH, 4, true, false);
+
+        // 判斷背景色彩深淺，選擇合適的對比字色
+        const isLightColor = ['#eab308', '#80CEF3', '#ACCE22', '#F19EA8', '#FDD100', '#A6ADD6', '#AF9DA8'].includes(lineColorInfo.hex);
+        ctx.fillStyle = isLightColor ? '#0f172a' : '#ffffff';
+        ctx.font = "bold 10px 'Outfit', sans-serif";
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        const textInBadge = split.coordinate || split.landmark;
+        ctx.fillText(textInBadge, badgeX + badgeW / 2, badgeY + badgeH / 2 + 0.5);
+      } else {
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = "500 10px 'Noto Sans TC', sans-serif";
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'top';
+        ctx.fillText('無', colStartX + 38, rY + 34);
+      }
+
+      // 畫方向
+      ctx.fillStyle = '#0f172a';
+      ctx.font = "500 10.5px 'Noto Sans TC', sans-serif";
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'top';
+      ctx.fillText(displayDir, colStartX + 94, rY + 34);
+    }
+
+    // 7. Footer Text
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = "8px 'Noto Sans TC', sans-serif";
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText("慈濟大巨蛋演繹個人定位系統  •  個人定位小卡", canvasWidth / 2, canvasHeight - 16);
+
+    return canvas;
   }
 
   // Generate Pocket Slip A6 Canvases array for Performer (Col 2 Font +15% to 22px, A6 Multi-Page Split)
@@ -3509,8 +3708,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!currentPerformer) return;
       const fields = getPerformerFields(currentPerformer);
       
-      modalTitle.textContent = `${currentDisplayName || fields.coordinate} (${fields.coordinate}) - 個人定位表 (A4分頁)`;
-      modalBody.innerHTML = `<div style="padding: 40px; text-align: center; color: #94a3b8;"><i class="fa-solid fa-spinner fa-spin fa-2x"></i><div style="margin-top: 10px;">正在產生 A4 分頁定位表...</div></div>`;
+      modalTitle.textContent = `${currentDisplayName || fields.coordinate} (${fields.coordinate}) - 個人隨身筆記 (A4分頁)`;
+      modalBody.innerHTML = `<div style="padding: 40px; text-align: center; color: #94a3b8;"><i class="fa-solid fa-spinner fa-spin fa-2x"></i><div style="margin-top: 10px;">正在產生 A4 分頁隨身筆記...</div></div>`;
       allMapsModal.style.display = 'flex';
 
       try {
@@ -3544,7 +3743,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       } catch (err) {
         console.error(err);
-        modalBody.innerHTML = `<div style="padding: 30px; text-align: center; color: #ef4444;">產出定位表失敗: ${err.message}</div>`;
+        modalBody.innerHTML = `<div style="padding: 30px; text-align: center; color: #ef4444;">產出隨身筆記失敗: ${err.message}</div>`;
       }
     });
 
@@ -3719,6 +3918,131 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
           downloadPocketSlipPdfBtn.disabled = false;
           downloadPocketSlipPdfBtn.innerHTML = originalHtml;
+        }, 2000);
+      });
+    }
+
+    // 6. Position Card Modal Event Listeners
+    const downloadPositionCardOpenBtn = document.getElementById('downloadPositionCardOpenBtn');
+    const positionCardModal = document.getElementById('positionCardModal');
+    const closePositionCardModalBtn = document.getElementById('closePositionCardModalBtn');
+    const downloadPositionCardPngBtn = document.getElementById('downloadPositionCardPngBtn');
+    const downloadPositionCardPdfBtn = document.getElementById('downloadPositionCardPdfBtn');
+    const positionCardPreviewWrapper = document.getElementById('positionCardPreviewWrapper');
+
+    async function openPositionCardModal() {
+      if (!currentPerformer) return;
+      positionCardModal.style.display = 'flex';
+      positionCardPreviewWrapper.innerHTML = `<div class="slip-loading"><i class="fa-solid fa-spinner fa-spin"></i> 定位小卡產出中...</div>`;
+
+      try {
+        const cardCanvas = await generateSinglePositionCard(currentPerformer);
+        if (cardCanvas) {
+          positionCardPreviewWrapper.innerHTML = '';
+          positionCardPreviewWrapper.appendChild(cardCanvas);
+        } else {
+          positionCardPreviewWrapper.innerHTML = `<div class="slip-loading" style="color:#ef4444;"><i class="fa-solid fa-triangle-exclamation"></i> 無法產出小卡</div>`;
+        }
+      } catch (err) {
+        console.error("Position card generation error:", err);
+        const errMsg = err.message || err;
+        positionCardPreviewWrapper.innerHTML = `<div class="slip-loading" style="color:#ef4444;"><i class="fa-solid fa-triangle-exclamation"></i> 產出小卡時發生錯誤：<br><span style="font-size:12px;color:#fca5a5;margin-top:6px;display:block;">${errMsg}</span></div>`;
+      }
+    }
+
+    if (downloadPositionCardOpenBtn) {
+      downloadPositionCardOpenBtn.addEventListener('click', openPositionCardModal);
+    }
+
+    if (closePositionCardModalBtn) {
+      closePositionCardModalBtn.addEventListener('click', () => {
+        positionCardModal.style.display = 'none';
+      });
+    }
+
+    if (positionCardModal) {
+      positionCardModal.addEventListener('click', (e) => {
+        if (e.target === positionCardModal) {
+          positionCardModal.style.display = 'none';
+        }
+      });
+    }
+
+    // Download Single Page PNG for Position Card
+    if (downloadPositionCardPngBtn) {
+      downloadPositionCardPngBtn.addEventListener('click', () => {
+        if (!currentPerformer) return;
+        const pCanvas = positionCardPreviewWrapper.querySelector('canvas');
+        if (!pCanvas) return;
+
+        downloadPositionCardPngBtn.disabled = true;
+        const originalHtml = downloadPositionCardPngBtn.innerHTML;
+        downloadPositionCardPngBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> 下載 PNG...`;
+
+        try {
+          const fields = getPerformerFields(currentPerformer);
+          const dataUrl = pCanvas.toDataURL('image/png');
+          const link = document.createElement('a');
+          const pName = currentDisplayName || fields.coordinate;
+          link.download = `${pName}_${fields.coordinate}_個人定位小卡.png`;
+          link.href = dataUrl;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+
+          downloadPositionCardPngBtn.innerHTML = `<i class="fa-solid fa-check"></i> 下載成功`;
+        } catch (err) {
+          console.error(err);
+          downloadPositionCardPngBtn.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> 錯誤`;
+        }
+
+        setTimeout(() => {
+          downloadPositionCardPngBtn.disabled = false;
+          downloadPositionCardPngBtn.innerHTML = originalHtml;
+        }, 2000);
+      });
+    }
+
+    // Download Single Page PDF (Business Card Size: 90mm x 54mm = 255.1 pt x 153.1 pt)
+    if (downloadPositionCardPdfBtn) {
+      downloadPositionCardPdfBtn.addEventListener('click', () => {
+        if (!currentPerformer) return;
+        const pCanvas = positionCardPreviewWrapper.querySelector('canvas');
+        if (!pCanvas) return;
+
+        downloadPositionCardPdfBtn.disabled = true;
+        const originalHtml = downloadPositionCardPdfBtn.innerHTML;
+        downloadPositionCardPdfBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> 產出 PDF...`;
+
+        try {
+          const fields = getPerformerFields(currentPerformer);
+          const { jsPDF } = window.jspdf;
+          
+          // Business Card standard size in pt (54mm x 90mm = 153.1pt x 255.1pt)
+          const pdfWidth = 153.1;
+          const pdfHeight = 255.1;
+
+          const pdf = new jsPDF({
+            orientation: 'portrait',
+            unit: 'pt',
+            format: [pdfWidth, pdfHeight]
+          });
+
+          const imgData = pCanvas.toDataURL('image/png');
+          pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight, undefined, 'FAST');
+
+          const pName = currentDisplayName || fields.coordinate;
+          pdf.save(`${pName}_${fields.coordinate}_個人定位小卡.pdf`);
+
+          downloadPositionCardPdfBtn.innerHTML = `<i class="fa-solid fa-check"></i> 下載成功`;
+        } catch (err) {
+          console.error(err);
+          downloadPositionCardPdfBtn.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> 錯誤`;
+        }
+
+        setTimeout(() => {
+          downloadPositionCardPdfBtn.disabled = false;
+          downloadPositionCardPdfBtn.innerHTML = originalHtml;
         }, 2000);
       });
     }
