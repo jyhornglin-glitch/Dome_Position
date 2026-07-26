@@ -970,7 +970,7 @@ const DAY_PERFORMERS = {
     { id: '34-40', name: '王春珠', team: '東班' },
     { id: '5-70', name: '吳炎松', team: '東班' },
     { id: '5-69', name: '', team: '東班' },
-    { id: '5-68', name: '', team: '東班' },
+    { id: '5-68', name: '陳漢熒', team: '東班' },
     { id: '6-71', name: '', team: '東班' },
     { id: '6-70', name: '', team: '東班' },
     { id: '6-69', name: '', team: '東班' },
