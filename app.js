@@ -3159,22 +3159,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const displayCoordStr = formatCoordinateForDisplay(rawCoord);
       const split = splitLandmarkAndCoordinate(displayCoordStr);
       
-      const prevCoordStr = idx > 0 ? getFormationCoordStr(performer, formations[idx - 1].key) : '';
-      const vec = calculateMovementVector(prevCoordStr, rawCoord);
       const lineColorInfo = FORMATION_COLORS[f.key] || { hex: '#d97706', name: '黃線' };
-
-      let displayDir = '📍 原地';
-      if (idx === 0) {
-        displayDir = '📍 起點';
-      } else if (!vec.isStationary) {
-        const match = vec.dirText.match(/^(.*向[左右前後]+)/);
-        displayDir = match ? match[1] : vec.dirText;
-      }
 
       // --- Left Column / Right Column Content Row ---
       // A. 第一行：步驟名稱 (+ 專屬地標文字)
       ctx.fillStyle = '#0f172a';
-      ctx.font = "bold 11px 'Noto Sans TC', sans-serif";
+      ctx.font = "bold 18px 'Noto Sans TC', sans-serif";
       ctx.textAlign = 'left';
       ctx.textBaseline = 'top';
       
@@ -3185,44 +3175,37 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       ctx.fillText(titleText, colStartX + 6, rY + 8);
 
-      // B. 第二行：地標圖形 + 座標與指引線色塊 + 方向
+      // B. 第二行：地標圖形 + 座標與指引線色塊
       const stickerImg = stickerImages[f.key];
       if (stickerImg) {
-        ctx.drawImage(stickerImg, colStartX + 6, rY + 28, 26, 26);
+        ctx.drawImage(stickerImg, colStartX + 6, rY + 34, 32, 32);
       }
 
       if (rawCoord !== '無' && rawCoord !== '-') {
-        const badgeX = colStartX + 38;
-        const badgeY = rY + 33;
-        const badgeW = 48;
-        const badgeH = 16;
+        const badgeX = colStartX + 46;
+        const badgeY = rY + 36;
+        const badgeW = 72;
+        const badgeH = 28;
         
         // 繪製指引線色彩圓角長方形色塊
         ctx.fillStyle = lineColorInfo.hex;
-        drawCanvasRoundRect(ctx, badgeX, badgeY, badgeW, badgeH, 4, true, false);
+        drawCanvasRoundRect(ctx, badgeX, badgeY, badgeW, badgeH, 6, true, false);
 
         // 判斷背景色彩深淺，選擇合適的對比字色
         const isLightColor = ['#eab308', '#80CEF3', '#ACCE22', '#F19EA8', '#FDD100', '#A6ADD6', '#AF9DA8'].includes(lineColorInfo.hex);
         ctx.fillStyle = isLightColor ? '#0f172a' : '#ffffff';
-        ctx.font = "bold 10px 'Outfit', sans-serif";
+        ctx.font = "bold 16px 'Outfit', sans-serif";
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         const textInBadge = split.coordinate || split.landmark;
         ctx.fillText(textInBadge, badgeX + badgeW / 2, badgeY + badgeH / 2 + 0.5);
       } else {
         ctx.fillStyle = '#94a3b8';
-        ctx.font = "500 10px 'Noto Sans TC', sans-serif";
+        ctx.font = "500 16px 'Noto Sans TC', sans-serif";
         ctx.textAlign = 'left';
         ctx.textBaseline = 'top';
-        ctx.fillText('無', colStartX + 38, rY + 34);
+        ctx.fillText('無', colStartX + 46, rY + 36);
       }
-
-      // 畫方向
-      ctx.fillStyle = '#0f172a';
-      ctx.font = "500 10.5px 'Noto Sans TC', sans-serif";
-      ctx.textAlign = 'left';
-      ctx.textBaseline = 'top';
-      ctx.fillText(displayDir, colStartX + 94, rY + 34);
     }
 
     // 7. Footer Text
