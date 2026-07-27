@@ -3036,6 +3036,44 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.restore();
   }
 
+  // Helper to draw vertical text on Canvas with automatic font resizing and bracket rotation
+  function drawCanvasVerticalText(ctx, text, centerX, startY, maxH, baseFontSize) {
+    let fontSize = baseFontSize;
+    const len = text.length;
+    // Auto-scale font size to fit vertical space
+    while (fontSize * len > maxH - 4 && fontSize > 8) {
+      fontSize -= 0.5;
+    }
+
+    ctx.font = `bold ${fontSize}px 'Noto Sans TC', sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    const totalH = len * fontSize;
+    const yOffset = startY + (maxH - totalH) / 2 + fontSize / 2;
+
+    for (let i = 0; i < len; i++) {
+      const char = text[i];
+      const charY = yOffset + i * fontSize;
+
+      if (char === '(' || char === '（') {
+        ctx.save();
+        ctx.translate(centerX, charY);
+        ctx.rotate(Math.PI / 2);
+        ctx.fillText('（', 0, 0);
+        ctx.restore();
+      } else if (char === ')' || char === '）') {
+        ctx.save();
+        ctx.translate(centerX, charY);
+        ctx.rotate(Math.PI / 2);
+        ctx.fillText('）', 0, 0);
+        ctx.restore();
+      } else {
+        ctx.fillText(char, centerX, charY);
+      }
+    }
+  }
+
   // Generate Single Position Card Canvas for Performer (Business Card size: 450x750, portrait, no step count, combined coordinate & color)
   async function generateSinglePositionCard(performer) {
     if (!performer) return null;
@@ -3154,6 +3192,13 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.stroke();
       }
 
+      // 三欄寬度分配
+      const colW1 = 30; // 第一欄寬度
+      const badgeH = rowH * 0.95; // 色塊高度調整為儲存格高度的 95%
+      const badgeW = badgeH * 1.5; // 色塊寬度為高度的 1.5 倍 (長方形)
+      const colW3 = badgeW; // 第三欄寬度
+      const colW2 = col1W - colW1 - colW3; // 第二欄寬度
+
       const f = formations[idx];
       const rawCoord = getFormationCoordStr(performer, f.key) || '無';
       const displayCoordStr = formatCoordinateForDisplay(rawCoord);
@@ -3161,52 +3206,76 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const lineColorInfo = FORMATION_COLORS[f.key] || { hex: '#d97706', name: '黃線' };
 
-      // --- Left Column / Right Column Content Row ---
-      // A. 第一行：步驟名稱 (+ 專屬地標文字)
+      // --- 第一欄：定位名稱，直排（頂部為步驟編號） ---
       ctx.fillStyle = '#0f172a';
-      ctx.font = "bold 18px 'Noto Sans TC', sans-serif";
-      ctx.textAlign = 'left';
+      ctx.textAlign = 'center';
       ctx.textBaseline = 'top';
       
-      const fLabel = f.label || f.name.replace(/\(\w+\)/, '');
-      let titleText = `${idx + 1}. ${fLabel}`;
-      if (rawCoord !== '無' && rawCoord !== '-' && split.coordinate && split.landmark) {
-        titleText += ` (${split.landmark})`;
-      }
-      ctx.fillText(titleText, colStartX + 6, rY + 8);
+      // 1. 步驟編號 (橫排在第一欄的頂部)
+      ctx.font = "bold 10px 'Outfit', sans-serif";
+      ctx.fillText(idx + 1, colStartX + colW1 / 2, rY + 8);
 
-      // B. 第二行：地標圖形 + 座標與指引線色塊
+      // 2. 定位名稱 (直排)
+      const fLabel = f.label || f.name.replace(/\(\w+\)/, '');
+      drawCanvasVerticalText(ctx, fLabel, colStartX + colW1 / 2, rY + 20, rowH - 26, 12);
+
+      // --- 第二欄：專屬地標圖形 ---
       const stickerImg = stickerImages[f.key];
       if (stickerImg) {
-        ctx.drawImage(stickerImg, colStartX + 6, rY + 34, 32, 32);
+        const stickerSize = rowH * 0.95; // 地標圖形直徑為儲存格高度的 95%
+        const stickerCenterX = colStartX + colW1 + colW2 / 2;
+        const stickerCenterY = rY + rowH / 2;
+        ctx.drawImage(
+          stickerImg, 
+          stickerCenterX - stickerSize / 2, 
+          stickerCenterY - stickerSize / 2, 
+          stickerSize, 
+          stickerSize
+        );
       }
 
+      // --- 第三欄：指引線色塊及座標值（圓角長方形，高度為 95% 高度，寬度為 1.5 倍高度） ---
+      const badgeX = colStartX + col1W - badgeW;
+      const badgeY = rY + (rowH - badgeH) / 2; // 垂直置中
+
       if (rawCoord !== '無' && rawCoord !== '-') {
-        const badgeX = colStartX + 46;
-        const badgeY = rY + 36;
-        const badgeW = 72;
-        const badgeH = 28;
-        
-        // 繪製指引線色彩圓角長方形色塊
+        // 繪製指引線圓角長方形色塊
         ctx.fillStyle = lineColorInfo.hex;
         drawCanvasRoundRect(ctx, badgeX, badgeY, badgeW, badgeH, 6, true, false);
 
         // 判斷背景色彩深淺，選擇合適的對比字色
         const isLightColor = ['#eab308', '#80CEF3', '#ACCE22', '#F19EA8', '#FDD100', '#A6ADD6', '#AF9DA8'].includes(lineColorInfo.hex);
         ctx.fillStyle = isLightColor ? '#0f172a' : '#ffffff';
-        ctx.font = "bold 16px 'Outfit', sans-serif";
+        ctx.font = "bold 25px 'Outfit', sans-serif"; // 座標字型微調再縮小 10% 至 25px
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         const textInBadge = split.coordinate || split.landmark;
         ctx.fillText(textInBadge, badgeX + badgeW / 2, badgeY + badgeH / 2 + 0.5);
       } else {
+        // 沒有座標時繪製灰色圓角長方形色塊，顯示「無」
+        ctx.fillStyle = '#f1f5f9';
+        drawCanvasRoundRect(ctx, badgeX, badgeY, badgeW, badgeH, 6, true, false);
+        
         ctx.fillStyle = '#94a3b8';
-        ctx.font = "500 16px 'Noto Sans TC', sans-serif";
-        ctx.textAlign = 'left';
-        ctx.textBaseline = 'top';
-        ctx.fillText('無', colStartX + 46, rY + 36);
+        ctx.font = "bold 16px 'Noto Sans TC', sans-serif";
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('無', badgeX + badgeW / 2, badgeY + badgeH / 2 + 0.5);
       }
     }
+
+    // 6.5 重新繪製表格外框與表頭線（確保色塊不會遮擋住邊框）
+    ctx.strokeStyle = '#cbd5e1';
+    ctx.lineWidth = 1.0;
+    ctx.strokeRect(startX, startY, col1W, tableH);
+    ctx.strokeRect(col2StartX, startY, col1W, tableH);
+
+    ctx.beginPath();
+    ctx.moveTo(startX, startY + headerH);
+    ctx.lineTo(startX + col1W, startY + headerH);
+    ctx.moveTo(col2StartX, startY + headerH);
+    ctx.lineTo(col2StartX + col1W, startY + headerH);
+    ctx.stroke();
 
     // 7. Footer Text
     ctx.fillStyle = '#94a3b8';
