@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return 'bigV';
     }
     if (key === 'edu') {
-      return 'eduWaterSlash';
+      return 'circle';
     }
     if (key === 'humanities1') {
       return 'basic';
@@ -1390,7 +1390,7 @@ document.addEventListener('DOMContentLoaded', () => {
       bigV: '#F19EA8',       // 粉紅色
       daChuanShi: '#FDD100',  // 黃色
       boneDonation: '#F19EA8', // 骨捐沿用四弘誓願的粉紅色
-      edu: '#A6ADD6',          // 沿用原先 08-1 的藍紫色
+      edu: '#BE6C50',          // 比照 01圓形的紅棕色
       humanities1: '#0061AE',  // 藍色
       humanities2: '#0061AE',  // 藍色
       fiveContinents1: '#AF9DA8', // 灰紫色
@@ -2984,7 +2984,7 @@ document.addEventListener('DOMContentLoaded', () => {
     bigV: { hex: '#F19EA8', name: '粉紅線' },
     daChuanShi: { hex: '#FDD100', name: '亮黃線' },
     boneDonation: { hex: '#F19EA8', name: '粉紅線' },
-    edu: { hex: '#A6ADD6', name: '藍紫線' },
+    edu: { hex: '#BE6C50', name: '紅棕線' },
     humanities1: { hex: '#0061AE', name: '藍線' },
     humanities2: { hex: '#0061AE', name: '藍線' },
     fiveContinents1: { hex: '#AF9DA8', name: '灰紫線' },
@@ -3246,7 +3246,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 判斷背景色彩深淺，選擇合適的對比字色
         const isLightColor = ['#eab308', '#80CEF3', '#ACCE22', '#F19EA8', '#FDD100', '#A6ADD6', '#AF9DA8'].includes(lineColorInfo.hex);
         ctx.fillStyle = isLightColor ? '#0f172a' : '#ffffff';
-        ctx.font = "bold 25px 'Outfit', sans-serif"; // 座標字型微調再縮小 10% 至 25px
+        ctx.font = "bold 23.75px 'Outfit', sans-serif"; // 座標字型再縮小 5% 至 23.75px
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         const textInBadge = split.coordinate || split.landmark;
