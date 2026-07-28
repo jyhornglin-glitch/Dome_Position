@@ -3093,8 +3093,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    const canvasWidth = 450;
-    const canvasHeight = 750;
+    const canvasWidth = 750;
+    const canvasHeight = 450;
     const scale = 2.5;
 
     const canvas = document.createElement('canvas');
@@ -3125,79 +3125,24 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.textAlign = 'right';
     ctx.fillText(`起點：${fields.coordinate}`, canvasWidth - 22, 28);
 
-    // 4. Table Dimensions
+    // 4. Table Dimensions (9 columns x 2 rows)
     const startY = 48;
-    const endY = 722;
-    const startX = 20;
-    const endX = canvasWidth - 20;
-    const col1W = 195;
-    const col2StartX = 235;
-    const tableH = endY - startY; // 674
+    const startX = 24;
+    const cellW = 78;
+    const cellH = 186;
 
-    const headerH = 24;
-    const bodyH = tableH - headerH; // 650
-    const halfCount = Math.ceil(formations.length / 2); // 9
-    const rowH = bodyH / halfCount; // ~72.2
-
-    // 5. Table Borders and Headers
-    ctx.strokeStyle = '#cbd5e1';
-    ctx.lineWidth = 1.0;
-
-    // Draw Left Table Header background & border
-    ctx.fillStyle = '#f1f5f9';
-    ctx.fillRect(startX, startY, col1W, headerH);
-    ctx.strokeRect(startX, startY, col1W, tableH);
-    
-    // Draw Right Table Header background & border
-    ctx.fillStyle = '#f1f5f9';
-    ctx.fillRect(col2StartX, startY, col1W, tableH); // Fill header height
-    // Clear inner body background to white to avoid fill overlap, then draw stroke
-    ctx.fillStyle = '#ffffff';
-    ctx.fillRect(col2StartX, startY + headerH, col1W, bodyH);
-    ctx.fillStyle = '#f1f5f9';
-    ctx.fillRect(col2StartX, startY, col1W, headerH);
-    ctx.strokeRect(col2StartX, startY, col1W, tableH);
-
-    // Draw table header horizontal lines
-    ctx.beginPath();
-    ctx.moveTo(startX, startY + headerH);
-    ctx.lineTo(startX + col1W, startY + headerH);
-    ctx.moveTo(col2StartX, startY + headerH);
-    ctx.lineTo(col2StartX + col1W, startY + headerH);
-    ctx.stroke();
-
-    // Table Header Texts
-    ctx.fillStyle = '#334155';
-    ctx.font = "bold 9.5px 'Noto Sans TC', sans-serif";
-    ctx.textBaseline = 'middle';
-    ctx.textAlign = 'left';
-    ctx.fillText(" 步驟 1 - 9 (定位資訊 / 方向)", startX + 6, startY + headerH / 2);
-    ctx.fillText(" 步驟 10 - 18 (定位資訊 / 方向)", col2StartX + 6, startY + headerH / 2);
-
-    // 6. Draw Table Rows (Double Column)
+    // 5. Draw Table Rows & Columns
     for (let idx = 0; idx < formations.length; idx++) {
-      const isRightCol = idx >= halfCount;
-      const colIdx = isRightCol ? idx - halfCount : idx;
+      const rowIdx = idx < 9 ? 0 : 1;
+      const colIdx = idx % 9;
       
-      const colStartX = isRightCol ? col2StartX : startX;
-      const rY = startY + headerH + colIdx * rowH;
-
-      // Draw row bottom line
-      if (colIdx < halfCount - 1) {
-        ctx.strokeStyle = '#cbd5e1';
-        ctx.lineWidth = 0.5;
-        ctx.beginPath();
-        ctx.moveTo(colStartX, rY + rowH);
-        ctx.lineTo(colStartX + col1W, rY + rowH);
-        ctx.stroke();
-      }
-
-      // 三欄寬度分配
-      const colW1 = 30; // 第一欄寬度
-      const badgeH = rowH * 0.95; // 色塊高度調整為儲存格高度的 95%
-      const badgeW = badgeH * 1.5; // 色塊寬度為高度的 1.5 倍 (長方形)
-      const colW3 = badgeW; // 第三欄寬度
-      const colW2 = col1W - colW1 - colW3; // 第二欄寬度
+      const cellStartX = startX + colIdx * cellW;
+      const cellStartY = startY + rowIdx * cellH;
+      
+      // Draw grid cell border
+      ctx.strokeStyle = '#cbd5e1';
+      ctx.lineWidth = 1.0;
+      ctx.strokeRect(cellStartX, cellStartY, cellW, cellH);
 
       const f = formations[idx];
       const rawCoord = getFormationCoordStr(performer, f.key) || '無';
@@ -3206,78 +3151,96 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const lineColorInfo = FORMATION_COLORS[f.key] || { hex: '#d97706', name: '黃線' };
 
-      // --- 第一欄：定位名稱，直排（頂部為步驟編號） ---
+      // --- 第一部分：步驟編號與橫排定點名稱 (放大 20%，但限制不超過儲存格寬度) ---
       ctx.fillStyle = '#0f172a';
       ctx.textAlign = 'center';
-      ctx.textBaseline = 'top';
+      ctx.textBaseline = 'middle';
       
-      // 1. 步驟編號 (橫排在第一欄的頂部)
-      ctx.font = "bold 10px 'Outfit', sans-serif";
-      ctx.fillText(idx + 1, colStartX + colW1 / 2, rY + 8);
-
-      // 2. 定位名稱 (直排)
+      const stepNumStr = String(idx + 1).padStart(2, '0');
       const fLabel = f.label || f.name.replace(/\(\w+\)/, '');
-      drawCanvasVerticalText(ctx, fLabel, colStartX + colW1 / 2, rY + 20, rowH - 26, 12);
+      const fullText = `${stepNumStr}. ${fLabel}`;
+      
+      let fontSize = 15; // 最大起步字型 (放大 20%)
+      const maxTextWidth = cellW - 8; // 70px (保留左右各 4px 的安全距)
+      
+      ctx.font = `bold ${fontSize}px 'Noto Sans TC', sans-serif`;
+      while (ctx.measureText(fullText).width > maxTextWidth && fontSize > 9) {
+        fontSize -= 0.5;
+        ctx.font = `bold ${fontSize}px 'Noto Sans TC', sans-serif`;
+      }
+      ctx.fillText(fullText, cellStartX + cellW / 2, cellStartY + 22);
 
-      // --- 第二欄：專屬地標圖形 ---
+      // --- 第二部分：專屬地標圖形 (居中，y 起點移至 38) ---
       const stickerImg = stickerImages[f.key];
       if (stickerImg) {
-        const stickerSize = rowH * 0.95; // 地標圖形直徑為儲存格高度的 95%
-        const stickerCenterX = colStartX + colW1 + colW2 / 2;
-        const stickerCenterY = rY + rowH / 2;
+        const stickerSize = 50;
         ctx.drawImage(
           stickerImg, 
-          stickerCenterX - stickerSize / 2, 
-          stickerCenterY - stickerSize / 2, 
+          cellStartX + (cellW - stickerSize) / 2, 
+          cellStartY + 38, 
           stickerSize, 
           stickerSize
         );
       }
 
-      // --- 第三欄：指引線色塊及座標值（圓角長方形，高度為 95% 高度，寬度為 1.5 倍高度） ---
-      const badgeX = colStartX + col1W - badgeW;
-      const badgeY = rY + (rowH - badgeH) / 2; // 垂直置中
+      // --- 第三部分：指引線色塊及座標值（高度放大 100% 至 84，y 起點移至 92） ---
+      const badgeW = 54;
+      const badgeH = 84;
+      const badgeX = cellStartX + (cellW - badgeW) / 2;
+      const badgeY = cellStartY + 92;
 
       if (rawCoord !== '無' && rawCoord !== '-') {
         // 繪製指引線圓角長方形色塊
         ctx.fillStyle = lineColorInfo.hex;
-        drawCanvasRoundRect(ctx, badgeX, badgeY, badgeW, badgeH, 6, true, false);
+        drawCanvasRoundRect(ctx, badgeX, badgeY, badgeW, badgeH, 5, true, false);
 
         // 判斷背景色彩深淺，選擇合適的對比字色
         const isLightColor = ['#eab308', '#80CEF3', '#ACCE22', '#F19EA8', '#FDD100', '#A6ADD6', '#AF9DA8'].includes(lineColorInfo.hex);
         ctx.fillStyle = isLightColor ? '#0f172a' : '#ffffff';
-        ctx.font = "bold 23.75px 'Outfit', sans-serif"; // 座標字型再縮小 5% 至 23.75px
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        const textInBadge = split.coordinate || split.landmark;
-        ctx.fillText(textInBadge, badgeX + badgeW / 2, badgeY + badgeH / 2 + 0.5);
+        
+        const textInBadge = split.coordinate || split.landmark || '無';
+        const parts = textInBadge.split('-');
+        if (parts.length === 2) {
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          
+          // 上排數字 (字型放大至 27px)
+          ctx.font = "bold 27px 'Outfit', sans-serif";
+          ctx.fillText(parts[0].padStart(2, '0'), badgeX + badgeW / 2, badgeY + 22);
+          
+          // 中間分隔線 (加粗至 1.5px)
+          ctx.strokeStyle = isLightColor ? 'rgba(15, 23, 42, 0.25)' : 'rgba(255, 255, 255, 0.35)';
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.moveTo(badgeX + 6, badgeY + badgeH / 2);
+          ctx.lineTo(badgeX + badgeW - 6, badgeY + badgeH / 2);
+          ctx.stroke();
+          
+          // 下排數字 (字型放大至 27px)
+          ctx.fillText(parts[1].padStart(2, '0'), badgeX + badgeW / 2, badgeY + 62);
+        } else {
+          // 不含 "-" 時置中顯示 (字型放大)
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.font = (textInBadge === '無') 
+            ? "bold 24px 'Noto Sans TC', sans-serif" 
+            : "bold 20px 'Noto Sans TC', sans-serif";
+          ctx.fillText(textInBadge, badgeX + badgeW / 2, badgeY + badgeH / 2);
+        }
       } else {
-        // 沒有座標時繪製灰色圓角長方形色塊，顯示「無」
+        // 沒有座標時繪製灰色圓角長方形色塊，顯示「無」 (字型放大至 24px)
         ctx.fillStyle = '#f1f5f9';
-        drawCanvasRoundRect(ctx, badgeX, badgeY, badgeW, badgeH, 6, true, false);
+        drawCanvasRoundRect(ctx, badgeX, badgeY, badgeW, badgeH, 5, true, false);
         
         ctx.fillStyle = '#94a3b8';
-        ctx.font = "bold 16px 'Noto Sans TC', sans-serif";
+        ctx.font = "bold 24px 'Noto Sans TC', sans-serif";
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText('無', badgeX + badgeW / 2, badgeY + badgeH / 2 + 0.5);
+        ctx.fillText('無', badgeX + badgeW / 2, badgeY + badgeH / 2);
       }
     }
 
-    // 6.5 重新繪製表格外框與表頭線（確保色塊不會遮擋住邊框）
-    ctx.strokeStyle = '#cbd5e1';
-    ctx.lineWidth = 1.0;
-    ctx.strokeRect(startX, startY, col1W, tableH);
-    ctx.strokeRect(col2StartX, startY, col1W, tableH);
-
-    ctx.beginPath();
-    ctx.moveTo(startX, startY + headerH);
-    ctx.lineTo(startX + col1W, startY + headerH);
-    ctx.moveTo(col2StartX, startY + headerH);
-    ctx.lineTo(col2StartX + col1W, startY + headerH);
-    ctx.stroke();
-
-    // 7. Footer Text
+    // 6. Footer Text
     ctx.fillStyle = '#94a3b8';
     ctx.font = "8px 'Noto Sans TC', sans-serif";
     ctx.textAlign = 'center';
