@@ -1,6 +1,16 @@
 // Pocket Slip Card Hints Database — 自動由 import_card_hints.py 產生，請勿手動修改
 const CARD_HINTS_DATA = {
-  "basic": [],
+  "basic": [
+    {
+      "title": "【基本】",
+      "details": [
+        {
+          "type": "text",
+          "content": "進場後面向甲舞臺45度"
+        }
+      ]
+    }
+  ],
   "circle": [
     {
       "title": "【序】：面甲舞臺圓弧線",
@@ -50,15 +60,11 @@ const CARD_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "OS：生老病死，實在「苦不堪言」。(合十回正)"
+          "content": "OS：生老病死，實在「苦不堪言」。(合十轉面向法師之圓弧線)"
         },
         {
           "type": "text",
-          "content": "「北門前」(轉面向法師之圓弧線)竹林間 修行道人相莊嚴"
-        },
-        {
-          "type": "text",
-          "content": "「夜深人靜」(轉面向圓心，腳尖對線)離宮殿 不悟真理誓不還"
+          "content": "「夜深人靜」(轉面向圓心，腳尖對線)離宮殿"
         },
         {
           "type": "text",
@@ -86,11 +92,7 @@ const CARD_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "1.演繹鳩摩羅什換成行願："
-        },
-        {
-          "type": "text",
-          "content": "五百船先壓縮在第三、二、一階、平地。"
+          "content": "1.演繹鳩摩羅什換成行願：五百船先壓縮在第三、二、一階、平地。"
         },
         {
           "type": "text",
@@ -102,11 +104,7 @@ const CARD_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "3.寧向西方一步死，不朝東土半步生，「西取佛法，佛法永傳」"
-        },
-        {
-          "type": "text",
-          "content": "→外側斜浪腳尖對線面向乙舞臺。內側直線45度面向乙舞臺圓心。"
+          "content": "3.寧向西方一步死，不朝東土半步生，「西取佛法，佛法永傳」→外側斜浪腳尖對線面向乙舞臺。內側直線45度面向乙舞臺圓心。"
         },
         {
           "type": "text",
@@ -207,15 +205,7 @@ const CARD_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "間奏轉向→"
-        },
-        {
-          "type": "text",
-          "content": "非LOGO：45度面向法師"
-        },
-        {
-          "type": "text",
-          "content": "LOGO腳尖對線面乙舞臺圓心"
+          "content": "間奏轉向→非LOGO：45度面向法師；LOGO腳尖對線面乙舞臺圓心"
         }
       ]
     }
@@ -370,7 +360,7 @@ const CARD_HINTS_DATA = {
       ]
     },
     {
-      "title": "【誓願將心比心享】",
+      "title": "【誓願將心比心想】 OS：如果教育能夠做到「尊師重道」→轉",
       "details": [
         {
           "type": "text",
@@ -446,21 +436,15 @@ const CARD_HINTS_DATA = {
   "humanities1": [
     {
       "title": "【慈誠隊歌】 台下朝法師45度",
-      "details": [
-        {
-          "type": "text",
-          "content": "面法師45度"
-        }
-      ]
+      "details": []
     },
     {
-      "title": "【跪羊圖】 (三日天專有)",
-      "details": [
-        {
-          "type": "text",
-          "content": "面法師45度"
-        }
-      ]
+      "title": "【父母恩重難報經-因緣】 面法師45度",
+      "details": []
+    },
+    {
+      "title": "【跪羊圖】 面法師45度",
+      "details": []
     }
   ],
   "humanities2": [
@@ -469,25 +453,16 @@ const CARD_HINTS_DATA = {
       "details": []
     },
     {
-      "title": "【天空破了洞】",
-      "details": [
-        {
-          "type": "text",
-          "content": "「啊~」從甲舞臺右後轉面向主機板箭頭方向"
-        }
-      ]
+      "title": "【天空破了洞】 「啊~」從甲舞臺右後轉面向主機板箭頭方向",
+      "details": []
     },
     {
       "title": "【法譬如水】 面向主機板箭頭方向",
       "details": []
     },
     {
-      "title": "【代謝不住】",
+      "title": "【代謝不住】 「佛轉法輪」合掌",
       "details": [
-        {
-          "type": "text",
-          "content": "「佛轉法輪」合掌"
-        },
         {
           "type": "text",
           "content": "「四真諦」右後轉面向主機板箭頭方向"
