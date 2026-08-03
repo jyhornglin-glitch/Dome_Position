@@ -124,12 +124,139 @@ document.addEventListener('DOMContentLoaded', () => {
     { key: 'flyingApsaras', name: '11飛天', label: '飛天' }
   ];
 
+  function shouldKeepSegment(segment, category) {
+    const isBlue = category.includes('藍');
+    const isWhite = category.includes('白');
+    const isA = category.includes('A') || category.includes('Ａ');
+    const isB = category.includes('B') || category.includes('Ｂ');
+
+    const hasA = /([AaＡａ])/.test(segment);
+    const hasB = /([BbＢｂ])/.test(segment);
+    const hasWhite = segment.includes('白');
+    const hasBlue = segment.includes('藍');
+
+    // 1. 顏色過濾
+    if (hasBlue && !hasWhite && isWhite) {
+      return false; // 表演者是白衣，但這段只有藍衣動作，濾掉
+    }
+    if (hasWhite && !hasBlue && isBlue) {
+      return false; // 表演者是藍衣，但這段只有白衣動作，濾掉
+    }
+
+    // 2. A/B 組別過濾
+    if (hasA && !hasB && isB) {
+      return false; // 表演者是 B 組，但這段只提到 A 組，濾掉
+    }
+    if (hasB && !hasA && isA) {
+      return false; // 表演者是 A 組，但這段只提到 B 組，濾掉
+    }
+
+    return true;
+  }
+
+  function filterActionString(text, category) {
+    if (!text) return '';
+    if (!text.includes('白') && !text.includes('藍') && !/([AaBbＡａＢｂ])/.test(text)) {
+      return text;
+    }
+
+    // 輔助函式：清理前綴，如 "白衣："、"藍："、"A白：" 等
+    function cleanPrefix(str) {
+      return str.replace(/^(A白|B白|A藍|B藍|[AaBbＡａＢｂ]?[白藍]衣?)\s*[:：]\s*/, '');
+    }
+
+    // 輔助函式：處理一個包含多個子句的區段（例如用分號或逗號隔開的內容）
+    function processSegmentGroup(groupText, separator) {
+      const parts = groupText.split(separator);
+      const kept = [];
+      parts.forEach(part => {
+        const trimmed = part.trim();
+        if (!trimmed) return;
+        if (shouldKeepSegment(trimmed, category)) {
+          kept.push(cleanPrefix(trimmed));
+        }
+      });
+      // 根據原分隔符拼回
+      const sepStr = separator.source && separator.source.includes(';') ? '；' : '，';
+      return kept.join(sepStr); 
+    }
+
+    // 輔助函式：處理單一無括號的字串
+    function processStringWithoutParentheses(str) {
+      if (str.includes('；') || str.includes(';')) {
+        return processSegmentGroup(str, /[;；]/);
+      }
+      if ((str.includes('，') || str.includes(',')) && str.includes('白') && str.includes('藍')) {
+        return processSegmentGroup(str, /[，,]/);
+      }
+      if (shouldKeepSegment(str, category)) {
+        return cleanPrefix(str);
+      }
+      return '';
+    }
+
+    // 1. 先處理括號：找出所有括號並替換
+    let result = text;
+    const parenRegex = /(\(([^)]+)\)|（([^）]+)）)/g;
+    
+    result = result.replace(parenRegex, (match, p1, p2, p3) => {
+      const innerContent = p2 || p3 || '';
+      const filteredInner = processStringWithoutParentheses(innerContent);
+      if (!filteredInner.trim()) {
+        return ''; // 如果過濾後沒內容，拿掉整個括號
+      }
+      if (match.startsWith('（')) {
+        return `（${filteredInner}）`;
+      } else {
+        return `(${filteredInner})`;
+      }
+    });
+
+    // 2. 處理括號之外的主句（或是帶有括號的整個結果）
+    result = processStringWithoutParentheses(result);
+
+    return result.trim().replace(/^；|；$/g, '').trim();
+  }
+
+  function filterHintsDataByCategory(data, category) {
+    if (!data || !Array.isArray(data)) return [];
+    const copied = JSON.parse(JSON.stringify(data));
+    
+    return copied.map(item => {
+      // 1. 過濾標題
+      item.title = filterActionString(item.title, category);
+      
+      // 2. 過濾細節段落
+      item.details = item.details.map(detail => {
+        if (detail.type === 'text') {
+          detail.content = filterActionString(detail.content, category);
+        }
+        return detail;
+      }).filter(detail => {
+        if (detail.type === 'text') {
+          return detail.content.trim() !== '';
+        }
+        return true;
+      });
+      
+      return item;
+    }).filter(item => {
+      const hasTitle = item.title && item.title.trim() !== '';
+      const hasDetails = item.details && item.details.length > 0;
+      return hasTitle || hasDetails;
+    });
+  }
+
   function getActionHintsForPerformer(performer, key) {
-    return (typeof ACTION_HINTS_DATA !== 'undefined' && ACTION_HINTS_DATA[key]) || [];
+    const rawData = (typeof ACTION_HINTS_DATA !== 'undefined' && ACTION_HINTS_DATA[key]) || [];
+    if (!performer || !performer.category) return rawData;
+    return filterHintsDataByCategory(rawData, performer.category);
   }
 
   function getCardHintsForPerformer(performer, key) {
-    return (typeof CARD_HINTS_DATA !== 'undefined' && CARD_HINTS_DATA[key]) || [];
+    const rawData = (typeof CARD_HINTS_DATA !== 'undefined' && CARD_HINTS_DATA[key]) || [];
+    if (!performer || !performer.category) return rawData;
+    return filterHintsDataByCategory(rawData, performer.category);
   }
 
   // Get coordinate and name from performer record.
@@ -2218,7 +2345,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Helper to create a new canvas page with title, metadata, and table header
   function createPageCanvas(titleText, metadataText) {
-    const scale = 2.5; // High resolution scale factor for 300+ DPI crisp rendering
+    const scale = 1.5; // High resolution scale factor for 300+ DPI crisp rendering
     const canvas = document.createElement('canvas');
     canvas.width = Math.round(1200 * scale);
     canvas.height = Math.round(1697 * scale);
@@ -3036,6 +3163,9 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.restore();
   }
 
+
+
+  // Generate Single Position Card Canvas for Performer (Business Card size: 450x750, portrait, no step count, combined coordinate & color)
   // Helper to draw vertical text on Canvas with automatic font resizing and bracket rotation
   function drawCanvasVerticalText(ctx, text, centerX, startY, maxH, baseFontSize) {
     let fontSize = baseFontSize;
@@ -3093,8 +3223,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    const canvasWidth = 750;
-    const canvasHeight = 450;
+    const canvasWidth = 450;
+    const canvasHeight = 750;
     const scale = 2.5;
 
     const canvas = document.createElement('canvas');
@@ -3125,24 +3255,79 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.textAlign = 'right';
     ctx.fillText(`起點：${fields.coordinate}`, canvasWidth - 22, 28);
 
-    // 4. Table Dimensions (9 columns x 2 rows)
+    // 4. Table Dimensions
     const startY = 48;
-    const startX = 24;
-    const cellW = 78;
-    const cellH = 186;
+    const endY = 722;
+    const startX = 20;
+    const endX = canvasWidth - 20;
+    const col1W = 195;
+    const col2StartX = 235;
+    const tableH = endY - startY; // 674
 
-    // 5. Draw Table Rows & Columns
+    const headerH = 24;
+    const bodyH = tableH - headerH; // 650
+    const halfCount = Math.ceil(formations.length / 2); // 9
+    const rowH = bodyH / halfCount; // ~72.2
+
+    // 5. Table Borders and Headers
+    ctx.strokeStyle = '#cbd5e1';
+    ctx.lineWidth = 1.0;
+
+    // Draw Left Table Header background & border
+    ctx.fillStyle = '#f1f5f9';
+    ctx.fillRect(startX, startY, col1W, headerH);
+    ctx.strokeRect(startX, startY, col1W, tableH);
+    
+    // Draw Right Table Header background & border
+    ctx.fillStyle = '#f1f5f9';
+    ctx.fillRect(col2StartX, startY, col1W, tableH); // Fill header height
+    // Clear inner body background to white to avoid fill overlap, then draw stroke
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(col2StartX, startY + headerH, col1W, bodyH);
+    ctx.fillStyle = '#f1f5f9';
+    ctx.fillRect(col2StartX, startY, col1W, headerH);
+    ctx.strokeRect(col2StartX, startY, col1W, tableH);
+
+    // Draw table header horizontal lines
+    ctx.beginPath();
+    ctx.moveTo(startX, startY + headerH);
+    ctx.lineTo(startX + col1W, startY + headerH);
+    ctx.moveTo(col2StartX, startY + headerH);
+    ctx.lineTo(col2StartX + col1W, startY + headerH);
+    ctx.stroke();
+
+    // Table Header Texts
+    ctx.fillStyle = '#334155';
+    ctx.font = "bold 9.5px 'Noto Sans TC', sans-serif";
+    ctx.textBaseline = 'middle';
+    ctx.textAlign = 'left';
+    ctx.fillText(" 步驟 1 - 9 (定位資訊 / 方向)", startX + 6, startY + headerH / 2);
+    ctx.fillText(" 步驟 10 - 18 (定位資訊 / 方向)", col2StartX + 6, startY + headerH / 2);
+
+    // 6. Draw Table Rows (Double Column)
     for (let idx = 0; idx < formations.length; idx++) {
-      const rowIdx = idx < 9 ? 0 : 1;
-      const colIdx = idx % 9;
+      const isRightCol = idx >= halfCount;
+      const colIdx = isRightCol ? idx - halfCount : idx;
       
-      const cellStartX = startX + colIdx * cellW;
-      const cellStartY = startY + rowIdx * cellH;
-      
-      // Draw grid cell border
-      ctx.strokeStyle = '#cbd5e1';
-      ctx.lineWidth = 1.0;
-      ctx.strokeRect(cellStartX, cellStartY, cellW, cellH);
+      const colStartX = isRightCol ? col2StartX : startX;
+      const rY = startY + headerH + colIdx * rowH;
+
+      // Draw row bottom line
+      if (colIdx < halfCount - 1) {
+        ctx.strokeStyle = '#cbd5e1';
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(colStartX, rY + rowH);
+        ctx.lineTo(colStartX + col1W, rY + rowH);
+        ctx.stroke();
+      }
+
+      // 三欄寬度分配
+      const colW1 = 30; // 第一欄寬度
+      const badgeH = rowH * 0.95; // 色塊高度調整為儲存格高度的 95%
+      const badgeW = badgeH * 1.5; // 色塊寬度為高度的 1.5 倍 (長方形)
+      const colW3 = badgeW; // 第三欄寬度
+      const colW2 = col1W - colW1 - colW3; // 第二欄寬度
 
       const f = formations[idx];
       const rawCoord = getFormationCoordStr(performer, f.key) || '無';
@@ -3151,96 +3336,90 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const lineColorInfo = FORMATION_COLORS[f.key] || { hex: '#d97706', name: '黃線' };
 
-      // --- 第一部分：步驟編號與橫排定點名稱 (放大 20%，但限制不超過儲存格寬度) ---
+      // --- 第一欄：定位名稱，直排（頂部為步驟編號） ---
       ctx.fillStyle = '#0f172a';
       ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
+      ctx.textBaseline = 'top';
       
-      const stepNumStr = String(idx + 1).padStart(2, '0');
-      const fLabel = f.label || f.name.replace(/\(\w+\)/, '');
-      const fullText = `${stepNumStr}. ${fLabel}`;
-      
-      let fontSize = 15; // 最大起步字型 (放大 20%)
-      const maxTextWidth = cellW - 8; // 70px (保留左右各 4px 的安全距)
-      
-      ctx.font = `bold ${fontSize}px 'Noto Sans TC', sans-serif`;
-      while (ctx.measureText(fullText).width > maxTextWidth && fontSize > 9) {
-        fontSize -= 0.5;
-        ctx.font = `bold ${fontSize}px 'Noto Sans TC', sans-serif`;
-      }
-      ctx.fillText(fullText, cellStartX + cellW / 2, cellStartY + 22);
+      // 1. 步驟編號 (橫排在第一欄的頂部)
+      ctx.font = "bold 10px 'Outfit', sans-serif";
+      ctx.fillText(idx + 1, colStartX + colW1 / 2, rY + 8);
 
-      // --- 第二部分：專屬地標圖形 (居中，y 起點移至 38) ---
+      // 2. 定位名稱 (直排)
+      const fLabel = f.label || f.name.replace(/\(\w+\)/, '');
+      drawCanvasVerticalText(ctx, fLabel, colStartX + colW1 / 2, rY + 20, rowH - 26, 16);
+
+      // --- 第二欄：專屬地標圖形 ---
       const stickerImg = stickerImages[f.key];
       if (stickerImg) {
-        const stickerSize = 50;
+        const stickerSize = rowH * 0.95; // 地標圖形直徑為儲存格高度的 95%
+        const stickerCenterX = colStartX + colW1 + colW2 / 2;
+        const stickerCenterY = rY + rowH / 2;
         ctx.drawImage(
           stickerImg, 
-          cellStartX + (cellW - stickerSize) / 2, 
-          cellStartY + 38, 
+          stickerCenterX - stickerSize / 2, 
+          stickerCenterY - stickerSize / 2, 
           stickerSize, 
           stickerSize
         );
       }
 
-      // --- 第三部分：指引線色塊及座標值（高度放大 100% 至 84，y 起點移至 92） ---
-      const badgeW = 54;
-      const badgeH = 84;
-      const badgeX = cellStartX + (cellW - badgeW) / 2;
-      const badgeY = cellStartY + 92;
+      // --- 第三欄：指引線色塊及座標值（圓角長方形，高度為 95% 高度，寬度為 1.5 倍高度） ---
+      const badgeX = colStartX + col1W - badgeW;
+      const badgeY = rY + (rowH - badgeH) / 2; // 垂直置中
 
       if (rawCoord !== '無' && rawCoord !== '-') {
         // 繪製指引線圓角長方形色塊
         ctx.fillStyle = lineColorInfo.hex;
-        drawCanvasRoundRect(ctx, badgeX, badgeY, badgeW, badgeH, 5, true, false);
+        drawCanvasRoundRect(ctx, badgeX, badgeY, badgeW, badgeH, 6, true, false);
 
         // 判斷背景色彩深淺，選擇合適的對比字色
         const isLightColor = ['#eab308', '#80CEF3', '#ACCE22', '#F19EA8', '#FDD100', '#A6ADD6', '#AF9DA8'].includes(lineColorInfo.hex);
         ctx.fillStyle = isLightColor ? '#0f172a' : '#ffffff';
         
-        const textInBadge = split.coordinate || split.landmark || '無';
-        const parts = textInBadge.split('-');
-        if (parts.length === 2) {
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          
-          // 上排數字 (字型放大至 27px)
-          ctx.font = "bold 27px 'Outfit', sans-serif";
-          ctx.fillText(parts[0].padStart(2, '0'), badgeX + badgeW / 2, badgeY + 22);
-          
-          // 中間分隔線 (加粗至 1.5px)
-          ctx.strokeStyle = isLightColor ? 'rgba(15, 23, 42, 0.25)' : 'rgba(255, 255, 255, 0.35)';
-          ctx.lineWidth = 1.5;
-          ctx.beginPath();
-          ctx.moveTo(badgeX + 6, badgeY + badgeH / 2);
-          ctx.lineTo(badgeX + badgeW - 6, badgeY + badgeH / 2);
-          ctx.stroke();
-          
-          // 下排數字 (字型放大至 27px)
-          ctx.fillText(parts[1].padStart(2, '0'), badgeX + badgeW / 2, badgeY + 62);
-        } else {
-          // 不含 "-" 時置中顯示 (字型放大)
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.font = (textInBadge === '無') 
-            ? "bold 24px 'Noto Sans TC', sans-serif" 
-            : "bold 20px 'Noto Sans TC', sans-serif";
-          ctx.fillText(textInBadge, badgeX + badgeW / 2, badgeY + badgeH / 2);
+        const textInBadge = split.coordinate || split.landmark;
+
+        // 自適應計算字型大小，讓短字元/整數數字能夠盡量放大 (起步為 36px)
+        let badgeFontSize = 36;
+        ctx.font = `bold ${badgeFontSize}px 'Outfit', sans-serif`;
+        const maxBadgeTextWidth = badgeW - 10; // 預留左右安全距
+        const maxBadgeTextHeight = badgeH - 8; // 預留上下安全距
+
+        while ((ctx.measureText(textInBadge).width > maxBadgeTextWidth || badgeFontSize > maxBadgeTextHeight) && badgeFontSize > 14) {
+          badgeFontSize -= 0.5;
+          ctx.font = `bold ${badgeFontSize}px 'Outfit', sans-serif`;
         }
-      } else {
-        // 沒有座標時繪製灰色圓角長方形色塊，顯示「無」 (字型放大至 24px)
-        ctx.fillStyle = '#f1f5f9';
-        drawCanvasRoundRect(ctx, badgeX, badgeY, badgeW, badgeH, 5, true, false);
-        
-        ctx.fillStyle = '#94a3b8';
-        ctx.font = "bold 24px 'Noto Sans TC', sans-serif";
+
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText('無', badgeX + badgeW / 2, badgeY + badgeH / 2);
+        ctx.fillText(textInBadge, badgeX + badgeW / 2, badgeY + badgeH / 2 + 0.5);
+      } else {
+        // 沒有座標時繪製灰色圓角長方形色塊，顯示「無」
+        ctx.fillStyle = '#f1f5f9';
+        drawCanvasRoundRect(ctx, badgeX, badgeY, badgeW, badgeH, 6, true, false);
+        
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = "bold 16px 'Noto Sans TC', sans-serif";
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('無', badgeX + badgeW / 2, badgeY + badgeH / 2 + 0.5);
       }
     }
 
-    // 6. Footer Text
+    // 6.5 重新繪製表格外框與表頭線（確保色塊不會遮擋住邊框）
+    ctx.strokeStyle = '#cbd5e1';
+    ctx.lineWidth = 1.0;
+    ctx.strokeRect(startX, startY, col1W, tableH);
+    ctx.strokeRect(col2StartX, startY, col1W, tableH);
+
+    ctx.beginPath();
+    ctx.moveTo(startX, startY + headerH);
+    ctx.lineTo(startX + col1W, startY + headerH);
+    ctx.moveTo(col2StartX, startY + headerH);
+    ctx.lineTo(col2StartX + col1W, startY + headerH);
+    ctx.stroke();
+
+    // 7. Footer Text
     ctx.fillStyle = '#94a3b8';
     ctx.font = "8px 'Noto Sans TC', sans-serif";
     ctx.textAlign = 'center';

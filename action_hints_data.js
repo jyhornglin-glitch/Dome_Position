@@ -222,11 +222,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "OS：生老病死，實在「苦不堪言」。(合十回正)"
+          "content": "OS：生老病死，實在「苦不堪言」。(合十轉面向法師之圓弧線)"
         },
         {
           "type": "text",
-          "content": "「北門前」(轉面向法師之圓弧線)竹林間 修行道人相莊嚴"
+          "content": "北門前竹林間 修行道人相莊嚴"
         },
         {
           "type": "text",
@@ -826,7 +826,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_40.png"
+          "src": "images/action_hints/hint_40.jpg"
         }
       ]
     },
@@ -989,7 +989,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_46.jpg"
+          "src": "images/action_hints/hint_46.png"
         }
       ]
     },
@@ -1280,6 +1280,10 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
+          "content": "OS：向大體老師致敬：合掌"
+        },
+        {
+          "type": "text",
           "content": "大慈大悲無量義"
         },
         {
@@ -1296,7 +1300,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_57.png"
+          "src": "images/action_hints/hint_57.jpg"
         }
       ]
     },
@@ -1321,6 +1325,10 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
+          "content": "OS：如果學生能做到「尊師重道」：開綠燈，轉向法師"
+        },
+        {
+          "type": "text",
           "content": "誓願將心比心想"
         },
         {
@@ -1337,11 +1345,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_59.png"
+          "src": "images/action_hints/hint_59.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_60.png"
+          "src": "images/action_hints/hint_60.jpg"
         }
       ]
     },
@@ -1657,7 +1665,7 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "27.父母恩重難報經(六日場專有)",
+      "title": "27.父母恩重難報經",
       "details": [
         {
           "type": "text",
@@ -1713,7 +1721,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_76.png"
+          "src": "images/action_hints/hint_76.jpg"
         },
         {
           "type": "text",
@@ -1757,7 +1765,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_77.png"
+          "src": "images/action_hints/hint_77.jpg"
         }
       ]
     }
@@ -1849,7 +1857,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_81.png"
+          "src": "images/action_hints/hint_81.jpg"
         }
       ]
     },
@@ -2054,7 +2062,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_88.png"
+          "src": "images/action_hints/hint_88.jpg"
         }
       ]
     }
