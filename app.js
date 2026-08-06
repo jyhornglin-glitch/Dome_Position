@@ -218,18 +218,62 @@ document.addEventListener('DOMContentLoaded', () => {
     return result.trim().replace(/^；|；$/g, '').trim();
   }
 
-  function filterHintsDataByCategory(data, category) {
+  function filterHintsDataByCategory(data, performer, key) {
     if (!data || !Array.isArray(data)) return [];
+    const category = performer.category;
+    
+    // Parse coordinates and Y value for 東西一/二 logic
+    const coordStr = getFormationCoordStr(performer, key);
+    let yVal = null;
+    if (coordStr) {
+      const split = splitLandmarkAndCoordinate(coordStr);
+      if (split.coordinate) {
+        const numMatch = split.coordinate.match(/(-?[0-9.]+)[^0-9.-]*-(-?[0-9.]+)/);
+        if (numMatch) {
+          yVal = parseFloat(numMatch[2]);
+        }
+      }
+    }
+    
+    const isEastOrWestTeam = performer.team === '東班' || performer.team === '西班';
+    const isEastWestTwo = isEastOrWestTeam && (yVal !== null && yVal >= 23);
+    const userGroup = isEastWestTwo ? '東西二' : '東西一';
+
     const copied = JSON.parse(JSON.stringify(data));
     
     return copied.map(item => {
       // 1. 過濾標題
       item.title = filterActionString(item.title, category);
       
-      // 2. 過濾細節段落
+      // 2. 過濾細節段落 (有狀態的東西一/東西二過濾，並保留前綴字串)
+      let currentFocusGroup = null;
+      
       item.details = item.details.map(detail => {
         if (detail.type === 'text') {
-          detail.content = filterActionString(detail.content, category);
+          let content = detail.content;
+          
+          const hasOne = content.includes('東西一');
+          const hasTwo = content.includes('東西二');
+          
+          if (hasOne) {
+            currentFocusGroup = '東西一';
+          } else if (hasTwo) {
+            currentFocusGroup = '東西二';
+          }
+          
+          let keep = true;
+          if (currentFocusGroup === '東西一' && userGroup !== '東西一') {
+            keep = false;
+          } else if (currentFocusGroup === '東西二' && userGroup !== '東西二') {
+            keep = false;
+          }
+          
+          if (!keep) {
+            detail.content = '';
+          } else {
+            // 保留前綴，故直接進行原有的 category (白藍衣/AB組) 過濾
+            detail.content = filterActionString(content, category);
+          }
         }
         return detail;
       }).filter(detail => {
@@ -250,13 +294,13 @@ document.addEventListener('DOMContentLoaded', () => {
   function getActionHintsForPerformer(performer, key) {
     const rawData = (typeof ACTION_HINTS_DATA !== 'undefined' && ACTION_HINTS_DATA[key]) || [];
     if (!performer || !performer.category) return rawData;
-    return filterHintsDataByCategory(rawData, performer.category);
+    return filterHintsDataByCategory(rawData, performer, key);
   }
 
   function getCardHintsForPerformer(performer, key) {
     const rawData = (typeof CARD_HINTS_DATA !== 'undefined' && CARD_HINTS_DATA[key]) || [];
     if (!performer || !performer.category) return rawData;
-    return filterHintsDataByCategory(rawData, performer.category);
+    return filterHintsDataByCategory(rawData, performer, key);
   }
 
   // Get coordinate and name from performer record.

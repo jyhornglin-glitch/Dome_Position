@@ -81,7 +81,7 @@ const CARD_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "白：左轉；藍:右轉(兩腳夾線)"
+          "content": "白衣：左轉；藍衣:右轉(兩腳夾線)"
         }
       ]
     }
@@ -100,11 +100,11 @@ const CARD_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "2.「翻譯佛法，佛法永傳」面向不動"
+          "content": "2.「翻譯佛法，佛法永傳」不動"
         },
         {
           "type": "text",
-          "content": "3.寧向西方一步死，不朝東土半步生，「西取佛法，佛法永傳」→外側斜浪腳尖對線面向乙舞臺。內側直線45度面向乙舞臺圓心。"
+          "content": "3.「西取佛法，佛法永傳」→外側斜浪腳尖對線面向乙舞臺。內側直線45度面向乙舞臺圓心。"
         },
         {
           "type": "text",
@@ -197,15 +197,7 @@ const CARD_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "OS:怎麼幫我們想得這麼「周到」啦! →開黃燈放胸口，LOGO藍衣拿燈合掌"
-        },
-        {
-          "type": "text",
-          "content": "OS:我們是全世界「最大的家庭」啦！→雙手舉高(不用閃)"
-        },
-        {
-          "type": "text",
-          "content": "間奏轉向→非LOGO：45度面向法師；LOGO腳尖對線面乙舞臺圓心"
+          "content": "OS:我們是全世界「最大的家庭」啦！間奏轉向→非LOGO：45度面向法師；LOGO腳尖對線面乙舞臺圓心"
         }
       ]
     }
@@ -256,15 +248,15 @@ const CARD_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "蛤?三千萬還不到？不過，「萬里長城」"
+          "content": "蛤?三千萬還不到？不過，「萬里長城」→"
         },
         {
           "type": "text",
-          "content": "→白色轉向法師方向，藍色轉向甲舞臺(兩腳夾線)"
+          "content": "白衣：轉向法師方向"
         },
         {
           "type": "text",
-          "content": "也是從一塊磚開始，四、弘、誓、願！"
+          "content": "藍衣：轉向甲舞臺(兩腳夾線)"
         }
       ]
     }
@@ -275,7 +267,15 @@ const CARD_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "白衣：往法師划船；藍衣：往甲舞臺划船(兩腳夾線)"
+          "content": "「大醫王」除了拯救他們的病痛：船跑位"
+        },
+        {
+          "type": "text",
+          "content": "白衣：往法師划船"
+        },
+        {
+          "type": "text",
+          "content": "藍衣：往甲舞臺划船"
         },
         {
           "type": "text",
@@ -303,11 +303,7 @@ const CARD_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "1.「那一念」(合掌轉向：小V面法師；大V內側面甲舞臺；大V外側不轉)"
-        },
-        {
-          "type": "text",
-          "content": "救人一命，無損己身。"
+          "content": "1.「那一念」(合掌轉向：小V面法師；大V內側面甲舞臺；大V外側不轉)救人一命，無損己身。"
         },
         {
           "type": "text",
@@ -439,7 +435,7 @@ const CARD_HINTS_DATA = {
       "details": []
     },
     {
-      "title": "【父母恩重難報經-因緣】 面法師45度",
+      "title": "【父母恩重難報經-因緣】 OS「在平時」轉面法師45度",
       "details": []
     },
     {
@@ -449,25 +445,20 @@ const CARD_HINTS_DATA = {
   ],
   "humanities2": [
     {
-      "title": "【大愛讓世界亮起來】 面向主機板箭頭方向",
+      "title": "【大愛讓世界亮起來】 「為時代作見證」轉面向主機板箭頭方向，開綠燈",
       "details": []
     },
     {
-      "title": "【天空破了洞】 「啊~」從甲舞臺右後轉面向主機板箭頭方向",
+      "title": "【天空破了洞】 「啊~」從甲舞臺轉面向乙舞台方向",
       "details": []
     },
     {
-      "title": "【法譬如水】 面向主機板箭頭方向",
+      "title": "【法譬如水】 「做環保」轉面向主機板箭頭方向",
       "details": []
     },
     {
-      "title": "【代謝不住】 「佛轉法輪」合掌",
-      "details": [
-        {
-          "type": "text",
-          "content": "「四真諦」右後轉面向主機板箭頭方向"
-        }
-      ]
+      "title": "【代謝不住】 實在「有夠讚」轉箭頭方向，「佛轉法輪」合掌",
+      "details": []
     }
   ],
   "fiveContinents1": [
@@ -476,11 +467,7 @@ const CARD_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "藍衣：面乙舞臺圓心接法。"
-        },
-        {
-          "type": "text",
-          "content": "去到一切「眾生心」身體面法師45度。"
+          "content": "藍衣：面乙舞臺圓心接法。「去到一切」眾生心身體面法師45度。"
         },
         {
           "type": "text",
