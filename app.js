@@ -124,7 +124,11 @@ document.addEventListener('DOMContentLoaded', () => {
     { key: 'flyingApsaras', name: '11飛天', label: '飛天' }
   ];
 
-  function shouldKeepSegment(segment, category) {
+  function shouldKeepSegment(segment, filterCtx) {
+    const category = filterCtx.category || 'A白';
+    const team = filterCtx.team || '';
+    const userGroup = filterCtx.userGroup || '東西一';
+
     const isBlue = category.includes('藍');
     const isWhite = category.includes('白');
     const isA = category.includes('A') || category.includes('Ａ');
@@ -135,34 +139,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const hasWhite = segment.includes('白');
     const hasBlue = segment.includes('藍');
 
-    // 1. 顏色過濾
-    if (hasBlue && !hasWhite && isWhite) {
-      return false; // 表演者是白衣，但這段只有藍衣動作，濾掉
-    }
-    if (hasWhite && !hasBlue && isBlue) {
-      return false; // 表演者是藍衣，但這段只有白衣動作，濾掉
-    }
+    // 1. 顏色與組別過濾
+    if (hasBlue && !hasWhite && isWhite) return false;
+    if (hasWhite && !hasBlue && isBlue) return false;
+    if (hasA && !hasB && isB) return false;
+    if (hasB && !hasA && isA) return false;
 
-    // 2. A/B 組別過濾
-    if (hasA && !hasB && isB) {
-      return false; // 表演者是 B 組，但這段只提到 A 組，濾掉
-    }
-    if (hasB && !hasA && isA) {
-      return false; // 表演者是 A 組，但這段只提到 B 組，濾掉
-    }
+    // 2. 東西班過濾
+    const hasEast = segment.includes('東班');
+    const hasWest = segment.includes('西班');
+    if (hasEast && !hasWest && team === '西班') return false;
+    if (hasWest && !hasEast && team === '東班') return false;
+
+    // 3. 東西一二過濾
+    const hasOne = segment.includes('東西一');
+    const hasTwo = segment.includes('東西二');
+    if (hasOne && !hasTwo && userGroup === '東西二') return false;
+    if (hasTwo && !hasOne && userGroup === '東西一') return false;
 
     return true;
   }
 
-  function filterActionString(text, category) {
+  function filterActionString(text, filterCtx) {
     if (!text) return '';
-    if (!text.includes('白') && !text.includes('藍') && !/([AaBbＡａＢｂ])/.test(text)) {
+    if (!text.includes('白') && !text.includes('藍') && !/([AaBbＡａＢｂ])/.test(text) &&
+        !text.includes('東班') && !text.includes('西班') && !text.includes('東西一') && !text.includes('東西二')) {
       return text;
     }
 
-    // 輔助函式：清理前綴，如 "白衣："、"藍："、"A白：" 等
+    // 輔助函式：僅清理白藍衣與組別前綴，保留東班、西班、東西一、東西二前綴
     function cleanPrefix(str) {
-      return str.replace(/^(A白|B白|A藍|B藍|[AaBbＡａＢｂ]?[白藍]衣?)\s*[:：]\s*/, '');
+      let last = '';
+      let current = str;
+      while (current !== last) {
+        last = current;
+        current = current.replace(/^([AaBbＡａＢｂ]?[白藍]衣?)+\s*[:：]\s*/gi, '');
+      }
+      return current;
     }
 
     // 輔助函式：處理一個包含多個子句的區段（例如用分號或逗號隔開的內容）
@@ -172,11 +185,10 @@ document.addEventListener('DOMContentLoaded', () => {
       parts.forEach(part => {
         const trimmed = part.trim();
         if (!trimmed) return;
-        if (shouldKeepSegment(trimmed, category)) {
+        if (shouldKeepSegment(trimmed, filterCtx)) {
           kept.push(cleanPrefix(trimmed));
         }
       });
-      // 根據原分隔符拼回
       const sepStr = separator.source && separator.source.includes(';') ? '；' : '，';
       return kept.join(sepStr); 
     }
@@ -186,10 +198,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (str.includes('；') || str.includes(';')) {
         return processSegmentGroup(str, /[;；]/);
       }
-      if ((str.includes('，') || str.includes(',')) && str.includes('白') && str.includes('藍')) {
+      if ((str.includes('，') || str.includes(',')) && 
+          (str.includes('白') || str.includes('藍') || str.includes('東班') || str.includes('西班') || str.includes('東西一') || str.includes('東西二'))) {
         return processSegmentGroup(str, /[，,]/);
       }
-      if (shouldKeepSegment(str, category)) {
+      if (shouldKeepSegment(str, filterCtx)) {
         return cleanPrefix(str);
       }
       return '';
@@ -239,41 +252,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const isEastWestTwo = isEastOrWestTeam && (yVal !== null && yVal >= 23);
     const userGroup = isEastWestTwo ? '東西二' : '東西一';
 
+    const filterCtx = {
+      category: category || 'A白',
+      team: performer.team || '',
+      userGroup: userGroup
+    };
+
     const copied = JSON.parse(JSON.stringify(data));
     
     return copied.map(item => {
       // 1. 過濾標題
-      item.title = filterActionString(item.title, category);
+      item.title = filterActionString(item.title, filterCtx);
       
-      // 2. 過濾細節段落 (有狀態的東西一/東西二過濾，並保留前綴字串)
-      let currentFocusGroup = null;
-      
+      // 2. 過濾細節段落 (使用 filterActionString 進行東西班、東西一二之子句與前綴過濾)
       item.details = item.details.map(detail => {
         if (detail.type === 'text') {
-          let content = detail.content;
-          
-          const hasOne = content.includes('東西一');
-          const hasTwo = content.includes('東西二');
-          
-          if (hasOne) {
-            currentFocusGroup = '東西一';
-          } else if (hasTwo) {
-            currentFocusGroup = '東西二';
-          }
-          
-          let keep = true;
-          if (currentFocusGroup === '東西一' && userGroup !== '東西一') {
-            keep = false;
-          } else if (currentFocusGroup === '東西二' && userGroup !== '東西二') {
-            keep = false;
-          }
-          
-          if (!keep) {
-            detail.content = '';
-          } else {
-            // 保留前綴，故直接進行原有的 category (白藍衣/AB組) 過濾
-            detail.content = filterActionString(content, category);
-          }
+          detail.content = filterActionString(detail.content, filterCtx);
         }
         return detail;
       }).filter(detail => {
@@ -3422,21 +3416,140 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillStyle = isLightColor ? '#0f172a' : '#ffffff';
         
         const textInBadge = split.coordinate || split.landmark;
+        const parts = textInBadge.split('-');
 
-        // 自適應計算字型大小，讓短字元/整數數字能夠盡量放大 (起步為 36px)
-        let badgeFontSize = 36;
-        ctx.font = `bold ${badgeFontSize}px 'Outfit', sans-serif`;
-        const maxBadgeTextWidth = badgeW - 10; // 預留左右安全距
-        const maxBadgeTextHeight = badgeH - 8; // 預留上下安全距
+        // 1. 如果座標格式為 A-B (如 C-5, 11.6-44.8, 11-44.8)
+        if (parts.length === 2) {
+          let leftMain = parts[0];
+          let leftSub = '';
+          const leftMatch = parts[0].match(/^(.+)(\.\d+)$/);
+          if (leftMatch) {
+            leftMain = leftMatch[1];
+            leftSub = leftMatch[2];
+          }
 
-        while ((ctx.measureText(textInBadge).width > maxBadgeTextWidth || badgeFontSize > maxBadgeTextHeight) && badgeFontSize > 14) {
-          badgeFontSize -= 0.5;
-          ctx.font = `bold ${badgeFontSize}px 'Outfit', sans-serif`;
+          let rightMain = parts[1];
+          let rightSub = '';
+          const rightMatch = parts[1].match(/^(.+)(\.\d+)$/);
+          if (rightMatch) {
+            rightMain = rightMatch[1];
+            rightSub = rightMatch[2];
+          }
+
+          // 自適應計算字型大小
+          let mainFontSize = 40; // 整數主要部分起步字型 (放大至 40px)
+          ctx.font = `bold ${mainFontSize}px 'Outfit', sans-serif`;
+          let wLeftMain = ctx.measureText(leftMain).width;
+          let wRightMain = ctx.measureText(rightMain).width;
+          let wDash = ctx.measureText('-').width;
+
+          let subFontSize = Math.max(12, mainFontSize * 0.45); // 小數部分為整數的 45% 大小
+          ctx.font = `bold ${subFontSize}px 'Outfit', sans-serif`;
+          let wLeftSub = leftSub ? ctx.measureText(leftSub).width : 0;
+          let wRightSub = rightSub ? ctx.measureText(rightSub).width : 0;
+
+          const maxBadgeTextWidth = badgeW - 10; // 預留左右安全距
+          const maxBadgeTextHeight = badgeH - 8; // 預留上下安全距
+
+          // 當合併後的總寬度大於安全寬度或高度溢出時，自動等比例縮小
+          while ((wLeftMain + wLeftSub + wDash + wRightMain + wRightSub > maxBadgeTextWidth || mainFontSize > maxBadgeTextHeight) && mainFontSize > 14) {
+            mainFontSize -= 0.5;
+            subFontSize = Math.max(11, mainFontSize * 0.45);
+            
+            ctx.font = `bold ${mainFontSize}px 'Outfit', sans-serif`;
+            wLeftMain = ctx.measureText(leftMain).width;
+            wRightMain = ctx.measureText(rightMain).width;
+            wDash = ctx.measureText('-').width;
+            
+            ctx.font = `bold ${subFontSize}px 'Outfit', sans-serif`;
+            wLeftSub = leftSub ? ctx.measureText(leftSub).width : 0;
+            wRightSub = rightSub ? ctx.measureText(rightSub).width : 0;
+          }
+
+          // 計算並排後的文字整體寬度與起始 X 座標，使其在色塊中置中
+          const totalW = wLeftMain + wLeftSub + wDash + wRightMain + wRightSub;
+          const drawStartX = badgeX + (badgeW - totalW) / 2;
+          const centerY = badgeY + badgeH / 2;
+
+          // 繪製左半部整數
+          ctx.fillStyle = isLightColor ? '#0f172a' : '#ffffff';
+          ctx.font = `bold ${mainFontSize}px 'Outfit', sans-serif`;
+          ctx.textAlign = 'left';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(leftMain, drawStartX, centerY + 0.5);
+
+          // 繪製左半部小數 (右下方下標位置)
+          let currentX = drawStartX + wLeftMain;
+          if (leftSub) {
+            ctx.font = `bold ${subFontSize}px 'Outfit', sans-serif`;
+            ctx.fillText(leftSub, currentX, centerY + (mainFontSize * 0.14));
+            currentX += wLeftSub;
+          }
+
+          // 繪製連接號 "-"
+          ctx.font = `bold ${mainFontSize}px 'Outfit', sans-serif`;
+          ctx.fillText('-', currentX, centerY + 0.5);
+          currentX += wDash;
+
+          // 繪製右半部整數
+          ctx.fillText(rightMain, currentX, centerY + 0.5);
+          currentX += wRightMain;
+
+          // 繪製右半部小數 (右下方下標位置)
+          if (rightSub) {
+            ctx.font = `bold ${subFontSize}px 'Outfit', sans-serif`;
+            ctx.fillText(rightSub, currentX, centerY + (mainFontSize * 0.14));
+          }
+        } 
+        // 2. 如果只有單一數值 (如 12, 12.5, 無)
+        else {
+          let mainText = textInBadge;
+          let subText = '';
+          const match = textInBadge.match(/^(.+)(\.\d+)$/);
+          if (match) {
+            mainText = match[1];
+            subText = match[2];
+          }
+
+          // 自適應計算字型大小
+          let mainFontSize = 40; // 放大至 40px
+          ctx.font = `bold ${mainFontSize}px 'Outfit', sans-serif`;
+          let wMain = ctx.measureText(mainText).width;
+
+          let subFontSize = Math.max(12, mainFontSize * 0.45);
+          ctx.font = `bold ${subFontSize}px 'Outfit', sans-serif`;
+          let wSub = subText ? ctx.measureText(subText).width : 0;
+
+          const maxBadgeTextWidth = badgeW - 10;
+          const maxBadgeTextHeight = badgeH - 8;
+
+          while ((wMain + wSub > maxBadgeTextWidth || mainFontSize > maxBadgeTextHeight) && mainFontSize > 14) {
+            mainFontSize -= 0.5;
+            subFontSize = Math.max(11, mainFontSize * 0.45);
+            
+            ctx.font = `bold ${mainFontSize}px 'Outfit', sans-serif`;
+            wMain = ctx.measureText(mainText).width;
+            
+            if (subText) {
+              ctx.font = `bold ${subFontSize}px 'Outfit', sans-serif`;
+              wSub = ctx.measureText(subText).width;
+            }
+          }
+
+          const totalW = wMain + wSub;
+          const drawStartX = badgeX + (badgeW - totalW) / 2;
+          const centerY = badgeY + badgeH / 2;
+
+          ctx.font = `bold ${mainFontSize}px 'Outfit', sans-serif`;
+          ctx.textAlign = 'left';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(mainText, drawStartX, centerY + 0.5);
+
+          if (subText) {
+            ctx.font = `bold ${subFontSize}px 'Outfit', sans-serif`;
+            ctx.fillText(subText, drawStartX + wMain, centerY + (mainFontSize * 0.14));
+          }
         }
-
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(textInBadge, badgeX + badgeW / 2, badgeY + badgeH / 2 + 0.5);
       } else {
         // 沒有座標時繪製灰色圓角長方形色塊，顯示「無」
         ctx.fillStyle = '#f1f5f9';

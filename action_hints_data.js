@@ -222,7 +222,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "OS：生老病死，實在「苦不堪言」。(合十轉面向法師之圓弧線)"
+          "content": "OS：「生老病死」，實在苦不堪言。(合十轉面向法師之圓弧線)"
         },
         {
           "type": "text",
@@ -242,7 +242,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_6.png"
+          "src": "images/action_hints/hint_6.jpg"
         }
       ]
     },
@@ -624,7 +624,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "音效噔，在黑暗角落「點一盞燈」: 非LOGO坐"
+          "content": "音效噔，「在黑暗角落」：LOGO外框坐"
+        },
+        {
+          "type": "text",
+          "content": "「點一盞燈」: 非LOGO坐"
         },
         {
           "type": "text",
@@ -759,11 +763,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "這是我的願，你吃我的肉啃我的骨，彼此結下師徒法緣，但願將來一起為天下的苦難人付出，力行「菩薩道」→開燈；要跪的跪。"
+          "content": "這是我的願，你吃我的肉啃我的骨，彼此結下師徒法緣，但願將來一起為「天下」的苦難人付出→開燈；要跪的跪。"
         },
         {
           "type": "text",
-          "content": "音樂前奏→外圍坐，合掌。"
+          "content": "力行「菩薩道」→外圍坐，合掌。"
         },
         {
           "type": "text",
@@ -996,6 +1000,10 @@ const ACTION_HINTS_DATA = {
     {
       "title": "【大醫王曲目：無量義經．德行品】",
       "details": [
+        {
+          "type": "text",
+          "content": "OS：「大醫王」除了拯救他們的病痛→船跑位。"
+        },
         {
           "type": "text",
           "content": "我們共同的使命就是"
@@ -1280,7 +1288,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "OS：向大體老師致敬：合掌"
+          "content": "OS：向大體老師敬禮：開綠燈，合掌"
         },
         {
           "type": "text",
@@ -1374,6 +1382,10 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
+          "content": "OS:將品德向下紮根(壓縮)，融入生活教育(轉面向法師)"
+        },
+        {
+          "type": "text",
           "content": "小樹啊"
         },
         {
@@ -1395,6 +1407,10 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "成長和堅韌"
+        },
+        {
+          "type": "text",
+          "content": "OS： 你們怎麼在掃廁所啊!(馬上收)"
         },
         {
           "type": "image",
@@ -1681,6 +1697,10 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
+          "content": "OS 我們對祖先是慎終追遠，要懂得尋根，「在平時」(合掌內轉向法師)，就要好好的回報父母恩。"
+        },
+        {
+          "type": "text",
           "content": "法師對小朋友說"
         },
         {
@@ -1785,6 +1805,10 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "【曲目：大愛讓世界亮起來】"
+        },
+        {
+          "type": "text",
+          "content": "OS:為時代作見證(從甲舞台轉向自己的箭頭方向，合掌拿燈)為人類寫歷史，為慈濟留足跡，為世間傳大藏經。"
         },
         {
           "type": "text",
@@ -1914,7 +1938,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_83.png"
+          "src": "images/action_hints/hint_83.jpg"
         }
       ]
     },
@@ -1935,11 +1959,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "「佛轉」(合掌)"
+          "content": "OS:實在「有夠讚」（從甲舞台轉向箭頭方向）"
         },
         {
           "type": "text",
-          "content": "法輪「四真諦」（從甲舞台轉向箭頭方向）"
+          "content": "「佛轉」(合掌)法輪四真諦"
         },
         {
           "type": "text",
@@ -2015,7 +2039,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_85.png"
+          "src": "images/action_hints/hint_85.jpg"
         },
         {
           "type": "image",
@@ -2038,7 +2062,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_87.png"
+          "src": "images/action_hints/hint_87.jpg"
         },
         {
           "type": "text",
