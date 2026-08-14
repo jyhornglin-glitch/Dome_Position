@@ -2048,7 +2048,7 @@ const ACTION_HINTS_DATA = {
       ]
     }
   ],
-  "fiveContinents1": [
+  "gongDe1": [
     {
       "title": "32.開經書",
       "details": [
@@ -2091,8 +2091,13 @@ const ACTION_HINTS_DATA = {
       ]
     }
   ],
-  "fiveContinents2": [],
-  "flyingApsaras": []
+  "gongDe2": [],
+  "gongDe3": [],
+  "gongDe4": [],
+  "gongDe5": [],
+  "gongDe6": [],
+  "gongDe7": [],
+  "gongDe8": []
 };
 
 // Export if in node environment, otherwise make it global

@@ -103,10 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
   let GRID_SPACING = 15; // 1 coord unit = 15 pixels
   let MAX_GRID_COORD = 10;
 
-  // 18 Formations metadata
+  // 18 Formations metadata (Updated: fiveContinents and flyingApsaras replaced by gongDe1~8, total 22 steps)
   const formations = [
     { key: 'basic', name: '起點 (基本隊形)', label: '基本' },
-    { key: 'circle', name: '01圓形', label: '圓形' },
+    { key: 'circle', name: '01圓形', label: '圓形(序)' },
     { key: 'xingYuan', name: '02行願', label: '行願' },
     { key: 'miLuo', name: '03米籮', label: '米籮' },
     { key: 'jingSi', name: '04靜思家風', label: '靜思' },
@@ -119,9 +119,15 @@ document.addEventListener('DOMContentLoaded', () => {
     { key: 'edu', name: '08教育', label: '教育' },
     { key: 'humanities1', name: '09-1人文(基本隊形)', label: '人文(基本)' },
     { key: 'humanities2', name: '09-2人文(主機板)', label: '人文(主機板)' },
-    { key: 'fiveContinents1', name: '10-1五大洲', label: '五大洲1' },
-    { key: 'fiveContinents2', name: '10-2五大洲', label: '五大洲2' },
-    { key: 'flyingApsaras', name: '11飛天', label: '飛天' }
+    { key: 'gongDe1', name: '11-1功1(10-1五大洲)', label: '功1' },
+    { key: 'gongDe2', name: '11-2功2(10-2五大洲)', label: '功2' },
+    { key: 'gongDe3', name: '11-3功3(10-2五大洲)', label: '功3' },
+    { key: 'gongDe4', name: '11-4功4', label: '功4' },
+    { key: 'gongDe5', name: '11-5功5', label: '功5' },
+    { key: 'gongDe6', name: '11-6功6', label: '功6' },
+    { key: 'gongDe7', name: '11-7功7', label: '功7' },
+    { key: 'gongDe8', name: '11-8功8', label: '功8' },
+    { key: 'sixRuiXiang', name: '六瑞相', label: '六瑞相' }
   ];
 
   function shouldKeepSegment(segment, filterCtx) {
@@ -328,6 +334,52 @@ document.addEventListener('DOMContentLoaded', () => {
     if (key === 'noBoat3') {
       return performer.noBoat || '';
     }
+    
+    // 功德品 1 至 8 座標映射規則 (依據場次日期動態參考)
+    // 10-2五大洲 (fiveContinents2) 若無資料，則參考 10-1五大洲 (fiveContinents1) 的座標
+    if (key === 'gongDe1') {
+      return performer.fiveContinents1 || ''; // 實體座標欄位: 10-1五大洲
+    }
+    if (key === 'gongDe2' || key === 'gongDe3') {
+      return performer.fiveContinents2 || performer.fiveContinents1 || ''; // 優先使用 10-2，無資料時使用 10-1
+    }
+    if (key === 'gongDe4') {
+      if (selectedSessionKey === '1115') {
+        return performer.fiveContinents1 || '';
+      } else {
+        return performer.fiveContinents2 || performer.fiveContinents1 || '';
+      }
+    }
+    if (key === 'gongDe5') {
+      if (selectedSessionKey === '1112') {
+        return performer.fiveContinents2 || performer.fiveContinents1 || '';
+      } else if (selectedSessionKey === '1113') {
+        return getPerformerFields(performer).coordinate; // basic
+      } else {
+        return performer.circle || '';
+      }
+    }
+    if (key === 'gongDe6') {
+      if (selectedSessionKey === '1112') {
+        return getPerformerFields(performer).coordinate; // basic
+      } else {
+        return performer.circle || '';
+      }
+    }
+    if (key === 'gongDe7') {
+      if (selectedSessionKey === '1114') {
+        return getPerformerFields(performer).coordinate; // basic
+      } else {
+        return performer.circle || '';
+      }
+    }
+    if (key === 'gongDe8') {
+      return performer.circle || '';
+    }
+    if (key === 'sixRuiXiang') {
+      return performer.circle || '';
+    }
+    
     return performer[key] || '';
   }
 
@@ -356,8 +408,79 @@ document.addEventListener('DOMContentLoaded', () => {
     if (key === 'noBoat3') {
       return 'noBoat';
     }
+    
+    // 功德品 1 至 8 貼紙動態映射
+    if (key === 'gongDe1') {
+      return 'fiveContinents1';
+    }
+    if (key === 'gongDe2' || key === 'gongDe3') {
+      return 'fiveContinents2';
+    }
+    if (key === 'gongDe4') {
+      return (selectedSessionKey === '1115') ? 'fiveContinents1' : 'fiveContinents2';
+    }
+    if (key === 'gongDe5') {
+      if (selectedSessionKey === '1112') return 'fiveContinents2';
+      if (selectedSessionKey === '1113') return 'basic';
+      return 'circle';
+    }
+    if (key === 'gongDe6') {
+      return (selectedSessionKey === '1112') ? 'basic' : 'circle';
+    }
+    if (key === 'gongDe7') {
+      return (selectedSessionKey === '1114') ? 'basic' : 'circle';
+    }
+    if (key === 'gongDe8') {
+      return 'circle';
+    }
+    if (key === 'sixRuiXiang') {
+      return 'circle';
+    }
+    
     return key;
   }
+
+  // 各場次功德品 1~8 副標題 (演繹主題) 對照表
+  const GONGDE_THEMES = {
+    gongDe1: {
+      '1112': '樂生療養院',
+      '1113': '後山土地公',
+      '1114': '撿石頭畫圖',
+      '1115': '樂生療養院'
+    },
+    gongDe2: '第一功德',
+    gongDe3: '富中之富',
+    gongDe4: {
+      '1112': '約旦',
+      '1113': '土耳其',
+      '1114': '緬甸',
+      '1115': '921地震'
+    },
+    gongDe5: {
+      '1112': '黑區&亮區',
+      '1113': '南非',
+      '1114': '八八風災',
+      '1115': '減災工程'
+    },
+    gongDe6: {
+      '1112': '莫三比克',
+      '1113': '印尼',
+      '1114': '泰北',
+      '1115': ''
+    },
+    gongDe7: {
+      '1112': '台灣救災集錦',
+      '1113': '',
+      '1114': '辛巴威',
+      '1115': '報佛恩'
+    },
+    gongDe8: {
+      '1112': '',
+      '1113': '',
+      '1114': '辛巴威',
+      '1115': '飛天'
+    }
+  };
 
   // Update dynamic formation metadata and DOM elements labels on session selection
   function updateFormationDynamicLabels() {
@@ -389,6 +512,42 @@ document.addEventListener('DOMContentLoaded', () => {
       if (prevLabelEl) prevLabelEl.textContent = '從無法船：';
       if (bigVPrevLabelEl) bigVPrevLabelEl.textContent = '從無法船：';
     }
+
+    // 動態更新功德品 1~8 的卡片主標題、副標題與 formations 陣列中的 name 和 label
+    Object.keys(GONGDE_THEMES).forEach(key => {
+      const form = formations.find(f => f.key === key);
+      if (form) {
+        const val = GONGDE_THEMES[key];
+        let subTitle = '';
+        if (typeof val === 'string') {
+          subTitle = val;
+        } else {
+          subTitle = val[selectedSessionKey] || '';
+        }
+        
+        const labelSuffix = subTitle ? `(${subTitle})` : '';
+        const stepNum = key.replace('gongDe', '');
+        
+        if (key === 'gongDe1') {
+          form.name = `11-1功1(10-1五大洲)${labelSuffix}`;
+          form.label = `功1${labelSuffix}`;
+        } else if (key === 'gongDe2') {
+          form.name = `11-2功2(10-2五大洲)${labelSuffix}`;
+          form.label = `功2${labelSuffix}`;
+        } else if (key === 'gongDe3') {
+          form.name = `11-3功3(10-2五大洲)${labelSuffix}`;
+          form.label = `功3${labelSuffix}`;
+        } else {
+          form.name = `11-${stepNum}功${stepNum}${labelSuffix}`;
+          form.label = `功${stepNum}${labelSuffix}`;
+        }
+        
+        const cardTitleEl = document.getElementById(`title-${key}`);
+        const cardSubEl = document.getElementById(`sub-${key}`);
+        if (cardTitleEl) cardTitleEl.textContent = form.name;
+        if (cardSubEl) cardSubEl.textContent = subTitle || `GongDe ${stepNum}`;
+      }
+    });
   }
 
   // Initialize App — session overlay and logic immediately
@@ -3157,6 +3316,77 @@ document.addEventListener('DOMContentLoaded', () => {
     flyingApsaras: { hex: '#E62129', name: '紅線' }
   };
 
+  // 根據 定位點參考.docx 整理的各步驟蓮花燈燈號顏色 (支援字串或按日期場次動態對照)
+  const STEP_LAMP_COLORS = {
+    circle: '黃',
+    xingYuan: '綠',
+    lamp: '黃',
+    noBoat: '黃',
+    boneDonation: '黃',
+    edu: '綠',
+    humanities1: '綠',
+    humanities2: '綠',
+    // 功德品 1 ~ 8 按 11/12~11/15 場次日期動態對照
+    gongDe1: { '1112': '', '1113': '', '1114': '', '1115': '' },
+    gongDe2: { '1112': '綠', '1113': '綠', '1114': '綠', '1115': '綠' },
+    gongDe3: { '1112': '綠', '1113': '綠', '1114': '綠', '1115': '綠' },
+    gongDe4: { '1112': '綠', '1113': '綠', '1114': '綠', '1115': '綠' },
+    gongDe5: { '1112': '綠', '1113': '綠', '1114': '綠', '1115': '綠' },
+    gongDe6: { '1112': '黃', '1113': '黃', '1114': '黃', '1115': '黃' },
+    gongDe7: { '1112': '綠', '1113': '綠', '1114': '綠', '1115': '綠' },
+    gongDe8: { '1112': '黃', '1113': '黃', '1114': '黃', '1115': '黃' }
+  };
+
+  // 全域取色邏輯：優先使用蓮花燈燈號顏色 (支援日期動態對照)，若無則回退至指引線顏色
+  function getStepColorInfo(key) {
+    const val = STEP_LAMP_COLORS[key];
+    let lampColor = '';
+    
+    if (typeof val === 'string') {
+      lampColor = val;
+    } else if (val && typeof val === 'object') {
+      // 根據當前選取的日期/場次 (selectedSessionKey, 如 '1114') 進行動態對照
+      lampColor = val[selectedSessionKey] || '';
+    }
+
+    if (lampColor === '黃') {
+      return { hex: '#eab308', name: '黃燈' };
+    }
+    if (lampColor === '綠') {
+      return { hex: '#0B954B', name: '綠燈' };
+    }
+    
+    // 無燈色時，動態回退至指引線顏色
+    const displayType = getDisplayType(key);
+    return FORMATION_COLORS[displayType] || FORMATION_COLORS[key] || { hex: '#d97706', name: '黃線' };
+  }
+
+  // 全域圖片快取物件，確保 Canvas 能同步成功繪製 Sticker
+  const loadedStickers = {};
+
+  // 預加載表演者 22 步專屬地標貼紙圖片
+  function preloadPerformerStickers(performer) {
+    const englishCategory = getEnglishCategory(performer.category || 'A白');
+    const promises = formations.map(f => {
+      const displayType = getDisplayType(f.key);
+      const url = `images/stickers/${displayType}_${englishCategory}.png`;
+      if (loadedStickers[url]) return Promise.resolve(); // 已加載過則跳過
+
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => {
+          loadedStickers[url] = img;
+          resolve();
+        };
+        img.onerror = () => {
+          resolve(); // 即使加載出錯也 resolve，避免卡死小卡生成
+        };
+        img.src = url;
+      });
+    });
+    return Promise.all(promises);
+  }
+
   // Helper to draw Canvas Arrow Diagram (Scaled +30%)
   function drawCanvasDirectionArrow(ctx, centerX, centerY, radius = 16, angleRad = 0, isStationary = false, lineColor = '#0284c7') {
     ctx.save();
@@ -3297,114 +3527,200 @@ document.addEventListener('DOMContentLoaded', () => {
     const startY = 48;
     const endY = 722;
     const startX = 20;
-    const endX = canvasWidth - 20;
-    const col1W = 195;
-    const col2StartX = 235;
+    const colW = 130; // 每排寬度
+    const col2StartX = 160; // 中排起始 X
+    const col3StartX = 300; // 右排起始 X
     const tableH = endY - startY; // 674
 
     const headerH = 24;
     const bodyH = tableH - headerH; // 650
-    const halfCount = Math.ceil(formations.length / 2); // 9
-    const rowH = bodyH / halfCount; // ~72.2
+    const rowH = bodyH / 8; // 81.25px (大幅增加高度)
 
     // 5. Table Borders and Headers
     ctx.strokeStyle = '#cbd5e1';
     ctx.lineWidth = 1.0;
 
-    // Draw Left Table Header background & border
-    ctx.fillStyle = '#f1f5f9';
-    ctx.fillRect(startX, startY, col1W, headerH);
-    ctx.strokeRect(startX, startY, col1W, tableH);
-    
-    // Draw Right Table Header background & border
-    ctx.fillStyle = '#f1f5f9';
-    ctx.fillRect(col2StartX, startY, col1W, tableH); // Fill header height
-    // Clear inner body background to white to avoid fill overlap, then draw stroke
-    ctx.fillStyle = '#ffffff';
-    ctx.fillRect(col2StartX, startY + headerH, col1W, bodyH);
-    ctx.fillStyle = '#f1f5f9';
-    ctx.fillRect(col2StartX, startY, col1W, headerH);
-    ctx.strokeRect(col2StartX, startY, col1W, tableH);
+    const columnsX = [startX, col2StartX, col3StartX];
 
-    // Draw table header horizontal lines
-    ctx.beginPath();
-    ctx.moveTo(startX, startY + headerH);
-    ctx.lineTo(startX + col1W, startY + headerH);
-    ctx.moveTo(col2StartX, startY + headerH);
-    ctx.lineTo(col2StartX + col1W, startY + headerH);
-    ctx.stroke();
+    // 繪製三直排的表頭背景與外框
+    columnsX.forEach(x => {
+      ctx.fillStyle = '#f1f5f9';
+      ctx.fillRect(x, startY, colW, headerH);
+      
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(x, startY + headerH, colW, bodyH);
+      ctx.fillStyle = '#f1f5f9';
+      ctx.fillRect(x, startY, colW, headerH);
+      
+      ctx.strokeRect(x, startY, colW, tableH);
 
-    // Table Header Texts
+      // 表頭與身體的橫線
+      ctx.beginPath();
+      ctx.moveTo(x, startY + headerH);
+      ctx.lineTo(x + colW, startY + headerH);
+      ctx.stroke();
+    });
+
+    // Table Header Texts (縮小字體以求完全塞入 130px)
     ctx.fillStyle = '#334155';
-    ctx.font = "bold 9.5px 'Noto Sans TC', sans-serif";
+    ctx.font = "bold 9px 'Noto Sans TC', sans-serif";
     ctx.textBaseline = 'middle';
     ctx.textAlign = 'left';
-    ctx.fillText(" 步驟 1 - 9 (定位資訊 / 方向)", startX + 6, startY + headerH / 2);
-    ctx.fillText(" 步驟 10 - 18 (定位資訊 / 方向)", col2StartX + 6, startY + headerH / 2);
+    ctx.fillText(" 步驟 1 - 8 (定位資訊)", startX + 4, startY + headerH / 2);
+    ctx.fillText(" 步驟 9 - 16 (定位資訊)", col2StartX + 4, startY + headerH / 2);
+    ctx.fillText(" 步驟 17 - 23 (定位資訊)", col3StartX + 4, startY + headerH / 2);
 
-    // 6. Draw Table Rows (Double Column)
+    // 6. Draw Table Rows (Triple Column)
     for (let idx = 0; idx < formations.length; idx++) {
-      const isRightCol = idx >= halfCount;
-      const colIdx = isRightCol ? idx - halfCount : idx;
+      let colIdx = 0;
+      let colStartX = startX;
+      let isLastInCol = false;
+
+      if (idx < 8) {
+        colIdx = idx;
+        colStartX = startX;
+        isLastInCol = (colIdx === 7);
+      } else if (idx < 16) {
+        colIdx = idx - 8;
+        colStartX = col2StartX;
+        isLastInCol = (colIdx === 7);
+      } else {
+        colIdx = idx - 16;
+        colStartX = col3StartX;
+        isLastInCol = (colIdx === 6);
+      }
       
-      const colStartX = isRightCol ? col2StartX : startX;
       const rY = startY + headerH + colIdx * rowH;
 
-      // Draw row bottom line
-      if (colIdx < halfCount - 1) {
+      // Draw row bottom line (非最後一行才繪製)
+      if (!isLastInCol) {
         ctx.strokeStyle = '#cbd5e1';
         ctx.lineWidth = 0.5;
         ctx.beginPath();
         ctx.moveTo(colStartX, rY + rowH);
-        ctx.lineTo(colStartX + col1W, rY + rowH);
+        ctx.lineTo(colStartX + colW, rY + rowH);
         ctx.stroke();
       }
 
-      // 三欄寬度分配
-      const colW1 = 30; // 第一欄寬度
-      const badgeH = rowH * 0.95; // 色塊高度調整為儲存格高度的 95%
-      const badgeW = badgeH * 1.5; // 色塊寬度為高度的 1.5 倍 (長方形)
-      const colW3 = badgeW; // 第三欄寬度
-      const colW2 = col1W - colW1 - colW3; // 第二欄寬度
+      // 三欄中個別單元格的寬度分配
+      const badgeW = 75; // 色塊寬度固定為 75px
+      const badgeH = 65; // 色塊高度固定為 65px
+      const colW2 = badgeW;
+      const colW1 = colW - colW2; // 55px
 
       const f = formations[idx];
       const rawCoord = getFormationCoordStr(performer, f.key) || '無';
       const displayCoordStr = formatCoordinateForDisplay(rawCoord);
       const split = splitLandmarkAndCoordinate(displayCoordStr);
       
-      const lineColorInfo = FORMATION_COLORS[f.key] || { hex: '#d97706', name: '黃線' };
+      const displayType = getDisplayType(f.key);
+      const lineColorInfo = FORMATION_COLORS[displayType] || FORMATION_COLORS[f.key] || { hex: '#d97706', name: '黃線' };
 
-      // --- 第一欄：定位名稱，直排（頂部為步驟編號） ---
-      ctx.fillStyle = '#0f172a';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'top';
-      
-      // 1. 步驟編號 (橫排在第一欄的頂部)
-      ctx.font = "bold 10px 'Outfit', sans-serif";
-      ctx.fillText(idx + 1, colStartX + colW1 / 2, rY + 8);
+      // --- 右欄：指引線色塊位置計算 (提前宣告以利計算左欄文字的最大可用寬度) ---
+      const badgeX = colStartX + colW - badgeW;
+      const badgeY = rY + (rowH - badgeH) / 2; // 垂直置中
 
-      // 2. 定位名稱 (直排)
+      // --- 左欄：定位名稱 (改為橫向排列，徹底去除步驟編號，防止文字與色塊重疊) ---
       const fLabel = f.label || f.name.replace(/\(\w+\)/, '');
-      drawCanvasVerticalText(ctx, fLabel, colStartX + colW1 / 2, rY + 20, rowH - 26, 16);
+      ctx.fillStyle = '#0f172a';
+      
+      // 去除號碼後，起始點左移，以取得更大繪製空間
+      const labelStartX = colStartX + 6;
+      // 可用最大寬度為色塊起點減去文字起點，再留 2px 安全間距，確保絕不與色塊重疊
+      const maxLabelWidth = badgeX - labelStartX - 2;
 
-      // --- 第二欄：專屬地標圖形 ---
-      const stickerImg = stickerImages[f.key];
-      if (stickerImg) {
-        const stickerSize = rowH * 0.95; // 地標圖形直徑為儲存格高度的 95%
-        const stickerCenterX = colStartX + colW1 + colW2 / 2;
-        const stickerCenterY = rY + rowH / 2;
-        ctx.drawImage(
-          stickerImg, 
-          stickerCenterX - stickerSize / 2, 
-          stickerCenterY - stickerSize / 2, 
-          stickerSize, 
-          stickerSize
-        );
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'middle';
+
+      // 判斷折行邏輯
+      const openParenIdx = fLabel.indexOf('(');
+      let isTwoLines = false;
+      let line1 = fLabel;
+      let line2 = '';
+
+      if (openParenIdx > 0) {
+        isTwoLines = true;
+        line1 = fLabel.substring(0, openParenIdx);
+        line2 = fLabel.substring(openParenIdx);
+      } else if (fLabel.length > 5) {
+        isTwoLines = true;
+        line1 = fLabel.substring(0, 5);
+        line2 = fLabel.substring(5);
       }
 
-      // --- 第三欄：指引線色塊及座標值（圓角長方形，高度為 95% 高度，寬度為 1.5 倍高度） ---
-      const badgeX = colStartX + col1W - badgeW;
-      const badgeY = rY + (rowH - badgeH) / 2; // 垂直置中
+      if (isTwoLines) {
+        // 第一層：主要地標文字 (稍微靠上)
+        let fontSize = 11.5;
+        ctx.font = `bold ${fontSize}px 'Noto Sans TC', sans-serif`;
+        while (ctx.measureText(line1).width > maxLabelWidth && fontSize > 8) {
+          fontSize -= 0.5;
+          ctx.font = `bold ${fontSize}px 'Noto Sans TC', sans-serif`;
+        }
+        ctx.fillText(line1, labelStartX, rY + 19);
+
+        // 第二層：括號文字 (行距收縮，盡量接近)
+        let fontSize2 = fontSize;
+        ctx.font = `bold ${fontSize2}px 'Noto Sans TC', sans-serif`;
+        while (ctx.measureText(line2).width > maxLabelWidth && fontSize2 > 8) {
+          fontSize2 -= 0.5;
+          ctx.font = `bold ${fontSize2}px 'Noto Sans TC', sans-serif`;
+        }
+        ctx.fillText(line2, labelStartX, rY + 31); // 縮小行距至 12px
+      } else {
+        // 單行呈現：第一層 (稍微靠上)
+        let fontSize = 13.5;
+        ctx.font = `bold ${fontSize}px 'Noto Sans TC', sans-serif`;
+        while (ctx.measureText(line1).width > maxLabelWidth && fontSize > 8) {
+          fontSize -= 0.5;
+          ctx.font = `bold ${fontSize}px 'Noto Sans TC', sans-serif`;
+        }
+        ctx.fillText(line1, labelStartX, rY + 22);
+      }
+
+      // 第三層：繪製專屬地標貼圖與燈號色塊 (左右對調，優化尺寸以佔滿空間)
+      const rawLampVal = STEP_LAMP_COLORS[f.key];
+      let lampColor = '';
+      if (typeof rawLampVal === 'string') {
+        lampColor = rawLampVal;
+      } else if (rawLampVal && typeof rawLampVal === 'object') {
+        lampColor = rawLampVal[selectedSessionKey] || '';
+      }
+      const hasLamp = (lampColor === '黃' || lampColor === '綠');
+      let visualY = rY + (isTwoLines ? 49 : 44);
+      
+      const stickerSize = hasLamp ? 22 : 26; // 有燈時貼圖 22px，無燈時貼圖 26px
+      let stickerDrawY = visualY - (hasLamp ? 1.5 : 2);
+
+      // 3.1 繪製專屬地標貼紙圓形圖案 (放左邊)
+      const englishCategory = getEnglishCategory(performer.category || 'A白');
+      const stickerUrl = `images/stickers/${displayType}_${englishCategory}.png`;
+      const cachedImg = loadedStickers[stickerUrl];
+      
+      if (cachedImg) {
+        ctx.drawImage(cachedImg, labelStartX, stickerDrawY, stickerSize, stickerSize);
+      }
+
+      // 3.2 繪製燈號色塊 (放右邊)
+      if (hasLamp) {
+        const lampHex = lampColor === '黃' ? '#eab308' : '#0B954B';
+        const lampText = lampColor; // 簡化為單字 "黃" 或 "綠"
+        
+        const badgeW_small = 23;
+        const badgeH_small = isTwoLines ? 19 : 21;
+        
+        // 色塊 X 軸在貼圖右側 (貼圖寬 22px + 間隔 2px)
+        const lampStartX = labelStartX + stickerSize + 2; 
+        const lampDrawY = visualY + (stickerSize - badgeH_small) / 2 - (isTwoLines ? 1.5 : 2);
+        
+        ctx.fillStyle = lampHex;
+        drawCanvasRoundRect(ctx, lampStartX, lampDrawY, badgeW_small, badgeH_small, 4, true, false);
+
+        ctx.fillStyle = lampColor === '黃' ? '#0f172a' : '#ffffff';
+        ctx.font = `bold ${isTwoLines ? 11 : 12}px 'Noto Sans TC', sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(lampText, lampStartX + badgeW_small / 2, lampDrawY + badgeH_small / 2 + 0.5);
+      }
 
       if (rawCoord !== '無' && rawCoord !== '-') {
         // 繪製指引線圓角長方形色塊
@@ -3436,38 +3752,29 @@ document.addEventListener('DOMContentLoaded', () => {
             rightSub = rightMatch[2];
           }
 
-          // 自適應計算字型大小
-          let mainFontSize = 40; // 整數主要部分起步字型 (放大至 40px)
+          // 自適應計算字型大小 (起步 54px)
+          let mainFontSize = 54;
+          const subFontSize = 10; 
+
           ctx.font = `bold ${mainFontSize}px 'Outfit', sans-serif`;
           let wLeftMain = ctx.measureText(leftMain).width;
           let wRightMain = ctx.measureText(rightMain).width;
           let wDash = ctx.measureText('-').width;
 
-          let subFontSize = Math.max(12, mainFontSize * 0.45); // 小數部分為整數的 45% 大小
-          ctx.font = `bold ${subFontSize}px 'Outfit', sans-serif`;
-          let wLeftSub = leftSub ? ctx.measureText(leftSub).width : 0;
-          let wRightSub = rightSub ? ctx.measureText(rightSub).width : 0;
+          const maxBadgeTextWidth = badgeW - 12; 
+          const maxBadgeTextHeight = badgeH - 12; 
 
-          const maxBadgeTextWidth = badgeW - 10; // 預留左右安全距
-          const maxBadgeTextHeight = badgeH - 8; // 預留上下安全距
-
-          // 當合併後的總寬度大於安全寬度或高度溢出時，自動等比例縮小
-          while ((wLeftMain + wLeftSub + wDash + wRightMain + wRightSub > maxBadgeTextWidth || mainFontSize > maxBadgeTextHeight) && mainFontSize > 14) {
+          // 當整數總寬度或大字高度大於安全尺寸時，自動等比例縮小大字
+          while ((wLeftMain + wDash + wRightMain > maxBadgeTextWidth || mainFontSize > maxBadgeTextHeight) && mainFontSize > 14) {
             mainFontSize -= 0.5;
-            subFontSize = Math.max(11, mainFontSize * 0.45);
-            
             ctx.font = `bold ${mainFontSize}px 'Outfit', sans-serif`;
             wLeftMain = ctx.measureText(leftMain).width;
             wRightMain = ctx.measureText(rightMain).width;
             wDash = ctx.measureText('-').width;
-            
-            ctx.font = `bold ${subFontSize}px 'Outfit', sans-serif`;
-            wLeftSub = leftSub ? ctx.measureText(leftSub).width : 0;
-            wRightSub = rightSub ? ctx.measureText(rightSub).width : 0;
           }
 
-          // 計算並排後的文字整體寬度與起始 X 座標，使其在色塊中置中
-          const totalW = wLeftMain + wLeftSub + wDash + wRightMain + wRightSub;
+          // 計算整數部分的整體寬度與起始 X 座標，使其在色塊中完全置中
+          const totalW = wLeftMain + wDash + wRightMain;
           const drawStartX = badgeX + (badgeW - totalW) / 2;
           const centerY = badgeY + badgeH / 2;
 
@@ -3478,30 +3785,26 @@ document.addEventListener('DOMContentLoaded', () => {
           ctx.textBaseline = 'middle';
           ctx.fillText(leftMain, drawStartX, centerY + 0.5);
 
-          // 繪製左半部小數 (右下方下標位置)
-          let currentX = drawStartX + wLeftMain;
+          // 繪製左半部小數 (移至下一列，X 縮進 4px，Y 座標依據大字高度下移)
           if (leftSub) {
             ctx.font = `bold ${subFontSize}px 'Outfit', sans-serif`;
-            ctx.fillText(leftSub, currentX, centerY + (mainFontSize * 0.14));
-            currentX += wLeftSub;
+            ctx.fillText(leftSub, drawStartX + wLeftMain - 4, centerY + (mainFontSize * 0.38));
           }
 
           // 繪製連接號 "-"
           ctx.font = `bold ${mainFontSize}px 'Outfit', sans-serif`;
-          ctx.fillText('-', currentX, centerY + 0.5);
-          currentX += wDash;
+          ctx.fillText('-', drawStartX + wLeftMain, centerY + 0.5);
 
           // 繪製右半部整數
-          ctx.fillText(rightMain, currentX, centerY + 0.5);
-          currentX += wRightMain;
+          ctx.fillText(rightMain, drawStartX + wLeftMain + wDash, centerY + 0.5);
 
-          // 繪製右半部小數 (右下方下標位置)
+          // 繪製右半部小數
           if (rightSub) {
             ctx.font = `bold ${subFontSize}px 'Outfit', sans-serif`;
-            ctx.fillText(rightSub, currentX, centerY + (mainFontSize * 0.14));
+            ctx.fillText(rightSub, drawStartX + wLeftMain + wDash + wRightMain - 4, centerY + (mainFontSize * 0.38));
           }
         } 
-        // 2. 如果只有單一數值 (如 12, 12.5, 無)
+        // 2. 如果只有單一數值 (如 12.5)
         else {
           let mainText = textInBadge;
           let subText = '';
@@ -3511,33 +3814,23 @@ document.addEventListener('DOMContentLoaded', () => {
             subText = match[2];
           }
 
-          // 自適應計算字型大小
-          let mainFontSize = 40; // 放大至 40px
+          // 自適應計算字型大小 (起步 54px)
+          let mainFontSize = 54;
+          const subFontSize = 10;
+
           ctx.font = `bold ${mainFontSize}px 'Outfit', sans-serif`;
           let wMain = ctx.measureText(mainText).width;
 
-          let subFontSize = Math.max(12, mainFontSize * 0.45);
-          ctx.font = `bold ${subFontSize}px 'Outfit', sans-serif`;
-          let wSub = subText ? ctx.measureText(subText).width : 0;
+          const maxBadgeTextWidth = badgeW - 12;
+          const maxBadgeTextHeight = badgeH - 12;
 
-          const maxBadgeTextWidth = badgeW - 10;
-          const maxBadgeTextHeight = badgeH - 8;
-
-          while ((wMain + wSub > maxBadgeTextWidth || mainFontSize > maxBadgeTextHeight) && mainFontSize > 14) {
+          while ((wMain > maxBadgeTextWidth || mainFontSize > maxBadgeTextHeight) && mainFontSize > 14) {
             mainFontSize -= 0.5;
-            subFontSize = Math.max(11, mainFontSize * 0.45);
-            
             ctx.font = `bold ${mainFontSize}px 'Outfit', sans-serif`;
             wMain = ctx.measureText(mainText).width;
-            
-            if (subText) {
-              ctx.font = `bold ${subFontSize}px 'Outfit', sans-serif`;
-              wSub = ctx.measureText(subText).width;
-            }
           }
 
-          const totalW = wMain + wSub;
-          const drawStartX = badgeX + (badgeW - totalW) / 2;
+          const drawStartX = badgeX + (badgeW - wMain) / 2;
           const centerY = badgeY + badgeH / 2;
 
           ctx.font = `bold ${mainFontSize}px 'Outfit', sans-serif`;
@@ -3547,7 +3840,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           if (subText) {
             ctx.font = `bold ${subFontSize}px 'Outfit', sans-serif`;
-            ctx.fillText(subText, drawStartX + wMain, centerY + (mainFontSize * 0.14));
+            ctx.fillText(subText, drawStartX + wMain - 4, centerY + (mainFontSize * 0.38));
           }
         }
       } else {
@@ -3566,15 +3859,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // 6.5 重新繪製表格外框與表頭線（確保色塊不會遮擋住邊框）
     ctx.strokeStyle = '#cbd5e1';
     ctx.lineWidth = 1.0;
-    ctx.strokeRect(startX, startY, col1W, tableH);
-    ctx.strokeRect(col2StartX, startY, col1W, tableH);
-
-    ctx.beginPath();
-    ctx.moveTo(startX, startY + headerH);
-    ctx.lineTo(startX + col1W, startY + headerH);
-    ctx.moveTo(col2StartX, startY + headerH);
-    ctx.lineTo(col2StartX + col1W, startY + headerH);
-    ctx.stroke();
+    columnsX.forEach(x => {
+      ctx.strokeRect(x, startY, colW, tableH);
+      
+      ctx.beginPath();
+      ctx.moveTo(x, startY + headerH);
+      ctx.lineTo(x + colW, startY + headerH);
+      ctx.stroke();
+    });
 
     // 7. Footer Text
     ctx.fillStyle = '#94a3b8';
@@ -4287,6 +4579,9 @@ document.addEventListener('DOMContentLoaded', () => {
       positionCardPreviewWrapper.innerHTML = `<div class="slip-loading"><i class="fa-solid fa-spinner fa-spin"></i> 定位小卡產出中...</div>`;
 
       try {
+        // 先預加載當前表演者的專屬貼紙圖片
+        await preloadPerformerStickers(currentPerformer);
+        
         const cardCanvas = await generateSinglePositionCard(currentPerformer);
         if (cardCanvas) {
           positionCardPreviewWrapper.innerHTML = '';
@@ -4720,97 +5015,146 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
         <div class="no-hints">此步驟無演繹內容</div>
       `;
-      return;
-    }
-    
-    // Header title and toggle button
-    let headerHtml = `
-      <div class="hint-title">
-        <span><i class="fa-solid fa-person-running"></i> 演繹內容 (${f.label})</span>
-    `;
-    if (items.length > 2) {
-      headerHtml += `<button id="toggleHintsBtn" class="toggle-btn">${hintsExpanded ? '收合部分' : '展開更多'}</button>`;
-    }
-    headerHtml += `</div>`;
-    
-    // Hints list body
-    const bodyContainer = document.createElement('div');
-    bodyContainer.className = 'hints-body-list';
-    
-    const visibleCount = hintsExpanded ? items.length : Math.min(2, items.length);
-    for (let i = 0; i < visibleCount; i++) {
-      const item = items[i];
-      const itemDiv = document.createElement('div');
-      itemDiv.className = 'action-hint-item';
+    } else {
+      // Header title and toggle button
+      let headerHtml = `
+        <div class="hint-title">
+          <span><i class="fa-solid fa-person-running"></i> 演繹內容 (${f.label})</span>
+      `;
+      if (items.length > 2) {
+        headerHtml += `<button id="toggleHintsBtn" class="toggle-btn">${hintsExpanded ? '收合部分' : '展開更多'}</button>`;
+      }
+      headerHtml += `</div>`;
       
-      const itemTitle = document.createElement('div');
-      itemTitle.style.cssText = 'font-weight: bold; color: #b45309; font-size: calc(13.5px * var(--hints-scale, 1)); margin-bottom: 6px;';
-      itemTitle.textContent = item.title;
-      itemDiv.appendChild(itemTitle);
+      // Hints list body
+      const bodyContainer = document.createElement('div');
+      bodyContainer.className = 'hints-body-list';
       
-      item.details.forEach(detail => {
-        if (detail.type === 'text') {
-          const ytId = getYouTubeVideoId(detail.content);
-          if (ytId) {
-            const btn = document.createElement('a');
-            btn.className = 'yt-hint-btn';
-            btn.href = 'javascript:void(0);';
-            let btnText = '播放提示影片';
-            if (detail.content.includes('東班')) {
-              btnText = '播放東班影片';
-            } else if (detail.content.includes('西班')) {
-              btnText = '播放西班影片';
+      const visibleCount = hintsExpanded ? items.length : Math.min(2, items.length);
+      for (let i = 0; i < visibleCount; i++) {
+        const item = items[i];
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'action-hint-item';
+        
+        const itemTitle = document.createElement('div');
+        itemTitle.style.cssText = 'font-weight: bold; color: #b45309; font-size: calc(13.5px * var(--hints-scale, 1)); margin-bottom: 6px;';
+        itemTitle.textContent = item.title;
+        itemDiv.appendChild(itemTitle);
+        
+        item.details.forEach(detail => {
+          if (detail.type === 'text') {
+            const ytId = getYouTubeVideoId(detail.content);
+            if (ytId) {
+              const btn = document.createElement('a');
+              btn.className = 'yt-hint-btn';
+              btn.href = 'javascript:void(0);';
+              let btnText = '播放提示影片';
+              if (detail.content.includes('東班')) {
+                btnText = '播放東班影片';
+              } else if (detail.content.includes('西班')) {
+                btnText = '播放西班影片';
+              }
+              btn.innerHTML = `<i class="fa-brands fa-youtube yt-icon"></i> ${btnText}`;
+              btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openYouTubeVideo(ytId, detail.content);
+              });
+              itemDiv.appendChild(btn);
+            } else {
+              const p = document.createElement('p');
+              p.style.cssText = 'margin: 0 0 4px 0; color: #1e293b; font-size: calc(13px * var(--hints-scale, 1)); font-weight: 500; line-height: 1.45;';
+              p.textContent = detail.content;
+              itemDiv.appendChild(p);
             }
-            btn.innerHTML = `<i class="fa-brands fa-youtube yt-icon"></i> ${btnText}`;
-            btn.addEventListener('click', (e) => {
-              e.stopPropagation();
-              openYouTubeVideo(ytId, detail.content);
-            });
-            itemDiv.appendChild(btn);
-          } else {
-            const p = document.createElement('p');
-            p.style.cssText = 'margin: 0 0 4px 0; color: #1e293b; font-size: calc(13px * var(--hints-scale, 1)); font-weight: 500; line-height: 1.45;';
-            p.textContent = detail.content;
-            itemDiv.appendChild(p);
+          } else if (detail.type === 'image') {
+            const img = document.createElement('img');
+            img.src = detail.src;
+            img.style.cssText = 'width: calc(100% * var(--hints-scale, 1)); max-width: none; height: auto; display: block; border-radius: 8px; margin: 8px 0; border: 1px solid rgba(180, 83, 9, 0.15);';
+            img.className = 'hint-image';
+            itemDiv.appendChild(img);
           }
-        } else if (detail.type === 'image') {
-          const img = document.createElement('img');
-          img.src = detail.src;
-          img.style.cssText = 'width: calc(100% * var(--hints-scale, 1)); max-width: none; height: auto; display: block; border-radius: 8px; margin: 8px 0; border: 1px solid rgba(180, 83, 9, 0.15);';
-          img.className = 'hint-image';
-          itemDiv.appendChild(img);
-        }
-      });
-      bodyContainer.appendChild(itemDiv);
+        });
+        bodyContainer.appendChild(itemDiv);
+      }
+      
+      if (items.length > 2 && !hintsExpanded) {
+        const moreDiv = document.createElement('div');
+        moreDiv.style.cssText = 'color: #64748b; font-style: italic; text-align: center; font-size: calc(12px * var(--hints-scale, 1)); padding: 6px 0; cursor: pointer;';
+        moreDiv.textContent = `...還有 ${items.length - 2} 項提示，點擊上方展開`;
+        moreDiv.addEventListener('click', (e) => {
+          e.stopPropagation();
+          hintsExpanded = true;
+          updateActionHintsDisplay();
+        });
+        bodyContainer.appendChild(moreDiv);
+      }
+      
+      inlineContainer.innerHTML = '';
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = headerHtml;
+      inlineContainer.appendChild(tempDiv.firstElementChild);
+      inlineContainer.appendChild(bodyContainer);
+      
+      // Add event listener to toggle button
+      const toggleBtn = document.getElementById('toggleHintsBtn');
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          hintsExpanded = !hintsExpanded;
+          updateActionHintsDisplay();
+        });
+      }
     }
-    
-    if (items.length > 2 && !hintsExpanded) {
-      const moreDiv = document.createElement('div');
-      moreDiv.style.cssText = 'color: #64748b; font-style: italic; text-align: center; font-size: calc(12px * var(--hints-scale, 1)); padding: 6px 0; cursor: pointer;';
-      moreDiv.textContent = `...還有 ${items.length - 2} 項提示，點擊上方展開`;
-      moreDiv.addEventListener('click', (e) => {
-        e.stopPropagation();
-        hintsExpanded = true;
-        updateActionHintsDisplay();
-      });
-      bodyContainer.appendChild(moreDiv);
+
+    // --- 在步驟說明下方增加燈號色塊與專屬地標圖案 ---
+    const visualDiv = document.createElement('div');
+    visualDiv.className = 'step-visual-info';
+    visualDiv.style.cssText = 'display: flex; align-items: center; justify-content: space-between; margin-top: 14px; padding: 10px 14px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;';
+
+    // 取得蓮花燈顏色或回退指引線色
+    const rawLampVal = STEP_LAMP_COLORS[f.key];
+    let lampColor = '';
+    if (typeof rawLampVal === 'string') {
+      lampColor = rawLampVal;
+    } else if (rawLampVal && typeof rawLampVal === 'object') {
+      lampColor = rawLampVal[selectedSessionKey] || '';
     }
-    
-    inlineContainer.innerHTML = '';
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = headerHtml;
-    inlineContainer.appendChild(tempDiv.firstElementChild);
-    inlineContainer.appendChild(bodyContainer);
-    
-    // Add event listener to toggle button
-    const toggleBtn = document.getElementById('toggleHintsBtn');
-    if (toggleBtn) {
-      toggleBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        hintsExpanded = !hintsExpanded;
-        updateActionHintsDisplay();
-      });
+    let lineColorInfo = null;
+    let badgeLabel = '指引線燈號';
+
+    if (lampColor === '黃' || lampColor === '綠') {
+      lineColorInfo = lampColor === '黃' ? { hex: '#eab308', name: '黃燈' } : { hex: '#0B954B', name: '綠燈' };
+      badgeLabel = '蓮花燈燈號';
+    } else {
+      const displayType = getDisplayType(f.key);
+      lineColorInfo = FORMATION_COLORS[displayType] || FORMATION_COLORS[f.key] || { hex: '#d97706', name: '黃線' };
     }
+
+    const isLightColor = ['#eab308', '#80CEF3', '#ACCE22', '#F19EA8', '#FDD100', '#A6ADD6', '#AF9DA8'].includes(lineColorInfo.hex);
+
+    // 左側：燈號色塊
+    const badgeHtml = `
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 13px; color: #475569; font-weight: bold;">${badgeLabel}：</span>
+        <div style="background-color: ${lineColorInfo.hex}; color: ${isLightColor ? '#0f172a' : '#ffffff'}; font-weight: bold; padding: 5px 12px; border-radius: 6px; font-size: 13.5px; display: inline-block;">
+          ${lineColorInfo.name}
+        </div>
+      </div>
+    `;
+
+    // 右側：專屬地標貼紙圖案
+    const displayType = getDisplayType(f.key);
+    const englishCategory = getEnglishCategory(currentPerformer.category || 'A白');
+    const stickerUrl = `images/stickers/${displayType}_${englishCategory}.png`;
+    const stickerHtml = `
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 13px; color: #475569; font-weight: bold;">專屬地標：</span>
+        <img src="${stickerUrl}" alt="${f.label}" style="width: 48px; height: 48px; border-radius: 50%; border: 1px solid #cbd5e1; background: #ffffff;" onerror="this.style.display='none';" />
+      </div>
+    `;
+
+    visualDiv.innerHTML = badgeHtml + stickerHtml;
+    inlineContainer.appendChild(visualDiv);
   }
 
   // ── Setup Admin Panel Listeners ────────────────────────────────────
