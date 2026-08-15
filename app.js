@@ -3569,42 +3569,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ctx.font = `bold 12px 'Noto Sans TC', sans-serif`;
  
-    // 5.0 輔助函式：取得步驟蓮花燈燈號顏色 (黃、綠、無)
+    // 5.0 輔助函式：取得步驟蓮花燈燈號顏色 (標準化為 黃、綠 或 無 '')
     function getFormationLampColor(fKey) {
       const rawLampVal = STEP_LAMP_COLORS[fKey];
+      let lampColor = '';
       if (typeof rawLampVal === 'string') {
-        return rawLampVal;
+        lampColor = rawLampVal;
       } else if (rawLampVal && typeof rawLampVal === 'object') {
-        return rawLampVal[selectedSessionKey] || '';
+        lampColor = rawLampVal[selectedSessionKey] || '';
       }
-      return '';
+      return (lampColor === '黃' || lampColor === '綠') ? lampColor : '';
     }
 
-    // 5.1 動態分析每一欄的獨立步驟清單 (合併連續相同座標、地塊隊形與蓮花燈燈號皆相同的步驟)
+    // 5.1 動態分析每一欄的獨立步驟清單 (合併相同座標且燈號相容之步驟)
     function getUniqueColSteps(start, end) {
       const steps = [];
       let i = start;
       while (i <= end) {
-        steps.push(i);
         const fI = formations[i];
-        const coordI = getFormationCoordStr(performer, fI.key) || '無';
-        const typeI = getDisplayType(fI.key);
-        const lampI = getFormationLampColor(fI.key);
+        const targetCoord = getFormationCoordStr(performer, fI.key) || '無';
+        let targetLamp = getFormationLampColor(fI.key);
 
         let j = i + 1;
         while (j <= end) {
           const fJ = formations[j];
           const coordJ = getFormationCoordStr(performer, fJ.key) || '無';
-          const typeJ = getDisplayType(fJ.key);
           const lampJ = getFormationLampColor(fJ.key);
 
-          // 座標、地塊隊形、蓮花燈燈號三者皆相同時才可合併；只要任一項不同就不可合併
-          if (coordI === coordJ && typeI === typeJ && lampI === lampJ) {
-            j++; // 連續完全相同步驟合併
+          // 1. 座標必須相同
+          if (coordJ !== targetCoord) {
+            break;
+          }
+
+          // 2. 燈號比對：
+          // - 燈號僅規範為 黃、綠 或 無 ('')
+          // - 若目前群組無燈號且下個步驟有燈號 (黃/綠)，可合併，群組燈號採納 lampJ
+          // - 若目前群組已有燈號且下個步驟無燈號，可合併，群組燈號維持原燈號
+          // - 若兩步驟皆有燈號，需燈號相同 (黃===黃, 綠===綠) 方可合併
+          // - 若兩步驟皆無燈號，可合併
+          // - 若燈號衝突 (一黃一綠)，則不可合併
+          if (targetLamp === '') {
+            targetLamp = lampJ;
+            j++;
+          } else if (lampJ === '' || targetLamp === lampJ) {
+            j++;
           } else {
             break;
           }
         }
+        steps.push({ idx: i, lampColor: targetLamp });
         i = j;
       }
       return steps;
@@ -3618,7 +3631,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const rowH2 = bodyH / col2Steps.length;
 
     // 6. 繪製單元格的通用函式
-    function drawCell(idx, colStartX, localIdx, totalCount, rowH_local) {
+    function drawCell(stepItem, colStartX, localIdx, totalCount, rowH_local) {
       const rY = startY + headerH + localIdx * rowH_local;
       const isLastInCol = (localIdx === totalCount - 1);
 
@@ -3637,6 +3650,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const badgeX = colStartX + colW - badgeW; // 起點在 colStartX + 67px
       let badgeY = rY + (rowH_local - badgeH) / 2; // 垂直居中
 
+      const idx = (typeof stepItem === 'object') ? stepItem.idx : stepItem;
       const f = formations[idx];
       const rawCoord = getFormationCoordStr(performer, f.key) || '無';
       const displayCoordStr = formatCoordinateForDisplay(rawCoord);
@@ -3647,8 +3661,10 @@ document.addEventListener('DOMContentLoaded', () => {
       // --- 引入高度縮放因子 scaleFactor (基準行高為 81.25) ---
       const scaleFactor = rowH_local / 81.25;
 
-      // 取得蓮花燈資訊
-      const lampColor = getFormationLampColor(f.key);
+      // 取得蓮花燈資訊 (優先採用合併群組之有效燈號)
+      const lampColor = (typeof stepItem === 'object' && stepItem.lampColor !== undefined)
+        ? stepItem.lampColor
+        : getFormationLampColor(f.key);
       const hasLamp = (lampColor === '黃' || lampColor === '綠');
 
       // --- 右欄尺寸與 Y 軸計算 (若有燈號則垂直雙排，若無則單排 65px 置中) ---
@@ -3908,11 +3924,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 7. 遍歷兩直排獨立步驟繪製單元格
-    col1Steps.forEach((idx, localIdx) => {
-      drawCell(idx, startX, localIdx, col1Steps.length, rowH1);
+    col1Steps.forEach((stepItem, localIdx) => {
+      drawCell(stepItem, startX, localIdx, col1Steps.length, rowH1);
     });
-    col2Steps.forEach((idx, localIdx) => {
-      drawCell(idx, col2StartX, localIdx, col2Steps.length, rowH2);
+    col2Steps.forEach((stepItem, localIdx) => {
+      drawCell(stepItem, col2StartX, localIdx, col2Steps.length, rowH2);
     });
 
     // 6.5 重新繪製表格外框與表頭線（確保色塊不會遮擋住邊框）
