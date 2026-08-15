@@ -3569,18 +3569,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ctx.font = `bold 12px 'Noto Sans TC', sans-serif`;
  
-    // 5.1 動態分析每一欄的獨立步驟清單 (合併連續相同座標的步驟)
+    // 5.0 輔助函式：取得步驟蓮花燈燈號顏色 (黃、綠、無)
+    function getFormationLampColor(fKey) {
+      const rawLampVal = STEP_LAMP_COLORS[fKey];
+      if (typeof rawLampVal === 'string') {
+        return rawLampVal;
+      } else if (rawLampVal && typeof rawLampVal === 'object') {
+        return rawLampVal[selectedSessionKey] || '';
+      }
+      return '';
+    }
+
+    // 5.1 動態分析每一欄的獨立步驟清單 (合併連續相同座標、地塊隊形與蓮花燈燈號皆相同的步驟)
     function getUniqueColSteps(start, end) {
       const steps = [];
       let i = start;
       while (i <= end) {
         steps.push(i);
-        const coordI = getFormationCoordStr(performer, formations[i].key) || '無';
+        const fI = formations[i];
+        const coordI = getFormationCoordStr(performer, fI.key) || '無';
+        const typeI = getDisplayType(fI.key);
+        const lampI = getFormationLampColor(fI.key);
+
         let j = i + 1;
         while (j <= end) {
-          const coordJ = getFormationCoordStr(performer, formations[j].key) || '無';
-          if (coordI === coordJ) {
-            j++; // 連續相同座標合併
+          const fJ = formations[j];
+          const coordJ = getFormationCoordStr(performer, fJ.key) || '無';
+          const typeJ = getDisplayType(fJ.key);
+          const lampJ = getFormationLampColor(fJ.key);
+
+          // 座標、地塊隊形、蓮花燈燈號三者皆相同時才可合併；只要任一項不同就不可合併
+          if (coordI === coordJ && typeI === typeJ && lampI === lampJ) {
+            j++; // 連續完全相同步驟合併
           } else {
             break;
           }
@@ -3628,13 +3648,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const scaleFactor = rowH_local / 81.25;
 
       // 取得蓮花燈資訊
-      const rawLampVal = STEP_LAMP_COLORS[f.key];
-      let lampColor = '';
-      if (typeof rawLampVal === 'string') {
-        lampColor = rawLampVal;
-      } else if (rawLampVal && typeof rawLampVal === 'object') {
-        lampColor = rawLampVal[selectedSessionKey] || '';
-      }
+      const lampColor = getFormationLampColor(f.key);
       const hasLamp = (lampColor === '黃' || lampColor === '綠');
 
       // --- 右欄尺寸與 Y 軸計算 (若有燈號則垂直雙排，若無則單排 65px 置中) ---
