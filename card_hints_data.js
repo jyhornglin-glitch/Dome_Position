@@ -482,7 +482,8 @@ const CARD_HINTS_DATA = {
   "gongDe5": [],
   "gongDe6": [],
   "gongDe7": [],
-  "gongDe8": []
+  "gongDe8": [],
+  "sixRuiXiang": []
 };
 
 // Export if in node environment, otherwise make it global

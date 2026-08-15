@@ -3527,22 +3527,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const startY = 48;
     const endY = 722;
     const startX = 20;
-    const colW = 130; // 每排寬度
-    const col2StartX = 160; // 中排起始 X
-    const col3StartX = 300; // 右排起始 X
+    const colW = 200; // 每排寬度從 130px 擴大為 200px
+    const col2StartX = 230; // 欄二起始 X (20 + 200 + 10px 間距)
     const tableH = endY - startY; // 674
 
     const headerH = 24;
     const bodyH = tableH - headerH; // 650
-    const rowH = bodyH / 8; // 81.25px (大幅增加高度)
 
     // 5. Table Borders and Headers
     ctx.strokeStyle = '#cbd5e1';
     ctx.lineWidth = 1.0;
 
-    const columnsX = [startX, col2StartX, col3StartX];
+    const columnsX = [startX, col2StartX];
 
-    // 繪製三直排的表頭背景與外框
+    // 繪製兩直排的表頭背景與外框
     columnsX.forEach(x => {
       ctx.fillStyle = '#f1f5f9';
       ctx.fillRect(x, startY, colW, headerH);
@@ -3561,78 +3559,116 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.stroke();
     });
 
-    // Table Header Texts (縮小字體以求完全塞入 130px)
+    // Table Header Texts (縮小字體以求完全塞入 200px)
     ctx.fillStyle = '#334155';
-    ctx.font = "bold 9px 'Noto Sans TC', sans-serif";
+    ctx.font = "bold 9.5px 'Noto Sans TC', sans-serif";
     ctx.textBaseline = 'middle';
     ctx.textAlign = 'left';
-    ctx.fillText(" 步驟 1 - 8 (定位資訊)", startX + 4, startY + headerH / 2);
-    ctx.fillText(" 步驟 9 - 16 (定位資訊)", col2StartX + 4, startY + headerH / 2);
-    ctx.fillText(" 步驟 17 - 23 (定位資訊)", col3StartX + 4, startY + headerH / 2);
+    ctx.fillText(" 步驟 1 - 12 (定位資訊)", startX + 4, startY + headerH / 2);
+    ctx.fillText(" 步驟 13 - 23 (定位資訊)", col2StartX + 4, startY + headerH / 2);
 
-    // 6. Draw Table Rows (Triple Column)
-    for (let idx = 0; idx < formations.length; idx++) {
-      let colIdx = 0;
-      let colStartX = startX;
-      let isLastInCol = false;
-
-      if (idx < 8) {
-        colIdx = idx;
-        colStartX = startX;
-        isLastInCol = (colIdx === 7);
-      } else if (idx < 16) {
-        colIdx = idx - 8;
-        colStartX = col2StartX;
-        isLastInCol = (colIdx === 7);
-      } else {
-        colIdx = idx - 16;
-        colStartX = col3StartX;
-        isLastInCol = (colIdx === 6);
+    ctx.font = `bold 12px 'Noto Sans TC', sans-serif`;
+ 
+    // 5.1 動態分析每一欄的獨立步驟清單 (合併連續相同座標的步驟)
+    function getUniqueColSteps(start, end) {
+      const steps = [];
+      let i = start;
+      while (i <= end) {
+        steps.push(i);
+        const coordI = getFormationCoordStr(performer, formations[i].key) || '無';
+        let j = i + 1;
+        while (j <= end) {
+          const coordJ = getFormationCoordStr(performer, formations[j].key) || '無';
+          if (coordI === coordJ) {
+            j++; // 連續相同座標合併
+          } else {
+            break;
+          }
+        }
+        i = j;
       }
-      
-      const rY = startY + headerH + colIdx * rowH;
+      return steps;
+    }
 
-      // Draw row bottom line (非最後一行才繪製)
+    const col1Steps = getUniqueColSteps(0, 11); // 步驟 1-12
+    const col2Steps = getUniqueColSteps(12, 22); // 步驟 13-23
+
+    // 5.2 計算各直排的動態等分行高
+    const rowH1 = bodyH / col1Steps.length;
+    const rowH2 = bodyH / col2Steps.length;
+
+    // 6. 繪製單元格的通用函式
+    function drawCell(idx, colStartX, localIdx, totalCount, rowH_local) {
+      const rY = startY + headerH + localIdx * rowH_local;
+      const isLastInCol = (localIdx === totalCount - 1);
+
+      // 6.1 繪製底部分割線 (非最後一行才繪製)
       if (!isLastInCol) {
         ctx.strokeStyle = '#cbd5e1';
         ctx.lineWidth = 0.5;
         ctx.beginPath();
-        ctx.moveTo(colStartX, rY + rowH);
-        ctx.lineTo(colStartX + colW, rY + rowH);
+        ctx.moveTo(colStartX, rY + rowH_local);
+        ctx.lineTo(colStartX + colW, rY + rowH_local);
         ctx.stroke();
       }
 
-      // 三欄中個別單元格的寬度分配
-      const badgeW = 75; // 色塊寬度固定為 75px
-      const badgeH = 65; // 色塊高度固定為 65px
-      const colW2 = badgeW;
-      const colW1 = colW - colW2; // 55px
+      const badgeW = 133; // 座標色塊佔欄寬 (200px) 的 2/3 寬度 (即 133px)
+      let badgeH = 65; // 預設色塊高度固定為 65px (無大小塊)
+      const badgeX = colStartX + colW - badgeW; // 起點在 colStartX + 67px
+      let badgeY = rY + (rowH_local - badgeH) / 2; // 垂直居中
 
       const f = formations[idx];
       const rawCoord = getFormationCoordStr(performer, f.key) || '無';
       const displayCoordStr = formatCoordinateForDisplay(rawCoord);
       const split = splitLandmarkAndCoordinate(displayCoordStr);
-      
       const displayType = getDisplayType(f.key);
       const lineColorInfo = FORMATION_COLORS[displayType] || FORMATION_COLORS[f.key] || { hex: '#d97706', name: '黃線' };
 
-      // --- 右欄：指引線色塊位置計算 (提前宣告以利計算左欄文字的最大可用寬度) ---
-      const badgeX = colStartX + colW - badgeW;
-      const badgeY = rY + (rowH - badgeH) / 2; // 垂直置中
+      // --- 引入高度縮放因子 scaleFactor (基準行高為 81.25) ---
+      const scaleFactor = rowH_local / 81.25;
 
-      // --- 左欄：定位名稱 (改為橫向排列，徹底去除步驟編號，防止文字與色塊重疊) ---
+      // 取得蓮花燈資訊
+      const rawLampVal = STEP_LAMP_COLORS[f.key];
+      let lampColor = '';
+      if (typeof rawLampVal === 'string') {
+        lampColor = rawLampVal;
+      } else if (rawLampVal && typeof rawLampVal === 'object') {
+        lampColor = rawLampVal[selectedSessionKey] || '';
+      }
+      const hasLamp = (lampColor === '黃' || lampColor === '綠');
+
+      // --- 右欄尺寸與 Y 軸計算 (若有燈號則垂直雙排，若無則單排 65px 置中) ---
+      let hasLampDraw = false;
+      let lampDrawY = 0;
+      let lampH = 0;
+
+      if (hasLamp) {
+        hasLampDraw = true;
+        const normBadgeH = 48;
+        const normLampH = 19;
+        const normGap = 4;
+        
+        badgeH = Math.round(normBadgeH * scaleFactor);
+        lampH = Math.round(normLampH * scaleFactor);
+        const gap = Math.round(normGap * scaleFactor);
+        const totalH = badgeH + gap + lampH;
+        
+        const startY_offset = (rowH_local - totalH) / 2;
+        badgeY = rY + startY_offset;
+        lampDrawY = badgeY + badgeH + gap;
+      }
+
+      // --- 左欄：步驟地標名稱與貼圖 (自適應寬度 67px，貼紙水平置中) ---
       const fLabel = f.label || f.name.replace(/\(\w+\)/, '');
       ctx.fillStyle = '#0f172a';
       
-      // 去除號碼後，起始點左移，以取得更大繪製空間
-      const labelStartX = colStartX + 6;
-      // 可用最大寬度為色塊起點減去文字起點，再留 2px 安全間距，確保絕不與色塊重疊
-      const maxLabelWidth = badgeX - labelStartX - 2;
+      const labelStartX = colStartX + 8;
+      const maxLabelWidth = badgeX - labelStartX - 2; // 可用文字寬度為 57px
 
       ctx.textAlign = 'left';
       ctx.textBaseline = 'middle';
 
-      // 判斷折行邏輯
+      // 判斷折行 (因左欄寬度為 67px，大於 5 個字進行折行)
       const openParenIdx = fLabel.indexOf('(');
       let isTwoLines = false;
       let line1 = fLabel;
@@ -3648,86 +3684,64 @@ document.addEventListener('DOMContentLoaded', () => {
         line2 = fLabel.substring(5);
       }
 
+      // 文字 Y 座標與貼紙尺寸位置計算 (左欄寬度 67px，貼紙置中)
+      let line1Y, line2Y, stickerDrawY;
+      const stickerSize = hasLamp 
+        ? Math.min(44, Math.round(28 * scaleFactor)) 
+        : Math.min(50, Math.round(30 * scaleFactor));
+
       if (isTwoLines) {
-        // 第一層：主要地標文字 (稍微靠上)
-        let fontSize = 11.5;
+        line1Y = rY + rowH_local * 0.22;
+        line2Y = rY + rowH_local * 0.42;
+        stickerDrawY = rY + rowH_local * 0.74 - (stickerSize / 2);
+      } else {
+        line1Y = rY + rowH_local * 0.32;
+        stickerDrawY = rY + rowH_local * 0.70 - (stickerSize / 2);
+      }
+
+      // 貼紙 X 軸起點：在左欄 67px (colStartX 到 badgeX) 的水平居中位置
+      const stickerDrawX = colStartX + 33.5 - (stickerSize / 2);
+
+      // 繪製地標文字
+      if (isTwoLines) {
+        let fontSize = Math.round(11.5 * scaleFactor);
         ctx.font = `bold ${fontSize}px 'Noto Sans TC', sans-serif`;
         while (ctx.measureText(line1).width > maxLabelWidth && fontSize > 8) {
           fontSize -= 0.5;
           ctx.font = `bold ${fontSize}px 'Noto Sans TC', sans-serif`;
         }
-        ctx.fillText(line1, labelStartX, rY + 19);
+        ctx.fillText(line1, labelStartX, line1Y);
 
-        // 第二層：括號文字 (行距收縮，盡量接近)
         let fontSize2 = fontSize;
         ctx.font = `bold ${fontSize2}px 'Noto Sans TC', sans-serif`;
         while (ctx.measureText(line2).width > maxLabelWidth && fontSize2 > 8) {
           fontSize2 -= 0.5;
           ctx.font = `bold ${fontSize2}px 'Noto Sans TC', sans-serif`;
         }
-        ctx.fillText(line2, labelStartX, rY + 31); // 縮小行距至 12px
+        ctx.fillText(line2, labelStartX, line2Y); 
       } else {
-        // 單行呈現：第一層 (稍微靠上)
-        let fontSize = 13.5;
+        let fontSize = Math.round(13.5 * scaleFactor);
         ctx.font = `bold ${fontSize}px 'Noto Sans TC', sans-serif`;
         while (ctx.measureText(line1).width > maxLabelWidth && fontSize > 8) {
           fontSize -= 0.5;
           ctx.font = `bold ${fontSize}px 'Noto Sans TC', sans-serif`;
         }
-        ctx.fillText(line1, labelStartX, rY + 22);
+        ctx.fillText(line1, labelStartX, line1Y);
       }
 
-      // 第三層：繪製專屬地標貼圖與燈號色塊 (左右對調，優化尺寸以佔滿空間)
-      const rawLampVal = STEP_LAMP_COLORS[f.key];
-      let lampColor = '';
-      if (typeof rawLampVal === 'string') {
-        lampColor = rawLampVal;
-      } else if (rawLampVal && typeof rawLampVal === 'object') {
-        lampColor = rawLampVal[selectedSessionKey] || '';
-      }
-      const hasLamp = (lampColor === '黃' || lampColor === '綠');
-      let visualY = rY + (isTwoLines ? 49 : 44);
-      
-      const stickerSize = hasLamp ? 22 : 26; // 有燈時貼圖 22px，無燈時貼圖 26px
-      let stickerDrawY = visualY - (hasLamp ? 1.5 : 2);
-
-      // 3.1 繪製專屬地標貼紙圓形圖案 (放左邊)
+      // 繪製專屬地標貼圖
       const englishCategory = getEnglishCategory(performer.category || 'A白');
       const stickerUrl = `images/stickers/${displayType}_${englishCategory}.png`;
       const cachedImg = loadedStickers[stickerUrl];
-      
       if (cachedImg) {
-        ctx.drawImage(cachedImg, labelStartX, stickerDrawY, stickerSize, stickerSize);
+        ctx.drawImage(cachedImg, stickerDrawX, stickerDrawY, stickerSize, stickerSize);
       }
 
-      // 3.2 繪製燈號色塊 (放右邊)
-      if (hasLamp) {
-        const lampHex = lampColor === '黃' ? '#eab308' : '#0B954B';
-        const lampText = lampColor; // 簡化為單字 "黃" 或 "綠"
-        
-        const badgeW_small = 23;
-        const badgeH_small = isTwoLines ? 19 : 21;
-        
-        // 色塊 X 軸在貼圖右側 (貼圖寬 22px + 間隔 2px)
-        const lampStartX = labelStartX + stickerSize + 2; 
-        const lampDrawY = visualY + (stickerSize - badgeH_small) / 2 - (isTwoLines ? 1.5 : 2);
-        
-        ctx.fillStyle = lampHex;
-        drawCanvasRoundRect(ctx, lampStartX, lampDrawY, badgeW_small, badgeH_small, 4, true, false);
-
-        ctx.fillStyle = lampColor === '黃' ? '#0f172a' : '#ffffff';
-        ctx.font = `bold ${isTwoLines ? 11 : 12}px 'Noto Sans TC', sans-serif`;
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(lampText, lampStartX + badgeW_small / 2, lampDrawY + badgeH_small / 2 + 0.5);
-      }
-
+      // --- 右欄：繪製座標數字色塊 ---
       if (rawCoord !== '無' && rawCoord !== '-') {
-        // 繪製指引線圓角長方形色塊
         ctx.fillStyle = lineColorInfo.hex;
         drawCanvasRoundRect(ctx, badgeX, badgeY, badgeW, badgeH, 6, true, false);
 
-        // 判斷背景色彩深淺，選擇合適的對比字色
         const isLightColor = ['#eab308', '#80CEF3', '#ACCE22', '#F19EA8', '#FDD100', '#A6ADD6', '#AF9DA8'].includes(lineColorInfo.hex);
         ctx.fillStyle = isLightColor ? '#0f172a' : '#ffffff';
         
@@ -3752,9 +3766,9 @@ document.addEventListener('DOMContentLoaded', () => {
             rightSub = rightMatch[2];
           }
 
-          // 自適應計算字型大小 (起步 54px)
-          let mainFontSize = 54;
-          const subFontSize = 10; 
+          // 自適應計算字型大小 (起步 72px 以極大化呈現)
+          let mainFontSize = 72;
+          const subFontSize = 13; 
 
           ctx.font = `bold ${mainFontSize}px 'Outfit', sans-serif`;
           let wLeftMain = ctx.measureText(leftMain).width;
@@ -3814,9 +3828,9 @@ document.addEventListener('DOMContentLoaded', () => {
             subText = match[2];
           }
 
-          // 自適應計算字型大小 (起步 54px)
-          let mainFontSize = 54;
-          const subFontSize = 10;
+          // 自適應計算字型大小 (起步 72px)
+          let mainFontSize = 72;
+          const subFontSize = 13;
 
           ctx.font = `bold ${mainFontSize}px 'Outfit', sans-serif`;
           let wMain = ctx.measureText(mainText).width;
@@ -3854,7 +3868,38 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.textBaseline = 'middle';
         ctx.fillText('無', badgeX + badgeW / 2, badgeY + badgeH / 2 + 0.5);
       }
+
+      // --- 右欄：繪製黃/綠蓮花燈色塊 (置於座標下方) ---
+      if (hasLampDraw) {
+        const lampHex = lampColor === '黃' ? '#eab308' : '#0B954B';
+        const lampText = lampColor; // 簡化為單字 "黃" 或 "綠"
+        
+        // 色塊大小調整為與單字文字一致 (小方塊)
+        const badgeW_small = Math.min(44, Math.round(23 * scaleFactor));
+        const badgeH_small = Math.min(42, Math.round(21 * scaleFactor));
+        
+        // 在右欄寬度內水平置中對齊
+        const lampStartX = badgeX + (badgeW - badgeW_small) / 2;
+        
+        ctx.fillStyle = lampHex;
+        drawCanvasRoundRect(ctx, lampStartX, lampDrawY, badgeW_small, badgeH_small, 4, true, false);
+
+        ctx.fillStyle = lampColor === '黃' ? '#0f172a' : '#ffffff';
+        const lampFontSize = Math.min(20, Math.round(12 * scaleFactor));
+        ctx.font = `bold ${lampFontSize}px 'Noto Sans TC', sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(lampText, lampStartX + badgeW_small / 2, lampDrawY + badgeH_small / 2 + 0.5);
+      }
     }
+
+    // 7. 遍歷兩直排獨立步驟繪製單元格
+    col1Steps.forEach((idx, localIdx) => {
+      drawCell(idx, startX, localIdx, col1Steps.length, rowH1);
+    });
+    col2Steps.forEach((idx, localIdx) => {
+      drawCell(idx, col2StartX, localIdx, col2Steps.length, rowH2);
+    });
 
     // 6.5 重新繪製表格外框與表頭線（確保色塊不會遮擋住邊框）
     ctx.strokeStyle = '#cbd5e1';
