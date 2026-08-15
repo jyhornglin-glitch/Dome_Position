@@ -3472,8 +3472,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Generate Single Position Card Canvas for Performer (Business Card size: 450x750, portrait, no step count, combined coordinate & color)
-  async function generateSinglePositionCard(performer) {
+  // Generate Merged Position Card Canvas (Double Column: 450x750, portrait, merged identical coordinates)
+  async function generateMergedPositionCard(performer) {
     if (!performer) return null;
 
     const fields = getPerformerFields(performer);
@@ -3759,15 +3759,16 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillText(line1, labelStartX, line1Y);
       }
 
-      // 繪製專屬地標貼圖
+      // 繪製專屬地標貼紙圓形圖案
       const englishCategory = getEnglishCategory(performer.category || 'A白');
       const stickerUrl = `images/stickers/${displayType}_${englishCategory}.png`;
       const cachedImg = loadedStickers[stickerUrl];
+      
       if (cachedImg) {
         ctx.drawImage(cachedImg, stickerDrawX, stickerDrawY, stickerSize, stickerSize);
       }
 
-      // --- 右欄：繪製座標數字色塊 ---
+      // --- 右欄：繪製指引線色塊與極大化座標文字 ---
       if (rawCoord !== '無' && rawCoord !== '-') {
         ctx.fillStyle = lineColorInfo.hex;
         drawCanvasRoundRect(ctx, badgeX, badgeY, badgeW, badgeH, 6, true, false);
@@ -3778,7 +3779,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const textInBadge = split.coordinate || split.landmark;
         const parts = textInBadge.split('-');
 
-        // 1. 如果座標格式為 A-B (如 C-5, 11.6-44.8, 11-44.8)
         if (parts.length === 2) {
           let leftMain = parts[0];
           let leftSub = '';
@@ -3796,19 +3796,17 @@ document.addEventListener('DOMContentLoaded', () => {
             rightSub = rightMatch[2];
           }
 
-          // 自適應計算字型大小 (起步 72px 以極大化呈現)
-          let mainFontSize = 72;
-          const subFontSize = 13; 
+          let mainFontSize = Math.min(68, Math.round(54 * scaleFactor));
+          const subFontSize = Math.min(14, Math.max(9, Math.round(10 * scaleFactor))); 
 
           ctx.font = `bold ${mainFontSize}px 'Outfit', sans-serif`;
           let wLeftMain = ctx.measureText(leftMain).width;
           let wRightMain = ctx.measureText(rightMain).width;
           let wDash = ctx.measureText('-').width;
 
-          const maxBadgeTextWidth = badgeW - 12; 
-          const maxBadgeTextHeight = badgeH - 12; 
+          const maxBadgeTextWidth = badgeW - 14; 
+          const maxBadgeTextHeight = badgeH - 8; 
 
-          // 當整數總寬度或大字高度大於安全尺寸時，自動等比例縮小大字
           while ((wLeftMain + wDash + wRightMain > maxBadgeTextWidth || mainFontSize > maxBadgeTextHeight) && mainFontSize > 14) {
             mainFontSize -= 0.5;
             ctx.font = `bold ${mainFontSize}px 'Outfit', sans-serif`;
@@ -3817,39 +3815,31 @@ document.addEventListener('DOMContentLoaded', () => {
             wDash = ctx.measureText('-').width;
           }
 
-          // 計算整數部分的整體寬度與起始 X 座標，使其在色塊中完全置中
           const totalW = wLeftMain + wDash + wRightMain;
           const drawStartX = badgeX + (badgeW - totalW) / 2;
           const centerY = badgeY + badgeH / 2;
 
-          // 繪製左半部整數
           ctx.fillStyle = isLightColor ? '#0f172a' : '#ffffff';
           ctx.font = `bold ${mainFontSize}px 'Outfit', sans-serif`;
           ctx.textAlign = 'left';
           ctx.textBaseline = 'middle';
           ctx.fillText(leftMain, drawStartX, centerY + 0.5);
 
-          // 繪製左半部小數 (移至下一列，X 縮進 4px，Y 座標依據大字高度下移)
           if (leftSub) {
             ctx.font = `bold ${subFontSize}px 'Outfit', sans-serif`;
             ctx.fillText(leftSub, drawStartX + wLeftMain - 4, centerY + (mainFontSize * 0.38));
           }
 
-          // 繪製連接號 "-"
           ctx.font = `bold ${mainFontSize}px 'Outfit', sans-serif`;
           ctx.fillText('-', drawStartX + wLeftMain, centerY + 0.5);
 
-          // 繪製右半部整數
           ctx.fillText(rightMain, drawStartX + wLeftMain + wDash, centerY + 0.5);
 
-          // 繪製右半部小數
           if (rightSub) {
             ctx.font = `bold ${subFontSize}px 'Outfit', sans-serif`;
             ctx.fillText(rightSub, drawStartX + wLeftMain + wDash + wRightMain - 4, centerY + (mainFontSize * 0.38));
           }
-        } 
-        // 2. 如果只有單一數值 (如 12.5)
-        else {
+        } else {
           let mainText = textInBadge;
           let subText = '';
           const match = textInBadge.match(/^(.+)(\.\d+)$/);
@@ -3858,15 +3848,14 @@ document.addEventListener('DOMContentLoaded', () => {
             subText = match[2];
           }
 
-          // 自適應計算字型大小 (起步 72px)
-          let mainFontSize = 72;
-          const subFontSize = 13;
+          let mainFontSize = Math.min(68, Math.round(54 * scaleFactor));
+          const subFontSize = Math.min(14, Math.max(9, Math.round(10 * scaleFactor)));
 
           ctx.font = `bold ${mainFontSize}px 'Outfit', sans-serif`;
           let wMain = ctx.measureText(mainText).width;
 
-          const maxBadgeTextWidth = badgeW - 12;
-          const maxBadgeTextHeight = badgeH - 12;
+          const maxBadgeTextWidth = badgeW - 14;
+          const maxBadgeTextHeight = badgeH - 8;
 
           while ((wMain > maxBadgeTextWidth || mainFontSize > maxBadgeTextHeight) && mainFontSize > 14) {
             mainFontSize -= 0.5;
@@ -3948,9 +3937,423 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.font = "8px 'Noto Sans TC', sans-serif";
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText("慈濟大巨蛋演繹個人定位系統  •  個人定位小卡", canvasWidth / 2, canvasHeight - 16);
+    ctx.fillText("慈濟大巨蛋演繹個人定位系統  •  個人定位小卡 (合併版)", canvasWidth / 2, canvasHeight - 16);
 
     return canvas;
+  }
+
+  // Generate Three-Column Unmerged Position Card Canvas (Triple Column: 450x750, portrait, all 23 steps with stickers & lamps)
+  async function generateThreeColumnPositionCard(performer) {
+    if (!performer) return null;
+
+    const fields = getPerformerFields(performer);
+    
+    // 預載專屬地標定位貼圖 (stickers)
+    const perfCategory = performer.category || 'A白';
+    const stickerImages = {};
+    for (let idx = 0; idx < formations.length; idx++) {
+      const f = formations[idx];
+      const displayType = getDisplayType(f.key);
+      const src = `images/stickers/${displayType}_${getEnglishCategory(perfCategory)}.png`;
+      const img = await loadImage(src);
+      if (img) {
+        stickerImages[f.key] = img;
+      }
+    }
+
+    const canvasWidth = 450;
+    const canvasHeight = 750;
+    const scale = 2.5;
+
+    const canvas = document.createElement('canvas');
+    canvas.width = Math.round(canvasWidth * scale);
+    canvas.height = Math.round(canvasHeight * scale);
+    const ctx = canvas.getContext('2d');
+
+    ctx.scale(scale, scale);
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+
+    // 1. Background
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+
+    // 2. Draw border
+    ctx.strokeStyle = '#cbd5e1';
+    ctx.lineWidth = 1.2;
+    drawCanvasRoundRect(ctx, 12, 12, canvasWidth - 24, canvasHeight - 24, 8, false, true);
+
+    // 3. Header Text
+    ctx.fillStyle = '#0f172a';
+    ctx.font = "bold 12.5px 'Noto Sans TC', sans-serif";
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(`${currentDisplayName || '無'} (${performer.category || '無'})`, 22, 28);
+
+    ctx.textAlign = 'right';
+    ctx.fillText(`起點：${fields.coordinate}`, canvasWidth - 22, 28);
+
+    // 4. Table Dimensions
+    const startY = 48;
+    const endY = 722;
+    const startX = 20;
+    const colW = 130; // 每排寬度
+    const col2StartX = 160; // 中排起始 X
+    const col3StartX = 300; // 右排起始 X
+    const tableH = endY - startY; // 674
+
+    const headerH = 24;
+    const bodyH = tableH - headerH; // 650
+    const rowH = bodyH / 8; // 81.25px (三欄等分高度)
+
+    // 5. Table Borders and Headers
+    ctx.strokeStyle = '#cbd5e1';
+    ctx.lineWidth = 1.0;
+
+    const columnsX = [startX, col2StartX, col3StartX];
+
+    // 繪製三直排的表頭背景與外框
+    columnsX.forEach(x => {
+      ctx.fillStyle = '#f1f5f9';
+      ctx.fillRect(x, startY, colW, headerH);
+      
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(x, startY + headerH, colW, bodyH);
+      ctx.fillStyle = '#f1f5f9';
+      ctx.fillRect(x, startY, colW, headerH);
+      
+      ctx.strokeRect(x, startY, colW, tableH);
+
+      // 表頭與身體的橫線
+      ctx.beginPath();
+      ctx.moveTo(x, startY + headerH);
+      ctx.lineTo(x + colW, startY + headerH);
+      ctx.stroke();
+    });
+
+    // Table Header Texts (縮小字體以求完全塞入 130px)
+    ctx.fillStyle = '#334155';
+    ctx.font = "bold 9px 'Noto Sans TC', sans-serif";
+    ctx.textBaseline = 'middle';
+    ctx.textAlign = 'left';
+    ctx.fillText(" 步驟 1 - 8 (定位資訊)", startX + 4, startY + headerH / 2);
+    ctx.fillText(" 步驟 9 - 16 (定位資訊)", col2StartX + 4, startY + headerH / 2);
+    ctx.fillText(" 步驟 17 - 23 (定位資訊)", col3StartX + 4, startY + headerH / 2);
+
+    // 6. Draw Table Rows (Triple Column)
+    for (let idx = 0; idx < formations.length; idx++) {
+      let colIdx = 0;
+      let colStartX = startX;
+      let isLastInCol = false;
+
+      if (idx < 8) {
+        colIdx = idx;
+        colStartX = startX;
+        isLastInCol = (colIdx === 7);
+      } else if (idx < 16) {
+        colIdx = idx - 8;
+        colStartX = col2StartX;
+        isLastInCol = (colIdx === 7);
+      } else {
+        colIdx = idx - 16;
+        colStartX = col3StartX;
+        isLastInCol = (colIdx === 6);
+      }
+      
+      const rY = startY + headerH + colIdx * rowH;
+
+      // Draw row bottom line (非最後一行才繪製)
+      if (!isLastInCol) {
+        ctx.strokeStyle = '#cbd5e1';
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(colStartX, rY + rowH);
+        ctx.lineTo(colStartX + colW, rY + rowH);
+        ctx.stroke();
+      }
+
+      // 三欄中個別單元格的寬度分配
+      const badgeW = 75; // 色塊寬度固定為 75px
+      const badgeH = 65; // 色塊高度固定為 65px
+      const colW2 = badgeW;
+      const colW1 = colW - colW2; // 55px
+
+      const f = formations[idx];
+      const rawCoord = getFormationCoordStr(performer, f.key) || '無';
+      const displayCoordStr = formatCoordinateForDisplay(rawCoord);
+      const split = splitLandmarkAndCoordinate(displayCoordStr);
+      
+      const displayType = getDisplayType(f.key);
+      const lineColorInfo = FORMATION_COLORS[displayType] || FORMATION_COLORS[f.key] || { hex: '#d97706', name: '黃線' };
+
+      // --- 右欄：指引線色塊位置計算 (提前宣告以利計算左欄文字的最大可用寬度) ---
+      const badgeX = colStartX + colW - badgeW;
+      const badgeY = rY + (rowH - badgeH) / 2; // 垂直置中
+
+      // --- 左欄：定位名稱 (改為橫向排列，徹底去除步驟編號，防止文字與色塊重疊) ---
+      const fLabel = f.label || f.name.replace(/\(\w+\)/, '');
+      ctx.fillStyle = '#0f172a';
+      
+      // 去除號碼後，起始點左移，以取得更大繪製空間
+      const labelStartX = colStartX + 6;
+      // 可用最大寬度為色塊起點減去文字起點，再留 2px 安全間距，確保絕不與色塊重疊
+      const maxLabelWidth = badgeX - labelStartX - 2;
+
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'middle';
+
+      // 判斷折行邏輯
+      const openParenIdx = fLabel.indexOf('(');
+      let isTwoLines = false;
+      let line1 = fLabel;
+      let line2 = '';
+
+      if (openParenIdx > 0) {
+        isTwoLines = true;
+        line1 = fLabel.substring(0, openParenIdx);
+        line2 = fLabel.substring(openParenIdx);
+      } else if (fLabel.length > 5) {
+        isTwoLines = true;
+        line1 = fLabel.substring(0, 5);
+        line2 = fLabel.substring(5);
+      }
+
+      if (isTwoLines) {
+        // 第一層：主要地標文字 (稍微靠上)
+        let fontSize = 11.5;
+        ctx.font = `bold ${fontSize}px 'Noto Sans TC', sans-serif`;
+        while (ctx.measureText(line1).width > maxLabelWidth && fontSize > 8) {
+          fontSize -= 0.5;
+          ctx.font = `bold ${fontSize}px 'Noto Sans TC', sans-serif`;
+        }
+        ctx.fillText(line1, labelStartX, rY + 19);
+
+        // 第二層：括號文字 (行距收縮，盡量接近)
+        let fontSize2 = fontSize;
+        ctx.font = `bold ${fontSize2}px 'Noto Sans TC', sans-serif`;
+        while (ctx.measureText(line2).width > maxLabelWidth && fontSize2 > 8) {
+          fontSize2 -= 0.5;
+          ctx.font = `bold ${fontSize2}px 'Noto Sans TC', sans-serif`;
+        }
+        ctx.fillText(line2, labelStartX, rY + 31); // 縮小行距至 12px
+      } else {
+        // 單行呈現：第一層 (稍微靠上)
+        let fontSize = 13.5;
+        ctx.font = `bold ${fontSize}px 'Noto Sans TC', sans-serif`;
+        while (ctx.measureText(line1).width > maxLabelWidth && fontSize > 8) {
+          fontSize -= 0.5;
+          ctx.font = `bold ${fontSize}px 'Noto Sans TC', sans-serif`;
+        }
+        ctx.fillText(line1, labelStartX, rY + 22);
+      }
+
+      // 第三層：繪製專屬地標貼圖與燈號色塊 (左右對調，優化尺寸以佔滿空間)
+      const rawLampVal = STEP_LAMP_COLORS[f.key];
+      let lampColor = '';
+      if (typeof rawLampVal === 'string') {
+        lampColor = rawLampVal;
+      } else if (rawLampVal && typeof rawLampVal === 'object') {
+        lampColor = rawLampVal[selectedSessionKey] || '';
+      }
+      const hasLamp = (lampColor === '黃' || lampColor === '綠');
+      let visualY = rY + (isTwoLines ? 49 : 44);
+      
+      const stickerSize = hasLamp ? 22 : 26; // 有燈時貼圖 22px，無燈時貼圖 26px
+      let stickerDrawY = visualY - (hasLamp ? 1.5 : 2);
+
+      // 3.1 繪製專屬地標貼紙圓形圖案 (放左邊)
+      const englishCategory = getEnglishCategory(performer.category || 'A白');
+      const stickerUrl = `images/stickers/${displayType}_${englishCategory}.png`;
+      const cachedImg = loadedStickers[stickerUrl];
+      
+      if (cachedImg) {
+        ctx.drawImage(cachedImg, labelStartX, stickerDrawY, stickerSize, stickerSize);
+      }
+
+      // 3.2 繪製燈號色塊 (放右邊)
+      if (hasLamp) {
+        const lampHex = lampColor === '黃' ? '#eab308' : '#0B954B';
+        const lampText = lampColor; // 簡化為單字 "黃" 或 "綠"
+        
+        const badgeW_small = 23;
+        const badgeH_small = isTwoLines ? 19 : 21;
+        
+        // 色塊 X 軸在貼圖右側 (貼圖寬 22px + 間隔 2px)
+        const lampStartX = labelStartX + stickerSize + 2; 
+        const lampDrawY = visualY + (stickerSize - badgeH_small) / 2 - (isTwoLines ? 1.5 : 2);
+        
+        ctx.fillStyle = lampHex;
+        drawCanvasRoundRect(ctx, lampStartX, lampDrawY, badgeW_small, badgeH_small, 4, true, false);
+
+        ctx.fillStyle = lampColor === '黃' ? '#0f172a' : '#ffffff';
+        ctx.font = `bold ${isTwoLines ? 11 : 12}px 'Noto Sans TC', sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(lampText, lampStartX + badgeW_small / 2, lampDrawY + badgeH_small / 2 + 0.5);
+      }
+
+      if (rawCoord !== '無' && rawCoord !== '-') {
+        // 繪製指引線圓角長方形色塊
+        ctx.fillStyle = lineColorInfo.hex;
+        drawCanvasRoundRect(ctx, badgeX, badgeY, badgeW, badgeH, 6, true, false);
+
+        // 判斷背景色彩深淺，選擇合適的對比字色
+        const isLightColor = ['#eab308', '#80CEF3', '#ACCE22', '#F19EA8', '#FDD100', '#A6ADD6', '#AF9DA8'].includes(lineColorInfo.hex);
+        ctx.fillStyle = isLightColor ? '#0f172a' : '#ffffff';
+        
+        const textInBadge = split.coordinate || split.landmark;
+        const parts = textInBadge.split('-');
+
+        // 1. 如果座標格式為 A-B (如 C-5, 11.6-44.8, 11-44.8)
+        if (parts.length === 2) {
+          let leftMain = parts[0];
+          let leftSub = '';
+          const leftMatch = parts[0].match(/^(.+)(\.\d+)$/);
+          if (leftMatch) {
+            leftMain = leftMatch[1];
+            leftSub = leftMatch[2];
+          }
+
+          let rightMain = parts[1];
+          let rightSub = '';
+          const rightMatch = parts[1].match(/^(.+)(\.\d+)$/);
+          if (rightMatch) {
+            rightMain = rightMatch[1];
+            rightSub = rightMatch[2];
+          }
+
+          // 自適應計算字型大小 (起步 54px)
+          let mainFontSize = 54;
+          const subFontSize = 10; 
+
+          ctx.font = `bold ${mainFontSize}px 'Outfit', sans-serif`;
+          let wLeftMain = ctx.measureText(leftMain).width;
+          let wRightMain = ctx.measureText(rightMain).width;
+          let wDash = ctx.measureText('-').width;
+
+          const maxBadgeTextWidth = badgeW - 12; 
+          const maxBadgeTextHeight = badgeH - 12; 
+
+          // 當整數總寬度或大字高度大於安全尺寸時，自動等比例縮小大字
+          while ((wLeftMain + wDash + wRightMain > maxBadgeTextWidth || mainFontSize > maxBadgeTextHeight) && mainFontSize > 14) {
+            mainFontSize -= 0.5;
+            ctx.font = `bold ${mainFontSize}px 'Outfit', sans-serif`;
+            wLeftMain = ctx.measureText(leftMain).width;
+            wRightMain = ctx.measureText(rightMain).width;
+            wDash = ctx.measureText('-').width;
+          }
+
+          // 計算整數部分的整體寬度與起始 X 座標，使其在色塊中完全置中
+          const totalW = wLeftMain + wDash + wRightMain;
+          const drawStartX = badgeX + (badgeW - totalW) / 2;
+          const centerY = badgeY + badgeH / 2;
+
+          // 繪製左半部整數
+          ctx.fillStyle = isLightColor ? '#0f172a' : '#ffffff';
+          ctx.font = `bold ${mainFontSize}px 'Outfit', sans-serif`;
+          ctx.textAlign = 'left';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(leftMain, drawStartX, centerY + 0.5);
+
+          // 繪製左半部小數 (移至下一列，X 縮進 4px，Y 座標依據大字高度下移)
+          if (leftSub) {
+            ctx.font = `bold ${subFontSize}px 'Outfit', sans-serif`;
+            ctx.fillText(leftSub, drawStartX + wLeftMain - 4, centerY + (mainFontSize * 0.38));
+          }
+
+          // 繪製連接號 "-"
+          ctx.font = `bold ${mainFontSize}px 'Outfit', sans-serif`;
+          ctx.fillText('-', drawStartX + wLeftMain, centerY + 0.5);
+
+          // 繪製右半部整數
+          ctx.fillText(rightMain, drawStartX + wLeftMain + wDash, centerY + 0.5);
+
+          // 繪製右半部小數
+          if (rightSub) {
+            ctx.font = `bold ${subFontSize}px 'Outfit', sans-serif`;
+            ctx.fillText(rightSub, drawStartX + wLeftMain + wDash + wRightMain - 4, centerY + (mainFontSize * 0.38));
+          }
+        } 
+        // 2. 如果只有單一數值 (如 12.5)
+        else {
+          let mainText = textInBadge;
+          let subText = '';
+          const match = textInBadge.match(/^(.+)(\.\d+)$/);
+          if (match) {
+            mainText = match[1];
+            subText = match[2];
+          }
+
+          // 自適應計算字型大小 (起步 54px)
+          let mainFontSize = 54;
+          const subFontSize = 10;
+
+          ctx.font = `bold ${mainFontSize}px 'Outfit', sans-serif`;
+          let wMain = ctx.measureText(mainText).width;
+
+          const maxBadgeTextWidth = badgeW - 12;
+          const maxBadgeTextHeight = badgeH - 12;
+
+          while ((wMain > maxBadgeTextWidth || mainFontSize > maxBadgeTextHeight) && mainFontSize > 14) {
+            mainFontSize -= 0.5;
+            ctx.font = `bold ${mainFontSize}px 'Outfit', sans-serif`;
+            wMain = ctx.measureText(mainText).width;
+          }
+
+          const drawStartX = badgeX + (badgeW - wMain) / 2;
+          const centerY = badgeY + badgeH / 2;
+
+          ctx.font = `bold ${mainFontSize}px 'Outfit', sans-serif`;
+          ctx.textAlign = 'left';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(mainText, drawStartX, centerY + 0.5);
+
+          if (subText) {
+            ctx.font = `bold ${subFontSize}px 'Outfit', sans-serif`;
+            ctx.fillText(subText, drawStartX + wMain - 4, centerY + (mainFontSize * 0.38));
+          }
+        }
+      } else {
+        // 沒有座標時繪製灰色圓角長方形色塊，顯示「無」
+        ctx.fillStyle = '#f1f5f9';
+        drawCanvasRoundRect(ctx, badgeX, badgeY, badgeW, badgeH, 6, true, false);
+        
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = "bold 16px 'Noto Sans TC', sans-serif";
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('無', badgeX + badgeW / 2, badgeY + badgeH / 2 + 0.5);
+      }
+    }
+
+    // 6.5 重新繪製表格外框與表頭線（確保色塊不會遮擋住邊框）
+    ctx.strokeStyle = '#cbd5e1';
+    ctx.lineWidth = 1.0;
+    columnsX.forEach(x => {
+      ctx.strokeRect(x, startY, colW, tableH);
+      
+      ctx.beginPath();
+      ctx.moveTo(x, startY + headerH);
+      ctx.lineTo(x + colW, startY + headerH);
+      ctx.stroke();
+    });
+
+    // 7. Footer Text
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = "8px 'Noto Sans TC', sans-serif";
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText("慈濟大巨蛋演繹個人定位系統  •  個人定位小卡 (三欄完整版)", canvasWidth / 2, canvasHeight - 16);
+
+    return canvas;
+  }
+
+  // Unified Position Card Dispatcher
+  async function generateSinglePositionCard(performer, mode = 'merged') {
+    if (mode === 'three_column') {
+      return await generateThreeColumnPositionCard(performer);
+    }
+    return await generateMergedPositionCard(performer);
   }
 
   // Generate Pocket Slip A6 Canvases array for Performer (Col 2 Font +15% to 22px, A6 Multi-Page Split)
@@ -4640,16 +5043,38 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // 6. Position Card Modal Event Listeners
+    // 6. Position Card Modal & Choice Event Listeners
     const downloadPositionCardOpenBtn = document.getElementById('downloadPositionCardOpenBtn');
+    const positionCardChoiceModal = document.getElementById('positionCardChoiceModal');
+    const closePositionCardChoiceModalBtn = document.getElementById('closePositionCardChoiceModalBtn');
+    const chooseMergedCardBtn = document.getElementById('chooseMergedCardBtn');
+    const chooseUnmergedCardBtn = document.getElementById('chooseUnmergedCardBtn');
+
     const positionCardModal = document.getElementById('positionCardModal');
     const closePositionCardModalBtn = document.getElementById('closePositionCardModalBtn');
+    const posCardLayoutMergedBtn = document.getElementById('posCardLayoutMergedBtn');
+    const posCardLayoutThreeColBtn = document.getElementById('posCardLayoutThreeColBtn');
     const downloadPositionCardPngBtn = document.getElementById('downloadPositionCardPngBtn');
     const downloadPositionCardPdfBtn = document.getElementById('downloadPositionCardPdfBtn');
     const positionCardPreviewWrapper = document.getElementById('positionCardPreviewWrapper');
 
-    async function openPositionCardModal() {
+    let currentPositionCardMode = 'merged';
+
+    async function openPositionCardModalWithMode(mode) {
       if (!currentPerformer) return;
+      currentPositionCardMode = mode || 'merged';
+
+      // 更新預覽視窗頂部的切換按鈕狀態
+      if (posCardLayoutMergedBtn && posCardLayoutThreeColBtn) {
+        if (currentPositionCardMode === 'three_column') {
+          posCardLayoutMergedBtn.classList.remove('active');
+          posCardLayoutThreeColBtn.classList.add('active');
+        } else {
+          posCardLayoutMergedBtn.classList.add('active');
+          posCardLayoutThreeColBtn.classList.remove('active');
+        }
+      }
+
       positionCardModal.style.display = 'flex';
       positionCardPreviewWrapper.innerHTML = `<div class="slip-loading"><i class="fa-solid fa-spinner fa-spin"></i> 定位小卡產出中...</div>`;
 
@@ -4657,7 +5082,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 先預加載當前表演者的專屬貼紙圖片
         await preloadPerformerStickers(currentPerformer);
         
-        const cardCanvas = await generateSinglePositionCard(currentPerformer);
+        const cardCanvas = await generateSinglePositionCard(currentPerformer, currentPositionCardMode);
         if (cardCanvas) {
           positionCardPreviewWrapper.innerHTML = '';
           positionCardPreviewWrapper.appendChild(cardCanvas);
@@ -4671,10 +5096,65 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+    // 點擊「下載個人定位小卡」時，先彈出詢問對話框讓使用者選擇版型
     if (downloadPositionCardOpenBtn) {
-      downloadPositionCardOpenBtn.addEventListener('click', openPositionCardModal);
+      downloadPositionCardOpenBtn.addEventListener('click', () => {
+        if (!currentPerformer) return;
+        if (positionCardChoiceModal) {
+          positionCardChoiceModal.style.display = 'flex';
+        } else {
+          openPositionCardModalWithMode('merged');
+        }
+      });
     }
 
+    // 選擇「進行合併 (雙欄精簡版)」
+    if (chooseMergedCardBtn) {
+      chooseMergedCardBtn.addEventListener('click', () => {
+        if (positionCardChoiceModal) positionCardChoiceModal.style.display = 'none';
+        openPositionCardModalWithMode('merged');
+      });
+    }
+
+    // 選擇「不合併 (三欄完整版)」
+    if (chooseUnmergedCardBtn) {
+      chooseUnmergedCardBtn.addEventListener('click', () => {
+        if (positionCardChoiceModal) positionCardChoiceModal.style.display = 'none';
+        openPositionCardModalWithMode('three_column');
+      });
+    }
+
+    // 關閉選擇彈窗
+    if (closePositionCardChoiceModalBtn) {
+      closePositionCardChoiceModalBtn.addEventListener('click', () => {
+        if (positionCardChoiceModal) positionCardChoiceModal.style.display = 'none';
+      });
+    }
+
+    if (positionCardChoiceModal) {
+      positionCardChoiceModal.addEventListener('click', (e) => {
+        if (e.target === positionCardChoiceModal) {
+          positionCardChoiceModal.style.display = 'none';
+        }
+      });
+    }
+
+    // 預覽視窗內即時切換雙欄合併版 / 三欄完整版
+    if (posCardLayoutMergedBtn) {
+      posCardLayoutMergedBtn.addEventListener('click', () => {
+        if (currentPositionCardMode === 'merged') return;
+        openPositionCardModalWithMode('merged');
+      });
+    }
+
+    if (posCardLayoutThreeColBtn) {
+      posCardLayoutThreeColBtn.addEventListener('click', () => {
+        if (currentPositionCardMode === 'three_column') return;
+        openPositionCardModalWithMode('three_column');
+      });
+    }
+
+    // 關閉預覽視窗
     if (closePositionCardModalBtn) {
       closePositionCardModalBtn.addEventListener('click', () => {
         positionCardModal.style.display = 'none';
@@ -4705,7 +5185,8 @@ document.addEventListener('DOMContentLoaded', () => {
           const dataUrl = pCanvas.toDataURL('image/png');
           const link = document.createElement('a');
           const pName = currentDisplayName || fields.coordinate;
-          link.download = `${pName}_${fields.coordinate}_個人定位小卡.png`;
+          const modeSuffix = (currentPositionCardMode === 'three_column') ? '三欄版' : '合併版';
+          link.download = `${pName}_${fields.coordinate}_個人定位小卡_${modeSuffix}.png`;
           link.href = dataUrl;
           document.body.appendChild(link);
           link.click();
@@ -4753,7 +5234,8 @@ document.addEventListener('DOMContentLoaded', () => {
           pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight, undefined, 'FAST');
 
           const pName = currentDisplayName || fields.coordinate;
-          pdf.save(`${pName}_${fields.coordinate}_個人定位小卡.pdf`);
+          const modeSuffix = (currentPositionCardMode === 'three_column') ? '三欄版' : '合併版';
+          pdf.save(`${pName}_${fields.coordinate}_個人定位小卡_${modeSuffix}.pdf`);
 
           downloadPositionCardPdfBtn.innerHTML = `<i class="fa-solid fa-check"></i> 下載成功`;
         } catch (err) {
