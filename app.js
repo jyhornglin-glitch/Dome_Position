@@ -1704,7 +1704,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Define custom colors for each formation key
     const formationColors = {
       basic: '#eab308',      // 黃色
-      circle: '#BE6C50',     // 暖紅棕色
+      circle: '#E62129',     // 紅色
       xingYuan: '#0B954B',   // 綠色
       miLuo: '#F48220',      // 橘色
       jingSi: '#80CEF3',     // 天藍色
@@ -3298,7 +3298,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const FORMATION_COLORS = {
     basic: { hex: '#eab308', name: '黃線' },
-    circle: { hex: '#BE6C50', name: '紅棕線' },
+    circle: { hex: '#E62129', name: '紅線' },
     xingYuan: { hex: '#0B954B', name: '綠線' },
     miLuo: { hex: '#F48220', name: '橘線' },
     jingSi: { hex: '#80CEF3', name: '天藍線' },
