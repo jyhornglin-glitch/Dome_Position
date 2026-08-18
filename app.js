@@ -344,26 +344,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  function getActionHintKey(key) {
+    if (key === 'fiveContinents1') {
+      return (selectedSessionKey === '1115') ? 'fiveContinents1' : 'fiveContinents2';
+    }
+    return key;
+  }
+
   function getActionHintsForPerformer(performer, key) {
     if (key === 'sixRuiXiang') return [];
-    const displayType = getDisplayType(key);
-    let rawData = (typeof ACTION_HINTS_DATA !== 'undefined' && ACTION_HINTS_DATA[displayType]) || [];
+    const hintKey = getActionHintKey(key);
+    let rawData = (typeof ACTION_HINTS_DATA !== 'undefined' && ACTION_HINTS_DATA[hintKey]) || [];
     if (key === 'fiveContinents1') {
       rawData = filterHintsBySession(rawData);
     }
     if (!performer || !performer.category) return rawData;
-    return filterHintsDataByCategory(rawData, performer, displayType);
+    return filterHintsDataByCategory(rawData, performer, key);
   }
 
   function getCardHintsForPerformer(performer, key) {
     if (key === 'sixRuiXiang') return [];
-    const displayType = getDisplayType(key);
-    let rawData = (typeof CARD_HINTS_DATA !== 'undefined' && CARD_HINTS_DATA[displayType]) || [];
+    const hintKey = getActionHintKey(key);
+    let rawData = (typeof CARD_HINTS_DATA !== 'undefined' && CARD_HINTS_DATA[hintKey]) || [];
     if (key === 'fiveContinents1') {
       rawData = filterHintsBySession(rawData);
     }
     if (!performer || !performer.category) return rawData;
-    return filterHintsDataByCategory(rawData, performer, displayType);
+    return filterHintsDataByCategory(rawData, performer, key);
   }
 
   // Get coordinate and name from performer record.

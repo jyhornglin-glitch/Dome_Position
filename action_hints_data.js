@@ -751,12 +751,8 @@ const ACTION_HINTS_DATA = {
   ],
   "noBoat3": [
     {
-      "title": "說明",
+      "title": "11/13、11/15：13.是諸眾生(第二四天-米甕與大魚)",
       "details": [
-        {
-          "type": "text",
-          "content": "11/13、11/15：13.是諸眾生(第二四天-米甕與大魚)"
-        },
         {
           "type": "image",
           "src": "images/action_hints/hint_37.jpg"
@@ -835,12 +831,11 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_40.jpg"
-        }
-      ]
-    },
-    {
-      "title": "【地藏經啟航】",
-      "details": [
+        },
+        {
+          "type": "text",
+          "content": "【地藏經啟航】"
+        },
         {
           "type": "text",
           "content": "病苦眾生在呐喊"
@@ -930,12 +925,11 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_44.jpg"
-        }
-      ]
-    },
-    {
-      "title": "【四弘誓願】",
-      "details": [
+        },
+        {
+          "type": "text",
+          "content": "【四弘誓願】"
+        },
         {
           "type": "text",
           "content": "OS:師父您怎麼說，「我怎麼做」(上舞台者出發，到位直接面向乙舞台)"
@@ -997,13 +991,12 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_46.png"
-        }
-      ]
-    },
-    {
-      "title": "【大醫王曲目：無量義經．德行品】",
-      "details": [
+          "src": "images/action_hints/hint_46.jpg"
+        },
+        {
+          "type": "text",
+          "content": "【大醫王曲目：無量義經．德行品】"
+        },
         {
           "type": "text",
           "content": "OS：「大醫王」除了拯救他們的病痛→船跑位。"
@@ -1070,12 +1063,11 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_49.jpg"
-        }
-      ]
-    },
-    {
-      "title": "【骨捐】",
-      "details": [
+        },
+        {
+          "type": "text",
+          "content": "【骨捐】"
+        },
         {
           "type": "text",
           "content": "有愛心的人那麼多，我一定要呼籲"
@@ -1144,12 +1136,11 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_51.png"
-        }
-      ]
-    },
-    {
-      "title": "【能捨一切諸難捨】",
-      "details": [
+        },
+        {
+          "type": "text",
+          "content": "【能捨一切諸難捨】"
+        },
         {
           "type": "text",
           "content": "「那一念」(合掌轉向：小V面法師；大V內側面甲舞台；大V外側不轉)"
@@ -1618,10 +1609,6 @@ const ACTION_HINTS_DATA = {
       ]
     }
   ],
-  "eduWaterSlash": [],
-  "eduWaterArc": [],
-  "eduBigLotus": [],
-  "eduMidSmallLotus": [],
   "humanities1": [
     {
       "title": "26.慈誠隊歌",
@@ -2066,6 +2053,92 @@ const ACTION_HINTS_DATA = {
   ],
   "fiveContinents1": [
     {
+      "title": "11/12、15：32.貧中之富-樂生",
+      "details": [
+        {
+          "type": "text",
+          "content": "【曲目：超越天堂】"
+        },
+        {
+          "type": "text",
+          "content": "世間苦聚難為人\t苦中長養慈悲心\t涓滴成就無量事\t但願來世清淨身"
+        },
+        {
+          "type": "text",
+          "content": "院友問：師父，為什麼讓我們得這種病。"
+        },
+        {
+          "type": "text",
+          "content": "我們好像是住在地獄ㄟ。"
+        },
+        {
+          "type": "text",
+          "content": "上人：不是地獄，是超越天堂的淨土"
+        },
+        {
+          "type": "text",
+          "content": "今身不向此生度\t更待何時度此身"
+        }
+      ]
+    },
+    {
+      "title": "11/13、15：32.富中之富\tB",
+      "details": [
+        {
+          "type": "text",
+          "content": "11/13、15：【曲目：彌勒問】"
+        },
+        {
+          "type": "text",
+          "content": "os那~什麼是富中之富啊，開啟心靈的富有啊!"
+        },
+        {
+          "type": "text",
+          "content": "我見彼土諸菩薩 \t為求佛道行布施 (東二：勸募箱.大米.毛毯)"
+        },
+        {
+          "type": "text",
+          "content": "這些實業家的菩薩身影，個個放下身段！災區發放，幫災民扛大米。還有新馬實業家，放下事業，回報佛恩。"
+        },
+        {
+          "type": "text",
+          "content": "金銀瑪瑙與寶飾\t車馬華蓋摩尼珠 (東一：字畫.金銀.食衣住行.摩尼珠)"
+        },
+        {
+          "type": "text",
+          "content": "你看!這些實業家夫人舉辦了一場又一場珠寶字畫義賣耶! 為善不欲人知，只求 上人 「ㄇㄞˋ煩惱」"
+        },
+        {
+          "type": "text",
+          "content": "又見菩薩利眾生\t願捨妻子與國土(西一：搭靜思堂(大間))"
+        },
+        {
+          "type": "text",
+          "content": "溫居士參與 921 震災，他還捐一萬多坪土地蓋靜思堂欸！他說，留財產給子孫，不如留德給子孫，以善行做為傳家寶。"
+        },
+        {
+          "type": "text",
+          "content": "為救眾生諸病苦\t頭目髓腦亦樂施(西二：南美洲蔬果)"
+        },
+        {
+          "type": "text",
+          "content": "這位航運界的鉅子李爺爺，不僅孝順還樂善好施，生前大布施，往生捐大體，發揮生命的使用權！大馬實業家陳志遠，孝順又有愛心，尤其見到 上人，當天他就吃素，已經 11 年了！"
+        },
+        {
+          "type": "text",
+          "content": "五毛錢(西二：北美洲五毛錢)可以救人一甲子耶，上人想要送給大家一甲子的傳家寶耶"
+        },
+        {
+          "type": "text",
+          "content": "志工總動員 使命必達"
+        },
+        {
+          "type": "text",
+          "content": "又見菩薩齊合掌\t千萬偈頌讚法王"
+        }
+      ]
+    },
+    {
       "title": "33.開經書",
       "details": [
         {
@@ -2190,11 +2263,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_116.jpg"
+          "src": "images/action_hints/hint_115.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_118.jpg"
+          "src": "images/action_hints/hint_117.jpg"
         },
         {
           "type": "image",
@@ -2210,12 +2283,16 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_123.jpg"
+          "src": "images/action_hints/hint_122.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_124.jpg"
         }
       ]
     },
     {
-      "title": "11/15：34.九二一-第九功德",
+      "title": "11/15：35.九二一-第九功德",
       "details": [
         {
           "type": "text",
@@ -2240,7 +2317,7 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "11/15：35.九二一-化城喻(若入是城)",
+      "title": "11/15：36.九二一-化城喻(若入是城)",
       "details": [
         {
           "type": "text",
@@ -2280,12 +2357,12 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_124.jpg"
+          "src": "images/action_hints/hint_125.jpg"
         }
       ]
     },
     {
-      "title": "11/15：36.九二一-化城喻(諸惡道險)",
+      "title": "11/15：37.九二一-化城喻(諸惡道險)",
       "details": [
         {
           "type": "text",
@@ -2310,7 +2387,7 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "11/15：37.減災工程",
+      "title": "11/15：38.減災工程",
       "details": [
         {
           "type": "text",
@@ -2335,7 +2412,7 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "11/15：38.抱佛恩",
+      "title": "11/15：39.抱佛恩",
       "details": [
         {
           "type": "text",
@@ -2364,11 +2441,12 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "為佛教 為眾生"
-        },
-        {
-          "type": "text",
-          "content": "11/15：【曲目2：第十功德】"
-        },
+        }
+      ]
+    },
+    {
+      "title": "11/15：40.【曲目2：第十功德】",
+      "details": [
         {
           "type": "text",
           "content": "如法修行得道果"
@@ -2409,6 +2487,35 @@ const ACTION_HINTS_DATA = {
     }
   ],
   "fiveContinents2": [
+    {
+      "title": "11/12、15：32.貧中之富-樂生",
+      "details": [
+        {
+          "type": "text",
+          "content": "【曲目：超越天堂】"
+        },
+        {
+          "type": "text",
+          "content": "世間苦聚難為人\t苦中長養慈悲心\t涓滴成就無量事\t但願來世清淨身"
+        },
+        {
+          "type": "text",
+          "content": "院友問：師父，為什麼讓我們得這種病。"
+        },
+        {
+          "type": "text",
+          "content": "我們好像是住在地獄ㄟ。"
+        },
+        {
+          "type": "text",
+          "content": "上人：不是地獄，是超越天堂的淨土"
+        },
+        {
+          "type": "text",
+          "content": "今身不向此生度\t更待何時度此身"
+        }
+      ]
+    },
     {
       "title": "11/12、14：32.富中之富\tA",
       "details": [
@@ -2573,7 +2680,7 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "11/12：34.約旦",
+      "title": "11/12：35.約旦",
       "details": [
         {
           "type": "text",
@@ -2602,11 +2709,12 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_90.jpg"
-        },
-        {
-          "type": "text",
-          "content": "11/12：【曲目2：啟航】"
-        },
+        }
+      ]
+    },
+    {
+      "title": "11/12：36.【曲目2：啟航】",
+      "details": [
         {
           "type": "text",
           "content": "張起大愛的風帆"
@@ -2634,7 +2742,7 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "11/12：35.黑區變亮區",
+      "title": "11/12：37.黑區變亮區",
       "details": [
         {
           "type": "text",
@@ -2659,7 +2767,7 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "11/12：36.黑區變亮區",
+      "title": "11/12：38.黑區變亮區",
       "details": [
         {
           "type": "text",
@@ -2696,7 +2804,7 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "11/12：37.莫三比克",
+      "title": "11/12：39.莫三比克",
       "details": [
         {
           "type": "image",
@@ -2729,7 +2837,7 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "11/12：38.莫三比克-髻珠喻經文",
+      "title": "11/12：40.莫三比克-髻珠喻經文",
       "details": [
         {
           "type": "image",
@@ -2794,7 +2902,7 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "11/12：39.台灣救災集錦",
+      "title": "11/12：41.台灣救災集錦",
       "details": [
         {
           "type": "text",
@@ -3186,6 +3294,10 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_114.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_115.jpg"
         }
       ]
     },
@@ -3194,7 +3306,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_115.jpg"
+          "src": "images/action_hints/hint_116.jpg"
         },
         {
           "type": "text",
@@ -3218,7 +3330,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_116.jpg"
+          "src": "images/action_hints/hint_117.jpg"
         }
       ]
     },
@@ -3227,7 +3339,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_117.jpg"
+          "src": "images/action_hints/hint_118.jpg"
         },
         {
           "type": "text",
@@ -3271,10 +3383,6 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_118.jpg"
-        },
-        {
-          "type": "image",
           "src": "images/action_hints/hint_119.jpg"
         },
         {
@@ -3284,6 +3392,10 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_121.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_122.jpg"
         }
       ]
     },
@@ -3292,7 +3404,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_122.jpg"
+          "src": "images/action_hints/hint_123.jpg"
         },
         {
           "type": "text",
@@ -3340,16 +3452,15 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_123.jpg"
+          "src": "images/action_hints/hint_124.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_124.jpg"
+          "src": "images/action_hints/hint_125.jpg"
         }
       ]
     }
-  ],
-  "flyingApsaras": []
+  ]
 };
 
 // Export if in node environment, otherwise make it global

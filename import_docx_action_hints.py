@@ -26,6 +26,7 @@ CATEGORY_MAPPING = {
     '05-1有法船(點一盞燈)': 'lamp',
     '05-2無法船(菜市場5毛錢)': 'noBoat',
     '05-3有法船(是諸眾生)': 'noBoat3', # Support both formatting
+    '05-3無法船(是諸眾生)': 'noBoat3',
     '06四弘誓願': 'bigV',
     '07-1大船師': 'daChuanShi',
     '07-2骨捐能捨': 'boneDonation',
@@ -34,6 +35,7 @@ CATEGORY_MAPPING = {
     '09-1人文(基本隊形)': 'humanities1',
     '09-2人文': 'humanities2',
     '09-2人文(主機板)': 'humanities2',
+    '09-2人文(主機版)': 'humanities2',
     '10-1五大洲': 'fiveContinents1',
     '10-2五大洲': 'fiveContinents2'
 }
@@ -92,17 +94,13 @@ def is_item_start(text):
         return False
     first_line = lines[0]
     
-    # Matches "1. ", "12. " or "11/12：34.約旦", "11/12、14：32.富中之富 A" etc.
-    if re.match(r'^(\d{2}/\d{2}(、\d{2})*：)?\s*\d+\.', first_line):
+    # Matches item start with number, e.g. "1. ", "13. ", "11/12：34.約旦", "11/13、11/15：13.是諸眾生", "11/15：40.【曲目2：第十功德】"
+    if re.match(r'^(?:(?:\d{2}/\d{2}|\d{2})(?:[、,，](?:\d{2}/\d{2}|\d{2}))*[:：])?\s*\d+[\.、\s]', first_line):
         return True
     
-    # Matches key action segments
+    # Matches key action segments without leading numbers
     keywords = ['序，', '生，', '老，', '病，', '死，', '六度', '行願', '開經偈', '點一盞燈', '地藏經', '醫療梵唄', '四弘誓願', '大醫王', '骨捐', '能捨']
-    if any(k in first_line for k in keywords):
-        return True
-        
-    # Matches YouTube URLs
-    if "youtube.com" in text_clean or "youtu.be" in text_clean:
+    if any(first_line.startswith(k) for k in keywords):
         return True
         
     return False
@@ -128,7 +126,7 @@ def main():
     action_hints_data = {
         'circle': [],
         'xingYuan': [],
-        'miLuo': [], # Empty by default
+        'miLuo': [],
         'jingSi': [],
         'lamp': [],
         'noBoat': [],
@@ -137,15 +135,10 @@ def main():
         'daChuanShi': [],
         'boneDonation': [],
         'edu': [],
-        'eduWaterSlash': [],
-        'eduWaterArc': [],
-        'eduBigLotus': [],
-        'eduMidSmallLotus': [],
         'humanities1': [],
         'humanities2': [],
         'fiveContinents1': [],
-        'fiveContinents2': [],
-        'flyingApsaras': []
+        'fiveContinents2': []
     }
 
     grid = [[None for _ in range(C)] for _ in range(R)]
@@ -206,14 +199,15 @@ def main():
             target_cats = []
             if loc_clean == '10-1五大洲':
                 combined_text = cell_text
-                has_15 = "11/15" in combined_text
-                has_other_days = any(d in combined_text for d in ["11/12", "11/13", "11/14"])
+                has_15 = any(k in combined_text for k in ["11/15", "、15", "、15："])
+                has_other_days = any(k in combined_text for k in ["11/12", "11/13", "11/14", "、12", "、13", "、14"])
                 
                 if has_15 and not has_other_days:
                     target_cats = ['fiveContinents1']
                 elif has_other_days and not has_15:
                     target_cats = ['fiveContinents2']
                 else:
+                    # Shared items like 33.開經書, 樂生, 富中之富
                     target_cats = ['fiveContinents1', 'fiveContinents2']
             else:
                 target_cats = [cat]
