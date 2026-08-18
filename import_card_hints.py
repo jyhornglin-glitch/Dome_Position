@@ -118,7 +118,22 @@ def main():
             
         content_cell = table.rows[r].cells[1]
         
-        current_item = None
+        target_cats = []
+        if loc_clean == '10-1五大洲':
+            content_text = content_cell.text.strip()
+            has_15 = "11/15" in content_text
+            has_other_days = any(d in content_text for d in ["11/12", "11/13", "11/14"])
+            
+            if has_15 and not has_other_days:
+                target_cats = ['fiveContinents1']
+            elif has_other_days and not has_15:
+                target_cats = ['fiveContinents2']
+            else:
+                target_cats = ['fiveContinents1', 'fiveContinents2']
+        else:
+            target_cats = [cat]
+
+        current_items = {}
         
         for p in content_cell.paragraphs:
             text = p.text.strip()
@@ -137,27 +152,32 @@ def main():
                 elif extra_text:
                     title += " " + extra_text
                 
-                current_item = {
+                base_item = {
                     "title": title,
                     "details": []
                 }
-                action_hints_data[cat].append(current_item)
-            else:
-                # If no item created yet, create a default one using the location's name as title
-                if not current_item:
-                    current_item = {
-                        "title": f"【{loc_clean}】",
-                        "details": []
-                    }
-                    action_hints_data[cat].append(current_item)
                 
-                # Split line breaks in paragraph and append
-                lines = [line.strip() for line in text.split('\n') if line.strip()]
-                for line in lines:
-                    current_item["details"].append({
-                        "type": "text",
-                        "content": line
-                    })
+                for target_cat in target_cats:
+                    item_copy = json.loads(json.dumps(base_item))
+                    action_hints_data[target_cat].append(item_copy)
+                    current_items[target_cat] = item_copy
+            else:
+                for target_cat in target_cats:
+                    item = current_items.get(target_cat)
+                    if not item:
+                        item = {
+                            "title": f"【{loc_clean}】",
+                            "details": []
+                        }
+                        action_hints_data[target_cat].append(item)
+                        current_items[target_cat] = item
+                    
+                    lines = [line.strip() for line in text.split('\n') if line.strip()]
+                    for line in lines:
+                        item["details"].append({
+                            "type": "text",
+                            "content": line
+                        })
 
     # Save to card_hints_data.js
     js_content = (

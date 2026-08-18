@@ -461,7 +461,7 @@ const CARD_HINTS_DATA = {
       "details": []
     }
   ],
-  "gongDe1": [
+  "fiveContinents1": [
     {
       "title": "【開經書】",
       "details": [
@@ -476,14 +476,22 @@ const CARD_HINTS_DATA = {
       ]
     }
   ],
-  "gongDe2": [],
-  "gongDe3": [],
-  "gongDe4": [],
-  "gongDe5": [],
-  "gongDe6": [],
-  "gongDe7": [],
-  "gongDe8": [],
-  "sixRuiXiang": []
+  "fiveContinents2": [
+    {
+      "title": "【開經書】",
+      "details": [
+        {
+          "type": "text",
+          "content": "藍衣：面乙舞臺圓心接法。「去到一切」眾生心身體面法師45度。"
+        },
+        {
+          "type": "text",
+          "content": "白衣：面陸地的圓心。"
+        }
+      ]
+    }
+  ],
+  "flyingApsaras": []
 };
 
 // Export if in node environment, otherwise make it global

@@ -92,8 +92,8 @@ def is_item_start(text):
         return False
     first_line = lines[0]
     
-    # Matches "1. ", "12. " etc.
-    if re.match(r'^\d+\.', first_line):
+    # Matches "1. ", "12. " or "11/12：34.約旦", "11/12、14：32.富中之富 A" etc.
+    if re.match(r'^(\d{2}/\d{2}(、\d{2})*：)?\s*\d+\.', first_line):
         return True
     
     # Matches key action segments
@@ -202,6 +202,22 @@ def main():
             if not cell_text and not cell_images:
                 continue
                 
+            # Determine target categories based on contents if it's '10-1五大洲'
+            target_cats = []
+            if loc_clean == '10-1五大洲':
+                combined_text = cell_text
+                has_15 = "11/15" in combined_text
+                has_other_days = any(d in combined_text for d in ["11/12", "11/13", "11/14"])
+                
+                if has_15 and not has_other_days:
+                    target_cats = ['fiveContinents1']
+                elif has_other_days and not has_15:
+                    target_cats = ['fiveContinents2']
+                else:
+                    target_cats = ['fiveContinents1', 'fiveContinents2']
+            else:
+                target_cats = [cat]
+
             # Determine if this cell content starts a new item
             if is_item_start(cell_text):
                 lines = [l.strip() for l in cell_text.split('\n') if l.strip()]
@@ -210,50 +226,53 @@ def main():
                 # Remove title line from details if it was the first line
                 details_text = split_east_west_lines(lines[1:]) if len(lines) > 1 else []
                 
-                new_item = {
+                base_item = {
                     "title": title,
                     "details": []
                 }
                 
                 # Add detail lines
                 for line in details_text:
-                    new_item["details"].append({
+                    base_item["details"].append({
                         "type": "text",
                         "content": line
                     })
                     
                 # Add images
                 for img_src in cell_images:
-                    new_item["details"].append({
+                    base_item["details"].append({
                         "type": "image",
                         "src": img_src
                     })
                     
-                action_hints_data[cat].append(new_item)
-                current_items[cat] = new_item
+                for target_cat in target_cats:
+                    item_copy = json.loads(json.dumps(base_item))
+                    action_hints_data[target_cat].append(item_copy)
+                    current_items[target_cat] = item_copy
             else:
-                # Append to current active item for this category
-                item = current_items.get(cat)
-                if not item:
-                    # Create a default item if none active
-                    item = {
-                        "title": "說明",
-                        "details": []
-                    }
-                    action_hints_data[cat].append(item)
-                    current_items[cat] = item
-                
-                lines = split_east_west_lines([l.strip() for l in cell_text.split('\n') if l.strip()])
-                for line in lines:
-                    item["details"].append({
-                        "type": "text",
-                        "content": line
-                    })
-                for img_src in cell_images:
-                    item["details"].append({
-                        "type": "image",
-                        "src": img_src
-                    })
+                # Append to current active item for each target category
+                for target_cat in target_cats:
+                    item = current_items.get(target_cat)
+                    if not item:
+                        # Create a default item if none active
+                        item = {
+                            "title": "說明",
+                            "details": []
+                        }
+                        action_hints_data[target_cat].append(item)
+                        current_items[target_cat] = item
+                    
+                    lines = split_east_west_lines([l.strip() for l in cell_text.split('\n') if l.strip()])
+                    for line in lines:
+                        item["details"].append({
+                            "type": "text",
+                            "content": line
+                        })
+                    for img_src in cell_images:
+                        item["details"].append({
+                            "type": "image",
+                            "src": img_src
+                        })
 
     # Save to action_hints_data.js
     js_content = (
