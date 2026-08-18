@@ -3539,3 +3539,215 @@ svg {
   font-size: 12px;
 }
 
+/* ==========================================================================
+   Batch Position Card Print (A4 12-Card Grid) Styles
+   ========================================================================== */
+.batch-print-modal-container {
+  max-width: 720px;
+  width: 95%;
+  max-height: 92vh;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.batch-print-body {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  max-height: calc(92vh - 65px);
+}
+
+.batch-print-instructions {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: #475569;
+  background: #f1f5f9;
+  padding: 10px 14px;
+  border-radius: 8px;
+  line-height: 1.5;
+}
+
+.batch-input-wrapper textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1.5px solid #cbd5e1;
+  font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  resize: vertical;
+  min-height: 95px;
+  box-sizing: border-box;
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.batch-input-wrapper textarea:focus {
+  outline: none;
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+}
+
+.batch-print-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.batch-print-stats {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.batch-print-btn-group {
+  display: flex;
+  gap: 8px;
+}
+
+.batch-print-preview-wrapper {
+  background: #1e293b;
+  border-radius: 10px;
+  padding: 16px;
+  min-height: 220px;
+  max-height: 48vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.batch-empty-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  height: 180px;
+  gap: 10px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.batch-empty-placeholder i {
+  font-size: 38px;
+  color: #64748b;
+}
+
+/* A4 Screen Preview Sheet (Portrait 3 Columns x 3 Rows - Standard A7 Ratio 9-Card Fit) */
+.a4-page-preview {
+  background: #ffffff;
+  width: 100%;
+  max-width: 520px; /* A4 portrait ratio on screen */
+  aspect-ratio: 210 / 297;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 4px 4px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 2.5px;
+}
+
+.a4-card-cell {
+  border: 0.5px dashed #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-sizing: border-box;
+  background: #ffffff;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.a4-card-cell img,
+.a4-card-cell canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+}
+
+.a4-page-badge {
+  color: #e2e8f0;
+  font-size: 12px;
+  font-weight: 700;
+  align-self: flex-start;
+  margin-bottom: -12px;
+}
+
+/* ==========================================================================
+   Print Media Styles (A4 Portrait 3x3 9-Card Standard A7 Grid Window Print)
+   ========================================================================== */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    height: auto !important;
+  }
+  body * {
+    visibility: hidden;
+  }
+  #batchPrintSection, #batchPrintSection * {
+    visibility: visible;
+  }
+  #batchPrintSection {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 210mm;
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    z-index: 999999;
+  }
+  .a4-print-sheet {
+    width: 210mm;
+    height: 297mm;
+    page-break-after: always;
+    break-after: page;
+    box-sizing: border-box;
+    padding: 2.5mm 2.5mm;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1.5mm;
+    background: #ffffff;
+  }
+  .a4-print-sheet .a4-card-cell {
+    width: 100%;
+    height: 100%;
+    border: 0.5px dashed #94a3b8;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+  .a4-print-sheet .a4-card-cell img,
+  .a4-print-sheet .a4-card-cell canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    display: block;
+  }
+}
+
+
