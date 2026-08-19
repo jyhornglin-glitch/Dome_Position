@@ -5663,9 +5663,15 @@ document.addEventListener('DOMContentLoaded', () => {
           const totalItems = batchParsedPerformers.length;
           const totalPages = Math.ceil(totalItems / CARDS_PER_PAGE);
 
-          // 單元格尺寸：3欄 x 4列 = 70.0mm x 74.25mm
-          const cellW = 210.0 / COLS; // 70.0 mm
-          const cellH = 297.0 / ROWS; // 74.25 mm
+          // A4 頁面安全邊界設定 (避免實體印表機不可列印區域裁切)
+          const marginX = 5.0; // 左右各保留 5.0mm 安全邊界
+          const marginY = 9.0; // 上下各保留 9.0mm 安全邊界
+          const printableW = 210.0 - marginX * 2; // 200.0 mm
+          const printableH = 297.0 - marginY * 2; // 279.0 mm
+
+          // 單元格尺寸：3欄 x 4列 (66.67mm x 69.75mm)
+          const cellW = printableW / COLS;
+          const cellH = printableH / ROWS;
 
           for (let pageIdx = 0; pageIdx < totalPages; pageIdx++) {
             if (pageIdx > 0) {
@@ -5696,8 +5702,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const padY = (cellH - renderH) / 2;
                 const col = i % COLS;
                 const row = Math.floor(i / COLS);
-                const x = col * cellW + padX;
-                const y = row * cellH + padY;
+                const x = marginX + col * cellW + padX;
+                const y = marginY + row * cellH + padY;
 
                 pdf.addImage(imgData, 'PNG', x, y, renderW, renderH, undefined, 'FAST');
               }
