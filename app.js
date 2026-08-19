@@ -3274,17 +3274,13 @@ document.addEventListener('DOMContentLoaded', () => {
     xingYuan: '綠',
     lamp: '黃',
     noBoat: '黃',
-    noBoat3: {
-      '1113': '黃',
-      '1115': '黃',
-      'default': ''
-    },
+    noBoat3: '黃',
     boneDonation: '黃',
     edu: '綠',
     humanities1: '綠',
     humanities2: '綠',
     fiveContinents1: '綠',
-    sixRuiXiang: '黃'
+    sixRuiXiang: ''
   };
 
   // 根據 定位點參考.docx 整理的各步驟定位小卡名稱 (支援按日期場次動態對照，包含括號曲目名稱)
@@ -3618,15 +3614,25 @@ document.addEventListener('DOMContentLoaded', () => {
       return expandedItems;
     }
 
-    // 5.4 依據子項多寡動態計算每個群組單元格的行高與起始 Y 座標
+    // 5.4 依據子項多寡與文字行數動態計算每個群組單元格的行高與起始 Y 座標
     function calculateDynamicRowLayouts(groups) {
       if (groups.length === 0) return;
       let totalWeight = 0;
       groups.forEach(g => {
         g.expandedItems = getGroupExpandedItems(g);
         const count = g.expandedItems.length;
-        // 平滑加權公式：基礎固定 1.2 + 每個子項 1.0
-        g.weight = 1.2 + count * 1.0;
+        // 檢查是否有 3 行項目 (如 圓、主機板 等包含 2 個以上斜線之項目)
+        let hasThreeLineItem = false;
+        g.expandedItems.forEach(it => {
+          const m = it.name.match(/^([^\(]+?)\s*(\([^\)]+\))$/);
+          if (m) {
+            const sl = m[2].replace(/^\(|\)$/g, '').split('/');
+            if (sl.length >= 3) hasThreeLineItem = true;
+          }
+        });
+
+        // 平滑加權公式：基礎固定 1.1 + (3列項目加權 0.6) + 每個子項 1.0
+        g.weight = 1.1 + (hasThreeLineItem ? 0.6 : 0) + count * 1.0;
         totalWeight += g.weight;
       });
 
@@ -3899,8 +3905,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // 固定右側雙槽位座標：燈號槽位在最右，貼圖槽位固定在燈號左側 (無燈號時貼圖絕不右靠)
       const badgeW_small = 22; // 蓮花燈標籤固定寬度
-      const badgeH_small = Math.min(26, Math.max(18, Math.round(subRowH * 0.62)));
-      const stickerSize = Math.min(28, Math.max(18, Math.round(subRowH * 0.62)));
+      const badgeH_small = Math.min(34, Math.max(20, Math.round(subRowH * 0.72))); // 高度顯著增加至最高 34px (長方形柱狀色塊)
+      const stickerSize = Math.min(31, Math.max(20, Math.round(subRowH * 0.65)));
 
       const lampStartX = colStartX + colW - badgeW_small - 4; // 最右側固定蓮花燈槽位
       const stickerDrawX = lampStartX - stickerSize - 4;     // 固定貼圖槽位 (永遠在燈號左側)
@@ -3927,74 +3933,157 @@ document.addEventListener('DOMContentLoaded', () => {
           ctx.setLineDash([]);
         }
 
-        // 繪製表演曲目名稱文字 (智慧自動測量並極大化)
+        // 繪製表演曲目名稱文字 (智慧通用 1/2/3 列自動測量並極大化)
         const parenMatch = cardStepName.match(/^([^\(]+?)\s*(\([^\)]+\))$/);
 
         if (parenMatch) {
-          // 所有括號項目一律分兩列：第 1 列主名稱，第 2 列括號曲目
           const mainTitle = parenMatch[1].trim();
-          const subTitle = parenMatch[2].trim();
+          const insideParen = parenMatch[2].replace(/^\(|\)$/g, '').trim();
+          const slashParts = insideParen.split('/').map(s => s.trim()).filter(s => s.length > 0);
 
           const isSingleItem = (numItems === 1);
-
-          let mainFontSize = isSingleItem ? 36 : 26;
-          ctx.font = `bold ${mainFontSize}px 'Noto Sans TC', sans-serif`;
-          while (ctx.measureText(mainTitle).width > maxTextW && mainFontSize > 13) {
-            mainFontSize -= 0.5;
-            ctx.font = `bold ${mainFontSize}px 'Noto Sans TC', sans-serif`;
-          }
-
-          // 單一子項時，下方第 2 列文字享有整欄完整寬度 (右側無貼圖/燈號阻擋)
           const maxTextW_sub = isSingleItem ? (colStartX + colW - labelColStartX - 4) : maxTextW;
-          let subFontSize = isSingleItem ? 25 : 16;
-          ctx.font = `bold ${subFontSize}px 'Noto Sans TC', sans-serif`;
-          while (ctx.measureText(subTitle).width > maxTextW_sub && subFontSize > 10) {
-            subFontSize -= 0.5;
-            ctx.font = `bold ${subFontSize}px 'Noto Sans TC', sans-serif`;
-          }
 
-          // 兩列垂直佈局計算
-          const lineGap = isSingleItem ? 3.5 : 2;
-          const totalTextH = (mainFontSize * 0.85) + (subFontSize * 0.85) + lineGap;
-          const mainY = subCenterY - totalTextH / 2 + (mainFontSize * 0.42);
-          const subY = mainY + (mainFontSize * 0.45) + lineGap + (subFontSize * 0.45);
+          // 判斷是否為 3 列項目 (包含 3 個以上段落，如 圓、主機板)
+          if (slashParts.length >= 3 && isSingleItem) {
+            let line0 = mainTitle;
+            let line1 = '';
+            let line2 = '';
 
-          // 單一子項時，地標貼圖與燈號靠上對齊至第 1 列 (mainY 水平線)
-          const targetY_decor = isSingleItem ? mainY : subCenterY;
+            if (slashParts[0].length >= 5) {
+              // 例如 主機板: line1 = '天空破了洞', line2 = '做環保 / 代謝不著'
+              line1 = slashParts[0];
+              line2 = slashParts.slice(1).join(' / ');
+            } else {
+              // 例如 圓: line1 = '序 / 生老病死', line2 = '六度'
+              line1 = slashParts.slice(0, 2).join(' / ');
+              line2 = slashParts.slice(2).join(' / ');
+            }
 
-          // 繪製地標貼圖 (固定在 stickerDrawX，無論有無燈號永不右移)
-          const stickerUrl = `images/stickers/${stepDisplayType}_${englishCategory}.png`;
-          const cachedImg = loadedStickers[stickerUrl];
-          if (cachedImg) {
-            const stickerDrawY = targetY_decor - stickerSize / 2;
-            ctx.drawImage(cachedImg, stickerDrawX, stickerDrawY, stickerSize, stickerSize);
-          }
+            let fontSize0 = 34;
+            ctx.font = `bold ${fontSize0}px 'Noto Sans TC', sans-serif`;
+            while (ctx.measureText(line0).width > maxTextW && fontSize0 > 13) {
+              fontSize0 -= 0.5;
+              ctx.font = `bold ${fontSize0}px 'Noto Sans TC', sans-serif`;
+            }
 
-          // 繪製蓮花燈色塊 (固定在 lampStartX 最右側槽位)
-          if (hasLamp) {
-            const lampDrawY = targetY_decor - badgeH_small / 2;
-            const lampHex = lampColor === '黃' ? '#eab308' : '#0B954B';
+            let fontSize1 = 23;
+            ctx.font = `bold ${fontSize1}px 'Noto Sans TC', sans-serif`;
+            while (ctx.measureText(line1).width > maxTextW_sub && fontSize1 > 10.5) {
+              fontSize1 -= 0.5;
+              ctx.font = `bold ${fontSize1}px 'Noto Sans TC', sans-serif`;
+            }
 
-            ctx.fillStyle = lampHex;
-            drawCanvasRoundRect(ctx, lampStartX, lampDrawY, badgeW_small, badgeH_small, 3, true, false);
+            let fontSize2 = 23;
+            ctx.font = `bold ${fontSize2}px 'Noto Sans TC', sans-serif`;
+            while (ctx.measureText(line2).width > maxTextW_sub && fontSize2 > 10.5) {
+              fontSize2 -= 0.5;
+              ctx.font = `bold ${fontSize2}px 'Noto Sans TC', sans-serif`;
+            }
 
-            ctx.fillStyle = lampColor === '黃' ? '#0f172a' : '#ffffff';
-            const lampFontSize = Math.min(13, Math.max(10, badgeH_small * 0.6));
-            ctx.font = `bold ${lampFontSize}px 'Noto Sans TC', sans-serif`;
-            ctx.textAlign = 'center';
+            // 3 列垂直分佈計算
+            const lineGap = (subRowH >= 58) ? 3.0 : 2.0;
+            const totalTextH = (fontSize0 * 0.85) + (fontSize1 * 0.85) + (fontSize2 * 0.85) + (lineGap * 2);
+            const y0 = subCenterY - totalTextH / 2 + (fontSize0 * 0.42);
+            const y1 = y0 + (fontSize0 * 0.45) + lineGap + (fontSize1 * 0.45);
+            const y2 = y1 + (fontSize1 * 0.45) + lineGap + (fontSize2 * 0.45);
+
+            // 地標貼圖與燈號靠上對齊至第 1 列 (y0 水平線)
+            const targetY_decor = y0;
+
+            const stickerUrl = `images/stickers/${stepDisplayType}_${englishCategory}.png`;
+            const cachedImg = loadedStickers[stickerUrl];
+            if (cachedImg) {
+              const stickerDrawY = targetY_decor - stickerSize / 2;
+              ctx.drawImage(cachedImg, stickerDrawX, stickerDrawY, stickerSize, stickerSize);
+            }
+
+            if (hasLamp) {
+              const lampDrawY = targetY_decor - badgeH_small / 2;
+              const lampHex = lampColor === '黃' ? '#eab308' : '#0B954B';
+
+              ctx.fillStyle = lampHex;
+              drawCanvasRoundRect(ctx, lampStartX, lampDrawY, badgeW_small, badgeH_small, 4, true, false);
+
+              ctx.fillStyle = lampColor === '黃' ? '#0f172a' : '#ffffff';
+              const lampFontSize = Math.min(17, Math.max(12, Math.round(badgeH_small * 0.52)));
+              ctx.font = `bold ${lampFontSize}px 'Noto Sans TC', sans-serif`;
+              ctx.textAlign = 'center';
+              ctx.textBaseline = 'middle';
+              ctx.fillText(lampColor, lampStartX + badgeW_small / 2, lampDrawY + badgeH_small / 2 + 0.5);
+            }
+
+            ctx.fillStyle = '#0f172a';
+            ctx.font = `bold ${fontSize0}px 'Noto Sans TC', sans-serif`;
+            ctx.textAlign = 'left';
             ctx.textBaseline = 'middle';
-            ctx.fillText(lampColor, lampStartX + badgeW_small / 2, lampDrawY + badgeH_small / 2 + 0.5);
+            ctx.fillText(line0, labelColStartX, y0);
+
+            ctx.fillStyle = '#334155';
+            ctx.font = `bold ${fontSize1}px 'Noto Sans TC', sans-serif`;
+            ctx.fillText(line1, labelColStartX, y1);
+
+            ctx.font = `bold ${fontSize2}px 'Noto Sans TC', sans-serif`;
+            ctx.fillText(line2, labelColStartX, y2);
+          } else {
+            // 標準 2 列排版 (如 教育、人文、無船3、有船 等)
+            const subTitle = parenMatch[2].trim();
+
+            let mainFontSize = isSingleItem ? 36 : 26;
+            ctx.font = `bold ${mainFontSize}px 'Noto Sans TC', sans-serif`;
+            while (ctx.measureText(mainTitle).width > maxTextW && mainFontSize > 13) {
+              mainFontSize -= 0.5;
+              ctx.font = `bold ${mainFontSize}px 'Noto Sans TC', sans-serif`;
+            }
+
+            let subFontSize = isSingleItem ? 25 : 16;
+            ctx.font = `bold ${subFontSize}px 'Noto Sans TC', sans-serif`;
+            while (ctx.measureText(subTitle).width > maxTextW_sub && subFontSize > 10) {
+              subFontSize -= 0.5;
+              ctx.font = `bold ${subFontSize}px 'Noto Sans TC', sans-serif`;
+            }
+
+            // 兩列垂直佈局計算
+            const lineGap = isSingleItem ? 3.5 : 2;
+            const totalTextH = (mainFontSize * 0.85) + (subFontSize * 0.85) + lineGap;
+            const mainY = subCenterY - totalTextH / 2 + (mainFontSize * 0.42);
+            const subY = mainY + (mainFontSize * 0.45) + lineGap + (subFontSize * 0.45);
+
+            // 單一子項時，地標貼圖與燈號靠上對齊至第 1 列 (mainY 水平線)
+            const targetY_decor = isSingleItem ? mainY : subCenterY;
+
+            const stickerUrl = `images/stickers/${stepDisplayType}_${englishCategory}.png`;
+            const cachedImg = loadedStickers[stickerUrl];
+            if (cachedImg) {
+              const stickerDrawY = targetY_decor - stickerSize / 2;
+              ctx.drawImage(cachedImg, stickerDrawX, stickerDrawY, stickerSize, stickerSize);
+            }
+
+            if (hasLamp) {
+              const lampDrawY = targetY_decor - badgeH_small / 2;
+              const lampHex = lampColor === '黃' ? '#eab308' : '#0B954B';
+
+              ctx.fillStyle = lampHex;
+              drawCanvasRoundRect(ctx, lampStartX, lampDrawY, badgeW_small, badgeH_small, 4, true, false);
+
+              ctx.fillStyle = lampColor === '黃' ? '#0f172a' : '#ffffff';
+              const lampFontSize = Math.min(17, Math.max(12, Math.round(badgeH_small * 0.52)));
+              ctx.font = `bold ${lampFontSize}px 'Noto Sans TC', sans-serif`;
+              ctx.textAlign = 'center';
+              ctx.textBaseline = 'middle';
+              ctx.fillText(lampColor, lampStartX + badgeW_small / 2, lampDrawY + badgeH_small / 2 + 0.5);
+            }
+
+            ctx.fillStyle = '#0f172a';
+            ctx.font = `bold ${mainFontSize}px 'Noto Sans TC', sans-serif`;
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(mainTitle, labelColStartX, mainY);
+
+            ctx.fillStyle = '#334155';
+            ctx.font = `bold ${subFontSize}px 'Noto Sans TC', sans-serif`;
+            ctx.fillText(subTitle, labelColStartX, subY);
           }
-
-          ctx.fillStyle = '#0f172a';
-          ctx.font = `bold ${mainFontSize}px 'Noto Sans TC', sans-serif`;
-          ctx.textAlign = 'left';
-          ctx.textBaseline = 'middle';
-          ctx.fillText(mainTitle, labelColStartX, mainY);
-
-          ctx.fillStyle = '#334155';
-          ctx.font = `bold ${subFontSize}px 'Noto Sans TC', sans-serif`;
-          ctx.fillText(subTitle, labelColStartX, subY);
         } else {
           // 無括號項目（五大洲各子項目等）：貼圖與燈號維持在 subCenterY
           const stickerUrl = `images/stickers/${stepDisplayType}_${englishCategory}.png`;
@@ -4009,10 +4098,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const lampHex = lampColor === '黃' ? '#eab308' : '#0B954B';
 
             ctx.fillStyle = lampHex;
-            drawCanvasRoundRect(ctx, lampStartX, lampDrawY, badgeW_small, badgeH_small, 3, true, false);
+            drawCanvasRoundRect(ctx, lampStartX, lampDrawY, badgeW_small, badgeH_small, 4, true, false);
 
             ctx.fillStyle = lampColor === '黃' ? '#0f172a' : '#ffffff';
-            const lampFontSize = Math.min(13, Math.max(10, badgeH_small * 0.6));
+            const lampFontSize = Math.min(17, Math.max(12, Math.round(badgeH_small * 0.52)));
             ctx.font = `bold ${lampFontSize}px 'Noto Sans TC', sans-serif`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
