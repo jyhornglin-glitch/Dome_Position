@@ -1667,8 +1667,8 @@ document.addEventListener('DOMContentLoaded', () => {
       edu: '#BE6C50',          // 比照 01圓形的紅棕色
       humanities1: '#0061AE',  // 藍色
       humanities2: '#0061AE',  // 藍色
-      fiveContinents1: '#AF9DA8', // 灰紫色
-      fiveContinents2: '#AF9DA8', // 灰紫色
+      fiveContinents1: '#529BA9', // 藍綠色
+      fiveContinents2: '#529BA9', // 藍綠色
       sixRuiXiang: '#E62129',   // 紅色
       flyingApsaras: '#E62129'  // 紅色
     };
@@ -3262,8 +3262,8 @@ document.addEventListener('DOMContentLoaded', () => {
     edu: { hex: '#BE6C50', name: '紅棕線' },
     humanities1: { hex: '#0061AE', name: '藍線' },
     humanities2: { hex: '#0061AE', name: '藍線' },
-    fiveContinents1: { hex: '#AF9DA8', name: '灰紫線' },
-    fiveContinents2: { hex: '#AF9DA8', name: '灰紫線' },
+    fiveContinents1: { hex: '#529BA9', name: '藍綠線' },
+    fiveContinents2: { hex: '#529BA9', name: '藍綠線' },
     sixRuiXiang: { hex: '#E62129', name: '紅線' },
     flyingApsaras: { hex: '#E62129', name: '紅線' }
   };
