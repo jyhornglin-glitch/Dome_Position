@@ -3643,7 +3643,7 @@ svg {
   color: #64748b;
 }
 
-/* A4 Screen Preview Sheet (Portrait 3 Columns x 3 Rows - Standard A7 Ratio 9-Card Fit) */
+/* A4 Screen Preview Sheet (Portrait 3 Columns x 4 Rows - 12-Card Adaptive Fit) */
 .a4-page-preview {
   background: #ffffff;
   width: 100%;
@@ -3655,7 +3655,7 @@ svg {
   padding: 4px 4px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   gap: 2.5px;
 }
 
@@ -3673,9 +3673,11 @@ svg {
 
 .a4-card-cell img,
 .a4-card-cell canvas {
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
   display: block;
 }
 
@@ -3688,7 +3690,7 @@ svg {
 }
 
 /* ==========================================================================
-   Print Media Styles (A4 Portrait 3x3 9-Card Standard A7 Grid Window Print)
+   Print Media Styles (A4 Portrait 3x4 12-Card Grid Window Print)
    ========================================================================== */
 @media print {
   @page {
@@ -3727,7 +3729,7 @@ svg {
     padding: 2.5mm 2.5mm;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
     gap: 1.5mm;
     background: #ffffff;
   }
@@ -3743,9 +3745,11 @@ svg {
   }
   .a4-print-sheet .a4-card-cell img,
   .a4-print-sheet .a4-card-cell canvas {
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
     display: block;
   }
 }

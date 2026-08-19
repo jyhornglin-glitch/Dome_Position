@@ -5472,7 +5472,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // 解析身分證位置並排版預覽 (A4 直向 3欄×3列，每頁 9 張標準 A7 尺寸)
+    // 解析身分證位置並排版預覽 (A4 直向 3欄×4列，每頁 12 張)
     if (parseBatchPrintBtn) {
       parseBatchPrintBtn.addEventListener('click', async () => {
         const rawText = batchPrintInput ? batchPrintInput.value.trim() : '';
@@ -5485,7 +5485,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (startBatchPrintBtn) startBatchPrintBtn.disabled = true;
         if (downloadBatchPdfBtn) downloadBatchPdfBtn.disabled = true;
         parseBatchPrintBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> 正在解析排版...`;
-        batchPrintPreviewWrapper.innerHTML = `<div class="slip-loading"><i class="fa-solid fa-spinner fa-spin"></i> 正在批次產出 A7 定位小卡與 A4 直向排版...</div>`;
+        batchPrintPreviewWrapper.innerHTML = `<div class="slip-loading"><i class="fa-solid fa-spinner fa-spin"></i> 正在批次產出定位小卡與 A4 直向 3欄×4列 排版...</div>`;
 
         try {
           // 1. 分割輸入 Tokens (換行、逗號、分號、空格)
@@ -5556,8 +5556,9 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
           }
 
-          const totalPages = Math.ceil(matchedList.length / 9);
-          let statsHtml = `<span style="color: #10b981;"><i class="fa-solid fa-circle-check"></i> 成功解析 <strong>${matchedList.length}</strong> 筆名單，共排版為 <strong>${totalPages}</strong> 頁 A4 直向（每頁 3欄×3列 = 9張標準 A7 白銀比例）</span>`;
+          const CARDS_PER_PAGE = 12; // 3 欄 × 4 列
+          const totalPages = Math.ceil(matchedList.length / CARDS_PER_PAGE);
+          let statsHtml = `<span style="color: #10b981;"><i class="fa-solid fa-circle-check"></i> 成功解析 <strong>${matchedList.length}</strong> 筆名單，共排版為 <strong>${totalPages}</strong> 頁 A4 直向（每頁 3欄×4列 = 12張）</span>`;
           if (notFoundTokens.length > 0) {
             statsHtml += ` <span style="color: #f59e0b; font-size: 11.5px;">(未找到 ${notFoundTokens.length} 筆: ${notFoundTokens.slice(0, 3).join(', ')}${notFoundTokens.length > 3 ? '...' : ''})</span>`;
           }
@@ -5568,13 +5569,13 @@ document.addEventListener('DOMContentLoaded', () => {
           if (batchPrintSection) batchPrintSection.innerHTML = '';
 
           for (let pageIdx = 0; pageIdx < totalPages; pageIdx++) {
-            const pageStart = pageIdx * 9;
-            const pagePerformers = matchedList.slice(pageStart, pageStart + 9);
+            const pageStart = pageIdx * CARDS_PER_PAGE;
+            const pagePerformers = matchedList.slice(pageStart, pageStart + CARDS_PER_PAGE);
 
             // 螢幕預覽頁 (A4 Portrait Preview)
             const previewPageBadge = document.createElement('div');
             previewPageBadge.className = 'a4-page-badge';
-            previewPageBadge.textContent = `A4 直向 第 ${pageIdx + 1} 頁 (共 ${totalPages} 頁 · 3欄×3列 · ${pagePerformers.length}/9 張)`;
+            previewPageBadge.textContent = `A4 直向 第 ${pageIdx + 1} 頁 (共 ${totalPages} 頁 · 3欄×4列 · ${pagePerformers.length}/${CARDS_PER_PAGE} 張)`;
             batchPrintPreviewWrapper.appendChild(previewPageBadge);
 
             const previewPageEl = document.createElement('div');
@@ -5586,7 +5587,7 @@ document.addEventListener('DOMContentLoaded', () => {
             printSheetEl.className = 'a4-print-sheet';
             if (batchPrintSection) batchPrintSection.appendChild(printSheetEl);
 
-            for (let i = 0; i < 9; i++) {
+            for (let i = 0; i < CARDS_PER_PAGE; i++) {
               const p = pagePerformers[i];
               const previewCell = document.createElement('div');
               previewCell.className = 'a4-card-cell';
@@ -5630,7 +5631,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // 批次下載 PDF 檔 (多頁 A4 直向 3欄×3列)
+    // 批次下載 PDF 檔 (多頁 A4 直向 3欄×4列)
     if (downloadBatchPdfBtn) {
       downloadBatchPdfBtn.addEventListener('click', async () => {
         if (!batchParsedPerformers || batchParsedPerformers.length === 0) {
@@ -5656,20 +5657,23 @@ document.addEventListener('DOMContentLoaded', () => {
             compress: true
           });
 
+          const COLS = 3;
+          const ROWS = 4;
+          const CARDS_PER_PAGE = COLS * ROWS; // 12
           const totalItems = batchParsedPerformers.length;
-          const totalPages = Math.ceil(totalItems / 9);
+          const totalPages = Math.ceil(totalItems / CARDS_PER_PAGE);
 
-          // 每張小卡尺寸：70mm x 99mm (3欄 x 3列 = 210mm x 297mm 完美滿版)
-          const cardW = 70.0;
-          const cardH = 99.0;
+          // 單元格尺寸：3欄 x 4列 = 70.0mm x 74.25mm
+          const cellW = 210.0 / COLS; // 70.0 mm
+          const cellH = 297.0 / ROWS; // 74.25 mm
 
           for (let pageIdx = 0; pageIdx < totalPages; pageIdx++) {
             if (pageIdx > 0) {
               pdf.addPage('a4', 'portrait');
             }
 
-            const pageStart = pageIdx * 9;
-            const pagePerformers = batchParsedPerformers.slice(pageStart, pageStart + 9);
+            const pageStart = pageIdx * CARDS_PER_PAGE;
+            const pagePerformers = batchParsedPerformers.slice(pageStart, pageStart + CARDS_PER_PAGE);
 
             for (let i = 0; i < pagePerformers.length; i++) {
               const p = pagePerformers[i];
@@ -5678,12 +5682,24 @@ document.addEventListener('DOMContentLoaded', () => {
               const cardCanvas = await generateMergedPositionCard(p);
               if (cardCanvas) {
                 const imgData = cardCanvas.toDataURL('image/png');
-                const col = i % 3;
-                const row = Math.floor(i / 3);
-                const x = col * cardW;
-                const y = row * cardH;
+                const imgRatio = cardCanvas.width / cardCanvas.height;
 
-                pdf.addImage(imgData, 'PNG', x, y, cardW, cardH, undefined, 'FAST');
+                // 自動計算等比例尺寸並於單元格內置中
+                let renderW = cellW;
+                let renderH = cellW / imgRatio;
+                if (renderH > cellH) {
+                  renderH = cellH;
+                  renderW = cellH * imgRatio;
+                }
+
+                const padX = (cellW - renderW) / 2;
+                const padY = (cellH - renderH) / 2;
+                const col = i % COLS;
+                const row = Math.floor(i / COLS);
+                const x = col * cellW + padX;
+                const y = row * cellH + padY;
+
+                pdf.addImage(imgData, 'PNG', x, y, renderW, renderH, undefined, 'FAST');
               }
             }
           }
