@@ -3652,7 +3652,7 @@ svg {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   border-radius: 4px;
   box-sizing: border-box;
-  padding: 14px 8px; /* 保留適當的上下邊距以對應實際列印效果 */
+  padding: 8px 8px; /* 保留適當的上下邊距以對應實際列印效果 (上下左右各 5mm 等比) */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(4, 1fr);
@@ -3726,7 +3726,7 @@ svg {
     page-break-after: always;
     break-after: page;
     box-sizing: border-box;
-    padding: 9mm 5mm; /* 上下各保留 9mm，左右各保留 5mm 安全邊界避免印表機裁切 */
+    padding: 5mm 5mm; /* 上下左右各保留 5mm 安全邊界避免印表機裁切 */
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, 1fr);

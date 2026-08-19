@@ -3302,7 +3302,7 @@ document.addEventListener('DOMContentLoaded', () => {
     boneDonation: '骨捐 (能捨)',
     edu: '教育 (說法品/藥草喻)',
     humanities1: '人文 (慈誠/父母恩)',
-    humanities2: '主機板 (天空破了洞/做環保/代謝不著)',
+    humanities2: '主機板 (天空破了洞/做環保/代謝不住/大愛亮起來)',
     fiveContinents1: '五洲',
     sixRuiXiang: '六瑞相 (圓形)'
   };
@@ -3368,7 +3368,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return Promise.all(promises);
   }
 
-  // 功德品 8 個演繹段落（五大洲子步驟名稱與燈號對照表）
+  // 功德品 各場次演繹段落（五大洲子步驟名稱與燈號對照表，依據 定位點參考.docx）
   const FIVE_CONTINENTS_SUB_STEPS = {
     '1112': [
       { name: '五洲-樂生', lamp: '', displayType: 'fiveContinents1' },
@@ -3377,8 +3377,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { name: '功3約旦', lamp: '綠', displayType: 'fiveContinents2' },
       { name: '功6黑亮區', lamp: '綠', displayType: 'fiveContinents2' },
       { name: '功8莫三比克', lamp: '黃', displayType: 'fiveContinents2' },
-      { name: '台灣救災', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '功8', lamp: '黃', displayType: 'fiveContinents2' }
+      { name: '台灣救災', lamp: '綠', displayType: 'fiveContinents2' }
     ],
     '1113': [
       { name: '五洲-土地公', lamp: '', displayType: 'fiveContinents1' },
@@ -3386,9 +3385,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { name: '富中之富', lamp: '綠', displayType: 'fiveContinents2' },
       { name: '功3土耳其', lamp: '綠', displayType: 'fiveContinents2' },
       { name: '功8南非', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '功9印尼', lamp: '黃', displayType: 'fiveContinents2' },
-      { name: '功7', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '功8', lamp: '黃', displayType: 'fiveContinents2' }
+      { name: '功9印尼', lamp: '黃', displayType: 'fiveContinents2' }
     ],
     '1114': [
       { name: '五洲-撿石', lamp: '', displayType: 'fiveContinents1' },
@@ -3397,7 +3394,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { name: '功2緬甸', lamp: '綠', displayType: 'fiveContinents2' },
       { name: '功7八八風災', lamp: '綠', displayType: 'fiveContinents2' },
       { name: '功4泰北', lamp: '黃', displayType: 'fiveContinents2' },
-      { name: '功8辛巴威', lamp: '綠', displayType: 'fiveContinents2' },
+      { name: '功8辛巴威/髻珠喻', lamp: '綠', displayType: 'fiveContinents2' },
       { name: '生生世世', lamp: '黃', displayType: 'fiveContinents2' }
     ],
     '1115': [
@@ -3406,7 +3403,6 @@ document.addEventListener('DOMContentLoaded', () => {
       { name: '富中之富', lamp: '綠', displayType: 'fiveContinents2' },
       { name: '功9 921', lamp: '綠', displayType: 'fiveContinents1' },
       { name: '減災工程', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '功6', lamp: '黃', displayType: 'fiveContinents2' },
       { name: '報佛恩', lamp: '綠', displayType: 'fiveContinents2' },
       { name: '飛天', lamp: '黃', displayType: 'fiveContinents2' }
     ]
@@ -3950,8 +3946,11 @@ document.addEventListener('DOMContentLoaded', () => {
             let line1 = '';
             let line2 = '';
 
-            if (slashParts[0].length >= 5) {
-              // 例如 主機板: line1 = '天空破了洞', line2 = '做環保 / 代謝不著'
+            if (slashParts.length >= 4) {
+              // 例如 主機板: line1 = '天空破了洞 / 做環保', line2 = '代謝不住 / 大愛亮起來'
+              line1 = slashParts.slice(0, 2).join(' / ');
+              line2 = slashParts.slice(2).join(' / ');
+            } else if (slashParts[0].length >= 5) {
               line1 = slashParts[0];
               line2 = slashParts.slice(1).join(' / ');
             } else {
@@ -4108,20 +4107,72 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.fillText(lampColor, lampStartX + badgeW_small / 2, lampDrawY + badgeH_small / 2 + 0.5);
           }
 
-          let fontSize = (numItems === 1) 
-            ? (cardStepName.length <= 4 ? 32 : (cardStepName.length <= 8 ? 29 : 25))
-            : (numItems <= 4 ? 28 : 28);
+          if (cardStepName.includes('/')) {
+            const slashParts = cardStepName.split('/').map(s => s.trim()).filter(Boolean);
+            if (slashParts.length >= 2) {
+              const line1 = slashParts[0];
+              const line2 = slashParts.slice(1).join(' / ');
 
-          ctx.font = `bold ${fontSize}px 'Noto Sans TC', sans-serif`;
-          while (ctx.measureText(cardStepName).width > maxTextW && fontSize > 11) {
-            fontSize -= 0.5;
+              let fontSize1 = 23;
+              ctx.font = `bold ${fontSize1}px 'Noto Sans TC', sans-serif`;
+              while (ctx.measureText(line1).width > maxTextW && fontSize1 > 10.5) {
+                fontSize1 -= 0.5;
+                ctx.font = `bold ${fontSize1}px 'Noto Sans TC', sans-serif`;
+              }
+
+              let fontSize2 = 21;
+              ctx.font = `bold ${fontSize2}px 'Noto Sans TC', sans-serif`;
+              while (ctx.measureText(line2).width > maxTextW && fontSize2 > 10) {
+                fontSize2 -= 0.5;
+                ctx.font = `bold ${fontSize2}px 'Noto Sans TC', sans-serif`;
+              }
+
+              const lineGap = 1.5;
+              const totalTextH = (fontSize1 * 0.85) + (fontSize2 * 0.85) + lineGap;
+              const y1 = subCenterY - totalTextH / 2 + (fontSize1 * 0.42);
+              const y2 = y1 + (fontSize1 * 0.45) + lineGap + (fontSize2 * 0.45);
+
+              ctx.fillStyle = '#0f172a';
+              ctx.font = `bold ${fontSize1}px 'Noto Sans TC', sans-serif`;
+              ctx.textAlign = 'left';
+              ctx.textBaseline = 'middle';
+              ctx.fillText(line1, labelColStartX, y1);
+
+              ctx.fillStyle = '#334155';
+              ctx.font = `bold ${fontSize2}px 'Noto Sans TC', sans-serif`;
+              ctx.fillText(line2, labelColStartX, y2);
+            } else {
+              let fontSize = (numItems === 1) 
+                ? (cardStepName.length <= 4 ? 32 : (cardStepName.length <= 8 ? 29 : 25))
+                : (numItems <= 4 ? 28 : 28);
+
+              ctx.font = `bold ${fontSize}px 'Noto Sans TC', sans-serif`;
+              while (ctx.measureText(cardStepName).width > maxTextW && fontSize > 11) {
+                fontSize -= 0.5;
+                ctx.font = `bold ${fontSize}px 'Noto Sans TC', sans-serif`;
+              }
+
+              ctx.fillStyle = '#0f172a';
+              ctx.textAlign = 'left';
+              ctx.textBaseline = 'middle';
+              ctx.fillText(cardStepName, labelColStartX, subCenterY);
+            }
+          } else {
+            let fontSize = (numItems === 1) 
+              ? (cardStepName.length <= 4 ? 32 : (cardStepName.length <= 8 ? 29 : 25))
+              : (numItems <= 4 ? 28 : 28);
+
             ctx.font = `bold ${fontSize}px 'Noto Sans TC', sans-serif`;
-          }
+            while (ctx.measureText(cardStepName).width > maxTextW && fontSize > 11) {
+              fontSize -= 0.5;
+              ctx.font = `bold ${fontSize}px 'Noto Sans TC', sans-serif`;
+            }
 
-          ctx.fillStyle = '#0f172a';
-          ctx.textAlign = 'left';
-          ctx.textBaseline = 'middle';
-          ctx.fillText(cardStepName, labelColStartX, subCenterY);
+            ctx.fillStyle = '#0f172a';
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(cardStepName, labelColStartX, subCenterY);
+          }
         }
       }
     }
@@ -5665,11 +5716,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
           // A4 頁面安全邊界設定 (避免實體印表機不可列印區域裁切)
           const marginX = 5.0; // 左右各保留 5.0mm 安全邊界
-          const marginY = 9.0; // 上下各保留 9.0mm 安全邊界
+          const marginY = 5.0; // 上下各保留 5.0mm 安全邊界
           const printableW = 210.0 - marginX * 2; // 200.0 mm
-          const printableH = 297.0 - marginY * 2; // 279.0 mm
+          const printableH = 297.0 - marginY * 2; // 287.0 mm
 
-          // 單元格尺寸：3欄 x 4列 (66.67mm x 69.75mm)
+          // 單元格尺寸：3欄 x 4列 (66.67mm x 71.75mm)
           const cellW = printableW / COLS;
           const cellH = printableH / ROWS;
 
