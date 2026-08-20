@@ -3287,7 +3287,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const STEP_CARD_NAMES = {
     basic: '基本 (基本隊形)',
     circle: '圓 (序/生老病死/六度)',
-    xingYuan: '行願Ｖ (開經偈)',
+    xingYuan: '行願 (開經偈)',
     miLuo: '米籮 (扛天下米籮)',
     jingSi: '靜思 (靜思家風)',
     lamp: '有船 (點一盞燈)',
@@ -3297,7 +3297,7 @@ document.addEventListener('DOMContentLoaded', () => {
       '1114': '無船3 (圍爐)',
       'default': '有船 (米甕大魚)'
     },
-    bigV: '四弘 (地藏/誓願)',
+    bigV: '四弘Ｖ (地藏/誓願)',
     daChuanShi: '船師 (大醫王)',
     boneDonation: '骨捐 (能捨)',
     edu: '教育 (說法品/藥草喻)',
