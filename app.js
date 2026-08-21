@@ -1016,12 +1016,16 @@ document.addEventListener('DOMContentLoaded', () => {
     currentDisplayName = displayName; // Store for use by map/modal/PDF
     
     // Update summary card
-    perfAvatar.textContent = displayName ? displayName.charAt(0) : fields.coordinate.charAt(0);
-    perfAvatar.className = `performer-avatar cat-${performer.category}`;
+    if (perfAvatar) {
+      perfAvatar.textContent = displayName ? displayName.charAt(0) : fields.coordinate.charAt(0);
+      perfAvatar.className = `performer-avatar cat-${performer.category}`;
+    }
     perfName.textContent = displayName;
     perfCategory.textContent = performer.category;
     perfCategory.className = `meta-badge cat-${performer.category}`;
-    perfID.textContent = `起點座標: ${formatCoordinateForDisplay(fields.coordinate)}`;
+    if (perfID) {
+      perfID.textContent = `起點: ${formatCoordinateForDisplay(fields.coordinate)}`;
+    }
     
     if (stageInstruction) {
       if (selectedTeam === 'west') {

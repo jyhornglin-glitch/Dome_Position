@@ -525,7 +525,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_28.png"
+          "src": "images/action_hints/hint_28.jpg"
         },
         {
           "type": "text",
@@ -2053,7 +2053,7 @@ const ACTION_HINTS_DATA = {
   ],
   "fiveContinents1": [
     {
-      "title": "11/12、15：32.貧中之富-樂生",
+      "title": "11/15：32.貧中之富-樂生",
       "details": [
         {
           "type": "text",
@@ -2082,11 +2082,11 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "11/13、15：32.富中之富\tB",
+      "title": "11/15：32.富中之富\tB",
       "details": [
         {
           "type": "text",
-          "content": "11/13、15：【曲目：彌勒問】"
+          "content": "【曲目：彌勒問】"
         },
         {
           "type": "text",
@@ -2139,7 +2139,7 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "33.開經書",
+      "title": "34.開經書",
       "details": [
         {
           "type": "text",
@@ -2180,114 +2180,6 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_88.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_89.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_90.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_92.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_94.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_95.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_96.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_97.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_98.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_99.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_101.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_103.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_104.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_105.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_106.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_108.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_109.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_110.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_112.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_113.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_114.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_115.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_117.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_119.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_120.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_121.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_122.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_124.jpg"
         }
       ]
     },
@@ -2356,8 +2248,16 @@ const ACTION_HINTS_DATA = {
           "content": "悅樂更生安隱想"
         },
         {
+          "type": "text",
+          "content": "11/15："
+        },
+        {
           "type": "image",
           "src": "images/action_hints/hint_125.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_126.jpg"
         }
       ]
     },
@@ -2488,7 +2388,7 @@ const ACTION_HINTS_DATA = {
   ],
   "fiveContinents2": [
     {
-      "title": "11/12、15：32.貧中之富-樂生",
+      "title": "11/12：32.貧中之富-樂生",
       "details": [
         {
           "type": "text",
@@ -2517,11 +2417,11 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "11/12、14：32.富中之富\tA",
+      "title": "11/12：33.富中之富\tA",
       "details": [
         {
           "type": "text",
-          "content": "11/12、14：【曲目：彌勒問】"
+          "content": "【曲目：彌勒問】"
         },
         {
           "type": "text",
@@ -2578,11 +2478,72 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "11/13、15：32.富中之富\tB",
+      "title": "11/14：33.富中之富\tA",
       "details": [
         {
           "type": "text",
-          "content": "11/13、15：【曲目：彌勒問】"
+          "content": "【曲目：彌勒問】"
+        },
+        {
+          "type": "text",
+          "content": "os那~什麼是富中之富啊，開啟心靈的富有啊!"
+        },
+        {
+          "type": "text",
+          "content": "我見彼土諸菩薩 \t為求佛道行布施(東二：921鋼鐵)"
+        },
+        {
+          "type": "text",
+          "content": "像這位921大地震聽到 上人說教育不能等，立即認養多所學校，為善不欲人知，"
+        },
+        {
+          "type": "text",
+          "content": "只求 上人「ㄇㄞˋ煩惱」"
+        },
+        {
+          "type": "text",
+          "content": "金銀瑪瑙與寶飾\t車馬華蓋摩尼珠(東一：字畫.金銀.食衣住行.摩尼珠)"
+        },
+        {
+          "type": "text",
+          "content": "上人號召這些實業家，用他們的專業幫助苦難人ㄟ。食、衣、住、行都考慮到了，實在是太貼心了。"
+        },
+        {
+          "type": "text",
+          "content": "又見菩薩利眾生\t願捨妻子與國土 (西一：搭靜思堂(大間))"
+        },
+        {
+          "type": "text",
+          "content": "這位莊居士要捐地，土地權狀就放在佛堂天天禮拜。他這虔誠的心已超越這塊土地價值了！兩個善女人捐地蓋大愛台，科技傳法到全世界。"
+        },
+        {
+          "type": "text",
+          "content": "為救眾生諸病苦\t頭目髓腦亦樂施(西二：南美洲蔬果)"
+        },
+        {
+          "type": "text",
+          "content": "台灣半導體開路先鋒杜俊元捐地蓋靜思堂，生前大布施，往生捐大體，發揮生命的使用權！大成鋼鐵推素14年喔，員工兩千多人都吃素ㄟ！"
+        },
+        {
+          "type": "text",
+          "content": "五毛錢(西二：北美洲五毛錢)可以救人一甲子耶，上人想要送給大家一甲子的傳家寶耶"
+        },
+        {
+          "type": "text",
+          "content": "志工總動員 使命必達"
+        },
+        {
+          "type": "text",
+          "content": "又見菩薩齊合掌\t千萬偈頌讚法王"
+        }
+      ]
+    },
+    {
+      "title": "11/13：32.富中之富\tB",
+      "details": [
+        {
+          "type": "text",
+          "content": "【曲目：彌勒問】"
         },
         {
           "type": "text",
@@ -2635,7 +2596,7 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "33.開經書",
+      "title": "34.開經書",
       "details": [
         {
           "type": "text",
@@ -2701,6 +2662,10 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "雖有生死無畏懼"
+        },
+        {
+          "type": "text",
+          "content": "11/12："
         },
         {
           "type": "image",
@@ -2831,6 +2796,10 @@ const ACTION_HINTS_DATA = {
           "content": "守之不動令堅(厚=定)"
         },
         {
+          "type": "text",
+          "content": "11/12："
+        },
+        {
           "type": "image",
           "src": "images/action_hints/hint_92.jpg"
         }
@@ -2882,6 +2851,10 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "譬如髻珠放光明"
+        },
+        {
+          "type": "text",
+          "content": "11/12："
         },
         {
           "type": "image",
@@ -2950,6 +2923,10 @@ const ACTION_HINTS_DATA = {
           "content": "雖有生死無畏懼"
         },
         {
+          "type": "text",
+          "content": "11/13："
+        },
+        {
           "type": "image",
           "src": "images/action_hints/hint_98.jpg"
         },
@@ -2985,6 +2962,10 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "守之不動令堅(厚=定)"
+        },
+        {
+          "type": "text",
+          "content": "11/13："
         },
         {
           "type": "image",
@@ -3038,6 +3019,10 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "譬如髻珠放光明"
+        },
+        {
+          "type": "text",
+          "content": "11/13："
         },
         {
           "type": "image",
@@ -3186,6 +3171,10 @@ const ACTION_HINTS_DATA = {
           "content": "通達無量微妙理"
         },
         {
+          "type": "text",
+          "content": "11/14："
+        },
+        {
           "type": "image",
           "src": "images/action_hints/hint_108.jpg"
         },
@@ -3243,6 +3232,10 @@ const ACTION_HINTS_DATA = {
           "content": "怨既滅已王歡喜"
         },
         {
+          "type": "text",
+          "content": "11/14："
+        },
+        {
           "type": "image",
           "src": "images/action_hints/hint_112.jpg"
         },
@@ -3292,6 +3285,10 @@ const ACTION_HINTS_DATA = {
           "content": "王后愛重常共語"
         },
         {
+          "type": "text",
+          "content": "11/14："
+        },
+        {
           "type": "image",
           "src": "images/action_hints/hint_114.jpg"
         },
@@ -3327,6 +3324,10 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "守之不動令堅(厚=定)"
+        },
+        {
+          "type": "text",
+          "content": "11/14："
         },
         {
           "type": "image",
@@ -3380,6 +3381,10 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "譬如髻珠放光明"
+        },
+        {
+          "type": "text",
+          "content": "11/14："
         },
         {
           "type": "image",
@@ -3451,12 +3456,12 @@ const ACTION_HINTS_DATA = {
           "content": "朱居士像地藏王菩薩 庇護著辛巴威的苦難"
         },
         {
-          "type": "image",
-          "src": "images/action_hints/hint_124.jpg"
+          "type": "text",
+          "content": "11/14："
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_125.jpg"
+          "src": "images/action_hints/hint_124.jpg"
         }
       ]
     }

@@ -126,10 +126,10 @@ body {
 
 /* App Layout Container */
 .app-container {
-  padding: 16px 14px;
+  padding: 8px 12px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
   min-height: 100%;
 }
 
@@ -139,9 +139,9 @@ body {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--panel-border);
-  border-radius: 14px;
+  border-radius: 12px;
   box-shadow: var(--card-shadow);
-  padding: 16px;
+  padding: 12px;
   transition: var(--transition-smooth);
 }
 
@@ -160,20 +160,21 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-bottom: 2px;
 }
 
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .header-refresh-btn, .header-manual-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   padding: 0;
   font-weight: 600;
@@ -401,7 +402,7 @@ body {
 .main-content {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 6px;
 }
 
 /* Performer summary card styling */
@@ -409,23 +410,25 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 8px;
   width: 100%;
 }
 
 .performer-summary-card {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 8px 12px !important;
-  width: 50%;
+  gap: 8px;
+  padding: 4px 10px !important;
+  flex: 0 0 auto;
   box-sizing: border-box;
+  border-radius: 10px;
 }
 
 .teach-btn-group {
   flex: 1;
   display: flex;
-  gap: 12px;
+  gap: 6px;
+  min-width: 0;
 }
 
 .teach-btn {
@@ -434,22 +437,22 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: 8px;
-  padding: 6px 12px;
-  min-height: 48px;
+  gap: 4px;
+  padding: 3px 6px;
+  min-height: 36px;
   height: auto;
-  border-radius: 12px;
+  border-radius: 8px;
   background: linear-gradient(135deg, #0b954b 0%, #0061ae 100%);
   color: white !important;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 12px;
+  line-height: 1.2;
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 4px 12px rgba(11, 149, 75, 0.2);
   border: none;
   cursor: pointer;
   white-space: normal;
-  word-break: break-all;
 }
 
 .teach-btn:hover {
@@ -472,6 +475,16 @@ body {
   box-shadow: 0 6px 20px rgba(0, 97, 174, 0.35);
 }
 
+.teach-btn.third-phase {
+  background: linear-gradient(135deg, #7c3aed 0%, #e11d48 100%);
+  box-shadow: 0 4px 12px rgba(225, 29, 72, 0.2);
+}
+
+.teach-btn.third-phase:hover {
+  background: linear-gradient(135deg, #8b5cf6 0%, #f43f5e 100%);
+  box-shadow: 0 6px 20px rgba(225, 29, 72, 0.35);
+}
+
 .performer-avatar {
   width: 32px;
   height: 32px;
@@ -482,24 +495,39 @@ body {
   font-size: 14px;
   font-weight: 700;
   box-shadow: 0 0 8px rgba(56, 189, 248, 0.15);
+  flex-shrink: 0;
+}
+
+.performer-details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
 }
 
 .performer-details h2 {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
+  line-height: 1;
+  margin: 0;
+  white-space: nowrap;
 }
 
 .meta-badges {
   display: flex;
   gap: 6px;
-  margin-top: 2px;
+  align-items: center;
+  flex-wrap: nowrap;
 }
 
 .meta-badge {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
-  padding: 1px 8px;
+  padding: 2px 8px;
   border-radius: 10px;
+  white-space: nowrap;
+  line-height: 1.2;
 }
 
 .perf-status {
@@ -527,8 +555,8 @@ body {
   justify-content: space-around;
   background: var(--panel-bg);
   border: 1px solid var(--panel-border);
-  border-radius: 10px;
-  padding: 4px;
+  border-radius: 8px;
+  padding: 2px 4px;
   position: relative;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
@@ -539,20 +567,21 @@ body {
   color: var(--text-secondary);
   font-size: 11px;
   font-weight: 600;
-  padding: 8px 4px;
+  padding: 4px 6px;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 6px;
   transition: var(--transition-smooth);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 2px;
+  justify-content: center;
+  gap: 4px;
   flex: 1;
   font-family: var(--font-family-sans);
 }
 
 .mobile-tab-btn i {
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .mobile-tab-btn.active {
@@ -570,16 +599,20 @@ body {
   display: flex !important;
 }
 
+#panel-localGrid .card-title-bar {
+  display: none !important;
+}
+
 /* SVG map styling */
 .map-card {
-  padding: 12px;
+  padding: 8px !important;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 6px;
 }
 
 .card-title-bar h3 {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -590,7 +623,7 @@ body {
   background: var(--map-bg);
   border-radius: 10px;
   border: 1px solid var(--panel-border);
-  padding: 12px;
+  padding: 6px 8px !important;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -599,9 +632,9 @@ body {
 .stage-legend {
   display: flex;
   justify-content: center;
-  gap: 12px;
-  margin-bottom: 10px;
-  font-size: 11px;
+  gap: 8px;
+  margin-bottom: 4px;
+  font-size: 10.5px;
   color: var(--text-secondary);
 }
 
@@ -1407,10 +1440,10 @@ svg {
   justify-content: space-between;
   background: #1e40af !important;
   border: 1px solid #3b82f6 !important;
-  padding: 4px 10px !important;
-  border-radius: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  padding: 2px 8px !important;
+  border-radius: 8px;
+  margin-top: 0 !important;
+  margin-bottom: 2px !important;
   width: 100% !important;
   box-sizing: border-box !important;
 }
@@ -1419,8 +1452,8 @@ svg {
   background: rgba(56, 189, 248, 0.08);
   border: 1px solid rgba(56, 189, 248, 0.2);
   color: var(--blue-color);
-  padding: 6px 12px;
-  border-radius: 8px;
+  padding: 4px 8px;
+  border-radius: 6px;
   font-size: 11px;
   font-weight: 600;
   cursor: pointer;
@@ -1432,10 +1465,11 @@ svg {
 
 /* Style buttons inside royal blue navigation bar */
 .map-control-bar .control-btn {
-  padding: 4px 8px !important;
+  padding: 3px 8px !important;
   background: rgba(255, 255, 255, 0.1) !important;
   border: 1px solid rgba(255, 255, 255, 0.2) !important;
   color: #ffffff !important;
+  font-size: 11px !important;
 }
 
 .map-control-bar .control-btn:hover:not(:disabled) {
@@ -1473,10 +1507,11 @@ svg {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  line-height: 1.15;
 }
 
 .active-formation-num {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 800;
   color: var(--gold-color);
   line-height: 1.1;
@@ -1489,10 +1524,10 @@ svg {
 }
 
 .active-formation-title {
-  font-size: 10px;
+  font-size: 10.5px;
   font-weight: 600;
   color: var(--text-primary);
-  margin-top: 2px;
+  margin-top: 1px;
 }
 
 .map-control-bar .active-formation-title {
@@ -1500,14 +1535,14 @@ svg {
 }
 
 .active-formation-coord {
-  font-size: 9px;
+  font-size: 9.5px;
   font-weight: 700;
   color: var(--text-secondary);
-  margin-top: 1px;
+  margin-top: 0px;
 }
 
 .map-control-bar .active-formation-coord {
-  font-size: 10.5px;
+  font-size: 10px;
   color: #fef08a !important;
   font-family: 'Outfit', monospace;
   letter-spacing: 0.5px;
@@ -3169,36 +3204,37 @@ svg {
 
   .teach-btn-group {
     flex-direction: column !important;
-    gap: 6px !important;
+    gap: 4px !important;
   }
 
   .teach-btn {
     height: auto !important;
-    min-height: 38px !important;
+    min-height: 28px !important;
     font-size: 11px !important;
-    border-radius: 8px !important;
+    border-radius: 6px !important;
     gap: 4px !important;
-    padding: 6px 8px !important;
+    padding: 4px 6px !important;
+    white-space: nowrap !important;
   }
 
-  .performer-avatar {
-    width: 24px !important;
-    height: 24px !important;
-    font-size: 11px !important;
+  .performer-details {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 6px !important;
   }
 
   .performer-details h2 {
-    font-size: 12px !important;
+    font-size: 13px !important;
   }
 
   .meta-badges {
-    margin-top: 1px !important;
+    margin-top: 0 !important;
     gap: 4px !important;
   }
 
   .meta-badge {
-    font-size: 9px !important;
-    padding: 0px 4px !important;
+    font-size: 10px !important;
+    padding: 1px 6px !important;
   }
 
   /* 導覽標籤列橫排，省去垂直高度 */
