@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { key: 'humanities2', name: '09-2人文(主機板)', label: '人文(主機板)' },
     { key: 'fiveContinents1', name: '10-1五大洲(台灣)', label: '五大洲(台灣)' },
     { key: 'fiveContinents2', name: '10-2五大洲', label: '五大洲' },
-    { key: 'sixRuiXiang', name: '12-1六瑞相', label: '圓形' }
+    { key: 'sixRuiXiang', name: '12-1六瑞相', label: '發願/行星/祈禱' }
   ];
 
   function shouldKeepSegment(segment, filterCtx) {
@@ -3297,7 +3297,8 @@ document.addEventListener('DOMContentLoaded', () => {
     humanities1: '綠',
     humanities2: '綠',
     fiveContinents1: '綠',
-    sixRuiXiang: ''
+    fiveContinents2: '綠',
+    sixRuiXiang: '黃'
   };
 
   // 根據 定位點參考.docx 整理的各步驟定位小卡名稱 (支援按日期場次動態對照，包含括號曲目名稱)
@@ -3322,7 +3323,7 @@ document.addEventListener('DOMContentLoaded', () => {
     humanities2: '主機板 (天空破了洞/做環保/代謝不住/大愛亮起來)',
     fiveContinents1: '五洲 (台灣)',
     fiveContinents2: '五洲',
-    sixRuiXiang: '六瑞相 (圓形)'
+    sixRuiXiang: '六瑞相 (發願/行星/祈禱)'
   };
 
   function getCardStepName(key, sessionKey = selectedSessionKey) {
