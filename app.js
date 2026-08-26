@@ -119,7 +119,8 @@ document.addEventListener('DOMContentLoaded', () => {
     { key: 'edu', name: '08教育', label: '教育' },
     { key: 'humanities1', name: '09-1人文(基本隊形)', label: '人文(基本)' },
     { key: 'humanities2', name: '09-2人文(主機板)', label: '人文(主機板)' },
-    { key: 'fiveContinents1', name: '10-1五大洲', label: '五大洲' },
+    { key: 'fiveContinents1', name: '10-1五大洲(台灣)', label: '五大洲(台灣)' },
+    { key: 'fiveContinents2', name: '10-2五大洲', label: '五大洲' },
     { key: 'sixRuiXiang', name: '12-1六瑞相', label: '圓形' }
   ];
 
@@ -401,15 +402,17 @@ document.addEventListener('DOMContentLoaded', () => {
       return performer.noBoat || '';
     }
     
-    const displayType = getDisplayType(key);
-    
-    if (displayType === 'fiveContinents2') {
-      // 10-2五大洲如果沒有資料，則參考 10-1五大洲 (fiveContinents1) 的座標
-      return performer.fiveContinents2 || performer.fiveContinents1 || '';
-    }
-    if (displayType === 'fiveContinents1') {
+    if (key === 'fiveContinents1') {
       return performer.fiveContinents1 || '';
     }
+    if (key === 'fiveContinents2') {
+      return performer.fiveContinents2 || performer.fiveContinents1 || '';
+    }
+    if (key === 'sixRuiXiang') {
+      return performer.circle || '';
+    }
+    
+    const displayType = getDisplayType(key);
     if (displayType === 'circle') {
       return performer.circle || '';
     }
@@ -445,9 +448,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (key === 'noBoat3') {
       return 'noBoat';
     }
-    
     if (key === 'fiveContinents1') {
-      return (selectedSessionKey === '1115') ? 'fiveContinents1' : 'fiveContinents2';
+      return 'fiveContinents1';
+    }
+    if (key === 'fiveContinents2') {
+      return 'fiveContinents2';
     }
     if (key === 'sixRuiXiang') {
       return 'circle';
@@ -489,13 +494,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const f15 = formations.find(f => f.key === 'fiveContinents1');
     if (f15) {
-      const currentDisplayType = getDisplayType('fiveContinents1');
-      const continentLabel = (currentDisplayType === 'fiveContinents2') ? '10-2五大洲' : '10-1五大洲';
-      f15.name = continentLabel;
-      
+      f15.name = '10-1五大洲(台灣)';
+      f15.label = '五大洲(台灣)';
       const titleFiveContinentsEl = document.getElementById('title-fiveContinents1');
       if (titleFiveContinentsEl) {
-        titleFiveContinentsEl.textContent = continentLabel;
+        titleFiveContinentsEl.textContent = '10-1五大洲(台灣)';
+      }
+    }
+
+    const f16 = formations.find(f => f.key === 'fiveContinents2');
+    if (f16) {
+      f16.name = '10-2五大洲';
+      f16.label = '五大洲';
+      const titleFiveContinents2El = document.getElementById('title-fiveContinents2');
+      if (titleFiveContinents2El) {
+        titleFiveContinents2El.textContent = '10-2五大洲';
       }
     }
   }
@@ -3307,7 +3320,8 @@ document.addEventListener('DOMContentLoaded', () => {
     edu: '教育 (說法品/藥草喻)',
     humanities1: '人文 (慈誠/父母恩)',
     humanities2: '主機板 (天空破了洞/做環保/代謝不住/大愛亮起來)',
-    fiveContinents1: '五洲',
+    fiveContinents1: '五洲 (台灣)',
+    fiveContinents2: '五洲',
     sixRuiXiang: '六瑞相 (圓形)'
   };
 
@@ -3375,26 +3389,26 @@ document.addEventListener('DOMContentLoaded', () => {
   // 功德品 各場次演繹段落（五大洲子步驟名稱與燈號對照表，依據 定位點參考.docx）
   const FIVE_CONTINENTS_SUB_STEPS = {
     '1112': [
-      { name: '五洲-樂生', lamp: '', displayType: 'fiveContinents1' },
-      { name: '第一功德', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '富中之富', lamp: '綠', displayType: 'fiveContinents2' },
+      { name: '樂生', lamp: '', displayType: 'fiveContinents1' },
+      { name: '第一功德', lamp: '綠', displayType: 'fiveContinents1' },
+      { name: '富中之富Ａ', lamp: '綠', displayType: 'fiveContinents1' },
       { name: '功3約旦', lamp: '綠', displayType: 'fiveContinents2' },
       { name: '功6黑亮區', lamp: '綠', displayType: 'fiveContinents2' },
       { name: '功8莫三比克', lamp: '黃', displayType: 'fiveContinents2' },
-      { name: '台灣救災', lamp: '綠', displayType: 'fiveContinents2' }
+      { name: '功2台灣救災', lamp: '綠', displayType: 'fiveContinents2' }
     ],
     '1113': [
-      { name: '五洲-土地公', lamp: '', displayType: 'fiveContinents1' },
-      { name: '第一功德', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '富中之富', lamp: '綠', displayType: 'fiveContinents2' },
+      { name: '貧婆(煎包)', lamp: '', displayType: 'fiveContinents1' },
+      { name: '第一功德', lamp: '綠', displayType: 'fiveContinents1' },
+      { name: '富中之富B', lamp: '綠', displayType: 'fiveContinents1' },
       { name: '功3土耳其', lamp: '綠', displayType: 'fiveContinents2' },
       { name: '功8南非', lamp: '綠', displayType: 'fiveContinents2' },
       { name: '功9印尼', lamp: '黃', displayType: 'fiveContinents2' }
     ],
     '1114': [
-      { name: '五洲-撿石', lamp: '', displayType: 'fiveContinents1' },
-      { name: '第一功德', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '富中之富', lamp: '綠', displayType: 'fiveContinents2' },
+      { name: '貧婆(米目)', lamp: '', displayType: 'fiveContinents1' },
+      { name: '第一功德', lamp: '綠', displayType: 'fiveContinents1' },
+      { name: '富中之富A', lamp: '綠', displayType: 'fiveContinents1' },
       { name: '功2緬甸', lamp: '綠', displayType: 'fiveContinents2' },
       { name: '功7八八風災', lamp: '綠', displayType: 'fiveContinents2' },
       { name: '功4泰北', lamp: '黃', displayType: 'fiveContinents2' },
@@ -3402,13 +3416,13 @@ document.addEventListener('DOMContentLoaded', () => {
       { name: '生生世世', lamp: '黃', displayType: 'fiveContinents2' }
     ],
     '1115': [
-      { name: '五洲-樂生', lamp: '', displayType: 'fiveContinents1' },
-      { name: '第一功德', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '富中之富', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '功9 921', lamp: '綠', displayType: 'fiveContinents1' },
+      { name: '樂生', lamp: '', displayType: 'fiveContinents1' },
+      { name: '第一功德', lamp: '綠', displayType: 'fiveContinents1' },
+      { name: '富中之富B', lamp: '綠', displayType: 'fiveContinents1' },
+      { name: '功9 921', lamp: '綠', displayType: 'fiveContinents2' },
       { name: '減災工程', lamp: '綠', displayType: 'fiveContinents2' },
       { name: '報佛恩', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '飛天', lamp: '黃', displayType: 'fiveContinents2' }
+      { name: '功10飛天', lamp: '黃', displayType: 'fiveContinents2' }
     ]
   };
 
@@ -3546,9 +3560,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5.2 輔助函式：取得某步驟展開後的子項目數，用於內容平衡切分
     function getStepItemCount(stepIdx) {
       const stepF = formations[stepIdx];
-      if (stepF.key === 'fiveContinents1') {
-        const subList = FIVE_CONTINENTS_SUB_STEPS[selectedSessionKey];
-        return subList ? subList.length : 8;
+      if (stepF.key === 'fiveContinents1' || stepF.key === 'fiveContinents2') {
+        const subList = FIVE_CONTINENTS_SUB_STEPS[selectedSessionKey] || [];
+        const count = subList.filter(s => s.displayType === stepF.key).length;
+        return count || 3;
       }
       return 1;
     }
@@ -3561,7 +3576,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const halfTarget = totalItemsCount / 2;
     let accumulatedCount = 0;
-    let splitStepIdx = 10; // 預設分割在步驟 11 (index 10)，左欄 1-11 (11項)，右欄 12-16 (12項)
+    let splitStepIdx = 10; // 預設分割在步驟 11 (index 10)
     let minDiff = Infinity;
 
     for (let k = 0; k < formations.length - 1; k++) {
@@ -3598,11 +3613,18 @@ document.addEventListener('DOMContentLoaded', () => {
       const expandedItems = [];
       group.indices.forEach(stepIdx => {
         const stepF = formations[stepIdx];
-        if (stepF.key === 'fiveContinents1') {
-          const subList = FIVE_CONTINENTS_SUB_STEPS[selectedSessionKey] || [
-            { name: getCardStepName(stepF.key, selectedSessionKey), lamp: getFormationLampColor(stepF.key), displayType: getDisplayType(stepF.key) }
-          ];
-          subList.forEach(sub => expandedItems.push(sub));
+        if (stepF.key === 'fiveContinents1' || stepF.key === 'fiveContinents2') {
+          const subList = FIVE_CONTINENTS_SUB_STEPS[selectedSessionKey] || [];
+          const filtered = subList.filter(s => s.displayType === stepF.key);
+          if (filtered.length > 0) {
+            filtered.forEach(sub => expandedItems.push(sub));
+          } else {
+            expandedItems.push({
+              name: getCardStepName(stepF.key, selectedSessionKey),
+              lamp: getFormationLampColor(stepF.key),
+              displayType: getDisplayType(stepF.key)
+            });
+          }
         } else {
           expandedItems.push({
             name: getCardStepName(stepF.key, selectedSessionKey),
@@ -3686,7 +3708,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const rawCoord = group.coord;
       const displayCoordStr = formatCoordinateForDisplay(rawCoord);
       const split = splitLandmarkAndCoordinate(displayCoordStr);
-      const displayType = getDisplayType(primaryF.key);
+      const displayType = group.displayTypeOverride || getDisplayType(primaryF.key);
       const lineColorInfo = FORMATION_COLORS[displayType] || FORMATION_COLORS[primaryF.key] || { hex: '#d97706', name: '黃線' };
 
       const hasValidCoord = (rawCoord && rawCoord !== '無' && rawCoord !== '-');

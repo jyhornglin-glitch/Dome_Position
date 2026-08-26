@@ -35,9 +35,13 @@ CATEGORY_MAPPING = {
     '09-1人文(基本隊形)': 'humanities1',
     '09-2人文': 'humanities2',
     '09-2人文(主機板)': 'humanities2',
-    '09-2人文(主機版)': 'humanities2',
     '10-1五大洲': 'fiveContinents1',
-    '10-2五大洲': 'fiveContinents2'
+    '10-1五大洲(台灣)': 'fiveContinents1',
+    '11-1五大洲': 'fiveContinents1',
+    '11-1五大洲(台灣)': 'fiveContinents1',
+    '五大洲(台灣)': 'fiveContinents1',
+    '10-2五大洲': 'fiveContinents2',
+    '11-2五大洲': 'fiveContinents2'
 }
 
 def get_images_from_cell(cell, doc, image_counter):

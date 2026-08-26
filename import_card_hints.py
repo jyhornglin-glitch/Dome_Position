@@ -61,10 +61,14 @@ CATEGORY_MAPPING = {
     '10-2人文': 'humanities2',
     # Five Continents 1 (五大洲 10-1 / 11-1)
     '10-1五大洲': 'fiveContinents1',
+    '10-1五大洲(台灣)': 'fiveContinents1',
     '11-1五大洲': 'fiveContinents1',
+    '11-1五大洲(台灣)': 'fiveContinents1',
+    '五大洲(台灣)': 'fiveContinents1',
     # Five Continents 2 (五大洲 10-2 / 11-2)
     '10-2五大洲': 'fiveContinents2',
     '11-2五大洲': 'fiveContinents2',
+    '五大洲': 'fiveContinents2',
     # Flying Apsaras (飛天 11 / 12)
     '11飛天': 'flyingApsaras',
     '12飛天': 'flyingApsaras'
