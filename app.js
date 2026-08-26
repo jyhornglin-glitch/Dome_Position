@@ -625,6 +625,8 @@ document.addEventListener('DOMContentLoaded', () => {
     setupZoomAndPan();
     setupActionHintsOverlay();
     setupActionHintsZoom();
+    setupLyricsSearch();
+    renderLyricsOsContent();
   }
 
   // Real-time status bar clock
@@ -912,8 +914,10 @@ document.addEventListener('DOMContentLoaded', () => {
         activeTab = targetTab;
         if (activeTab === 'localGrid' && currentPerformer) {
           drawLocalGridPath();
-        } else if ((activeTab === 'walkthrough' || activeTab === 'cards') && currentPerformer) {
+        } else if (activeTab === 'walkthrough' && currentPerformer) {
           syncActiveCardAndStep();
+        } else if (activeTab === 'lyrics') {
+          renderLyricsOsContent();
         }
       });
     });
@@ -1072,19 +1076,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Update detail cards values & icons
   function updateFormationCards() {
+    if (!currentPerformer) return;
     const fields = getPerformerFields(currentPerformer);
     formations.forEach(f => {
       const card = document.getElementById(`card-${f.key}`);
+      if (!card) return;
       const coordBadge = document.getElementById(`coord-${f.key}`);
       const iconWrapper = document.getElementById(`icon-${f.key}`);
       const vectorHome = document.getElementById(`vector-${f.key}-home`);
       const vectorPrev = document.getElementById(`vector-${f.key}-prev`);
       
       let coordStr = getFormationCoordStr(currentPerformer, f.key);
-      coordBadge.textContent = formatCoordinateForDisplay(coordStr);
+      if (coordBadge) coordBadge.textContent = formatCoordinateForDisplay(coordStr);
       
       // Render HTML landmark icons
-      drawHtmlLandmarkIcon(iconWrapper, f.key, currentPerformer.category, currentDisplayName || fields.coordinate);
+      if (iconWrapper) {
+        drawHtmlLandmarkIcon(iconWrapper, f.key, currentPerformer.category, currentDisplayName || fields.coordinate);
+      }
       
       // Render lyrics inside Card (Disabled per user request)
       let lyricsItem = card.querySelector('.lyrics-item');
@@ -1099,17 +1107,141 @@ document.addEventListener('DOMContentLoaded', () => {
       if (f.key === 'basic') {
         // basic has no offset description, it is the center
       } else {
-        vectorHome.textContent = getVectorDescription(basicCoord, currentCoord);
+        if (vectorHome) vectorHome.textContent = getVectorDescription(basicCoord, currentCoord);
         
         const prevKey = formations[formations.findIndex(x => x.key === f.key) - 1].key;
         let prevCoordStr = getFormationCoordStr(currentPerformer, prevKey);
         
         const prevCoord = parseCoordinate(prevCoordStr);
-        vectorPrev.textContent = getVectorDescription(prevCoord, currentCoord);
+        if (vectorPrev) vectorPrev.textContent = getVectorDescription(prevCoord, currentCoord);
       }
       // Disabled card click interaction as per request
       card.onclick = null;
     });
+  }
+
+  // Render Full Unfiltered Performance Lyrics and OS Content from LYRICS_OS_DATA (Continuous Unified Flow)
+  function renderLyricsOsContent(searchQuery = '') {
+    const listEl = document.getElementById('lyricsOsList');
+    const countBadge = document.getElementById('lyricsOsCountBadge');
+    if (!listEl || typeof LYRICS_OS_DATA === 'undefined') return;
+
+    listEl.innerHTML = '';
+    const q = (searchQuery || '').trim().toLowerCase();
+
+    const article = document.createElement('div');
+    article.className = 'lyrics-os-article';
+
+    let renderedCount = 0;
+    LYRICS_OS_DATA.forEach((sec, sIdx) => {
+      const titleMatches = sec.title.toLowerCase().includes(q);
+      const matchingLines = sec.lines ? sec.lines.filter(l => l.text.toLowerCase().includes(q)) : [];
+      
+      if (q && !titleMatches && matchingLines.length === 0) {
+        return;
+      }
+
+      renderedCount++;
+
+      // Section Header (Inline continuous title)
+      const headerDiv = document.createElement('div');
+      headerDiv.className = 'lyrics-section-header';
+      
+      const numSpan = document.createElement('span');
+      numSpan.className = 'lyrics-section-num';
+      numSpan.textContent = String(sIdx + 1).padStart(2, '0');
+
+      const titleH4 = document.createElement('h4');
+      titleH4.className = 'lyrics-section-title';
+      titleH4.textContent = sec.title;
+
+      headerDiv.appendChild(numSpan);
+      headerDiv.appendChild(titleH4);
+      article.appendChild(headerDiv);
+
+      const sectionLines = (q && !titleMatches) ? matchingLines : (sec.lines || []);
+      sectionLines.forEach(line => {
+        const lineDiv = document.createElement('div');
+        lineDiv.className = `lyrics-line lyrics-line-${line.type}`;
+
+        if (line.type === 'os') {
+          const osBadge = document.createElement('span');
+          osBadge.className = 'lyrics-tag os-tag';
+          osBadge.textContent = 'OS';
+          lineDiv.appendChild(osBadge);
+
+          const textSpan = document.createElement('span');
+          textSpan.className = 'lyrics-text os-text';
+          textSpan.textContent = line.text;
+          lineDiv.appendChild(textSpan);
+        } else if (line.type === 'dialogue') {
+          const colonIdx = line.text.search(/[:：]/);
+          if (colonIdx > 0 && colonIdx < 12) {
+            const role = line.text.substring(0, colonIdx).trim();
+            const content = line.text.substring(colonIdx + 1).trim();
+
+            const roleBadge = document.createElement('span');
+            roleBadge.className = 'lyrics-tag role-tag';
+            roleBadge.textContent = role;
+            lineDiv.appendChild(roleBadge);
+
+            const textSpan = document.createElement('span');
+            textSpan.className = 'lyrics-text dialogue-text';
+            textSpan.textContent = content;
+            lineDiv.appendChild(textSpan);
+          } else {
+            lineDiv.textContent = line.text;
+          }
+        } else if (line.type === 'annotation') {
+          const annoSpan = document.createElement('span');
+          annoSpan.className = 'lyrics-text annotation-text';
+          annoSpan.textContent = line.text;
+          lineDiv.appendChild(annoSpan);
+        } else {
+          const chantSpan = document.createElement('span');
+          chantSpan.className = 'lyrics-text chant-text';
+          chantSpan.textContent = line.text;
+          lineDiv.appendChild(chantSpan);
+        }
+
+        article.appendChild(lineDiv);
+      });
+    });
+
+    listEl.appendChild(article);
+
+    if (countBadge) {
+      countBadge.textContent = q ? `搜尋結果：${renderedCount} 個段落` : `共 ${LYRICS_OS_DATA.length} 個段落`;
+    }
+
+    if (renderedCount === 0) {
+      listEl.innerHTML = '';
+      const emptyDiv = document.createElement('div');
+      emptyDiv.className = 'lyrics-empty-search';
+      emptyDiv.innerHTML = `<i class="fa-solid fa-circle-question" style="font-size: 28px; margin-bottom: 8px; color: #64748b;"></i><p style="color: #334155; font-weight: 600;">查無符合「${searchQuery}」的演繹歌詞或 OS 內容</p>`;
+      listEl.appendChild(emptyDiv);
+    }
+  }
+
+  function setupLyricsSearch() {
+    const searchInput = document.getElementById('lyricsSearchInput');
+    const clearBtn = document.getElementById('lyricsSearchClearBtn');
+    if (!searchInput) return;
+
+    searchInput.addEventListener('input', () => {
+      const val = searchInput.value;
+      if (clearBtn) clearBtn.style.display = val ? 'block' : 'none';
+      renderLyricsOsContent(val);
+    });
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        clearBtn.style.display = 'none';
+        renderLyricsOsContent('');
+        searchInput.focus();
+      });
+    }
   }
 
   // Describe offsets in step counts and directions (with screen top as performer's front)

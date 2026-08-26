@@ -2391,7 +2391,7 @@ svg {
 }
 
 #sessionTeamCards {
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
 }
 
 .link-card {
@@ -3807,5 +3807,228 @@ svg {
     display: block;
   }
 }
+
+/* ==========================================================================
+   Lyrics & OS Content Tab Styling (Continuous Unified Document Flow)
+   ========================================================================== */
+#panel-lyrics {
+  width: 100%;
+}
+
+.lyrics-os-container {
+  padding: 16px 18px 24px;
+  background: rgba(15, 23, 42, 0.85);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.lyrics-os-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.lyrics-os-title-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.lyrics-os-title-wrap h3 {
+  font-size: 17px;
+  font-weight: 800;
+  color: #facc15;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.5px;
+}
+
+.lyrics-os-count-badge {
+  font-size: 11.5px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: rgba(250, 204, 21, 0.18);
+  color: #fef08a;
+  border: 1px solid rgba(250, 204, 21, 0.45);
+  font-weight: 700;
+}
+
+.lyrics-search-box {
+  position: relative;
+  width: 100%;
+}
+
+.lyrics-search-box .search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.lyrics-search-box input {
+  width: 100%;
+  padding: 10px 36px 10px 36px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(2, 6, 23, 0.7);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.lyrics-search-box input::placeholder {
+  color: #94a3b8;
+}
+
+.lyrics-search-box input:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+}
+
+.lyrics-search-box .clear-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 4px;
+  font-size: 14px;
+}
+
+.lyrics-os-list {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 270px);
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.lyrics-os-article {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 24px;
+}
+
+.lyrics-section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 28px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(56, 189, 248, 0.4);
+}
+
+.lyrics-section-header:first-child {
+  margin-top: 4px;
+}
+
+.lyrics-section-num {
+  font-family: var(--font-mono, monospace);
+  font-size: 18px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 8px;
+  background: #0284c7;
+  color: #ffffff;
+  border: 1.5px solid #38bdf8;
+  flex-shrink: 0;
+}
+
+.lyrics-section-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #38bdf8;
+  margin: 0;
+  letter-spacing: 0.8px;
+  line-height: 1.35;
+}
+
+.lyrics-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 24px;
+  line-height: 1.85;
+  padding: 4px 0;
+}
+
+.lyrics-tag {
+  font-size: 18px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 7px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 5px;
+  letter-spacing: 0.8px;
+}
+
+.lyrics-tag.os-tag {
+  background: #dc2626;
+  color: #ffffff;
+  box-shadow: 0 3px 10px rgba(220, 38, 38, 0.5);
+}
+
+.lyrics-tag.role-tag {
+  background: #7c3aed;
+  color: #ffffff;
+  box-shadow: 0 3px 10px rgba(124, 58, 237, 0.5);
+}
+
+.lyrics-text {
+  flex: 1;
+  word-break: break-word;
+}
+
+/* High Contrast Lines - Double Size */
+.lyrics-line-os .lyrics-text {
+  color: #fca5a5;
+  font-weight: 700;
+  font-size: 26px;
+}
+
+.lyrics-line-dialogue .lyrics-text {
+  color: #f8fafc;
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.lyrics-line-annotation .lyrics-text {
+  color: #34d399;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.lyrics-line-lyrics .lyrics-text {
+  color: #f1f5f9;
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.lyrics-empty-search {
+  text-align: center;
+  padding: 40px 20px;
+  color: #94a3b8;
+  font-size: 20px;
+}
+
 
 
