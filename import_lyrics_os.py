@@ -3,6 +3,14 @@ import json
 import os
 import re
 
+def get_hyperlink_target(element, part):
+    for child in element.iter():
+        if child.tag.endswith('hyperlink'):
+            r_id = child.attrib.get('{http://schemas.openxmlformats.org/officeDocument/2006/relationships}id')
+            if r_id and r_id in part.rels:
+                return part.rels[r_id].target_ref
+    return None
+
 def parse_docx(docx_path):
     doc = docx.Document(docx_path)
     sections = []
@@ -18,15 +26,22 @@ def parse_docx(docx_path):
             if current_section and (current_section['title'] or current_section['lines']):
                 sections.append(current_section)
             
-            title = raw_text
+            # Clean title if it contains '[點擊播放音檔]'
+            title = re.sub(r'\s*\[點擊播放音檔\]', '', raw_text).strip()
+            
+            # Extract hyperlink target if present
+            audio_target = get_hyperlink_target(p._p, doc.part)
+
             current_section = {
                 'title': title,
+                'audio': audio_target or '',
                 'lines': []
             }
         else:
             if current_section is None:
                 current_section = {
                     'title': '【序曲】',
+                    'audio': '',
                     'lines': []
                 }
             
@@ -71,3 +86,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

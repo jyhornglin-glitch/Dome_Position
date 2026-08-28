@@ -10,3 +10,5 @@ performers.csv
 dayperformers.csv
 *.bak
 scratch/
+~$*
+*_backup.docx

@@ -912,6 +912,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (targetPanel) targetPanel.classList.add('active');
         
         activeTab = targetTab;
+        if (activeTab !== 'lyrics') {
+          stopLyricsAudio();
+        }
         if (activeTab === 'localGrid' && currentPerformer) {
           drawLocalGridPath();
         } else if (activeTab === 'walkthrough' && currentPerformer) {
@@ -1120,6 +1123,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Global audio player for Lyrics & OS section
+  let currentLyricsAudio = null;
+  let currentLyricsAudioBtn = null;
+
+  function stopLyricsAudio() {
+    if (currentLyricsAudio) {
+      currentLyricsAudio.pause();
+      currentLyricsAudio = null;
+    }
+    if (currentLyricsAudioBtn) {
+      currentLyricsAudioBtn.classList.remove('playing');
+      const icon = currentLyricsAudioBtn.querySelector('i');
+      const text = currentLyricsAudioBtn.querySelector('span');
+      if (icon) icon.className = 'fa-solid fa-circle-play';
+      if (text) text.textContent = '播放音樂';
+      currentLyricsAudioBtn = null;
+    }
+  }
+
   // Render Full Unfiltered Performance Lyrics and OS Content from LYRICS_OS_DATA (Continuous Unified Flow)
   function renderLyricsOsContent(searchQuery = '') {
     const listEl = document.getElementById('lyricsOsList');
@@ -1157,6 +1179,63 @@ document.addEventListener('DOMContentLoaded', () => {
 
       headerDiv.appendChild(numSpan);
       headerDiv.appendChild(titleH4);
+
+      // Audio Play Button if audio path exists
+      if (sec.audio) {
+        const audioBtn = document.createElement('button');
+        audioBtn.className = 'lyrics-audio-btn';
+        audioBtn.setAttribute('title', `播放音檔: ${sec.audio}`);
+        audioBtn.innerHTML = '<i class="fa-solid fa-circle-play"></i> <span>播放音樂</span>';
+        
+        audioBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (currentLyricsAudioBtn === audioBtn) {
+            // Toggle pause/play on current
+            if (currentLyricsAudio && !currentLyricsAudio.paused) {
+              currentLyricsAudio.pause();
+              audioBtn.classList.remove('playing');
+              audioBtn.querySelector('i').className = 'fa-solid fa-circle-play';
+              audioBtn.querySelector('span').textContent = '播放音樂';
+            } else if (currentLyricsAudio && currentLyricsAudio.paused) {
+              currentLyricsAudio.play().catch(err => console.warn('Audio play error:', err));
+              audioBtn.classList.add('playing');
+              audioBtn.querySelector('i').className = 'fa-solid fa-circle-pause';
+              audioBtn.querySelector('span').textContent = '暫停播放';
+            }
+            return;
+          }
+
+          // Stop previous audio
+          stopLyricsAudio();
+
+          // Play new audio
+          const audioUrl = encodeURI(sec.audio);
+          const audio = new Audio(audioUrl);
+          currentLyricsAudio = audio;
+          currentLyricsAudioBtn = audioBtn;
+
+          audioBtn.classList.add('playing');
+          audioBtn.querySelector('i').className = 'fa-solid fa-circle-pause';
+          audioBtn.querySelector('span').textContent = '暫停播放';
+
+          audio.play().catch(err => {
+            console.warn('Audio play failed:', err);
+            stopLyricsAudio();
+          });
+
+          audio.onended = () => {
+            stopLyricsAudio();
+          };
+
+          audio.onerror = (err) => {
+            console.warn('Audio playback error:', err);
+            stopLyricsAudio();
+          };
+        });
+
+        headerDiv.appendChild(audioBtn);
+      }
+
       article.appendChild(headerDiv);
 
       const sectionLines = (q && !titleMatches) ? matchingLines : (sec.lines || []);

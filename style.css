@@ -3961,6 +3961,51 @@ svg {
   line-height: 1.35;
 }
 
+.lyrics-audio-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.35);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.lyrics-audio-btn:hover {
+  background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
+  border-color: #38bdf8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(56, 189, 248, 0.45);
+}
+
+.lyrics-audio-btn.playing {
+  background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+  border-color: #fb7185;
+  box-shadow: 0 0 12px rgba(225, 29, 72, 0.5);
+  animation: pulse-audio-btn 1.5s infinite;
+}
+
+@keyframes pulse-audio-btn {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.6); }
+  70% { transform: scale(1.02); box-shadow: 0 0 0 6px rgba(225, 29, 72, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(225, 29, 72, 0); }
+}
+
+@media (max-width: 640px) {
+  .lyrics-audio-btn {
+    padding: 3px 8px;
+    font-size: 12px;
+  }
+}
+
 .lyrics-line {
   display: flex;
   align-items: flex-start;

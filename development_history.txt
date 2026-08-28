@@ -142,6 +142,7 @@
 2026-06-20 09:43:31 [86eba94] Fix Synology uWSGI encoding error by suppressing print outputs in web daemon context (Franklin)
 2026-06-20 09:06:57 [3c916cc] Refactor import scripts and servers to use direct python imports instead of subprocesses (Franklin)
 2026-06-20 01:25:27 [98de990] Update performers.csv and regenerate data.js (Franklin)
+2026-08-28 22:52:00 [c25c1d4] feat: add audio hyperlinks & playback for docx and lyrics OS web page (Franklin)
 2026-06-20 01:18:59 [52c5abe] Deploy configuration (Fly.io & PythonAnywhere) and UI enhancements (team filter, old name query field, save alerts) (Franklin)
 2026-06-18 15:04:35 [4a7a25c] data: update action hints from 動作提示.docx and extract new images (Franklin)
 2026-06-18 14:12:49 [82afcb9] data: force re-import performers.csv and bump asset versions (Franklin)
