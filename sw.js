@@ -1,4 +1,4 @@
-const CACHE_NAME = 'dome-position-cache-v1.0.3';
+const CACHE_NAME = 'dome-position-cache-v1.0.4';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -7,6 +7,7 @@ const ASSETS_TO_CACHE = [
   './data.js',
   './daydata.js',
   './lyrics.js',
+  './lyrics_os_data.js',
   './action_hints_data.js',
   './card_hints_data.js',
   './images/icon-192.png',

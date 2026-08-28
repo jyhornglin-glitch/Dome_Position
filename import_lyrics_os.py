@@ -2,14 +2,26 @@ import docx
 import json
 import os
 import re
+import urllib.parse
 
-def get_hyperlink_target(element, part):
-    for child in element.iter():
+def get_audio_from_para(p, doc):
+    for child in p._p.iter():
         if child.tag.endswith('hyperlink'):
             r_id = child.attrib.get('{http://schemas.openxmlformats.org/officeDocument/2006/relationships}id')
-            if r_id and r_id in part.rels:
-                return part.rels[r_id].target_ref
-    return None
+            if r_id and r_id in doc.part.rels:
+                raw_target = doc.part.rels[r_id].target_ref
+                return urllib.parse.unquote(raw_target)
+    
+    # Or extract from paragraph text
+    m = re.search(r'\[(?:🎵\s*)?播放音檔:\s*([^\]]+)\]', p.text)
+    if m:
+        return urllib.parse.unquote(m.group(1).strip())
+    return ''
+
+def clean_section_title(raw_text):
+    # Strip any '[🎵 播放音檔:...]' or '[點擊播放音檔]' suffixes
+    t = re.sub(r'\s*(\[(?:🎵\s*)?播放音檔:.*$|\[點擊播放音檔\])', '', raw_text).strip()
+    return t
 
 def parse_docx(docx_path):
     doc = docx.Document(docx_path)
@@ -26,15 +38,12 @@ def parse_docx(docx_path):
             if current_section and (current_section['title'] or current_section['lines']):
                 sections.append(current_section)
             
-            # Clean title if it contains '[點擊播放音檔]'
-            title = re.sub(r'\s*\[點擊播放音檔\]', '', raw_text).strip()
-            
-            # Extract hyperlink target if present
-            audio_target = get_hyperlink_target(p._p, doc.part)
+            title = clean_section_title(raw_text)
+            audio_target = get_audio_from_para(p, doc)
 
             current_section = {
                 'title': title,
-                'audio': audio_target or '',
+                'audio': audio_target,
                 'lines': []
             }
         else:
@@ -86,4 +95,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 

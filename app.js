@@ -626,6 +626,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupActionHintsOverlay();
     setupActionHintsZoom();
     setupLyricsSearch();
+    setupLyricsFontSize();
     renderLyricsOsContent();
   }
 
@@ -1321,6 +1322,39 @@ document.addEventListener('DOMContentLoaded', () => {
         searchInput.focus();
       });
     }
+  }
+
+  // Setup font size toggle (Small: 80%, Medium: 100%, Large: 120%) for Lyrics & OS Content
+  function setupLyricsFontSize() {
+    const container = document.querySelector('.lyrics-os-container');
+    const buttons = document.querySelectorAll('.lyrics-font-btn');
+    if (!container || !buttons.length) return;
+
+    function applyLyricsFontSize(size) {
+      const validSize = ['small', 'medium', 'large'].includes(size) ? size : 'medium';
+      container.classList.remove('font-size-small', 'font-size-medium', 'font-size-large');
+      container.classList.add(`font-size-${validSize}`);
+      buttons.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.size === validSize);
+      });
+    }
+
+    let savedSize = 'medium';
+    try {
+      savedSize = localStorage.getItem('lyrics_os_font_size') || 'medium';
+    } catch (e) {}
+
+    applyLyricsFontSize(savedSize);
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const size = btn.dataset.size || 'medium';
+        applyLyricsFontSize(size);
+        try {
+          localStorage.setItem('lyrics_os_font_size', size);
+        } catch (e) {}
+      });
+    });
   }
 
   // Describe offsets in step counts and directions (with screen top as performer's front)
