@@ -1,7 +1,8 @@
-const CACHE_NAME = 'dome-position-cache-v1.0.5';
+const CACHE_NAME = 'dome-position-cache-v1.0.6';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
+  './mailn.html',
   './style.css',
   './app.js',
   './data.js',
