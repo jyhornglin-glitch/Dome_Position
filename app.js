@@ -97,6 +97,33 @@ document.addEventListener('DOMContentLoaded', () => {
   let tempSelectedPerformer = null; // 暫存選中的表演者
   let tempDayOverrideName = '';     // 暫存選中的當日姓名
 
+  // Lyrics & OS State & Formation Definitions
+  let currentLyricsAudio = null;
+  let currentLyricsAudioBtn = null;
+  let lyricsSelectedSession = 'all';
+  let lyricsSelectedFormation = 'all';
+  let lyricsSearchQuery = '';
+
+  const LYRICS_FORMATION_PILLS = [
+    { key: 'all', label: '全部定位點' },
+    { key: 'circle', label: '01圓形(序)' },
+    { key: 'xingYuan', label: '02行願' },
+    { key: 'miLuo', label: '03米籮' },
+    { key: 'jingSi', label: '04靜思' },
+    { key: 'lamp', label: '05-1有法船' },
+    { key: 'noBoat', label: '05-2無法船' },
+    { key: 'noBoat3', label: '05-3無法船3/有船3' },
+    { key: 'bigV', label: '06四弘誓願' },
+    { key: 'daChuanShi', label: '07-1大船師' },
+    { key: 'boneDonation', label: '07-2骨捐' },
+    { key: 'edu', label: '08教育' },
+    { key: 'humanities1', label: '09-1人文(基本)' },
+    { key: 'humanities2', label: '09-2主機板' },
+    { key: 'fiveContinents1', label: '10-1五大洲(台灣)' },
+    { key: 'fiveContinents2', label: '10-2五大洲' },
+    { key: 'sixRuiXiang', label: '12-1六瑞相' }
+  ];
+
   // Relative Grid coordinate configuration
   const GRID_CENTER_X = 180;
   const GRID_CENTER_Y = 180;
@@ -606,6 +633,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if (teamFilter) {
         teamFilter.value = selectedTeam;
       }
+
+      // Sync selected session to lyrics OS filter
+      if (selectedSessionKey) {
+        lyricsSelectedSession = selectedSessionKey;
+        renderLyricsOsContent();
+      }
+
       // Hide overlay with fade
       overlay.style.transition = 'opacity 0.35s ease';
       overlay.style.opacity = '0';
@@ -1124,10 +1158,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Global audio player for Lyrics & OS section
-  let currentLyricsAudio = null;
-  let currentLyricsAudioBtn = null;
-
   function stopLyricsAudio() {
     if (currentLyricsAudio) {
       currentLyricsAudio.pause();
@@ -1143,43 +1173,73 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Render Full Unfiltered Performance Lyrics and OS Content from LYRICS_OS_DATA (Continuous Unified Flow)
-  function renderLyricsOsContent(searchQuery = '') {
+  // Render Performance Lyrics and OS Content (Continuous Stream, filtered by Session)
+  function renderLyricsOsContent(searchQuery = null) {
     const listEl = document.getElementById('lyricsOsList');
     const countBadge = document.getElementById('lyricsOsCountBadge');
     if (!listEl || typeof LYRICS_OS_DATA === 'undefined') return;
 
+    if (searchQuery !== null) {
+      lyricsSearchQuery = searchQuery;
+    }
+    const q = (lyricsSearchQuery || '').trim().toLowerCase();
+
     listEl.innerHTML = '';
-    const q = (searchQuery || '').trim().toLowerCase();
+
+    // 1. Filter by active session (selectedSessionKey) if available
+    const activeSession = selectedSessionKey || lyricsSelectedSession || 'all';
+    let filtered = LYRICS_OS_DATA.filter(sec => {
+      if (activeSession === 'all') return true;
+      return sec.sessionKeys && sec.sessionKeys.includes(activeSession);
+    });
+
+    // 2. Filter by search query if user types in search box
+    if (q) {
+      filtered = filtered.filter(sec => {
+        const titleMatches = sec.title && sec.title.toLowerCase().includes(q);
+        const linesMatch = sec.lines && sec.lines.some(l => l.text && l.text.toLowerCase().includes(q));
+        const formationMatch = sec.formationLabel && sec.formationLabel.toLowerCase().includes(q);
+        const sessionMatch = sec.sessionLabel && sec.sessionLabel.toLowerCase().includes(q);
+        return titleMatches || linesMatch || formationMatch || sessionMatch;
+      });
+    }
 
     const article = document.createElement('div');
     article.className = 'lyrics-os-article';
 
-    let renderedCount = 0;
-    LYRICS_OS_DATA.forEach((sec, sIdx) => {
-      const titleMatches = sec.title.toLowerCase().includes(q);
-      const matchingLines = sec.lines ? sec.lines.filter(l => l.text.toLowerCase().includes(q)) : [];
-      
-      if (q && !titleMatches && matchingLines.length === 0) {
-        return;
+    let lastFormationKey = null;
+
+    filtered.forEach((sec, idx) => {
+      // Group header when formation changes
+      if (sec.formationKey !== lastFormationKey) {
+        lastFormationKey = sec.formationKey;
+        const groupDiv = document.createElement('div');
+        groupDiv.className = 'lyrics-formation-divider';
+        groupDiv.id = `lyrics-formation-${sec.formationKey}`;
+        groupDiv.setAttribute('data-formation', sec.formationKey);
+        groupDiv.innerHTML = `<i class="fa-solid fa-location-dot"></i> <span>${sec.formationLabel || sec.formationKey}</span>`;
+        article.appendChild(groupDiv);
       }
 
-      renderedCount++;
-
-      // Section Header (Inline continuous title)
+      // Section Header (Card Header)
       const headerDiv = document.createElement('div');
       headerDiv.className = 'lyrics-section-header';
-      
+      headerDiv.id = `lyrics-sec-${sec.id}`;
+      headerDiv.setAttribute('data-formation', sec.formationKey);
+
+      const titleRow = document.createElement('div');
+      titleRow.className = 'lyrics-section-title-row';
+
       const numSpan = document.createElement('span');
       numSpan.className = 'lyrics-section-num';
-      numSpan.textContent = String(sIdx + 1).padStart(2, '0');
+      numSpan.textContent = String(idx + 1).padStart(2, '0');
 
       const titleH4 = document.createElement('h4');
       titleH4.className = 'lyrics-section-title';
       titleH4.textContent = sec.title;
 
-      headerDiv.appendChild(numSpan);
-      headerDiv.appendChild(titleH4);
+      titleRow.appendChild(numSpan);
+      titleRow.appendChild(titleH4);
 
       // Audio Play Button if audio path exists
       if (sec.audio) {
@@ -1187,7 +1247,7 @@ document.addEventListener('DOMContentLoaded', () => {
         audioBtn.className = 'lyrics-audio-btn';
         audioBtn.setAttribute('title', `播放音檔: ${sec.audio}`);
         audioBtn.innerHTML = '<i class="fa-solid fa-circle-play"></i> <span>播放音樂</span>';
-        
+
         audioBtn.addEventListener('click', (e) => {
           e.stopPropagation();
           if (currentLyricsAudioBtn === audioBtn) {
@@ -1234,12 +1294,41 @@ document.addEventListener('DOMContentLoaded', () => {
           };
         });
 
-        headerDiv.appendChild(audioBtn);
+        titleRow.appendChild(audioBtn);
       }
+
+      const metaRow = document.createElement('div');
+      metaRow.className = 'lyrics-section-meta-row';
+
+      const tagsGroup = document.createElement('div');
+      tagsGroup.className = 'lyrics-tags-group';
+
+      // Formation tag
+      const formTag = document.createElement('span');
+      formTag.className = 'lyrics-tag formation-tag';
+      formTag.innerHTML = `<i class="fa-solid fa-location-dot"></i> ${sec.formationLabel ? sec.formationLabel.split(' ')[0] : sec.formationKey}`;
+      tagsGroup.appendChild(formTag);
+
+      // Session tag
+      const sessTag = document.createElement('span');
+      const isAllSession = !sec.sessionLabel || sec.sessionLabel.includes('全場次');
+      sessTag.className = `lyrics-tag session-tag ${isAllSession ? 'all-session-tag' : 'date-session-tag'}`;
+      sessTag.innerHTML = isAllSession
+        ? `<i class="fa-solid fa-globe"></i> 全場次`
+        : `<i class="fa-solid fa-calendar-check"></i> ${sec.sessionLabel}`;
+      tagsGroup.appendChild(sessTag);
+
+      metaRow.appendChild(tagsGroup);
+
+      headerDiv.appendChild(titleRow);
+      headerDiv.appendChild(metaRow);
 
       article.appendChild(headerDiv);
 
-      const sectionLines = (q && !titleMatches) ? matchingLines : (sec.lines || []);
+      const sectionLines = (q && !sec.title.toLowerCase().includes(q))
+        ? (sec.lines || []).filter(l => l.text && l.text.toLowerCase().includes(q))
+        : (sec.lines || []);
+
       sectionLines.forEach(line => {
         const lineDiv = document.createElement('div');
         lineDiv.className = `lyrics-line lyrics-line-${line.type}`;
@@ -1247,7 +1336,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (line.type === 'os') {
           const osBadge = document.createElement('span');
           osBadge.className = 'lyrics-tag os-tag';
-          osBadge.textContent = 'OS';
+          osBadge.textContent = 'OS 口白';
           lineDiv.appendChild(osBadge);
 
           const textSpan = document.createElement('span');
@@ -1291,14 +1380,38 @@ document.addEventListener('DOMContentLoaded', () => {
     listEl.appendChild(article);
 
     if (countBadge) {
-      countBadge.textContent = q ? `搜尋結果：${renderedCount} 個段落` : `共 ${LYRICS_OS_DATA.length} 個段落`;
+      const isFiltered = lyricsSelectedSession !== 'all' || lyricsSelectedFormation !== 'all' || q;
+      countBadge.textContent = isFiltered ? `篩選顯示：${filtered.length} 個段落` : `共 ${LYRICS_OS_DATA.length} 個段落`;
     }
 
-    if (renderedCount === 0) {
+    if (filtered.length === 0) {
       listEl.innerHTML = '';
       const emptyDiv = document.createElement('div');
       emptyDiv.className = 'lyrics-empty-search';
-      emptyDiv.innerHTML = `<i class="fa-solid fa-circle-question" style="font-size: 28px; margin-bottom: 8px; color: #64748b;"></i><p style="color: #334155; font-weight: 600;">查無符合「${searchQuery}」的演繹歌詞或 OS 內容</p>`;
+      emptyDiv.innerHTML = `
+        <i class="fa-solid fa-circle-question" style="font-size: 28px; margin-bottom: 8px; color: #64748b;"></i>
+        <p style="color: #cbd5e1; font-weight: 600;">查無符合目前篩選條件的演繹歌詞或 OS 內容</p>
+        <button type="button" class="btn-clear-lyrics-filters" style="margin-top:10px; padding:6px 14px; border-radius:8px; background:#0284c7; color:#fff; border:none; cursor:pointer; font-weight:700;">重設所有過濾條件</button>
+      `;
+      const resetBtn = emptyDiv.querySelector('.btn-clear-lyrics-filters');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          lyricsSelectedSession = 'all';
+          lyricsSelectedFormation = 'all';
+          lyricsSearchQuery = '';
+          const searchInput = document.getElementById('lyricsSearchInput');
+          const clearBtn = document.getElementById('lyricsSearchClearBtn');
+          if (searchInput) searchInput.value = '';
+          if (clearBtn) clearBtn.style.display = 'none';
+          document.querySelectorAll('#lyricsSessionPills .lyrics-session-pill').forEach(p => {
+            p.classList.toggle('active', p.dataset.session === 'all');
+          });
+          document.querySelectorAll('#lyricsFormationPills .lyrics-formation-pill').forEach(b => {
+            b.classList.toggle('active', b.dataset.formation === 'all');
+          });
+          renderLyricsOsContent();
+        });
+      }
       listEl.appendChild(emptyDiv);
     }
   }
@@ -2310,6 +2423,19 @@ document.addEventListener('DOMContentLoaded', () => {
         c.classList.remove('active-step-card');
       }
     });
+
+    // Lyrics OS Step Sync & Smooth Scroll & Focus
+    if (activeTab === 'lyrics') {
+      const targetDivider = document.querySelector(`.lyrics-formation-divider[data-formation="${activeKey}"], .lyrics-section-header[data-formation="${activeKey}"]`);
+      if (targetDivider) {
+        targetDivider.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.querySelectorAll('.active-focused-formation').forEach(el => el.classList.remove('active-focused-formation'));
+        targetDivider.classList.add('active-focused-formation');
+        setTimeout(() => {
+          targetDivider.classList.remove('active-focused-formation');
+        }, 2200);
+      }
+    }
     
     updateActionHintsDisplay();
   }
@@ -3371,6 +3497,50 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.closePath();
     if (fill) ctx.fill();
     if (stroke) ctx.stroke();
+  }
+
+  // Helper to draw Canvas Arrow Diagram
+  function drawCanvasDirectionArrow(ctx, centerX, centerY, radius, angleRad, isStationary, lineColor = '#38bdf8') {
+    ctx.save();
+    ctx.translate(centerX, centerY);
+
+    // Draw background node circle
+    ctx.beginPath();
+    ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+    ctx.fillStyle = '#1e293b';
+    ctx.fill();
+    ctx.strokeStyle = lineColor;
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    if (isStationary) {
+      // Draw stationary dot
+      ctx.beginPath();
+      ctx.arc(0, 0, 3.5, 0, 2 * Math.PI);
+      ctx.fillStyle = lineColor;
+      ctx.fill();
+    } else {
+      ctx.rotate(angleRad);
+
+      // Draw arrow line
+      ctx.strokeStyle = lineColor;
+      ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      ctx.moveTo(-radius + 5, 0);
+      ctx.lineTo(radius - 5, 0);
+      ctx.stroke();
+
+      // Draw arrowhead
+      ctx.fillStyle = lineColor;
+      ctx.beginPath();
+      ctx.moveTo(radius - 3, 0);
+      ctx.lineTo(radius - 8, -4.5);
+      ctx.lineTo(radius - 8, 4.5);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    ctx.restore();
   }
 
   // Helper to extract concise facing direction and lamp/hand action hints

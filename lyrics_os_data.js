@@ -1,7 +1,17 @@
 // 大巨蛋演繹段歌詞與 OS 內容資料庫 (自動由 import_lyrics_os.py 產生)
 const LYRICS_OS_DATA = [
   {
+    "id": "sec_1",
     "title": "【序 曲目：無量義經．德行品】",
+    "formationKey": "circle",
+    "formationLabel": "01圓形 (序/生老病死/六度)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/慈善+醫療/01序.mp3",
     "lines": [
       {
@@ -35,7 +45,17 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_2",
     "title": "【生】",
+    "formationKey": "circle",
+    "formationLabel": "01圓形 (序/生老病死/六度)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/慈善+醫療/02生.mp3",
     "lines": [
       {
@@ -73,7 +93,17 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_3",
     "title": "【老 曲目：佛陀的一生．老苦】",
+    "formationKey": "circle",
+    "formationLabel": "01圓形 (序/生老病死/六度)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/慈善+醫療/03老.mp3",
     "lines": [
       {
@@ -87,7 +117,17 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_4",
     "title": "【病 曲目：佛陀的一生．病苦】",
+    "formationKey": "circle",
+    "formationLabel": "01圓形 (序/生老病死/六度)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/慈善+醫療/04病.mp3",
     "lines": [
       {
@@ -105,7 +145,17 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_5",
     "title": "【死 曲目：佛陀的一生．死苦】",
+    "formationKey": "circle",
+    "formationLabel": "01圓形 (序/生老病死/六度)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/慈善+醫療/05死.mp3",
     "lines": [
       {
@@ -131,7 +181,17 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_6",
     "title": "【六度 曲目：佛陀的一生．轉法輪】",
+    "formationKey": "circle",
+    "formationLabel": "01圓形 (序/生老病死/六度)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/慈善+醫療/06六度.mp3",
     "lines": [
       {
@@ -165,11 +225,25 @@ const LYRICS_OS_DATA = [
       {
         "text": "鑑真東傳佛法：不至日本 本願不遂 生死以赴 何懼千百度 東傳佛法 佛法永傳",
         "type": "dialogue"
+      },
+      {
+        "text": "02行願",
+        "type": "lyrics"
       }
     ]
   },
   {
+    "id": "sec_7",
     "title": "【行願 曲目：行願】",
+    "formationKey": "xingYuan",
+    "formationLabel": "02行願 (行願/開經偈)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/慈善+醫療/07行願+開經偈.mp3",
     "lines": [
       {
@@ -191,7 +265,17 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_8",
     "title": "【開經偈】",
+    "formationKey": "xingYuan",
+    "formationLabel": "02行願 (行願/開經偈)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/慈善+醫療/07行願+開經偈.mp3",
     "lines": [
       {
@@ -203,13 +287,23 @@ const LYRICS_OS_DATA = [
         "type": "lyrics"
       },
       {
-        "text": "-------------------------  慈\t 善  ------------------------------",
+        "text": "03米籮",
         "type": "lyrics"
       }
     ]
   },
   {
+    "id": "sec_9",
     "title": "【扛天下米籮 無量義經．德行品】",
+    "formationKey": "miLuo",
+    "formationLabel": "03米籮 (扛天下米籮)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/慈善+醫療/08扛天下米籮.mp3",
     "lines": [
       {
@@ -227,11 +321,25 @@ const LYRICS_OS_DATA = [
       {
         "text": "我決定要消滅貧窮 扛天下米籮\t\t讓人人力行 菩薩道",
         "type": "lyrics"
+      },
+      {
+        "text": "04靜思家風",
+        "type": "lyrics"
       }
     ]
   },
   {
+    "id": "sec_10",
     "title": "【靜思家風】",
+    "formationKey": "jingSi",
+    "formationLabel": "04靜思家風 (靜思家風)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/慈善+醫療/09靜思家風.mp3",
     "lines": [
       {
@@ -253,11 +361,25 @@ const LYRICS_OS_DATA = [
       {
         "text": "克勤 克儉 克難 菩薩行\t守志奉道\t刻苦修行",
         "type": "lyrics"
+      },
+      {
+        "text": "05-1有法船（點一盞燈）",
+        "type": "lyrics"
       }
     ]
   },
   {
+    "id": "sec_11",
     "title": "【點一盞燈】",
+    "formationKey": "lamp",
+    "formationLabel": "05-1有法船 (點一盞燈)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/慈善+醫療/10點一盞燈.mp3",
     "lines": [
       {
@@ -275,11 +397,25 @@ const LYRICS_OS_DATA = [
       {
         "text": "在淒寒路上\t生一堆火\t但願眾生得離苦\t廣披天下盡歡顏",
         "type": "lyrics"
+      },
+      {
+        "text": "05-2無法船（菜市場5毛錢）",
+        "type": "lyrics"
       }
     ]
   },
   {
+    "id": "sec_12",
     "title": "【菜市場的五毛錢】",
+    "formationKey": "noBoat",
+    "formationLabel": "05-2無法船 (菜市場5毛錢)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/慈善+醫療/11菜市場五毛錢.mp3",
     "lines": [
       {
@@ -313,11 +449,25 @@ const LYRICS_OS_DATA = [
       {
         "text": "為籌慈濟金菜市場的五毛錢，那一念，如果可以集合五百人，就是一個團體，就是一尊千手觀音，可以及時救拔苦難",
         "type": "lyrics"
+      },
+      {
+        "text": "05-3無法船 (是諸眾生) / 有法船",
+        "type": "lyrics"
       }
     ]
   },
   {
+    "id": "sec_13",
     "title": "【慈善ending 無量義經．德行品】",
+    "formationKey": "noBoat3",
+    "formationLabel": "05-3無法船3 / 有法船3",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/慈善+醫療/12圍爐_是諸眾生.mp3",
     "lines": [
       {
@@ -353,13 +503,23 @@ const LYRICS_OS_DATA = [
         "type": "lyrics"
       },
       {
-        "text": "-------------------------  醫\t 療  ------------------------------",
+        "text": "06四弘誓願",
         "type": "lyrics"
       }
     ]
   },
   {
+    "id": "sec_14",
     "title": "【地藏經啟航\t曲目：地藏經．啟航】",
+    "formationKey": "bigV",
+    "formationLabel": "06四弘誓願 (地藏/四弘誓願)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/慈善+醫療/13醫療_地藏經.mp3",
     "lines": [
       {
@@ -369,7 +529,17 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_15",
     "title": "【四弘誓願】",
+    "formationKey": "bigV",
+    "formationLabel": "06四弘誓願 (地藏/四弘誓願)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/慈善+醫療/14四弘誓願.mp3",
     "lines": [
       {
@@ -391,7 +561,17 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_16",
     "title": "【拉繩\t曲目：髻珠喻經文手札】",
+    "formationKey": "daChuanShi",
+    "formationLabel": "07-1大船師 (拉繩/德行品/大醫王)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/慈善+醫療/15拉繩-船師大船師梵唄.mp3",
     "lines": [
       {
@@ -405,7 +585,17 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_17",
     "title": "【醫療德行品梵唄\t曲目：德行品梵唄】",
+    "formationKey": "daChuanShi",
+    "formationLabel": "07-1大船師 (拉繩/德行品/大醫王)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/慈善+醫療/15拉繩-船師大船師梵唄.mp3",
     "lines": [
       {
@@ -423,11 +613,25 @@ const LYRICS_OS_DATA = [
       {
         "text": "調御大調御 無諸放逸行 猶如象馬師 能調無不調 師子勇猛威伏眾獸 難可沮壞",
         "type": "lyrics"
+      },
+      {
+        "text": "07-1大船師",
+        "type": "lyrics"
       }
     ]
   },
   {
+    "id": "sec_18",
     "title": "【大醫王\t曲目：無量義經．德行品】",
+    "formationKey": "daChuanShi",
+    "formationLabel": "07-1大船師 (拉繩/德行品/大醫王)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/慈善+醫療/16 大醫王.mp3",
     "lines": [
       {
@@ -449,11 +653,25 @@ const LYRICS_OS_DATA = [
       {
         "text": "大船師\t運載群生\t渡生死河\t置涅槃岸",
         "type": "lyrics"
+      },
+      {
+        "text": "07-2骨捐能捨",
+        "type": "lyrics"
       }
     ]
   },
   {
+    "id": "sec_19",
     "title": "【骨捐】",
+    "formationKey": "boneDonation",
+    "formationLabel": "07-2骨捐能捨 (骨捐/大體/專屬曲目)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/慈善+醫療/17 骨捐.mp3",
     "lines": [
       {
@@ -483,7 +701,17 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_20",
     "title": "【大體捐贈 曲目：無量義經．德行品】",
+    "formationKey": "boneDonation",
+    "formationLabel": "07-2骨捐能捨 (骨捐/大體/專屬曲目)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/慈善+醫療/17 骨捐.mp3",
     "lines": [
       {
@@ -509,7 +737,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_21",
     "title": "【北慈.疫情捨我其誰 曲目：醫子喻 擁抱蒼生】11/14(第3天專屬曲目)",
+    "formationKey": "boneDonation",
+    "formationLabel": "07-2骨捐能捨 (骨捐/大體/專屬曲目)",
+    "sessionKeys": [
+      "1114"
+    ],
+    "sessionLabel": "11/14 (第3天) 專屬",
     "audio": "Music/慈善+醫療/18北慈＿疫情捨我其誰.mp3",
     "lines": [
       {
@@ -543,7 +778,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_22",
     "title": "【花慈.中西醫精準醫療(羅倫佐) 曲目：我可以唱歌了】11/15(第4天專屬曲目)",
+    "formationKey": "boneDonation",
+    "formationLabel": "07-2骨捐能捨 (骨捐/大體/專屬曲目)",
+    "sessionKeys": [
+      "1115"
+    ],
+    "sessionLabel": "11/15 (第4天) 專屬",
     "audio": "",
     "lines": [
       {
@@ -557,7 +799,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_23",
     "title": "【北慈.八仙塵爆 曲目：火宅喻 手札】 11/15(第4天專屬曲目)",
+    "formationKey": "boneDonation",
+    "formationLabel": "07-2骨捐能捨 (骨捐/大體/專屬曲目)",
+    "sessionKeys": [
+      "1115"
+    ],
+    "sessionLabel": "11/15 (第4天) 專屬",
     "audio": "",
     "lines": [
       {
@@ -593,13 +842,23 @@ const LYRICS_OS_DATA = [
         "type": "lyrics"
       },
       {
-        "text": "-------------------------  教\t 育  ------------------------------",
+        "text": "08教育",
         "type": "lyrics"
       }
     ]
   },
   {
+    "id": "sec_24",
     "title": "【教育說法品梵唄\t曲目：說法品梵唄第6段】",
+    "formationKey": "edu",
+    "formationLabel": "08教育 (說法品/大體老師/慈小/教育完全化)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/教育+人文/教育01_教育說法品梵唄.mp3",
     "lines": [
       {
@@ -625,7 +884,15 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_25",
     "title": "【許永祥教授 曲目：醫子喻手扎】11/12、13(第1、2天專屬曲目)",
+    "formationKey": "edu",
+    "formationLabel": "08教育 (說法品/大體老師/慈小/教育完全化)",
+    "sessionKeys": [
+      "1112",
+      "1113"
+    ],
+    "sessionLabel": "11/12、11/13 專屬",
     "audio": "Music/教育+人文/教育02_大體老師.mp3",
     "lines": [
       {
@@ -635,7 +902,17 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_26",
     "title": "【大體老師 曲目：無量義經終曲】",
+    "formationKey": "edu",
+    "formationLabel": "08教育 (說法品/大體老師/慈小/教育完全化)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/教育+人文/教育02_大體老師.mp3",
     "lines": [
       {
@@ -649,7 +926,17 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_27",
     "title": "【慈大醫學院宣誓 曲目：慈大校歌】",
+    "formationKey": "edu",
+    "formationLabel": "08教育 (說法品/大體老師/慈小/教育完全化)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/教育+人文/教育03_慈大醫學院宣誓.mp3",
     "lines": [
       {
@@ -667,7 +954,17 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_28",
     "title": "【慈小個案 曲目：種樹】",
+    "formationKey": "edu",
+    "formationLabel": "08教育 (說法品/大體老師/慈小/教育完全化)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/教育+人文/教育04_慈小個案.mp3",
     "lines": [
       {
@@ -689,7 +986,17 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_29",
     "title": "【教育完全化 曲目：成長/感恩】",
+    "formationKey": "edu",
+    "formationLabel": "08教育 (說法品/大體老師/慈小/教育完全化)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/教育+人文/教育05_教育完全化.mp3",
     "lines": [
       {
@@ -731,7 +1038,15 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_30",
     "title": "【靜思語教學\t曲目：藥草喻】11/14、15(第3、4天專屬曲目)",
+    "formationKey": "edu",
+    "formationLabel": "08教育 (說法品/大體老師/慈小/教育完全化)",
+    "sessionKeys": [
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "11/14、11/15 專屬",
     "audio": "Music/教育+人文/教育06_靜思語教學.mp3",
     "lines": [
       {
@@ -751,13 +1066,23 @@ const LYRICS_OS_DATA = [
         "type": "lyrics"
       },
       {
-        "text": "-------------------------  人\t 文  ------------------------------",
+        "text": "09-1人文(基本隊形)",
         "type": "lyrics"
       }
     ]
   },
   {
+    "id": "sec_31",
     "title": "【十戒 曲目：慈誠隊歌】",
+    "formationKey": "humanities1",
+    "formationLabel": "09-1人文 (基本隊形)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/教育+人文/人文01_慈誠隊歌.mp3",
     "lines": [
       {
@@ -787,7 +1112,17 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_32",
     "title": "【幸福人生講座 曲目：父母恩重難報經．因緣】",
+    "formationKey": "humanities1",
+    "formationLabel": "09-1人文 (基本隊形)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/教育+人文/人文02_幸福人生講座.mp3",
     "lines": [
       {
@@ -805,7 +1140,17 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_33",
     "title": "【曲目：跪羊圖】",
+    "formationKey": "humanities1",
+    "formationLabel": "09-1人文 (基本隊形)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/教育+人文/人文02_幸福人生講座.mp3",
     "lines": [
       {
@@ -823,7 +1168,17 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_34",
     "title": "【大愛台、經典 曲目：大愛讓世界亮起來】",
+    "formationKey": "humanities1",
+    "formationLabel": "09-1人文 (基本隊形)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/教育+人文/人文03_大愛讓世界亮起來_珺月.mp3",
     "lines": [
       {
@@ -845,11 +1200,25 @@ const LYRICS_OS_DATA = [
       {
         "text": "描繪真實人生 膚慰人間疾苦 啟發善良的心靈 跟脽菩薩的腳步 創造美麗境界 傳遞大愛到世界各處",
         "type": "lyrics"
+      },
+      {
+        "text": "09-2人文(主機板)",
+        "type": "lyrics"
       }
     ]
   },
   {
+    "id": "sec_35",
     "title": "【大地的園丁 曲目：天空破了洞】",
+    "formationKey": "humanities2",
+    "formationLabel": "09-2人文 (主機板)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/教育+人文/人文04_大地的園丁.mp3",
     "lines": [
       {
@@ -871,7 +1240,17 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_36",
     "title": "【法譬如水能洗垢\t曲目：無量義經說法品】",
+    "formationKey": "humanities2",
+    "formationLabel": "09-2人文 (主機板)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/教育+人文/人文05_法譬如水能洗垢.mp3",
     "lines": [
       {
@@ -941,7 +1320,17 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_37",
     "title": "【慈悲科技上聯合國\t曲目：無量義經說法品】",
+    "formationKey": "humanities2",
+    "formationLabel": "09-2人文 (主機板)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/教育+人文/人文06_慈悲科技上聯合國.mp3",
     "lines": [
       {
@@ -981,13 +1370,21 @@ const LYRICS_OS_DATA = [
         "type": "lyrics"
       },
       {
-        "text": "-------------------------  功德品  ------------------------------",
+        "text": "10-1五大洲(台灣)",
         "type": "lyrics"
       }
     ]
   },
   {
+    "id": "sec_38",
     "title": "【貧中之富 樂生 曲目：超越天堂】11/12、15(第1、4天專屬曲目)",
+    "formationKey": "fiveContinents1",
+    "formationLabel": "10-1五大洲 (台灣/富中之富)",
+    "sessionKeys": [
+      "1112",
+      "1115"
+    ],
+    "sessionLabel": "11/12、11/15 專屬",
     "audio": "Music/功德品/1112/11_12 [功德品] 01樂生療養院_超越天堂.mp3",
     "lines": [
       {
@@ -1013,7 +1410,15 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_39",
     "title": "【富中之富\t A曲目：彌勒問】11/12、14(第1、3天專屬曲目)",
+    "formationKey": "fiveContinents1",
+    "formationLabel": "10-1五大洲 (台灣/富中之富)",
+    "sessionKeys": [
+      "1112",
+      "1114"
+    ],
+    "sessionLabel": "11/12、11/14 專屬",
     "audio": "Music/功德品/1112/[功德品] 富中之富-A 0811.wav",
     "lines": [
       {
@@ -1071,7 +1476,15 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_40",
     "title": "【富中之富\t B曲目：彌勒問】11/13、15(第2、4天專屬曲目)",
+    "formationKey": "fiveContinents1",
+    "formationLabel": "10-1五大洲 (台灣/富中之富)",
+    "sessionKeys": [
+      "1113",
+      "1115"
+    ],
+    "sessionLabel": "11/13、11/15 專屬",
     "audio": "Music/功德品/1112/[功德品] 富中之富-A 0811.wav",
     "lines": [
       {
@@ -1125,7 +1538,17 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_41",
     "title": "【開經書\t曲目：無量義經功德品】",
+    "formationKey": "fiveContinents1",
+    "formationLabel": "10-1五大洲 (台灣/富中之富)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/功德品/1112/[功德品] 開經書_無量義經佛宅來.mp3",
     "lines": [
       {
@@ -1133,7 +1556,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics"
       },
       {
-        "text": "--------------------------------  11/12(第1天專屬曲目) ---------------------------------------",
+        "text": "10-2五大洲",
         "type": "lyrics"
       },
       {
@@ -1143,7 +1566,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_42",
     "title": "【曲目1：第三功德】",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "sessionKeys": [
+      "1112"
+    ],
+    "sessionLabel": "11/12 (第1天) 專屬",
     "audio": "Music/功德品/1112/11_12 [功德品] 02A第三功德(約旦).mp3",
     "lines": [
       {
@@ -1153,7 +1583,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_43",
     "title": "【曲目2：啟航】",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "sessionKeys": [
+      "1112"
+    ],
+    "sessionLabel": "11/12 (第1天) 專屬",
     "audio": "Music/功德品/1112/11_12 [功德品] 02B啟航(約旦).mp3",
     "lines": [
       {
@@ -1171,7 +1608,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_44",
     "title": "【曲目1：第六功德】",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "sessionKeys": [
+      "1112"
+    ],
+    "sessionLabel": "11/12 (第1天) 專屬",
     "audio": "Music/功德品/1112/11_12 [功德品] 03A黑區&亮區_第六功德.mp3",
     "lines": [
       {
@@ -1181,7 +1625,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_45",
     "title": "【曲目2：化城喻故事】",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "sessionKeys": [
+      "1112"
+    ],
+    "sessionLabel": "11/12 (第1天) 專屬",
     "audio": "Music/功德品/1112/11_12 [功德品] 03B黑區&亮區_化城喻故事.mp3",
     "lines": [
       {
@@ -1199,7 +1650,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_46",
     "title": "【曲目1：第八功德】",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "sessionKeys": [
+      "1112"
+    ],
+    "sessionLabel": "11/12 (第1天) 專屬",
     "audio": "Music/功德品/1112/11_12 [功德品] 04A莫三比克_第八功德.mp3",
     "lines": [
       {
@@ -1213,7 +1671,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_47",
     "title": "【曲目2：髻珠喻經文】",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "sessionKeys": [
+      "1112"
+    ],
+    "sessionLabel": "11/12 (第1天) 專屬",
     "audio": "Music/功德品/1112/11_12 [功德品] 04B莫三比克_髻珠喻經文.mp3",
     "lines": [
       {
@@ -1235,15 +1700,18 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_48",
     "title": "【曲目：第五功德】",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "sessionKeys": [
+      "1112"
+    ],
+    "sessionLabel": "11/12 (第1天) 專屬",
     "audio": "Music/功德品/1112/11_12 [功德品] 05台灣救災集錦_第五功德.mp3",
     "lines": [
       {
         "text": "第五功德難思議\t持誦書寫刻不離\t剎那恆持長相應\t眾生信服得歡喜",
-        "type": "lyrics"
-      },
-      {
-        "text": "--------------------------------  11/13(第2天專屬曲目) ---------------------------------------",
         "type": "lyrics"
       },
       {
@@ -1253,7 +1721,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_49",
     "title": "【曲目：第三功德】",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "sessionKeys": [
+      "1113"
+    ],
+    "sessionLabel": "11/13 (第2天) 專屬",
     "audio": "Music/功德品/1112/11_12 [功德品] 02A第三功德(約旦).mp3",
     "lines": [
       {
@@ -1267,7 +1742,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_50",
     "title": "【曲目1：第八功德】",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "sessionKeys": [
+      "1113"
+    ],
+    "sessionLabel": "11/13 (第2天) 專屬",
     "audio": "Music/功德品/1112/11_12 [功德品] 04A莫三比克_第八功德.mp3",
     "lines": [
       {
@@ -1281,7 +1763,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_51",
     "title": "【曲目2：髻珠喻經文】",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "sessionKeys": [
+      "1113"
+    ],
+    "sessionLabel": "11/13 (第2天) 專屬",
     "audio": "Music/功德品/1112/11_12 [功德品] 04B莫三比克_髻珠喻經文.mp3",
     "lines": [
       {
@@ -1303,7 +1792,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_52",
     "title": "【曲目1：第九功德】",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "sessionKeys": [
+      "1113"
+    ],
+    "sessionLabel": "11/13 (第2天) 專屬",
     "audio": "",
     "lines": [
       {
@@ -1313,7 +1809,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_53",
     "title": "【曲目2：化城喻手扎】",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "sessionKeys": [
+      "1113"
+    ],
+    "sessionLabel": "11/13 (第2天) 專屬",
     "audio": "",
     "lines": [
       {
@@ -1329,17 +1832,20 @@ const LYRICS_OS_DATA = [
         "type": "lyrics"
       },
       {
-        "text": "--------------------------------  11/14(第3天專屬曲目) ---------------------------------------",
-        "type": "lyrics"
-      },
-      {
         "text": "※緬甸 米撲滿※",
         "type": "lyrics"
       }
     ]
   },
   {
+    "id": "sec_54",
     "title": "【曲目：第二功德】",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "sessionKeys": [
+      "1114"
+    ],
+    "sessionLabel": "11/14 (第3天) 專屬",
     "audio": "Music/功德品/1114/11_14 [功德品] 01第二功德(緬甸米撲滿).mp3",
     "lines": [
       {
@@ -1377,7 +1883,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_55",
     "title": "【曲目：第七功德】",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "sessionKeys": [
+      "1114"
+    ],
+    "sessionLabel": "11/14 (第3天) 專屬",
     "audio": "Music/功德品/1114/11_14 [功德品] 02第七功德(八八風災).mp3",
     "lines": [
       {
@@ -1395,7 +1908,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_56",
     "title": "【曲目：第四功德】",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "sessionKeys": [
+      "1114"
+    ],
+    "sessionLabel": "11/14 (第3天) 專屬",
     "audio": "Music/功德品/1114/11_14 [功德品] 03第四功德(泰北).mp3",
     "lines": [
       {
@@ -1409,7 +1929,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_57",
     "title": "【曲目1：第八功德】",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "sessionKeys": [
+      "1114"
+    ],
+    "sessionLabel": "11/14 (第3天) 專屬",
     "audio": "Music/功德品/1114/11_14 [功德品] 04A第八功德(辛巴威).mp3",
     "lines": [
       {
@@ -1423,7 +1950,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_58",
     "title": "【曲目2：髻珠喻經文】",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "sessionKeys": [
+      "1114"
+    ],
+    "sessionLabel": "11/14 (第3天) 專屬",
     "audio": "Music/功德品/1114/11_14 [功德品] 04B髻珠喻經文(辛巴威).mp3",
     "lines": [
       {
@@ -1441,7 +1975,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_59",
     "title": "【曲目3：生生世世都在菩提中】",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "sessionKeys": [
+      "1114"
+    ],
+    "sessionLabel": "11/14 (第3天) 專屬",
     "audio": "Music/功德品/1114/11_14 [功德品] 05生生世世都在菩提中(辛巴威).mp3",
     "lines": [
       {
@@ -1461,17 +2002,20 @@ const LYRICS_OS_DATA = [
         "type": "lyrics"
       },
       {
-        "text": "--------------------------------  11/15(第4天專屬曲目) ---------------------------------------",
-        "type": "lyrics"
-      },
-      {
         "text": "※921※",
         "type": "lyrics"
       }
     ]
   },
   {
+    "id": "sec_60",
     "title": "【曲目1：第九功德】",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "sessionKeys": [
+      "1115"
+    ],
+    "sessionLabel": "11/15 (第4天) 專屬",
     "audio": "",
     "lines": [
       {
@@ -1481,7 +2025,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_61",
     "title": "【曲目2：化城喻故事】",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "sessionKeys": [
+      "1115"
+    ],
+    "sessionLabel": "11/15 (第4天) 專屬",
     "audio": "Music/功德品/1112/11_12 [功德品] 03B黑區&亮區_化城喻故事.mp3",
     "lines": [
       {
@@ -1495,7 +2046,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_62",
     "title": "【曲目3：化城喻故事】",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "sessionKeys": [
+      "1115"
+    ],
+    "sessionLabel": "11/15 (第4天) 專屬",
     "audio": "Music/功德品/1112/11_12 [功德品] 03B黑區&亮區_化城喻故事.mp3",
     "lines": [
       {
@@ -1509,7 +2067,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_63",
     "title": "【曲目：許一個希望的未來】",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "sessionKeys": [
+      "1115"
+    ],
+    "sessionLabel": "11/15 (第4天) 專屬",
     "audio": "",
     "lines": [
       {
@@ -1527,7 +2092,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_64",
     "title": "【曲目1：人間導師】",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "sessionKeys": [
+      "1115"
+    ],
+    "sessionLabel": "11/15 (第4天) 專屬",
     "audio": "",
     "lines": [
       {
@@ -1545,7 +2117,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_65",
     "title": "【曲目2：第十功德】",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "sessionKeys": [
+      "1115"
+    ],
+    "sessionLabel": "11/15 (第4天) 專屬",
     "audio": "",
     "lines": [
       {
@@ -1561,13 +2140,23 @@ const LYRICS_OS_DATA = [
         "type": "lyrics"
       },
       {
-        "text": "-------------------------  終章  ------------------------------",
+        "text": "12-1六瑞相",
         "type": "lyrics"
       }
     ]
   },
   {
+    "id": "sec_66",
     "title": "【六瑞相\t曲目：六瑞相】",
+    "formationKey": "sixRuiXiang",
+    "formationLabel": "12-1六瑞相 (發願/行星/祈禱)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/終章/01.六瑞相.mp3",
     "lines": [
       {
@@ -1589,7 +2178,17 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_67",
     "title": "【發心立願\t曲目：行願半世紀】",
+    "formationKey": "sixRuiXiang",
+    "formationLabel": "12-1六瑞相 (發願/行星/祈禱)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/終章/02.發心立願.mp3",
     "lines": [
       {
@@ -1611,7 +2210,17 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_68",
     "title": "【慈濟小行星\t曲目：慈濟小行星】",
+    "formationKey": "sixRuiXiang",
+    "formationLabel": "12-1六瑞相 (發願/行星/祈禱)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/終章/03.慈濟小行星演繹版+開示.mp3",
     "lines": [
       {
@@ -1625,7 +2234,17 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
+    "id": "sec_69",
     "title": "【祈禱\t曲目：祈禱】",
+    "formationKey": "sixRuiXiang",
+    "formationLabel": "12-1六瑞相 (發願/行星/祈禱)",
+    "sessionKeys": [
+      "1112",
+      "1113",
+      "1114",
+      "1115"
+    ],
+    "sessionLabel": "全場次",
     "audio": "Music/終章/04.祈禱三分版.mp3",
     "lines": [
       {
