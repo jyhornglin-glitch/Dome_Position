@@ -4173,6 +4173,65 @@ svg {
   100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(225, 29, 72, 0); }
 }
 
+.lyrics-audio-btn.loading {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+  border-color: #f59e0b;
+  cursor: wait;
+}
+
+.lyrics-audio-tip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #fef08a;
+  line-height: 1.45;
+}
+
+.lyrics-audio-tip i {
+  color: #f59e0b;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.app-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: rgba(15, 23, 42, 0.95);
+  color: #f8fafc;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  padding: 10px 18px;
+  border-radius: 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  font-size: 13.5px;
+  z-index: 999999;
+  pointer-events: none;
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.app-toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.app-toast.error {
+  border-color: rgba(239, 68, 68, 0.6);
+  background: rgba(30, 10, 15, 0.95);
+  color: #fecaca;
+}
+
+
 @media (max-width: 640px) {
   .lyrics-audio-btn {
     padding: 3px 8px;
@@ -4248,6 +4307,42 @@ svg {
   font-weight: 500;
   font-size: calc(18.5px * var(--lyrics-scale, 1));
 }
+
+/* Enhanced Stylings for Red Highlights and Boxed Text */
+.lyrics-highlight-red {
+  color: #ff4d6d !important;
+  font-weight: 800 !important;
+  text-shadow: 0 0 8px rgba(255, 77, 109, 0.45);
+}
+
+.lyrics-boxed-text {
+  display: inline-block;
+  padding: 1px 7px;
+  margin: 0 2px;
+  border-radius: 5px;
+  border: 1.5px solid #f59e0b;
+  background: rgba(245, 158, 11, 0.18);
+  color: #fef08a;
+  font-weight: 800;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.28);
+  line-height: 1.5;
+  vertical-align: baseline;
+}
+
+.lyrics-boxed-text.lyrics-highlight-red {
+  border-color: #f43f5e;
+  background: rgba(244, 63, 94, 0.22);
+  color: #ffe4e6 !important;
+  box-shadow: 0 0 10px rgba(244, 63, 94, 0.38);
+}
+
+.lyrics-line.has-boxed {
+  background: rgba(251, 191, 36, 0.04);
+  border-radius: 6px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
 
 .lyrics-empty-search {
   text-align: center;

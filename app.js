@@ -1158,19 +1158,84 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  function getSafeAudioUrl(rawPath) {
+    if (!rawPath) return '';
+    // Split path components and encode each safely (encodes +, &, spaces, brackets, and CJK characters)
+    return rawPath.split('/').map(segment => encodeURIComponent(segment)).join('/');
+  }
+
+  function showToast(message, type = 'info', duration = 3500) {
+    let toast = document.getElementById('appToast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'appToast';
+      toast.className = 'app-toast';
+      document.body.appendChild(toast);
+    }
+    toast.className = `app-toast ${type} show`;
+    const icon = type === 'error' ? '<i class="fa-solid fa-triangle-exclamation"></i>' : '<i class="fa-solid fa-circle-info"></i>';
+    toast.innerHTML = `${icon} <span>${message}</span>`;
+
+    if (toast._timer) clearTimeout(toast._timer);
+    toast._timer = setTimeout(() => {
+      toast.classList.remove('show');
+    }, duration);
+  }
+
+  let globalAudioCtx = null;
+  function getAudioContext() {
+    try {
+      if (!globalAudioCtx && (window.AudioContext || window.webkitAudioContext)) {
+        const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
+        globalAudioCtx = new AudioCtxClass();
+      }
+      if (globalAudioCtx && globalAudioCtx.state === 'suspended') {
+        globalAudioCtx.resume().catch(() => {});
+      }
+    } catch (e) {
+      console.warn('AudioContext init error:', e);
+    }
+    return globalAudioCtx;
+  }
+
   function stopLyricsAudio() {
     if (currentLyricsAudio) {
-      currentLyricsAudio.pause();
+      try {
+        currentLyricsAudio.pause();
+        currentLyricsAudio.currentTime = 0;
+      } catch (e) {}
       currentLyricsAudio = null;
     }
     if (currentLyricsAudioBtn) {
-      currentLyricsAudioBtn.classList.remove('playing');
+      currentLyricsAudioBtn.classList.remove('playing', 'loading');
       const icon = currentLyricsAudioBtn.querySelector('i');
       const text = currentLyricsAudioBtn.querySelector('span');
       if (icon) icon.className = 'fa-solid fa-circle-play';
       if (text) text.textContent = '播放音樂';
       currentLyricsAudioBtn = null;
     }
+  }
+
+  function appendStyledSegments(parentEl, segments, fallbackText) {
+    if (!segments || segments.length === 0) {
+      parentEl.textContent = fallbackText || '';
+      return;
+    }
+
+    segments.forEach(seg => {
+      if (!seg.text) return;
+      if (seg.isRed || seg.isBoxed) {
+        const span = document.createElement('span');
+        let classes = [];
+        if (seg.isBoxed) classes.push('lyrics-boxed-text');
+        if (seg.isRed) classes.push('lyrics-highlight-red');
+        span.className = classes.join(' ');
+        span.textContent = seg.text;
+        parentEl.appendChild(span);
+      } else {
+        parentEl.appendChild(document.createTextNode(seg.text));
+      }
+    });
   }
 
   // Render Performance Lyrics and OS Content (Continuous Stream, filtered by Session)
@@ -1248,20 +1313,36 @@ document.addEventListener('DOMContentLoaded', () => {
         audioBtn.setAttribute('title', `播放音檔: ${sec.audio}`);
         audioBtn.innerHTML = '<i class="fa-solid fa-circle-play"></i> <span>播放音樂</span>';
 
-        audioBtn.addEventListener('click', (e) => {
+        audioBtn.addEventListener('click', async (e) => {
           e.stopPropagation();
-          if (currentLyricsAudioBtn === audioBtn) {
+          getAudioContext(); // Unlock audio context on mobile interaction
+
+          if (currentLyricsAudioBtn === audioBtn && currentLyricsAudio) {
             // Toggle pause/play on current
-            if (currentLyricsAudio && !currentLyricsAudio.paused) {
+            if (!currentLyricsAudio.paused) {
               currentLyricsAudio.pause();
-              audioBtn.classList.remove('playing');
-              audioBtn.querySelector('i').className = 'fa-solid fa-circle-play';
-              audioBtn.querySelector('span').textContent = '播放音樂';
-            } else if (currentLyricsAudio && currentLyricsAudio.paused) {
-              currentLyricsAudio.play().catch(err => console.warn('Audio play error:', err));
-              audioBtn.classList.add('playing');
-              audioBtn.querySelector('i').className = 'fa-solid fa-circle-pause';
-              audioBtn.querySelector('span').textContent = '暫停播放';
+              audioBtn.classList.remove('playing', 'loading');
+              const icon = audioBtn.querySelector('i');
+              const text = audioBtn.querySelector('span');
+              if (icon) icon.className = 'fa-solid fa-circle-play';
+              if (text) text.textContent = '播放音樂';
+            } else {
+              audioBtn.classList.add('loading');
+              const icon = audioBtn.querySelector('i');
+              const text = audioBtn.querySelector('span');
+              if (icon) icon.className = 'fa-solid fa-spinner fa-spin';
+              if (text) text.textContent = '載入中...';
+
+              currentLyricsAudio.play().then(() => {
+                audioBtn.classList.remove('loading');
+                audioBtn.classList.add('playing');
+                if (icon) icon.className = 'fa-solid fa-circle-pause';
+                if (text) text.textContent = '暫停播放';
+              }).catch(err => {
+                console.warn('Audio resume error:', err);
+                stopLyricsAudio();
+                showToast('音訊播放受限，若無聲音請確認手機已關閉靜音撥片或調整音量', 'error');
+              });
             }
             return;
           }
@@ -1269,29 +1350,49 @@ document.addEventListener('DOMContentLoaded', () => {
           // Stop previous audio
           stopLyricsAudio();
 
-          // Play new audio
-          const audioUrl = encodeURI(sec.audio);
+          // Play new audio with safe encoded URL
+          const audioUrl = getSafeAudioUrl(sec.audio);
           const audio = new Audio(audioUrl);
+          audio.preload = 'auto';
           currentLyricsAudio = audio;
           currentLyricsAudioBtn = audioBtn;
 
-          audioBtn.classList.add('playing');
-          audioBtn.querySelector('i').className = 'fa-solid fa-circle-pause';
-          audioBtn.querySelector('span').textContent = '暫停播放';
+          audioBtn.classList.remove('playing');
+          audioBtn.classList.add('loading');
+          const icon = audioBtn.querySelector('i');
+          const text = audioBtn.querySelector('span');
+          if (icon) icon.className = 'fa-solid fa-spinner fa-spin';
+          if (text) text.textContent = '載入中...';
 
-          audio.play().catch(err => {
-            console.warn('Audio play failed:', err);
-            stopLyricsAudio();
-          });
+          audio.onplaying = () => {
+            audioBtn.classList.remove('loading');
+            audioBtn.classList.add('playing');
+            if (icon) icon.className = 'fa-solid fa-circle-pause';
+            if (text) text.textContent = '暫停播放';
+          };
+
+          audio.onwaiting = () => {
+            audioBtn.classList.add('loading');
+            if (icon) icon.className = 'fa-solid fa-spinner fa-spin';
+          };
 
           audio.onended = () => {
             stopLyricsAudio();
           };
 
           audio.onerror = (err) => {
-            console.warn('Audio playback error:', err);
+            console.warn('Audio playback error:', err, audio.error);
             stopLyricsAudio();
+            showToast('音訊載入失敗，請確認網路連線或稍後再試', 'error');
           };
+
+          try {
+            await audio.play();
+          } catch (err) {
+            console.warn('Audio play failed:', err);
+            stopLyricsAudio();
+            showToast('音訊播放受阻，若無聲音請確認手機已關閉靜音撥片或調整音量', 'error');
+          }
         });
 
         titleRow.appendChild(audioBtn);
@@ -1331,7 +1432,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       sectionLines.forEach(line => {
         const lineDiv = document.createElement('div');
-        lineDiv.className = `lyrics-line lyrics-line-${line.type}`;
+        const hasBoxed = line.segments && line.segments.some(s => s.isBoxed);
+        lineDiv.className = `lyrics-line lyrics-line-${line.type}${hasBoxed ? ' has-boxed' : ''}`;
 
         if (line.type === 'os') {
           const osBadge = document.createElement('span');
@@ -1341,7 +1443,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           const textSpan = document.createElement('span');
           textSpan.className = 'lyrics-text os-text';
-          textSpan.textContent = line.text;
+          appendStyledSegments(textSpan, line.segments, line.text);
           lineDiv.appendChild(textSpan);
         } else if (line.type === 'dialogue') {
           const colonIdx = line.text.search(/[:：]/);
@@ -1356,20 +1458,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const textSpan = document.createElement('span');
             textSpan.className = 'lyrics-text dialogue-text';
-            textSpan.textContent = content;
+
+            if (line.segments && line.segments.length > 0) {
+              let remainingPrefixLen = colonIdx + 1;
+              const contentSegments = [];
+              line.segments.forEach(seg => {
+                if (remainingPrefixLen > 0) {
+                  if (seg.text.length <= remainingPrefixLen) {
+                    remainingPrefixLen -= seg.text.length;
+                  } else {
+                    const remainText = seg.text.substring(remainingPrefixLen);
+                    remainingPrefixLen = 0;
+                    if (remainText) {
+                      contentSegments.push({ ...seg, text: remainText });
+                    }
+                  }
+                } else {
+                  contentSegments.push(seg);
+                }
+              });
+              appendStyledSegments(textSpan, contentSegments, content);
+            } else {
+              textSpan.textContent = content;
+            }
             lineDiv.appendChild(textSpan);
           } else {
-            lineDiv.textContent = line.text;
+            const textSpan = document.createElement('span');
+            textSpan.className = 'lyrics-text dialogue-text';
+            appendStyledSegments(textSpan, line.segments, line.text);
+            lineDiv.appendChild(textSpan);
           }
         } else if (line.type === 'annotation') {
           const annoSpan = document.createElement('span');
           annoSpan.className = 'lyrics-text annotation-text';
-          annoSpan.textContent = line.text;
+          appendStyledSegments(annoSpan, line.segments, line.text);
           lineDiv.appendChild(annoSpan);
         } else {
           const chantSpan = document.createElement('span');
           chantSpan.className = 'lyrics-text chant-text';
-          chantSpan.textContent = line.text;
+          appendStyledSegments(chantSpan, line.segments, line.text);
           lineDiv.appendChild(chantSpan);
         }
 

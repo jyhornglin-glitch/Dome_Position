@@ -126,6 +126,30 @@ def determine_section_metadata(title, current_five_continents_date, current_step
     f_label = FORMATION_LABELS.get(f_key, f_key)
     return f_key, f_label, s_keys, s_label
 
+def extract_para_segments(p):
+    has_p_border = bool(p._p.xpath('./w:pPr/w:pBdr'))
+    segments = []
+    
+    for r in p.runs:
+        t = r.text
+        if not t:
+            continue
+        color = r.font.color.rgb if r.font.color else None
+        c_str = str(color).upper() if color else None
+        is_red = c_str in ['EE0000', 'FF0000', 'A31515', 'FF0066']
+        is_box = has_p_border or bool(r._r.xpath('./w:rPr/w:bdr'))
+        
+        # Merge with previous segment if same styling
+        if segments and segments[-1]['isRed'] == is_red and segments[-1]['isBoxed'] == is_box:
+            segments[-1]['text'] += t
+        else:
+            segments.append({
+                'text': t,
+                'isRed': is_red,
+                'isBoxed': is_box
+            })
+    return segments
+
 def parse_docx(docx_path):
     doc = docx.Document(docx_path)
     sections = []
@@ -168,6 +192,9 @@ def parse_docx(docx_path):
             
             title = clean_section_title(raw_text)
             audio_target = get_audio_from_para(p, doc)
+            if audio_target.endswith('.wav'):
+                audio_target = audio_target[:-4] + '.m4a'
+
             f_key, f_label, s_keys, s_label = determine_section_metadata(raw_text, current_five_continents_date, current_step_hint)
 
             current_section = {
@@ -195,9 +222,12 @@ def parse_docx(docx_path):
             elif raw_text.startswith('(') or raw_text.startswith('（'):
                 line_type = 'annotation'
 
+            segments = extract_para_segments(p)
+
             current_section['lines'].append({
                 'text': raw_text,
-                'type': line_type
+                'type': line_type,
+                'segments': segments
             })
 
     if current_section and (current_section['title'] or current_section['lines']):
@@ -225,5 +255,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 
