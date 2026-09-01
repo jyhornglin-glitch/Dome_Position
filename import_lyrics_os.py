@@ -69,9 +69,9 @@ def determine_section_metadata(title, current_five_continents_date, current_step
     elif '11/13' in title and ('專屬' in title or '第2天' in title):
         s_keys = ['1113']
         s_label = '11/13 (第2天) 專屬'
-    elif '11/14' in title and ('專屬' in title or '第3天' in title):
+    elif '11/14' in title and ('專屬' in title or '第3天' in title or '第2天' in title or '第 2 天' in title):
         s_keys = ['1114']
-        s_label = '11/14 (第3天) 專屬'
+        s_label = '11/14 (第 2 天專屬曲目)' if ('第2天' in title or '第 2 天' in title) else '11/14 (第3天) 專屬'
     elif '11/15' in title and ('專屬' in title or '第4天' in title):
         s_keys = ['1115']
         s_label = '11/15 (第4天) 專屬'

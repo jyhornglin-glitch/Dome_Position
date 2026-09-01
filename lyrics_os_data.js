@@ -1328,11 +1328,11 @@ const LYRICS_OS_DATA = [
     "audio": "Music/慈善+醫療/13醫療_地藏經.mp3",
     "lines": [
       {
-        "text": "病苦眾生在呐喊\t人間地獄悉現前\t貧病相因必須斷  促成建院的因緣",
+        "text": "病苦眾生在呐喊 人間地獄悉現前 貧病相因必須斷 促成建院的因緣",
         "type": "lyrics",
         "segments": [
           {
-            "text": "病苦眾生在呐喊\t人間地獄悉現前\t貧病相因必須斷  促成建院的因緣",
+            "text": "病苦眾生在呐喊 人間地獄悉現前 貧病相因必須斷 促成建院的因緣",
             "isRed": false,
             "isBoxed": false
           }
@@ -1951,13 +1951,13 @@ const LYRICS_OS_DATA = [
   },
   {
     "id": "sec_22",
-    "title": "【花慈.中西醫精準醫療(羅倫佐) 曲目：我可以唱歌了】11/15(第4天專屬曲目)",
+    "title": "【花慈.中西醫精準醫療(羅倫佐) 曲目：我可以唱歌了】11/14(第 2 天專屬曲目)",
     "formationKey": "boneDonation",
     "formationLabel": "07-2骨捐能捨 (骨捐/大體/專屬曲目)",
     "sessionKeys": [
-      "1115"
+      "1114"
     ],
-    "sessionLabel": "11/15 (第4天) 專屬",
+    "sessionLabel": "11/14 (第 2 天專屬曲目)",
     "audio": "",
     "lines": [
       {
@@ -4055,17 +4055,6 @@ const LYRICS_OS_DATA = [
             "isBoxed": false
           }
         ]
-      },
-      {
-        "text": "※約旦※",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "※約旦※",
-            "isRed": false,
-            "isBoxed": false
-          }
-        ]
       }
     ]
   },
@@ -4105,33 +4094,22 @@ const LYRICS_OS_DATA = [
     "audio": "Music/功德品/1112/11_12 [功德品] 02B啟航(約旦).mp3",
     "lines": [
       {
-        "text": "張起大愛的風帆\t耀眼金光燦爛\t\t衝破巨浪向前航\t救拔眾生到彼岸",
+        "text": "張起大愛的風帆當初領養的小王子長大上學了 耀眼金光燦爛(阿拉伯語 os)",
         "type": "lyrics",
         "segments": [
           {
-            "text": "張起大愛的風帆\t耀眼金光燦爛\t\t衝破巨浪向前航\t救拔眾生到彼岸",
+            "text": "張起大愛的風帆當初領養的小王子長大上學了 耀眼金光燦爛(阿拉伯語 os)",
             "isRed": false,
             "isBoxed": false
           }
         ]
       },
       {
-        "text": "救拔眾生\t救拔眾生 到彼岸",
+        "text": "衝破巨浪(阿拉伯語 os)向前航 救拔眾生 救拔眾生 到 彼 岸~~~",
         "type": "lyrics",
         "segments": [
           {
-            "text": "救拔眾生\t救拔眾生 到彼岸",
-            "isRed": false,
-            "isBoxed": false
-          }
-        ]
-      },
-      {
-        "text": "※黑區變亮區※",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "※黑區變亮區※",
+            "text": "衝破巨浪(阿拉伯語 os)向前航 救拔眾生 救拔眾生 到 彼 岸~~~",
             "isRed": false,
             "isBoxed": false
           }
@@ -4201,28 +4179,17 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "當勤精進至寶所 令離生死入佛慧 小小螢火蟲 黑區變亮區",
+        "text": "當勤精進至寶所 令離(得令)生死入佛慧 小小螢火蟲 黑區變亮區",
         "type": "lyrics",
         "segments": [
           {
-            "text": "當勤精進至寶所 令離生死入佛慧 ",
+            "text": "當勤精進至寶所 令離(得令)生死入佛慧 ",
             "isRed": false,
             "isBoxed": false
           },
           {
             "text": "小小螢火蟲 黑區變亮區",
             "isRed": true,
-            "isBoxed": false
-          }
-        ]
-      },
-      {
-        "text": "※莫三比克※",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "※莫三比克※\t",
-            "isRed": false,
             "isBoxed": false
           }
         ]
@@ -4307,17 +4274,6 @@ const LYRICS_OS_DATA = [
             "isBoxed": false
           }
         ]
-      },
-      {
-        "text": "※台灣救災集錦※",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "※台灣救災集錦※",
-            "isRed": false,
-            "isBoxed": false
-          }
-        ]
       }
     ]
   },
@@ -4333,23 +4289,123 @@ const LYRICS_OS_DATA = [
     "audio": "Music/功德品/1112/11_12 [功德品] 05台灣救災集錦_第五功德.mp3",
     "lines": [
       {
-        "text": "第五功德難思議\t持誦書寫刻不離\t剎那恆持長相應\t眾生信服得歡喜",
+        "text": "第五功德難思議 持誦書寫刻不離 剎那恆持長相應 眾生信服得歡喜",
         "type": "lyrics",
         "segments": [
           {
-            "text": "第五功德難思議\t持誦書寫刻不離\t剎那恆持長相應\t眾生信服得歡喜",
+            "text": "第五功德難思議 持誦書寫刻不離 剎那恆持長相應 眾生信服得歡喜",
             "isRed": false,
             "isBoxed": false
           }
         ]
       },
       {
-        "text": "※土耳其※",
+        "text": "上人：看他們真的很大膽啊,路整條都崩,只是隨便把竹子鋪著,你看畫面上看到嗎?那是懸崖啊他們不只是人要過,還要抬著物資那麼多人整群這樣過,你想,我看了真的整個血都快凍起來了,真的實在是每一次哪裡有災難,我一定要說,拜託你們,等到路可以通了,拜託你們,救災的人一定要為我照顧平安。",
+        "type": "dialogue",
+        "segments": [
+          {
+            "text": "上人：看他們真的很大膽啊,路整條都崩,只是隨便把竹子鋪著,你看畫面上看到嗎?那是懸崖啊他們不只是人要過,還要抬著物資那麼多人整群這樣過,你想,我看了真的整個血都快凍起來了,真的實在是每一次哪裡有災難,我一定要說,",
+            "isRed": false,
+            "isBoxed": false
+          },
+          {
+            "text": "拜託你們",
+            "isRed": false,
+            "isBoxed": true
+          },
+          {
+            "text": ",等到路可以通了,",
+            "isRed": false,
+            "isBoxed": false
+          },
+          {
+            "text": "拜託你們",
+            "isRed": false,
+            "isBoxed": true
+          },
+          {
+            "text": ",救災的人一定要為我照顧平安。",
+            "isRed": false,
+            "isBoxed": false
+          }
+        ]
+      },
+      {
+        "text": "哪裡有災難 慈濟人就在那裡 有人蓋房子 有人送便當",
         "type": "lyrics",
         "segments": [
           {
-            "text": "※土耳其※\t",
+            "text": "哪裡有災難 慈濟人就在那裡 有人蓋房子 有人送便當",
             "isRed": false,
+            "isBoxed": false
+          }
+        ]
+      },
+      {
+        "text": "有人提水桶 有人釘屋頂 有人合十助念 有人搬隔屏",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "有人提水桶 有人釘屋頂 有人合十助念 有人搬隔屏",
+            "isRed": false,
+            "isBoxed": false
+          }
+        ]
+      },
+      {
+        "text": "有人扛米過懸崖 三十年來 有一群人 不斷奔向需要他們的地方",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "有人扛米過懸崖 三十年來 有一群人 不斷奔向需要他們的地方",
+            "isRed": false,
+            "isBoxed": false
+          }
+        ]
+      },
+      {
+        "text": "走在最前面 陪到最後",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "走在最前面 陪到最後",
+            "isRed": false,
+            "isBoxed": false
+          }
+        ]
+      },
+      {
+        "text": "咚~~咚 走在最前 咚~~咚 陪到最後 咚~~咚台灣愛心總動員",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "咚~~咚 ",
+            "isRed": false,
+            "isBoxed": false
+          },
+          {
+            "text": "走在最前",
+            "isRed": true,
+            "isBoxed": false
+          },
+          {
+            "text": " 咚~~咚 ",
+            "isRed": false,
+            "isBoxed": false
+          },
+          {
+            "text": "陪到最後",
+            "isRed": true,
+            "isBoxed": false
+          },
+          {
+            "text": " 咚~~咚",
+            "isRed": false,
+            "isBoxed": false
+          },
+          {
+            "text": "台灣愛心總動員",
+            "isRed": true,
             "isBoxed": false
           }
         ]
@@ -4373,17 +4429,6 @@ const LYRICS_OS_DATA = [
         "segments": [
           {
             "text": "第三功德難思議\t自在度人顯願力\t雖有煩擾無煩惱\t雖有生死無畏懼",
-            "isRed": false,
-            "isBoxed": false
-          }
-        ]
-      },
-      {
-        "text": "※南非※",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "※南非※\t",
             "isRed": false,
             "isBoxed": false
           }
@@ -4469,17 +4514,6 @@ const LYRICS_OS_DATA = [
             "isBoxed": false
           }
         ]
-      },
-      {
-        "text": "※印尼※",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "※印尼※\t",
-            "isRed": false,
-            "isBoxed": false
-          }
-        ]
       }
     ]
   },
@@ -4547,17 +4581,6 @@ const LYRICS_OS_DATA = [
           {
             "text": "安邦定國在印尼",
             "isRed": true,
-            "isBoxed": false
-          }
-        ]
-      },
-      {
-        "text": "※緬甸 米撲滿※",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "※緬甸 米撲滿※\t",
-            "isRed": false,
             "isBoxed": false
           }
         ]
@@ -4761,17 +4784,6 @@ const LYRICS_OS_DATA = [
             "isBoxed": false
           }
         ]
-      },
-      {
-        "text": "※八八風災※",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "※八八風災※\t",
-            "isRed": false,
-            "isBoxed": false
-          }
-        ]
       }
     ]
   },
@@ -4787,33 +4799,100 @@ const LYRICS_OS_DATA = [
     "audio": "Music/功德品/1114/11_14 [功德品] 02第七功德(八八風災).mp3",
     "lines": [
       {
-        "text": "搶晴天 戰雨天",
+        "text": "第七功德不思議 六波羅(厚蜜)顯神(厚奇) 愛灑人間大悲(厚意) 令諸眾苦皆得離",
         "type": "lyrics",
         "segments": [
           {
-            "text": "搶晴天 戰雨天",
+            "text": "第七功德不思議 ",
+            "isRed": false,
+            "isBoxed": false
+          },
+          {
+            "text": "六波羅(厚蜜)顯神(厚奇)",
             "isRed": true,
             "isBoxed": false
-          }
-        ]
-      },
-      {
-        "text": "第七功德不思議\t六波羅(厚蜜)顯神(厚奇)\t愛灑人間大悲(厚意)\t\t令諸眾苦皆得離\n無生法忍斷煩惱\t隨緣度化登七地\t\t譬如猛將除王怨\t\t怨既滅已王歡喜",
-        "type": "lyrics",
-        "segments": [
+          },
           {
-            "text": "第七功德不思議\t六波羅(厚蜜)顯神(厚奇)\t愛灑人間大悲(厚意)\t\t令諸眾苦皆得離\n無生法忍斷煩惱\t隨緣度化登七地\t\t譬如猛將除王怨\t\t怨既滅已王歡喜",
+            "text": " ",
+            "isRed": false,
+            "isBoxed": false
+          },
+          {
+            "text": "愛灑人間大悲(厚意)",
+            "isRed": true,
+            "isBoxed": false
+          },
+          {
+            "text": " 令諸眾苦皆得離",
             "isRed": false,
             "isBoxed": false
           }
         ]
       },
       {
-        "text": "※泰北※",
-        "type": "lyrics",
+        "text": "~~狂風暴雨聲~~~ 路基流走了 路基沒有了~~",
+        "type": "annotation",
         "segments": [
           {
-            "text": "※泰北※",
+            "text": "~~狂風暴雨聲~~~ 路基流走了 路基沒有了~~",
+            "isRed": false,
+            "isBoxed": false
+          }
+        ]
+      },
+      {
+        "text": "一定要在平地蓋永久屋，山林才能養息，我知道你們很多人是租房子，我也知道你們很多人是磨手皮做粗工的，但是，這一次慈濟想要蓋的永久屋需要很多錢，你們~~",
+        "type": "os",
+        "segments": [
+          {
+            "text": "一定要在平地蓋永久屋，山林才能養息，我知道你們很多人是租房子，我也知道你們很多人是磨手皮做粗工的，但是，這一次慈濟想要蓋的永久屋需要很多錢，你們~~",
+            "isRed": false,
+            "isBoxed": false
+          }
+        ]
+      },
+      {
+        "text": "我願意! 點滴會聚大愛與情誼 讓人間沒有苦痛與悲泣 期待在農曆過年前 500 多戶入住永久屋 搶晴天! 戰雨天! 在大愛園區更要有教堂和學校，他們世世代代都能夠安居樂業",
+        "type": "os",
+        "segments": [
+          {
+            "text": "我願意!",
+            "isRed": true,
+            "isBoxed": false
+          },
+          {
+            "text": " 點滴會聚大愛與情誼 讓人間沒有苦痛與悲泣 期待在農曆過年前 500 多戶入住永久屋 ",
+            "isRed": false,
+            "isBoxed": false
+          },
+          {
+            "text": "搶晴天! 戰雨天!",
+            "isRed": true,
+            "isBoxed": false
+          },
+          {
+            "text": " 在大愛園區更要有教堂和學校，他們世世代代都能夠安居樂業",
+            "isRed": false,
+            "isBoxed": false
+          }
+        ]
+      },
+      {
+        "text": "感恩 上人為我們興建永久屋，住在這邊讓我們心更安，以前山是光禿禿的寸草不生，上人說要讓山林養息，我就種了好幾百棵台灣橘樹，16 年後已經成為一大片樹林了，現在山都不會崩塌了，大地恢復生機，家就安全了! 祈願山明河清林幽靜 祈願世代安居樂業人安心",
+        "type": "os",
+        "segments": [
+          {
+            "text": "感恩 上人為我們興建永久屋，住在這邊讓我們心更安，以前山是光禿禿的寸草不生，上人說要讓山林養息，我就種了好幾百棵台灣橘樹，16 年後已經成為一大片樹林了，現在山都不會崩塌了，大地恢復生機，",
+            "isRed": false,
+            "isBoxed": false
+          },
+          {
+            "text": "家就安全了!",
+            "isRed": true,
+            "isBoxed": false
+          },
+          {
+            "text": " 祈願山明河清林幽靜 祈願世代安居樂業人安心",
             "isRed": false,
             "isBoxed": false
           }
@@ -4838,17 +4917,6 @@ const LYRICS_OS_DATA = [
         "segments": [
           {
             "text": "第四功德不思議\t諸佛護念於一身\t雖未自度能度他\t與諸菩薩為道侶\n譬如國王新王子\t稚小國事難領理\t但為臣民所崇敬\t王后愛重常共語",
-            "isRed": false,
-            "isBoxed": false
-          }
-        ]
-      },
-      {
-        "text": "※辛巴威※",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "※辛巴威※\t",
             "isRed": false,
             "isBoxed": false
           }
@@ -4991,17 +5059,6 @@ const LYRICS_OS_DATA = [
             "isBoxed": false
           }
         ]
-      },
-      {
-        "text": "※921※",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "※921※\t",
-            "isRed": false,
-            "isBoxed": false
-          }
-        ]
       }
     ]
   },
@@ -5106,22 +5163,43 @@ const LYRICS_OS_DATA = [
     "audio": "Music/功德品/1112/11_12 [功德品] 03B黑區&亮區_化城喻故事.mp3",
     "lines": [
       {
-        "text": "諸惡道險猶長遠\t久受勤苦乃可度\t當勤精進至寶所\t令離生死入佛慧。",
+        "text": "諸惡道險猶長遠 教育工程 (吼)",
         "type": "lyrics",
         "segments": [
           {
-            "text": "諸惡道險猶長遠\t久受勤苦乃可度\t當勤精進至寶所\t令離生死入佛慧。",
+            "text": "諸惡道險猶長遠 ",
             "isRed": false,
+            "isBoxed": false
+          },
+          {
+            "text": "教育工程 (吼)",
+            "isRed": true,
             "isBoxed": false
           }
         ]
       },
       {
-        "text": "※減災工程※",
+        "text": "久受勤苦乃可度 社會希望 (吼)",
         "type": "lyrics",
         "segments": [
           {
-            "text": "※減災工程※\t",
+            "text": "久受勤苦乃可度 ",
+            "isRed": false,
+            "isBoxed": false
+          },
+          {
+            "text": "社會希望 (吼)",
+            "isRed": true,
+            "isBoxed": false
+          }
+        ]
+      },
+      {
+        "text": "當勤精進至寶所 令離(得令)生死入佛慧",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "當勤精進至寶所 令離(得令)生死入佛慧",
             "isRed": false,
             "isBoxed": false
           }
@@ -5141,33 +5219,11 @@ const LYRICS_OS_DATA = [
     "audio": "",
     "lines": [
       {
-        "text": "大愛為樑\t智慧為牆\t一念善心\t帶來無限希望",
+        "text": "大愛為樑 智慧為牆 把握當下 成就希望的殿堂",
         "type": "lyrics",
         "segments": [
           {
-            "text": "大愛為樑\t智慧為牆\t一念善心\t帶來無限希望",
-            "isRed": false,
-            "isBoxed": false
-          }
-        ]
-      },
-      {
-        "text": "大愛為樑\t智慧為牆\t把握當下\t成就希望的殿堂",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "大愛為樑\t智慧為牆\t把握當下\t成就希望的殿堂",
-            "isRed": false,
-            "isBoxed": false
-          }
-        ]
-      },
-      {
-        "text": "※報佛恩※",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "※報佛恩※\t",
+            "text": "大愛為樑 智慧為牆 把握當下 成就希望的殿堂",
             "isRed": false,
             "isBoxed": false
           }
