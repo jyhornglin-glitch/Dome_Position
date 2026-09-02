@@ -138,6 +138,7 @@ def main():
             target_cats = [cat]
 
         current_items = {}
+        active_target_cats = target_cats
         
         for p in content_cell.paragraphs:
             text = p.text.strip()
@@ -161,12 +162,17 @@ def main():
                     "details": []
                 }
                 
-                for target_cat in target_cats:
+                if '是諸眾生' in title_label or '是諸眾生' in text:
+                    active_target_cats = ['noBoat3']
+                else:
+                    active_target_cats = target_cats
+                
+                for target_cat in active_target_cats:
                     item_copy = json.loads(json.dumps(base_item))
                     action_hints_data[target_cat].append(item_copy)
                     current_items[target_cat] = item_copy
             else:
-                for target_cat in target_cats:
+                for target_cat in active_target_cats:
                     item = current_items.get(target_cat)
                     if not item:
                         item = {

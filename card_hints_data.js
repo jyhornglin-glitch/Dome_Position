@@ -191,7 +191,9 @@ const CARD_HINTS_DATA = {
           "content": "LOGO腳尖對線面乙舞臺圓心"
         }
       ]
-    },
+    }
+  ],
+  "noBoat3": [
     {
       "title": "【是諸眾生】 (第一三天-圍爐)",
       "details": [
@@ -200,9 +202,7 @@ const CARD_HINTS_DATA = {
           "content": "OS:我們是全世界「最大的家庭」啦！間奏轉向→非LOGO：45度面向法師；LOGO腳尖對線面乙舞臺圓心"
         }
       ]
-    }
-  ],
-  "noBoat3": [
+    },
     {
       "title": "【是諸眾生】 (第二四天-米甕與大魚)",
       "details": [

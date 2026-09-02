@@ -40,6 +40,8 @@ CATEGORY_MAPPING = {
     '11-1五大洲': 'fiveContinents1',
     '11-1五大洲(台灣)': 'fiveContinents1',
     '五大洲(台灣)': 'fiveContinents1',
+    '10-2五大洲(台灣)': 'fiveContinents1',
+    '11-2五大洲(台灣)': 'fiveContinents1',
     '10-2五大洲': 'fiveContinents2',
     '11-2五大洲': 'fiveContinents2'
 }
@@ -199,9 +201,11 @@ def main():
             if not cell_text and not cell_images:
                 continue
                 
-            # Determine target categories based on contents if it's '10-1五大洲'
+            # Determine target categories based on contents
             target_cats = []
-            if loc_clean == '10-1五大洲':
+            if '是諸眾生' in cell_text or '圍爐' in cell_text or '米甕與大魚' in cell_text:
+                target_cats = ['noBoat3']
+            elif loc_clean == '10-1五大洲':
                 combined_text = cell_text
                 has_15 = any(k in combined_text for k in ["11/15", "、15", "、15："])
                 has_other_days = any(k in combined_text for k in ["11/12", "11/13", "11/14", "、12", "、13", "、14"])

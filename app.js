@@ -346,26 +346,67 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Filter items in fiveContinents by selected date (e.g., "11/14")
+  // Filter items in action/card hints by selected session date/day
   function filterHintsBySession(items) {
     if (!items || items.length === 0) return [];
+    if (!selectedSessionKey) return items;
     
-    // We map session key (e.g. "1112") to date string (e.g. "11/12")
-    const dateStr = selectedSessionKey ? `${selectedSessionKey.substring(0, 2)}/${selectedSessionKey.substring(2)}` : '';
-    const shortDay = selectedSessionKey ? selectedSessionKey.substring(2) : ''; // e.g. "12", "13", "14", "15"
+    const mm = selectedSessionKey.substring(0, 2); // e.g. "11"
+    const dd = selectedSessionKey.substring(2);    // e.g. "12", "13", "14", "15"
+    const fullDate = `${mm}/${dd}`;               // e.g. "11/12"
+    const dayMap = { '12': 1, '13': 2, '14': 3, '15': 4 };
+    const currentDayNum = dayMap[dd] || 0;
     
     return items.filter(item => {
       const title = item.title || '';
-      // If the title contains no date pattern (e.g., "11/12" or "11/13" or "11/14" or "11/15"), it's a shared item
-      const hasDatePattern = /\d{2}\/\d{2}/.test(title);
-      if (!hasDatePattern) return true;
+      const hasChineseDay = /(?:第?[一二三四\d]+天|三四天)/.test(title);
+      const hasDateSlash = /\d{1,2}\/\d{1,2}/.test(title);
       
-      // Check if it matches the current date (e.g. "11/14" or shortDay "14")
-      if (title.includes(dateStr)) return true;
-      if (shortDay && title.includes(shortDay) && title.indexOf('11/') === -1) {
-        // e.g. "11/12、14：" contains "14" but not "11/14"
-        const match = title.match(/^(\d{2}\/\d{2}(、\d{2})*)：/);
-        if (match && match[1].includes(shortDay)) return true;
+      // If neither date pattern exists, it's a shared/common item for all sessions
+      if (!hasDateSlash && !hasChineseDay) {
+        return true;
+      }
+      
+      // Check explicit date strings (e.g., "11/12", "11/14", "11/12、11/14", "11/12、14")
+      if (hasDateSlash) {
+        if (title.includes(fullDate)) return true;
+        
+        // Match short day syntax like "11/12、14：" or "11/13、15："
+        const prefixMatch = title.match(/^((?:\d{1,2}\/\d{1,2})(?:[、,，]\d{1,2}(?:\/\d{1,2})?)*)/);
+        if (prefixMatch) {
+          const parts = prefixMatch[1].split(/[、,，]/);
+          for (const part of parts) {
+            const p = part.trim();
+            if (p === fullDate || p === dd || p === `${mm}/${dd}`) {
+              return true;
+            }
+          }
+        }
+      }
+      
+      // Check Chinese day patterns
+      if (hasChineseDay && currentDayNum > 0) {
+        if (title.includes('第一三天') || title.includes('第一、三天') || title.includes('第1、3天') || title.includes('第13天') || title.includes('一三天')) {
+          if (currentDayNum === 1 || currentDayNum === 3) return true;
+        }
+        if (title.includes('第二四天') || title.includes('第二、四天') || title.includes('第2、4天') || title.includes('第24天') || title.includes('二四天')) {
+          if (currentDayNum === 2 || currentDayNum === 4) return true;
+        }
+        if (title.includes('三四天') || title.includes('第三四天') || title.includes('第三、四天') || title.includes('第3、4天')) {
+          if (currentDayNum === 3 || currentDayNum === 4) return true;
+        }
+        if (title.includes('第一天') || title.includes('第1天')) {
+          if (currentDayNum === 1) return true;
+        }
+        if (title.includes('第二天') || title.includes('第2天')) {
+          if (currentDayNum === 2) return true;
+        }
+        if (title.includes('第三天') || title.includes('第3天')) {
+          if (currentDayNum === 3) return true;
+        }
+        if (title.includes('第四天') || title.includes('第4天')) {
+          if (currentDayNum === 4) return true;
+        }
       }
       
       return false;
@@ -373,9 +414,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function getActionHintKey(key) {
-    if (key === 'fiveContinents1') {
-      return (selectedSessionKey === '1115') ? 'fiveContinents1' : 'fiveContinents2';
-    }
     return key;
   }
 
@@ -383,9 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (key === 'sixRuiXiang') return [];
     const hintKey = getActionHintKey(key);
     let rawData = (typeof ACTION_HINTS_DATA !== 'undefined' && ACTION_HINTS_DATA[hintKey]) || [];
-    if (key === 'fiveContinents1') {
-      rawData = filterHintsBySession(rawData);
-    }
+    rawData = filterHintsBySession(rawData);
     if (!performer || !performer.category) return rawData;
     return filterHintsDataByCategory(rawData, performer, key);
   }
@@ -394,9 +430,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (key === 'sixRuiXiang') return [];
     const hintKey = getActionHintKey(key);
     let rawData = (typeof CARD_HINTS_DATA !== 'undefined' && CARD_HINTS_DATA[hintKey]) || [];
-    if (key === 'fiveContinents1') {
-      rawData = filterHintsBySession(rawData);
-    }
+    rawData = filterHintsBySession(rawData);
     if (!performer || !performer.category) return rawData;
     return filterHintsDataByCategory(rawData, performer, key);
   }
@@ -2544,7 +2578,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (idx === activeFormationIdx) {
         c.classList.add('active-step-card');
         if (activeTab === 'walkthrough') {
-          c.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          c.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       } else {
         c.classList.remove('active-step-card');

@@ -3389,6 +3389,7 @@ svg {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  scroll-margin-top: 110px;
 }
 
 .action-hint-step-card:hover {
