@@ -8,4 +8,7 @@
 - **先做計劃後修改**：任何代碼或系統修改，都必須先撰寫並提出實作計劃（Implementation Plan）。經使用者確認與核准計劃後，才能開始進行實際代碼修改。
 - **Traditional Chinese Responses (使用正體中文回答)**: All responses and communication with the user must be in Traditional Chinese.
 - **使用正體中文回答**：與使用者溝通及所有回答，必須一律使用正體中文。
+- **Scope Protection & Non-Regression (範疇防護與禁止影響既有設定)**: Any future modification or bug fix must strictly preserve all existing functionalities and prior configurations. Changes must never inadvertently alter, overwrite, or break unrelated parts of the codebase, nor ignore previously established settings (such as protected categories, video mappings, desktop/mobile dual entries, modal structures, etc.). Every change must be precisely scoped to ensure zero negative side effects on existing features.
+- **範疇防護與禁止影響既有設定**：未來進行任何修改或問題修復時，必須嚴格保護現有功能與先前所有設定。絕不可因為修復特定問題而改動或影響到其他無關功能，亦不可覆蓋、破壞或忽略先前的設定與既有資料（例如五大洲影片映射、電腦/手機雙入口、影片彈窗結構等既有防護機制）。每一次修改均需精確評估影響範圍，確保對其他功能零干擾、零副作用。
+
 
