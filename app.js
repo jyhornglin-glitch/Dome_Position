@@ -2668,6 +2668,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Pause lyrics background audio if playing
     stopLyricsAudio();
 
+    // Prevent background scrolling while modal is open
+    document.body.style.overflow = 'hidden';
+
     // Set Modal Header Title
     if (modalTitle) {
       modalTitle.innerHTML = `<i class="fa-brands fa-youtube" style="color: #ef4444; margin-right: 6px;"></i> ${sectionTitle || '演繹段落示範影片'}`;
@@ -2676,7 +2679,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function playVideo(video) {
       const vId = video.videoId || getYouTubeVideoId(video.url);
       if (!vId) return;
-      iframe.src = `https://www.youtube-nocookie.com/embed/${vId}?autoplay=1&rel=0`;
+      iframe.src = `https://www.youtube.com/embed/${encodeURIComponent(vId)}?autoplay=1&rel=0&enablejsapi=1`;
       if (subTitleEl) {
         subTitleEl.textContent = video.title || '';
       }
@@ -2705,7 +2708,9 @@ document.addEventListener('DOMContentLoaded', () => {
           displayTitle = displayTitle.replace(/^\[.*?\]\s*/, '').replace(/^[0-9\/]+\s*/, '');
           tabBtn.innerHTML = `<i class="fa-solid fa-play" style="font-size: 11px; margin-right: 4px;"></i> ${displayTitle}`;
 
-          tabBtn.addEventListener('click', () => {
+          tabBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
             tabsContainer.querySelectorAll('.lyrics-video-tab-btn').forEach(btn => btn.classList.remove('active'));
             tabBtn.classList.add('active');
             playVideo(v);
@@ -2728,7 +2733,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (modal) {
       modal.style.display = 'none';
     }
+    document.body.style.overflow = '';
   }
+
+  // Export to window for direct event handler safety
+  window.openLyricsVideoModal = openLyricsVideoModal;
+  window.closeLyricsVideoModal = closeLyricsVideoModal;
+  window.openYouTubeVideo = openYouTubeVideo;
 
   function setupLyricsVideoModal() {
     const modal = document.getElementById('lyricsVideoModal');
@@ -2869,6 +2880,7 @@ document.addEventListener('DOMContentLoaded', () => {
               let btnLabel = v.title.replace(/^\[.*?\]\s*/, '').replace(/^[0-9\/]+[：:\s]*/, '');
               btn.innerHTML = `<i class="fa-brands fa-youtube"></i> <span>觀看 ${btnLabel || '示範影片'}</span>`;
               btn.addEventListener('click', (e) => {
+                e.preventDefault();
                 e.stopPropagation();
                 openLyricsVideoModal(item.title, [v]);
               });
@@ -6876,8 +6888,32 @@ document.addEventListener('DOMContentLoaded', () => {
         itemDiv.className = 'action-hint-item';
         
         const itemTitle = document.createElement('div');
-        itemTitle.style.cssText = 'font-weight: bold; color: #b45309; font-size: calc(13.5px * var(--hints-scale, 1)); margin-bottom: 6px;';
-        itemTitle.textContent = item.title;
+        itemTitle.style.cssText = 'display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; font-weight: bold; color: #b45309; font-size: calc(13.5px * var(--hints-scale, 1)); margin-bottom: 6px;';
+        
+        const titleSpan = document.createElement('span');
+        titleSpan.textContent = item.title;
+        itemTitle.appendChild(titleSpan);
+
+        if (item.videos && item.videos.length > 0) {
+          const vidGroup = document.createElement('div');
+          vidGroup.style.cssText = 'display: inline-flex; gap: 6px; flex-wrap: wrap; margin-left: auto;';
+          item.videos.forEach(v => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'yt-red-btn';
+            btn.setAttribute('data-video-id', v.videoId);
+            btn.setAttribute('data-url', v.url);
+            let btnLabel = v.title.replace(/^\[.*?\]\s*/, '').replace(/^[0-9\/]+[：:\s]*/, '');
+            btn.innerHTML = `<i class="fa-brands fa-youtube"></i> <span>觀看 ${btnLabel || '示範影片'}</span>`;
+            btn.addEventListener('click', (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              openLyricsVideoModal(item.title, [v]);
+            });
+            vidGroup.appendChild(btn);
+          });
+          itemTitle.appendChild(vidGroup);
+        }
         itemDiv.appendChild(itemTitle);
         
         item.details.forEach(detail => {
