@@ -2655,8 +2655,41 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ─── Lyrics & Action Hint YouTube Video Modal ───
-  function openLyricsVideoModal(sectionTitle, videos) {
-    const modal = document.getElementById('lyricsVideoModal');
+  function ensureLyricsVideoModalExists() {
+    let modal = document.getElementById('lyricsVideoModal');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'lyricsVideoModal';
+      modal.className = 'modal-overlay';
+      modal.style.display = 'none';
+      modal.innerHTML = `
+        <div class="modal-container lyrics-video-modal-container">
+          <div class="modal-header">
+            <h3 id="lyricsVideoModalTitle"><i class="fa-brands fa-youtube" style="color: #ef4444; margin-right: 6px;"></i> 演繹段落示範影片</h3>
+            <button id="closeLyricsVideoModalBtn" class="close-btn" type="button"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+          <div class="lyrics-video-modal-body">
+            <div id="lyricsVideoTabs" class="lyrics-video-tabs" style="display: none;"></div>
+            <div class="lyrics-video-player-wrapper">
+              <iframe id="lyricsVideoIframe" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <div class="lyrics-video-footer">
+              <div id="lyricsVideoSubTitle" class="lyrics-video-subtitle"></div>
+              <a id="lyricsVideoExternalLink" href="" target="_blank" rel="noopener noreferrer" class="lyrics-video-external-btn">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> 開啟 YouTube 播放
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+      setupLyricsVideoModal();
+    }
+    return modal;
+  }
+
+  function openLyricsVideoModal(sectionTitle, videos, initialVideo = null) {
+    const modal = ensureLyricsVideoModalExists();
     const modalTitle = document.getElementById('lyricsVideoModalTitle');
     const tabsContainer = document.getElementById('lyricsVideoTabs');
     const iframe = document.getElementById('lyricsVideoIframe');
@@ -2688,24 +2721,27 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+    const startVideo = initialVideo || videos[0];
+
     if (videos.length === 1) {
       if (tabsContainer) {
         tabsContainer.innerHTML = '';
         tabsContainer.style.display = 'none';
       }
-      playVideo(videos[0]);
+      playVideo(startVideo);
     } else {
       if (tabsContainer) {
         tabsContainer.innerHTML = '';
         tabsContainer.style.display = 'flex';
 
-        videos.forEach((v, idx) => {
+        videos.forEach((v) => {
           const tabBtn = document.createElement('button');
           tabBtn.type = 'button';
-          tabBtn.className = 'lyrics-video-tab-btn' + (idx === 0 ? ' active' : '');
+          const isSelected = (v === startVideo) || (v.videoId && startVideo.videoId && v.videoId === startVideo.videoId);
+          tabBtn.className = 'lyrics-video-tab-btn' + (isSelected ? ' active' : '');
           
-          let displayTitle = v.title || `版本 ${idx + 1}`;
-          displayTitle = displayTitle.replace(/^\[.*?\]\s*/, '').replace(/^[0-9\/]+\s*/, '');
+          let displayTitle = v.title || '示範影片';
+          displayTitle = displayTitle.replace(/^\[.*?\]\s*/, '').replace(/^[0-9\/]+[：:\s]*/, '');
           tabBtn.innerHTML = `<i class="fa-solid fa-play" style="font-size: 11px; margin-right: 4px;"></i> ${displayTitle}`;
 
           tabBtn.addEventListener('click', (e) => {
@@ -2718,10 +2754,10 @@ document.addEventListener('DOMContentLoaded', () => {
           tabsContainer.appendChild(tabBtn);
         });
       }
-      playVideo(videos[0]);
+      playVideo(startVideo);
     }
 
-    modal.style.display = 'flex';
+    modal.style.setProperty('display', 'flex', 'important');
   }
 
   function closeLyricsVideoModal() {
@@ -2731,7 +2767,7 @@ document.addEventListener('DOMContentLoaded', () => {
       iframe.src = ''; // Stop video playback immediately
     }
     if (modal) {
-      modal.style.display = 'none';
+      modal.style.setProperty('display', 'none', 'important');
     }
     document.body.style.overflow = '';
   }
@@ -2840,8 +2876,25 @@ document.addEventListener('DOMContentLoaded', () => {
       const titleSpan = document.createElement('span');
       titleSpan.className = 'action-hint-step-title';
       titleSpan.innerHTML = `<strong>${String(idx + 1).padStart(2, '0')}. ${f.name}</strong>`;
-      
       header.appendChild(titleSpan);
+
+      // Dedicated button to view this formation step on Grid Map
+      const viewGridBtn = document.createElement('button');
+      viewGridBtn.type = 'button';
+      viewGridBtn.className = 'step-to-grid-btn';
+      viewGridBtn.title = `前往網格定位查看「${f.name}」`;
+      viewGridBtn.innerHTML = `<i class="fa-solid fa-map-location-dot"></i> <span>查看跑位網格</span>`;
+      viewGridBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        activeFormationIdx = idx;
+        updateFormationControls();
+        drawLocalGridPath();
+        const tabGrid = document.querySelector('.mobile-tab-btn[data-tab="localGrid"]');
+        if (tabGrid) tabGrid.click();
+      });
+      header.appendChild(viewGridBtn);
+
       card.appendChild(header);
       
       const body = document.createElement('div');
@@ -2882,7 +2935,7 @@ document.addEventListener('DOMContentLoaded', () => {
               btn.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                openLyricsVideoModal(item.title, [v]);
+                openLyricsVideoModal(item.title, item.videos, v);
               });
               vidGroup.appendChild(btn);
             });
@@ -2914,22 +2967,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       card.appendChild(body);
       
-      // Click event to switch back to Tab 1 (Grid view)
-      card.addEventListener('click', () => {
-        activeFormationIdx = idx;
-        updateFormationControls();
-        drawLocalGridPath();
-        
-        // Highlight active step card in Tab 2
-        document.querySelectorAll('.action-hint-step-card').forEach((c, cIdx) => {
-          c.classList.toggle('active-step-card', cIdx === idx);
-        });
-        
-        // Switch to grid tab
-        const tabGrid = document.querySelector('.mobile-tab-btn[data-tab="localGrid"]');
-        if (tabGrid) tabGrid.click();
-      });
-      
+      // Card remains stationary and does not switch tabs on click
       actionHintsFlow.appendChild(card);
     });
   }
@@ -6908,7 +6946,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.addEventListener('click', (e) => {
               e.preventDefault();
               e.stopPropagation();
-              openLyricsVideoModal(item.title, [v]);
+              openLyricsVideoModal(item.title, item.videos, v);
             });
             vidGroup.appendChild(btn);
           });

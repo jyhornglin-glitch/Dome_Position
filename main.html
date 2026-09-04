@@ -793,6 +793,33 @@
         </div>
       </div>
 
+      <!-- Lyrics & Action Hint YouTube Video Modal -->
+      <div id="lyricsVideoModal" class="modal-overlay" style="display: none;">
+        <div class="modal-container lyrics-video-modal-container">
+          <div class="modal-header">
+            <h3 id="lyricsVideoModalTitle"><i class="fa-brands fa-youtube" style="color: #ef4444; margin-right: 6px;"></i> 演繹段落示範影片</h3>
+            <button id="closeLyricsVideoModalBtn" class="close-btn"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+          <div class="lyrics-video-modal-body">
+            <!-- Multi-video version tab buttons -->
+            <div id="lyricsVideoTabs" class="lyrics-video-tabs" style="display: none;"></div>
+            
+            <!-- Video Player Box -->
+            <div class="lyrics-video-player-wrapper">
+              <iframe id="lyricsVideoIframe" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+
+            <!-- Video Title and external link button -->
+            <div class="lyrics-video-footer">
+              <div id="lyricsVideoSubTitle" class="lyrics-video-subtitle"></div>
+              <a id="lyricsVideoExternalLink" href="" target="_blank" rel="noopener noreferrer" class="lyrics-video-external-btn">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> 開啟 YouTube 播放
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Dedicated Hidden Print Section for A4 Window Printing -->
       <div id="batchPrintSection" class="batch-print-section" style="display: none;"></div>
 
