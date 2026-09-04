@@ -1,4 +1,4 @@
-const CACHE_NAME = 'dome-position-cache-v1.0.8';
+const CACHE_NAME = 'dome-position-cache-v1.1.0';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',

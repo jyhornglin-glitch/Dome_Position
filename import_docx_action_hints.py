@@ -202,21 +202,16 @@ def main():
                 continue
                 
             # Determine target categories based on contents
+            # Determine target categories based on contents
             target_cats = []
             if '是諸眾生' in cell_text or '圍爐' in cell_text or '米甕與大魚' in cell_text:
                 target_cats = ['noBoat3']
-            elif loc_clean == '10-1五大洲':
-                combined_text = cell_text
-                has_15 = any(k in combined_text for k in ["11/15", "、15", "、15："])
-                has_other_days = any(k in combined_text for k in ["11/12", "11/13", "11/14", "、12", "、13", "、14"])
-                
-                if has_15 and not has_other_days:
-                    target_cats = ['fiveContinents1']
-                elif has_other_days and not has_15:
-                    target_cats = ['fiveContinents2']
-                else:
-                    # Shared items like 33.開經書, 樂生, 富中之富
-                    target_cats = ['fiveContinents1', 'fiveContinents2']
+            elif r in [75, 76] or '開經書' in cell_text or '【曲目：無量義經功德品】' in cell_text:
+                target_cats = ['fiveContinents1']
+            elif loc_clean in ['10-1五大洲', '10-1五大洲(台灣)', '11-1五大洲', '11-1五大洲(台灣)']:
+                target_cats = ['fiveContinents1']
+            elif loc_clean in ['10-2五大洲', '11-2五大洲']:
+                target_cats = ['fiveContinents2']
             else:
                 target_cats = [cat]
 
@@ -230,6 +225,7 @@ def main():
                 
                 base_item = {
                     "title": title,
+                    "videos": [],
                     "details": []
                 }
                 
@@ -259,6 +255,7 @@ def main():
                         # Create a default item if none active
                         item = {
                             "title": "說明",
+                            "videos": [],
                             "details": []
                         }
                         action_hints_data[target_cat].append(item)
@@ -275,6 +272,72 @@ def main():
                             "type": "image",
                             "src": img_src
                         })
+
+    # Inject session YouTube videos into 10-1 and 10-2 items
+    VIDEO_INJECTIONS = [
+        # Shared (all sessions)
+        ('', '開經書', [
+            ('東班', 'https://youtu.be/p2KSIGqj5VE'),
+            ('西班', 'https://youtu.be/dyWGw6dC88I')
+        ]),
+
+        # 11/12
+        ('11/12', '樂生', [('[功德品] 樂生', 'https://www.youtube.com/watch?v=mGhnmtxZrn8&list=PLbIvC-A2H2ko')]),
+        ('11/12', '富中之富', [('[功德品] 富中之富 A', 'https://www.youtube.com/watch?v=m2NvdK1rQpk&list=PLbIvC-A2H2ko')]),
+        ('11/12', '約旦', [('[功德品] 第三功德‧約旦+土耳其', 'https://www.youtube.com/watch?v=0UcRe5beSzw&list=PLbIvC-A2H2ko')]),
+        ('11/12', '啟航', [('[功德品] 張起大愛的風帆‧約旦(法海)', 'https://www.youtube.com/watch?v=MD8To93EY0I&list=PLbIvC-A2H2ko')]),
+        ('11/12', '37.黑區變亮區', [('[功德品] 第六功德‧黑區變亮區', 'https://www.youtube.com/watch?v=1SAdHJZAVuc&list=PLbIvC-A2H2ko')]),
+        ('11/12', '38.黑區變亮區', [('[功德品] 諸惡道險猶長遠‧黑區變亮區(法海)', 'https://www.youtube.com/watch?v=y2cdRGMovd0&list=PLbIvC-A2H2ko')]),
+        ('11/12', '39.莫三比克', [('[功德品] 第八功德‧非洲', 'https://www.youtube.com/watch?v=vZU-rtMuEoE&list=PLbIvC-A2H2ko')]),
+        ('11/12', '40.莫三比克-髻珠喻', [('[功德品] 身口意念應守護(莫三比克‧法海)', 'https://www.youtube.com/watch?v=SCohDEBScvY&list=PLbIvC-A2H2ko')]),
+        ('11/12', '台灣救災集錦', [('[功德品] 第五功德‧台灣救災集錦', 'https://www.youtube.com/watch?v=aNi9Y8qbZp0&list=PLbIvC-A2H2ko')]),
+
+        # 11/13
+        ('11/13', '富中之富', [('[功德品] 富中之富 B', 'https://www.youtube.com/watch?v=14EMlfGGBXY&list=PLGafJimf9RDw')]),
+        ('11/13', '土耳其', [('[功德品] 第三功德‧約旦+土耳其', 'https://www.youtube.com/watch?v=0UcRe5beSzw&list=PLGafJimf9RDw')]),
+        ('11/13', '南非-第八功德', [('[功德品] 第八功德‧非洲', 'https://www.youtube.com/watch?v=vZU-rtMuEoE&list=PLGafJimf9RDw')]),
+        ('11/13', '南非-髻珠喻', [('11/13 [功德品] 身口意念應守護(南非‧法海)', 'https://www.youtube.com/watch?v=htAI4IbqJtE&list=PLGafJimf9RDw')]),
+        ('11/13', '印尼', [
+            ('[功德品] 第九功德‧印尼', 'https://www.youtube.com/watch?v=CvAlUYsudqk&list=PLGafJimf9RDw'),
+            ('[功德品] 菩薩慈悲憫眾生‧印尼(法海)', 'https://www.youtube.com/watch?v=xmX4NrnNqJA&list=PLGafJimf9RDw')
+        ]),
+
+        # 11/14
+        ('11/14', '富中之富', [('[功德品] 富中之富 A', 'https://www.youtube.com/watch?v=m2NvdK1rQpk&list=PLGRfIGuFCUAQ')]),
+        ('11/14', '第二功德-緬甸', [('11/14 [功德品] 第二功德 緬甸米撲滿', 'https://www.youtube.com/watch?v=yeEd_aeAv5k&list=PLGRfIGuFCUAQ')]),
+        ('11/14', '八八風災', [('[功德品] 第七功德‧莫拉克風災', 'https://www.youtube.com/watch?v=mjPNSTARlmY&list=PLGRfIGuFCUAQ')]),
+        ('11/14', '泰北-第四功德', [('[功德品] 第四功德‧泰北', 'https://www.youtube.com/watch?v=_iO0oVSMR8s&list=PLGRfIGuFCUAQ')]),
+        ('11/14', '辛巴威-第八功德', [('[功德品] 第八功德‧非洲', 'https://www.youtube.com/watch?v=vZU-rtMuEoE&list=PLGRfIGuFCUAQ')]),
+        ('11/14', '辛巴威-髻珠喻', [('[功德品] 身口意念應守護(辛巴威)', 'https://www.youtube.com/watch?v=hfwvSIDG0EE&list=PLGRfIGuFCUAQ')]),
+        ('11/14', '辛巴威-生生世世', [('[功德品] 生生世世都在菩提中(辛巴威)', 'https://www.youtube.com/watch?v=cSjyuO_KRp8&list=PLGRfIGuFCUAQ')]),
+
+        # 11/15
+        ('11/15', '樂生', [('[功德品] 樂生', 'https://www.youtube.com/watch?v=mGhnmtxZrn8&list=PLcdQvmBAiLJ0')]),
+        ('11/15', '富中之富', [('[功德品] 富中之富 B', 'https://www.youtube.com/watch?v=14EMlfGGBXY&list=PLcdQvmBAiLJ0')]),
+        ('11/15', '九二一-第九功德', [('[功德品] 第九功德‧921地震', 'https://www.youtube.com/watch?v=hUpDtkqTQNM&list=PLcdQvmBAiLJ0')]),
+        ('11/15', '減災工程', [('[功德品] 大愛為樑(減災希望工程)', 'https://www.youtube.com/watch?v=Qu7wLnDXivU&list=PLcdQvmBAiLJ0')]),
+        ('11/15', '抱佛恩', [('[功德品] 報佛恩', 'https://www.youtube.com/watch?v=KwsN8MKQxOE&list=PLcdQvmBAiLJ0')]),
+        ('11/15', '第十功德', [
+            ('[功德品] 飛天‧白衣走', 'https://www.youtube.com/watch?v=eyAZbFSw39M&list=PLcdQvmBAiLJ0'),
+            ('[功德品] 飛天‧藍衣走', 'https://www.youtube.com/watch?v=8FLAEwVIV4k&list=PLcdQvmBAiLJ0'),
+            ('[功德品] 飛天‧不動', 'https://www.youtube.com/watch?v=8zdJcA0VUMA&list=PLcdQvmBAiLJ0')
+        ])
+    ]
+
+    def extract_vid(u):
+        m = re.search(r'(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})', u)
+        return m.group(1) if m else ''
+
+    for cat in ['fiveContinents1', 'fiveContinents2']:
+        items = action_hints_data.get(cat, [])
+        for item in items:
+            title = item.get('title', '')
+            for sess_prefix, keyword, video_entries in VIDEO_INJECTIONS:
+                if sess_prefix in title and keyword in title:
+                    item['videos'] = [
+                        {'title': label, 'url': url, 'videoId': extract_vid(url)}
+                        for label, url in video_entries
+                    ]
 
     # Save to action_hints_data.js
     js_content = (

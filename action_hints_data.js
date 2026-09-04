@@ -3,6 +3,7 @@ const ACTION_HINTS_DATA = {
   "circle": [
     {
       "title": "序，面甲舞台圓弧線→乙",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -92,6 +93,7 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "生，甲舞台圓弧線",
+      "videos": [],
       "details": [
         {
           "type": "image",
@@ -137,6 +139,7 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "老，乙",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -170,6 +173,7 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "病，乙",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -203,6 +207,7 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "5.死，乙",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -248,6 +253,7 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "6.六度",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -299,6 +305,7 @@ const ACTION_HINTS_DATA = {
   "xingYuan": [
     {
       "title": "7.行願",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -388,6 +395,7 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "8.開經偈",
+      "videos": [],
       "details": [
         {
           "type": "image",
@@ -471,6 +479,7 @@ const ACTION_HINTS_DATA = {
   "miLuo": [
     {
       "title": "9.扛天下米籮/甲45度",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -518,6 +527,7 @@ const ACTION_HINTS_DATA = {
   "jingSi": [
     {
       "title": "10.靜思家風/舞台正向法師，其餘面向法師45度",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -585,6 +595,7 @@ const ACTION_HINTS_DATA = {
   "lamp": [
     {
       "title": "11.點一盞燈",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -656,6 +667,7 @@ const ACTION_HINTS_DATA = {
   "noBoat": [
     {
       "title": "12.菜市場的五毛錢/面向乙舞台",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -699,6 +711,7 @@ const ACTION_HINTS_DATA = {
   "noBoat3": [
     {
       "title": "11/12、11/14：13.是諸眾生(第一三天-圍爐)",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -752,6 +765,7 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/13、11/15：13.是諸眾生(第二四天-米甕與大魚)",
+      "videos": [],
       "details": [
         {
           "type": "image",
@@ -819,6 +833,7 @@ const ACTION_HINTS_DATA = {
   "bigV": [
     {
       "title": "14.地藏經/面向乙舞台",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -860,6 +875,7 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "15.四弘誓願",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -925,6 +941,7 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "16.醫療梵唄/面乙舞台；小V+大V內側跪",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -984,6 +1001,7 @@ const ACTION_HINTS_DATA = {
   "daChuanShi": [
     {
       "title": "19.大醫王",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -1055,6 +1073,7 @@ const ACTION_HINTS_DATA = {
   "boneDonation": [
     {
       "title": "17.骨捐",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -1128,6 +1147,7 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "18.能捨",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -1211,6 +1231,7 @@ const ACTION_HINTS_DATA = {
   "edu": [
     {
       "title": "19.說法品梵唄",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -1268,6 +1289,7 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "20.無量易經終曲~無語良師VCR",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -1309,6 +1331,7 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "21.大體老師捨身育才",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -1358,6 +1381,7 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "22.慈濟中小學-小樹啊!",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -1419,6 +1443,7 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "23.人文畢業典禮組曲-成長",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -1484,6 +1509,7 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "24.人文畢業典禮組曲-感恩",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -1549,6 +1575,7 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "25.教聯會曲目：藥草喻",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -1612,6 +1639,7 @@ const ACTION_HINTS_DATA = {
   "humanities1": [
     {
       "title": "26.慈誠隊歌",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -1677,6 +1705,7 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "27.父母恩重難報經",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -1788,6 +1817,7 @@ const ACTION_HINTS_DATA = {
   "humanities2": [
     {
       "title": "28.大愛讓世界亮起來",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -1837,6 +1867,7 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "29.天空破了洞",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -1890,6 +1921,7 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "30.環保志工",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -1947,6 +1979,7 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "31.代謝不住",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -2054,6 +2087,13 @@ const ACTION_HINTS_DATA = {
   "fiveContinents1": [
     {
       "title": "11/12：32.貧中之富-樂生",
+      "videos": [
+        {
+          "title": "[功德品] 樂生",
+          "url": "https://www.youtube.com/watch?v=mGhnmtxZrn8&list=PLbIvC-A2H2ko",
+          "videoId": "mGhnmtxZrn8"
+        }
+      ],
       "details": [
         {
           "type": "text",
@@ -2087,6 +2127,13 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/15：32.貧中之富-樂生",
+      "videos": [
+        {
+          "title": "[功德品] 樂生",
+          "url": "https://www.youtube.com/watch?v=mGhnmtxZrn8&list=PLcdQvmBAiLJ0",
+          "videoId": "mGhnmtxZrn8"
+        }
+      ],
       "details": [
         {
           "type": "text",
@@ -2120,6 +2167,13 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/12：33.富中之富\tA",
+      "videos": [
+        {
+          "title": "[功德品] 富中之富 A",
+          "url": "https://www.youtube.com/watch?v=m2NvdK1rQpk&list=PLbIvC-A2H2ko",
+          "videoId": "m2NvdK1rQpk"
+        }
+      ],
       "details": [
         {
           "type": "text",
@@ -2181,6 +2235,13 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/14：33.富中之富\tA",
+      "videos": [
+        {
+          "title": "[功德品] 富中之富 A",
+          "url": "https://www.youtube.com/watch?v=m2NvdK1rQpk&list=PLGRfIGuFCUAQ",
+          "videoId": "m2NvdK1rQpk"
+        }
+      ],
       "details": [
         {
           "type": "text",
@@ -2242,6 +2303,13 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/13：32.富中之富\tB",
+      "videos": [
+        {
+          "title": "[功德品] 富中之富 B",
+          "url": "https://www.youtube.com/watch?v=14EMlfGGBXY&list=PLGafJimf9RDw",
+          "videoId": "14EMlfGGBXY"
+        }
+      ],
       "details": [
         {
           "type": "text",
@@ -2299,6 +2367,13 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/15：32.富中之富\tB",
+      "videos": [
+        {
+          "title": "[功德品] 富中之富 B",
+          "url": "https://www.youtube.com/watch?v=14EMlfGGBXY&list=PLcdQvmBAiLJ0",
+          "videoId": "14EMlfGGBXY"
+        }
+      ],
       "details": [
         {
           "type": "text",
@@ -2353,11 +2428,21 @@ const ACTION_HINTS_DATA = {
           "content": "又見菩薩齊合掌\t千萬偈頌讚法王"
         }
       ]
-    }
-  ],
-  "fiveContinents2": [
+    },
     {
       "title": "34.開經書",
+      "videos": [
+        {
+          "title": "東班",
+          "url": "https://youtu.be/p2KSIGqj5VE",
+          "videoId": "p2KSIGqj5VE"
+        },
+        {
+          "title": "西班",
+          "url": "https://youtu.be/dyWGw6dC88I",
+          "videoId": "dyWGw6dC88I"
+        }
+      ],
       "details": [
         {
           "type": "text",
@@ -2400,9 +2485,18 @@ const ACTION_HINTS_DATA = {
           "src": "images/action_hints/hint_90.jpg"
         }
       ]
-    },
+    }
+  ],
+  "fiveContinents2": [
     {
       "title": "11/12：35.約旦",
+      "videos": [
+        {
+          "title": "[功德品] 第三功德‧約旦+土耳其",
+          "url": "https://www.youtube.com/watch?v=0UcRe5beSzw&list=PLbIvC-A2H2ko",
+          "videoId": "0UcRe5beSzw"
+        }
+      ],
       "details": [
         {
           "type": "text",
@@ -2444,6 +2538,13 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/12：36.【曲目2：啟航】",
+      "videos": [
+        {
+          "title": "[功德品] 張起大愛的風帆‧約旦(法海)",
+          "url": "https://www.youtube.com/watch?v=MD8To93EY0I&list=PLbIvC-A2H2ko",
+          "videoId": "MD8To93EY0I"
+        }
+      ],
       "details": [
         {
           "type": "text",
@@ -2481,6 +2582,13 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/12：37.黑區變亮區",
+      "videos": [
+        {
+          "title": "[功德品] 第六功德‧黑區變亮區",
+          "url": "https://www.youtube.com/watch?v=1SAdHJZAVuc&list=PLbIvC-A2H2ko",
+          "videoId": "1SAdHJZAVuc"
+        }
+      ],
       "details": [
         {
           "type": "text",
@@ -2506,6 +2614,13 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/12：38.黑區變亮區",
+      "videos": [
+        {
+          "title": "[功德品] 諸惡道險猶長遠‧黑區變亮區(法海)",
+          "url": "https://www.youtube.com/watch?v=y2cdRGMovd0&list=PLbIvC-A2H2ko",
+          "videoId": "y2cdRGMovd0"
+        }
+      ],
       "details": [
         {
           "type": "text",
@@ -2543,6 +2658,13 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/12：39.莫三比克",
+      "videos": [
+        {
+          "title": "[功德品] 第八功德‧非洲",
+          "url": "https://www.youtube.com/watch?v=vZU-rtMuEoE&list=PLbIvC-A2H2ko",
+          "videoId": "vZU-rtMuEoE"
+        }
+      ],
       "details": [
         {
           "type": "image",
@@ -2584,6 +2706,13 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/12：40.莫三比克-髻珠喻經文",
+      "videos": [
+        {
+          "title": "[功德品] 身口意念應守護(莫三比克‧法海)",
+          "url": "https://www.youtube.com/watch?v=SCohDEBScvY&list=PLbIvC-A2H2ko",
+          "videoId": "SCohDEBScvY"
+        }
+      ],
       "details": [
         {
           "type": "image",
@@ -2653,6 +2782,13 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/12：41.台灣救災集錦",
+      "videos": [
+        {
+          "title": "[功德品] 第五功德‧台灣救災集錦",
+          "url": "https://www.youtube.com/watch?v=aNi9Y8qbZp0&list=PLbIvC-A2H2ko",
+          "videoId": "aNi9Y8qbZp0"
+        }
+      ],
       "details": [
         {
           "type": "text",
@@ -2678,6 +2814,13 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/13：34.土耳其",
+      "videos": [
+        {
+          "title": "[功德品] 第三功德‧約旦+土耳其",
+          "url": "https://www.youtube.com/watch?v=0UcRe5beSzw&list=PLGafJimf9RDw",
+          "videoId": "0UcRe5beSzw"
+        }
+      ],
       "details": [
         {
           "type": "text",
@@ -2715,6 +2858,13 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/13：35.南非-第八功德",
+      "videos": [
+        {
+          "title": "[功德品] 第八功德‧非洲",
+          "url": "https://www.youtube.com/watch?v=vZU-rtMuEoE&list=PLGafJimf9RDw",
+          "videoId": "vZU-rtMuEoE"
+        }
+      ],
       "details": [
         {
           "type": "image",
@@ -2756,6 +2906,13 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/13：36.南非-髻珠喻經文",
+      "videos": [
+        {
+          "title": "11/13 [功德品] 身口意念應守護(南非‧法海)",
+          "url": "https://www.youtube.com/watch?v=htAI4IbqJtE&list=PLGafJimf9RDw",
+          "videoId": "htAI4IbqJtE"
+        }
+      ],
       "details": [
         {
           "type": "image",
@@ -2825,6 +2982,18 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/13：37.印尼",
+      "videos": [
+        {
+          "title": "[功德品] 第九功德‧印尼",
+          "url": "https://www.youtube.com/watch?v=CvAlUYsudqk&list=PLGafJimf9RDw",
+          "videoId": "CvAlUYsudqk"
+        },
+        {
+          "title": "[功德品] 菩薩慈悲憫眾生‧印尼(法海)",
+          "url": "https://www.youtube.com/watch?v=xmX4NrnNqJA&list=PLGafJimf9RDw",
+          "videoId": "xmX4NrnNqJA"
+        }
+      ],
       "details": [
         {
           "type": "text",
@@ -2890,6 +3059,13 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/14：34.第二功德-緬甸",
+      "videos": [
+        {
+          "title": "11/14 [功德品] 第二功德 緬甸米撲滿",
+          "url": "https://www.youtube.com/watch?v=yeEd_aeAv5k&list=PLGRfIGuFCUAQ",
+          "videoId": "yeEd_aeAv5k"
+        }
+      ],
       "details": [
         {
           "type": "image",
@@ -2971,6 +3147,13 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/14：34. 八八風災-第七功德",
+      "videos": [
+        {
+          "title": "[功德品] 第七功德‧莫拉克風災",
+          "url": "https://www.youtube.com/watch?v=mjPNSTARlmY&list=PLGRfIGuFCUAQ",
+          "videoId": "mjPNSTARlmY"
+        }
+      ],
       "details": [
         {
           "type": "text",
@@ -3020,6 +3203,13 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/14：35.泰北-第四功德",
+      "videos": [
+        {
+          "title": "[功德品] 第四功德‧泰北",
+          "url": "https://www.youtube.com/watch?v=_iO0oVSMR8s&list=PLGRfIGuFCUAQ",
+          "videoId": "_iO0oVSMR8s"
+        }
+      ],
       "details": [
         {
           "type": "text",
@@ -3073,6 +3263,13 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/14：36.辛巴威-第八功德",
+      "videos": [
+        {
+          "title": "[功德品] 第八功德‧非洲",
+          "url": "https://www.youtube.com/watch?v=vZU-rtMuEoE&list=PLGRfIGuFCUAQ",
+          "videoId": "vZU-rtMuEoE"
+        }
+      ],
       "details": [
         {
           "type": "text",
@@ -3110,6 +3307,13 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/14：36.辛巴威-髻珠喻經文",
+      "videos": [
+        {
+          "title": "[功德品] 身口意念應守護(辛巴威)",
+          "url": "https://www.youtube.com/watch?v=hfwvSIDG0EE&list=PLGRfIGuFCUAQ",
+          "videoId": "hfwvSIDG0EE"
+        }
+      ],
       "details": [
         {
           "type": "image",
@@ -3179,6 +3383,13 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/14：37.辛巴威-生生世世都在菩提中",
+      "videos": [
+        {
+          "title": "[功德品] 生生世世都在菩提中(辛巴威)",
+          "url": "https://www.youtube.com/watch?v=cSjyuO_KRp8&list=PLGRfIGuFCUAQ",
+          "videoId": "cSjyuO_KRp8"
+        }
+      ],
       "details": [
         {
           "type": "text",
@@ -3240,6 +3451,13 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/15：35.九二一-第九功德",
+      "videos": [
+        {
+          "title": "[功德品] 第九功德‧921地震",
+          "url": "https://www.youtube.com/watch?v=hUpDtkqTQNM&list=PLcdQvmBAiLJ0",
+          "videoId": "hUpDtkqTQNM"
+        }
+      ],
       "details": [
         {
           "type": "text",
@@ -3265,6 +3483,7 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/15：36.九二一-化城喻(若入是城)",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -3318,6 +3537,7 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/15：37.九二一-化城喻(諸惡道險)",
+      "videos": [],
       "details": [
         {
           "type": "text",
@@ -3343,6 +3563,13 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/15：38.減災工程",
+      "videos": [
+        {
+          "title": "[功德品] 大愛為樑(減災希望工程)",
+          "url": "https://www.youtube.com/watch?v=Qu7wLnDXivU&list=PLcdQvmBAiLJ0",
+          "videoId": "Qu7wLnDXivU"
+        }
+      ],
       "details": [
         {
           "type": "text",
@@ -3368,6 +3595,13 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/15：39.抱佛恩",
+      "videos": [
+        {
+          "title": "[功德品] 報佛恩",
+          "url": "https://www.youtube.com/watch?v=KwsN8MKQxOE&list=PLcdQvmBAiLJ0",
+          "videoId": "KwsN8MKQxOE"
+        }
+      ],
       "details": [
         {
           "type": "text",
@@ -3401,6 +3635,23 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/15：40.【曲目2：第十功德】",
+      "videos": [
+        {
+          "title": "[功德品] 飛天‧白衣走",
+          "url": "https://www.youtube.com/watch?v=eyAZbFSw39M&list=PLcdQvmBAiLJ0",
+          "videoId": "eyAZbFSw39M"
+        },
+        {
+          "title": "[功德品] 飛天‧藍衣走",
+          "url": "https://www.youtube.com/watch?v=8FLAEwVIV4k&list=PLcdQvmBAiLJ0",
+          "videoId": "8FLAEwVIV4k"
+        },
+        {
+          "title": "[功德品] 飛天‧不動",
+          "url": "https://www.youtube.com/watch?v=8zdJcA0VUMA&list=PLcdQvmBAiLJ0",
+          "videoId": "8zdJcA0VUMA"
+        }
+      ],
       "details": [
         {
           "type": "text",

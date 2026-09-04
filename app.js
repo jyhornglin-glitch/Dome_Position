@@ -695,6 +695,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupActionHintsZoom();
     setupLyricsSearch();
     setupLyricsFontSize();
+    setupLyricsVideoModal();
     renderLyricsOsContent();
   }
 
@@ -1340,6 +1341,26 @@ document.addEventListener('DOMContentLoaded', () => {
       titleRow.appendChild(numSpan);
       titleRow.appendChild(titleH4);
 
+      // Actions Group for Video & Audio Buttons
+      const actionsGroup = document.createElement('div');
+      actionsGroup.className = 'lyrics-actions-group';
+
+      // YouTube Video Play Button if videos exist
+      if (sec.videos && sec.videos.length > 0) {
+        const videoBtn = document.createElement('button');
+        videoBtn.className = 'lyrics-video-btn';
+        videoBtn.setAttribute('title', `觀看示範影片 (${sec.videos.length} 部)`);
+        videoBtn.innerHTML = '<i class="fa-brands fa-youtube"></i> <span>觀看影片</span>';
+
+        videoBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          stopLyricsAudio();
+          openLyricsVideoModal(sec.title, sec.videos);
+        });
+
+        actionsGroup.appendChild(videoBtn);
+      }
+
       // Audio Play Button if audio path exists
       if (sec.audio) {
         const audioBtn = document.createElement('button');
@@ -1429,7 +1450,11 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
 
-        titleRow.appendChild(audioBtn);
+        actionsGroup.appendChild(audioBtn);
+      }
+
+      if (actionsGroup.children.length > 0) {
+        titleRow.appendChild(actionsGroup);
       }
 
       const metaRow = document.createElement('div');
@@ -2629,6 +2654,104 @@ document.addEventListener('DOMContentLoaded', () => {
     if (localPt) localPt.classList.add('active-formation');
   }
 
+  // ─── Lyrics & Action Hint YouTube Video Modal ───
+  function openLyricsVideoModal(sectionTitle, videos) {
+    const modal = document.getElementById('lyricsVideoModal');
+    const modalTitle = document.getElementById('lyricsVideoModalTitle');
+    const tabsContainer = document.getElementById('lyricsVideoTabs');
+    const iframe = document.getElementById('lyricsVideoIframe');
+    const subTitleEl = document.getElementById('lyricsVideoSubTitle');
+    const externalLink = document.getElementById('lyricsVideoExternalLink');
+
+    if (!modal || !iframe || !videos || videos.length === 0) return;
+
+    // Pause lyrics background audio if playing
+    stopLyricsAudio();
+
+    // Set Modal Header Title
+    if (modalTitle) {
+      modalTitle.innerHTML = `<i class="fa-brands fa-youtube" style="color: #ef4444; margin-right: 6px;"></i> ${sectionTitle || '演繹段落示範影片'}`;
+    }
+
+    function playVideo(video) {
+      const vId = video.videoId || getYouTubeVideoId(video.url);
+      if (!vId) return;
+      iframe.src = `https://www.youtube-nocookie.com/embed/${vId}?autoplay=1&rel=0`;
+      if (subTitleEl) {
+        subTitleEl.textContent = video.title || '';
+      }
+      if (externalLink) {
+        externalLink.href = video.url || `https://www.youtube.com/watch?v=${vId}`;
+      }
+    }
+
+    if (videos.length === 1) {
+      if (tabsContainer) {
+        tabsContainer.innerHTML = '';
+        tabsContainer.style.display = 'none';
+      }
+      playVideo(videos[0]);
+    } else {
+      if (tabsContainer) {
+        tabsContainer.innerHTML = '';
+        tabsContainer.style.display = 'flex';
+
+        videos.forEach((v, idx) => {
+          const tabBtn = document.createElement('button');
+          tabBtn.type = 'button';
+          tabBtn.className = 'lyrics-video-tab-btn' + (idx === 0 ? ' active' : '');
+          
+          let displayTitle = v.title || `版本 ${idx + 1}`;
+          displayTitle = displayTitle.replace(/^\[.*?\]\s*/, '').replace(/^[0-9\/]+\s*/, '');
+          tabBtn.innerHTML = `<i class="fa-solid fa-play" style="font-size: 11px; margin-right: 4px;"></i> ${displayTitle}`;
+
+          tabBtn.addEventListener('click', () => {
+            tabsContainer.querySelectorAll('.lyrics-video-tab-btn').forEach(btn => btn.classList.remove('active'));
+            tabBtn.classList.add('active');
+            playVideo(v);
+          });
+          tabsContainer.appendChild(tabBtn);
+        });
+      }
+      playVideo(videos[0]);
+    }
+
+    modal.style.display = 'flex';
+  }
+
+  function closeLyricsVideoModal() {
+    const modal = document.getElementById('lyricsVideoModal');
+    const iframe = document.getElementById('lyricsVideoIframe');
+    if (iframe) {
+      iframe.src = ''; // Stop video playback immediately
+    }
+    if (modal) {
+      modal.style.display = 'none';
+    }
+  }
+
+  function setupLyricsVideoModal() {
+    const modal = document.getElementById('lyricsVideoModal');
+    const closeBtn = document.getElementById('closeLyricsVideoModalBtn');
+    if (!modal) return;
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeLyricsVideoModal);
+    }
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeLyricsVideoModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.style.display === 'flex') {
+        closeLyricsVideoModal();
+      }
+    });
+  }
+
   // Get YouTube video ID from URL
   function getYouTubeVideoId(url) {
     if (!url) return null;
@@ -2636,28 +2759,13 @@ document.addEventListener('DOMContentLoaded', () => {
     return match ? match[1] : null;
   }
 
-  // Open YouTube app on mobile, or fallback to browser
+  // Open YouTube video embedded modal with external link option
   function openYouTubeVideo(videoId, originalUrl) {
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    if (isMobile) {
-      const isiOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-      let appUrl = '';
-      if (isiOS) {
-        appUrl = `youtube://watch?v=${videoId}`;
-      } else {
-        appUrl = `intent://www.youtube.com/watch?v=${videoId}#Intent;package=com.google.android.youtube;scheme=https;end`;
-      }
-      
-      // Try redirecting to custom URL scheme
-      window.location.href = appUrl;
-      
-      // Fallback redirect after 1.5 seconds if target app did not wake up
-      setTimeout(() => {
-        window.open(originalUrl, '_blank');
-      }, 1500);
-    } else {
-      window.open(originalUrl, '_blank');
-    }
+    openLyricsVideoModal('演繹示範影片', [{
+      title: '示範影片',
+      videoId: videoId,
+      url: originalUrl
+    }]);
   }
 
   // Render step navigation flow walkthrough list as Action Hints
@@ -2675,9 +2783,20 @@ document.addEventListener('DOMContentLoaded', () => {
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
       
-      const ytRegex = /(https?:\/\/(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})(?:[^\s]*))/gi;
-      return escaped.replace(ytRegex, function(match, url, videoId) {
-        return `<button class="yt-red-btn" data-video-id="${videoId}" data-url="${url}"><i class="fa-brands fa-youtube"></i> 播放</button>`;
+      const ytLineRegex = /(?:([^\n<>]*(?:示範影片|東班|西班|白衣走|藍衣走|不動))[:：\s]*)?(https?:\/\/(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})(?:[^\s<]*))/gi;
+      
+      return escaped.replace(ytLineRegex, function(match, label, url, videoId) {
+        let btnLabel = '觀看示範影片';
+        if (label) {
+          const cleanLabel = label.trim();
+          if (cleanLabel.includes('東班')) btnLabel = '觀看東班示範影片';
+          else if (cleanLabel.includes('西班')) btnLabel = '觀看西班示範影片';
+          else if (cleanLabel.includes('白衣')) btnLabel = '觀看白衣走示範影片';
+          else if (cleanLabel.includes('藍衣')) btnLabel = '觀看藍衣走示範影片';
+          else if (cleanLabel.includes('不動')) btnLabel = '觀看不動示範影片';
+          else if (cleanLabel) btnLabel = `觀看${cleanLabel}`;
+        }
+        return `<button type="button" class="yt-red-btn" data-video-id="${videoId}" data-url="${url}"><i class="fa-brands fa-youtube"></i> ${btnLabel}</button>`;
       });
     }
 
@@ -2731,8 +2850,32 @@ document.addEventListener('DOMContentLoaded', () => {
           itemDiv.style.cssText = 'padding: 8px 0; border-bottom: 1px dashed rgba(180, 83, 9, 0.1);';
           
           const itemTitle = document.createElement('div');
-          itemTitle.style.cssText = 'font-weight: bold; color: #b45309; font-size: calc(13px * var(--hints-scale, 1)); margin-bottom: 4px;';
-          itemTitle.innerHTML = formatTextWithYtButtons(item.title);
+          itemTitle.className = 'action-hint-item-title-row';
+          itemTitle.style.cssText = 'display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; font-weight: bold; color: #b45309; font-size: calc(13px * var(--hints-scale, 1)); margin-bottom: 6px;';
+          
+          const titleSpan = document.createElement('span');
+          titleSpan.innerHTML = formatTextWithYtButtons(item.title);
+          itemTitle.appendChild(titleSpan);
+
+          if (item.videos && item.videos.length > 0) {
+            const vidGroup = document.createElement('div');
+            vidGroup.style.cssText = 'display: inline-flex; gap: 6px; flex-wrap: wrap; margin-left: auto;';
+            item.videos.forEach(v => {
+              const btn = document.createElement('button');
+              btn.type = 'button';
+              btn.className = 'yt-red-btn';
+              btn.setAttribute('data-video-id', v.videoId);
+              btn.setAttribute('data-url', v.url);
+              let btnLabel = v.title.replace(/^\[.*?\]\s*/, '').replace(/^[0-9\/]+[：:\s]*/, '');
+              btn.innerHTML = `<i class="fa-brands fa-youtube"></i> <span>觀看 ${btnLabel || '示範影片'}</span>`;
+              btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openLyricsVideoModal(item.title, [v]);
+              });
+              vidGroup.appendChild(btn);
+            });
+            itemTitle.appendChild(vidGroup);
+          }
           itemDiv.appendChild(itemTitle);
           
           item.details.forEach(detail => {
@@ -6741,14 +6884,20 @@ document.addEventListener('DOMContentLoaded', () => {
           if (detail.type === 'text') {
             const ytId = getYouTubeVideoId(detail.content);
             if (ytId) {
-              const btn = document.createElement('a');
-              btn.className = 'yt-hint-btn';
-              btn.href = 'javascript:void(0);';
-              let btnText = '播放提示影片';
+              const btn = document.createElement('button');
+              btn.type = 'button';
+              btn.className = 'yt-hint-btn yt-red-btn';
+              let btnText = '觀看示範影片';
               if (detail.content.includes('東班')) {
-                btnText = '播放東班影片';
+                btnText = '觀看東班示範影片';
               } else if (detail.content.includes('西班')) {
-                btnText = '播放西班影片';
+                btnText = '觀看西班示範影片';
+              } else if (detail.content.includes('白衣')) {
+                btnText = '觀看白衣走示範影片';
+              } else if (detail.content.includes('藍衣')) {
+                btnText = '觀看藍衣走示範影片';
+              } else if (detail.content.includes('不動')) {
+                btnText = '觀看不動示範影片';
               }
               btn.innerHTML = `<i class="fa-brands fa-youtube yt-icon"></i> ${btnText}`;
               btn.addEventListener('click', (e) => {
