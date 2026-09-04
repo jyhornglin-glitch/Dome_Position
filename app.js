@@ -162,10 +162,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const isA = category.includes('A') || category.includes('Ａ');
     const isB = category.includes('B') || category.includes('Ｂ');
 
-    const hasA = /([AaＡａ])/.test(segment);
-    const hasB = /([BbＢｂ])/.test(segment);
-    const hasWhite = segment.includes('白');
-    const hasBlue = segment.includes('藍');
+    const nonUrlSegment = segment.replace(/https?:\/\/[^\s]+/g, '');
+    const hasA = /([AaＡａ])/.test(nonUrlSegment);
+    const hasB = /([BbＢｂ])/.test(nonUrlSegment);
+    const hasWhite = nonUrlSegment.includes('白');
+    const hasBlue = nonUrlSegment.includes('藍');
 
     // 1. 顏色與組別過濾
     if (hasBlue && !hasWhite && isWhite) return false;
@@ -209,7 +210,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const dateStr = filterCtx.dateStr;
     const hasDateLabel = dateStr && ['11/12', '11/13', '11/14', '11/15'].some(d => text.includes(d));
     
-    if (!text.includes('白') && !text.includes('藍') && !/([AaBbＡａＢｂ])/.test(text) &&
+    const nonUrlText = text.replace(/https?:\/\/[^\s]+/g, '');
+    if (!nonUrlText.includes('白') && !nonUrlText.includes('藍') && !/([AaBbＡａＢｂ])/.test(nonUrlText) &&
         !text.includes('東班') && !text.includes('西班') && !text.includes('東西一') && !text.includes('東西二') &&
         !hasDateLabel) {
       return text;
@@ -2925,6 +2927,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const vidGroup = document.createElement('div');
             vidGroup.style.cssText = 'display: inline-flex; gap: 6px; flex-wrap: wrap; margin-left: auto;';
             item.videos.forEach(v => {
+              if (currentPerformer && currentPerformer.team) {
+                if (v.title.includes('東班') && currentPerformer.team === '西班') return;
+                if (v.title.includes('西班') && currentPerformer.team === '東班') return;
+              }
               const btn = document.createElement('button');
               btn.type = 'button';
               btn.className = 'yt-red-btn';
@@ -2939,7 +2945,9 @@ document.addEventListener('DOMContentLoaded', () => {
               });
               vidGroup.appendChild(btn);
             });
-            itemTitle.appendChild(vidGroup);
+            if (vidGroup.children.length > 0) {
+              itemTitle.appendChild(vidGroup);
+            }
           }
           itemDiv.appendChild(itemTitle);
           
@@ -6936,6 +6944,10 @@ document.addEventListener('DOMContentLoaded', () => {
           const vidGroup = document.createElement('div');
           vidGroup.style.cssText = 'display: inline-flex; gap: 6px; flex-wrap: wrap; margin-left: auto;';
           item.videos.forEach(v => {
+            if (currentPerformer && currentPerformer.team) {
+              if (v.title.includes('東班') && currentPerformer.team === '西班') return;
+              if (v.title.includes('西班') && currentPerformer.team === '東班') return;
+            }
             const btn = document.createElement('button');
             btn.type = 'button';
             btn.className = 'yt-red-btn';
@@ -6950,7 +6962,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             vidGroup.appendChild(btn);
           });
-          itemTitle.appendChild(vidGroup);
+          if (vidGroup.children.length > 0) {
+            itemTitle.appendChild(vidGroup);
+          }
         }
         itemDiv.appendChild(itemTitle);
         

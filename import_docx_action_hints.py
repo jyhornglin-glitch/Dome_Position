@@ -339,6 +339,76 @@ def main():
                         for label, url in video_entries
                     ]
 
+    # Extract YouTube videos from details for chapters other than fiveContinents1 and fiveContinents2
+    PROTECTED_CATEGORIES = {'fiveContinents1', 'fiveContinents2'}
+
+    for cat, items in action_hints_data.items():
+        if cat in PROTECTED_CATEGORIES:
+            continue
+        for item in items:
+            new_details = []
+            extracted_videos = list(item.get('videos', []))
+            seen_vids = {v['videoId'] for v in extracted_videos if v.get('videoId')}
+
+            for detail in item.get('details', []):
+                if detail.get('type') == 'text':
+                    text_content = detail.get('content', '')
+                    matches = list(re.finditer(r'(https?://(?:www\.)?(?:youtube\.com/watch\?v=|youtu\.be/)([a-zA-Z0-9_-]{11})[^\s<]*)', text_content))
+                    if matches:
+                        for m in matches:
+                            raw_url = m.group(1)
+                            vid = m.group(2)
+                            
+                            label = '示範影片'
+                            if '東班' in text_content:
+                                label = '東班示範影片'
+                            elif '西班' in text_content:
+                                label = '西班示範影片'
+                            elif '白衣' in text_content:
+                                label = '白衣走示範影片'
+                            elif '藍衣' in text_content:
+                                label = '藍衣走示範影片'
+                            elif '不動' in text_content:
+                                label = '不動示範影片'
+                            elif '點一盞燈' in item.get('title', ''):
+                                label = '點一盞燈示範影片'
+                            elif '骨捐' in item.get('title', ''):
+                                label = '骨捐示範影片'
+                            elif '能捨' in item.get('title', ''):
+                                label = '能捨示範影片'
+                            elif '行願' in item.get('title', ''):
+                                label = '行願示範影片'
+                            elif '大船師' in item.get('title', '') or '大醫王' in item.get('title', ''):
+                                label = '大船師示範影片'
+                            elif item.get('title', ''):
+                                clean_t = re.sub(r'^[0-9\.\/、：:\s]+', '', item.get('title', '')).strip()
+                                label = f"{clean_t}示範影片" if clean_t else '示範影片'
+
+                            if vid and vid not in seen_vids:
+                                extracted_videos.append({
+                                    'title': label,
+                                    'url': raw_url,
+                                    'videoId': vid
+                                })
+                                seen_vids.add(vid)
+
+                        rem = text_content
+                        for m in matches:
+                            rem = rem.replace(m.group(0), '')
+                        rem = re.sub(r'^(?:東班|西班|示範影片|白衣走|藍衣走|不動)[:：\s]*', '', rem).strip()
+                        if rem:
+                            new_details.append({
+                                'type': 'text',
+                                'content': rem
+                            })
+                    else:
+                        new_details.append(detail)
+                else:
+                    new_details.append(detail)
+
+            item['videos'] = extracted_videos
+            item['details'] = new_details
+
     # Save to action_hints_data.js
     js_content = (
         "// Action Hints Database — 自動由 import_docx_action_hints.py 產生，請勿手動修改\n"

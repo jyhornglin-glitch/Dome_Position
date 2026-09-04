@@ -3,12 +3,14 @@ const ACTION_HINTS_DATA = {
   "circle": [
     {
       "title": "序，面甲舞台圓弧線→乙",
-      "videos": [],
-      "details": [
+      "videos": [
         {
-          "type": "text",
-          "content": "https://www.youtube.com/watch?v=9xXoD2XVbNY"
-        },
+          "title": "序，面甲舞台圓弧線→乙示範影片",
+          "url": "https://www.youtube.com/watch?v=9xXoD2XVbNY",
+          "videoId": "9xXoD2XVbNY"
+        }
+      ],
+      "details": [
         {
           "type": "image",
           "src": "images/action_hints/hint_1.png"
@@ -139,12 +141,14 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "老，乙",
-      "videos": [],
-      "details": [
+      "videos": [
         {
-          "type": "text",
-          "content": "https://youtu.be/LJZo0hH3nos?si=rOFauQHLk1LPkEEB"
-        },
+          "title": "老，乙示範影片",
+          "url": "https://youtu.be/LJZo0hH3nos?si=rOFauQHLk1LPkEEB",
+          "videoId": "LJZo0hH3nos"
+        }
+      ],
+      "details": [
         {
           "type": "image",
           "src": "images/action_hints/hint_3.png"
@@ -173,12 +177,14 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "病，乙",
-      "videos": [],
-      "details": [
+      "videos": [
         {
-          "type": "text",
-          "content": "https://youtu.be/glh-1pF4StQ?si=G0NyEX6luvvFIvey"
-        },
+          "title": "病，乙示範影片",
+          "url": "https://youtu.be/glh-1pF4StQ?si=G0NyEX6luvvFIvey",
+          "videoId": "glh-1pF4StQ"
+        }
+      ],
+      "details": [
         {
           "type": "image",
           "src": "images/action_hints/hint_4.png"
@@ -207,12 +213,14 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "5.死，乙",
-      "videos": [],
-      "details": [
+      "videos": [
         {
-          "type": "text",
-          "content": "https://youtu.be/gx0R8wK_Wkg?si=GT0b3-ZUYE0VlTVW"
-        },
+          "title": "死，乙示範影片",
+          "url": "https://youtu.be/gx0R8wK_Wkg?si=GT0b3-ZUYE0VlTVW",
+          "videoId": "gx0R8wK_Wkg"
+        }
+      ],
+      "details": [
         {
           "type": "image",
           "src": "images/action_hints/hint_5.png"
@@ -253,12 +261,14 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "6.六度",
-      "videos": [],
-      "details": [
+      "videos": [
         {
-          "type": "text",
-          "content": "https://youtu.be/gZ9C6HM6keg?si=m0uxjBZjhnyM9lhq&t=5"
-        },
+          "title": "六度示範影片",
+          "url": "https://youtu.be/gZ9C6HM6keg?si=m0uxjBZjhnyM9lhq&t=5",
+          "videoId": "gZ9C6HM6keg"
+        }
+      ],
+      "details": [
         {
           "type": "image",
           "src": "images/action_hints/hint_7.png"
@@ -305,12 +315,14 @@ const ACTION_HINTS_DATA = {
   "xingYuan": [
     {
       "title": "7.行願",
-      "videos": [],
-      "details": [
+      "videos": [
         {
-          "type": "text",
-          "content": "https://youtu.be/9up0Hn_Z8LA?si=fA0XCTnEvWScSCEB"
-        },
+          "title": "行願示範影片",
+          "url": "https://youtu.be/9up0Hn_Z8LA?si=fA0XCTnEvWScSCEB",
+          "videoId": "9up0Hn_Z8LA"
+        }
+      ],
+      "details": [
         {
           "type": "image",
           "src": "images/action_hints/hint_9.png"
@@ -479,12 +491,14 @@ const ACTION_HINTS_DATA = {
   "miLuo": [
     {
       "title": "9.扛天下米籮/甲45度",
-      "videos": [],
-      "details": [
+      "videos": [
         {
-          "type": "text",
-          "content": "https://youtu.be/xmwAu0XBonE?si=-YdInFEcAXPHisjt"
-        },
+          "title": "扛天下米籮/甲45度示範影片",
+          "url": "https://youtu.be/xmwAu0XBonE?si=-YdInFEcAXPHisjt",
+          "videoId": "xmwAu0XBonE"
+        }
+      ],
+      "details": [
         {
           "type": "image",
           "src": "images/action_hints/hint_26.jpg"
@@ -527,12 +541,14 @@ const ACTION_HINTS_DATA = {
   "jingSi": [
     {
       "title": "10.靜思家風/舞台正向法師，其餘面向法師45度",
-      "videos": [],
-      "details": [
+      "videos": [
         {
-          "type": "text",
-          "content": "https://youtu.be/FxOew30sJoU?si=YqIyM1A3CgdNCrtm"
-        },
+          "title": "靜思家風/舞台正向法師，其餘面向法師45度示範影片",
+          "url": "https://youtu.be/FxOew30sJoU?si=YqIyM1A3CgdNCrtm",
+          "videoId": "FxOew30sJoU"
+        }
+      ],
+      "details": [
         {
           "type": "image",
           "src": "images/action_hints/hint_28.jpg"
@@ -595,12 +611,14 @@ const ACTION_HINTS_DATA = {
   "lamp": [
     {
       "title": "11.點一盞燈",
-      "videos": [],
-      "details": [
+      "videos": [
         {
-          "type": "text",
-          "content": "https://youtu.be/qBMy7Q4ol7U?si=i2qvUDJx1Xpv9yHo"
-        },
+          "title": "點一盞燈示範影片",
+          "url": "https://youtu.be/qBMy7Q4ol7U?si=i2qvUDJx1Xpv9yHo",
+          "videoId": "qBMy7Q4ol7U"
+        }
+      ],
+      "details": [
         {
           "type": "image",
           "src": "images/action_hints/hint_30.jpg"
@@ -667,12 +685,14 @@ const ACTION_HINTS_DATA = {
   "noBoat": [
     {
       "title": "12.菜市場的五毛錢/面向乙舞台",
-      "videos": [],
-      "details": [
+      "videos": [
         {
-          "type": "text",
-          "content": "https://youtu.be/pzkatOInyss?si=DQnk_77EYyAawLzt&t=5"
-        },
+          "title": "菜市場的五毛錢/面向乙舞台示範影片",
+          "url": "https://youtu.be/pzkatOInyss?si=DQnk_77EYyAawLzt&t=5",
+          "videoId": "pzkatOInyss"
+        }
+      ],
+      "details": [
         {
           "type": "image",
           "src": "images/action_hints/hint_32.png"
@@ -711,12 +731,14 @@ const ACTION_HINTS_DATA = {
   "noBoat3": [
     {
       "title": "11/12、11/14：13.是諸眾生(第一三天-圍爐)",
-      "videos": [],
-      "details": [
+      "videos": [
         {
-          "type": "text",
-          "content": "https://youtu.be/vYxBbQ5FWu0?si=ECAovE17EjbU3aSP"
-        },
+          "title": "是諸眾生(第一三天-圍爐)示範影片",
+          "url": "https://youtu.be/vYxBbQ5FWu0?si=ECAovE17EjbU3aSP",
+          "videoId": "vYxBbQ5FWu0"
+        }
+      ],
+      "details": [
         {
           "type": "image",
           "src": "images/action_hints/hint_35.jpg"
@@ -833,12 +855,14 @@ const ACTION_HINTS_DATA = {
   "bigV": [
     {
       "title": "14.地藏經/面向乙舞台",
-      "videos": [],
-      "details": [
+      "videos": [
         {
-          "type": "text",
-          "content": "https://youtu.be/zb5CV8hthEo?si=sqn-Y27D1C1va39k"
-        },
+          "title": "地藏經/面向乙舞台示範影片",
+          "url": "https://youtu.be/zb5CV8hthEo?si=sqn-Y27D1C1va39k",
+          "videoId": "zb5CV8hthEo"
+        }
+      ],
+      "details": [
         {
           "type": "image",
           "src": "images/action_hints/hint_39.jpg"
@@ -875,12 +899,14 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "15.四弘誓願",
-      "videos": [],
-      "details": [
+      "videos": [
         {
-          "type": "text",
-          "content": "https://youtu.be/FHv_4kQxo9M?si=wUykg41LX2zTjyJy&t=5"
-        },
+          "title": "四弘誓願示範影片",
+          "url": "https://youtu.be/FHv_4kQxo9M?si=wUykg41LX2zTjyJy&t=5",
+          "videoId": "FHv_4kQxo9M"
+        }
+      ],
+      "details": [
         {
           "type": "image",
           "src": "images/action_hints/hint_42.jpg"
@@ -941,12 +967,14 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "16.醫療梵唄/面乙舞台；小V+大V內側跪",
-      "videos": [],
-      "details": [
+      "videos": [
         {
-          "type": "text",
-          "content": "https://youtu.be/vsf-UEEjM_Q?si=T7rqDWumAg87efZW&t=5"
-        },
+          "title": "醫療梵唄/面乙舞台；小V+大V內側跪示範影片",
+          "url": "https://youtu.be/vsf-UEEjM_Q?si=T7rqDWumAg87efZW&t=5",
+          "videoId": "vsf-UEEjM_Q"
+        }
+      ],
+      "details": [
         {
           "type": "image",
           "src": "images/action_hints/hint_44.jpg"
@@ -1001,12 +1029,14 @@ const ACTION_HINTS_DATA = {
   "daChuanShi": [
     {
       "title": "19.大醫王",
-      "videos": [],
-      "details": [
+      "videos": [
         {
-          "type": "text",
-          "content": "https://youtu.be/ExmRPh65YqY?si=SuZicPWrNSf0pL7s"
-        },
+          "title": "大船師示範影片",
+          "url": "https://youtu.be/ExmRPh65YqY?si=SuZicPWrNSf0pL7s",
+          "videoId": "ExmRPh65YqY"
+        }
+      ],
+      "details": [
         {
           "type": "image",
           "src": "images/action_hints/hint_46.jpg"
@@ -1073,12 +1103,14 @@ const ACTION_HINTS_DATA = {
   "boneDonation": [
     {
       "title": "17.骨捐",
-      "videos": [],
-      "details": [
+      "videos": [
         {
-          "type": "text",
-          "content": "https://youtu.be/RT-6CGsLSXk?si=oCbwIuQmBzsq1lLg"
-        },
+          "title": "骨捐示範影片",
+          "url": "https://youtu.be/RT-6CGsLSXk?si=oCbwIuQmBzsq1lLg",
+          "videoId": "RT-6CGsLSXk"
+        }
+      ],
+      "details": [
         {
           "type": "image",
           "src": "images/action_hints/hint_49.jpg"
@@ -1147,12 +1179,14 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "18.能捨",
-      "videos": [],
-      "details": [
+      "videos": [
         {
-          "type": "text",
-          "content": "https://youtu.be/pu8qEPp-sng?si=xDeJiPydk4rYpEWs"
-        },
+          "title": "能捨示範影片",
+          "url": "https://youtu.be/pu8qEPp-sng?si=xDeJiPydk4rYpEWs",
+          "videoId": "pu8qEPp-sng"
+        }
+      ],
+      "details": [
         {
           "type": "image",
           "src": "images/action_hints/hint_51.png"
@@ -1231,16 +1265,19 @@ const ACTION_HINTS_DATA = {
   "edu": [
     {
       "title": "19.說法品梵唄",
-      "videos": [],
+      "videos": [
+        {
+          "title": "東班示範影片",
+          "url": "https://youtu.be/ZSzzxOEqoOs",
+          "videoId": "ZSzzxOEqoOs"
+        },
+        {
+          "title": "西班示範影片",
+          "url": "https://youtu.be/OAvy1CPy1Eo",
+          "videoId": "OAvy1CPy1Eo"
+        }
+      ],
       "details": [
-        {
-          "type": "text",
-          "content": "東班https://youtu.be/ZSzzxOEqoOs"
-        },
-        {
-          "type": "text",
-          "content": "西班https://youtu.be/OAvy1CPy1Eo"
-        },
         {
           "type": "image",
           "src": "images/action_hints/hint_53.png"
@@ -1289,12 +1326,14 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "20.無量易經終曲~無語良師VCR",
-      "videos": [],
-      "details": [
+      "videos": [
         {
-          "type": "text",
-          "content": "https://youtu.be/N6cBLAu1few?si=_84i2oiVtOnDmkBx"
-        },
+          "title": "無量易經終曲~無語良師VCR示範影片",
+          "url": "https://youtu.be/N6cBLAu1few?si=_84i2oiVtOnDmkBx",
+          "videoId": "N6cBLAu1few"
+        }
+      ],
+      "details": [
         {
           "type": "image",
           "src": "images/action_hints/hint_56.png"
@@ -1331,16 +1370,19 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "21.大體老師捨身育才",
-      "videos": [],
+      "videos": [
+        {
+          "title": "東班示範影片",
+          "url": "https://youtu.be/h_7S9z72tGg",
+          "videoId": "h_7S9z72tGg"
+        },
+        {
+          "title": "西班示範影片",
+          "url": "https://youtu.be/zfGeXvsB6n0",
+          "videoId": "zfGeXvsB6n0"
+        }
+      ],
       "details": [
-        {
-          "type": "text",
-          "content": "東班https://youtu.be/h_7S9z72tGg"
-        },
-        {
-          "type": "text",
-          "content": "西班https://youtu.be/zfGeXvsB6n0"
-        },
         {
           "type": "image",
           "src": "images/action_hints/hint_58.png"
@@ -1381,16 +1423,19 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "22.慈濟中小學-小樹啊!",
-      "videos": [],
+      "videos": [
+        {
+          "title": "東班示範影片",
+          "url": "https://youtu.be/h_27YO8HSWc",
+          "videoId": "h_27YO8HSWc"
+        },
+        {
+          "title": "西班示範影片",
+          "url": "https://youtu.be/cu3U0lXUKbs",
+          "videoId": "cu3U0lXUKbs"
+        }
+      ],
       "details": [
-        {
-          "type": "text",
-          "content": "東班https://youtu.be/h_27YO8HSWc"
-        },
-        {
-          "type": "text",
-          "content": "西班https://youtu.be/cu3U0lXUKbs"
-        },
         {
           "type": "image",
           "src": "images/action_hints/hint_61.png"
@@ -1443,16 +1488,19 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "23.人文畢業典禮組曲-成長",
-      "videos": [],
+      "videos": [
+        {
+          "title": "東班示範影片",
+          "url": "https://youtu.be/mCzywnjw7w4",
+          "videoId": "mCzywnjw7w4"
+        },
+        {
+          "title": "西班示範影片",
+          "url": "https://youtu.be/TPAmJ9mh0LY",
+          "videoId": "TPAmJ9mh0LY"
+        }
+      ],
       "details": [
-        {
-          "type": "text",
-          "content": "東班https://youtu.be/mCzywnjw7w4"
-        },
-        {
-          "type": "text",
-          "content": "西班https://youtu.be/TPAmJ9mh0LY"
-        },
         {
           "type": "image",
           "src": "images/action_hints/hint_64.png"
@@ -1509,16 +1557,19 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "24.人文畢業典禮組曲-感恩",
-      "videos": [],
+      "videos": [
+        {
+          "title": "東班示範影片",
+          "url": "https://youtu.be/DwHBrN8fmJE",
+          "videoId": "DwHBrN8fmJE"
+        },
+        {
+          "title": "西班示範影片",
+          "url": "https://youtu.be/Uq29ZgsvxaM",
+          "videoId": "Uq29ZgsvxaM"
+        }
+      ],
       "details": [
-        {
-          "type": "text",
-          "content": "東班https://youtu.be/DwHBrN8fmJE"
-        },
-        {
-          "type": "text",
-          "content": "西班https://youtu.be/Uq29ZgsvxaM"
-        },
         {
           "type": "image",
           "src": "images/action_hints/hint_67.png"
@@ -1575,12 +1626,14 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "25.教聯會曲目：藥草喻",
-      "videos": [],
-      "details": [
+      "videos": [
         {
-          "type": "text",
-          "content": "https://www.youtube.com/watch?v=8ks62kXmDV4"
-        },
+          "title": "教聯會曲目：藥草喻示範影片",
+          "url": "https://www.youtube.com/watch?v=8ks62kXmDV4",
+          "videoId": "8ks62kXmDV4"
+        }
+      ],
+      "details": [
         {
           "type": "image",
           "src": "images/action_hints/hint_70.png"
@@ -1639,12 +1692,14 @@ const ACTION_HINTS_DATA = {
   "humanities1": [
     {
       "title": "26.慈誠隊歌",
-      "videos": [],
-      "details": [
+      "videos": [
         {
-          "type": "text",
-          "content": "https://youtu.be/oWOkGfo1HaA?si=nQoje7a5Wsx-4wqU"
-        },
+          "title": "慈誠隊歌示範影片",
+          "url": "https://youtu.be/oWOkGfo1HaA?si=nQoje7a5Wsx-4wqU",
+          "videoId": "oWOkGfo1HaA"
+        }
+      ],
+      "details": [
         {
           "type": "image",
           "src": "images/action_hints/hint_72.png"
@@ -1705,12 +1760,14 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "27.父母恩重難報經",
-      "videos": [],
-      "details": [
+      "videos": [
         {
-          "type": "text",
-          "content": "https://youtu.be/rB_MHSQ5lcU"
-        },
+          "title": "父母恩重難報經示範影片",
+          "url": "https://youtu.be/rB_MHSQ5lcU",
+          "videoId": "rB_MHSQ5lcU"
+        }
+      ],
+      "details": [
         {
           "type": "image",
           "src": "images/action_hints/hint_75.png"
@@ -1817,12 +1874,14 @@ const ACTION_HINTS_DATA = {
   "humanities2": [
     {
       "title": "28.大愛讓世界亮起來",
-      "videos": [],
-      "details": [
+      "videos": [
         {
-          "type": "text",
-          "content": "https://youtu.be/SM7ZEOxHPfI?si=VuUGQOAcxqbCaBAj"
-        },
+          "title": "大愛讓世界亮起來示範影片",
+          "url": "https://youtu.be/SM7ZEOxHPfI?si=VuUGQOAcxqbCaBAj",
+          "videoId": "SM7ZEOxHPfI"
+        }
+      ],
+      "details": [
         {
           "type": "image",
           "src": "images/action_hints/hint_78.png"
@@ -1867,12 +1926,14 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "29.天空破了洞",
-      "videos": [],
-      "details": [
+      "videos": [
         {
-          "type": "text",
-          "content": "https://youtu.be/BXKq16WyqcE?si=zIpS1VLsZlKeRtsl"
-        },
+          "title": "天空破了洞示範影片",
+          "url": "https://youtu.be/BXKq16WyqcE?si=zIpS1VLsZlKeRtsl",
+          "videoId": "BXKq16WyqcE"
+        }
+      ],
+      "details": [
         {
           "type": "image",
           "src": "images/action_hints/hint_80.png"
@@ -1921,12 +1982,14 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "30.環保志工",
-      "videos": [],
-      "details": [
+      "videos": [
         {
-          "type": "text",
-          "content": "https://youtu.be/UvAfTVN9A2c"
-        },
+          "title": "環保志工示範影片",
+          "url": "https://youtu.be/UvAfTVN9A2c",
+          "videoId": "UvAfTVN9A2c"
+        }
+      ],
+      "details": [
         {
           "type": "image",
           "src": "images/action_hints/hint_82.png"
@@ -1979,12 +2042,14 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "31.代謝不住",
-      "videos": [],
-      "details": [
+      "videos": [
         {
-          "type": "text",
-          "content": "https://youtu.be/7oX93yKqvuo"
-        },
+          "title": "代謝不住示範影片",
+          "url": "https://youtu.be/7oX93yKqvuo",
+          "videoId": "7oX93yKqvuo"
+        }
+      ],
+      "details": [
         {
           "type": "image",
           "src": "images/action_hints/hint_84.png"
