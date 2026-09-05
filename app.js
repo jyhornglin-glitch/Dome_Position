@@ -2618,10 +2618,10 @@ document.addEventListener('DOMContentLoaded', () => {
       formationSelect.value = String(activeFormationIdx);
     }
     
-    // Update step coordinate display
+    // Update step coordinate display (Only coordinate numbers, no label prefix)
     if (activeFormCoord && currentPerformer) {
       const coordStr = getFormationCoordStr(currentPerformer, f.key) || '---';
-      activeFormCoord.textContent = `座標: ${coordStr}`;
+      activeFormCoord.textContent = coordStr;
     }
     
     if (prevBtn) prevBtn.disabled = (activeFormationIdx === 0);
