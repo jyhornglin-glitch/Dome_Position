@@ -214,9 +214,31 @@
                 <div class="map-control-bar" style="margin-top: 0; margin-bottom: 5px;">
                   <button id="prevBtn" class="control-btn"><i class="fa-solid fa-chevron-left"></i> 上一景</button>
                   <div class="active-formation-display">
-                    <span class="active-formation-num" id="activeFormNum">01</span>
-                    <span class="active-formation-title" id="activeFormTitle">起點 (基本隊形)</span>
                     <span class="active-formation-coord" id="activeFormCoord">座標: ---</span>
+                    <span class="active-formation-num" id="activeFormNum">01</span>
+                    <div class="formation-select-wrapper">
+                      <select id="formationSelect" class="formation-select" aria-label="選擇隊形場景">
+                        <option value="0">起點 (基本隊形)</option>
+                        <option value="1">01圓形</option>
+                        <option value="2">02行願</option>
+                        <option value="3">03米籮</option>
+                        <option value="4">04靜思家風</option>
+                        <option value="5">05-1有法船（點一盞燈）</option>
+                        <option value="6">05-2無法船（菜市場5毛錢）</option>
+                        <option value="7">05-3無法船(是諸眾生)</option>
+                        <option value="8">06四弘誓願</option>
+                        <option value="9">07-1大船師</option>
+                        <option value="10">07-2骨捐能捨</option>
+                        <option value="11">08教育</option>
+                        <option value="12">09-1人文(基本隊形)</option>
+                        <option value="13">09-2人文(主機板)</option>
+                        <option value="14">10-1五大洲(台灣)</option>
+                        <option value="15">10-2五大洲</option>
+                        <option value="16">12-1六瑞相</option>
+                      </select>
+                      <i class="fa-solid fa-caret-down formation-select-caret"></i>
+                    </div>
+                    <span class="active-formation-title" id="activeFormTitle" style="display: none;">起點 (基本隊形)</span>
                   </div>
                   <button id="nextBtn" class="control-btn">下一景 <i class="fa-solid fa-chevron-right"></i></button>
                 </div>

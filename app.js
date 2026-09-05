@@ -77,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const nextBtn = document.getElementById('nextBtn');
   const activeFormNum = document.getElementById('activeFormNum');
   const activeFormTitle = document.getElementById('activeFormTitle');
+  const formationSelect = document.getElementById('formationSelect');
   const activeFormCoord = document.getElementById('activeFormCoord');
   
   // State variables
@@ -1029,6 +1030,31 @@ document.addEventListener('DOMContentLoaded', () => {
         syncActiveCardAndStep();
       }
     });
+
+    if (formationSelect) {
+      initFormationSelect();
+      formationSelect.addEventListener('change', (e) => {
+        const newIdx = parseInt(e.target.value, 10);
+        if (!isNaN(newIdx) && newIdx >= 0 && newIdx < formations.length) {
+          activeFormationIdx = newIdx;
+          updateFormationControls();
+          drawLocalGridPath();
+          syncActiveCardAndStep();
+        }
+      });
+    }
+
+    const formationWrapper = document.querySelector('.formation-select-wrapper');
+    if (formationWrapper && formationSelect) {
+      formationWrapper.addEventListener('click', (e) => {
+        if (e.target !== formationSelect) {
+          formationSelect.focus();
+          if (typeof formationSelect.showPicker === 'function') {
+            try { formationSelect.showPicker(); } catch (err) {}
+          }
+        }
+      });
+    }
 
     const showFullTrajectory = document.getElementById('showFullTrajectory');
     if (showFullTrajectory) {
@@ -2571,11 +2597,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function initFormationSelect() {
+    if (!formationSelect) return;
+    formationSelect.innerHTML = '';
+    formations.forEach((f, idx) => {
+      const opt = document.createElement('option');
+      opt.value = String(idx);
+      opt.textContent = f.name;
+      formationSelect.appendChild(opt);
+    });
+    formationSelect.value = String(activeFormationIdx);
+  }
+
   // Update Top Toggle Controls display text and button states
   function updateFormationControls() {
     const f = formations[activeFormationIdx];
-    activeFormNum.textContent = String(activeFormationIdx + 1).padStart(2, '0');
-    activeFormTitle.textContent = f.name;
+    if (activeFormNum) activeFormNum.textContent = String(activeFormationIdx + 1).padStart(2, '0');
+    if (activeFormTitle) activeFormTitle.textContent = f.name;
+    if (formationSelect && formationSelect.value !== String(activeFormationIdx)) {
+      formationSelect.value = String(activeFormationIdx);
+    }
     
     // Update step coordinate display
     if (activeFormCoord && currentPerformer) {
@@ -2583,8 +2624,8 @@ document.addEventListener('DOMContentLoaded', () => {
       activeFormCoord.textContent = `座標: ${coordStr}`;
     }
     
-    prevBtn.disabled = (activeFormationIdx === 0);
-    nextBtn.disabled = (activeFormationIdx === formations.length - 1);
+    if (prevBtn) prevBtn.disabled = (activeFormationIdx === 0);
+    if (nextBtn) nextBtn.disabled = (activeFormationIdx === formations.length - 1);
   }
 
   // Sync highlighting of detail cards and walkthrough steps

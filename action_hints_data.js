@@ -633,27 +633,23 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "OS:師父我們「需要你」→轉自己的方向"
+          "content": "OS:師父「我們需要你」→合掌轉向法師45度"
         },
         {
           "type": "text",
-          "content": "如果你幫助我……我永遠不離開花蓮"
+          "content": "如果你幫助我做救濟的工作→開黃燈，轉向自己的方向"
         },
         {
           "type": "text",
-          "content": "音樂下"
+          "content": "我就永遠不離開花蓮→該跪的跪、LOGO擺POSE"
         },
         {
           "type": "text",
-          "content": "音效噔、噔：開黃燈；八正道與框合十拿燈；船、浪、帆及非LOGO開燈放口袋"
+          "content": "音效噔→浪坐跪抬頭"
         },
         {
           "type": "text",
-          "content": "音效匡：該跪的跪；非LOGO一起合掌跪"
-        },
-        {
-          "type": "text",
-          "content": "音效噔，「在黑暗角落」：LOGO外框坐"
+          "content": "「在黑暗角落」：LOGO外框坐"
         },
         {
           "type": "text",
@@ -2564,6 +2560,10 @@ const ACTION_HINTS_DATA = {
       ],
       "details": [
         {
+          "type": "image",
+          "src": "images/action_hints/hint_91.jpg"
+        },
+        {
           "type": "text",
           "content": "11/12：【曲目1：第三功德】"
         },
@@ -2589,20 +2589,20 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_91.jpg"
-        },
-        {
-          "type": "image",
           "src": "images/action_hints/hint_92.jpg"
         },
         {
           "type": "image",
           "src": "images/action_hints/hint_93.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_94.jpg"
         }
       ]
     },
     {
-      "title": "11/12：36.【曲目2：啟航】",
+      "title": "11/12：36.約旦",
       "videos": [
         {
           "title": "[功德品] 張起大愛的風帆‧約旦(法海)",
@@ -2611,6 +2611,14 @@ const ACTION_HINTS_DATA = {
         }
       ],
       "details": [
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_95.jpg"
+        },
+        {
+          "type": "text",
+          "content": "11/12：【曲目2：啟航】"
+        },
         {
           "type": "text",
           "content": "張起大愛的風帆"
@@ -2641,7 +2649,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_94.jpg"
+          "src": "images/action_hints/hint_96.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_97.jpg"
         }
       ]
     },
@@ -2656,8 +2668,12 @@ const ACTION_HINTS_DATA = {
       ],
       "details": [
         {
+          "type": "image",
+          "src": "images/action_hints/hint_98.jpg"
+        },
+        {
           "type": "text",
-          "content": "【第六功德】"
+          "content": "11/12：【第六功德】"
         },
         {
           "type": "text",
@@ -2674,6 +2690,18 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "與佛如來無差異"
+        },
+        {
+          "type": "text",
+          "content": "11/12："
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_99.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_100.jpg"
         }
       ]
     },
@@ -2688,8 +2716,12 @@ const ACTION_HINTS_DATA = {
       ],
       "details": [
         {
+          "type": "image",
+          "src": "images/action_hints/hint_101.jpg"
+        },
+        {
           "type": "text",
-          "content": "【化城喻故事】"
+          "content": "11/12：【化城喻故事】"
         },
         {
           "type": "text",
@@ -2718,6 +2750,18 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "小小螢火蟲 黑區變亮區"
+        },
+        {
+          "type": "text",
+          "content": "11/12："
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_102.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_103.jpg"
         }
       ]
     },
@@ -2733,7 +2777,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_95.jpg"
+          "src": "images/action_hints/hint_104.jpg"
         },
         {
           "type": "text",
@@ -2761,11 +2805,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_96.jpg"
+          "src": "images/action_hints/hint_105.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_97.jpg"
+          "src": "images/action_hints/hint_106.jpg"
         }
       ]
     },
@@ -2781,7 +2825,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_98.jpg"
+          "src": "images/action_hints/hint_107.jpg"
         },
         {
           "type": "text",
@@ -2829,19 +2873,19 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_99.jpg"
+          "src": "images/action_hints/hint_108.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_100.jpg"
+          "src": "images/action_hints/hint_109.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_101.jpg"
+          "src": "images/action_hints/hint_110.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_102.jpg"
+          "src": "images/action_hints/hint_111.jpg"
         }
       ]
     },
@@ -2856,8 +2900,12 @@ const ACTION_HINTS_DATA = {
       ],
       "details": [
         {
+          "type": "image",
+          "src": "images/action_hints/hint_112.jpg"
+        },
+        {
           "type": "text",
-          "content": "【曲目：第五功德】"
+          "content": "11/12：【曲目：第五功德】"
         },
         {
           "type": "text",
@@ -2874,6 +2922,18 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "眾生信服得歡喜"
+        },
+        {
+          "type": "text",
+          "content": "11/12："
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_113.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_114.jpg"
         }
       ]
     },
@@ -2913,11 +2973,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_103.jpg"
+          "src": "images/action_hints/hint_115.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_104.jpg"
+          "src": "images/action_hints/hint_116.jpg"
         }
       ]
     },
@@ -2933,7 +2993,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_105.jpg"
+          "src": "images/action_hints/hint_117.jpg"
         },
         {
           "type": "text",
@@ -2961,11 +3021,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_106.jpg"
+          "src": "images/action_hints/hint_118.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_107.jpg"
+          "src": "images/action_hints/hint_119.jpg"
         }
       ]
     },
@@ -2981,7 +3041,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_108.jpg"
+          "src": "images/action_hints/hint_120.jpg"
         },
         {
           "type": "text",
@@ -3029,19 +3089,19 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_109.jpg"
+          "src": "images/action_hints/hint_121.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_110.jpg"
+          "src": "images/action_hints/hint_122.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_111.jpg"
+          "src": "images/action_hints/hint_123.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_112.jpg"
+          "src": "images/action_hints/hint_124.jpg"
         }
       ]
     },
@@ -3060,6 +3120,10 @@ const ACTION_HINTS_DATA = {
         }
       ],
       "details": [
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_125.jpg"
+        },
         {
           "type": "text",
           "content": "11/13：【曲目1：第九功德】"
@@ -3119,6 +3183,10 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "安邦定國在印尼"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_126.jpg"
         }
       ]
     },
@@ -3134,7 +3202,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_113.jpg"
+          "src": "images/action_hints/hint_127.jpg"
         },
         {
           "type": "text",
@@ -3198,15 +3266,15 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_114.jpg"
+          "src": "images/action_hints/hint_128.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_115.jpg"
+          "src": "images/action_hints/hint_129.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_116.jpg"
+          "src": "images/action_hints/hint_130.jpg"
         }
       ]
     },
@@ -3220,6 +3288,10 @@ const ACTION_HINTS_DATA = {
         }
       ],
       "details": [
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_131.jpg"
+        },
         {
           "type": "text",
           "content": "11/14：【功德品-第八功德】"
@@ -3262,7 +3334,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_117.jpg"
+          "src": "images/action_hints/hint_132.jpg"
         }
       ]
     },
@@ -3276,6 +3348,10 @@ const ACTION_HINTS_DATA = {
         }
       ],
       "details": [
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_133.jpg"
+        },
         {
           "type": "text",
           "content": "11/14：【曲目：第四功德】"
@@ -3318,11 +3394,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_118.jpg"
+          "src": "images/action_hints/hint_134.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_119.jpg"
+          "src": "images/action_hints/hint_135.jpg"
         }
       ]
     },
@@ -3336,6 +3412,10 @@ const ACTION_HINTS_DATA = {
         }
       ],
       "details": [
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_136.jpg"
+        },
         {
           "type": "text",
           "content": "11/14：【曲目1：第八功德】"
@@ -3362,11 +3442,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_120.jpg"
+          "src": "images/action_hints/hint_137.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_121.jpg"
+          "src": "images/action_hints/hint_138.jpg"
         }
       ]
     },
@@ -3382,7 +3462,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_122.jpg"
+          "src": "images/action_hints/hint_139.jpg"
         },
         {
           "type": "text",
@@ -3430,19 +3510,19 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_123.jpg"
+          "src": "images/action_hints/hint_140.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_124.jpg"
+          "src": "images/action_hints/hint_141.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_125.jpg"
+          "src": "images/action_hints/hint_142.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_126.jpg"
+          "src": "images/action_hints/hint_143.jpg"
         }
       ]
     },
@@ -3456,6 +3536,10 @@ const ACTION_HINTS_DATA = {
         }
       ],
       "details": [
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_144.jpg"
+        },
         {
           "type": "text",
           "content": "11/14：【曲目3：生生世世都在菩提中】"
@@ -3506,11 +3590,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_127.jpg"
+          "src": "images/action_hints/hint_145.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_128.jpg"
+          "src": "images/action_hints/hint_146.jpg"
         }
       ]
     },
@@ -3598,11 +3682,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_129.jpg"
+          "src": "images/action_hints/hint_147.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_130.jpg"
+          "src": "images/action_hints/hint_148.jpg"
         }
       ]
     },

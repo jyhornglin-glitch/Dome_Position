@@ -13,7 +13,7 @@ import re
 import docx
 from docx.oxml.ns import qn
 
-DOCX_FILE = "動作提示.docx"
+DOCX_FILE = "動作提示0905.docx" if os.path.exists("動作提示0905.docx") else "動作提示.docx"
 OUTPUT_JS = "action_hints_data.js"
 IMAGE_DIR = os.path.join("images", "action_hints")
 
@@ -208,7 +208,7 @@ def main():
                 target_cats = ['noBoat3']
             elif r in [75, 76] or '開經書' in cell_text or '【曲目：無量義經功德品】' in cell_text:
                 target_cats = ['fiveContinents1']
-            elif loc_clean in ['10-1五大洲', '10-1五大洲(台灣)', '11-1五大洲', '11-1五大洲(台灣)']:
+            elif loc_clean in ['10-1五大洲', '10-1五大洲(台灣)', '11-1五大洲', '11-1五大洲(台灣)', '10-2五大洲(台灣)', '11-2五大洲(台灣)', '五大洲(台灣)']:
                 target_cats = ['fiveContinents1']
             elif loc_clean in ['10-2五大洲', '11-2五大洲']:
                 target_cats = ['fiveContinents2']
@@ -284,7 +284,8 @@ def main():
         # 11/12
         ('11/12', '樂生', [('[功德品] 樂生', 'https://www.youtube.com/watch?v=mGhnmtxZrn8&list=PLbIvC-A2H2ko')]),
         ('11/12', '富中之富', [('[功德品] 富中之富 A', 'https://www.youtube.com/watch?v=m2NvdK1rQpk&list=PLbIvC-A2H2ko')]),
-        ('11/12', '約旦', [('[功德品] 第三功德‧約旦+土耳其', 'https://www.youtube.com/watch?v=0UcRe5beSzw&list=PLbIvC-A2H2ko')]),
+        ('11/12', '35.約旦', [('[功德品] 第三功德‧約旦+土耳其', 'https://www.youtube.com/watch?v=0UcRe5beSzw&list=PLbIvC-A2H2ko')]),
+        ('11/12', '36.約旦', [('[功德品] 張起大愛的風帆‧約旦(法海)', 'https://www.youtube.com/watch?v=MD8To93EY0I&list=PLbIvC-A2H2ko')]),
         ('11/12', '啟航', [('[功德品] 張起大愛的風帆‧約旦(法海)', 'https://www.youtube.com/watch?v=MD8To93EY0I&list=PLbIvC-A2H2ko')]),
         ('11/12', '37.黑區變亮區', [('[功德品] 第六功德‧黑區變亮區', 'https://www.youtube.com/watch?v=1SAdHJZAVuc&list=PLbIvC-A2H2ko')]),
         ('11/12', '38.黑區變亮區', [('[功德品] 諸惡道險猶長遠‧黑區變亮區(法海)', 'https://www.youtube.com/watch?v=y2cdRGMovd0&list=PLbIvC-A2H2ko')]),
@@ -333,8 +334,16 @@ def main():
         items = action_hints_data.get(cat, [])
         for item in items:
             title = item.get('title', '')
+            details_text = ' '.join(d.get('content', '') for d in item.get('details', []) if d.get('type') == 'text')
             for sess_prefix, keyword, video_entries in VIDEO_INJECTIONS:
-                if sess_prefix in title and keyword in title:
+                match = False
+                if sess_prefix:
+                    if sess_prefix in title and (keyword in title or keyword in details_text):
+                        match = True
+                else:
+                    if keyword in title or keyword in details_text:
+                        match = True
+                if match:
                     item['videos'] = [
                         {'title': label, 'url': url, 'videoId': extract_vid(url)}
                         for label, url in video_entries
