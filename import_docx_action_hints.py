@@ -315,6 +315,7 @@ def main():
         ('11/15', '樂生', [('[功德品] 樂生', 'https://www.youtube.com/watch?v=mGhnmtxZrn8&list=PLcdQvmBAiLJ0')]),
         ('11/15', '富中之富', [('[功德品] 富中之富 B', 'https://www.youtube.com/watch?v=14EMlfGGBXY&list=PLcdQvmBAiLJ0')]),
         ('11/15', '九二一-第九功德', [('[功德品] 第九功德‧921地震', 'https://www.youtube.com/watch?v=hUpDtkqTQNM&list=PLcdQvmBAiLJ0')]),
+        ('11/15', '九二一-化城喻(若入是城)', [('[化城喻故事] 921地湧菩薩', 'https://www.youtube.com/watch?v=06ylKzGmhdQ')]),
         ('11/15', '減災工程', [('[功德品] 大愛為樑(減災希望工程)', 'https://www.youtube.com/watch?v=Qu7wLnDXivU&list=PLcdQvmBAiLJ0')]),
         ('11/15', '抱佛恩', [('[功德品] 報佛恩', 'https://www.youtube.com/watch?v=KwsN8MKQxOE&list=PLcdQvmBAiLJ0')]),
         ('11/15', '第十功德', [

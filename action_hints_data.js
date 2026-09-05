@@ -3548,7 +3548,13 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/15：36.九二一-化城喻(若入是城)",
-      "videos": [],
+      "videos": [
+        {
+          "title": "[化城喻故事] 921地湧菩薩",
+          "url": "https://www.youtube.com/watch?v=06ylKzGmhdQ",
+          "videoId": "06ylKzGmhdQ"
+        }
+      ],
       "details": [
         {
           "type": "text",
