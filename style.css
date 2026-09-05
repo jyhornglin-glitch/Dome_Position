@@ -490,6 +490,189 @@ body {
   box-shadow: 0 6px 20px rgba(225, 29, 72, 0.35);
 }
 
+/* Teach Dropdown Container for Third Phase */
+.teach-dropdown-container {
+  position: relative;
+  flex: 1 1 0px;
+  min-width: 0;
+  display: flex;
+}
+
+.teach-dropdown-btn {
+  width: 100%;
+  font-family: inherit;
+  outline: none;
+  border: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.teach-dropdown-arrow {
+  font-size: 8.5px;
+  margin-left: 2px;
+  opacity: 0.85;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+
+.teach-dropdown-container.open .teach-dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Menu Popup */
+.teach-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 7px);
+  right: 0;
+  width: 220px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 12px;
+  box-shadow: 0 12px 30px -4px rgba(15, 23, 42, 0.18), 0 4px 12px -2px rgba(15, 23, 42, 0.08);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 1200;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px) scale(0.96);
+  transform-origin: top right;
+  transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.teach-dropdown-container.open .teach-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.teach-menu-header {
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  padding: 3px 6px 5px 6px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.2px;
+}
+
+.teach-menu-header i {
+  color: #7c3aed;
+  font-size: 12px;
+}
+
+.teach-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 8px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.teach-menu-item.item-link {
+  background: rgba(248, 250, 252, 0.9);
+  border: 1px solid rgba(226, 232, 240, 0.85);
+}
+
+.teach-menu-item.item-link:hover {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.08) 0%, rgba(225, 29, 72, 0.08) 100%);
+  border-color: rgba(124, 58, 237, 0.35);
+  transform: translateX(2px);
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.08);
+}
+
+.teach-menu-item.item-link:active {
+  transform: translateX(0);
+}
+
+.teach-date-badge {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 6px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #7c3aed 0%, #e11d48 100%);
+  color: #ffffff !important;
+  white-space: nowrap;
+  letter-spacing: 0.2px;
+  box-shadow: 0 2px 6px rgba(225, 29, 72, 0.2);
+}
+
+.teach-date-badge.pending {
+  background: #94a3b8;
+  box-shadow: none;
+}
+
+.teach-item-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+
+.teach-item-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.25;
+}
+
+.teach-item-sub {
+  font-size: 10px;
+  color: #64748b;
+  line-height: 1.2;
+}
+
+.teach-item-icon {
+  font-size: 11px;
+  color: #7c3aed;
+  opacity: 0.75;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.teach-menu-item.item-link:hover .teach-item-icon {
+  transform: translate(1px, -1px);
+  opacity: 1;
+  color: #e11d48;
+}
+
+/* Pending item style */
+.teach-menu-item.item-pending {
+  background: rgba(248, 250, 252, 0.5);
+  border: 1px dashed rgba(203, 213, 225, 0.9);
+  opacity: 0.85;
+}
+
+.teach-menu-item.item-pending:hover {
+  background: rgba(241, 245, 249, 0.85);
+  border-color: rgba(148, 163, 184, 0.9);
+  opacity: 1;
+}
+
+.teach-tag-pending {
+  font-size: 10px;
+  font-weight: 600;
+  color: #64748b;
+  background: #e2e8f0;
+  padding: 2px 5px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
 .performer-avatar {
   width: 32px;
   height: 32px;
@@ -3238,6 +3421,20 @@ svg {
 
   .teach-btn i {
     font-size: 10px !important;
+  }
+
+  .teach-dropdown-container {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+  }
+
+  .teach-dropdown-arrow {
+    font-size: 8px !important;
+    margin-left: 1px !important;
+  }
+
+  .teach-dropdown-menu {
+    width: 200px !important;
   }
 
   .performer-details {

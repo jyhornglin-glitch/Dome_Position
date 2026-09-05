@@ -7448,6 +7448,70 @@ document.addEventListener('DOMContentLoaded', () => {
   // Setup Admin Listeners
   setupAdminListeners();
 
+  // Setup Third Phase Inspection Session Dropdown
+  function setupThirdPhaseDropdown() {
+    const dropdownContainers = document.querySelectorAll('.teach-dropdown-container');
+    if (!dropdownContainers.length) return;
+
+    dropdownContainers.forEach(container => {
+      const toggleBtn = container.querySelector('.teach-dropdown-btn');
+      const menu = container.querySelector('.teach-dropdown-menu');
+      if (!toggleBtn || !menu) return;
+
+      toggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = container.classList.toggle('open');
+        toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      // Close menu when clicking on active links
+      const activeLinks = menu.querySelectorAll('.item-link');
+      activeLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          container.classList.remove('open');
+          toggleBtn.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      // Handle pending items click
+      const pendingItems = menu.querySelectorAll('.item-pending');
+      pendingItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const date = item.dataset.date || '此';
+          showToast(`${date} 場次三階驗收講義資料整理中，敬請期待！`, 'info', 3000);
+          container.classList.remove('open');
+          toggleBtn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    });
+
+    // Click outside to close all dropdowns
+    document.addEventListener('click', (e) => {
+      dropdownContainers.forEach(container => {
+        if (!container.contains(e.target)) {
+          container.classList.remove('open');
+          const toggleBtn = container.querySelector('.teach-dropdown-btn');
+          if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    // Escape key to close
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        dropdownContainers.forEach(container => {
+          container.classList.remove('open');
+          const toggleBtn = container.querySelector('.teach-dropdown-btn');
+          if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+        });
+      }
+    });
+  }
+
+  // Initialize Third Phase Dropdown
+  setupThirdPhaseDropdown();
+
   // Final sync check
   syncActiveCardAndStep();
 });
