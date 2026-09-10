@@ -100,11 +100,13 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_2.png"
-        },
-        {
-          "type": "text",
-          "content": "【生】"
-        },
+        }
+      ]
+    },
+    {
+      "title": "【生】",
+      "videos": [],
+      "details": [
         {
           "type": "text",
           "content": "國王：昭告天下，本王要大肆慶祝"
@@ -152,11 +154,13 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_3.png"
-        },
-        {
-          "type": "text",
-          "content": "【老 曲目：佛陀的一生．老苦】"
-        },
+        }
+      ]
+    },
+    {
+      "title": "【老 曲目：佛陀的一生．老苦】",
+      "videos": [],
+      "details": [
         {
           "type": "text",
           "content": "流逝光陰、侵吞餘命、"
@@ -692,11 +696,13 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_32.png"
-        },
-        {
-          "type": "text",
-          "content": "【菜市場的五毛錢】"
-        },
+        }
+      ]
+    },
+    {
+      "title": "【菜市場的五毛錢】",
+      "videos": [],
+      "details": [
         {
           "type": "text",
           "content": "菜販：唉呦!只要五毛錢就可以救人喔！這樣我也要(參加)！"
@@ -742,11 +748,13 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_36.jpg"
-        },
-        {
-          "type": "text",
-          "content": "11/12、11/14：【慈善ending 無量義經．德行品】"
-        },
+        }
+      ]
+    },
+    {
+      "title": "11/12、11/14：【慈善ending 無量義經．德行品】",
+      "videos": [],
+      "details": [
         {
           "type": "text",
           "content": "是諸眾生真善知識"
@@ -866,11 +874,13 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_40.jpg"
-        },
-        {
-          "type": "text",
-          "content": "【地藏經啟航】"
-        },
+        }
+      ]
+    },
+    {
+      "title": "【地藏經啟航】",
+      "videos": [],
+      "details": [
         {
           "type": "text",
           "content": "病苦眾生在呐喊"
@@ -906,11 +916,13 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_42.jpg"
-        },
-        {
-          "type": "text",
-          "content": "【四弘誓願】"
-        },
+        }
+      ]
+    },
+    {
+      "title": "【四弘誓願】",
+      "videos": [],
+      "details": [
         {
           "type": "text",
           "content": "OS:師父您怎麼說，「我怎麼做」(上舞台者出發，到位直接面向乙舞台)"
@@ -974,11 +986,13 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_44.jpg"
-        },
-        {
-          "type": "text",
-          "content": "【德行品梵唄】"
-        },
+        }
+      ]
+    },
+    {
+      "title": "【德行品梵唄】",
+      "videos": [],
+      "details": [
         {
           "type": "text",
           "content": "人生最苦 莫過於病苦！"
@@ -1018,11 +1032,113 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_45.jpg"
+        },
+        {
+          "type": "text",
+          "content": "11/12："
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_46.png"
+        },
+        {
+          "type": "text",
+          "content": "11/14："
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_47.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_48.png"
+        },
+        {
+          "type": "text",
+          "content": "11/14："
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_49.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_51.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_52.jpg"
         }
       ]
     }
   ],
   "daChuanShi": [
+    {
+      "title": "11/12：【無醫村-擁抱蒼生】",
+      "videos": [],
+      "details": [
+        {
+          "type": "text",
+          "content": "啊~大愛的人 \t我要向您感恩"
+        },
+        {
+          "type": "text",
+          "content": "若不是大智大仁和大勇"
+        },
+        {
+          "type": "text",
+          "content": "有誰能擁抱蒼生"
+        },
+        {
+          "type": "text",
+          "content": "有誰能擁抱蒼生"
+        }
+      ]
+    },
+    {
+      "title": "11/14：【北慈.疫情捨我其誰 曲目：醫子喻 擁抱蒼生】",
+      "videos": [],
+      "details": [
+        {
+          "type": "text",
+          "content": "OS:媽媽!妳怎麼不回家?我們要去打怪獸!照顧確診病人，全體住宿43天"
+        },
+        {
+          "type": "text",
+          "content": "往昔所造諸惡業 皆由無始貪瞋癡 從身語意之所生 一切我今皆懺悔"
+        },
+        {
+          "type": "text",
+          "content": "蘇主任:每天睡覺都會驚醒，有沒有盡力救回每一個病人"
+        },
+        {
+          "type": "text",
+          "content": "趙院長:希望沒有人是求醫無門，希望每一個人都能得到像家人般的照顧"
+        },
+        {
+          "type": "text",
+          "content": "因為大愛無國界　因為醫療有團隊  讓每位大醫王 都是照亮人間的光輝"
+        }
+      ]
+    },
+    {
+      "title": "11/14：江永旭-【藥師如來十二大願-終曲】",
+      "videos": [],
+      "details": [
+        {
+          "type": "text",
+          "content": "OS：他也授證成為一位慈濟人，更用行動去關懷跟他一樣脊髓損傷的病患，活出了信心又有價值的人生"
+        },
+        {
+          "type": "text",
+          "content": "普濟蒼生的良方"
+        },
+        {
+          "type": "text",
+          "content": "成就慧命的資~糧~"
+        }
+      ]
+    },
     {
       "title": "19.大醫王",
       "videos": [
@@ -1035,12 +1151,14 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_46.jpg"
-        },
-        {
-          "type": "text",
-          "content": "【大醫王曲目：無量義經．德行品】"
-        },
+          "src": "images/action_hints/hint_50.jpg"
+        }
+      ]
+    },
+    {
+      "title": "【大醫王曲目：無量義經．德行品】",
+      "videos": [],
+      "details": [
         {
           "type": "text",
           "content": "OS：「大醫王」除了拯救他們的病痛→船跑位。"
@@ -1084,14 +1202,6 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "渡生死河 置涅槃岸"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_47.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_48.jpg"
         }
       ]
     }
@@ -1109,12 +1219,14 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_49.jpg"
-        },
-        {
-          "type": "text",
-          "content": "【骨捐】"
-        },
+          "src": "images/action_hints/hint_53.jpg"
+        }
+      ]
+    },
+    {
+      "title": "【骨捐】",
+      "videos": [],
+      "details": [
         {
           "type": "text",
           "content": "有愛心的人那麼多，我一定要呼籲"
@@ -1169,7 +1281,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_50.png"
+          "src": "images/action_hints/hint_54.png"
         }
       ]
     },
@@ -1185,12 +1297,14 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_51.png"
-        },
-        {
-          "type": "text",
-          "content": "【能捨一切諸難捨】"
-        },
+          "src": "images/action_hints/hint_55.png"
+        }
+      ]
+    },
+    {
+      "title": "【能捨一切諸難捨】",
+      "videos": [],
+      "details": [
         {
           "type": "text",
           "content": "「那一念」(合掌轉向：小V面法師；大V內側面甲舞台；大V外側不轉)"
@@ -1253,7 +1367,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_52.png"
+          "src": "images/action_hints/hint_56.png"
         }
       ]
     }
@@ -1276,12 +1390,14 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_53.png"
-        },
-        {
-          "type": "text",
-          "content": "【說法品梵唄】"
-        },
+          "src": "images/action_hints/hint_57.png"
+        }
+      ]
+    },
+    {
+      "title": "【說法品梵唄】",
+      "videos": [],
+      "details": [
         {
           "type": "text",
           "content": "菩薩摩訶薩"
@@ -1312,11 +1428,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_54.jpg"
+          "src": "images/action_hints/hint_58.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_55.png"
+          "src": "images/action_hints/hint_59.png"
         }
       ]
     },
@@ -1332,12 +1448,14 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_56.png"
-        },
-        {
-          "type": "text",
-          "content": "【曲目： 無量義經終曲】"
-        },
+          "src": "images/action_hints/hint_60.png"
+        }
+      ]
+    },
+    {
+      "title": "【曲目： 無量義經終曲】",
+      "videos": [],
+      "details": [
         {
           "type": "text",
           "content": "OS：哇！病人呼吸平穩：開綠燈，合掌"
@@ -1360,7 +1478,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_57.jpg"
+          "src": "images/action_hints/hint_61.jpg"
         }
       ]
     },
@@ -1381,12 +1499,14 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_58.png"
-        },
-        {
-          "type": "text",
-          "content": "【曲目：慈大校歌】"
-        },
+          "src": "images/action_hints/hint_62.png"
+        }
+      ]
+    },
+    {
+      "title": "【曲目：慈大校歌】",
+      "videos": [],
+      "details": [
         {
           "type": "text",
           "content": "OS：如果學生能做到「尊師重道」：開綠燈，轉向法師"
@@ -1409,11 +1529,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_59.jpg"
+          "src": "images/action_hints/hint_63.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_60.jpg"
+          "src": "images/action_hints/hint_64.jpg"
         }
       ]
     },
@@ -1434,12 +1554,14 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_61.png"
-        },
-        {
-          "type": "text",
-          "content": "【曲目： 種樹】"
-        },
+          "src": "images/action_hints/hint_65.png"
+        }
+      ]
+    },
+    {
+      "title": "【曲目： 種樹】",
+      "videos": [],
+      "details": [
         {
           "type": "text",
           "content": "OS: 2000年(壓縮)慈濟創辦中小學完成完全教育，將品德向下紮根，融入(轉面向法師)生活教育"
@@ -1474,11 +1596,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_62.png"
+          "src": "images/action_hints/hint_66.png"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_63.png"
+          "src": "images/action_hints/hint_67.png"
         }
       ]
     },
@@ -1499,12 +1621,14 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_64.png"
-        },
-        {
-          "type": "text",
-          "content": "【曲目：成長】"
-        },
+          "src": "images/action_hints/hint_68.png"
+        }
+      ]
+    },
+    {
+      "title": "【曲目：成長】",
+      "videos": [],
+      "details": [
         {
           "type": "text",
           "content": "OS:慈濟的完全教育，以慈悲喜捨為校訓，畢業典禮即是教育人文(轉面向甲舞台)的展現"
@@ -1543,11 +1667,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_65.png"
+          "src": "images/action_hints/hint_69.png"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_66.png"
+          "src": "images/action_hints/hint_70.png"
         }
       ]
     },
@@ -1568,12 +1692,14 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_67.png"
-        },
-        {
-          "type": "text",
-          "content": "【曲目：感恩】"
-        },
+          "src": "images/action_hints/hint_71.png"
+        }
+      ]
+    },
+    {
+      "title": "【曲目：感恩】",
+      "videos": [],
+      "details": [
         {
           "type": "text",
           "content": "我將牢記離別的意義"
@@ -1612,11 +1738,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_68.png"
+          "src": "images/action_hints/hint_72.png"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_69.png"
+          "src": "images/action_hints/hint_73.png"
         }
       ]
     },
@@ -1632,12 +1758,14 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_70.png"
-        },
-        {
-          "type": "text",
-          "content": "【曲目：藥草喻】"
-        },
+          "src": "images/action_hints/hint_74.png"
+        }
+      ]
+    },
+    {
+      "title": "【曲目：藥草喻】",
+      "videos": [],
+      "details": [
         {
           "type": "text",
           "content": "藥草分三等"
@@ -1680,7 +1808,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_71.png"
+          "src": "images/action_hints/hint_75.png"
         }
       ]
     }
@@ -1698,12 +1826,14 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_72.png"
-        },
-        {
-          "type": "text",
-          "content": "【慈誠隊歌】"
-        },
+          "src": "images/action_hints/hint_76.png"
+        }
+      ]
+    },
+    {
+      "title": "【慈誠隊歌】",
+      "videos": [],
+      "details": [
         {
           "type": "text",
           "content": "慈誠慈誠 護法金剛"
@@ -1746,11 +1876,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_73.png"
+          "src": "images/action_hints/hint_77.png"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_74.png"
+          "src": "images/action_hints/hint_78.png"
         }
       ]
     },
@@ -1766,12 +1896,14 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_75.png"
-        },
-        {
-          "type": "text",
-          "content": "【曲目：父母恩重難報經．因緣】"
-        },
+          "src": "images/action_hints/hint_79.png"
+        }
+      ]
+    },
+    {
+      "title": "【曲目：父母恩重難報經．因緣】",
+      "videos": [],
+      "details": [
         {
           "type": "text",
           "content": "OS 我們對祖先是慎終追遠，要懂得尋根，「在平時」(合掌內轉向法師)，就要好好的回報父母恩。"
@@ -1818,12 +1950,14 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_76.jpg"
-        },
-        {
-          "type": "text",
-          "content": "【曲目：父母恩重難報經．跪羊圖】"
-        },
+          "src": "images/action_hints/hint_80.jpg"
+        }
+      ]
+    },
+    {
+      "title": "【曲目：父母恩重難報經．跪羊圖】",
+      "videos": [],
+      "details": [
         {
           "type": "text",
           "content": "小朋友回應"
@@ -1862,7 +1996,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_77.jpg"
+          "src": "images/action_hints/hint_81.jpg"
         }
       ]
     }
@@ -1880,12 +2014,14 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_78.png"
-        },
-        {
-          "type": "text",
-          "content": "【曲目：大愛讓世界亮起來】"
-        },
+          "src": "images/action_hints/hint_82.png"
+        }
+      ]
+    },
+    {
+      "title": "【曲目：大愛讓世界亮起來】",
+      "videos": [],
+      "details": [
         {
           "type": "text",
           "content": "OS:為時代作見證(從甲舞台轉向自己的箭頭方向)，為人類寫歷史(合掌拿燈)，為慈濟留足跡，為世間傳大藏經。"
@@ -1916,7 +2052,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_79.png"
+          "src": "images/action_hints/hint_83.png"
         }
       ]
     },
@@ -1932,12 +2068,14 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_80.png"
-        },
-        {
-          "type": "text",
-          "content": "【曲目：天空破了洞】"
-        },
+          "src": "images/action_hints/hint_84.png"
+        }
+      ]
+    },
+    {
+      "title": "【曲目：天空破了洞】",
+      "videos": [],
+      "details": [
         {
           "type": "text",
           "content": "啊~(轉向乙舞台)"
@@ -1972,7 +2110,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_81.jpg"
+          "src": "images/action_hints/hint_85.jpg"
         }
       ]
     },
@@ -1988,12 +2126,14 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_82.png"
-        },
-        {
-          "type": "text",
-          "content": "【曲目：無量義經說法品】"
-        },
+          "src": "images/action_hints/hint_86.png"
+        }
+      ]
+    },
+    {
+      "title": "【曲目：無量義經說法品】",
+      "videos": [],
+      "details": [
         {
           "type": "text",
           "content": "用鼓掌的雙手(藍衣合掌) 做環保(轉向自己箭頭方向)"
@@ -2032,7 +2172,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_83.jpg"
+          "src": "images/action_hints/hint_87.jpg"
         }
       ]
     },
@@ -2048,12 +2188,14 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_84.png"
-        },
-        {
-          "type": "text",
-          "content": "【曲目：無量義經說法品】"
-        },
+          "src": "images/action_hints/hint_88.png"
+        }
+      ]
+    },
+    {
+      "title": "【曲目：無量義經說法品】",
+      "videos": [],
+      "details": [
         {
           "type": "text",
           "content": "OS:哇!「有夠讚」（從甲舞台轉向箭頭方向）"
@@ -2136,16 +2278,165 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_85.jpg"
+          "src": "images/action_hints/hint_89.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_86.png"
+          "src": "images/action_hints/hint_90.png"
         }
       ]
     }
   ],
   "fiveContinents1": [
+    {
+      "title": "34.開經書",
+      "videos": [
+        {
+          "title": "東班",
+          "url": "https://youtu.be/p2KSIGqj5VE",
+          "videoId": "p2KSIGqj5VE"
+        },
+        {
+          "title": "西班",
+          "url": "https://youtu.be/dyWGw6dC88I",
+          "videoId": "dyWGw6dC88I"
+        }
+      ],
+      "details": [
+        {
+          "type": "text",
+          "content": "東班https://youtu.be/p2KSIGqj5VE"
+        },
+        {
+          "type": "text",
+          "content": "西班https://youtu.be/dyWGw6dC88I"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_93.jpg"
+        }
+      ]
+    },
+    {
+      "title": "【曲目：無量義經功德品】",
+      "videos": [],
+      "details": [
+        {
+          "type": "text",
+          "content": "前奏音樂：藍衣和台灣開綠燈放口袋合掌，白衣拿燈轉向陸地中心。"
+        },
+        {
+          "type": "text",
+          "content": "無量義經佛宅來"
+        },
+        {
+          "type": "text",
+          "content": "去到一切眾生心"
+        },
+        {
+          "type": "text",
+          "content": "諸住菩薩所行處"
+        },
+        {
+          "type": "text",
+          "content": "十大功德潤蒼生"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_94.jpg"
+        }
+      ]
+    },
+    {
+      "title": "11/12：40.台灣救災集錦",
+      "videos": [
+        {
+          "title": "[功德品] 第五功德‧台灣救災集錦",
+          "url": "https://www.youtube.com/watch?v=aNi9Y8qbZp0&list=PLbIvC-A2H2ko",
+          "videoId": "aNi9Y8qbZp0"
+        }
+      ],
+      "details": [
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_143.jpg"
+        }
+      ]
+    },
+    {
+      "title": "11/12：【曲目：第五功德】",
+      "videos": [],
+      "details": [
+        {
+          "type": "text",
+          "content": "第五功德難思議"
+        },
+        {
+          "type": "text",
+          "content": "持誦書寫刻不離"
+        },
+        {
+          "type": "text",
+          "content": "剎那恆持長相應"
+        },
+        {
+          "type": "text",
+          "content": "眾生信服得歡喜"
+        },
+        {
+          "type": "text",
+          "content": "11/12："
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_144.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_145.jpg"
+        }
+      ]
+    },
+    {
+      "title": "11/15：35.九二一-第九功德",
+      "videos": [
+        {
+          "title": "[功德品] 第九功德‧921地震",
+          "url": "https://www.youtube.com/watch?v=hUpDtkqTQNM&list=PLcdQvmBAiLJ0",
+          "videoId": "hUpDtkqTQNM"
+        }
+      ],
+      "details": [
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_146.jpg"
+        }
+      ]
+    },
+    {
+      "title": "11/15：【曲目1：第九功德】",
+      "videos": [],
+      "details": [
+        {
+          "type": "text",
+          "content": "第九功德難思議"
+        },
+        {
+          "type": "text",
+          "content": "願力得登善慧地"
+        },
+        {
+          "type": "text",
+          "content": "辯才無礙得清淨"
+        },
+        {
+          "type": "text",
+          "content": "宿業重障一時(厚=滅)"
+        }
+      ]
+    }
+  ],
+  "fiveContinents2": [
     {
       "title": "11/12：32.貧中之富-樂生",
       "videos": [
@@ -2182,7 +2473,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_87.jpg"
+          "src": "images/action_hints/hint_91.jpg"
         }
       ]
     },
@@ -2222,7 +2513,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_88.jpg"
+          "src": "images/action_hints/hint_92.jpg"
         }
       ]
     },
@@ -2238,59 +2529,51 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "【曲目：彌勒問】"
+          "content": "os那~什麼是富中之富啊，開啟心靈的富有啊! (西一：搭靜思堂)"
         },
         {
           "type": "text",
-          "content": "os那~什麼是富中之富啊，開啟心靈的富有啊!"
+          "content": "我見彼土諸菩薩 \t為求(東二：舉921鋼鐵道具)佛道行布施"
         },
         {
           "type": "text",
-          "content": "我見彼土諸菩薩 \t為求佛道行布施(東二：921鋼鐵)"
+          "content": "像這位921(東二法海指引)大地震聽到 上人說教育不能等，立即認養多所學校，為善不欲人知，只求 上人「ㄇㄞˋ煩惱」"
         },
         {
           "type": "text",
-          "content": "像這位921大地震聽到 上人說教育不能等，立即認養多所學校，為善不欲人知，"
+          "content": "金銀瑪瑙與寶飾\t車馬(東一：舉食衣住行道具；東二收)華蓋摩尼珠"
         },
         {
           "type": "text",
-          "content": "只求 上人「ㄇㄞˋ煩惱」"
+          "content": "上人號召(東一法海指引)這些實業家，用他們的專業幫助苦難人ㄟ。食、衣、住、行都考慮到了，實在是太貼心了。"
         },
         {
           "type": "text",
-          "content": "金銀瑪瑙與寶飾\t車馬華蓋摩尼珠(東一：字畫.金銀.食衣住行.摩尼珠)"
+          "content": "又見菩薩利眾生\t願捨(東一收)妻子與國土"
         },
         {
           "type": "text",
-          "content": "上人號召這些實業家，用他們的專業幫助苦難人ㄟ。食、衣、住、行都考慮到了，實在是太貼心了。"
+          "content": "這位莊居士(西一法海指引)要捐地，土地權狀就放在佛堂天天禮拜。他這虔誠的心已超越這塊土地價值了！兩個善女人捐地蓋大愛台，科技傳法到全世界。"
         },
         {
           "type": "text",
-          "content": "又見菩薩利眾生\t願捨妻子與國土 (西一：搭靜思堂(大間))"
+          "content": "為救眾生諸病苦\t頭目(西一收)髓腦亦樂施"
         },
         {
           "type": "text",
-          "content": "這位莊居士要捐地，土地權狀就放在佛堂天天禮拜。他這虔誠的心已超越這塊土地價值了！兩個善女人捐地蓋大愛台，科技傳法到全世界。"
+          "content": "台灣半導體(全體藍衣指引)開路先鋒杜俊元捐地蓋靜思堂，生前大布施(全體白衣合十)，往生捐大體(全體白衣敬禮)，發揮生命的使用權(全體白衣回正)！大成鋼鐵(西二：舉素食道具；全體藍衣回正)推素14年喔(西二法海指引)，員工兩千多人都吃素ㄟ！"
         },
         {
           "type": "text",
-          "content": "為救眾生諸病苦\t頭目髓腦亦樂施(西二：南美洲蔬果)"
+          "content": "五毛錢(西二：舉五毛錢道具；法海收)可以救人一甲子(西二：投錢)耶，上人想要送給大家一甲子的傳家寶耶(西二法海收)"
         },
         {
           "type": "text",
-          "content": "台灣半導體開路先鋒杜俊元捐地蓋靜思堂，生前大布施，往生捐大體，發揮生命的使用權！大成鋼鐵推素14年喔，員工兩千多人都吃素ㄟ！"
+          "content": "志工(轉面向道具)總動員 使命必達(大聲唸)"
         },
         {
           "type": "text",
-          "content": "五毛錢(西二：北美洲五毛錢)可以救人一甲子耶，上人想要送給大家一甲子的傳家寶耶"
-        },
-        {
-          "type": "text",
-          "content": "志工總動員 使命必達"
-        },
-        {
-          "type": "text",
-          "content": "又見菩薩齊合掌\t千萬偈頌讚法王"
+          "content": "又見菩薩(持燈合十)齊合掌(敬禮) 千萬偈頌(回正)讚法王(出/跪腳雙手上)"
         }
       ]
     },
@@ -2310,60 +2593,56 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "os那~什麼是富中之富啊，開啟心靈的富有啊!"
+          "content": "os那~什麼是富中之富啊，開啟心靈的富有啊! (西一：搭靜思堂)"
         },
         {
           "type": "text",
-          "content": "我見彼土諸菩薩 \t為求佛道行布施(東二：921鋼鐵)"
+          "content": "我見彼土諸菩薩 \t為求(東二：舉921鋼鐵道具)佛道行布施"
         },
         {
           "type": "text",
-          "content": "像這位921大地震聽到 上人說教育不能等，立即認養多所學校，為善不欲人知，"
+          "content": "像這位921(東二法海指引)大地震聽到 上人說教育不能等，立即認養多所學校，為善不欲人知，只求 上人「ㄇㄞˋ煩惱」"
         },
         {
           "type": "text",
-          "content": "只求 上人「ㄇㄞˋ煩惱」"
+          "content": "金銀瑪瑙與寶飾\t車馬(東一：舉食衣住行道具；東二收)華蓋摩尼珠"
         },
         {
           "type": "text",
-          "content": "金銀瑪瑙與寶飾\t車馬華蓋摩尼珠(東一：字畫.金銀.食衣住行.摩尼珠)"
+          "content": "上人號召(東一法海指引)這些實業家，用他們的專業幫助苦難人ㄟ。食、衣、住、行都考慮到了，實在是太貼心了。"
         },
         {
           "type": "text",
-          "content": "上人號召這些實業家，用他們的專業幫助苦難人ㄟ。食、衣、住、行都考慮到了，實在是太貼心了。"
+          "content": "又見菩薩利眾生\t願捨(東一收)妻子與國土"
         },
         {
           "type": "text",
-          "content": "又見菩薩利眾生\t願捨妻子與國土 (西一：搭靜思堂(大間))"
+          "content": "這位莊居士(西一法海指引)要捐地，土地權狀就放在佛堂天天禮拜。他這虔誠的心已超越這塊土地價值了！兩個善女人捐地蓋大愛台，科技傳法到全世界。"
         },
         {
           "type": "text",
-          "content": "這位莊居士要捐地，土地權狀就放在佛堂天天禮拜。他這虔誠的心已超越這塊土地價值了！兩個善女人捐地蓋大愛台，科技傳法到全世界。"
+          "content": "為救眾生諸病苦\t頭目(西一收)髓腦亦樂施"
         },
         {
           "type": "text",
-          "content": "為救眾生諸病苦\t頭目髓腦亦樂施(西二：南美洲蔬果)"
+          "content": "台灣半導體(全體藍衣指引)開路先鋒杜俊元捐地蓋靜思堂，生前大布施(全體白衣合十)，往生捐大體(全體白衣敬禮)，發揮生命的使用權(全體白衣回正)！大成鋼鐵(西二：舉素食道具；全體藍衣回正)推素14年喔(西二法海指引)，員工兩千多人都吃素ㄟ！"
         },
         {
           "type": "text",
-          "content": "台灣半導體開路先鋒杜俊元捐地蓋靜思堂，生前大布施，往生捐大體，發揮生命的使用權！大成鋼鐵推素14年喔，員工兩千多人都吃素ㄟ！"
+          "content": "五毛錢(西二：舉五毛錢道具；法海收)可以救人一甲子(西二：投錢)耶，上人想要送給大家一甲子的傳家寶耶(西二法海收)"
         },
         {
           "type": "text",
-          "content": "五毛錢(西二：北美洲五毛錢)可以救人一甲子耶，上人想要送給大家一甲子的傳家寶耶"
+          "content": "志工(轉面向道具)總動員 使命必達(大聲唸)"
         },
         {
           "type": "text",
-          "content": "志工總動員 使命必達"
-        },
-        {
-          "type": "text",
-          "content": "又見菩薩齊合掌\t千萬偈頌讚法王"
+          "content": "又見菩薩(持燈合十)齊合掌(敬禮) 千萬偈頌(回正)讚法王(出/跪腳雙手上)"
         }
       ]
     },
     {
-      "title": "11/13：32.富中之富\tB",
+      "title": "11/13：32.富中之富B",
       "videos": [
         {
           "title": "[功德品] 富中之富 B",
@@ -2378,31 +2657,31 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "os那~什麼是富中之富啊，開啟心靈的富有啊!"
+          "content": "os那~什麼是富中之富啊，開啟心靈的富有啊! (西一：搭靜思堂)"
         },
         {
           "type": "text",
-          "content": "我見彼土諸菩薩 \t為求佛道行布施 (東二：勸募箱.大米.毛毯)"
+          "content": "我見彼土諸菩薩 \t為求(東二：舉勸募箱.大米.毛毯)佛道行布施"
         },
         {
           "type": "text",
-          "content": "這些實業家的菩薩身影，個個放下身段！災區發放，幫災民扛大米。還有新馬實業家，放下事業，回報佛恩。"
+          "content": "這些實業家(東二法海指引)的菩薩身影，個個放下身段！災區發放，幫災民扛大米。還有新馬實業家，放下事業，回報佛恩。"
         },
         {
           "type": "text",
-          "content": "金銀瑪瑙與寶飾\t車馬華蓋摩尼珠 (東一：字畫.金銀.食衣住行.摩尼珠)"
+          "content": "金銀瑪瑙與寶飾\t車馬(東一：舉字畫道具；東二收)華蓋摩尼珠"
         },
         {
           "type": "text",
-          "content": "你看!這些實業家夫人舉辦了一場又一場珠寶字畫義賣耶! 為善不欲人知，只求 上人 「ㄇㄞˋ煩惱」"
+          "content": "你看! (東一法海指引)這些實業家夫人舉辦了一場又一場珠寶字畫義賣耶! 為善不欲人知，只求 上人 「ㄇㄞˋ煩惱」"
         },
         {
           "type": "text",
-          "content": "又見菩薩利眾生\t願捨妻子與國土(西一：搭靜思堂(大間))"
+          "content": "又見菩薩利眾生\t願捨(東一收)妻子與國土"
         },
         {
           "type": "text",
-          "content": "溫居士參與 921 震災，他還捐一萬多坪土地蓋靜思堂欸！他說，留財產給子孫，不如留德給子孫，以善行做為傳家寶。"
+          "content": "溫居士(西一法海指引)參與 921 震災，他還捐一萬多坪土地蓋靜思堂欸！他說，留財產給子孫，不如留德給子孫，以善行做為傳家寶。"
         },
         {
           "type": "text",
@@ -2410,29 +2689,29 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "這位航運界的鉅子李爺爺，不僅孝順還樂善好施，生前大布施，往生捐大體，發揮生命的使用權！大馬實業家陳志遠，孝順又有愛心，尤其見到 上人，當天他就吃素，已經 11 年了！"
+          "content": "這位航運界(全體藍衣指引)的鉅子李爺爺，不僅孝順還樂善好施，生前大布施(全體白衣合十)，往生捐大體(全體白衣敬禮)，發揮生命的使用權(全體白衣回正)！大馬實業家(西二：舉素食道具；全體藍衣回正)陳志遠(西二法海指引)，孝順又有愛心，尤其見到 上人，當天他就吃素，已經 11 年了！(西二法海收)"
         },
         {
           "type": "text",
-          "content": "五毛錢(西二：北美洲五毛錢)可以救人一甲子耶，上人想要送給大家一甲子的傳家寶耶"
+          "content": "五毛錢(西二：舉五毛錢道具；法海收)可以救人一甲子(西二：投錢)耶，上人想要送給大家一甲子的傳家寶耶(西二法海收)"
         },
         {
           "type": "text",
-          "content": "志工總動員 使命必達"
+          "content": "志工(轉面向道具)總動員 使命必達(大聲唸)"
         },
         {
           "type": "text",
-          "content": "又見菩薩齊合掌\t千萬偈頌讚法王"
+          "content": "又見菩薩(持燈合十)齊合掌(敬禮) 千萬偈頌(回正)讚法王(出/跪腳雙手上)"
         }
       ]
     },
     {
-      "title": "11/15：32.富中之富\tB",
+      "title": "11/15：32.富中之富B",
       "videos": [
         {
-          "title": "[功德品] 富中之富 B",
-          "url": "https://www.youtube.com/watch?v=14EMlfGGBXY&list=PLcdQvmBAiLJ0",
-          "videoId": "14EMlfGGBXY"
+          "title": "[功德品] 報佛恩",
+          "url": "https://www.youtube.com/watch?v=KwsN8MKQxOE&list=PLcdQvmBAiLJ0",
+          "videoId": "KwsN8MKQxOE"
         }
       ],
       "details": [
@@ -2442,31 +2721,31 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "os那~什麼是富中之富啊，開啟心靈的富有啊!"
+          "content": "os那~什麼是富中之富啊，開啟心靈的富有啊! (西一：搭靜思堂)"
         },
         {
           "type": "text",
-          "content": "我見彼土諸菩薩 \t為求佛道行布施 (東二：勸募箱.大米.毛毯)"
+          "content": "我見彼土諸菩薩 \t為求(東二：舉勸募箱.大米.毛毯)佛道行布施"
         },
         {
           "type": "text",
-          "content": "這些實業家的菩薩身影，個個放下身段！災區發放，幫災民扛大米。還有新馬實業家，放下事業，回報佛恩。"
+          "content": "這些實業家(東二法海指引)的菩薩身影，個個放下身段！災區發放，幫災民扛大米。還有新馬實業家，放下事業，回報佛恩。"
         },
         {
           "type": "text",
-          "content": "金銀瑪瑙與寶飾\t車馬華蓋摩尼珠 (東一：字畫.金銀.食衣住行.摩尼珠)"
+          "content": "金銀瑪瑙與寶飾\t車馬(東一：舉字畫道具；東二收)華蓋摩尼珠"
         },
         {
           "type": "text",
-          "content": "你看!這些實業家夫人舉辦了一場又一場珠寶字畫義賣耶! 為善不欲人知，只求 上人 「ㄇㄞˋ煩惱」"
+          "content": "你看! (東一法海指引)這些實業家夫人舉辦了一場又一場珠寶字畫義賣耶! 為善不欲人知，只求 上人 「ㄇㄞˋ煩惱」"
         },
         {
           "type": "text",
-          "content": "又見菩薩利眾生\t願捨妻子與國土(西一：搭靜思堂(大間))"
+          "content": "又見菩薩利眾生\t願捨(東一收)妻子與國土"
         },
         {
           "type": "text",
-          "content": "溫居士參與 921 震災，他還捐一萬多坪土地蓋靜思堂欸！他說，留財產給子孫，不如留德給子孫，以善行做為傳家寶。"
+          "content": "溫居士(西一法海指引)參與 921 震災，他還捐一萬多坪土地蓋靜思堂欸！他說，留財產給子孫，不如留德給子孫，以善行做為傳家寶。"
         },
         {
           "type": "text",
@@ -2474,178 +2753,67 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "這位航運界的鉅子李爺爺，不僅孝順還樂善好施，生前大布施，往生捐大體，發揮生命的使用權！大馬實業家陳志遠，孝順又有愛心，尤其見到 上人，當天他就吃素，已經 11 年了！"
+          "content": "這位航運界(全體藍衣指引)的鉅子李爺爺，不僅孝順還樂善好施，生前大布施(全體白衣合十)，往生捐大體(全體白衣敬禮)，發揮生命的使用權(全體白衣回正)！大馬實業家(西二：舉素食道具；全體藍衣回正)陳志遠(西二法海指引)，孝順又有愛心，尤其見到 上人，當天他就吃素，已經 11 年了！(西二法海收)"
         },
         {
           "type": "text",
-          "content": "五毛錢(西二：北美洲五毛錢)可以救人一甲子耶，上人想要送給大家一甲子的傳家寶耶"
+          "content": "五毛錢(西二：舉五毛錢道具；法海收)可以救人一甲子(西二：投錢)耶，上人想要送給大家一甲子的傳家寶耶(西二法海收)"
         },
         {
           "type": "text",
-          "content": "志工總動員 使命必達"
+          "content": "志工(轉面向道具)總動員 使命必達(大聲唸)"
         },
         {
           "type": "text",
-          "content": "又見菩薩齊合掌\t千萬偈頌讚法王"
+          "content": "又見菩薩(持燈合十)齊合掌(敬禮) 千萬偈頌(回正)讚法王(出/跪腳雙手上)"
         }
       ]
     },
     {
-      "title": "34.開經書",
+      "title": "11/12：36.黑區變亮區",
       "videos": [
         {
-          "title": "東班",
-          "url": "https://youtu.be/p2KSIGqj5VE",
-          "videoId": "p2KSIGqj5VE"
-        },
-        {
-          "title": "西班",
-          "url": "https://youtu.be/dyWGw6dC88I",
-          "videoId": "dyWGw6dC88I"
-        }
-      ],
-      "details": [
-        {
-          "type": "text",
-          "content": "東班https://youtu.be/p2KSIGqj5VE"
-        },
-        {
-          "type": "text",
-          "content": "西班https://youtu.be/dyWGw6dC88I"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_89.jpg"
-        },
-        {
-          "type": "text",
-          "content": "【曲目：無量義經功德品】"
-        },
-        {
-          "type": "text",
-          "content": "前奏音樂：藍衣和台灣開綠燈放口袋合掌，白衣拿燈轉向陸地中心。"
-        },
-        {
-          "type": "text",
-          "content": "無量義經佛宅來"
-        },
-        {
-          "type": "text",
-          "content": "去到一切眾生心"
-        },
-        {
-          "type": "text",
-          "content": "諸住菩薩所行處"
-        },
-        {
-          "type": "text",
-          "content": "十大功德潤蒼生"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_90.jpg"
-        }
-      ]
-    }
-  ],
-  "fiveContinents2": [
-    {
-      "title": "11/12：35.約旦",
-      "videos": [
-        {
-          "title": "[功德品] 第三功德‧約旦+土耳其",
-          "url": "https://www.youtube.com/watch?v=0UcRe5beSzw&list=PLbIvC-A2H2ko",
-          "videoId": "0UcRe5beSzw"
-        }
-      ],
-      "details": [
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_91.jpg"
-        },
-        {
-          "type": "text",
-          "content": "11/12：【曲目1：第三功德】"
-        },
-        {
-          "type": "text",
-          "content": "第三功德難思議"
-        },
-        {
-          "type": "text",
-          "content": "自在度人顯願力"
-        },
-        {
-          "type": "text",
-          "content": "雖有煩擾無煩惱"
-        },
-        {
-          "type": "text",
-          "content": "雖有生死無畏懼"
-        },
-        {
-          "type": "text",
-          "content": "11/12："
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_92.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_93.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_94.jpg"
-        }
-      ]
-    },
-    {
-      "title": "11/12：36.約旦",
-      "videos": [
-        {
-          "title": "[功德品] 張起大愛的風帆‧約旦(法海)",
-          "url": "https://www.youtube.com/watch?v=MD8To93EY0I&list=PLbIvC-A2H2ko",
-          "videoId": "MD8To93EY0I"
+          "title": "[功德品] 第六功德‧黑區變亮區",
+          "url": "https://www.youtube.com/watch?v=1SAdHJZAVuc&list=PLbIvC-A2H2ko",
+          "videoId": "1SAdHJZAVuc"
         }
       ],
       "details": [
         {
           "type": "image",
           "src": "images/action_hints/hint_95.jpg"
+        }
+      ]
+    },
+    {
+      "title": "11/12：【第六功德】",
+      "videos": [
+        {
+          "title": "[功德品] 第六功德‧黑區變亮區",
+          "url": "https://www.youtube.com/watch?v=1SAdHJZAVuc&list=PLbIvC-A2H2ko",
+          "videoId": "1SAdHJZAVuc"
+        }
+      ],
+      "details": [
+        {
+          "type": "text",
+          "content": "第六功德不思議"
         },
         {
           "type": "text",
-          "content": "11/12：【曲目2：啟航】"
+          "content": "生死煩惱盡遠離"
         },
         {
           "type": "text",
-          "content": "張起大愛的風帆"
+          "content": "能斷一切苦與厄"
         },
         {
           "type": "text",
-          "content": "耀眼金光燦爛"
+          "content": "與佛如來無差異"
         },
         {
           "type": "text",
-          "content": "衝破巨浪向前航"
-        },
-        {
-          "type": "text",
-          "content": "救拔眾生到彼岸"
-        },
-        {
-          "type": "text",
-          "content": "救拔眾生"
-        },
-        {
-          "type": "text",
-          "content": "救拔眾生 到彼岸"
-        },
-        {
-          "type": "text",
-          "content": "11/12"
+          "content": "11/12："
         },
         {
           "type": "image",
@@ -2670,43 +2838,11 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_98.jpg"
-        },
-        {
-          "type": "text",
-          "content": "11/12：【第六功德】"
-        },
-        {
-          "type": "text",
-          "content": "第六功德不思議"
-        },
-        {
-          "type": "text",
-          "content": "生死煩惱盡遠離"
-        },
-        {
-          "type": "text",
-          "content": "能斷一切苦與厄"
-        },
-        {
-          "type": "text",
-          "content": "與佛如來無差異"
-        },
-        {
-          "type": "text",
-          "content": "11/12："
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_99.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_100.jpg"
         }
       ]
     },
     {
-      "title": "11/12：38.黑區變亮區",
+      "title": "11/12：【化城喻故事】",
       "videos": [
         {
           "title": "[功德品] 諸惡道險猶長遠‧黑區變亮區(法海)",
@@ -2715,14 +2851,6 @@ const ACTION_HINTS_DATA = {
         }
       ],
       "details": [
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_101.jpg"
-        },
-        {
-          "type": "text",
-          "content": "11/12：【化城喻故事】"
-        },
         {
           "type": "text",
           "content": "諸惡道險猶長遠"
@@ -2757,32 +2885,214 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
+          "src": "images/action_hints/hint_99.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_100.jpg"
+        }
+      ]
+    },
+    {
+      "title": "11/12：38.約旦",
+      "videos": [
+        {
+          "title": "[功德品] 張起大愛的風帆‧約旦(法海)",
+          "url": "https://www.youtube.com/watch?v=MD8To93EY0I&list=PLbIvC-A2H2ko",
+          "videoId": "MD8To93EY0I"
+        }
+      ],
+      "details": [
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_101.jpg"
+        }
+      ]
+    },
+    {
+      "title": "11/12：【曲目1：第三功德】",
+      "videos": [
+        {
+          "title": "[功德品] 第三功德‧約旦+土耳其",
+          "url": "https://www.youtube.com/watch?v=0UcRe5beSzw&list=PLbIvC-A2H2ko",
+          "videoId": "0UcRe5beSzw"
+        }
+      ],
+      "details": [
+        {
+          "type": "text",
+          "content": "第三功德難思議"
+        },
+        {
+          "type": "text",
+          "content": "自在度人顯願力"
+        },
+        {
+          "type": "text",
+          "content": "雖有煩擾無煩惱"
+        },
+        {
+          "type": "text",
+          "content": "雖有生死無畏懼"
+        },
+        {
+          "type": "text",
+          "content": "11/12："
+        },
+        {
+          "type": "image",
           "src": "images/action_hints/hint_102.jpg"
         },
         {
           "type": "image",
           "src": "images/action_hints/hint_103.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_104.jpg"
         }
       ]
     },
     {
-      "title": "11/12：39.莫三比克",
+      "title": "11/12：39.約旦",
+      "videos": [
+        {
+          "title": "[功德品] 張起大愛的風帆‧約旦(法海)",
+          "url": "https://www.youtube.com/watch?v=MD8To93EY0I&list=PLbIvC-A2H2ko",
+          "videoId": "MD8To93EY0I"
+        }
+      ],
+      "details": [
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_105.jpg"
+        }
+      ]
+    },
+    {
+      "title": "11/12：【曲目2：啟航】",
+      "videos": [
+        {
+          "title": "[功德品] 張起大愛的風帆‧約旦(法海)",
+          "url": "https://www.youtube.com/watch?v=MD8To93EY0I&list=PLbIvC-A2H2ko",
+          "videoId": "MD8To93EY0I"
+        }
+      ],
+      "details": [
+        {
+          "type": "text",
+          "content": "張起大愛的風帆"
+        },
+        {
+          "type": "text",
+          "content": "耀眼金光燦爛"
+        },
+        {
+          "type": "text",
+          "content": "衝破巨浪向前航"
+        },
+        {
+          "type": "text",
+          "content": "救拔眾生到彼岸"
+        },
+        {
+          "type": "text",
+          "content": "救拔眾生"
+        },
+        {
+          "type": "text",
+          "content": "救拔眾生 到彼岸"
+        },
+        {
+          "type": "text",
+          "content": "11/12："
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_106.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_107.jpg"
+        }
+      ]
+    },
+    {
+      "title": "11/13：34.土耳其",
+      "videos": [
+        {
+          "title": "[功德品] 第三功德‧約旦+土耳其",
+          "url": "https://www.youtube.com/watch?v=0UcRe5beSzw&list=PLGafJimf9RDw",
+          "videoId": "0UcRe5beSzw"
+        }
+      ],
+      "details": [
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_108.jpg"
+        }
+      ]
+    },
+    {
+      "title": "11/13：【功德品-第三功德】",
+      "videos": [],
+      "details": [
+        {
+          "type": "text",
+          "content": "第三功德難思議"
+        },
+        {
+          "type": "text",
+          "content": "自在度人顯願力"
+        },
+        {
+          "type": "text",
+          "content": "雖有煩擾無煩惱"
+        },
+        {
+          "type": "text",
+          "content": "雖有生死無畏懼"
+        },
+        {
+          "type": "text",
+          "content": "11/13："
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_109.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_110.jpg"
+        }
+      ]
+    },
+    {
+      "title": "11/13：35.莫三比克-第八功德",
       "videos": [
         {
           "title": "[功德品] 第八功德‧非洲",
-          "url": "https://www.youtube.com/watch?v=vZU-rtMuEoE&list=PLbIvC-A2H2ko",
+          "url": "https://www.youtube.com/watch?v=vZU-rtMuEoE&list=PLGafJimf9RDw",
           "videoId": "vZU-rtMuEoE"
         }
       ],
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_104.jpg"
-        },
+          "src": "images/action_hints/hint_111.jpg"
+        }
+      ]
+    },
+    {
+      "title": "11/13：【曲目1：第八功德】",
+      "videos": [
         {
-          "type": "text",
-          "content": "11/12：【曲目1：第八功德】"
-        },
+          "title": "[功德品] 第八功德‧非洲",
+          "url": "https://www.youtube.com/watch?v=vZU-rtMuEoE&list=PLGafJimf9RDw",
+          "videoId": "vZU-rtMuEoE"
+        }
+      ],
+      "details": [
         {
           "type": "text",
           "content": "第八功德不思議"
@@ -2801,36 +3111,44 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "11/12："
+          "content": "11/13："
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_105.jpg"
+          "src": "images/action_hints/hint_112.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_106.jpg"
+          "src": "images/action_hints/hint_113.jpg"
         }
       ]
     },
     {
-      "title": "11/12：40.莫三比克-髻珠喻經文",
+      "title": "11/13：36.莫三比克-髻珠喻經文",
       "videos": [
         {
-          "title": "[功德品] 身口意念應守護(莫三比克‧法海)",
-          "url": "https://www.youtube.com/watch?v=SCohDEBScvY&list=PLbIvC-A2H2ko",
-          "videoId": "SCohDEBScvY"
+          "title": "11/13 [功德品] 身口意念應守護(南非‧法海)",
+          "url": "https://www.youtube.com/watch?v=htAI4IbqJtE&list=PLGafJimf9RDw",
+          "videoId": "htAI4IbqJtE"
         }
       ],
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_107.jpg"
-        },
+          "src": "images/action_hints/hint_114.jpg"
+        }
+      ]
+    },
+    {
+      "title": "11/13：【曲目2：髻珠喻經文】",
+      "videos": [
         {
-          "type": "text",
-          "content": "11/12：【曲目2：髻珠喻經文】"
-        },
+          "title": "11/13 [功德品] 身口意念應守護(南非‧法海)",
+          "url": "https://www.youtube.com/watch?v=htAI4IbqJtE&list=PLGafJimf9RDw",
+          "videoId": "htAI4IbqJtE"
+        }
+      ],
+      "details": [
         {
           "type": "text",
           "content": "用愛傳法到非洲"
@@ -2873,235 +3191,19 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_108.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_109.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_110.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_111.jpg"
-        }
-      ]
-    },
-    {
-      "title": "11/12：41.台灣救災集錦",
-      "videos": [
-        {
-          "title": "[功德品] 第五功德‧台灣救災集錦",
-          "url": "https://www.youtube.com/watch?v=aNi9Y8qbZp0&list=PLbIvC-A2H2ko",
-          "videoId": "aNi9Y8qbZp0"
-        }
-      ],
-      "details": [
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_112.jpg"
-        },
-        {
-          "type": "text",
-          "content": "11/12：【曲目：第五功德】"
-        },
-        {
-          "type": "text",
-          "content": "第五功德難思議"
-        },
-        {
-          "type": "text",
-          "content": "持誦書寫刻不離"
-        },
-        {
-          "type": "text",
-          "content": "剎那恆持長相應"
-        },
-        {
-          "type": "text",
-          "content": "眾生信服得歡喜"
-        },
-        {
-          "type": "text",
-          "content": "11/12："
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_113.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_114.jpg"
-        }
-      ]
-    },
-    {
-      "title": "11/13：34.土耳其",
-      "videos": [
-        {
-          "title": "[功德品] 第三功德‧約旦+土耳其",
-          "url": "https://www.youtube.com/watch?v=0UcRe5beSzw&list=PLGafJimf9RDw",
-          "videoId": "0UcRe5beSzw"
-        }
-      ],
-      "details": [
-        {
-          "type": "text",
-          "content": "11/13：【功德品-第三功德】"
-        },
-        {
-          "type": "text",
-          "content": "第三功德難思議"
-        },
-        {
-          "type": "text",
-          "content": "自在度人顯願力"
-        },
-        {
-          "type": "text",
-          "content": "雖有煩擾無煩惱"
-        },
-        {
-          "type": "text",
-          "content": "雖有生死無畏懼"
-        },
-        {
-          "type": "text",
-          "content": "11/13："
-        },
-        {
-          "type": "image",
           "src": "images/action_hints/hint_115.jpg"
         },
         {
           "type": "image",
           "src": "images/action_hints/hint_116.jpg"
-        }
-      ]
-    },
-    {
-      "title": "11/13：35.南非-第八功德",
-      "videos": [
-        {
-          "title": "[功德品] 第八功德‧非洲",
-          "url": "https://www.youtube.com/watch?v=vZU-rtMuEoE&list=PLGafJimf9RDw",
-          "videoId": "vZU-rtMuEoE"
-        }
-      ],
-      "details": [
+        },
         {
           "type": "image",
           "src": "images/action_hints/hint_117.jpg"
         },
         {
-          "type": "text",
-          "content": "11/13：【曲目1：第八功德】"
-        },
-        {
-          "type": "text",
-          "content": "第八功德不思議"
-        },
-        {
-          "type": "text",
-          "content": "種種方便令發(厚=心)"
-        },
-        {
-          "type": "text",
-          "content": "信心既發令勇(厚=猛)"
-        },
-        {
-          "type": "text",
-          "content": "守之不動令堅(厚=定)"
-        },
-        {
-          "type": "text",
-          "content": "11/13："
-        },
-        {
           "type": "image",
           "src": "images/action_hints/hint_118.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_119.jpg"
-        }
-      ]
-    },
-    {
-      "title": "11/13：36.南非-髻珠喻經文",
-      "videos": [
-        {
-          "title": "11/13 [功德品] 身口意念應守護(南非‧法海)",
-          "url": "https://www.youtube.com/watch?v=htAI4IbqJtE&list=PLGafJimf9RDw",
-          "videoId": "htAI4IbqJtE"
-        }
-      ],
-      "details": [
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_120.jpg"
-        },
-        {
-          "type": "text",
-          "content": "11/13：【曲目2：髻珠喻經文】"
-        },
-        {
-          "type": "text",
-          "content": "用愛傳法到非洲"
-        },
-        {
-          "type": "text",
-          "content": "自立更生 手心向下 吼、嘿"
-        },
-        {
-          "type": "text",
-          "content": "難行能行 跨國傳法 吼、嘿"
-        },
-        {
-          "type": "text",
-          "content": "身口意念(厚=應)守(厚=護)"
-        },
-        {
-          "type": "text",
-          "content": "慈心悲願(厚=利)眾(厚=生)"
-        },
-        {
-          "type": "text",
-          "content": "無上妙法(厚=難)解(厚=信)"
-        },
-        {
-          "type": "text",
-          "content": "譬如髻珠放光明"
-        },
-        {
-          "type": "text",
-          "content": "譬如髻珠放光明"
-        },
-        {
-          "type": "text",
-          "content": "譬如髻珠放光明"
-        },
-        {
-          "type": "text",
-          "content": "11/13："
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_121.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_122.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_123.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_124.jpg"
         }
       ]
     },
@@ -3112,22 +3214,25 @@ const ACTION_HINTS_DATA = {
           "title": "[功德品] 第九功德‧印尼",
           "url": "https://www.youtube.com/watch?v=CvAlUYsudqk&list=PLGafJimf9RDw",
           "videoId": "CvAlUYsudqk"
-        },
-        {
-          "title": "[功德品] 菩薩慈悲憫眾生‧印尼(法海)",
-          "url": "https://www.youtube.com/watch?v=xmX4NrnNqJA&list=PLGafJimf9RDw",
-          "videoId": "xmX4NrnNqJA"
         }
       ],
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_125.jpg"
-        },
+          "src": "images/action_hints/hint_119.jpg"
+        }
+      ]
+    },
+    {
+      "title": "11/13：【曲目1：第九功德】",
+      "videos": [
         {
-          "type": "text",
-          "content": "11/13：【曲目1：第九功德】"
-        },
+          "title": "[功德品] 第九功德‧印尼",
+          "url": "https://www.youtube.com/watch?v=CvAlUYsudqk&list=PLGafJimf9RDw",
+          "videoId": "CvAlUYsudqk"
+        }
+      ],
+      "details": [
         {
           "type": "text",
           "content": "第九功德難思議"
@@ -3143,11 +3248,19 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "宿業重障一時(厚=滅)"
-        },
+        }
+      ]
+    },
+    {
+      "title": "11/13：【曲目2：化城喻手扎】",
+      "videos": [
         {
-          "type": "text",
-          "content": "11/13：【曲目2：化城喻手扎】"
-        },
+          "title": "[功德品] 菩薩慈悲憫眾生‧印尼(法海)",
+          "url": "https://www.youtube.com/watch?v=xmX4NrnNqJA&list=PLGafJimf9RDw",
+          "videoId": "xmX4NrnNqJA"
+        }
+      ],
+      "details": [
         {
           "type": "text",
           "content": "菩薩慈悲愍眾生"
@@ -3186,7 +3299,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_126.jpg"
+          "src": "images/action_hints/hint_120.jpg"
         }
       ]
     },
@@ -3202,12 +3315,20 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_127.jpg"
-        },
+          "src": "images/action_hints/hint_121.jpg"
+        }
+      ]
+    },
+    {
+      "title": "11/14：【功德品-第二功德】",
+      "videos": [
         {
-          "type": "text",
-          "content": "11/14：【功德品-第二功德】"
-        },
+          "title": "11/14 [功德品] 第二功德 緬甸米撲滿",
+          "url": "https://www.youtube.com/watch?v=yeEd_aeAv5k&list=PLGRfIGuFCUAQ",
+          "videoId": "yeEd_aeAv5k"
+        }
+      ],
+      "details": [
         {
           "type": "text",
           "content": "os五毛錢的力量 來到緬甸 八分飽 兩分救人好 我沒有錢 但我也可以救人 那我也可以救人啦(演員) 我也可以救人啦(東西一) 我也可以救人啦(東西二)"
@@ -3266,15 +3387,15 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_128.jpg"
+          "src": "images/action_hints/hint_122.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_129.jpg"
+          "src": "images/action_hints/hint_123.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_130.jpg"
+          "src": "images/action_hints/hint_124.jpg"
         }
       ]
     },
@@ -3290,12 +3411,20 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_131.jpg"
-        },
+          "src": "images/action_hints/hint_125.jpg"
+        }
+      ]
+    },
+    {
+      "title": "11/14：【功德品-第七功德】",
+      "videos": [
         {
-          "type": "text",
-          "content": "11/14：【功德品-第八功德】"
-        },
+          "title": "[功德品] 第七功德‧莫拉克風災",
+          "url": "https://www.youtube.com/watch?v=mjPNSTARlmY&list=PLGRfIGuFCUAQ",
+          "videoId": "mjPNSTARlmY"
+        }
+      ],
+      "details": [
         {
           "type": "text",
           "content": "第七功德不思議"
@@ -3334,7 +3463,29 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_132.jpg"
+          "src": "images/action_hints/hint_126.jpg"
+        }
+      ]
+    },
+    {
+      "title": "11/14：【十在心路】",
+      "videos": [],
+      "details": [
+        {
+          "type": "text",
+          "content": "……現在山都不會崩塌了,山林養息了!世代可以安居樂業了!大地恢復生機,家就安全了!"
+        },
+        {
+          "type": "text",
+          "content": "傳頌生命(轉陸地中心)的尊貴與傳奇 咚~ 讓山林養息 咚~ 世代安居樂業"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_127.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_128.jpg"
         }
       ]
     },
@@ -3350,12 +3501,20 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_133.jpg"
-        },
+          "src": "images/action_hints/hint_129.jpg"
+        }
+      ]
+    },
+    {
+      "title": "11/14：【曲目：第四功德】",
+      "videos": [
         {
-          "type": "text",
-          "content": "11/14：【曲目：第四功德】"
-        },
+          "title": "[功德品] 第四功德‧泰北",
+          "url": "https://www.youtube.com/watch?v=_iO0oVSMR8s&list=PLGRfIGuFCUAQ",
+          "videoId": "_iO0oVSMR8s"
+        }
+      ],
+      "details": [
         {
           "type": "text",
           "content": "第四功德不思議"
@@ -3394,11 +3553,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_134.jpg"
+          "src": "images/action_hints/hint_130.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_135.jpg"
+          "src": "images/action_hints/hint_131.jpg"
         }
       ]
     },
@@ -3414,12 +3573,20 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_136.jpg"
-        },
+          "src": "images/action_hints/hint_132.jpg"
+        }
+      ]
+    },
+    {
+      "title": "11/14：【曲目1：第八功德】",
+      "videos": [
         {
-          "type": "text",
-          "content": "11/14：【曲目1：第八功德】"
-        },
+          "title": "[功德品] 第八功德‧非洲",
+          "url": "https://www.youtube.com/watch?v=vZU-rtMuEoE&list=PLGRfIGuFCUAQ",
+          "videoId": "vZU-rtMuEoE"
+        }
+      ],
+      "details": [
         {
           "type": "text",
           "content": "第八功德不思議"
@@ -3442,11 +3609,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_137.jpg"
+          "src": "images/action_hints/hint_133.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_138.jpg"
+          "src": "images/action_hints/hint_134.jpg"
         }
       ]
     },
@@ -3462,12 +3629,20 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_139.jpg"
-        },
+          "src": "images/action_hints/hint_135.jpg"
+        }
+      ]
+    },
+    {
+      "title": "11/14：【曲目2：髻珠喻經文】",
+      "videos": [
         {
-          "type": "text",
-          "content": "11/14：【曲目2：髻珠喻經文】"
-        },
+          "title": "[功德品] 生生世世都在菩提中(辛巴威)",
+          "url": "https://www.youtube.com/watch?v=cSjyuO_KRp8&list=PLGRfIGuFCUAQ",
+          "videoId": "cSjyuO_KRp8"
+        }
+      ],
+      "details": [
         {
           "type": "text",
           "content": "用愛傳法到非洲"
@@ -3510,19 +3685,19 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_140.jpg"
+          "src": "images/action_hints/hint_136.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_141.jpg"
+          "src": "images/action_hints/hint_137.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_142.jpg"
+          "src": "images/action_hints/hint_138.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_143.jpg"
+          "src": "images/action_hints/hint_139.jpg"
         }
       ]
     },
@@ -3538,12 +3713,20 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_144.jpg"
-        },
+          "src": "images/action_hints/hint_140.jpg"
+        }
+      ]
+    },
+    {
+      "title": "11/14：【曲目3：生生世世都在菩提中】",
+      "videos": [
         {
-          "type": "text",
-          "content": "11/14：【曲目3：生生世世都在菩提中】"
-        },
+          "title": "[功德品] 生生世世都在菩提中(辛巴威)",
+          "url": "https://www.youtube.com/watch?v=cSjyuO_KRp8&list=PLGRfIGuFCUAQ",
+          "videoId": "cSjyuO_KRp8"
+        }
+      ],
+      "details": [
         {
           "type": "text",
           "content": "我要成為有力量的辛巴威人 陪伴他們 翻轉他們的貧窮"
@@ -3590,43 +3773,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_145.jpg"
+          "src": "images/action_hints/hint_141.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_146.jpg"
-        }
-      ]
-    },
-    {
-      "title": "11/15：35.九二一-第九功德",
-      "videos": [
-        {
-          "title": "[功德品] 第九功德‧921地震",
-          "url": "https://www.youtube.com/watch?v=hUpDtkqTQNM&list=PLcdQvmBAiLJ0",
-          "videoId": "hUpDtkqTQNM"
-        }
-      ],
-      "details": [
-        {
-          "type": "text",
-          "content": "11/15：【曲目1：第九功德】"
-        },
-        {
-          "type": "text",
-          "content": "第九功德難思議"
-        },
-        {
-          "type": "text",
-          "content": "願力得登善慧地"
-        },
-        {
-          "type": "text",
-          "content": "辯才無礙得清淨"
-        },
-        {
-          "type": "text",
-          "content": "宿業重障一時(厚=滅)"
+          "src": "images/action_hints/hint_142.jpg"
         }
       ]
     },
@@ -3639,11 +3790,18 @@ const ACTION_HINTS_DATA = {
           "videoId": "06ylKzGmhdQ"
         }
       ],
-      "details": [
+      "details": []
+    },
+    {
+      "title": "11/15：【曲目2：化城喻故事】",
+      "videos": [
         {
-          "type": "text",
-          "content": "11/15：【曲目2：化城喻故事】"
-        },
+          "title": "[化城喻故事] 921地湧菩薩",
+          "url": "https://www.youtube.com/watch?v=06ylKzGmhdQ",
+          "videoId": "06ylKzGmhdQ"
+        }
+      ],
+      "details": [
         {
           "type": "text",
           "content": "地湧菩薩"
@@ -3692,19 +3850,45 @@ const ACTION_HINTS_DATA = {
     },
     {
       "title": "11/15：37.九二一-化城喻(諸惡道險)",
-      "videos": [],
+      "videos": [
+        {
+          "title": "[化城喻故事] 921地湧菩薩",
+          "url": "https://www.youtube.com/watch?v=06ylKzGmhdQ",
+          "videoId": "06ylKzGmhdQ"
+        }
+      ],
       "details": [
         {
-          "type": "text",
-          "content": "11/15：【曲目3：化城喻故事】"
-        },
+          "type": "image",
+          "src": "images/action_hints/hint_149.jpg"
+        }
+      ]
+    },
+    {
+      "title": "11/15：【曲目3：化城喻故事】",
+      "videos": [
+        {
+          "title": "[化城喻故事] 921地湧菩薩",
+          "url": "https://www.youtube.com/watch?v=06ylKzGmhdQ",
+          "videoId": "06ylKzGmhdQ"
+        }
+      ],
+      "details": [
         {
           "type": "text",
           "content": "諸惡道險猶長遠"
         },
         {
           "type": "text",
+          "content": "教育工程 厚"
+        },
+        {
+          "type": "text",
           "content": "久受勤苦乃可度"
+        },
+        {
+          "type": "text",
+          "content": "社會希望 厚"
         },
         {
           "type": "text",
@@ -3713,6 +3897,18 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "令離生死入佛慧。"
+        },
+        {
+          "type": "text",
+          "content": "11/15："
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_150.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_151.jpg"
         }
       ]
     },
@@ -3727,9 +3923,15 @@ const ACTION_HINTS_DATA = {
       ],
       "details": [
         {
-          "type": "text",
-          "content": "11/15：【許一個希望的未來】"
-        },
+          "type": "image",
+          "src": "images/action_hints/hint_152.jpg"
+        }
+      ]
+    },
+    {
+      "title": "11/15：【許一個希望的未來】",
+      "videos": [],
+      "details": [
         {
           "type": "text",
           "content": "大愛為樑 智慧為牆"
@@ -3749,7 +3951,7 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "11/15：39.抱佛恩",
+      "title": "11/15：39.報佛恩",
       "videos": [
         {
           "title": "[功德品] 報佛恩",
@@ -3757,11 +3959,12 @@ const ACTION_HINTS_DATA = {
           "videoId": "KwsN8MKQxOE"
         }
       ],
+      "details": []
+    },
+    {
+      "title": "11/15：【曲目1：人間導師】",
+      "videos": [],
       "details": [
-        {
-          "type": "text",
-          "content": "11/15：【曲目1：人間導師】"
-        },
         {
           "type": "text",
           "content": "淨治身心 利濟有情"

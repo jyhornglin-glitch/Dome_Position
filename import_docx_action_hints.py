@@ -13,7 +13,7 @@ import re
 import docx
 from docx.oxml.ns import qn
 
-DOCX_FILE = "動作提示0905.docx" if os.path.exists("動作提示0905.docx") else "動作提示.docx"
+DOCX_FILE = "動作提示0909.docx" if os.path.exists("動作提示0909.docx") else ("動作提示0905.docx" if os.path.exists("動作提示0905.docx") else "動作提示.docx")
 OUTPUT_JS = "action_hints_data.js"
 IMAGE_DIR = os.path.join("images", "action_hints")
 
@@ -28,6 +28,8 @@ CATEGORY_MAPPING = {
     '05-3有法船(是諸眾生)': 'noBoat3', # Support both formatting
     '05-3無法船(是諸眾生)': 'noBoat3',
     '06四弘誓願': 'bigV',
+    '06四弘誓願07-1大船師': 'bigV_or_daChuanShi',
+    '06四弘誓願 07-1大船師': 'bigV_or_daChuanShi',
     '07-1大船師': 'daChuanShi',
     '07-2骨捐能捨': 'boneDonation',
     '08教育': 'edu',
@@ -35,14 +37,18 @@ CATEGORY_MAPPING = {
     '09-1人文(基本隊形)': 'humanities1',
     '09-2人文': 'humanities2',
     '09-2人文(主機板)': 'humanities2',
+    # Five Continents 1 (五大洲 10-1 / 10-4 台灣段)
     '10-1五大洲': 'fiveContinents1',
     '10-1五大洲(台灣)': 'fiveContinents1',
+    '10-2五大洲(台灣)': 'fiveContinents1',
+    '10-4五大洲(台灣)': 'fiveContinents1',
     '11-1五大洲': 'fiveContinents1',
     '11-1五大洲(台灣)': 'fiveContinents1',
     '五大洲(台灣)': 'fiveContinents1',
-    '10-2五大洲(台灣)': 'fiveContinents1',
-    '11-2五大洲(台灣)': 'fiveContinents1',
+    # Five Continents 2 (五大洲 10-2 / 10-3 / 10-5 各國/化城/佛國段)
     '10-2五大洲': 'fiveContinents2',
+    '10-3五大洲': 'fiveContinents2',
+    '10-5五大洲': 'fiveContinents2',
     '11-2五大洲': 'fiveContinents2'
 }
 
@@ -101,12 +107,12 @@ def is_item_start(text):
     first_line = lines[0]
     
     # Matches item start with number, e.g. "1. ", "13. ", "11/12：34.約旦", "11/13、11/15：13.是諸眾生", "11/15：40.【曲目2：第十功德】"
-    if re.match(r'^(?:(?:\d{2}/\d{2}|\d{2})(?:[、,，](?:\d{2}/\d{2}|\d{2}))*[:：])?\s*\d+[\.、\s]', first_line):
+    if re.match(r'^(?:(?:\d{2}/\d{2}|\d{2})(?:[、,，](?:\d{2}/\d{2}|\d{2}))*[:：])?\s*(?:\d+[\.、\s]|【)', first_line):
         return True
     
     # Matches key action segments without leading numbers
-    keywords = ['序，', '生，', '老，', '病，', '死，', '六度', '行願', '開經偈', '點一盞燈', '地藏經', '醫療梵唄', '四弘誓願', '大醫王', '骨捐', '能捨']
-    if any(first_line.startswith(k) for k in keywords):
+    keywords = ['序，', '生，', '老，', '病，', '死，', '六度', '行願', '開經偈', '點一盞燈', '地藏經', '醫療梵唄', '四弘誓願', '大醫王', '骨捐', '能捨', '無醫村', '北慈', '江永旭', '大體老師', '小樹啊', '種樹', '成長', '感恩', '藥草喻', '慈誠隊歌', '父母恩重難報經', '大愛讓世界亮起來', '天空破了洞', '環保志工', '代謝不住', '開經書']
+    if any(first_line.startswith(k) or ('【' in first_line and k in first_line) for k in keywords):
         return True
         
     return False
@@ -206,12 +212,22 @@ def main():
             target_cats = []
             if '是諸眾生' in cell_text or '圍爐' in cell_text or '米甕與大魚' in cell_text:
                 target_cats = ['noBoat3']
-            elif r in [75, 76] or '開經書' in cell_text or '【曲目：無量義經功德品】' in cell_text:
-                target_cats = ['fiveContinents1']
-            elif loc_clean in ['10-1五大洲', '10-1五大洲(台灣)', '11-1五大洲', '11-1五大洲(台灣)', '10-2五大洲(台灣)', '11-2五大洲(台灣)', '五大洲(台灣)']:
-                target_cats = ['fiveContinents1']
-            elif loc_clean in ['10-2五大洲', '11-2五大洲']:
-                target_cats = ['fiveContinents2']
+            elif loc_clean in ['06四弘誓願07-1大船師', '06四弘誓願 07-1大船師', '06四弘誓願', '07-1大船師']:
+                if any(k in cell_text for k in ['地藏經', '四弘誓願', '德行品梵唄', '醫療梵唄']):
+                    target_cats = ['bigV']
+                elif any(k in cell_text for k in ['大醫王', '無醫村', '北慈', '江永旭', '醫子喻', '藥師如來']):
+                    target_cats = ['daChuanShi']
+                else:
+                    target_cats = ['bigV'] if current_items.get('bigV') else ['daChuanShi']
+            elif '五大洲' in loc_clean or '開經書' in cell_text or '無量義經功德品' in cell_text:
+                if any(k in cell_text for k in ['化城喻', '若入是城', '諸惡道險', '減災工程', '報佛恩', '人間導師', '第十功德', '印尼']):
+                    target_cats = ['fiveContinents2']
+                elif any(k in cell_text for k in ['台灣救災', '開經書']) or ('九二一' in cell_text and '第九功德' in cell_text) or '(台灣)' in loc_clean:
+                    target_cats = ['fiveContinents1']
+                elif any(k in cell_text for k in ['貧中之富', '富中之富', '黑區', '約旦', '土耳其', '莫三比克', '印尼', '緬甸', '八八風災', '泰北', '辛巴威']):
+                    target_cats = ['fiveContinents2']
+                else:
+                    target_cats = ['fiveContinents2'] if ('10-2' in loc_clean or '10-5' in loc_clean) else ['fiveContinents1']
             else:
                 target_cats = [cat]
 
@@ -284,41 +300,50 @@ def main():
         # 11/12
         ('11/12', '樂生', [('[功德品] 樂生', 'https://www.youtube.com/watch?v=mGhnmtxZrn8&list=PLbIvC-A2H2ko')]),
         ('11/12', '富中之富', [('[功德品] 富中之富 A', 'https://www.youtube.com/watch?v=m2NvdK1rQpk&list=PLbIvC-A2H2ko')]),
-        ('11/12', '35.約旦', [('[功德品] 第三功德‧約旦+土耳其', 'https://www.youtube.com/watch?v=0UcRe5beSzw&list=PLbIvC-A2H2ko')]),
-        ('11/12', '36.約旦', [('[功德品] 張起大愛的風帆‧約旦(法海)', 'https://www.youtube.com/watch?v=MD8To93EY0I&list=PLbIvC-A2H2ko')]),
+        ('11/12', '第三功德', [('[功德品] 第三功德‧約旦+土耳其', 'https://www.youtube.com/watch?v=0UcRe5beSzw&list=PLbIvC-A2H2ko')]),
+        ('11/12', '約旦', [('[功德品] 張起大愛的風帆‧約旦(法海)', 'https://www.youtube.com/watch?v=MD8To93EY0I&list=PLbIvC-A2H2ko')]),
         ('11/12', '啟航', [('[功德品] 張起大愛的風帆‧約旦(法海)', 'https://www.youtube.com/watch?v=MD8To93EY0I&list=PLbIvC-A2H2ko')]),
-        ('11/12', '37.黑區變亮區', [('[功德品] 第六功德‧黑區變亮區', 'https://www.youtube.com/watch?v=1SAdHJZAVuc&list=PLbIvC-A2H2ko')]),
-        ('11/12', '38.黑區變亮區', [('[功德品] 諸惡道險猶長遠‧黑區變亮區(法海)', 'https://www.youtube.com/watch?v=y2cdRGMovd0&list=PLbIvC-A2H2ko')]),
-        ('11/12', '39.莫三比克', [('[功德品] 第八功德‧非洲', 'https://www.youtube.com/watch?v=vZU-rtMuEoE&list=PLbIvC-A2H2ko')]),
-        ('11/12', '40.莫三比克-髻珠喻', [('[功德品] 身口意念應守護(莫三比克‧法海)', 'https://www.youtube.com/watch?v=SCohDEBScvY&list=PLbIvC-A2H2ko')]),
-        ('11/12', '台灣救災集錦', [('[功德品] 第五功德‧台灣救災集錦', 'https://www.youtube.com/watch?v=aNi9Y8qbZp0&list=PLbIvC-A2H2ko')]),
+        ('11/12', '第六功德', [('[功德品] 第六功德‧黑區變亮區', 'https://www.youtube.com/watch?v=1SAdHJZAVuc&list=PLbIvC-A2H2ko')]),
+        ('11/12', '黑區變亮區', [('[功德品] 第六功德‧黑區變亮區', 'https://www.youtube.com/watch?v=1SAdHJZAVuc&list=PLbIvC-A2H2ko')]),
+        ('11/12', '化城喻', [('[功德品] 諸惡道險猶長遠‧黑區變亮區(法海)', 'https://www.youtube.com/watch?v=y2cdRGMovd0&list=PLbIvC-A2H2ko')]),
+        ('11/12', '台灣救災', [('[功德品] 第五功德‧台灣救災集錦', 'https://www.youtube.com/watch?v=aNi9Y8qbZp0&list=PLbIvC-A2H2ko')]),
 
         # 11/13
         ('11/13', '富中之富', [('[功德品] 富中之富 B', 'https://www.youtube.com/watch?v=14EMlfGGBXY&list=PLGafJimf9RDw')]),
         ('11/13', '土耳其', [('[功德品] 第三功德‧約旦+土耳其', 'https://www.youtube.com/watch?v=0UcRe5beSzw&list=PLGafJimf9RDw')]),
-        ('11/13', '南非-第八功德', [('[功德品] 第八功德‧非洲', 'https://www.youtube.com/watch?v=vZU-rtMuEoE&list=PLGafJimf9RDw')]),
-        ('11/13', '南非-髻珠喻', [('11/13 [功德品] 身口意念應守護(南非‧法海)', 'https://www.youtube.com/watch?v=htAI4IbqJtE&list=PLGafJimf9RDw')]),
+        ('11/13', '第八功德', [('[功德品] 第八功德‧非洲', 'https://www.youtube.com/watch?v=vZU-rtMuEoE&list=PLGafJimf9RDw')]),
+        ('11/13', '莫三比克', [('[功德品] 第八功德‧非洲', 'https://www.youtube.com/watch?v=vZU-rtMuEoE&list=PLGafJimf9RDw')]),
+        ('11/13', '髻珠喻', [('11/13 [功德品] 身口意念應守護(南非‧法海)', 'https://www.youtube.com/watch?v=htAI4IbqJtE&list=PLGafJimf9RDw')]),
+        ('11/13', '第九功德', [
+            ('[功德品] 第九功德‧印尼', 'https://www.youtube.com/watch?v=CvAlUYsudqk&list=PLGafJimf9RDw')
+        ]),
         ('11/13', '印尼', [
-            ('[功德品] 第九功德‧印尼', 'https://www.youtube.com/watch?v=CvAlUYsudqk&list=PLGafJimf9RDw'),
+            ('[功德品] 第九功德‧印尼', 'https://www.youtube.com/watch?v=CvAlUYsudqk&list=PLGafJimf9RDw')
+        ]),
+        ('11/13', '化城喻', [
             ('[功德品] 菩薩慈悲憫眾生‧印尼(法海)', 'https://www.youtube.com/watch?v=xmX4NrnNqJA&list=PLGafJimf9RDw')
         ]),
 
         # 11/14
         ('11/14', '富中之富', [('[功德品] 富中之富 A', 'https://www.youtube.com/watch?v=m2NvdK1rQpk&list=PLGRfIGuFCUAQ')]),
-        ('11/14', '第二功德-緬甸', [('11/14 [功德品] 第二功德 緬甸米撲滿', 'https://www.youtube.com/watch?v=yeEd_aeAv5k&list=PLGRfIGuFCUAQ')]),
+        ('11/14', '第二功德', [('11/14 [功德品] 第二功德 緬甸米撲滿', 'https://www.youtube.com/watch?v=yeEd_aeAv5k&list=PLGRfIGuFCUAQ')]),
+        ('11/14', '緬甸', [('11/14 [功德品] 第二功德 緬甸米撲滿', 'https://www.youtube.com/watch?v=yeEd_aeAv5k&list=PLGRfIGuFCUAQ')]),
+        ('11/14', '第七功德', [('[功德品] 第七功德‧莫拉克風災', 'https://www.youtube.com/watch?v=mjPNSTARlmY&list=PLGRfIGuFCUAQ')]),
         ('11/14', '八八風災', [('[功德品] 第七功德‧莫拉克風災', 'https://www.youtube.com/watch?v=mjPNSTARlmY&list=PLGRfIGuFCUAQ')]),
-        ('11/14', '泰北-第四功德', [('[功德品] 第四功德‧泰北', 'https://www.youtube.com/watch?v=_iO0oVSMR8s&list=PLGRfIGuFCUAQ')]),
-        ('11/14', '辛巴威-第八功德', [('[功德品] 第八功德‧非洲', 'https://www.youtube.com/watch?v=vZU-rtMuEoE&list=PLGRfIGuFCUAQ')]),
-        ('11/14', '辛巴威-髻珠喻', [('[功德品] 身口意念應守護(辛巴威)', 'https://www.youtube.com/watch?v=hfwvSIDG0EE&list=PLGRfIGuFCUAQ')]),
-        ('11/14', '辛巴威-生生世世', [('[功德品] 生生世世都在菩提中(辛巴威)', 'https://www.youtube.com/watch?v=cSjyuO_KRp8&list=PLGRfIGuFCUAQ')]),
+        ('11/14', '泰北', [('[功德品] 第四功德‧泰北', 'https://www.youtube.com/watch?v=_iO0oVSMR8s&list=PLGRfIGuFCUAQ')]),
+        ('11/14', '第四功德', [('[功德品] 第四功德‧泰北', 'https://www.youtube.com/watch?v=_iO0oVSMR8s&list=PLGRfIGuFCUAQ')]),
+        ('11/14', '第八功德', [('[功德品] 第八功德‧非洲', 'https://www.youtube.com/watch?v=vZU-rtMuEoE&list=PLGRfIGuFCUAQ')]),
+        ('11/14', '辛巴威', [('[功德品] 第八功德‧非洲', 'https://www.youtube.com/watch?v=vZU-rtMuEoE&list=PLGRfIGuFCUAQ')]),
+        ('11/14', '髻珠喻', [('[功德品] 身口意念應守護(辛巴威)', 'https://www.youtube.com/watch?v=hfwvSIDG0EE&list=PLGRfIGuFCUAQ')]),
+        ('11/14', '生生世世', [('[功德品] 生生世世都在菩提中(辛巴威)', 'https://www.youtube.com/watch?v=cSjyuO_KRp8&list=PLGRfIGuFCUAQ')]),
 
         # 11/15
         ('11/15', '樂生', [('[功德品] 樂生', 'https://www.youtube.com/watch?v=mGhnmtxZrn8&list=PLcdQvmBAiLJ0')]),
         ('11/15', '富中之富', [('[功德品] 富中之富 B', 'https://www.youtube.com/watch?v=14EMlfGGBXY&list=PLcdQvmBAiLJ0')]),
-        ('11/15', '九二一-第九功德', [('[功德品] 第九功德‧921地震', 'https://www.youtube.com/watch?v=hUpDtkqTQNM&list=PLcdQvmBAiLJ0')]),
-        ('11/15', '九二一-化城喻(若入是城)', [('[化城喻故事] 921地湧菩薩', 'https://www.youtube.com/watch?v=06ylKzGmhdQ')]),
+        ('11/15', '九二一', [('[功德品] 第九功德‧921地震', 'https://www.youtube.com/watch?v=hUpDtkqTQNM&list=PLcdQvmBAiLJ0')]),
+        ('11/15', '化城喻', [('[化城喻故事] 921地湧菩薩', 'https://www.youtube.com/watch?v=06ylKzGmhdQ')]),
         ('11/15', '減災工程', [('[功德品] 大愛為樑(減災希望工程)', 'https://www.youtube.com/watch?v=Qu7wLnDXivU&list=PLcdQvmBAiLJ0')]),
-        ('11/15', '抱佛恩', [('[功德品] 報佛恩', 'https://www.youtube.com/watch?v=KwsN8MKQxOE&list=PLcdQvmBAiLJ0')]),
+        ('11/15', '報佛恩', [('[功德品] 報佛恩', 'https://www.youtube.com/watch?v=KwsN8MKQxOE&list=PLcdQvmBAiLJ0')]),
         ('11/15', '第十功德', [
             ('[功德品] 飛天‧白衣走', 'https://www.youtube.com/watch?v=eyAZbFSw39M&list=PLcdQvmBAiLJ0'),
             ('[功德品] 飛天‧藍衣走', 'https://www.youtube.com/watch?v=8FLAEwVIV4k&list=PLcdQvmBAiLJ0'),

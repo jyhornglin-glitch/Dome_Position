@@ -1287,11 +1287,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     segments.forEach(seg => {
       if (!seg.text) return;
-      if (seg.isRed || seg.isBoxed) {
+      const classes = [];
+      if (seg.isBoxed) classes.push('lyrics-boxed-text');
+      if (seg.isRed) classes.push('lyrics-highlight-red');
+      if (seg.isGreen) classes.push('lyrics-action-green');
+      if (seg.isBlue) classes.push('lyrics-sing-blue');
+      if (seg.isPurple) classes.push('lyrics-sound-purple');
+      if (seg.isBold) classes.push('lyrics-bold');
+      if (seg.isItalic) classes.push('lyrics-italic');
+
+      if (classes.length > 0) {
         const span = document.createElement('span');
-        let classes = [];
-        if (seg.isBoxed) classes.push('lyrics-boxed-text');
-        if (seg.isRed) classes.push('lyrics-highlight-red');
         span.className = classes.join(' ');
         span.textContent = seg.text;
         parentEl.appendChild(span);
@@ -4119,7 +4125,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sixRuiXiang: '黃'
   };
 
-  // 根據 定位點參考.docx 整理的各步驟定位小卡名稱 (支援按日期場次動態對照，包含括號曲目名稱)
+  // 根據 0909小卡關鍵字提示.docx 整理的各步驟定位小卡名稱 (支援按日期場次動態對照，包含括號曲目名稱)
   const STEP_CARD_NAMES = {
     basic: '基本 (基本隊形)',
     circle: '圓 (序/生老病死/六度)',
@@ -4137,8 +4143,8 @@ document.addEventListener('DOMContentLoaded', () => {
     daChuanShi: '船師 (大醫王)',
     boneDonation: '骨捐 (能捨)',
     edu: '教育 (說法品/藥草喻)',
-    humanities1: '人文 (慈誠/父母恩)',
-    humanities2: '主機板 (天空破了洞/做環保/代謝不住/大愛亮起來)',
+    humanities1: '人文 (父母恩/跪羊圖)',
+    humanities2: '主機板 (慈誠/天空/做環保/代謝/大愛亮起來)',
     fiveContinents1: '五洲 (台灣)',
     fiveContinents2: '五洲',
     sixRuiXiang: '六瑞相 (發願/行星/祈禱)'
@@ -4205,42 +4211,176 @@ document.addEventListener('DOMContentLoaded', () => {
     return Promise.all(promises);
   }
 
-  // 功德品 各場次演繹段落（五大洲子步驟名稱與燈號對照表，依據 定位點參考.docx）
-  const FIVE_CONTINENTS_SUB_STEPS = {
+  // 功德品 各場次演繹段落（五大洲演出階段定義，跨座標跑位演繹者分割為 4 格）
+  const FIVE_CONTINENTS_SECTIONS = {
+    '1115': [
+      {
+        name: '五洲 (前段)',
+        coordKey: 'fiveContinents2',
+        primaryIdx: 15,
+        items: [
+          { name: '樂生', lamp: '', displayType: 'fiveContinents2' },
+          { name: '富中之富', lamp: '綠', displayType: 'fiveContinents2' }
+        ]
+      },
+      {
+        name: '五洲 (開經書)',
+        coordKey: 'fiveContinents1',
+        primaryIdx: 14,
+        items: [
+          { name: '開經書', lamp: '綠', displayType: 'fiveContinents1' }
+        ]
+      },
+      {
+        name: '五洲 (功9 921)',
+        coordKey: 'fiveContinents1',
+        primaryIdx: 14,
+        items: [
+          { name: '功9 921', lamp: '綠', displayType: 'fiveContinents1' }
+        ]
+      },
+      {
+        name: '五洲 (化城佛國)',
+        coordKey: 'fiveContinents2',
+        primaryIdx: 15,
+        items: [
+          { name: '九二一化城', lamp: '', displayType: 'fiveContinents2' },
+          { name: '減災工程', lamp: '綠', displayType: 'fiveContinents2' },
+          { name: '佛國仰師', lamp: '綠', displayType: 'fiveContinents2' },
+          { name: '功10飛天', lamp: '黃', displayType: 'fiveContinents2' }
+        ]
+      }
+    ],
     '1112': [
-      { name: '樂生', lamp: '', displayType: 'fiveContinents1' },
-      { name: '第一功德', lamp: '綠', displayType: 'fiveContinents1' },
-      { name: '富中之富Ａ', lamp: '綠', displayType: 'fiveContinents1' },
-      { name: '功3約旦', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '功6黑亮區', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '功8莫三比克', lamp: '黃', displayType: 'fiveContinents2' },
-      { name: '功2台灣救災', lamp: '綠', displayType: 'fiveContinents2' }
+      {
+        name: '五洲 (前段)',
+        coordKey: 'fiveContinents2',
+        primaryIdx: 15,
+        items: [
+          { name: '樂生', lamp: '', displayType: 'fiveContinents2' },
+          { name: '富中之富', lamp: '綠', displayType: 'fiveContinents2' }
+        ]
+      },
+      {
+        name: '五洲 (開經書)',
+        coordKey: 'fiveContinents1',
+        primaryIdx: 14,
+        items: [
+          { name: '開經書', lamp: '綠', displayType: 'fiveContinents1' }
+        ]
+      },
+      {
+        name: '五洲 (黑區約旦)',
+        coordKey: 'fiveContinents2',
+        primaryIdx: 15,
+        items: [
+          { name: '黑區亮區', lamp: '綠', displayType: 'fiveContinents2' },
+          { name: '約旦啟航', lamp: '綠', displayType: 'fiveContinents2' }
+        ]
+      },
+      {
+        name: '五洲 (台灣救災)',
+        coordKey: 'fiveContinents1',
+        primaryIdx: 14,
+        items: [
+          { name: '台灣救災', lamp: '綠', displayType: 'fiveContinents1' }
+        ]
+      }
     ],
     '1113': [
-      { name: '貧婆(煎包)', lamp: '', displayType: 'fiveContinents1' },
-      { name: '第一功德', lamp: '綠', displayType: 'fiveContinents1' },
-      { name: '富中之富B', lamp: '綠', displayType: 'fiveContinents1' },
+      {
+        name: '五洲 (前段)',
+        coordKey: 'fiveContinents2',
+        primaryIdx: 15,
+        items: [
+          { name: '富中之富', lamp: '綠', displayType: 'fiveContinents2' }
+        ]
+      },
+      {
+        name: '五洲 (開經書)',
+        coordKey: 'fiveContinents1',
+        primaryIdx: 14,
+        items: [
+          { name: '開經書', lamp: '綠', displayType: 'fiveContinents1' }
+        ]
+      },
+      {
+        name: '五洲 (各國)',
+        coordKey: 'fiveContinents2',
+        primaryIdx: 15,
+        items: [
+          { name: '功3土耳其', lamp: '綠', displayType: 'fiveContinents2' },
+          { name: '功8莫三比克', lamp: '綠', displayType: 'fiveContinents2' },
+          { name: '功9印尼', lamp: '黃', displayType: 'fiveContinents2' }
+        ]
+      }
+    ],
+    '1114': [
+      {
+        name: '五洲 (前段)',
+        coordKey: 'fiveContinents2',
+        primaryIdx: 15,
+        items: [
+          { name: '富中之富', lamp: '綠', displayType: 'fiveContinents2' }
+        ]
+      },
+      {
+        name: '五洲 (開經書)',
+        coordKey: 'fiveContinents1',
+        primaryIdx: 14,
+        items: [
+          { name: '開經書', lamp: '綠', displayType: 'fiveContinents1' }
+        ]
+      },
+      {
+        name: '五洲 (各國)',
+        coordKey: 'fiveContinents2',
+        primaryIdx: 15,
+        items: [
+          { name: '功2緬甸', lamp: '綠', displayType: 'fiveContinents2' },
+          { name: '功7八八風災', lamp: '綠', displayType: 'fiveContinents2' },
+          { name: '功4泰北', lamp: '黃', displayType: 'fiveContinents2' },
+          { name: '功8辛巴威', lamp: '綠', displayType: 'fiveContinents2' },
+          { name: '生生世世', lamp: '黃', displayType: 'fiveContinents2' }
+        ]
+      }
+    ]
+  };
+
+  // 功德品 各場次演繹段落（五大洲子步驟名稱與燈號對照表，依據 0909小卡關鍵字提示.docx 與 動作提示0909.docx 演繹時間軸順序）
+  const FIVE_CONTINENTS_SUB_STEPS = {
+    '1112': [
+      { name: '樂生', lamp: '', displayType: 'fiveContinents2' },
+      { name: '富中之富', lamp: '綠', displayType: 'fiveContinents2' },
+      { name: '開經書', lamp: '綠', displayType: 'fiveContinents1' },
+      { name: '黑區亮區', lamp: '綠', displayType: 'fiveContinents2' },
+      { name: '約旦啟航', lamp: '綠', displayType: 'fiveContinents2' },
+      { name: '台灣救災', lamp: '綠', displayType: 'fiveContinents1' }
+    ],
+    '1113': [
+      { name: '富中之富', lamp: '綠', displayType: 'fiveContinents2' },
+      { name: '開經書', lamp: '綠', displayType: 'fiveContinents1' },
       { name: '功3土耳其', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '功8南非', lamp: '綠', displayType: 'fiveContinents2' },
+      { name: '功8莫三比克', lamp: '綠', displayType: 'fiveContinents2' },
       { name: '功9印尼', lamp: '黃', displayType: 'fiveContinents2' }
     ],
     '1114': [
-      { name: '貧婆(米目)', lamp: '', displayType: 'fiveContinents1' },
-      { name: '第一功德', lamp: '綠', displayType: 'fiveContinents1' },
-      { name: '富中之富A', lamp: '綠', displayType: 'fiveContinents1' },
+      { name: '富中之富', lamp: '綠', displayType: 'fiveContinents2' },
+      { name: '開經書', lamp: '綠', displayType: 'fiveContinents1' },
       { name: '功2緬甸', lamp: '綠', displayType: 'fiveContinents2' },
       { name: '功7八八風災', lamp: '綠', displayType: 'fiveContinents2' },
       { name: '功4泰北', lamp: '黃', displayType: 'fiveContinents2' },
-      { name: '功8辛巴威/髻珠喻', lamp: '綠', displayType: 'fiveContinents2' },
+      { name: '功8辛巴威', lamp: '綠', displayType: 'fiveContinents2' },
       { name: '生生世世', lamp: '黃', displayType: 'fiveContinents2' }
     ],
     '1115': [
-      { name: '樂生', lamp: '', displayType: 'fiveContinents1' },
-      { name: '第一功德', lamp: '綠', displayType: 'fiveContinents1' },
-      { name: '富中之富B', lamp: '綠', displayType: 'fiveContinents1' },
-      { name: '功9 921', lamp: '綠', displayType: 'fiveContinents2' },
+      { name: '樂生', lamp: '', displayType: 'fiveContinents2' },
+      { name: '富中之富', lamp: '綠', displayType: 'fiveContinents2' },
+      { name: '開經書', lamp: '綠', displayType: 'fiveContinents1' },
+      { name: '功9 921', lamp: '綠', displayType: 'fiveContinents1' },
+      { name: '九二一化城', lamp: '', displayType: 'fiveContinents2' },
       { name: '減災工程', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '報佛恩', lamp: '綠', displayType: 'fiveContinents2' },
+      { name: '佛國仰師', lamp: '綠', displayType: 'fiveContinents2' },
       { name: '功10飛天', lamp: '黃', displayType: 'fiveContinents2' }
     ]
   };
@@ -4406,12 +4546,41 @@ document.addEventListener('DOMContentLoaded', () => {
         splitStepIdx = k;
       }
     }
-
     const col1EndIdx = splitStepIdx;
     const col2StartIdx = splitStepIdx + 1;
 
     const col1Groups = getUniqueColGroups(0, col1EndIdx);
-    const col2Groups = getUniqueColGroups(col2StartIdx, formations.length - 1);
+    
+    let col2Groups = [];
+    const fc1Coord = getFormationCoordStr(performer, 'fiveContinents1') || '無';
+    const fc2Coord = getFormationCoordStr(performer, 'fiveContinents2') || '無';
+    const hasDiffFC = (fc1Coord !== fc2Coord && fc1Coord !== '無' && fc2Coord !== '無');
+
+    if (hasDiffFC && FIVE_CONTINENTS_SECTIONS[selectedSessionKey]) {
+      // 跨座標跑位演繹者：步驟 12~14 (教育、人文、主機板) 正常加入
+      const preFCGroups = getUniqueColGroups(col2StartIdx, 13);
+      preFCGroups.forEach(g => col2Groups.push(g));
+
+      // 五大洲依據演繹時間動線分割為 4 格 (或該場次 Sections 數量)
+      const sections = FIVE_CONTINENTS_SECTIONS[selectedSessionKey];
+      sections.forEach(sec => {
+        const coord = getFormationCoordStr(performer, sec.coordKey) || '無';
+        col2Groups.push({
+          coord: coord,
+          displayTypeOverride: sec.coordKey,
+          primaryIdx: sec.primaryIdx,
+          indices: [sec.primaryIdx],
+          expandedItems: sec.items,
+          sectionTitle: sec.name
+        });
+      });
+
+      // 步驟 17 (六瑞相) 正常加入
+      const postFCGroups = getUniqueColGroups(16, formations.length - 1);
+      postFCGroups.forEach(g => col2Groups.push(g));
+    } else {
+      col2Groups = getUniqueColGroups(col2StartIdx, formations.length - 1);
+    }
 
     // Table Header Texts (1:1 等寬標頭，左右置中顯示)
     ctx.fillStyle = '#334155';
@@ -4430,6 +4599,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5.3 輔助函式：取得某群組展開後的子項目清單
     function getGroupExpandedItems(group) {
       const expandedItems = [];
+      const hasFC1 = group.indices.some(idx => formations[idx].key === 'fiveContinents1');
+      const hasFC2 = group.indices.some(idx => formations[idx].key === 'fiveContinents2');
+
+      // 若群組同時包含 fiveContinents1 與 fiveContinents2 (同座標合併)
+      if (hasFC1 && hasFC2) {
+        // 先加入非五大洲的項目 (若有)
+        group.indices.forEach(stepIdx => {
+          const stepF = formations[stepIdx];
+          if (stepF.key !== 'fiveContinents1' && stepF.key !== 'fiveContinents2') {
+            expandedItems.push({
+              name: getCardStepName(stepF.key, selectedSessionKey),
+              lamp: getFormationLampColor(stepF.key),
+              displayType: getDisplayType(stepF.key)
+            });
+          }
+        });
+        // 五大洲項目依據檔案時間順序完整加入
+        const subList = FIVE_CONTINENTS_SUB_STEPS[selectedSessionKey] || [];
+        subList.forEach(sub => expandedItems.push(sub));
+        return expandedItems;
+      }
+
       group.indices.forEach(stepIdx => {
         const stepF = formations[stepIdx];
         if (stepF.key === 'fiveContinents1' || stepF.key === 'fiveContinents2') {
@@ -4460,7 +4651,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (groups.length === 0) return;
       let totalWeight = 0;
       groups.forEach(g => {
-        g.expandedItems = getGroupExpandedItems(g);
+        if (!g.expandedItems) {
+          g.expandedItems = getGroupExpandedItems(g);
+        }
         const count = g.expandedItems.length;
         // 檢查是否有 3 行項目 (如 圓、主機板 等包含 2 個以上斜線之項目)
         let hasThreeLineItem = false;

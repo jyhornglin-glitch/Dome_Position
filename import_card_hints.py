@@ -12,7 +12,7 @@ import json
 import re
 import docx
 
-DOCX_FILE = "小卡關鍵字提示.docx"
+DOCX_FILE = "0909小卡關鍵字提示.docx" if os.path.exists("0909小卡關鍵字提示.docx") else "小卡關鍵字提示.docx"
 OUTPUT_JS = "card_hints_data.js"
 
 # Map Word location names to formation keys in app.js
@@ -41,6 +41,8 @@ CATEGORY_MAPPING = {
     # No Boat 3 (有法船 - 是諸眾生)
     '05-3有法船(是諸眾生)': 'noBoat3',
     '06-3有法船(是諸眾生)': 'noBoat3',
+    '05-3無法船(是諸眾生)': 'noBoat3',
+    '06-3無法船(是諸眾生)': 'noBoat3',
     # Big V (四弘誓願)
     '06四弘誓願': 'bigV',
     '07四弘誓願': 'bigV',
@@ -59,14 +61,18 @@ CATEGORY_MAPPING = {
     # Humanities 2 (人文 09-2 / 10-2)
     '09-2人文': 'humanities2',
     '10-2人文': 'humanities2',
-    # Five Continents 1 (五大洲 10-1 / 11-1)
+    # Five Continents 1 (五大洲 10-1 / 10-4 台灣段)
     '10-1五大洲': 'fiveContinents1',
     '10-1五大洲(台灣)': 'fiveContinents1',
+    '10-2五大洲(台灣)': 'fiveContinents1',
+    '10-4五大洲(台灣)': 'fiveContinents1',
     '11-1五大洲': 'fiveContinents1',
     '11-1五大洲(台灣)': 'fiveContinents1',
     '五大洲(台灣)': 'fiveContinents1',
-    # Five Continents 2 (五大洲 10-2 / 11-2)
+    # Five Continents 2 (五大洲 10-2 / 10-3 / 10-5 各國/化城/佛國段)
     '10-2五大洲': 'fiveContinents2',
+    '10-3五大洲': 'fiveContinents2',
+    '10-5五大洲': 'fiveContinents2',
     '11-2五大洲': 'fiveContinents2',
     '五大洲': 'fiveContinents2',
     # Flying Apsaras (飛天 11 / 12)
@@ -121,22 +127,9 @@ def main():
             continue
             
         content_cell = table.rows[r].cells[1]
-        
-        target_cats = []
-        if loc_clean == '10-1五大洲':
-            content_text = content_cell.text.strip()
-            has_15 = "11/15" in content_text
-            has_other_days = any(d in content_text for d in ["11/12", "11/13", "11/14"])
-            
-            if has_15 and not has_other_days:
-                target_cats = ['fiveContinents1']
-            elif has_other_days and not has_15:
-                target_cats = ['fiveContinents2']
-            else:
-                target_cats = ['fiveContinents1', 'fiveContinents2']
-        else:
-            target_cats = [cat]
+        target_cats = [cat]
 
+        current_date_prefix = ""
         current_items = {}
         active_target_cats = target_cats
         
@@ -144,6 +137,18 @@ def main():
             text = p.text.strip()
             if not text:
                 continue
+
+            # Check if this paragraph is a standalone date prefix line (e.g. "11/12：" or "11/15：")
+            date_only_match = re.match(r'^(\d{1,2}/\d{1,2}(?:[、,，]\d{1,2}(?:/\d{1,2})?)*)[:：]?$', text)
+            if date_only_match:
+                current_date_prefix = date_only_match.group(1) + "："
+                continue
+
+            # Check if this paragraph starts with inline date prefix (e.g. "11/12：【貧中之富-樂生】面甲舞台45度")
+            inline_date_match = re.match(r'^(\d{1,2}/\d{1,2}(?:[、,，]\d{1,2}(?:/\d{1,2})?)*)[:：]\s*(.+)', text)
+            if inline_date_match:
+                current_date_prefix = inline_date_match.group(1) + "："
+                text = inline_date_match.group(2).strip()
                 
             # Check if this paragraph starts a new item section (e.g. starts with 【...】)
             match = re.match(r'^【([^】]+)】(.*)', text)
@@ -156,6 +161,10 @@ def main():
                     title += extra_text
                 elif extra_text:
                     title += " " + extra_text
+
+                # Prepend date prefix if currently under a date context and title doesn't have it
+                if current_date_prefix and not title.startswith(current_date_prefix) and not re.search(r'\d{1,2}/\d{1,2}', title):
+                    title = current_date_prefix + title
                 
                 base_item = {
                     "title": title,
@@ -175,8 +184,11 @@ def main():
                 for target_cat in active_target_cats:
                     item = current_items.get(target_cat)
                     if not item:
+                        item_title = f"【{loc_clean}】"
+                        if current_date_prefix:
+                            item_title = current_date_prefix + item_title
                         item = {
-                            "title": f"【{loc_clean}】",
+                            "title": item_title,
                             "details": []
                         }
                         action_hints_data[target_cat].append(item)
