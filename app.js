@@ -120,8 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
     { key: 'edu', label: '08教育' },
     { key: 'humanities1', label: '09-1人文(基本)' },
     { key: 'humanities2', label: '09-2主機板' },
-    { key: 'fiveContinents1', label: '10-1五大洲(台灣)' },
     { key: 'fiveContinents2', label: '10-2五大洲' },
+    { key: 'fiveContinents1', label: '10-1五大洲(台灣)' },
     { key: 'sixRuiXiang', label: '12-1六瑞相' }
   ];
 
@@ -147,8 +147,8 @@ document.addEventListener('DOMContentLoaded', () => {
     { key: 'edu', name: '08教育', label: '教育' },
     { key: 'humanities1', name: '09-1人文(基本隊形)', label: '人文(基本)' },
     { key: 'humanities2', name: '09-2人文(主機板)', label: '人文(主機板)' },
-    { key: 'fiveContinents1', name: '10-1五大洲(台灣)', label: '五大洲(台灣)' },
     { key: 'fiveContinents2', name: '10-2五大洲', label: '五大洲' },
+    { key: 'fiveContinents1', name: '10-1五大洲(台灣)', label: '五大洲(台灣)' },
     { key: 'sixRuiXiang', name: '12-1六瑞相', label: '發願/行星/祈禱' }
   ];
 
@@ -4217,7 +4217,7 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         name: '五洲 (前段)',
         coordKey: 'fiveContinents2',
-        primaryIdx: 15,
+        primaryIdx: 14,
         items: [
           { name: '樂生', lamp: '', displayType: 'fiveContinents2' },
           { name: '富中之富', lamp: '綠', displayType: 'fiveContinents2' }
@@ -4226,7 +4226,7 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         name: '五洲 (開經書)',
         coordKey: 'fiveContinents1',
-        primaryIdx: 14,
+        primaryIdx: 15,
         items: [
           { name: '開經書', lamp: '綠', displayType: 'fiveContinents1' }
         ]
@@ -4234,7 +4234,7 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         name: '五洲 (功9 921)',
         coordKey: 'fiveContinents1',
-        primaryIdx: 14,
+        primaryIdx: 15,
         items: [
           { name: '功9 921', lamp: '綠', displayType: 'fiveContinents1' }
         ]
@@ -4242,7 +4242,7 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         name: '五洲 (化城佛國)',
         coordKey: 'fiveContinents2',
-        primaryIdx: 15,
+        primaryIdx: 14,
         items: [
           { name: '九二一化城', lamp: '', displayType: 'fiveContinents2' },
           { name: '減災工程', lamp: '綠', displayType: 'fiveContinents2' },
@@ -4255,7 +4255,7 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         name: '五洲 (前段)',
         coordKey: 'fiveContinents2',
-        primaryIdx: 15,
+        primaryIdx: 14,
         items: [
           { name: '樂生', lamp: '', displayType: 'fiveContinents2' },
           { name: '富中之富', lamp: '綠', displayType: 'fiveContinents2' }
@@ -4264,7 +4264,7 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         name: '五洲 (開經書)',
         coordKey: 'fiveContinents1',
-        primaryIdx: 14,
+        primaryIdx: 15,
         items: [
           { name: '開經書', lamp: '綠', displayType: 'fiveContinents1' }
         ]
@@ -4272,7 +4272,7 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         name: '五洲 (黑區約旦)',
         coordKey: 'fiveContinents2',
-        primaryIdx: 15,
+        primaryIdx: 14,
         items: [
           { name: '黑區亮區', lamp: '綠', displayType: 'fiveContinents2' },
           { name: '約旦啟航', lamp: '綠', displayType: 'fiveContinents2' }
@@ -4281,7 +4281,7 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         name: '五洲 (台灣救災)',
         coordKey: 'fiveContinents1',
-        primaryIdx: 14,
+        primaryIdx: 15,
         items: [
           { name: '台灣救災', lamp: '綠', displayType: 'fiveContinents1' }
         ]
@@ -4291,7 +4291,7 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         name: '五洲 (前段)',
         coordKey: 'fiveContinents2',
-        primaryIdx: 15,
+        primaryIdx: 14,
         items: [
           { name: '富中之富', lamp: '綠', displayType: 'fiveContinents2' }
         ]
@@ -4299,7 +4299,7 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         name: '五洲 (開經書)',
         coordKey: 'fiveContinents1',
-        primaryIdx: 14,
+        primaryIdx: 15,
         items: [
           { name: '開經書', lamp: '綠', displayType: 'fiveContinents1' }
         ]
@@ -4307,7 +4307,7 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         name: '五洲 (各國)',
         coordKey: 'fiveContinents2',
-        primaryIdx: 15,
+        primaryIdx: 14,
         items: [
           { name: '功3土耳其', lamp: '綠', displayType: 'fiveContinents2' },
           { name: '功8莫三比克', lamp: '綠', displayType: 'fiveContinents2' },
@@ -4319,7 +4319,7 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         name: '五洲 (前段)',
         coordKey: 'fiveContinents2',
-        primaryIdx: 15,
+        primaryIdx: 14,
         items: [
           { name: '富中之富', lamp: '綠', displayType: 'fiveContinents2' }
         ]
@@ -4327,7 +4327,7 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         name: '五洲 (開經書)',
         coordKey: 'fiveContinents1',
-        primaryIdx: 14,
+        primaryIdx: 15,
         items: [
           { name: '開經書', lamp: '綠', displayType: 'fiveContinents1' }
         ]
@@ -4335,7 +4335,7 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         name: '五洲 (各國)',
         coordKey: 'fiveContinents2',
-        primaryIdx: 15,
+        primaryIdx: 14,
         items: [
           { name: '功2緬甸', lamp: '綠', displayType: 'fiveContinents2' },
           { name: '功7八八風災', lamp: '綠', displayType: 'fiveContinents2' },
@@ -4556,12 +4556,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const fc2Coord = getFormationCoordStr(performer, 'fiveContinents2') || '無';
     const hasDiffFC = (fc1Coord !== fc2Coord && fc1Coord !== '無' && fc2Coord !== '無');
 
-    if (hasDiffFC && FIVE_CONTINENTS_SECTIONS[selectedSessionKey]) {
-      // 跨座標跑位演繹者：步驟 12~14 (教育、人文、主機板) 正常加入
+    if (FIVE_CONTINENTS_SECTIONS[selectedSessionKey]) {
+      // 步驟 12~14 (教育、人文、主機板) 正常加入
       const preFCGroups = getUniqueColGroups(col2StartIdx, 13);
       preFCGroups.forEach(g => col2Groups.push(g));
 
-      // 五大洲依據演繹時間動線分割為 4 格 (或該場次 Sections 數量)
+      // 五大洲依據演繹時間動線分割為各 Sections（不可合併，依劇本順序展開）
       const sections = FIVE_CONTINENTS_SECTIONS[selectedSessionKey];
       sections.forEach(sec => {
         const coord = getFormationCoordStr(performer, sec.coordKey) || '無';
@@ -4575,7 +4575,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       });
 
-      // 步驟 17 (六瑞相) 正常加入
+      // 步驟 17 (六瑞相，index 16) 正常加入
       const postFCGroups = getUniqueColGroups(16, formations.length - 1);
       postFCGroups.forEach(g => col2Groups.push(g));
     } else {
@@ -5304,9 +5304,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const headerH = 24;
     const bodyH = tableH - headerH; // 650
 
-    // 16 步三欄分配：欄 1 (6步), 欄 2 (5步), 欄 3 (5步)
-    const colCounts = [6, 5, 5];
-    const colRowHeights = [bodyH / 6, bodyH / 5, bodyH / 5]; // 108.3px, 130px, 130px
+    // 17 步三欄分配：欄 1 (6步: 步驟1~6), 欄 2 (6步: 步驟7~12), 欄 3 (5步: 步驟13~17)
+    const colCounts = [6, 6, 5];
+    const colRowHeights = [bodyH / 6, bodyH / 6, bodyH / 5]; // 108.3px, 108.3px, 130px
 
     // 5. Table Borders and Headers
     ctx.strokeStyle = '#cbd5e1';
@@ -5339,10 +5339,10 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.textBaseline = 'middle';
     ctx.textAlign = 'left';
     ctx.fillText(" 步驟 1 - 6 (定位資訊)", startX + 4, startY + headerH / 2);
-    ctx.fillText(" 步驟 7 - 11 (定位資訊)", col2StartX + 4, startY + headerH / 2);
-    ctx.fillText(" 步驟 12 - 16 (定位資訊)", col3StartX + 4, startY + headerH / 2);
+    ctx.fillText(" 步驟 7 - 12 (定位資訊)", col2StartX + 4, startY + headerH / 2);
+    ctx.fillText(" 步驟 13 - 17 (定位資訊)", col3StartX + 4, startY + headerH / 2);
 
-    // 6. Draw Table Rows (Triple Column: 6 + 5 + 5)
+    // 6. Draw Table Rows (Triple Column: 6 + 6 + 5)
     for (let idx = 0; idx < formations.length; idx++) {
       let colIdx = 0;
       let rowInCol = 0;
@@ -5354,14 +5354,14 @@ document.addEventListener('DOMContentLoaded', () => {
         rowInCol = idx;
         colStartX = startX;
         isLastInCol = (rowInCol === 5);
-      } else if (idx < 11) {
+      } else if (idx < 12) {
         colIdx = 1;
         rowInCol = idx - 6;
         colStartX = col2StartX;
-        isLastInCol = (rowInCol === 4);
+        isLastInCol = (rowInCol === 5);
       } else {
         colIdx = 2;
-        rowInCol = idx - 11;
+        rowInCol = idx - 12;
         colStartX = col3StartX;
         isLastInCol = (rowInCol === 4);
       }
@@ -5403,7 +5403,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.textAlign = 'left';
       ctx.textBaseline = 'middle';
 
-      const nameY = rY + ((colIdx === 0) ? 18 : 22);
+      const nameY = rY + ((colIdx === 2) ? 22 : 18);
       ctx.fillText(cardStepName, labelStartX, nameY);
 
       // --- 第 2 列左側與右側：專屬地標貼圖、燈號色塊與座標色塊 ---
@@ -5418,9 +5418,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // 三欄中個別單元格的寬度與高度配置 (自適應行高)
       const badgeW = hasLamp ? 68 : 72; // 有燈號時色塊 68px，無燈號時 72px
-      const badgeH = (colIdx === 0) ? 48 : 54; // 欄 1 為 48px，欄 2、3 為 54px 大色塊
+      const badgeH = (colIdx === 2) ? 54 : 48; // 欄 1、2 為 48px，欄 3 為 54px 大色塊
       const badgeX = colStartX + colW - badgeW - 4;
-      const badgeY = rY + ((colIdx === 0) ? 36 : 46); // 下移至單元格下半部
+      const badgeY = rY + ((colIdx === 2) ? 46 : 36); // 下移至單元格下半部
       const visualY = badgeY + badgeH / 2; // 與右側色塊垂直居中
 
       const englishCategory = getEnglishCategory(performer.category || 'A白');
@@ -5429,7 +5429,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (hasLamp) {
         // 有燈號時：貼圖 22px，燈號色塊 18x26px
-        const stickerSize = (colIdx === 0) ? 22 : 24;
+        const stickerSize = (colIdx === 2) ? 24 : 22;
         const stickerDrawX = colStartX + 4;
         const stickerDrawY = visualY - stickerSize / 2;
         if (cachedImg) {
@@ -5437,7 +5437,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const badgeW_small = 18;
-        const badgeH_small = (colIdx === 0) ? 24 : 28;
+        const badgeH_small = (colIdx === 2) ? 28 : 24;
         const lampStartX = stickerDrawX + stickerSize + 3; 
         const lampDrawY = visualY - badgeH_small / 2;
         const lampHex = lampColor === '黃' ? '#eab308' : '#0B954B';
@@ -5452,7 +5452,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillText(lampColor, lampStartX + badgeW_small / 2, lampDrawY + badgeH_small / 2 + 0.5);
       } else {
         // 無燈號時：地標貼圖極大化為 36~40px，於左側區域完全置中
-        const stickerSize = (colIdx === 0) ? 36 : 40;
+        const stickerSize = (colIdx === 2) ? 40 : 36;
         const leftAreaW = badgeX - (colStartX + 4);
         const stickerDrawX = colStartX + 4 + (leftAreaW - stickerSize) / 2;
         const stickerDrawY = visualY - stickerSize / 2;

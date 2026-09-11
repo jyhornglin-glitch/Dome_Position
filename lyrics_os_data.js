@@ -1,4 +1,4 @@
-// 大巨蛋演繹段歌詞與 OS 內容資料庫 (自動由 import_lyrics_os.py 依據 0904 PDF 產生)
+// 大巨蛋演繹段歌詞與 OS 內容資料庫 (依據 0909 PDF 產生，支援多場次動態過濾與精確劇本排版)
 const LYRICS_OS_DATA = [
   {
     "id": "sec_1",
@@ -11,7 +11,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/慈善+醫療/01序.mp3",
     "videos": [],
     "lines": [
@@ -31,7 +31,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(轉面向乙舞台圓心)",
+            "text": "(轉面向乙舞台圓心) ",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -48,7 +48,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "無量義經廣傳",
+            "text": "無量義經廣傳 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -62,10 +62,10 @@ const LYRICS_OS_DATA = [
       },
       {
         "text": "(法師)其心禪寂常在三昧",
-        "type": "annotation",
+        "type": "lyrics",
         "segments": [
           {
-            "text": "(法師)其心禪寂常在三昧",
+            "text": "(法師)其心禪寂常在三昧 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -82,7 +82,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "恬安澹泊無為無欲",
+            "text": "恬安澹泊無為無欲  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -99,7 +99,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "顛倒亂想不復得入",
+            "text": "顛倒亂想不復得入 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -116,7 +116,7 @@ const LYRICS_OS_DATA = [
         "type": "annotation",
         "segments": [
           {
-            "text": "(全場入經藏.萬人唱頌)",
+            "text": "(全場入經藏.萬人唱頌) ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -133,7 +133,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "靜寂清澄志玄虛漠 守之不動億百千劫 無量法門悉現在前 得大智慧通達諸法",
+            "text": "靜寂清澄志玄虛漠 守之不動億百千劫 無量法門悉現在前 得大智慧通達諸法 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -150,7 +150,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "曉了分別性相真實 有無長短明現顯白 又能善知諸根性欲 以陀羅尼無礙辯才",
+            "text": "曉了分別性相真實 有無長短明現顯白 又能善知諸根性欲 以陀羅尼無礙辯才 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -167,7 +167,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "請佛轉法輪",
+            "text": "請佛轉法輪 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -192,7 +192,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/慈善+醫療/02生.mp3",
     "videos": [],
     "lines": [
@@ -201,7 +201,7 @@ const LYRICS_OS_DATA = [
         "type": "dialogue",
         "segments": [
           {
-            "text": "侍衛：啟稟國王 母子均安",
+            "text": "侍衛：啟稟國王 母子均安 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -218,7 +218,7 @@ const LYRICS_OS_DATA = [
         "type": "dialogue",
         "segments": [
           {
-            "text": "國王：太好了 太好了 昭告全境，本王要大肆慶祝 遵命",
+            "text": "國王：太好了 太好了 昭告全境，本王要大肆慶祝 遵命 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -255,6 +255,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "EE0000"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           }
         ]
       },
@@ -283,6 +294,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "EE0000"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           }
         ]
       },
@@ -311,6 +333,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "EE0000"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           }
         ]
       },
@@ -330,7 +363,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "前來祝賀！",
+            "text": "前來祝賀！ ",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -358,7 +391,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "前來獻禮！",
+            "text": "前來獻禮！ ",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -395,6 +428,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           }
         ]
       }
@@ -411,7 +455,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/慈善+醫療/03老.mp3",
     "videos": [],
     "lines": [
@@ -470,7 +514,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "片由你守護的國土",
+            "text": "片由你守護的國土 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -545,7 +589,7 @@ const LYRICS_OS_DATA = [
       },
       {
         "text": "去的苦悶，分秒蹉跎的警鐘。os 老，苦啊~~~~!(回正)",
-        "type": "os",
+        "type": "lyrics",
         "segments": [
           {
             "text": "去的苦悶，分秒蹉跎的警鐘。",
@@ -592,7 +636,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(回正)",
+            "text": "(回正) ",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -617,7 +661,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/慈善+醫療/04病.mp3",
     "videos": [],
     "lines": [
@@ -635,6 +679,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "000000"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           }
         ]
       },
@@ -643,7 +698,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "病症摧殘、身心扭轉、惡道苦報、真實上演，患病的苦難，無常環伺的凶險。",
+            "text": "病症摧殘、身心扭轉、惡道苦報、真實上演，患病的苦難，無常環伺的凶險。 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -693,7 +748,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(回正)",
+            "text": "(回正) ",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -718,7 +773,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/慈善+醫療/05死.mp3",
     "videos": [],
     "lines": [
@@ -736,6 +791,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "000000"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           }
         ]
       },
@@ -744,7 +810,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "人生苦短、無可愛戀、壽終必然、誰能避免，死亡的苦嘆，醒思生命的意涵",
+            "text": "人生苦短、無可愛戀、壽終必然、誰能避免，死亡的苦嘆，醒思生命的意涵 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -761,7 +827,7 @@ const LYRICS_OS_DATA = [
         "type": "os",
         "segments": [
           {
-            "text": "os ",
+            "text": "os",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -772,7 +838,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "生命何義",
+            "text": " 生命何義",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -794,7 +860,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "，人生何價",
+            "text": "，人生何價 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -822,7 +888,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "(大聲唱) ",
+            "text": "(大聲唱)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -833,7 +899,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "竹林間 修行道人相莊嚴 夜深人靜離宮殿 不悟真理誓不還",
+            "text": " 竹林間 修行道人相莊嚴 夜深人靜離宮殿 不悟真理誓不還 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -861,7 +927,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(手放)",
+            "text": "(手放) ",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -886,13 +952,13 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/慈善+醫療/06六度.mp3",
     "videos": [],
     "lines": [
       {
         "text": "為應菩薩大根機  再說六度(合十)波羅蜜(黃老師OS：去除無明行六度(轉))",
-        "type": "os",
+        "type": "lyrics",
         "segments": [
           {
             "text": "為應菩薩大根機  再說六度",
@@ -939,7 +1005,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": ")",
+            "text": ")   ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -967,7 +1033,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "布施 持戒 ",
+            "text": "布施 持戒",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -978,7 +1044,7 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           },
           {
-            "text": "理契機) 悲智願行(",
+            "text": " 理契機) 悲智願行(",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -989,7 +1055,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "忍辱 精進 ",
+            "text": "忍辱 精進",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -1000,7 +1066,7 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           },
           {
-            "text": "緊相繫)",
+            "text": " 緊相繫) ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1017,7 +1083,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "運載群(厚生)",
+            "text": "運載群(厚生) ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1045,7 +1111,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "禪定 智慧 ",
+            "text": "禪定 智慧",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -1056,7 +1122,7 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           },
           {
-            "text": "無明離)",
+            "text": " 無明離)  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1073,7 +1139,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "清淨了悟",
+            "text": "清淨了悟 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1090,7 +1156,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "真實義",
+            "text": "真實義 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1104,7 +1170,7 @@ const LYRICS_OS_DATA = [
       },
       {
         "text": "黃老師OS：轉識成智(回正) 成(出右腳合十往上)佛道",
-        "type": "os",
+        "type": "dialogue",
         "segments": [
           {
             "text": "黃老師OS：轉識成",
@@ -1129,7 +1195,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(回正) ",
+            "text": "(回正)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -1138,6 +1204,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           },
           {
             "text": "成",
@@ -1162,7 +1239,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "佛道",
+            "text": "佛道 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -1176,7 +1253,7 @@ const LYRICS_OS_DATA = [
       },
       {
         "text": "鳩摩羅什譯經：我今稽首盡無疑 翻譯佛法 佛法永傳(轉向甲舞台東側)",
-        "type": "dialogue",
+        "type": "lyrics",
         "segments": [
           {
             "text": "鳩摩羅什譯經：我今稽首盡無疑 ",
@@ -1210,15 +1287,26 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           }
         ]
       },
       {
         "text": "玄奘西行取經：西行取經五萬里~~不到天竺 絕不回頭 寧向西方一步死",
-        "type": "dialogue",
+        "type": "lyrics",
         "segments": [
           {
-            "text": "玄奘西行取經：西行取經五萬里~~不到天竺 絕不回頭 寧向西方一步死",
+            "text": "玄奘西行取經：西行取經五萬里~~不到天竺 絕不回頭 寧向西方一步死  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -1266,12 +1354,23 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           }
         ]
       },
       {
         "text": "鑑真東傳佛法：不至日本(500 人上) 本願不遂 生死以赴 何懼千百度 東傳佛法 佛法永",
-        "type": "dialogue",
+        "type": "lyrics",
         "segments": [
           {
             "text": "鑑真東傳佛法：",
@@ -1296,7 +1395,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(500 人上) ",
+            "text": "(500 人上)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -1307,7 +1406,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "本願不遂 生死以赴 何懼千百度 ",
+            "text": " 本願不遂 生死以赴 何懼千百度 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -1355,6 +1454,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "EE0000"
           }
         ]
       }
@@ -1371,7 +1481,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/慈善+醫療/07行願+開經偈.mp3",
     "videos": [],
     "lines": [
@@ -1380,7 +1490,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "海濤(厚澎湃)",
+            "text": "海濤(厚澎湃) ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1397,7 +1507,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "駭浪(厚洶湧)",
+            "text": "駭浪(厚洶湧) ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1414,7 +1524,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "心志(厚已付)",
+            "text": "心志(厚已付) ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1431,7 +1541,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "身隨之赴(厚)",
+            "text": "身隨之赴(厚)  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1448,7 +1558,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "守之不動 去去去",
+            "text": "守之不動 去去去 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1465,7 +1575,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "億百千劫 (厚走)走走",
+            "text": "億百千劫 (厚走)走走  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1482,7 +1592,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "守之不動 行行行",
+            "text": "守之不動 行行行 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1499,7 +1609,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "億百千劫 (厚進)進進",
+            "text": "億百千劫 (厚進)進進 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1516,7 +1626,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "守之不動 信",
+            "text": "守之不動 信   ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1533,7 +1643,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "億百千劫 願",
+            "text": "億百千劫 願 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1550,7 +1660,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "守之不動 行",
+            "text": "守之不動 行 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1567,7 +1677,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "佛 法 廣 傳 在 人 間  行~~願",
+            "text": "佛 法 廣 傳 在 人 間  行~~願 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1592,7 +1702,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/慈善+醫療/07行願+開經偈.mp3",
     "videos": [],
     "lines": [
@@ -1623,7 +1733,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "億劫以來",
+            "text": "億劫以來  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1640,7 +1750,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "仿若實境再現",
+            "text": "仿若實境再現   ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1688,6 +1798,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           }
         ]
       },
@@ -1696,7 +1817,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "無上甚深微妙法",
+            "text": "無上甚深微妙法 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1713,7 +1834,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "百千萬劫難遭遇",
+            "text": "百千萬劫難遭遇 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1730,7 +1851,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "我今見聞得受持",
+            "text": "我今見聞得受持 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1756,6 +1877,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "0000FF"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           }
         ]
       }
@@ -1772,7 +1904,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/慈善+醫療/08扛天下米籮.mp3",
     "videos": [],
     "lines": [
@@ -1781,7 +1913,7 @@ const LYRICS_OS_DATA = [
         "type": "os",
         "segments": [
           {
-            "text": "os 只要有人間菩薩，貧窮與苦難的人，就有機會得到救助，我要把佛法推向人間",
+            "text": "os 只要有人間菩薩，貧窮與苦難的人，就有機會得到救助，我要把佛法推向人間 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -1798,7 +1930,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "無上大乘 潤漬眾生",
+            "text": "無上大乘 潤漬眾生 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1815,7 +1947,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "諸有善根",
+            "text": "諸有善根 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1832,7 +1964,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "布善種(厚子)",
+            "text": "布善種(厚子) ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1849,7 +1981,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "遍功德(厚田)",
+            "text": "遍功德(厚田) ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1866,7 +1998,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "普令一(厚切)",
+            "text": "普令一(厚切) ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1883,7 +2015,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "發菩提(厚萌)",
+            "text": "發菩提(厚萌) ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1900,7 +2032,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "智慧日月",
+            "text": "智慧日月 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1917,7 +2049,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "方便時節",
+            "text": "方便時節 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1934,7 +2066,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "扶踈增長",
+            "text": "扶踈增長 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1951,7 +2083,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "大乘事業",
+            "text": "大乘事業 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1990,7 +2122,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "貧窮 ",
+            "text": "貧窮",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -2001,7 +2133,18 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "扛天下米籮",
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "扛天下米籮 ",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -2018,7 +2161,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "讓人人力行 ",
+            "text": "讓人人力行",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -2027,6 +2170,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "000000"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           },
           {
             "text": "菩薩道",
@@ -2038,6 +2192,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "EE0000"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           }
         ]
       }
@@ -2054,7 +2219,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/慈善+醫療/09靜思家風.mp3",
     "videos": [],
     "lines": [
@@ -2063,7 +2228,7 @@ const LYRICS_OS_DATA = [
         "type": "os",
         "segments": [
           {
-            "text": "os ",
+            "text": "os",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -2074,7 +2239,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "你去煮麵線",
+            "text": " 你去煮麵線",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -2169,7 +2334,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "這個師父了",
+            "text": "這個師父了 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -2186,7 +2351,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "靜思家風",
+            "text": "靜思家風 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -2203,7 +2368,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "一日不作",
+            "text": "一日不作 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -2220,7 +2385,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "一日不食",
+            "text": "一日不食 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -2237,7 +2402,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "法身大士",
+            "text": "法身大士 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -2254,7 +2419,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "慈悲菩薩",
+            "text": "慈悲菩薩 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -2271,7 +2436,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "其心禪寂",
+            "text": "其心禪寂 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -2288,7 +2453,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "常在三昧",
+            "text": "常在三昧 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -2305,7 +2470,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "恬安淡泊",
+            "text": "恬安淡泊 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -2322,7 +2487,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "無為無欲",
+            "text": "無為無欲 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -2339,7 +2504,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "顛倒亂想",
+            "text": "顛倒亂想 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -2356,7 +2521,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "不復得入",
+            "text": "不復得入 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -2373,7 +2538,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "克勤 克儉 克難 菩薩行",
+            "text": "克勤 克儉 克難 菩薩行 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -2390,7 +2555,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "守志奉道",
+            "text": "守志奉道 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -2407,7 +2572,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "刻苦修行",
+            "text": "刻苦修行 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -2432,7 +2597,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/慈善+醫療/10點一盞燈.mp3",
     "videos": [],
     "lines": [
@@ -2441,12 +2606,23 @@ const LYRICS_OS_DATA = [
         "type": "os",
         "segments": [
           {
-            "text": "os 三十位家庭主婦連署慰留，師父 ",
+            "text": "os 三十位家庭主婦連署慰留，師父",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
             "isPurple": false,
             "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": true,
             "isBold": false,
             "isItalic": false,
             "color": "000000"
@@ -2568,7 +2744,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(跪/預備動作)",
+            "text": "(跪/預備動作) ",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -2605,6 +2781,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           }
         ]
       },
@@ -2613,7 +2800,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "在黑暗角落 點一盞燈  慈悲智慧的化身",
+            "text": "在黑暗角落 點一盞燈  慈悲智慧的化身  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -2630,7 +2817,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "在淒寒路上 生一堆火",
+            "text": "在淒寒路上 生一堆火 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -2647,7 +2834,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "但願眾生得離苦",
+            "text": "但願眾生得離苦 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -2664,7 +2851,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "廣披天下盡歡顏",
+            "text": "廣披天下盡歡顏 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -2689,7 +2876,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/慈善+醫療/11菜市場五毛錢.mp3",
     "videos": [],
     "lines": [
@@ -2749,7 +2936,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "時候，少買五毛錢就好了，哎呀 這太棒啦！",
+            "text": "時候，少買五毛錢就好了，哎呀 這太棒啦！ ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -2788,7 +2975,7 @@ const LYRICS_OS_DATA = [
             "color": "77206D"
           },
           {
-            "text": "(中央走道千手上) ",
+            "text": "(中央走道千手上)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -2799,7 +2986,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "菜市場吵雜聲",
+            "text": " 菜市場吵雜聲 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -2850,7 +3037,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "人耶，我也要減買五毛錢，五毛錢喔可以救人耶",
+            "text": "人耶，我也要減買五毛錢，五毛錢喔可以救人耶 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -2887,12 +3074,23 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "EE0000"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           }
         ]
       },
       {
         "text": "會眾戊：五角銀就可以救人喔！這樣我也要參加(2)！",
-        "type": "dialogue",
+        "type": "lyrics",
         "segments": [
           {
             "text": "會眾戊：五角銀就可以救人喔！這樣",
@@ -2915,12 +3113,23 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "EE0000"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           }
         ]
       },
       {
         "text": "會眾己：五角銀就可以救人喔！這樣我也要參加(3)！",
-        "type": "dialogue",
+        "type": "lyrics",
         "segments": [
           {
             "text": "會眾己：五角銀就可以救人喔！這樣",
@@ -2943,12 +3152,23 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "EE0000"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           }
         ]
       },
       {
         "text": "會眾群體：我也要參加(演員)！",
-        "type": "dialogue",
+        "type": "lyrics",
         "segments": [
           {
             "text": "會眾群體：",
@@ -2962,7 +3182,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "我也要參加(演員)！",
+            "text": "我也要參加(演員)！ ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -3029,7 +3249,7 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           },
           {
-            "text": "(手放)",
+            "text": "(手放) ",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -3054,7 +3274,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/慈善+醫療/12圍爐_是諸眾生.mp3",
     "videos": [],
     "lines": [
@@ -3063,7 +3283,7 @@ const LYRICS_OS_DATA = [
         "type": "annotation",
         "segments": [
           {
-            "text": "(11/12、14 場次)",
+            "text": "(11/12、14 場次) ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -3161,6 +3381,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           }
         ]
       },
@@ -3169,7 +3400,7 @@ const LYRICS_OS_DATA = [
         "type": "annotation",
         "segments": [
           {
-            "text": "(11/13、15 場次)",
+            "text": "(11/13、15 場次) ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -3186,7 +3417,7 @@ const LYRICS_OS_DATA = [
         "type": "os",
         "segments": [
           {
-            "text": "os 有一次精舍發放時，米袋的米掉了出來!ㄟ 啊搭 啊這米甕，唉呦 米甕是在哪裡啦",
+            "text": "os 有一次精舍發放時，米袋的米掉了出來!ㄟ 啊搭 啊這米甕，唉呦 米甕是在哪裡啦 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -3254,7 +3485,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "要分清楚",
+            "text": "要分清楚 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -3271,7 +3502,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "我來跟大家說一個故事(大魚的故事~~)~~~~~~",
+            "text": "我來跟大家說一個故事(大魚的故事~~)~~~~~~ ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -3391,6 +3622,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           }
         ]
       },
@@ -3399,7 +3641,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "是諸眾生真善知識 是諸眾生大良福田 是諸眾生不請之師 是諸眾生安隱樂處",
+            "text": "是諸眾生真善知識 是諸眾生大良福田 是諸眾生不請之師 是諸眾生安隱樂處 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -3416,7 +3658,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "救處護處大依止處 處處為眾作大導師 能為生盲作眼目",
+            "text": "救處護處大依止處 處處為眾作大導師 能為生盲作眼目  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -3433,7 +3675,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "為癲狂慌亂作正念",
+            "text": "為癲狂慌亂作正念 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -3458,7 +3700,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/慈善+醫療/13醫療_地藏經.mp3",
     "videos": [],
     "lines": [
@@ -3467,7 +3709,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "病苦眾生在呐喊",
+            "text": "病苦眾生在呐喊 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -3484,7 +3726,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "人間地獄悉現前",
+            "text": "人間地獄悉現前 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -3501,7 +3743,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "貧病相因必須斷  促成建院的因緣",
+            "text": "貧病相因必須斷  促成建院的因緣 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -3526,7 +3768,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/慈善+醫療/14四弘誓願.mp3",
     "videos": [],
     "lines": [
@@ -3753,7 +3995,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "四 弘 誓 願",
+            "text": "四 弘 誓 願 ",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -3770,7 +4012,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "眾生無邊誓願(厚度) 煩惱無盡誓願(厚斷) 法門無量誓願(厚學)",
+            "text": "眾生無邊誓願(厚度) 煩惱無盡誓願(厚斷) 法門無量誓願(厚學)  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -3787,7 +4029,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "佛道無上誓願成",
+            "text": "佛道無上誓願成 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -3804,7 +4046,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "誠心 正心 信心 實心",
+            "text": "誠心 正心 信心 實心   ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -3821,7 +4063,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "度眾生 斷煩惱 學法門 成佛道",
+            "text": "度眾生 斷煩惱 學法門 成佛道  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -3838,7 +4080,7 @@ const LYRICS_OS_DATA = [
         "type": "os",
         "segments": [
           {
-            "text": "os 如果心血有形，醫院的每一塊磚，每一寸土地，都是用心血澆灌而成",
+            "text": "os 如果心血有形，醫院的每一塊磚，每一寸土地，都是用心血澆灌而成 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -3863,7 +4105,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/慈善+醫療/15拉繩-船師大船師梵唄.mp3",
     "videos": [],
     "lines": [
@@ -3889,7 +4131,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "萬捐款一一退還，這一鏟下去，每半個月，需支付一次工資",
+            "text": "萬捐款一一退還，這一鏟下去，每半個月，需支付一次工資 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -3917,7 +4159,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "你就是我要找尋的良醫 ",
+            "text": "你就是我要找尋的良醫",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -3928,7 +4170,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(大慈大悲)",
+            "text": " (大慈大悲)",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -4045,7 +4287,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "煩惱 誓願學法門 誓願成佛道",
+            "text": "煩惱 誓願學法門 誓願成佛道 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -4070,7 +4312,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/慈善+醫療/15拉繩-船師大船師梵唄.mp3",
     "videos": [],
     "lines": [
@@ -4112,7 +4354,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "病苦！人生最珍貴 莫過於生命！",
+            "text": "病苦！人生最珍貴 莫過於生命！ ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -4140,7 +4382,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "(搭肩) ",
+            "text": "(搭肩)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -4151,7 +4393,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "大船師 ",
+            "text": " 大船師 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -4184,7 +4426,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "載群生 渡生死河 置涅槃岸",
+            "text": "載群生 渡生死河 置涅槃岸 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -4201,7 +4443,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "醫王 大醫王 分別病相 曉了藥性  隨病授藥",
+            "text": "醫王 大醫王 分別病相 曉了藥性  隨病授藥 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -4260,6 +4502,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           }
         ]
       },
@@ -4290,7 +4543,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "(右手) ",
+            "text": "(右手)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -4301,7 +4554,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "無諸放逸行 猶如象馬師 能調無不調",
+            "text": " 無諸放逸行 猶如象馬師 能調無不調  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -4318,7 +4571,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "師子勇猛",
+            "text": "師子勇猛 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -4366,6 +4619,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           }
         ]
       }
@@ -4382,7 +4646,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/慈善+醫療/16 大醫王.mp3",
     "videos": [],
     "lines": [
@@ -4391,7 +4655,7 @@ const LYRICS_OS_DATA = [
         "type": "os",
         "segments": [
           {
-            "text": "os ",
+            "text": "os",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -4402,7 +4666,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "大醫王",
+            "text": " 大醫王",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -4441,7 +4705,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "展至全世界，讓善的循環永不間斷，每個病人都是我們的親人，病人也是我們的老師",
+            "text": "展至全世界，讓善的循環永不間斷，每個病人都是我們的親人，病人也是我們的老師 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -4480,7 +4744,7 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           },
           {
-            "text": "(右手) ",
+            "text": "(右手)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -4491,7 +4755,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "守護健康",
+            "text": " 守護健康",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -4502,7 +4766,7 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           },
           {
-            "text": "(左手)  ",
+            "text": "(左手)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -4513,7 +4777,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "守護愛 ",
+            "text": "  守護愛 ",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -4533,6 +4797,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "EE0000"
           }
         ]
       },
@@ -4541,7 +4816,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "大醫王 分別病相",
+            "text": "大醫王 分別病相 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -4558,7 +4833,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "曉了藥性",
+            "text": "曉了藥性 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -4575,7 +4850,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "隨病授藥",
+            "text": "隨病授藥 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -4592,7 +4867,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "大船師 運載群生",
+            "text": "大船師 運載群生 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -4609,7 +4884,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "渡生死河",
+            "text": "渡生死河 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -4626,7 +4901,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "置涅槃岸",
+            "text": "置涅槃岸 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -4643,7 +4918,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "大醫王 分別病相",
+            "text": "大醫王 分別病相 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -4660,7 +4935,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "曉了藥性",
+            "text": "曉了藥性 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -4677,7 +4952,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "隨病授藥",
+            "text": "隨病授藥 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -4694,7 +4969,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "大船師 運載群生",
+            "text": "大船師 運載群生 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -4711,7 +4986,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "渡生死河",
+            "text": "渡生死河 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -4728,7 +5003,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "置涅槃岸",
+            "text": "置涅槃岸 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -4753,7 +5028,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/慈善+醫療/17 骨捐.mp3",
     "videos": [],
     "lines": [
@@ -4795,7 +5070,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "~~~~",
+            "text": "~~~~  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -4856,7 +5131,7 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           },
           {
-            "text": "(小V)  ",
+            "text": "(小V)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -4867,7 +5142,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "來 我願意",
+            "text": "  來 我願意",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -4887,6 +5162,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": "   ",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "EE0000"
           }
         ]
       },
@@ -4906,7 +5192,7 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           },
           {
-            "text": "(C 組)  ",
+            "text": "(C 組)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -4917,7 +5203,18 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "來唷 來啦 來捐血 ~~~ 救人一命 無損己身 慈濟和我在找一個人",
+            "text": " ",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "EE0000"
+          },
+          {
+            "text": " 來唷 來啦 來捐血 ~~~ 救人一命 無損己身 慈濟和我在找一個人  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -4965,6 +5262,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           }
         ]
       },
@@ -4973,7 +5281,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "慈濟人 在推動 國際骨髓捐贈 這是人類崇高的行為",
+            "text": "慈濟人 在推動 國際骨髓捐贈 這是人類崇高的行為 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -4990,7 +5298,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "搶救生命",
+            "text": "搶救生命 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5007,7 +5315,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "無上光榮",
+            "text": "無上光榮 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5024,7 +5332,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "千萬人 在響應 慈濟骨髓捐贈 這是人類崇高的行為",
+            "text": "千萬人 在響應 慈濟骨髓捐贈 這是人類崇高的行為 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5041,7 +5349,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "搶救生命",
+            "text": "搶救生命 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5058,7 +5366,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "無上光榮",
+            "text": "無上光榮 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5083,7 +5391,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/慈善+醫療/17 骨捐.mp3",
     "videos": [],
     "lines": [
@@ -5103,7 +5411,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(開黃燈) ",
+            "text": "(開黃燈)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -5114,7 +5422,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "每一年 每一次 我常已經在夢中 夢到我們家的恩人 已經夢",
+            "text": " 每一年 每一次 我常已經在夢中 夢到我們家的恩人 已經夢",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -5170,7 +5478,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(轉向) ",
+            "text": "(轉向)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -5181,7 +5489,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "救人一命 無損己身",
+            "text": " 救人一命 無損己身 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -5198,7 +5506,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "能捨一切諸難捨",
+            "text": "能捨一切諸難捨 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5215,7 +5523,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "財寶妻子及國城",
+            "text": "財寶妻子及國城 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5232,7 +5540,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "於法內外無所吝",
+            "text": "於法內外無所吝 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5249,7 +5557,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "頭目髓腦悉施人",
+            "text": "頭目髓腦悉施人 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5266,7 +5574,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "遍學一切眾道法",
+            "text": "遍學一切眾道法 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5283,7 +5591,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "智慧深入眾生根",
+            "text": "智慧深入眾生根 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5300,7 +5608,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "遍學一切眾道法",
+            "text": "遍學一切眾道法 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5317,7 +5625,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "智慧深入眾生根",
+            "text": "智慧深入眾生根 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5334,7 +5642,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "遍學一切眾道法",
+            "text": "遍學一切眾道法 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5351,7 +5659,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "智慧深入眾生根",
+            "text": "智慧深入眾生根  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5368,7 +5676,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "於如來地 堅固不動 安住願力 廣淨佛國",
+            "text": "於如來地 堅固不動 安住願力 廣淨佛國 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5384,14 +5692,14 @@ const LYRICS_OS_DATA = [
   },
   {
     "id": "sec_21",
-    "title": "【花慈.中西醫精準醫療(羅倫佐) 曲目：我可以唱歌了】 11/13(第2 天專屬曲目)",
+    "title": "【花慈.中西醫精準醫療(羅倫佐) 曲目：我可以唱歌了】11/12(第1 天專屬曲目)",
     "formationKey": "boneDonation",
     "formationLabel": "07-2骨捐能捨 (骨捐/大體/專屬曲目)",
     "sessionKeys": [
-      "1113"
+      "1112"
     ],
-    "sessionLabel": "11/13 (第2天) 專屬",
-    "audio": "Music/慈善+醫療/17 骨捐.mp3",
+    "sessionLabel": "11/12(第1天)專屬曲目",
+    "audio": "Music/慈善+醫療/18北慈＿疫情捨我其誰.mp3",
     "videos": [],
     "lines": [
       {
@@ -5399,7 +5707,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "我可以唱歌了! 我可以重新拿起畫筆",
+            "text": "我可以唱歌了! 我可以重新拿起畫筆 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5416,7 +5724,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "像這顆小樹一樣",
+            "text": "像這顆小樹一樣 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5433,7 +5741,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "旁邊在發光!",
+            "text": "旁邊在發光! ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5450,7 +5758,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "是你們照著我! 讓我重新站起來!",
+            "text": "是你們照著我! 讓我重新站起來! ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5466,22 +5774,121 @@ const LYRICS_OS_DATA = [
   },
   {
     "id": "sec_22",
-    "title": "【北慈.疫情捨我其誰 曲目：醫子喻 擁抱蒼生】 11/14(第3 天專屬曲目)",
+    "title": "【大埔無醫村 曲目：擁抱蒼生】11/12(第1 天專屬曲目)",
+    "formationKey": "boneDonation",
+    "formationLabel": "07-2骨捐能捨 (骨捐/大體/專屬曲目)",
+    "sessionKeys": [
+      "1112"
+    ],
+    "sessionLabel": "11/12(第1天)專屬曲目",
+    "audio": "Music/慈善+醫療/16 大醫王.mp3",
+    "videos": [],
+    "lines": [
+      {
+        "text": "啊",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "啊   ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          }
+        ]
+      },
+      {
+        "text": "大愛的人  我要向您感恩",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "大愛的人  我要向您感恩   ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          }
+        ]
+      },
+      {
+        "text": "若不是大智大仁和大勇",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "若不是大智大仁和大勇 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          }
+        ]
+      },
+      {
+        "text": "有誰能擁抱蒼生",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "有誰能擁抱蒼生 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          }
+        ]
+      },
+      {
+        "text": "有誰能擁抱蒼生",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "有誰能擁抱蒼生 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sec_23",
+    "title": "【北慈.疫情捨我其誰 曲目：醫子喻 擁抱蒼生】11/14(第3 天專屬曲目)",
     "formationKey": "boneDonation",
     "formationLabel": "07-2骨捐能捨 (骨捐/大體/專屬曲目)",
     "sessionKeys": [
       "1114"
     ],
-    "sessionLabel": "11/14 (第3天) 專屬",
+    "sessionLabel": "11/14(第3天)專屬曲目",
     "audio": "Music/慈善+醫療/18北慈＿疫情捨我其誰.mp3",
     "videos": [],
     "lines": [
       {
-        "text": "os 蘇主任每天睡覺都會驚醒 我到底有沒有盡力救回每一個病人 院長跑出來 希望",
+        "text": "Os 媽媽!妳怎麼不回家?我們要去打怪獸!照顧確診病人，全體住宿43 天",
         "type": "os",
         "segments": [
           {
-            "text": "os 蘇主任每天睡覺都會驚醒 我到底有沒有盡力救回每一個病人 院長跑出來 希望",
+            "text": "Os 媽媽!妳怎麼不回家?我們要去",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -5490,49 +5897,20 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "000000"
-          }
-        ]
-      },
-      {
-        "text": "沒有人是求醫無門 希望每一個人都能得到如家人般的照顧",
-        "type": "lyrics",
-        "segments": [
+          },
           {
-            "text": "沒有人是求醫無門 希望每一個人都能得到如家人般的照顧",
-            "isRed": false,
+            "text": "打怪獸!",
+            "isRed": true,
             "isGreen": false,
             "isBlue": false,
             "isPurple": false,
             "isBoxed": false,
             "isBold": false,
             "isItalic": false,
-            "color": "000000"
-          }
-        ]
-      },
-      {
-        "text": "抬頭向天說懺悔 低頭向地說感恩",
-        "type": "lyrics",
-        "segments": [
+            "color": "EE0000"
+          },
           {
-            "text": "抬頭向天說懺悔 低頭向地說感恩",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          }
-        ]
-      },
-      {
-        "text": "110 年收治染疫患者 人數全國第一 創下院內零感染紀錄",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "110 年收治染疫患者 人數全國第一 創下院內零感染紀錄",
+            "text": "照顧確診病人，全體住宿43 天 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -5549,7 +5927,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "往昔所造諸惡業",
+            "text": "往昔所造諸惡業 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5566,7 +5944,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "皆由無始貪瞋癡",
+            "text": "皆由無始貪瞋癡 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5583,7 +5961,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "從身語意之所生",
+            "text": "從身語意之所生 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5600,7 +5978,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "一切我今皆懺悔",
+            "text": "一切我今皆懺悔 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5613,11 +5991,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "os 上人 不放棄任何一個救人的機會 這是大慈悲的承擔",
-        "type": "os",
+        "text": "蘇主任:每天睡覺都會驚醒，有沒有盡力救回每一個病人",
+        "type": "lyrics",
         "segments": [
           {
-            "text": "os 上人 不放棄任何一個救人的機會 這是大慈悲的承擔",
+            "text": "蘇主任:每天睡覺都會驚醒，有沒有盡力救回每一個病人 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -5630,11 +6008,28 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "因為大愛不枯竭 因為無私又無悔",
+        "text": "趙院長:希望沒有人是求醫無門，希望每一個人都能得到像家人般的照顧",
         "type": "lyrics",
         "segments": [
           {
-            "text": "因為大愛不枯竭 因為無私又無悔",
+            "text": "趙院長:希望沒有人是求醫無門，希望每一個人都能得到像家人般的照顧 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "因為大愛無國界 因為醫療有團隊",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "因為大愛無國界 因為醫療有團隊  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5651,7 +6046,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "讓每位大醫王 都是照亮人間的光輝",
+            "text": "讓每位大醫王 都是照亮人間的光輝 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5666,14 +6061,140 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_23",
+    "id": "sec_24",
+    "title": "【中慈.江永旭 曲目：藥師如來12 大願 終曲】11/14(第3 天專屬曲目)",
+    "formationKey": "boneDonation",
+    "formationLabel": "07-2骨捐能捨 (骨捐/大體/專屬曲目)",
+    "sessionKeys": [
+      "1114"
+    ],
+    "sessionLabel": "11/14(第3天)專屬曲目",
+    "audio": "",
+    "videos": [],
+    "lines": [
+      {
+        "text": "他也授證成為一位慈濟人，更用行動去關懷跟他一樣脊髓損傷的病患，活出了信心又",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "他也授證成為一位慈濟人，更用行動去關懷跟他一樣脊髓損傷的病患，活出了信心又",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "有價值的人生",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "有價值的人生 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "普濟蒼(厚生) (大V)的良(厚方) (小V)",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "普濟蒼(厚生)",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": " (大V)",
+            "isRed": false,
+            "isGreen": true,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "196B24"
+          },
+          {
+            "text": "的良(厚方)",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": " (小V)",
+            "isRed": false,
+            "isGreen": true,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          }
+        ]
+      },
+      {
+        "text": "成就慧命的資~~糧~~",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": " 成就慧命的資~~糧~~ ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sec_25",
     "title": "【北慈.八仙塵爆 曲目：火宅喻 手札】 11/15(第4 天專屬曲目)",
     "formationKey": "boneDonation",
     "formationLabel": "07-2骨捐能捨 (骨捐/大體/專屬曲目)",
     "sessionKeys": [
       "1115"
     ],
-    "sessionLabel": "11/15 (第4天) 專屬",
+    "sessionLabel": "11/15(第4天)專屬曲目",
     "audio": "Music/慈善+醫療/17 骨捐.mp3",
     "videos": [],
     "lines": [
@@ -5693,7 +6214,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "試穿十次 ",
+            "text": "試穿十次",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -5704,7 +6225,7 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           },
           {
-            "text": "終於成功了 穿上後舒適",
+            "text": " 終於成功了 穿上後舒適",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -5721,7 +6242,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "透氣有冰涼感 哇 比原來的好多了 上人試穿後 經過10 次改良 贈送壓力衣給病人",
+            "text": "透氣有冰涼感 哇 比原來的好多了 上人試穿後 經過10 次改良 贈送壓力衣給病人 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -5738,7 +6259,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "同時慈濟也捐贈 新型高壓２０００碼給陽光基金會",
+            "text": "同時慈濟也捐贈 新型高壓２０００碼給陽光基金會 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -5752,10 +6273,10 @@ const LYRICS_OS_DATA = [
       },
       {
         "text": "院長：我們有使命感！一個都不能少 我們每一個人 都要救",
-        "type": "dialogue",
+        "type": "lyrics",
         "segments": [
           {
-            "text": "院長：我們有使命感！一個都不能少 我們每一個人 都要救",
+            "text": "院長：我們有使命感！一個都不能少 我們每一個人 都要救 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -5772,7 +6293,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "菩薩悲智化有情",
+            "text": "菩薩悲智化有情 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5789,7 +6310,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "如牛安忍能運載",
+            "text": "如牛安忍能運載 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5872,7 +6393,7 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           },
           {
-            "text": "(大V)",
+            "text": "(大V) ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5881,6 +6402,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "0000FF"
+          },
+          {
+            "text": " ",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": true,
+            "isItalic": false,
+            "color": "EE0000"
           }
         ]
       },
@@ -5911,7 +6443,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "(來不及)",
+            "text": "(來不及)  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -5981,6 +6513,17 @@ const LYRICS_OS_DATA = [
             "isBold": true,
             "isItalic": false,
             "color": "EE0000"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           }
         ]
       },
@@ -5989,7 +6532,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "把握當下莫空過",
+            "text": "把握當下莫空過 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6006,7 +6549,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "須知三界是火宅",
+            "text": "須知三界是火宅 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6023,7 +6566,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "須知三界是火宅",
+            "text": "須知三界是火宅 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6040,7 +6583,7 @@ const LYRICS_OS_DATA = [
         "type": "os",
         "segments": [
           {
-            "text": "os 謝謝慈濟給了我們孩子 第二次生命 謝謝院長爸爸 謝謝所有的醫生和姊姊",
+            "text": "os 謝謝慈濟給了我們孩子 第二次生命 謝謝院長爸爸 謝謝所有的醫生和姊姊 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -6057,7 +6600,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "謝謝你們沒有放棄我 讓我還能擁抱爸爸媽媽",
+            "text": "謝謝你們沒有放棄我 讓我還能擁抱爸爸媽媽 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -6108,7 +6651,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "更可以為部落服務",
+            "text": "更可以為部落服務  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -6123,7 +6666,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_24",
+    "id": "sec_26",
     "title": "【教育說法品梵唄 曲目：說法品梵唄第6 段】",
     "formationKey": "edu",
     "formationLabel": "08教育 (說法品/大體老師/慈小/教育完全化)",
@@ -6133,7 +6676,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/教育+人文/教育01_教育說法品梵唄.mp3",
     "videos": [],
     "lines": [
@@ -6142,7 +6685,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "照顧原住民就學就業問題 解決東部護理人力不足 苦既拔已 復為說法",
+            "text": "照顧原住民就學就業問題 解決東部護理人力不足 苦既拔已 復為說法 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -6159,7 +6702,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "菩薩摩訶薩",
+            "text": "菩薩摩訶薩  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6176,7 +6719,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "安住如是",
+            "text": "安住如是 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6193,7 +6736,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "真實相已",
+            "text": "真實相已 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6210,7 +6753,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "所發慈悲",
+            "text": "所發慈悲 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6227,7 +6770,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "明諦不虛",
+            "text": "明諦不虛 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6244,7 +6787,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "於眾生所",
+            "text": "於眾生所 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6261,7 +6804,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "真能拔苦",
+            "text": "真能拔苦 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6278,7 +6821,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "苦既拔已",
+            "text": "苦既拔已 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6295,7 +6838,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "復為說法",
+            "text": "復為說法 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6312,7 +6855,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "苦既拔已",
+            "text": "苦既拔已 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6329,7 +6872,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "復為說法",
+            "text": "復為說法 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6346,7 +6889,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "令諸眾生",
+            "text": "令諸眾生 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6363,7 +6906,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "受於快樂",
+            "text": "受於快樂 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6378,7 +6921,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_25",
+    "id": "sec_27",
     "title": "【大體老師 曲目：無量義經終曲】",
     "formationKey": "edu",
     "formationLabel": "08教育 (說法品/大體老師/慈小/教育完全化)",
@@ -6388,7 +6931,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/教育+人文/教育02_大體老師.mp3",
     "videos": [],
     "lines": [
@@ -6464,7 +7007,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "敬禮，感恩老師您奉獻身體成就我們。",
+            "text": "敬禮，感恩老師您奉獻身體成就我們。 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -6481,7 +7024,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "大慈大悲無量義",
+            "text": "大慈大悲無量義 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6498,7 +7041,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "靜寂清澄如琉璃",
+            "text": "靜寂清澄如琉璃 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6515,7 +7058,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "守之不動起敬意",
+            "text": " 守之不動起敬意 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6532,7 +7075,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "必令廣行閻浮提",
+            "text": "必令廣行閻浮提 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6547,7 +7090,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_26",
+    "id": "sec_28",
     "title": "【慈大醫學院宣誓 曲目：慈大校歌】",
     "formationKey": "edu",
     "formationLabel": "08教育 (說法品/大體老師/慈小/教育完全化)",
@@ -6557,7 +7100,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/教育+人文/教育03_慈大醫學院宣誓.mp3",
     "videos": [],
     "lines": [
@@ -6566,7 +7109,7 @@ const LYRICS_OS_DATA = [
         "type": "dialogue",
         "segments": [
           {
-            "text": "上人：立大願呢!總是要讓生命在你的手中得救，期待您們立志為人醫",
+            "text": "上人：立大願呢!總是要讓生命在你的手中得救，期待您們立志為人醫 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -6583,7 +7126,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "誓願將心比心(厚想)",
+            "text": "誓願將心比心(厚想)  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6600,7 +7143,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "眾生平安解我憂勞(厚痛)創",
+            "text": "眾生平安解我憂勞(厚痛)創 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6617,7 +7160,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "誓願眾生為至(厚親)",
+            "text": "誓願眾生為至(厚親)  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6634,7 +7177,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "醫病醫心醫得平安共享",
+            "text": "醫病醫心醫得平安共享 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6649,15 +7192,15 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_27",
-    "title": "【許永祥教授 曲目：醫子喻手扎】 11/12、13(第1、2 天專屬曲目)",
+    "id": "sec_29",
+    "title": "【許永祥教授 曲目：醫子喻手扎】11/12、13(第1、2 天專屬曲目)",
     "formationKey": "edu",
     "formationLabel": "08教育 (說法品/大體老師/慈小/教育完全化)",
     "sessionKeys": [
       "1112",
       "1113"
     ],
-    "sessionLabel": "11/12、11/13 專屬",
+    "sessionLabel": "11/12(第1天)、11/13(第2天)專屬曲目",
     "audio": "Music/教育+人文/教育02_大體老師.mp3",
     "videos": [],
     "lines": [
@@ -6666,7 +7209,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "未定",
+            "text": "未定 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6681,7 +7224,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_28",
+    "id": "sec_30",
     "title": "【慈小個案 曲目：種樹】",
     "formationKey": "edu",
     "formationLabel": "08教育 (說法品/大體老師/慈小/教育完全化)",
@@ -6691,7 +7234,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/教育+人文/教育04_慈小個案.mp3",
     "videos": [],
     "lines": [
@@ -6750,7 +7293,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "德向下紮根，融入生活教育",
+            "text": "德向下紮根，融入生活教育 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -6767,7 +7310,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "小樹啊",
+            "text": "小樹啊  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6784,7 +7327,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "我要你成為",
+            "text": "我要你成為  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6801,7 +7344,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "一顆頂天立地的大樹",
+            "text": "一顆頂天立地的大樹  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6818,7 +7361,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "我的期望和期盼",
+            "text": "我的期望和期盼 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6835,7 +7378,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "也隨著他",
+            "text": "也隨著他 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6852,7 +7395,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "成長和堅韌",
+            "text": "成長和堅韌 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6928,13 +7471,24 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "000000"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           }
         ]
       }
     ]
   },
   {
-    "id": "sec_29",
+    "id": "sec_31",
     "title": "【教育完全化 曲目：成長/感恩】",
     "formationKey": "edu",
     "formationLabel": "08教育 (說法品/大體老師/慈小/教育完全化)",
@@ -6944,7 +7498,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/教育+人文/教育05_教育完全化.mp3",
     "videos": [],
     "lines": [
@@ -6984,6 +7538,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "000000"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           }
         ]
       },
@@ -6992,7 +7557,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "曾經我的腳步",
+            "text": "曾經我的腳步  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7009,7 +7574,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "有您殷殷善誘和陪伴",
+            "text": "有您殷殷善誘和陪伴 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7026,7 +7591,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "當我走向新的旅程  滿心感恩不能忘",
+            "text": "當我走向新的旅程  滿心感恩不能忘 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7043,7 +7608,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "我終將張開翅膀",
+            "text": "我終將張開翅膀  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7060,7 +7625,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "飛向更寬闊的遠方",
+            "text": "飛向更寬闊的遠方  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7077,7 +7642,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "成長路不管多難",
+            "text": "成長路不管多難  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7094,7 +7659,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "愛是我的行囊",
+            "text": "愛是我的行囊 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7111,7 +7676,7 @@ const LYRICS_OS_DATA = [
         "type": "os",
         "segments": [
           {
-            "text": "os 我有自信，可以通過考驗，在未來，我會更加努力，繼續做一個手心向下的小菩薩",
+            "text": "os 我有自信，可以通過考驗，在未來，我會更加努力，繼續做一個手心向下的小菩薩 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -7145,7 +7710,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "很有價值",
+            "text": "很有價值 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -7162,7 +7727,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "我將牢記離別的意義",
+            "text": "我將牢記離別的意義 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7179,7 +7744,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "寬厚人生延續你的培育",
+            "text": "寬厚人生延續你的培育 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7196,7 +7761,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "不會將你忘記 不會將你忘記 我們會是慈濟的延續",
+            "text": "不會將你忘記 不會將你忘記 我們會是慈濟的延續 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7213,7 +7778,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "感謝叮嚀",
+            "text": "感謝叮嚀   ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7230,7 +7795,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "感恩有你",
+            "text": "感恩有你 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7247,7 +7812,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "我們會是慈濟的延續",
+            "text": "我們會是慈濟的延續 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7264,7 +7829,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "感謝叮嚀",
+            "text": "感謝叮嚀   ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7281,7 +7846,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "感恩有你",
+            "text": "感恩有你 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7298,7 +7863,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "我們會是慈濟的延續",
+            "text": "我們會是慈濟的延續 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7313,15 +7878,15 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_30",
-    "title": "【靜思語教學 曲目：藥草喻】 11/14、15(第3、4 天專屬曲目)",
+    "id": "sec_32",
+    "title": "【靜思語教學 曲目：藥草喻】11/14、15(第3、4 天專屬曲目)",
     "formationKey": "edu",
     "formationLabel": "08教育 (說法品/大體老師/慈小/教育完全化)",
     "sessionKeys": [
       "1114",
       "1115"
     ],
-    "sessionLabel": "11/14、11/15 專屬",
+    "sessionLabel": "11/14(第3天)、11/15(第4天)專屬曲目",
     "audio": "Music/教育+人文/教育06_靜思語教學.mp3",
     "videos": [],
     "lines": [
@@ -7330,7 +7895,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "藥草分三等",
+            "text": "藥草分三等  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7347,7 +7912,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "隨其大小潤根苗",
+            "text": "隨其大小潤根苗 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7364,7 +7929,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "轉輪聖王小藥草",
+            "text": "轉輪聖王小藥草 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7381,7 +7946,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "聲聞緣覺中藥草",
+            "text": "聲聞緣覺中藥草 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7398,7 +7963,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "常隨佛學上藥草",
+            "text": "常隨佛學上藥草 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7415,7 +7980,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "樹木有兩種",
+            "text": "樹木有兩種  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7432,7 +7997,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "順其高矮享甘露",
+            "text": "順其高矮享甘露 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7449,7 +8014,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "常行慈悲小樹木",
+            "text": "常行慈悲小樹木 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7466,7 +8031,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "度化眾生大樹木",
+            "text": "度化眾生大樹木 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7483,7 +8048,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "皆為菩薩行六度",
+            "text": "皆為菩薩行六度 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7498,7 +8063,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_31",
+    "id": "sec_33",
     "title": "【幸福人生講座 曲目：父母恩重難報經．因緣】",
     "formationKey": "humanities1",
     "formationLabel": "09-1人文 (基本隊形)",
@@ -7508,7 +8073,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/教育+人文/人文02_幸福人生講座.mp3",
     "videos": [],
     "lines": [
@@ -7517,7 +8082,7 @@ const LYRICS_OS_DATA = [
         "type": "os",
         "segments": [
           {
-            "text": "Os 師父啊!你知道嗎 我實在很害怕 你怕什麼 啊就一個仙仔和我講 說我們家的祖先",
+            "text": "Os 師父啊!你知道嗎 我實在很害怕 你怕什麼 啊就一個仙仔和我講 說我們家的祖先 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -7551,7 +8116,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "然疼愛啊 你不就是子孫的祖先 啊你們難道會對子孫不利 哪會 啊哪有可能去害子孫",
+            "text": "然疼愛啊 你不就是子孫的祖先 啊你們難道會對子孫不利 哪會 啊哪有可能去害子孫 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -7601,7 +8166,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "，就要好好的回報父母恩",
+            "text": "，就要好好的回報父母恩 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -7618,7 +8183,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "佛告阿難應諦聽 分別為你說分明 枯骨因緣溯前世",
+            "text": "佛告阿難應諦聽 分別為你說分明 枯骨因緣溯前世 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7635,7 +8200,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "或是多生父母親",
+            "text": "或是多生父母親 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7652,7 +8217,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "父為子女苦營生 勞心勞力兩霜鬢 養兒育女慈母心",
+            "text": "父為子女苦營生 勞心勞力兩霜鬢 養兒育女慈母心  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7669,7 +8234,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "一生茹苦又含辛",
+            "text": "一生茹苦又含辛 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7684,7 +8249,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_32",
+    "id": "sec_34",
     "title": "【曲目：跪羊圖】",
     "formationKey": "humanities1",
     "formationLabel": "09-1人文 (基本隊形)",
@@ -7694,7 +8259,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/教育+人文/人文02_幸福人生講座.mp3",
     "videos": [],
     "lines": [
@@ -7714,7 +8279,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(合十) ",
+            "text": "(合十)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -7725,7 +8290,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "感恩 報恩",
+            "text": " 感恩 報恩 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -7742,7 +8307,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "古聖先賢孝為宗 萬善之門孝為基 禮敬尊親如活佛",
+            "text": "古聖先賢孝為宗 萬善之門孝為基 禮敬尊親如活佛 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7759,7 +8324,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "成就生命大意義",
+            "text": "成就生命大意義 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7776,7 +8341,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "父母恩德重如山 知恩報恩不忘本 做人飲水要思源",
+            "text": "父母恩德重如山 知恩報恩不忘本 做人飲水要思源 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7793,7 +8358,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "才不愧對父母恩",
+            "text": "才不愧對父母恩 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -7821,7 +8386,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(換主機板隊形) ",
+            "text": "(換主機板隊形)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -7832,7 +8397,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "孝親月 歡喜月(目犍連救母)",
+            "text": " 孝親月 歡喜月(目犍連救母)  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -7847,7 +8412,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_33",
+    "id": "sec_35",
     "title": "【十戒 曲目：慈誠隊歌】",
     "formationKey": "humanities1",
     "formationLabel": "09-1人文 (基本隊形)",
@@ -7857,7 +8422,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/教育+人文/人文01_慈誠隊歌.mp3",
     "videos": [],
     "lines": [
@@ -7917,7 +8482,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "如果把抽菸的錢存下來，可以買好幾塊磚，來建醫院 蓋學校，師父啊!菸對人體齁",
+            "text": "如果把抽菸的錢存下來，可以買好幾塊磚，來建醫院 蓋學校，師父啊!菸對人體齁 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -7988,6 +8553,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": "   ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           }
         ]
       },
@@ -7996,7 +8572,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "慈誠慈誠 護法金剛",
+            "text": "慈誠慈誠 護法金剛 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -8013,7 +8589,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "慈悲喜捨 誠正信實",
+            "text": "慈悲喜捨 誠正信實 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -8030,7 +8606,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "犧牲奉獻 相互成就",
+            "text": "犧牲奉獻 相互成就 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -8047,7 +8623,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "持十戒",
+            "text": "持十戒  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -8064,7 +8640,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "修十善",
+            "text": "修十善  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -8081,7 +8657,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "護持慈濟世界",
+            "text": "護持慈濟世界 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -8098,7 +8674,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "敬愛上人",
+            "text": "敬愛上人 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -8115,7 +8691,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "感恩上人",
+            "text": "感恩上人 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -8132,7 +8708,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "耐力毅力",
+            "text": "耐力毅力 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -8149,7 +8725,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "身行供養",
+            "text": "身行供養 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -8166,7 +8742,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "祝福植福",
+            "text": "祝福植福 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -8183,7 +8759,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "信解行證",
+            "text": "信解行證 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -8200,7 +8776,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "悲憫心",
+            "text": "悲憫心  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -8217,7 +8793,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "持威儀",
+            "text": "持威儀  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -8234,7 +8810,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "創造慈濟世界",
+            "text": "創造慈濟世界 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -8251,7 +8827,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "合心 和氣 互愛 協力",
+            "text": "合心 和氣 互愛 協力 ",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -8266,7 +8842,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_34",
+    "id": "sec_36",
     "title": "【大愛台、經典 曲目：大愛讓世界亮起來】",
     "formationKey": "humanities2",
     "formationLabel": "09-2人文 (主機板)",
@@ -8276,7 +8852,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/教育+人文/人文03_大愛讓世界亮起來_珺月.mp3",
     "videos": [],
     "lines": [
@@ -8307,7 +8883,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "方向) ",
+            "text": "方向)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -8318,7 +8894,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "為人類寫歷史",
+            "text": " 為人類寫歷史",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -8340,7 +8916,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "開綠燈) ",
+            "text": "開綠燈)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -8351,7 +8927,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "為慈濟留足跡 為社會立典範",
+            "text": " 為慈濟留足跡 為社會立典範 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -8445,7 +9021,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "平安的夜晚",
+            "text": "平安的夜晚  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -8581,6 +9157,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           }
         ]
       },
@@ -8589,7 +9176,7 @@ const LYRICS_OS_DATA = [
         "type": "dialogue",
         "segments": [
           {
-            "text": "上人：期待淨化人心的節目，能灌注進每一個家庭，大愛能讓世界亮起來。",
+            "text": "上人：期待淨化人心的節目，能灌注進每一個家庭，大愛能讓世界亮起來。 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -8692,6 +9279,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           }
         ]
       },
@@ -8711,7 +9309,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "(收燈轉面甲45) ",
+            "text": "(收燈轉面甲45)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -8722,7 +9320,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "膚慰人間疾苦 啟發善良的心靈 跟脽菩薩的腳步 創造美麗境界 傳遞大愛到世界各處",
+            "text": " 膚慰人間疾苦 啟發善良的心靈 跟脽菩薩的腳步 創造美麗境界 傳遞大愛到世界各處 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -8737,7 +9335,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_35",
+    "id": "sec_37",
     "title": "【大地的園丁 曲目：天空破了洞】",
     "formationKey": "humanities2",
     "formationLabel": "09-2人文 (主機板)",
@@ -8747,7 +9345,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/教育+人文/人文04_大地的園丁.mp3",
     "videos": [],
     "lines": [
@@ -8767,7 +9365,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "(面向乙舞台圓心中央)",
+            "text": "(面向乙舞台圓心中央)  ",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -8795,7 +9393,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "(轉面向箭頭)  ",
+            "text": "(轉面向箭頭)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -8806,7 +9404,18 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "破了洞 破了洞 破了洞 破 了 洞",
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": " 破了洞 破了洞 破了洞 破 了 洞 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -8823,7 +9432,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "天空破了洞",
+            "text": "天空破了洞  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -8840,7 +9449,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "誰不傷心",
+            "text": "誰不傷心 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -8857,7 +9466,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "青山流了淚",
+            "text": "青山流了淚  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -8874,7 +9483,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "誰不悲泣",
+            "text": "誰不悲泣 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -8891,7 +9500,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "補天的女媧",
+            "text": "補天的女媧  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -8908,7 +9517,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "哪裡找",
+            "text": "哪裡找  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -8925,7 +9534,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "大地的園丁",
+            "text": "大地的園丁  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -8942,7 +9551,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "何處尋",
+            "text": "何處尋 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -8957,7 +9566,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_36",
+    "id": "sec_38",
     "title": "【法譬如水能洗垢 曲目：無量義經說法品】",
     "formationKey": "humanities2",
     "formationLabel": "09-2人文 (主機板)",
@@ -8967,7 +9576,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/教育+人文/人文05_法譬如水能洗垢.mp3",
     "videos": [],
     "lines": [
@@ -8976,7 +9585,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "製造垃圾的人不是別人，是我們自己，要清淨大地也不是別人，也是自己，",
+            "text": "製造垃圾的人不是別人，是我們自己，要清淨大地也不是別人，也是自己， ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -8993,7 +9602,7 @@ const LYRICS_OS_DATA = [
         "type": "dialogue",
         "segments": [
           {
-            "text": "上人：我們是不是把鼓掌的兩隻手，拿來做，把這個收回垃圾，就是做環保啦!",
+            "text": "上人：我們是不是把鼓掌的兩隻手，拿來做，把這個收回垃圾，就是做環保啦! ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -9010,7 +9619,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "我們要用鼓掌的雙手 ",
+            "text": "我們要用鼓掌的雙手",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -9021,7 +9630,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(僅有藍衣合十) ",
+            "text": " (僅有藍衣合十) ",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -9054,7 +9663,7 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           },
           {
-            "text": "(邊喊邊內轉向箭頭方向)",
+            "text": "(邊喊邊內轉向箭頭方向) ",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -9113,6 +9722,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "EE0000"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           }
         ]
       },
@@ -9163,6 +9783,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "EE0000"
+          },
+          {
+            "text": "  ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           }
         ]
       },
@@ -9226,7 +9857,7 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           },
           {
-            "text": ") ",
+            "text": ")",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -9237,7 +9868,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "(白衣出右腳雙手開)",
+            "text": " (白衣出右腳雙手開)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -9248,7 +9879,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "邊淨灘",
+            "text": "邊淨灘 ",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -9257,6 +9888,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "EE0000"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           }
         ]
       },
@@ -9307,6 +9949,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "EE0000"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           }
         ]
       },
@@ -9365,7 +10018,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "一棵大樹",
+            "text": "一棵大樹 ",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -9393,7 +10046,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "一條毛毯",
+            "text": "一條毛毯 ",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -9430,6 +10083,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "EE0000"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           }
         ]
       },
@@ -9475,6 +10139,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "EE0000"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           }
         ]
       },
@@ -9483,7 +10158,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "彎腰做環保",
+            "text": "彎腰做環保  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -9500,7 +10175,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "抬頭說環保",
+            "text": "抬頭說環保  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -9517,7 +10192,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "天天做環保",
+            "text": "天天做環保  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -9534,7 +10209,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "沒有時間老",
+            "text": "沒有時間老  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -9551,7 +10226,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "垃圾變黃金",
+            "text": "垃圾變黃金  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -9568,7 +10243,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "黃金變愛心",
+            "text": "黃金變愛心  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -9585,7 +10260,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "愛心化清流",
+            "text": "愛心化清流  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -9602,7 +10277,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "清流繞全球啊 繞~全~球~",
+            "text": "清流繞全球啊 繞~全~球~ ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -9619,7 +10294,7 @@ const LYRICS_OS_DATA = [
         "type": "dialogue",
         "segments": [
           {
-            "text": "上人：雙手萬能 最有用的手 最美的手 最價值的手 這就是人生",
+            "text": "上人：雙手萬能 最有用的手 最美的手 最價值的手 這就是人生 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -9653,7 +10328,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "貨公司，喔 其實我們輔具 慈濟已經做九年了喔!已經服務十三萬個家庭喔!",
+            "text": "貨公司，喔 其實我們輔具 慈濟已經做九年了喔!已經服務十三萬個家庭喔! ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -9668,7 +10343,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_37",
+    "id": "sec_39",
     "title": "【慈悲科技上聯合國 曲目：無量義經說法品】",
     "formationKey": "humanities2",
     "formationLabel": "09-2人文 (主機板)",
@@ -9678,7 +10353,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/教育+人文/人文06_慈悲科技上聯合國.mp3",
     "videos": [],
     "lines": [
@@ -9698,7 +10373,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "有夠讚! ",
+            "text": "有夠讚!",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -9709,7 +10384,7 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           },
           {
-            "text": "(邊喊邊內轉向箭頭方向)",
+            "text": " (邊喊邊內轉向箭頭方向)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -9718,6 +10393,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           }
         ]
       },
@@ -9737,7 +10423,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "環保就是環境很大的寶",
+            "text": "環保就是環境很大的寶 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -9765,7 +10451,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "丟掉就成為問題 撿起來就能解決問題",
+            "text": "丟掉就成為問題 撿起來就能解決問題 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -9782,7 +10468,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "代謝不住 念念生滅 文辭是一 眾生解異",
+            "text": "代謝不住 念念生滅 文辭是一 眾生解異 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -9830,6 +10516,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           }
         ]
       },
@@ -9838,7 +10535,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "一生無量 無量一生 佛法廣演 眾生普應",
+            "text": "一生無量 無量一生 佛法廣演 眾生普應 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -9875,6 +10572,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           }
         ]
       },
@@ -9894,7 +10602,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "(跪起) ",
+            "text": "(跪起)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -9905,7 +10613,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "無上大乘",
+            "text": " 無上大乘",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -9927,7 +10635,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "菩薩當修",
+            "text": "菩薩當修  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -9966,7 +10674,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "(藍衣舉高)",
+            "text": "(藍衣舉高) ",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -10005,7 +10713,7 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           },
           {
-            "text": "(白衣舉高藍衣收) ",
+            "text": "(白衣舉高藍衣收)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -10014,6 +10722,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "EE0000"
           },
           {
             "text": "人間菩薩大招生 一粒毫芒極微種 漸成菩提",
@@ -10053,21 +10772,32 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           }
         ]
       }
     ]
   },
   {
-    "id": "sec_38",
-    "title": "【貧中之富 樂生 曲目：超越天堂】 11/12、15(第1、4 天專屬曲目)",
-    "formationKey": "fiveContinents1",
-    "formationLabel": "10-1五大洲 (台灣/富中之富)",
+    "id": "sec_40",
+    "title": "【貧中之富 樂生 曲目：超越天堂】11/12、15(第1、4 天專屬曲目)",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (樂生/富中之富)",
     "sessionKeys": [
       "1112",
       "1115"
     ],
-    "sessionLabel": "11/12、11/15 專屬",
+    "sessionLabel": "11/12(第1天)、11/15(第4天)專屬曲目",
     "audio": "Music/功德品/1112/11_12 [功德品",
     "videos": [
       {
@@ -10091,6 +10821,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "000000"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           }
         ]
       },
@@ -10099,7 +10840,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "世間苦聚難為人",
+            "text": "世間苦聚難為人 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -10116,7 +10857,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "苦中長養慈悲心",
+            "text": "苦中長養慈悲心 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -10133,7 +10874,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "涓滴成就無量事",
+            "text": "涓滴成就無量事 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -10150,7 +10891,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "但願來世清淨身",
+            "text": "但願來世清淨身 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -10167,7 +10908,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "師父，為什麼我們會得這種病，我們好像是住在地獄裡。",
+            "text": "師父，為什麼我們會得這種病，我們好像是住在地獄裡。 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -10206,7 +10947,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "，是超越天堂的淨土",
+            "text": "，是超越天堂的淨土 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -10223,7 +10964,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "今身不向此生度",
+            "text": "今身不向此生度 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -10240,7 +10981,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "更待何時度此身",
+            "text": "更待何時度此身 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -10255,15 +10996,15 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_39",
-    "title": "【富中之富  A 曲目：彌勒問】 11/12、14(第1、3 天專屬曲目)",
-    "formationKey": "fiveContinents1",
-    "formationLabel": "10-1五大洲 (台灣/富中之富)",
+    "id": "sec_41",
+    "title": "【富中之富  A 曲目：彌勒問】11/12、14(第1、3 天專屬曲目)",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (樂生/富中之富)",
     "sessionKeys": [
       "1112",
       "1114"
     ],
-    "sessionLabel": "11/12、11/14 專屬",
+    "sessionLabel": "11/12(第1天)、11/14(第3天)專屬曲目",
     "audio": "Music/功德品/1112/[功德品",
     "videos": [
       {
@@ -10278,7 +11019,7 @@ const LYRICS_OS_DATA = [
         "type": "os",
         "segments": [
           {
-            "text": "os 那~什麼是富中之富啊，開啟心靈的富有啊! ",
+            "text": "os 那~什麼是富中之富啊，開啟心靈的富有啊!",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -10289,7 +11030,18 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(西一：搭靜思堂)",
+            "text": " ",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "EE0000"
+          },
+          {
+            "text": "(西一：搭靜思堂) ",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -10306,7 +11058,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "我見彼土諸菩薩",
+            "text": "我見彼土諸菩薩  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -10320,7 +11072,7 @@ const LYRICS_OS_DATA = [
       },
       {
         "text": "為求(東二：舉921 鋼鐵道具)佛道行布施",
-        "type": "dialogue",
+        "type": "lyrics",
         "segments": [
           {
             "text": "為求",
@@ -10345,7 +11097,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "佛道行布施",
+            "text": "佛道行布施 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -10401,7 +11153,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "欲人知，只求 上人「ㄇㄞˋ煩惱」",
+            "text": "欲人知，只求 上人「ㄇㄞˋ煩惱」 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -10418,7 +11170,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "金銀瑪瑙與寶飾",
+            "text": "金銀瑪瑙與寶飾 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -10432,7 +11184,7 @@ const LYRICS_OS_DATA = [
       },
       {
         "text": "車馬(東一：舉食衣住行道具；東二收)華蓋摩尼珠",
-        "type": "dialogue",
+        "type": "lyrics",
         "segments": [
           {
             "text": "車馬",
@@ -10466,6 +11218,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "0000FF"
+          },
+          {
+            "text": " ",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "EE0000"
           }
         ]
       },
@@ -10513,7 +11276,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "慮到了，實在是太貼心了。",
+            "text": "慮到了，實在是太貼心了。 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -10530,7 +11293,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "又見菩薩利眾生",
+            "text": "又見菩薩利眾生 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -10578,6 +11341,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "0000FF"
+          },
+          {
+            "text": "  ",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "EE0000"
           }
         ]
       },
@@ -10647,7 +11421,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "捐地蓋大愛台，科技傳法到全世界。",
+            "text": "捐地蓋大愛台，科技傳法到全世界。 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -10664,7 +11438,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "為救眾生諸病苦",
+            "text": "為救眾生諸病苦 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -10712,6 +11486,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "0000FF"
+          },
+          {
+            "text": " ",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "EE0000"
           }
         ]
       },
@@ -10963,7 +11748,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "，員工兩千多人都吃素ㄟ！",
+            "text": "，員工兩千多人都吃素ㄟ！ ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -10977,7 +11762,7 @@ const LYRICS_OS_DATA = [
       },
       {
         "text": "五毛錢(西二：舉五毛錢道具；法海收)可以救人一甲子(西二：投錢)耶，上人想要送給大家一甲",
-        "type": "dialogue",
+        "type": "lyrics",
         "segments": [
           {
             "text": "五毛錢",
@@ -11072,6 +11857,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           }
         ]
       },
@@ -11124,7 +11920,7 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           },
           {
-            "text": "(大聲唸)",
+            "text": "(大聲唸) ",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -11185,7 +11981,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "(敬禮) ",
+            "text": "(敬禮)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -11194,6 +11990,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "FF0066"
           },
           {
             "text": "千萬偈頌",
@@ -11240,7 +12047,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "(出/跪腳雙手上)",
+            "text": "(出/跪腳雙手上) ",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -11255,15 +12062,15 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_40",
-    "title": "【富中之富  B 曲目：彌勒問】 11/13、15(第2、4 天專屬曲目)",
-    "formationKey": "fiveContinents1",
-    "formationLabel": "10-1五大洲 (台灣/富中之富)",
+    "id": "sec_42",
+    "title": "【富中之富  B 曲目：彌勒問】11/13、15(第2、4 天專屬曲目)",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (樂生/富中之富)",
     "sessionKeys": [
       "1113",
       "1115"
     ],
-    "sessionLabel": "11/13、11/15 專屬",
+    "sessionLabel": "11/13(第2天)、11/15(第4天)專屬曲目",
     "audio": "Music/功德品/1112/[功德品",
     "videos": [
       {
@@ -11278,7 +12085,7 @@ const LYRICS_OS_DATA = [
         "type": "os",
         "segments": [
           {
-            "text": "os 那~什麼是富中之富啊，開啟心靈的富有啊! ",
+            "text": "os 那~什麼是富中之富啊，開啟心靈的富有啊!",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -11289,7 +12096,18 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(西一：搭靜思堂)",
+            "text": " ",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "EE0000"
+          },
+          {
+            "text": "(西一：搭靜思堂) ",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -11306,7 +12124,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "我見彼土諸菩薩",
+            "text": "我見彼土諸菩薩  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -11320,7 +12138,7 @@ const LYRICS_OS_DATA = [
       },
       {
         "text": "為求(東二：舉勸募箱.大米.毛毯)佛道行布施",
-        "type": "dialogue",
+        "type": "lyrics",
         "segments": [
           {
             "text": "為求",
@@ -11345,7 +12163,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "佛道行布施",
+            "text": "佛道行布施 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -11401,7 +12219,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "新馬實業家，放下事業，回報佛恩。",
+            "text": "新馬實業家，放下事業，回報佛恩。 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -11418,7 +12236,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "金銀瑪瑙與寶飾",
+            "text": "金銀瑪瑙與寶飾 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -11432,7 +12250,7 @@ const LYRICS_OS_DATA = [
       },
       {
         "text": "車馬(東一：舉字畫道具；東二收)華蓋摩尼珠",
-        "type": "dialogue",
+        "type": "lyrics",
         "segments": [
           {
             "text": "車馬",
@@ -11466,6 +12284,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "0000FF"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           }
         ]
       },
@@ -11474,7 +12303,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "你看! ",
+            "text": "你看!",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -11483,6 +12312,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "000000"
+          },
+          {
+            "text": " ",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": true,
+            "isBold": false,
+            "isItalic": false,
+            "color": "FF0066"
           },
           {
             "text": "(東一法海指引)",
@@ -11513,7 +12353,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "知，只求 上人 「ㄇㄞˋ煩惱」",
+            "text": "知，只求 上人 「ㄇㄞˋ煩惱」 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -11530,7 +12370,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "又見菩薩利眾生",
+            "text": "又見菩薩利眾生 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -11578,6 +12418,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "0000FF"
+          },
+          {
+            "text": " ",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "EE0000"
           }
         ]
       },
@@ -11647,7 +12498,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "，不如留德給子孫，以善行做為傳家寶。",
+            "text": "，不如留德給子孫，以善行做為傳家寶。 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -11664,7 +12515,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "為救眾生諸病苦",
+            "text": "為救眾生諸病苦 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -11678,7 +12529,7 @@ const LYRICS_OS_DATA = [
       },
       {
         "text": "頭目髓腦亦樂施(西二：南美洲蔬果)",
-        "type": "dialogue",
+        "type": "lyrics",
         "segments": [
           {
             "text": "頭目",
@@ -11703,7 +12554,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "(西二：南美洲蔬果)",
+            "text": "(西二：南美洲蔬果) ",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -11980,7 +12831,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(西二法海收)",
+            "text": "(西二法海收) ",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -11994,7 +12845,7 @@ const LYRICS_OS_DATA = [
       },
       {
         "text": "五毛錢(西二：舉五毛錢道具；法海收)可以救人一甲子(西二：投錢)耶，上人想要送給大家一甲",
-        "type": "dialogue",
+        "type": "lyrics",
         "segments": [
           {
             "text": "五毛錢",
@@ -12089,6 +12940,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           }
         ]
       },
@@ -12141,7 +13003,7 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           },
           {
-            "text": "(大聲唸)",
+            "text": "(大聲唸) ",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -12202,7 +13064,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "(敬禮) ",
+            "text": "(敬禮)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -12211,6 +13073,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "FF0066"
           },
           {
             "text": "千萬偈頌",
@@ -12257,7 +13130,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "(出/跪腳雙手上)",
+            "text": "(出/跪腳雙手上) ",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -12272,17 +13145,17 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_41",
+    "id": "sec_43",
     "title": "【開經書 曲目：無量義經功德品】",
     "formationKey": "fiveContinents1",
-    "formationLabel": "10-1五大洲 (台灣/富中之富)",
+    "formationLabel": "10-1五大洲 (台灣/開經書)",
     "sessionKeys": [
       "1112",
       "1113",
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/功德品/1112/[功德品",
     "videos": [],
     "lines": [
@@ -12291,7 +13164,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "無量義經佛宅來",
+            "text": "無量義經佛宅來 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -12308,7 +13181,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "去到一切眾生心",
+            "text": "去到一切眾生心 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -12325,7 +13198,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "諸住菩薩所行處",
+            "text": "諸住菩薩所行處 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -12342,7 +13215,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "十大功德潤蒼生",
+            "text": "十大功德潤蒼生 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -12353,57 +13226,18 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           }
         ]
-      },
-      {
-        "text": "※約旦※",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "※",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "約旦",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": true,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "※",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          }
-        ]
       }
     ]
   },
   {
-    "id": "sec_42",
-    "title": "【曲目1：第三功德】",
+    "id": "sec_44",
+    "title": "【約旦 曲目1：第三功德】",
     "formationKey": "fiveContinents2",
-    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "formationLabel": "10-2五大洲 (樂生/富中之富)",
     "sessionKeys": [
       "1112"
     ],
-    "sessionLabel": "11/12 (第1天) 專屬",
+    "sessionLabel": "11/12(第1天)專屬曲目",
     "audio": "Music/功德品/1112/11_12 [功德品",
     "videos": [
       {
@@ -12418,7 +13252,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "第三功德難思議",
+            "text": "第三功德難思議 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -12435,7 +13269,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "自在度人顯願力",
+            "text": "自在度人顯願力 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -12452,7 +13286,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "雖有煩擾無煩惱",
+            "text": "雖有煩擾無煩惱 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -12478,20 +13312,31 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "0000FF"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           }
         ]
       }
     ]
   },
   {
-    "id": "sec_43",
+    "id": "sec_45",
     "title": "【曲目2：啟航】",
     "formationKey": "fiveContinents2",
-    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "formationLabel": "10-2五大洲 (樂生/富中之富)",
     "sessionKeys": [
       "1112"
     ],
-    "sessionLabel": "11/12 (第1天) 專屬",
+    "sessionLabel": "11/12(第1天)專屬曲目",
     "audio": "Music/功德品/1112/11_12 [功德品",
     "videos": [
       {
@@ -12503,7 +13348,7 @@ const LYRICS_OS_DATA = [
     "lines": [
       {
         "text": "張起大愛的風帆當初領養的小王子(指引)長大上學了 耀眼金光燦爛(阿拉伯語os)",
-        "type": "os",
+        "type": "lyrics",
         "segments": [
           {
             "text": "張起大愛的風帆",
@@ -12550,7 +13395,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "長大上學了 ",
+            "text": "長大上學了",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -12561,7 +13406,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "耀眼金光燦爛",
+            "text": " 耀眼金光燦爛",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -12572,7 +13417,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "(阿拉伯語os)",
+            "text": "(阿拉伯語os) ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -12586,7 +13431,7 @@ const LYRICS_OS_DATA = [
       },
       {
         "text": "衝破巨浪(阿拉伯語os) 向前航",
-        "type": "os",
+        "type": "lyrics",
         "segments": [
           {
             "text": "衝破巨浪",
@@ -12622,7 +13467,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "航",
+            "text": "航  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -12659,6 +13504,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "0000FF"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           }
         ]
       },
@@ -12678,7 +13534,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "生  ",
+            "text": "生",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -12689,7 +13545,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "到 ",
+            "text": "  到 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -12700,7 +13556,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "彼 岸",
+            "text": "彼",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -12711,7 +13567,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "~~~",
+            "text": " ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -12720,59 +13576,42 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "0000FF"
-          }
-        ]
-      },
-      {
-        "text": "※黑區變亮區※",
-        "type": "lyrics",
-        "segments": [
+          },
           {
-            "text": "※",
+            "text": "岸",
             "isRed": false,
             "isGreen": false,
-            "isBlue": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": true,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "~~~ ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
             "isPurple": false,
             "isBoxed": false,
             "isBold": false,
             "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "黑區變亮區",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": true,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "※",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
+            "color": "0000FF"
           }
         ]
       }
     ]
   },
   {
-    "id": "sec_44",
-    "title": "【曲目1：第六功德】",
+    "id": "sec_46",
+    "title": "【黑區變亮區 曲目1：第六功德】",
     "formationKey": "fiveContinents2",
-    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "formationLabel": "10-2五大洲 (樂生/富中之富)",
     "sessionKeys": [
       "1112"
     ],
-    "sessionLabel": "11/12 (第1天) 專屬",
+    "sessionLabel": "11/12(第1天)專屬曲目",
     "audio": "Music/功德品/1112/11_12 [功德品",
     "videos": [
       {
@@ -12787,7 +13626,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "第六功德不思議",
+            "text": "第六功德不思議 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -12804,7 +13643,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "生死煩惱盡遠離",
+            "text": "生死煩惱盡遠離 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -12821,7 +13660,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "能斷一切苦與厄",
+            "text": "能斷一切苦與厄 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -12847,20 +13686,31 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "0000FF"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           }
         ]
       }
     ]
   },
   {
-    "id": "sec_45",
+    "id": "sec_47",
     "title": "【曲目2：化城喻故事】",
     "formationKey": "fiveContinents2",
-    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "formationLabel": "10-2五大洲 (樂生/富中之富)",
     "sessionKeys": [
       "1112"
     ],
-    "sessionLabel": "11/12 (第1天) 專屬",
+    "sessionLabel": "11/12(第1天)專屬曲目",
     "audio": "Music/功德品/1112/11_12 [功德品",
     "videos": [
       {
@@ -12886,7 +13736,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "愛無國界 吼 ",
+            "text": "愛無國界 吼",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -12897,7 +13747,7 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           },
           {
-            "text": "久受勤苦乃可度 ",
+            "text": " 久受勤苦乃可度 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -12908,7 +13758,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "難行能行 吼",
+            "text": "難行能行 吼 ",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -12936,7 +13786,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "小小螢火蟲 黑區變亮區",
+            "text": "小小螢火蟲 黑區變亮區 ",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -12947,57 +13797,18 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           }
         ]
-      },
-      {
-        "text": "※莫三比克※",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "※",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "莫三比克",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": true,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "※",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          }
-        ]
       }
     ]
   },
   {
-    "id": "sec_46",
-    "title": "【曲目1：第八功德】",
+    "id": "sec_48",
+    "title": "【莫三比克 曲目1：第八功德】",
     "formationKey": "fiveContinents2",
-    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "formationLabel": "10-2五大洲 (樂生/富中之富)",
     "sessionKeys": [
       "1112"
     ],
-    "sessionLabel": "11/12 (第1天) 專屬",
+    "sessionLabel": "11/12(第1天)專屬曲目",
     "audio": "Music/功德品/1112/11_12 [功德品",
     "videos": [
       {
@@ -13012,7 +13823,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "第八功德不思議",
+            "text": "第八功德不思議 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -13029,7 +13840,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "種種方便令發(厚心)",
+            "text": "種種方便令發(厚心)  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -13046,7 +13857,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "信心既發令勇(厚猛)",
+            "text": "信心既發令勇(厚猛)  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -13063,7 +13874,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "守之不動令堅(厚定)",
+            "text": "守之不動令堅(厚定) ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -13078,14 +13889,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_47",
+    "id": "sec_49",
     "title": "【曲目2：髻珠喻經文】",
     "formationKey": "fiveContinents2",
-    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "formationLabel": "10-2五大洲 (樂生/富中之富)",
     "sessionKeys": [
       "1112"
     ],
-    "sessionLabel": "11/12 (第1天) 專屬",
+    "sessionLabel": "11/12(第1天)專屬曲目",
     "audio": "Music/功德品/1112/11_12 [功德品",
     "videos": [
       {
@@ -13100,7 +13911,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "用愛傳法到非洲",
+            "text": "用愛傳法到非洲 ",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -13117,7 +13928,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "開啟人人 心靈財富 吼、嘿",
+            "text": "開啟人人 心靈財富 吼、嘿 ",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -13134,7 +13945,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "紮根教育 翻轉非洲 吼、嘿",
+            "text": "紮根教育 翻轉非洲 吼、嘿 ",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -13151,7 +13962,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "身口意念(厚應)守(厚護)",
+            "text": "身口意念(厚應)守(厚護)  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -13168,7 +13979,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "慈心悲願(厚利)眾(厚生)",
+            "text": "慈心悲願(厚利)眾(厚生)  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -13185,7 +13996,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "無上妙法 (厚難)解(厚信)",
+            "text": "無上妙法 (厚難)解(厚信) ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -13202,7 +14013,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "譬如髻珠放光明",
+            "text": "譬如髻珠放光明 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -13219,7 +14030,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "譬如髻珠放光明",
+            "text": "譬如髻珠放光明 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -13236,7 +14047,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "譬如髻珠放光明",
+            "text": "譬如髻珠放光明 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -13245,59 +14056,20 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "0000FF"
-          }
-        ]
-      },
-      {
-        "text": "※台灣救災集錦※",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "※",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "台灣救災集錦",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": true,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "※",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
           }
         ]
       }
     ]
   },
   {
-    "id": "sec_48",
-    "title": "【曲目：第五功德】",
-    "formationKey": "fiveContinents2",
-    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "id": "sec_50",
+    "title": "【台灣救災集錦 曲目：第五功德】",
+    "formationKey": "fiveContinents1",
+    "formationLabel": "10-1五大洲 (台灣/開經書)",
     "sessionKeys": [
       "1112"
     ],
-    "sessionLabel": "11/12 (第1天) 專屬",
+    "sessionLabel": "11/12(第1天)專屬曲目",
     "audio": "Music/功德品/1112/11_12 [功德品",
     "videos": [
       {
@@ -13312,7 +14084,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "第五功德難思議",
+            "text": "第五功德難思議 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -13329,7 +14101,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "持誦書寫刻不離",
+            "text": "持誦書寫刻不離 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -13346,7 +14118,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "剎那恆持長相應",
+            "text": "剎那恆持長相應 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -13363,7 +14135,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "眾生信服得歡喜",
+            "text": "眾生信服得歡喜 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -13374,13 +14146,49 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           }
         ]
-      },
+      }
+    ]
+  },
+  {
+    "id": "sec_51",
+    "title": "【曲目：衣珠喻手扎】",
+    "formationKey": "fiveContinents1",
+    "formationLabel": "10-1五大洲 (台灣/開經書)",
+    "sessionKeys": [
+      "1112"
+    ],
+    "sessionLabel": "11/12(第1天)專屬曲目",
+    "audio": "Music/功德品/1112/11_12 [功德品] 05台灣救災集錦_第五功德.mp3",
+    "videos": [],
+    "lines": [
       {
-        "text": "上人：看他們真的很大膽啊,路整條都崩,只是隨便把竹子鋪著,你看畫面上看",
+        "text": "上人：(合十)看他們真的很大膽啊,路整條都崩,只是隨便把竹子鋪著,你看畫面上看",
         "type": "dialogue",
         "segments": [
           {
-            "text": "上人：看他們真的很大膽啊,路整條都崩,只是隨便把竹子鋪著,你看畫面上看",
+            "text": "上人：",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "(合十)",
+            "isRed": false,
+            "isGreen": true,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "196B24"
+          },
+          {
+            "text": "看他們真的很大膽啊,路整條都崩,只是隨便把竹子鋪著,你看畫面上看 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -13393,11 +14201,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "到嗎?那是懸崖啊他們不只是人要過,還要抬著物資那麼多人整群這樣過,你",
+        "text": "到嗎?那是懸崖啊!每一次哪裡有災難,我一定要說,拜託你們(法海呈現情境後定格),等到路",
         "type": "lyrics",
         "segments": [
           {
-            "text": "到嗎?那是懸崖啊他們不只是人要過,還要抬著物資那麼多人整群這樣過,你",
+            "text": "到嗎?那是懸崖啊!每一次哪裡有災難,我一定要說,",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -13406,30 +14214,7 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "000000"
-          }
-        ]
-      },
-      {
-        "text": "想,我看了真的整個血都快凍起來了,真的實在是每一次哪裡有災難,我一定要說,",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "想,我看了真的整個血都快凍起來了,真的實在是每一次哪裡有災難,我一定要說,",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          }
-        ]
-      },
-      {
-        "text": "拜託你們(法海呈現情境後定格),等到路可以通了,拜託你們,救災的人一定要為我照顧平",
-        "type": "lyrics",
-        "segments": [
+          },
           {
             "text": "拜託你們",
             "isRed": false,
@@ -13453,7 +14238,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": ",等到路可以通了,拜託你們,救災的人一定要為我照顧平",
+            "text": ",等到路",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -13466,11 +14251,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "安。",
+        "text": "可以通了,拜託你們救災的人一定要為我照顧平安。",
         "type": "lyrics",
         "segments": [
           {
-            "text": "安。",
+            "text": "可以通了,拜託你們救災的人一定要為我照顧平安。 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -13483,11 +14268,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "哪裡有災難",
+        "text": "諸佛菩薩大悲心",
         "type": "lyrics",
         "segments": [
           {
-            "text": "哪裡有災難",
+            "text": "諸佛菩薩大悲心  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -13496,6 +14281,23 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "0000FF"
+          }
+        ]
+      },
+      {
+        "text": "黃老師OS：哪裡有災難",
+        "type": "dialogue",
+        "segments": [
+          {
+            "text": "黃老師OS：哪裡有災難 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           }
         ]
       },
@@ -13504,15 +14306,15 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "慈濟人就在那裡",
+            "text": "慈濟人就在那裡 ",
             "isRed": false,
             "isGreen": false,
-            "isBlue": true,
+            "isBlue": false,
             "isPurple": false,
             "isBoxed": false,
             "isBold": false,
             "isItalic": false,
-            "color": "0000FF"
+            "color": "000000"
           }
         ]
       },
@@ -13521,15 +14323,15 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "有人蓋房子",
+            "text": "有人蓋房子  ",
             "isRed": false,
             "isGreen": false,
-            "isBlue": true,
+            "isBlue": false,
             "isPurple": false,
             "isBoxed": false,
             "isBold": false,
             "isItalic": false,
-            "color": "0000FF"
+            "color": "000000"
           }
         ]
       },
@@ -13538,15 +14340,15 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "有人送便當",
+            "text": "有人送便當 ",
             "isRed": false,
             "isGreen": false,
-            "isBlue": true,
+            "isBlue": false,
             "isPurple": false,
             "isBoxed": false,
             "isBold": false,
             "isItalic": false,
-            "color": "0000FF"
+            "color": "000000"
           }
         ]
       },
@@ -13555,32 +14357,32 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "有人提水桶",
+            "text": "有人提水桶  ",
             "isRed": false,
             "isGreen": false,
-            "isBlue": true,
+            "isBlue": false,
             "isPurple": false,
             "isBoxed": false,
             "isBold": false,
             "isItalic": false,
-            "color": "0000FF"
+            "color": "000000"
           }
         ]
       },
       {
-        "text": "有人釘屋頂",
+        "text": "有人修屋頂",
         "type": "lyrics",
         "segments": [
           {
-            "text": "有人釘屋頂",
+            "text": "有人修屋頂  ",
             "isRed": false,
             "isGreen": false,
-            "isBlue": true,
+            "isBlue": false,
             "isPurple": false,
             "isBoxed": false,
             "isBold": false,
             "isItalic": false,
-            "color": "0000FF"
+            "color": "000000"
           }
         ]
       },
@@ -13589,15 +14391,15 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "有人合十助念 有人搬隔屏",
+            "text": "有人合十助念 有人搬隔屏 ",
             "isRed": false,
             "isGreen": false,
-            "isBlue": true,
+            "isBlue": false,
             "isPurple": false,
             "isBoxed": false,
             "isBold": false,
             "isItalic": false,
-            "color": "0000FF"
+            "color": "000000"
           }
         ]
       },
@@ -13606,32 +14408,32 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "有人扛米過懸崖",
+            "text": "有人扛米過懸崖 ",
             "isRed": false,
             "isGreen": false,
-            "isBlue": true,
+            "isBlue": false,
             "isPurple": false,
             "isBoxed": false,
             "isBold": false,
             "isItalic": false,
-            "color": "0000FF"
+            "color": "000000"
           }
         ]
       },
       {
-        "text": "三十年來",
+        "text": "六十年來",
         "type": "lyrics",
         "segments": [
           {
-            "text": "三十年來",
+            "text": "六十年來  ",
             "isRed": false,
             "isGreen": false,
-            "isBlue": true,
+            "isBlue": false,
             "isPurple": false,
             "isBoxed": false,
             "isBold": false,
             "isItalic": false,
-            "color": "0000FF"
+            "color": "000000"
           }
         ]
       },
@@ -13640,15 +14442,15 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "有一群人",
+            "text": "有一群人  ",
             "isRed": false,
             "isGreen": false,
-            "isBlue": true,
+            "isBlue": false,
             "isPurple": false,
             "isBoxed": false,
             "isBold": false,
             "isItalic": false,
-            "color": "0000FF"
+            "color": "000000"
           }
         ]
       },
@@ -13657,32 +14459,32 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "不斷奔向需要他們的地方",
+            "text": "不斷奔向需要他們的地方 ",
             "isRed": false,
             "isGreen": false,
-            "isBlue": true,
+            "isBlue": false,
             "isPurple": false,
             "isBoxed": false,
             "isBold": false,
             "isItalic": false,
-            "color": "0000FF"
+            "color": "000000"
           }
         ]
       },
       {
-        "text": "走在最前面",
+        "text": "走在最前",
         "type": "lyrics",
         "segments": [
           {
-            "text": "走在最前面",
+            "text": "走在最前  ",
             "isRed": false,
             "isGreen": false,
-            "isBlue": true,
+            "isBlue": false,
             "isPurple": false,
             "isBoxed": false,
             "isBold": false,
             "isItalic": false,
-            "color": "0000FF"
+            "color": "000000"
           }
         ]
       },
@@ -13691,24 +14493,24 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "陪到最後",
+            "text": "陪到最後 ",
             "isRed": false,
             "isGreen": false,
-            "isBlue": true,
+            "isBlue": false,
             "isPurple": false,
             "isBoxed": false,
             "isBold": false,
             "isItalic": false,
-            "color": "0000FF"
+            "color": "000000"
           }
         ]
       },
       {
-        "text": "咚~~咚(東西一藍衣雙手畫圈指引) 走在最前 咚~~咚(東西二藍衣雙手畫圈指引)  陪到最後",
+        "text": "咚咚(回正)走在最前(藍衣單手單腳) 咚咚陪到最後(藍衣環抱)",
         "type": "lyrics",
         "segments": [
           {
-            "text": "咚~~咚",
+            "text": "咚咚",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -13719,7 +14521,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(東西一藍衣雙手畫圈指引) ",
+            "text": "(回正)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -13730,7 +14532,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "走在最前 ",
+            "text": "走在最前",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -13741,18 +14543,7 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           },
           {
-            "text": "咚~~咚",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "(東西二藍衣雙手畫圈指引)  ",
+            "text": "(藍衣單手單腳)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -13761,6 +14552,28 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "FF0000"
+          },
+          {
+            "text": "咚咚",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           },
           {
             "text": "陪到最後",
@@ -13772,15 +14585,37 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "EE0000"
+          },
+          {
+            "text": "(藍衣環抱)",
+            "isRed": false,
+            "isGreen": true,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "196B24"
+          },
+          {
+            "text": "  ",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "FF0000"
           }
         ]
       },
       {
-        "text": "咚~~咚(全體朝向觀眾45 度)台灣愛心總動員(跑)",
+        "text": "咚咚(全體朝向觀眾45 度)台灣愛心總動員(跑) 六度行 樂無窮",
         "type": "lyrics",
         "segments": [
           {
-            "text": "咚~~咚",
+            "text": "咚咚",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -13824,7 +14659,7 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           },
           {
-            "text": "(跑)",
+            "text": "(跑) ",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -13833,59 +14668,31 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
-          }
-        ]
-      },
-      {
-        "text": "※土耳其※",
-        "type": "lyrics",
-        "segments": [
+          },
           {
-            "text": "※",
+            "text": "六度行 樂無窮 ",
             "isRed": false,
             "isGreen": false,
-            "isBlue": false,
+            "isBlue": true,
             "isPurple": false,
             "isBoxed": false,
             "isBold": false,
             "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "土耳其",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": true,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "※",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
+            "color": "0000FF"
           }
         ]
       }
     ]
   },
   {
-    "id": "sec_49",
-    "title": "【曲目：第三功德】",
+    "id": "sec_52",
+    "title": "【土耳其 曲目：第三功德】",
     "formationKey": "fiveContinents2",
-    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "formationLabel": "10-2五大洲 (樂生/富中之富)",
     "sessionKeys": [
       "1113"
     ],
-    "sessionLabel": "11/13 (第2天) 專屬",
+    "sessionLabel": "11/13(第2天)專屬曲目",
     "audio": "Music/功德品/1112/11_12 [功德品",
     "videos": [
       {
@@ -13900,7 +14707,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "第三功德難思議",
+            "text": "第三功德難思議 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -13917,7 +14724,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "自在度人顯願力",
+            "text": "自在度人顯願力 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -13934,7 +14741,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "雖有煩擾無煩惱",
+            "text": "雖有煩擾無煩惱 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -13960,37 +14767,9 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "0000FF"
-          }
-        ]
-      },
-      {
-        "text": "※南非※",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "※",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
           },
           {
-            "text": "南非",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": true,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "※",
+            "text": " ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -14005,14 +14784,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_50",
-    "title": "【曲目1：第八功德】",
+    "id": "sec_53",
+    "title": "【南非 曲目1：第八功德】",
     "formationKey": "fiveContinents2",
-    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "formationLabel": "10-2五大洲 (樂生/富中之富)",
     "sessionKeys": [
       "1113"
     ],
-    "sessionLabel": "11/13 (第2天) 專屬",
+    "sessionLabel": "11/13(第2天)專屬曲目",
     "audio": "Music/功德品/1112/11_12 [功德品",
     "videos": [
       {
@@ -14027,7 +14806,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "第八功德不思議",
+            "text": "第八功德不思議 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -14044,7 +14823,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "種種方便令發(厚心)",
+            "text": "種種方便令發(厚心)  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -14061,7 +14840,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "信心既發令勇(厚猛)",
+            "text": "信心既發令勇(厚猛)  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -14078,7 +14857,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "守之不動令堅(厚定)",
+            "text": "守之不動令堅(厚定) ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -14093,14 +14872,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_51",
+    "id": "sec_54",
     "title": "【曲目2：髻珠喻經文】",
     "formationKey": "fiveContinents2",
-    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "formationLabel": "10-2五大洲 (樂生/富中之富)",
     "sessionKeys": [
       "1113"
     ],
-    "sessionLabel": "11/13 (第2天) 專屬",
+    "sessionLabel": "11/13(第2天)專屬曲目",
     "audio": "Music/功德品/1112/11_12 [功德品",
     "videos": [
       {
@@ -14115,7 +14894,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "用愛傳法到非洲",
+            "text": "用愛傳法到非洲 ",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -14132,7 +14911,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "自立更生 手心向下 吼、嘿",
+            "text": "自立更生 手心向下 吼、嘿 ",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -14149,7 +14928,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "難行能行 跨國傳法 吼、嘿",
+            "text": "難行能行 跨國傳法 吼、嘿 ",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -14166,7 +14945,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "身口意念(厚應)守(厚護)",
+            "text": "身口意念(厚應)守(厚護)  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -14183,7 +14962,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "慈心悲願(厚利)眾(厚生)",
+            "text": "慈心悲願(厚利)眾(厚生)  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -14200,7 +14979,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "無上妙法 (厚難)解(厚信)",
+            "text": "無上妙法 (厚難)解(厚信) ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -14217,7 +14996,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "譬如髻珠放光明",
+            "text": "譬如髻珠放光明 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -14234,7 +15013,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "譬如髻珠放光明",
+            "text": "譬如髻珠放光明 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -14251,7 +15030,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "譬如髻珠放光明",
+            "text": "譬如髻珠放光明 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -14260,59 +15039,20 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "0000FF"
-          }
-        ]
-      },
-      {
-        "text": "※印尼※",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "※",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "印尼",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": true,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "※",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
           }
         ]
       }
     ]
   },
   {
-    "id": "sec_52",
-    "title": "【曲目1：第九功德】",
+    "id": "sec_55",
+    "title": "【印尼 曲目1：第九功德】",
     "formationKey": "fiveContinents2",
-    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "formationLabel": "10-2五大洲 (樂生/富中之富)",
     "sessionKeys": [
       "1113"
     ],
-    "sessionLabel": "11/13 (第2天) 專屬",
+    "sessionLabel": "11/13(第2天)專屬曲目",
     "audio": "",
     "videos": [
       {
@@ -14327,7 +15067,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "第九功德難思議",
+            "text": "第九功德難思議 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -14344,7 +15084,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "願力得登善慧地",
+            "text": "願力得登善慧地 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -14361,7 +15101,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "辯才無礙得清淨",
+            "text": "辯才無礙得清淨 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -14378,7 +15118,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "宿業重障一時(厚滅)",
+            "text": "宿業重障一時(厚滅) ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -14393,14 +15133,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_53",
+    "id": "sec_56",
     "title": "【曲目2：化城喻手扎】",
     "formationKey": "fiveContinents2",
-    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "formationLabel": "10-2五大洲 (樂生/富中之富)",
     "sessionKeys": [
       "1113"
     ],
-    "sessionLabel": "11/13 (第2天) 專屬",
+    "sessionLabel": "11/13(第2天)專屬曲目",
     "audio": "",
     "videos": [
       {
@@ -14415,7 +15155,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "菩薩慈悲愍眾生",
+            "text": "菩薩慈悲愍眾生 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -14432,7 +15172,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "廣行善法饒有情",
+            "text": "廣行善法饒有情 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -14449,7 +15189,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "深修善緣正因法",
+            "text": "深修善緣正因法 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -14466,7 +15206,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "深修善緣正因法",
+            "text": "深修善緣正因法 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -14483,7 +15223,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "因成果熟得解脫",
+            "text": "因成果熟得解脫 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -14500,7 +15240,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "求法立誓宏願深",
+            "text": "求法立誓宏願深 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -14517,7 +15257,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "任重道遠續法脈",
+            "text": "任重道遠續法脈 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -14534,7 +15274,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "願度眾生出苦輪",
+            "text": "願度眾生出苦輪 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -14551,7 +15291,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "安邦定國在印尼",
+            "text": "安邦定國在印尼 ",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -14562,57 +15302,18 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           }
         ]
-      },
-      {
-        "text": "※緬甸 米撲滿※",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "※",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "緬甸 米撲滿",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": true,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "※",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          }
-        ]
       }
     ]
   },
   {
-    "id": "sec_54",
-    "title": "【曲目：第二功德】",
+    "id": "sec_57",
+    "title": "【緬甸 米撲滿 曲目：第二功德】",
     "formationKey": "fiveContinents2",
-    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "formationLabel": "10-2五大洲 (樂生/富中之富)",
     "sessionKeys": [
       "1114"
     ],
-    "sessionLabel": "11/14 (第3天) 專屬",
+    "sessionLabel": "11/14(第3天)專屬曲目",
     "audio": "Music/功德品/1114/11_14 [功德品",
     "videos": [
       {
@@ -14638,7 +15339,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "緬甸 ",
+            "text": "緬甸",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -14649,7 +15350,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "八分飽 兩分救人",
+            "text": " 八分飽 兩分救人",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -14660,7 +15361,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "好 ",
+            "text": "好",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -14671,7 +15372,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "我沒有錢 但我也可以救人",
+            "text": " 我沒有錢 但我也可以救人  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -14710,7 +15411,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(演員) ",
+            "text": "(演員)",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -14721,7 +15422,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "我也可以",
+            "text": " 我也可以",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -14743,7 +15444,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(東西一舉手) ",
+            "text": "(東西一舉手)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -14754,7 +15455,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "我也可以",
+            "text": " 我也可以",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -14785,6 +15486,28 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "EE0000"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           }
         ]
       },
@@ -14826,7 +15549,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "腳)  ",
+            "text": "腳)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -14837,7 +15560,18 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "日存一把米 一起來救人",
+            "text": " ",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "EE0000"
+          },
+          {
+            "text": " 日存一把米 一起來救人  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -14909,7 +15643,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(西一跑) ",
+            "text": "(西一跑)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -14920,7 +15654,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "德巴村也",
+            "text": " 德巴村也",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -14953,7 +15687,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "西二跑)",
+            "text": "西二跑) ",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -15036,7 +15770,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(白衣高跪)  ",
+            "text": "(白衣高跪)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -15047,7 +15781,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "更有了慈濟路",
+            "text": "  更有了慈濟路 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -15095,6 +15829,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "EE0000"
           }
         ]
       },
@@ -15103,7 +15848,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "第二功德難思(厚議) 一法能生百千(厚義)",
+            "text": "第二功德難思(厚議) 一法能生百千(厚義)  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -15120,7 +15865,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "百千義中復又(厚生)",
+            "text": "百千義中復又(厚生)  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -15137,7 +15882,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "如是輾轉無量義",
+            "text": "如是輾轉無量義 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -15154,7 +15899,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "一理能徹萬里(厚徹) 一法能攝萬法(厚攝)",
+            "text": "一理能徹萬里(厚徹) 一法能攝萬法(厚攝)  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -15171,7 +15916,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "一言半句勤誦(厚習)",
+            "text": "一言半句勤誦(厚習)  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -15208,59 +15953,31 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "0000FF"
-          }
-        ]
-      },
-      {
-        "text": "※八八風災※",
-        "type": "lyrics",
-        "segments": [
+          },
           {
-            "text": "※",
+            "text": " ",
             "isRed": false,
             "isGreen": false,
-            "isBlue": false,
+            "isBlue": true,
             "isPurple": false,
             "isBoxed": false,
             "isBold": false,
             "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "八八風災",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": true,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "※",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
+            "color": "0000FF"
           }
         ]
       }
     ]
   },
   {
-    "id": "sec_55",
-    "title": "【曲目：第七功德】",
+    "id": "sec_58",
+    "title": "【八八風災 曲目：第七功德】",
     "formationKey": "fiveContinents2",
-    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "formationLabel": "10-2五大洲 (樂生/富中之富)",
     "sessionKeys": [
       "1114"
     ],
-    "sessionLabel": "11/14 (第3天) 專屬",
+    "sessionLabel": "11/14(第3天)專屬曲目",
     "audio": "Music/功德品/1114/11_14 [功德品",
     "videos": [
       {
@@ -15275,7 +15992,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "第七功德不思議",
+            "text": "第七功德不思議 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -15292,7 +16009,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "六波羅(厚蜜)顯神(厚奇) 愛灑人間大悲(厚意)",
+            "text": "六波羅(厚蜜)顯神(厚奇) 愛灑人間大悲(厚意)  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -15309,7 +16026,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "令諸眾苦皆得離",
+            "text": "令諸眾苦皆得離 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -15318,278 +16035,562 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "0000FF"
-          }
-        ]
-      },
-      {
-        "text": "~~狂風暴雨聲~~~  路基流走了 路基沒有了~~",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "~~狂風暴雨聲~~~  路基流走了 路基沒有了~~",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          }
-        ]
-      },
-      {
-        "text": "一定要在平地蓋永久屋，山林才能養息，我知道你們很多人是租房子，我也知道你們",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "一定要在平地蓋永久屋，山林才能養息，我知道你們很多人是租房子，我也知道你們",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          }
-        ]
-      },
-      {
-        "text": "很多人是磨手皮做粗工的，但是，這一次慈濟想要蓋的永久屋需要很多錢，你們~~",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "很多人是磨手皮做粗工的，但是，這一次慈濟想要蓋的永久屋需要很多錢，你們~~",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          }
-        ]
-      },
-      {
-        "text": "我願意! 點滴會聚大愛與情誼 讓人間沒有苦痛與悲泣 期待在農曆過年前500 多戶入住永久",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "我願意! ",
-            "isRed": true,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "EE0000"
-          },
-          {
-            "text": "點滴會聚大愛與情誼 讓人間沒有苦痛與悲泣 ",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": true,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "0000FF"
-          },
-          {
-            "text": "期待在農曆過年前500 多戶入住永久",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          }
-        ]
-      },
-      {
-        "text": "屋 搶晴天! 戰雨天! 在大愛園區更要有教堂和學校，他們世世代代都能夠安居樂業",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "屋 ",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "搶晴天! 戰雨天! ",
-            "isRed": true,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "EE0000"
-          },
-          {
-            "text": "在大愛園區更要有教堂和學校，他們世世代代都能夠安居樂業",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          }
-        ]
-      },
-      {
-        "text": "感恩 上人為我們興建永久屋，住在這邊讓我們心更安，以前山是光禿禿的寸草不",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "感恩 上人為我們興建永久屋，住在這邊讓我們心更安，以前山是光禿禿的寸草不",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          }
-        ]
-      },
-      {
-        "text": "生，上人說要讓山林養息，我就種了好幾百棵台灣橘樹，16 年後已經成為一大片樹林",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "生，上人說要讓山林養息，我就種了好幾百棵台灣橘樹，16 年後已經成為一大片樹林",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          }
-        ]
-      },
-      {
-        "text": "了，現在山都不會崩塌了，大地恢復生機，家就安全了! 祈願山明河清林幽靜  祈願世代",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "了，現在山都不會崩塌了，大地恢復生機，",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "家就安全了! ",
-            "isRed": true,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "EE0000"
-          },
-          {
-            "text": "祈願山明河清林幽靜  祈願世代",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": true,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "0000FF"
-          }
-        ]
-      },
-      {
-        "text": "安居樂業人安心",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "安居樂業人安心",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": true,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "0000FF"
-          }
-        ]
-      },
-      {
-        "text": "※泰北※",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "※",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "泰北",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": true,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "※",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
           }
         ]
       }
     ]
   },
   {
-    "id": "sec_56",
-    "title": "【曲目：第四功德】",
+    "id": "sec_59",
+    "title": "【曲目：十在心路】",
     "formationKey": "fiveContinents2",
-    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "formationLabel": "10-2五大洲 (樂生/富中之富)",
     "sessionKeys": [
       "1114"
     ],
-    "sessionLabel": "11/14 (第3天) 專屬",
+    "sessionLabel": "11/14(第3天)專屬曲目",
+    "audio": "Music/功德品/1114/11_14 [功德品] 02第七功德(八八風災).mp3",
+    "videos": [],
+    "lines": [
+      {
+        "text": "~~狂風暴雨聲~~~  路基流走了 路基沒有了~~",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "~~狂風暴雨聲~~~  路基流走了 路基沒有了~~  ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "在苦難中長養慈悲一定要在平地蓋永久屋，山林才能養息(在變數中考驗智慧)，我知道你們很",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "在苦難中長養慈悲",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "一定要在平地蓋永久屋，山林才能養息",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "(在變數中考驗智慧)",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "，我知道你們很",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "多人是租房子(在艱難中激發韌力)，我也知道你們很多人是磨手皮做粗工的(在繁瑣中學習耐性)，",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "多人是租房子",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "(在艱難中激發韌力)",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "，我也知道你們很多人是磨手皮做粗工的",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "(在繁瑣中學習耐性)",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "，",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "但是，這一次慈濟想要蓋的永久(在複雜中欣賞優點)屋需要很多錢，你們~~ 我願意! (在理想",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "但是，這一次慈濟想要蓋的永久",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "(在複雜中欣賞優點)",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "屋需要很多錢，你們~~ ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "我願意!",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "EE0000"
+          },
+          {
+            "text": " (在理想",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          }
+        ]
+      },
+      {
+        "text": "中追求進步) 點滴會聚大愛與情誼 讓人間沒有苦痛與悲泣 期待在農曆過年前500 多戶入住永",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "中追求進步) 點滴會聚大愛與情誼 讓人間沒有苦痛與悲泣 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "期待在農曆過年前500 多戶入住永",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "久屋(白衣)搶晴天! (藍衣)戰雨天!八十八天完成永久屋，贈送八十八件(90 度送禮)入厝",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "久屋",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "(白衣)",
+            "isRed": false,
+            "isGreen": true,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "196B24"
+          },
+          {
+            "text": "搶晴天!",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "EE0000"
+          },
+          {
+            "text": " (藍衣)",
+            "isRed": false,
+            "isGreen": true,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "196B24"
+          },
+          {
+            "text": "戰雨天!",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "EE0000"
+          },
+          {
+            "text": "八十八天完成永久屋，贈送",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "八十八件",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": true,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "(90 度送禮)",
+            "isRed": false,
+            "isGreen": true,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "196B24"
+          },
+          {
+            "text": "入厝",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "禮，在大愛園區(回正)更要有教堂和學校，讓他們世世代代都能夠安居樂業",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "禮，",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "在大愛園區",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": true,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "(回正)",
+            "isRed": false,
+            "isGreen": true,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "196B24"
+          },
+          {
+            "text": "更要有教堂和學校，讓他們世世代代都能夠安居樂業 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "感恩 上人為我們興建永久屋，住在這邊比以前心更安，以前山是光禿禿的寸草不",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "感恩 上人為我們興建永久屋，住在這邊比以前心更安，以前山是光禿禿的寸草不",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "生，上人說要讓山林養息，我就種了好幾百棵台灣櫸樹，16 年後已經成為一大片樹林",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "生，上人說要讓山林養息，我就種了好幾百棵台灣櫸樹，16 年後已經成為一大片樹林",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "了，現在山都不會崩塌了，山林養息了!世代可以安居樂業了!大地恢復生機，家就安",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "了，現在山都不會崩塌了，山林養息了!世代可以安居樂業了!大地恢復生機，家就安",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "全了! 傳頌生命(轉陸地中心)的尊貴與傳奇 咚~ 讓山林養息 咚~ 世代安居樂業",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "全了!",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": " ",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "EE0000"
+          },
+          {
+            "text": "傳頌生命",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": true,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "(轉陸地中心)",
+            "isRed": false,
+            "isGreen": true,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "196B24"
+          },
+          {
+            "text": "的尊貴與傳奇 咚~ ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "讓山林養息",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "EE0000"
+          },
+          {
+            "text": " 咚~ ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "世代安居樂業",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "EE0000"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sec_60",
+    "title": "【泰北 曲目：第四功德】",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (樂生/富中之富)",
+    "sessionKeys": [
+      "1114"
+    ],
+    "sessionLabel": "11/14(第3天)專屬曲目",
     "audio": "Music/功德品/1114/11_14 [功德品",
     "videos": [
       {
@@ -15604,7 +16605,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "第四功德不思議",
+            "text": "第四功德不思議 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -15621,7 +16622,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "諸佛護念於一身",
+            "text": "諸佛護念於一身 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -15638,7 +16639,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "雖未自度能度他",
+            "text": "雖未自度能度他 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -15655,7 +16656,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "與諸菩薩為道侶",
+            "text": "與諸菩薩為道侶 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -15672,7 +16673,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "譬如國王新王子",
+            "text": "譬如國王新王子 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -15689,7 +16690,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "稚小國事難領理",
+            "text": "稚小國事難領理 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -15706,7 +16707,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "但為臣民所崇敬",
+            "text": "但為臣民所崇敬 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -15723,7 +16724,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "王后愛重常共語",
+            "text": "王后愛重常共語 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -15734,57 +16735,18 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           }
         ]
-      },
-      {
-        "text": "※辛巴威※",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "※",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "辛巴威",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": true,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "※",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          }
-        ]
       }
     ]
   },
   {
-    "id": "sec_57",
-    "title": "【曲目1：第八功德】",
+    "id": "sec_61",
+    "title": "【辛巴威 曲目1：第八功德】",
     "formationKey": "fiveContinents2",
-    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "formationLabel": "10-2五大洲 (樂生/富中之富)",
     "sessionKeys": [
       "1114"
     ],
-    "sessionLabel": "11/14 (第3天) 專屬",
+    "sessionLabel": "11/14(第3天)專屬曲目",
     "audio": "Music/功德品/1114/11_14 [功德品",
     "videos": [
       {
@@ -15799,7 +16761,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "第八功德不思議",
+            "text": "第八功德不思議 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -15816,7 +16778,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "種種方便令發(厚心)",
+            "text": "種種方便令發(厚心)  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -15833,7 +16795,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "信心既發令勇(厚猛)",
+            "text": "信心既發令勇(厚猛)  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -15850,7 +16812,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "守之不動令堅(厚定)",
+            "text": "守之不動令堅(厚定) ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -15865,14 +16827,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_58",
+    "id": "sec_62",
     "title": "【曲目2：髻珠喻經文】",
     "formationKey": "fiveContinents2",
-    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "formationLabel": "10-2五大洲 (樂生/富中之富)",
     "sessionKeys": [
       "1114"
     ],
-    "sessionLabel": "11/14 (第3天) 專屬",
+    "sessionLabel": "11/14(第3天)專屬曲目",
     "audio": "Music/功德品/1114/11_14 [功德品",
     "videos": [
       {
@@ -15887,7 +16849,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "用愛傳法到非洲",
+            "text": "用愛傳法到非洲 ",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -15904,7 +16866,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "掘井湧泉 熱食供應 吼、嘿",
+            "text": "掘井湧泉 熱食供應 吼、嘿 ",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -15921,7 +16883,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "生命工程 生生世世 吼、嘿",
+            "text": "生命工程 生生世世 吼、嘿 ",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -15938,7 +16900,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "身口意念(厚應)守(厚護)",
+            "text": "身口意念(厚應)守(厚護)  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -15955,7 +16917,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "慈心悲願(厚利)眾(厚生)",
+            "text": "慈心悲願(厚利)眾(厚生)  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -15972,7 +16934,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "無上妙法 (厚難)解(厚信)",
+            "text": "無上妙法 (厚難)解(厚信) ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -15989,7 +16951,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "譬如髻珠放光明",
+            "text": "譬如髻珠放光明 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16006,7 +16968,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "譬如髻珠放光明",
+            "text": "譬如髻珠放光明 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16023,7 +16985,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "譬如髻珠放光明",
+            "text": "譬如髻珠放光明 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16038,14 +17000,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_59",
+    "id": "sec_63",
     "title": "【曲目3：生生世世都在菩提中】",
     "formationKey": "fiveContinents2",
-    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "formationLabel": "10-2五大洲 (樂生/富中之富)",
     "sessionKeys": [
       "1114"
     ],
-    "sessionLabel": "11/14 (第3天) 專屬",
+    "sessionLabel": "11/14(第3天)專屬曲目",
     "audio": "Music/功德品/1114/11_14 [功德品",
     "videos": [
       {
@@ -16069,6 +17031,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "000000"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           }
         ]
       },
@@ -16077,7 +17050,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "立地藏王菩薩的願 但願眾生得離苦",
+            "text": "立地藏王菩薩的願 但願眾生得離苦 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16094,7 +17067,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "發觀世音菩薩的心 但願愛心廣大無邊",
+            "text": "發觀世音菩薩的心 但願愛心廣大無邊 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16111,7 +17084,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "發心立願 生生世世都在菩提中",
+            "text": "發心立願 生生世世都在菩提中 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16128,7 +17101,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "立願發心 但願生生世世都在菩提中",
+            "text": "立願發心 但願生生世世都在菩提中 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16154,59 +17127,31 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "000000"
-          }
-        ]
-      },
-      {
-        "text": "※921※",
-        "type": "lyrics",
-        "segments": [
+          },
           {
-            "text": "※",
+            "text": " ",
             "isRed": false,
             "isGreen": false,
-            "isBlue": false,
+            "isBlue": true,
             "isPurple": false,
             "isBoxed": false,
             "isBold": false,
             "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "921",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": true,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "※",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
+            "color": "0000FF"
           }
         ]
       }
     ]
   },
   {
-    "id": "sec_60",
-    "title": "【曲目1：第九功德】",
-    "formationKey": "fiveContinents2",
-    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "id": "sec_64",
+    "title": "【921 曲目1：第九功德】",
+    "formationKey": "fiveContinents1",
+    "formationLabel": "10-1五大洲 (台灣/開經書)",
     "sessionKeys": [
       "1115"
     ],
-    "sessionLabel": "11/15 (第4天) 專屬",
+    "sessionLabel": "11/15(第4天)專屬曲目",
     "audio": "",
     "videos": [
       {
@@ -16221,7 +17166,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "第九功德難思議",
+            "text": "第九功德難思議 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16238,7 +17183,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "願力得登善慧地",
+            "text": "願力得登善慧地 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16255,7 +17200,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "辯才無礙得清淨",
+            "text": "辯才無礙得清淨 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16272,7 +17217,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "宿業重障一時(厚滅)",
+            "text": "宿業重障一時(厚滅) ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16287,14 +17232,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_61",
+    "id": "sec_65",
     "title": "【曲目2：化城喻故事】",
     "formationKey": "fiveContinents2",
-    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "formationLabel": "10-2五大洲 (樂生/富中之富)",
     "sessionKeys": [
       "1115"
     ],
-    "sessionLabel": "11/15 (第4天) 專屬",
+    "sessionLabel": "11/15(第4天)專屬曲目",
     "audio": "Music/功德品/1112/11_12 [功德品",
     "videos": [],
     "lines": [
@@ -16303,7 +17248,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "地湧菩薩",
+            "text": "地湧菩薩 ",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -16320,7 +17265,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "若入是城可止息",
+            "text": "若入是城可止息 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16346,6 +17291,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "EE0000"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           }
         ]
       },
@@ -16354,7 +17310,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "疲極之眾心歡喜",
+            "text": "疲極之眾心歡喜 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16380,6 +17336,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "EE0000"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           }
         ]
       },
@@ -16388,7 +17355,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "讚歎頓生已度想",
+            "text": "讚歎頓生已度想 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16414,6 +17381,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "EE0000"
+          },
+          {
+            "text": "  ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           }
         ]
       },
@@ -16422,7 +17400,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "悅樂更生安隱想",
+            "text": "悅樂更生安隱想 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16437,14 +17415,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_62",
+    "id": "sec_66",
     "title": "【曲目3：化城喻故事】",
     "formationKey": "fiveContinents2",
-    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "formationLabel": "10-2五大洲 (樂生/富中之富)",
     "sessionKeys": [
       "1115"
     ],
-    "sessionLabel": "11/15 (第4天) 專屬",
+    "sessionLabel": "11/15(第4天)專屬曲目",
     "audio": "Music/功德品/1112/11_12 [功德品",
     "videos": [],
     "lines": [
@@ -16464,7 +17442,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "教育工程 ",
+            "text": "教育工程",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -16475,7 +17453,7 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           },
           {
-            "text": "(",
+            "text": " (",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -16495,6 +17473,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "EE0000"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           }
         ]
       },
@@ -16536,7 +17525,7 @@ const LYRICS_OS_DATA = [
             "color": "FF0000"
           },
           {
-            "text": "吼)",
+            "text": "吼)  ",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -16553,7 +17542,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "當勤精進至寶所",
+            "text": "當勤精進至寶所 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16570,7 +17559,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "令離(得令)生死入佛慧",
+            "text": "令離(得令)生死入佛慧 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16581,57 +17570,18 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           }
         ]
-      },
-      {
-        "text": "※減災工程※",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "※",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "減災工程",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": true,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "※",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          }
-        ]
       }
     ]
   },
   {
-    "id": "sec_63",
-    "title": "【曲目：許一個希望的未來】",
+    "id": "sec_67",
+    "title": "【減災工程 曲目：許一個希望的未來】",
     "formationKey": "fiveContinents2",
-    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "formationLabel": "10-2五大洲 (樂生/富中之富)",
     "sessionKeys": [
       "1115"
     ],
-    "sessionLabel": "11/15 (第4天) 專屬",
+    "sessionLabel": "11/15(第4天)專屬曲目",
     "audio": "",
     "videos": [
       {
@@ -16646,7 +17596,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "大愛為樑",
+            "text": "大愛為樑 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16663,7 +17613,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "智慧為牆",
+            "text": "智慧為牆 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16680,7 +17630,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "把握當下",
+            "text": "把握當下 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16697,7 +17647,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "成就希望的殿堂",
+            "text": "成就希望的殿堂 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16708,57 +17658,18 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           }
         ]
-      },
-      {
-        "text": "※報佛恩※",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "※",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "報佛恩",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": true,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "※",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          }
-        ]
       }
     ]
   },
   {
-    "id": "sec_64",
-    "title": "【曲目1：人間導師】",
+    "id": "sec_68",
+    "title": "【報佛恩 曲目1：人間導師】",
     "formationKey": "fiveContinents2",
-    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "formationLabel": "10-2五大洲 (樂生/富中之富)",
     "sessionKeys": [
       "1115"
     ],
-    "sessionLabel": "11/15 (第4天) 專屬",
+    "sessionLabel": "11/15(第4天)專屬曲目",
     "audio": "",
     "videos": [
       {
@@ -16773,7 +17684,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "淨治身心 利濟有情",
+            "text": "淨治身心 利濟有情 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16790,7 +17701,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "弘正法 續慧命",
+            "text": "弘正法 續慧命 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16807,7 +17718,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "仰師德範 報法乳恩",
+            "text": "仰師德範 報法乳恩 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16824,7 +17735,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "為佛教 為眾生",
+            "text": "為佛教 為眾生 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16841,7 +17752,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "仰師德範 報法乳恩",
+            "text": "仰師德範 報法乳恩 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16858,7 +17769,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "為佛教 為眾生",
+            "text": "為佛教 為眾生 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16873,14 +17784,14 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_65",
+    "id": "sec_69",
     "title": "【曲目2：第十功德】",
     "formationKey": "fiveContinents2",
-    "formationLabel": "10-2五大洲 (功德品各場次)",
+    "formationLabel": "10-2五大洲 (樂生/富中之富)",
     "sessionKeys": [
       "1115"
     ],
-    "sessionLabel": "11/15 (第4天) 專屬",
+    "sessionLabel": "11/15(第4天)專屬曲目",
     "audio": "",
     "videos": [
       {
@@ -16905,7 +17816,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "如法修行得道果",
+            "text": "如法修行得道果  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16922,7 +17833,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "第十功德難思議  凡夫地時弘誓願",
+            "text": "第十功德難思議  凡夫地時弘誓願  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16939,7 +17850,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "厚集善根益一切",
+            "text": "厚集善根益一切   ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16956,7 +17867,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "洪潤枯涸演法義",
+            "text": "洪潤枯涸演法義  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16973,7 +17884,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "眾生有病法藥醫   慈被眾生恩澤潤",
+            "text": "眾生有病法藥醫   慈被眾生恩澤潤  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -16990,7 +17901,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "道跡漸登法雲地",
+            "text": "道跡漸登法雲地 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17007,7 +17918,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "道跡漸登法~雲~地~",
+            "text": "道跡漸登法~雲~地~ ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17022,7 +17933,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_66",
+    "id": "sec_70",
     "title": "【六瑞相 曲目：六瑞相】",
     "formationKey": "sixRuiXiang",
     "formationLabel": "12-1六瑞相 (發願/行星/祈禱)",
@@ -17032,7 +17943,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/終章/01.六瑞相.mp3",
     "videos": [],
     "lines": [
@@ -17041,7 +17952,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "佛說法華演大法",
+            "text": "佛說法華演大法 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17058,7 +17969,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "六祥瑞相先現前",
+            "text": "六祥瑞相先現前 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17075,7 +17986,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "因緣具足法成就",
+            "text": "因緣具足法成就 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17092,7 +18003,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "教化凡夫轉聖賢",
+            "text": "教化凡夫轉聖賢 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17109,7 +18020,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "身心不動入三昧",
+            "text": "身心不動入三昧 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17126,7 +18037,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "無量義經融法髓",
+            "text": "無量義經融法髓 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17143,7 +18054,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "天雨四華柔適意",
+            "text": "天雨四華柔適意 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17160,7 +18071,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "地動涌震搖吼擊",
+            "text": "地動涌震搖吼擊 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17177,7 +18088,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "大眾愉悅心快然",
+            "text": "大眾愉悅心快然 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17194,7 +18105,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "道場安詳妙莊嚴",
+            "text": "道場安詳妙莊嚴 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17211,7 +18122,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "佛放眉間白毫光",
+            "text": "佛放眉間白毫光 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17228,7 +18139,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "遍照東方萬八千",
+            "text": "遍照東方萬八千 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17245,7 +18156,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "講者歡喜暢本懷",
+            "text": "講者歡喜暢本懷 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17262,7 +18173,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "隨自意說真實法",
+            "text": "隨自意說真實法 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17279,7 +18190,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "聞者虔誠心體會",
+            "text": "聞者虔誠心體會 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17296,7 +18207,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "真誠諦聽合佛心",
+            "text": "真誠諦聽合佛心 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17311,7 +18222,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_67",
+    "id": "sec_71",
     "title": "【發心立願 曲目：行願半世紀】",
     "formationKey": "sixRuiXiang",
     "formationLabel": "12-1六瑞相 (發願/行星/祈禱)",
@@ -17321,7 +18232,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/終章/02.發心立願.mp3",
     "videos": [],
     "lines": [
@@ -17330,7 +18241,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "靜思法脈傳心燈",
+            "text": "靜思法脈傳心燈 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17347,7 +18258,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "慈濟宗門利群生",
+            "text": "慈濟宗門利群生 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17364,7 +18275,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "法華行經正道勤",
+            "text": "法華行經正道勤 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17381,7 +18292,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "普皆授記成佛因",
+            "text": "普皆授記成佛因 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17398,7 +18309,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "體悟佛心即為己心 領受師志奉為己志",
+            "text": "體悟佛心即為己心 領受師志奉為己志  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17415,7 +18326,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "生生世世誓為佛教 心心念念誠為眾生",
+            "text": "生生世世誓為佛教 心心念念誠為眾生 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17432,7 +18343,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "生生世世誓為佛教 心心念念誠為眾生",
+            "text": "生生世世誓為佛教 心心念念誠為眾生 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17447,7 +18358,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_68",
+    "id": "sec_72",
     "title": "【慈濟小行星 曲目：慈濟小行星】",
     "formationKey": "sixRuiXiang",
     "formationLabel": "12-1六瑞相 (發願/行星/祈禱)",
@@ -17457,7 +18368,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/終章/03.慈濟小行星演繹版+開示.mp3",
     "videos": [],
     "lines": [
@@ -17466,7 +18377,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "浩瀚的天空",
+            "text": "浩瀚的天空  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17483,7 +18394,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "有顆慈濟小行星",
+            "text": "有顆慈濟小行星 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17500,7 +18411,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "在無垠的宇宙 繞著太陽系運行",
+            "text": "在無垠的宇宙 繞著太陽系運行 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17517,7 +18428,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "用慈悲的眼",
+            "text": "用慈悲的眼  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17534,7 +18445,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "俯視著地球蒼生",
+            "text": "俯視著地球蒼生 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17551,7 +18462,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "那是愛的無痕 無量義溫暖的心",
+            "text": "那是愛的無痕 無量義溫暖的心 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17568,7 +18479,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "距離地球三億公里 不同的年輪",
+            "text": "距離地球三億公里 不同的年輪  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17585,7 +18496,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "永恆不變的演繹著",
+            "text": "永恆不變的演繹著  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17602,7 +18513,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "法華的精神",
+            "text": "法華的精神 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17619,7 +18530,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "慈濟小行星",
+            "text": "慈濟小行星  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17636,7 +18547,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "化剎那 為永恆",
+            "text": "化剎那 為永恆 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17651,7 +18562,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_69",
+    "id": "sec_73",
     "title": "【祈禱 曲目：祈禱】",
     "formationKey": "sixRuiXiang",
     "formationLabel": "12-1六瑞相 (發願/行星/祈禱)",
@@ -17661,7 +18572,7 @@ const LYRICS_OS_DATA = [
       "1114",
       "1115"
     ],
-    "sessionLabel": "全場次",
+    "sessionLabel": "",
     "audio": "Music/終章/04.祈禱三分版.mp3",
     "videos": [],
     "lines": [
@@ -17703,7 +18614,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "充滿虔誠",
+            "text": "充滿虔誠  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17731,7 +18642,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "(慢慢收) ",
+            "text": "(慢慢收)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -17742,7 +18653,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "從不同角落地點",
+            "text": " 從不同角落地點 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17759,7 +18670,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "祈求平安吉祥滿人間",
+            "text": "祈求平安吉祥滿人間 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17787,7 +18698,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "(舉高) ",
+            "text": "(舉高)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -17798,7 +18709,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "祈禱  但願人人",
+            "text": " 祈禱 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17809,7 +18720,29 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "(慢慢收) ",
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "但願人人",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": true,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "(慢慢收)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -17820,7 +18753,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "牽手心連心",
+            "text": " 牽手心連心 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17837,7 +18770,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "開啟光明大愛 長養智慧福德 娑婆世界現光明",
+            "text": "開啟光明大愛 長養智慧福德 娑婆世界現光明 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17887,7 +18820,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "上達諸佛心",
+            "text": "上達諸佛心 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -17915,7 +18848,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "慢慢收)",
+            "text": "慢慢收) ",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -17932,7 +18865,7 @@ const LYRICS_OS_DATA = [
         "type": "lyrics",
         "segments": [
           {
-            "text": "化解惡念結善緣 祈求天下無災 歲歲年年",
+            "text": "化解惡念結善緣 祈求天下無災 歲歲年年 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
