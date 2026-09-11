@@ -131,8 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let GRID_SPACING = 15; // 1 coord unit = 15 pixels
   let MAX_GRID_COORD = 10;
 
-  // 18 Formations metadata (Updated: fiveContinents and flyingApsaras replaced by gongDe1~8, total 22 steps)
-  const formations = [
+  // 基礎隊形（17 步固定定義，供跑位小卡等內部基準使用）
+  const BASE_FORMATIONS = [
     { key: 'basic', name: '起點 (基本隊形)', label: '基本' },
     { key: 'circle', name: '01圓形', label: '圓形(序)' },
     { key: 'xingYuan', name: '02行願', label: '行願' },
@@ -151,6 +151,161 @@ document.addEventListener('DOMContentLoaded', () => {
     { key: 'fiveContinents1', name: '10-1五大洲(台灣)', label: '五大洲(台灣)' },
     { key: 'sixRuiXiang', name: '12-1六瑞相', label: '發願/行星/祈禱' }
   ];
+
+  // 各場次五大洲定位點穿插子步驟定義（依據 0909 官方動作提示與各場次演出時間軸）
+  const FIVE_CONTINENTS_SESSION_STEPS = {
+    '1112': [
+      {
+        key: 'fiveContinents2',
+        name: '10-2五大洲 (樂生/富中之富)',
+        label: '五洲(樂生/富)',
+        itemFilter: (item) => {
+          const t = item.title || '';
+          return t.includes('樂生') || t.includes('富中之富');
+        }
+      },
+      {
+        key: 'fiveContinents1',
+        name: '10-1五大洲(台灣) (開經書)',
+        label: '五洲(開經書)',
+        itemFilter: (item) => {
+          const t = item.title || '';
+          return t.includes('開經書') || t.includes('無量義經功德品');
+        }
+      },
+      {
+        key: 'fiveContinents2',
+        name: '10-2五大洲 (黑區/約旦啟航)',
+        label: '五洲(黑區/約旦)',
+        itemFilter: (item) => {
+          const t = item.title || '';
+          return t.includes('黑區') || t.includes('第六功德') || t.includes('化城喻') || t.includes('約旦') || t.includes('第三功德') || t.includes('啟航');
+        }
+      },
+      {
+        key: 'fiveContinents1',
+        name: '10-1五大洲(台灣) (台灣救災 第五功德)',
+        label: '五洲(台灣救災)',
+        itemFilter: (item) => {
+          const t = item.title || '';
+          return t.includes('台灣救災') || t.includes('第五功德');
+        }
+      }
+    ],
+    '1113': [
+      {
+        key: 'fiveContinents2',
+        name: '10-2五大洲 (富中之富)',
+        label: '五洲(富中之富)',
+        itemFilter: (item) => {
+          const t = item.title || '';
+          return t.includes('富中之富');
+        }
+      },
+      {
+        key: 'fiveContinents1',
+        name: '10-1五大洲(台灣) (開經書)',
+        label: '五洲(開經書)',
+        itemFilter: (item) => {
+          const t = item.title || '';
+          return t.includes('開經書') || t.includes('無量義經功德品');
+        }
+      },
+      {
+        key: 'fiveContinents2',
+        name: '10-2五大洲 (土耳其/莫三比克/印尼)',
+        label: '五洲(各國)',
+        itemFilter: (item) => {
+          const t = item.title || '';
+          return t.includes('土耳其') || t.includes('第三功德') || t.includes('莫三比克') || t.includes('第八功德') || t.includes('髻珠喻') || t.includes('印尼') || t.includes('第九功德') || t.includes('化城喻');
+        }
+      }
+    ],
+    '1114': [
+      {
+        key: 'fiveContinents2',
+        name: '10-2五大洲 (富中之富)',
+        label: '五洲(富中之富)',
+        itemFilter: (item) => {
+          const t = item.title || '';
+          return t.includes('富中之富');
+        }
+      },
+      {
+        key: 'fiveContinents1',
+        name: '10-1五大洲(台灣) (開經書)',
+        label: '五洲(開經書)',
+        itemFilter: (item) => {
+          const t = item.title || '';
+          return t.includes('開經書') || t.includes('無量義經功德品');
+        }
+      },
+      {
+        key: 'fiveContinents2',
+        name: '10-2五大洲 (緬甸/八八風災/泰北/辛巴威)',
+        label: '五洲(各國)',
+        itemFilter: (item) => {
+          const t = item.title || '';
+          return t.includes('緬甸') || t.includes('第二功德') || t.includes('八八風災') || t.includes('第七功德') || t.includes('十在心路') || t.includes('泰北') || t.includes('第四功德') || t.includes('辛巴威') || t.includes('第八功德') || t.includes('髻珠喻') || t.includes('生生世世');
+        }
+      }
+    ],
+    '1115': [
+      {
+        key: 'fiveContinents2',
+        name: '10-2五大洲 (樂生/富中之富)',
+        label: '五洲(樂生/富)',
+        itemFilter: (item) => {
+          const t = item.title || '';
+          return t.includes('樂生') || t.includes('富中之富');
+        }
+      },
+      {
+        key: 'fiveContinents1',
+        name: '10-1五大洲(台灣) (開經書/九二一 第九功德)',
+        label: '五洲(開經/921)',
+        itemFilter: (item) => {
+          const t = item.title || '';
+          return t.includes('開經書') || t.includes('無量義經功德品') || t.includes('九二一') || t.includes('第九功德');
+        }
+      },
+      {
+        key: 'fiveContinents2',
+        name: '10-2五大洲 (化城喻/減災/導師/第十功德)',
+        label: '五洲(化城/佛國)',
+        itemFilter: (item) => {
+          const t = item.title || '';
+          return t.includes('化城喻') || t.includes('減災') || t.includes('希望的未來') || t.includes('報佛恩') || t.includes('人間導師') || t.includes('第十功德');
+        }
+      }
+    ]
+  };
+
+  let formations = [...BASE_FORMATIONS];
+
+  function updateFormationsForSession(sessionKey) {
+    const key = sessionKey || selectedSessionKey || '1115';
+    const fcSteps = FIVE_CONTINENTS_SESSION_STEPS[key] || FIVE_CONTINENTS_SESSION_STEPS['1115'];
+    
+    const newFormations = [];
+    let fcInserted = false;
+    
+    BASE_FORMATIONS.forEach(f => {
+      if (f.key === 'fiveContinents1' || f.key === 'fiveContinents2') {
+        if (!fcInserted) {
+          fcInserted = true;
+          fcSteps.forEach(s => newFormations.push(s));
+        }
+        return;
+      }
+      newFormations.push(f);
+    });
+    
+    formations = newFormations;
+    if (activeFormationIdx >= formations.length) {
+      activeFormationIdx = formations.length - 1;
+    }
+  }
 
   function shouldKeepSegment(segment, filterCtx) {
     const category = filterCtx.category || 'A白';
@@ -609,6 +764,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('#sessionCards .session-card').forEach(c => c.classList.remove('selected'));
         card.classList.add('selected');
         selectedSessionKey = sess.key;
+        updateFormationsForSession(sess.key);
+        initFormationSelect();
         confirmBtn.disabled = !(tempSelectedPerformer && selectedTeam);
         
         // Enable and Focus search input
@@ -1032,6 +1189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (formationSelect) {
+      updateFormationsForSession(selectedSessionKey);
       initFormationSelect();
       formationSelect.addEventListener('change', (e) => {
         const newIdx = parseInt(e.target.value, 10);
@@ -1158,6 +1316,8 @@ document.addEventListener('DOMContentLoaded', () => {
     mainContent.style.display = 'flex';
     
     // Update controls, cards, map, and walkthrough path
+    updateFormationsForSession(selectedSessionKey);
+    initFormationSelect();
     updateFormationControls();
     updateFormationCards();
     drawLocalGridPath();
@@ -1179,7 +1339,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateFormationCards() {
     if (!currentPerformer) return;
     const fields = getPerformerFields(currentPerformer);
-    formations.forEach(f => {
+    BASE_FORMATIONS.forEach(f => {
       const card = document.getElementById(`card-${f.key}`);
       if (!card) return;
       const coordBadge = document.getElementById(`coord-${f.key}`);
@@ -1210,7 +1370,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         if (vectorHome) vectorHome.textContent = getVectorDescription(basicCoord, currentCoord);
         
-        const prevKey = formations[formations.findIndex(x => x.key === f.key) - 1].key;
+        const prevKey = BASE_FORMATIONS[BASE_FORMATIONS.findIndex(x => x.key === f.key) - 1].key;
         let prevCoordStr = getFormationCoordStr(currentPerformer, prevKey);
         
         const prevCoord = parseCoordinate(prevCoordStr);
@@ -2915,6 +3075,9 @@ document.addEventListener('DOMContentLoaded', () => {
     formations.forEach((f, idx) => {
       const card = document.createElement('div');
       card.className = 'action-hint-step-card card';
+      card.setAttribute('data-formation-key', f.key);
+      card.setAttribute('data-step-idx', String(idx));
+      
       if (idx === activeFormationIdx) {
         card.classList.add('active-step-card');
       }
@@ -2949,7 +3112,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const body = document.createElement('div');
       body.className = 'action-hint-step-body';
       
-      const items = getActionHintsForPerformer(currentPerformer, f.key);
+      let items = [];
+      if (f.itemFilter) {
+        const rawItems = getActionHintsForPerformer(currentPerformer, f.key);
+        items = rawItems.filter(item => f.itemFilter(item));
+      } else {
+        items = getActionHintsForPerformer(currentPerformer, f.key);
+      }
       
       if (items.length === 0) {
         const noHints = document.createElement('div');
@@ -4388,6 +4557,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Generate Merged Position Card Canvas (Two-Column Layout: 680x700, Compact Fit, Col1: Coordinate Badge, Col2: Tracks & Lamps)
   async function generateMergedPositionCard(performer) {
     if (!performer) return null;
+    const formations = BASE_FORMATIONS;
 
     const fields = getPerformerFields(performer);
     
