@@ -1039,7 +1039,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_46.png"
+          "src": "images/action_hints/hint_46.jpg"
+        },
+        {
+          "type": "text",
+          "content": "11/13："
         },
         {
           "type": "text",
@@ -1051,7 +1055,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_48.png"
+          "src": "images/action_hints/hint_48.jpg"
         },
         {
           "type": "text",
@@ -1096,6 +1100,20 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
+      "title": "11/13：【花慈.連體嬰-衣珠喻 故事】",
+      "videos": [],
+      "details": [
+        {
+          "type": "text",
+          "content": "貧者省 懺自身 尋得寶珠現光明"
+        },
+        {
+          "type": "text",
+          "content": "人中勝 願皆成 從此吉祥萬事亨"
+        }
+      ]
+    },
+    {
       "title": "11/14：【北慈.疫情捨我其誰 曲目：醫子喻 擁抱蒼生】",
       "videos": [],
       "details": [
@@ -1136,6 +1154,32 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "成就慧命的資~糧~"
+        }
+      ]
+    },
+    {
+      "title": "11/15：【北慈.八仙塵爆 曲目：火宅喻 手札】",
+      "videos": [],
+      "details": [
+        {
+          "type": "text",
+          "content": "Os更舒適!更透氣!比原來的好看多了!我們每個都要救!"
+        },
+        {
+          "type": "text",
+          "content": "唐文華：一個都不能少"
+        },
+        {
+          "type": "text",
+          "content": "把握當下莫空過 須知三界是火宅 須知三界是火宅"
+        },
+        {
+          "type": "text",
+          "content": "os謝謝慈濟給了我們孩子 第二次生命 謝謝院長爸爸 謝謝所有的醫生和姊姊"
+        },
+        {
+          "type": "text",
+          "content": "謝謝你們沒有放棄我 讓我還能擁抱爸爸媽媽"
         }
       ]
     },
@@ -2313,7 +2357,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_93.jpg"
+          "src": "images/action_hints/hint_97.jpg"
         }
       ]
     },
@@ -2343,7 +2387,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_94.jpg"
+          "src": "images/action_hints/hint_98.jpg"
         }
       ]
     },
@@ -2359,7 +2403,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_143.jpg"
+          "src": "images/action_hints/hint_146.jpg"
         }
       ]
     },
@@ -2389,11 +2433,53 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_144.jpg"
+          "src": "images/action_hints/hint_147.jpg"
+        }
+      ]
+    },
+    {
+      "title": "11/12：【曲目：衣珠喻手扎】",
+      "videos": [],
+      "details": [
+        {
+          "type": "text",
+          "content": "上人開示：......每一次哪裡有災難,我一定要說,「拜託你們」......"
+        },
+        {
+          "type": "text",
+          "content": "諸佛菩薩 大悲心"
+        },
+        {
+          "type": "text",
+          "content": "黃誌群老師：哪裡有災難 慈濟人就在那裡 有人蓋房子 有人送便當"
+        },
+        {
+          "type": "text",
+          "content": "有人提水桶 有人修屋頂 有人合十助念 有人搬隔屏"
+        },
+        {
+          "type": "text",
+          "content": "有人扛米過懸崖 六十年來 有一群人 不斷奔向需要他們的地方"
+        },
+        {
+          "type": "text",
+          "content": "咚咚 走在最前 咚咚 陪到最後 咚咚 台灣愛心總動員"
+        },
+        {
+          "type": "text",
+          "content": "六度行 樂無窮"
+        },
+        {
+          "type": "text",
+          "content": "11/12："
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_145.jpg"
+          "src": "images/action_hints/hint_148.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_149.jpg"
         }
       ]
     },
@@ -2409,7 +2495,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_146.jpg"
+          "src": "images/action_hints/hint_150.jpg"
         }
       ]
     },
@@ -2529,51 +2615,55 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "os那~什麼是富中之富啊，開啟心靈的富有啊! (西一：搭靜思堂)"
+          "content": "os那~什麼是富中之富啊，開啟心靈的富有啊!"
         },
         {
           "type": "text",
-          "content": "我見彼土諸菩薩 \t為求(東二：舉921鋼鐵道具)佛道行布施"
+          "content": "我見彼土諸菩薩 \t為求佛道行布施"
         },
         {
           "type": "text",
-          "content": "像這位921(東二法海指引)大地震聽到 上人說教育不能等，立即認養多所學校，為善不欲人知，只求 上人「ㄇㄞˋ煩惱」"
+          "content": "像這位921大地震聽到 上人說教育不能等，立即認養多所學校，為善不欲人知，只求 上人「ㄇㄞˋ煩惱」"
         },
         {
           "type": "text",
-          "content": "金銀瑪瑙與寶飾\t車馬(東一：舉食衣住行道具；東二收)華蓋摩尼珠"
+          "content": "金銀瑪瑙與寶飾\t車馬華蓋摩尼珠"
         },
         {
           "type": "text",
-          "content": "上人號召(東一法海指引)這些實業家，用他們的專業幫助苦難人ㄟ。食、衣、住、行都考慮到了，實在是太貼心了。"
+          "content": "上人號召這些實業家，用他們的專業幫助苦難人ㄟ。食、衣、住、行都考慮到了，實在是太貼心了。"
         },
         {
           "type": "text",
-          "content": "又見菩薩利眾生\t願捨(東一收)妻子與國土"
+          "content": "又見菩薩利眾生\t願捨妻子與國土"
         },
         {
           "type": "text",
-          "content": "這位莊居士(西一法海指引)要捐地，土地權狀就放在佛堂天天禮拜。他這虔誠的心已超越這塊土地價值了！兩個善女人捐地蓋大愛台，科技傳法到全世界。"
+          "content": "這位莊居士要捐地，土地權狀就放在佛堂天天禮拜。他這虔誠的心已超越這塊土地價值了！兩個善女人捐地蓋大愛台，科技傳法到全世界。"
         },
         {
           "type": "text",
-          "content": "為救眾生諸病苦\t頭目(西一收)髓腦亦樂施"
+          "content": "為救眾生諸病苦\t頭目髓腦亦樂施"
         },
         {
           "type": "text",
-          "content": "台灣半導體(全體藍衣指引)開路先鋒杜俊元捐地蓋靜思堂，生前大布施(全體白衣合十)，往生捐大體(全體白衣敬禮)，發揮生命的使用權(全體白衣回正)！大成鋼鐵(西二：舉素食道具；全體藍衣回正)推素14年喔(西二法海指引)，員工兩千多人都吃素ㄟ！"
+          "content": "台灣半導體開路先鋒杜俊元捐地蓋靜思堂，生前大布施，往生捐大體，發揮生命的使用權！大成鋼鐵推素14年喔，員工兩千多人都吃素ㄟ！"
         },
         {
           "type": "text",
-          "content": "五毛錢(西二：舉五毛錢道具；法海收)可以救人一甲子(西二：投錢)耶，上人想要送給大家一甲子的傳家寶耶(西二法海收)"
+          "content": "五毛錢可以救人一甲子耶，上人想要送給大家一甲子的傳家寶耶"
         },
         {
           "type": "text",
-          "content": "志工(轉面向道具)總動員 使命必達(大聲唸)"
+          "content": "志工總動員 使命必達"
         },
         {
           "type": "text",
-          "content": "又見菩薩(持燈合十)齊合掌(敬禮) 千萬偈頌(回正)讚法王(出/跪腳雙手上)"
+          "content": "又見菩薩齊合掌  千萬偈頌讚法王"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_93.png"
         }
       ]
     },
@@ -2593,51 +2683,55 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "os那~什麼是富中之富啊，開啟心靈的富有啊! (西一：搭靜思堂)"
+          "content": "os那~什麼是富中之富啊，開啟心靈的富有啊!"
         },
         {
           "type": "text",
-          "content": "我見彼土諸菩薩 \t為求(東二：舉921鋼鐵道具)佛道行布施"
+          "content": "我見彼土諸菩薩 \t為求佛道行布施"
         },
         {
           "type": "text",
-          "content": "像這位921(東二法海指引)大地震聽到 上人說教育不能等，立即認養多所學校，為善不欲人知，只求 上人「ㄇㄞˋ煩惱」"
+          "content": "像這位921大地震聽到 上人說教育不能等，立即認養多所學校，為善不欲人知，只求 上人「ㄇㄞˋ煩惱」"
         },
         {
           "type": "text",
-          "content": "金銀瑪瑙與寶飾\t車馬(東一：舉食衣住行道具；東二收)華蓋摩尼珠"
+          "content": "金銀瑪瑙與寶飾\t車馬華蓋摩尼珠"
         },
         {
           "type": "text",
-          "content": "上人號召(東一法海指引)這些實業家，用他們的專業幫助苦難人ㄟ。食、衣、住、行都考慮到了，實在是太貼心了。"
+          "content": "上人號召這些實業家，用他們的專業幫助苦難人ㄟ。食、衣、住、行都考慮到了，實在是太貼心了。"
         },
         {
           "type": "text",
-          "content": "又見菩薩利眾生\t願捨(東一收)妻子與國土"
+          "content": "又見菩薩利眾生\t願捨妻子與國土"
         },
         {
           "type": "text",
-          "content": "這位莊居士(西一法海指引)要捐地，土地權狀就放在佛堂天天禮拜。他這虔誠的心已超越這塊土地價值了！兩個善女人捐地蓋大愛台，科技傳法到全世界。"
+          "content": "這位莊居士要捐地，土地權狀就放在佛堂天天禮拜。他這虔誠的心已超越這塊土地價值了！兩個善女人捐地蓋大愛台，科技傳法到全世界。"
         },
         {
           "type": "text",
-          "content": "為救眾生諸病苦\t頭目(西一收)髓腦亦樂施"
+          "content": "為救眾生諸病苦\t頭目髓腦亦樂施"
         },
         {
           "type": "text",
-          "content": "台灣半導體(全體藍衣指引)開路先鋒杜俊元捐地蓋靜思堂，生前大布施(全體白衣合十)，往生捐大體(全體白衣敬禮)，發揮生命的使用權(全體白衣回正)！大成鋼鐵(西二：舉素食道具；全體藍衣回正)推素14年喔(西二法海指引)，員工兩千多人都吃素ㄟ！"
+          "content": "台灣半導體開路先鋒杜俊元捐地蓋靜思堂，生前大布施，往生捐大體，發揮生命的使用權！大成鋼鐵推素14年喔，員工兩千多人都吃素ㄟ！"
         },
         {
           "type": "text",
-          "content": "五毛錢(西二：舉五毛錢道具；法海收)可以救人一甲子(西二：投錢)耶，上人想要送給大家一甲子的傳家寶耶(西二法海收)"
+          "content": "五毛錢可以救人一甲子耶，上人想要送給大家一甲子的傳家寶耶"
         },
         {
           "type": "text",
-          "content": "志工(轉面向道具)總動員 使命必達(大聲唸)"
+          "content": "志工總動員 使命必達"
         },
         {
           "type": "text",
-          "content": "又見菩薩(持燈合十)齊合掌(敬禮) 千萬偈頌(回正)讚法王(出/跪腳雙手上)"
+          "content": "又見菩薩齊合掌  千萬偈頌讚法王"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_94.png"
         }
       ]
     },
@@ -2657,51 +2751,55 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "os那~什麼是富中之富啊，開啟心靈的富有啊! (西一：搭靜思堂)"
+          "content": "os那~什麼是富中之富啊，開啟心靈的富有啊!"
         },
         {
           "type": "text",
-          "content": "我見彼土諸菩薩 \t為求(東二：舉勸募箱.大米.毛毯)佛道行布施"
+          "content": "我見彼土諸菩薩 \t為求佛道行布施"
         },
         {
           "type": "text",
-          "content": "這些實業家(東二法海指引)的菩薩身影，個個放下身段！災區發放，幫災民扛大米。還有新馬實業家，放下事業，回報佛恩。"
+          "content": "這些實業家的菩薩身影，個個放下身段！災區發放，幫災民扛大米。還有新馬實業家，放下事業，回報佛恩。"
         },
         {
           "type": "text",
-          "content": "金銀瑪瑙與寶飾\t車馬(東一：舉字畫道具；東二收)華蓋摩尼珠"
+          "content": "金銀瑪瑙與寶飾\t車馬華蓋摩尼珠"
         },
         {
           "type": "text",
-          "content": "你看! (東一法海指引)這些實業家夫人舉辦了一場又一場珠寶字畫義賣耶! 為善不欲人知，只求 上人 「ㄇㄞˋ煩惱」"
+          "content": "你看!這些實業家夫人舉辦了一場又一場珠寶字畫義賣耶! 為善不欲人知，只求 上人 「ㄇㄞˋ煩惱」"
         },
         {
           "type": "text",
-          "content": "又見菩薩利眾生\t願捨(東一收)妻子與國土"
+          "content": "又見菩薩利眾生\t願捨妻子與國土"
         },
         {
           "type": "text",
-          "content": "溫居士(西一法海指引)參與 921 震災，他還捐一萬多坪土地蓋靜思堂欸！他說，留財產給子孫，不如留德給子孫，以善行做為傳家寶。"
+          "content": "溫居士參與 921 震災，他還捐一萬多坪土地蓋靜思堂欸！他說，留財產給子孫，不如留德給子孫，以善行做為傳家寶。"
         },
         {
           "type": "text",
-          "content": "為救眾生諸病苦\t頭目髓腦亦樂施(西二：南美洲蔬果)"
+          "content": "為救眾生諸病苦\t頭目髓腦亦樂施"
         },
         {
           "type": "text",
-          "content": "這位航運界(全體藍衣指引)的鉅子李爺爺，不僅孝順還樂善好施，生前大布施(全體白衣合十)，往生捐大體(全體白衣敬禮)，發揮生命的使用權(全體白衣回正)！大馬實業家(西二：舉素食道具；全體藍衣回正)陳志遠(西二法海指引)，孝順又有愛心，尤其見到 上人，當天他就吃素，已經 11 年了！(西二法海收)"
+          "content": "這位航運界的鉅子李爺爺，不僅孝順還樂善好施，生前大布施，往生捐大體，發揮生命的使用權！大馬實業家陳志遠，孝順又有愛心，尤其見到 上人，當天他就吃素，已經 11 年了！"
         },
         {
           "type": "text",
-          "content": "五毛錢(西二：舉五毛錢道具；法海收)可以救人一甲子(西二：投錢)耶，上人想要送給大家一甲子的傳家寶耶(西二法海收)"
+          "content": "五毛錢可以救人一甲子耶，上人想要送給大家一甲子的傳家寶耶"
         },
         {
           "type": "text",
-          "content": "志工(轉面向道具)總動員 使命必達(大聲唸)"
+          "content": "志工總動員 使命必達"
         },
         {
           "type": "text",
-          "content": "又見菩薩(持燈合十)齊合掌(敬禮) 千萬偈頌(回正)讚法王(出/跪腳雙手上)"
+          "content": "又見菩薩齊合掌  千萬偈頌讚法王"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_95.png"
         }
       ]
     },
@@ -2709,9 +2807,9 @@ const ACTION_HINTS_DATA = {
       "title": "11/15：32.富中之富B",
       "videos": [
         {
-          "title": "[功德品] 報佛恩",
-          "url": "https://www.youtube.com/watch?v=KwsN8MKQxOE&list=PLcdQvmBAiLJ0",
-          "videoId": "KwsN8MKQxOE"
+          "title": "[功德品] 富中之富 B",
+          "url": "https://www.youtube.com/watch?v=14EMlfGGBXY&list=PLcdQvmBAiLJ0",
+          "videoId": "14EMlfGGBXY"
         }
       ],
       "details": [
@@ -2721,51 +2819,55 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "os那~什麼是富中之富啊，開啟心靈的富有啊! (西一：搭靜思堂)"
+          "content": "os那~什麼是富中之富啊，開啟心靈的富有啊!"
         },
         {
           "type": "text",
-          "content": "我見彼土諸菩薩 \t為求(東二：舉勸募箱.大米.毛毯)佛道行布施"
+          "content": "我見彼土諸菩薩 \t為求佛道行布施"
         },
         {
           "type": "text",
-          "content": "這些實業家(東二法海指引)的菩薩身影，個個放下身段！災區發放，幫災民扛大米。還有新馬實業家，放下事業，回報佛恩。"
+          "content": "這些實業家的菩薩身影，個個放下身段！災區發放，幫災民扛大米。還有新馬實業家，放下事業，回報佛恩。"
         },
         {
           "type": "text",
-          "content": "金銀瑪瑙與寶飾\t車馬(東一：舉字畫道具；東二收)華蓋摩尼珠"
+          "content": "金銀瑪瑙與寶飾\t車馬華蓋摩尼珠"
         },
         {
           "type": "text",
-          "content": "你看! (東一法海指引)這些實業家夫人舉辦了一場又一場珠寶字畫義賣耶! 為善不欲人知，只求 上人 「ㄇㄞˋ煩惱」"
+          "content": "你看!這些實業家夫人舉辦了一場又一場珠寶字畫義賣耶! 為善不欲人知，只求 上人 「ㄇㄞˋ煩惱」"
         },
         {
           "type": "text",
-          "content": "又見菩薩利眾生\t願捨(東一收)妻子與國土"
+          "content": "又見菩薩利眾生\t願捨妻子與國土"
         },
         {
           "type": "text",
-          "content": "溫居士(西一法海指引)參與 921 震災，他還捐一萬多坪土地蓋靜思堂欸！他說，留財產給子孫，不如留德給子孫，以善行做為傳家寶。"
+          "content": "溫居士參與 921 震災，他還捐一萬多坪土地蓋靜思堂欸！他說，留財產給子孫，不如留德給子孫，以善行做為傳家寶。"
         },
         {
           "type": "text",
-          "content": "為救眾生諸病苦\t頭目髓腦亦樂施(西二：南美洲蔬果)"
+          "content": "為救眾生諸病苦\t頭目髓腦亦樂施"
         },
         {
           "type": "text",
-          "content": "這位航運界(全體藍衣指引)的鉅子李爺爺，不僅孝順還樂善好施，生前大布施(全體白衣合十)，往生捐大體(全體白衣敬禮)，發揮生命的使用權(全體白衣回正)！大馬實業家(西二：舉素食道具；全體藍衣回正)陳志遠(西二法海指引)，孝順又有愛心，尤其見到 上人，當天他就吃素，已經 11 年了！(西二法海收)"
+          "content": "這位航運界的鉅子李爺爺，不僅孝順還樂善好施，生前大布施，往生捐大體，發揮生命的使用權！大馬實業家陳志遠，孝順又有愛心，尤其見到 上人，當天他就吃素，已經 11 年了！"
         },
         {
           "type": "text",
-          "content": "五毛錢(西二：舉五毛錢道具；法海收)可以救人一甲子(西二：投錢)耶，上人想要送給大家一甲子的傳家寶耶(西二法海收)"
+          "content": "五毛錢可以救人一甲子耶，上人想要送給大家一甲子的傳家寶耶"
         },
         {
           "type": "text",
-          "content": "志工(轉面向道具)總動員 使命必達(大聲唸)"
+          "content": "志工總動員 使命必達"
         },
         {
           "type": "text",
-          "content": "又見菩薩(持燈合十)齊合掌(敬禮) 千萬偈頌(回正)讚法王(出/跪腳雙手上)"
+          "content": "又見菩薩齊合掌  千萬偈頌讚法王"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_96.png"
         }
       ]
     },
@@ -2781,7 +2883,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_95.jpg"
+          "src": "images/action_hints/hint_99.jpg"
         }
       ]
     },
@@ -2817,11 +2919,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_96.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_97.jpg"
+          "src": "images/action_hints/hint_100.jpg"
         }
       ]
     },
@@ -2837,7 +2935,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_98.jpg"
+          "src": "images/action_hints/hint_101.jpg"
         }
       ]
     },
@@ -2885,11 +2983,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_99.jpg"
+          "src": "images/action_hints/hint_102.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_100.jpg"
+          "src": "images/action_hints/hint_103.jpg"
         }
       ]
     },
@@ -2905,7 +3003,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_101.jpg"
+          "src": "images/action_hints/hint_104.jpg"
         }
       ]
     },
@@ -2941,15 +3039,15 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_102.jpg"
+          "src": "images/action_hints/hint_105.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_103.jpg"
+          "src": "images/action_hints/hint_106.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_104.jpg"
+          "src": "images/action_hints/hint_107.jpg"
         }
       ]
     },
@@ -2965,7 +3063,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_105.jpg"
+          "src": "images/action_hints/hint_108.jpg"
         }
       ]
     },
@@ -3009,11 +3107,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_106.jpg"
+          "src": "images/action_hints/hint_109.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_107.jpg"
+          "src": "images/action_hints/hint_110.jpg"
         }
       ]
     },
@@ -3029,7 +3127,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_108.jpg"
+          "src": "images/action_hints/hint_111.jpg"
         }
       ]
     },
@@ -3059,11 +3157,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_109.jpg"
+          "src": "images/action_hints/hint_112.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_110.jpg"
+          "src": "images/action_hints/hint_113.jpg"
         }
       ]
     },
@@ -3076,12 +3174,7 @@ const ACTION_HINTS_DATA = {
           "videoId": "vZU-rtMuEoE"
         }
       ],
-      "details": [
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_111.jpg"
-        }
-      ]
+      "details": []
     },
     {
       "title": "11/13：【曲目1：第八功德】",
@@ -3115,11 +3208,15 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_112.jpg"
+          "src": "images/action_hints/hint_114.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_113.jpg"
+          "src": "images/action_hints/hint_115.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_116.jpg"
         }
       ]
     },
@@ -3135,7 +3232,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_114.jpg"
+          "src": "images/action_hints/hint_117.jpg"
         }
       ]
     },
@@ -3191,19 +3288,19 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_115.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_116.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_117.jpg"
-        },
-        {
-          "type": "image",
           "src": "images/action_hints/hint_118.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_119.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_120.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_121.jpg"
         }
       ]
     },
@@ -3219,7 +3316,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_119.jpg"
+          "src": "images/action_hints/hint_122.jpg"
         }
       ]
     },
@@ -3299,7 +3396,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_120.jpg"
+          "src": "images/action_hints/hint_123.jpg"
         }
       ]
     },
@@ -3315,7 +3412,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_121.jpg"
+          "src": "images/action_hints/hint_124.jpg"
         }
       ]
     },
@@ -3387,15 +3484,15 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_122.jpg"
+          "src": "images/action_hints/hint_125.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_123.jpg"
+          "src": "images/action_hints/hint_126.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_124.jpg"
+          "src": "images/action_hints/hint_127.jpg"
         }
       ]
     },
@@ -3411,7 +3508,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_125.jpg"
+          "src": "images/action_hints/hint_128.jpg"
         }
       ]
     },
@@ -3463,7 +3560,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_126.jpg"
+          "src": "images/action_hints/hint_129.jpg"
         }
       ]
     },
@@ -3481,11 +3578,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_127.jpg"
+          "src": "images/action_hints/hint_130.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_128.jpg"
+          "src": "images/action_hints/hint_131.jpg"
         }
       ]
     },
@@ -3501,7 +3598,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_129.jpg"
+          "src": "images/action_hints/hint_132.jpg"
         }
       ]
     },
@@ -3553,11 +3650,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_130.jpg"
+          "src": "images/action_hints/hint_133.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_131.jpg"
+          "src": "images/action_hints/hint_134.jpg"
         }
       ]
     },
@@ -3570,12 +3667,7 @@ const ACTION_HINTS_DATA = {
           "videoId": "vZU-rtMuEoE"
         }
       ],
-      "details": [
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_132.jpg"
-        }
-      ]
+      "details": []
     },
     {
       "title": "11/14：【曲目1：第八功德】",
@@ -3609,11 +3701,15 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_133.jpg"
+          "src": "images/action_hints/hint_135.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_134.jpg"
+          "src": "images/action_hints/hint_136.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_137.jpg"
         }
       ]
     },
@@ -3629,7 +3725,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_135.jpg"
+          "src": "images/action_hints/hint_138.jpg"
         }
       ]
     },
@@ -3637,9 +3733,9 @@ const ACTION_HINTS_DATA = {
       "title": "11/14：【曲目2：髻珠喻經文】",
       "videos": [
         {
-          "title": "[功德品] 生生世世都在菩提中(辛巴威)",
-          "url": "https://www.youtube.com/watch?v=cSjyuO_KRp8&list=PLGRfIGuFCUAQ",
-          "videoId": "cSjyuO_KRp8"
+          "title": "[功德品] 身口意念應守護(辛巴威)",
+          "url": "https://www.youtube.com/watch?v=hfwvSIDG0EE&list=PLGRfIGuFCUAQ",
+          "videoId": "hfwvSIDG0EE"
         }
       ],
       "details": [
@@ -3685,19 +3781,19 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_136.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_137.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_138.jpg"
-        },
-        {
-          "type": "image",
           "src": "images/action_hints/hint_139.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_140.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_141.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_142.jpg"
         }
       ]
     },
@@ -3713,7 +3809,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_140.jpg"
+          "src": "images/action_hints/hint_143.jpg"
         }
       ]
     },
@@ -3773,11 +3869,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_141.jpg"
+          "src": "images/action_hints/hint_144.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_142.jpg"
+          "src": "images/action_hints/hint_145.jpg"
         }
       ]
     },
@@ -3840,11 +3936,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_147.jpg"
+          "src": "images/action_hints/hint_151.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_148.jpg"
+          "src": "images/action_hints/hint_152.jpg"
         }
       ]
     },
@@ -3860,7 +3956,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_149.jpg"
+          "src": "images/action_hints/hint_153.jpg"
         }
       ]
     },
@@ -3904,11 +4000,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_150.jpg"
+          "src": "images/action_hints/hint_154.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_151.jpg"
+          "src": "images/action_hints/hint_155.jpg"
         }
       ]
     },
@@ -3924,7 +4020,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_152.jpg"
+          "src": "images/action_hints/hint_156.jpg"
         }
       ]
     },

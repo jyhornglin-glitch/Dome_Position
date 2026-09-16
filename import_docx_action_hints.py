@@ -13,7 +13,7 @@ import re
 import docx
 from docx.oxml.ns import qn
 
-DOCX_FILE = "動作提示0909.docx" if os.path.exists("動作提示0909.docx") else ("動作提示0905.docx" if os.path.exists("動作提示0905.docx") else "動作提示.docx")
+DOCX_FILE = "動作提示0916.docx" if os.path.exists("動作提示0916.docx") else ("動作提示0909.docx" if os.path.exists("動作提示0909.docx") else ("動作提示0905.docx" if os.path.exists("動作提示0905.docx") else "動作提示.docx"))
 OUTPUT_JS = "action_hints_data.js"
 IMAGE_DIR = os.path.join("images", "action_hints")
 
@@ -37,15 +37,15 @@ CATEGORY_MAPPING = {
     '09-1人文(基本隊形)': 'humanities1',
     '09-2人文': 'humanities2',
     '09-2人文(主機板)': 'humanities2',
-    # Five Continents 1 (五大洲 10-1 / 10-4 台灣段)
-    '10-1五大洲': 'fiveContinents1',
+    # Five Continents 1 (五大洲台灣段: 10-1舊版, 10-2開經書, 10-4台灣救災/921第九功德)
     '10-1五大洲(台灣)': 'fiveContinents1',
     '10-2五大洲(台灣)': 'fiveContinents1',
     '10-4五大洲(台灣)': 'fiveContinents1',
     '11-1五大洲': 'fiveContinents1',
     '11-1五大洲(台灣)': 'fiveContinents1',
     '五大洲(台灣)': 'fiveContinents1',
-    # Five Continents 2 (五大洲 10-2 / 10-3 / 10-5 各國/化城/佛國段)
+    # Five Continents 2 (五大洲非台灣段: 10-1樂生/富中之富, 10-2舊版, 10-3各國, 10-5化城/佛國)
+    '10-1五大洲': 'fiveContinents2',
     '10-2五大洲': 'fiveContinents2',
     '10-3五大洲': 'fiveContinents2',
     '10-5五大洲': 'fiveContinents2',
@@ -75,6 +75,19 @@ def get_images_from_cell(cell, doc, image_counter):
                 
                 with open(local_image_path, 'wb') as img_f:
                     img_f.write(image_bytes)
+                
+                # Resize oversized images to Full HD (max width 1920) for optimal web performance
+                try:
+                    from PIL import Image
+                    im = Image.open(local_image_path)
+                    if max(im.size) > 1920:
+                        ratio = 1920.0 / max(im.size)
+                        new_size = (int(im.size[0] * ratio), int(im.size[1] * ratio))
+                        im_resized = im.resize(new_size, Image.Resampling.LANCZOS)
+                        im_resized.save(local_image_path, optimize=True)
+                except Exception as resize_err:
+                    pass
+
                 extracted_images.append(f"images/action_hints/{local_image_name}")
             except Exception as e:
                 print(f"Failed to extract image {embed_id}: {e}")
@@ -111,7 +124,7 @@ def is_item_start(text):
         return True
     
     # Matches key action segments without leading numbers
-    keywords = ['序，', '生，', '老，', '病，', '死，', '六度', '行願', '開經偈', '點一盞燈', '地藏經', '醫療梵唄', '四弘誓願', '大醫王', '骨捐', '能捨', '無醫村', '北慈', '江永旭', '大體老師', '小樹啊', '種樹', '成長', '感恩', '藥草喻', '慈誠隊歌', '父母恩重難報經', '大愛讓世界亮起來', '天空破了洞', '環保志工', '代謝不住', '開經書']
+    keywords = ['序，', '生，', '老，', '病，', '死，', '六度', '行願', '開經偈', '點一盞燈', '地藏經', '醫療梵唄', '四弘誓願', '大醫王', '骨捐', '能捨', '無醫村', '北慈', '江永旭', '花慈', '連體嬰', '八仙塵爆', '火宅喻', '衣珠喻', '大體老師', '小樹啊', '種樹', '成長', '感恩', '藥草喻', '慈誠隊歌', '父母恩重難報經', '大愛讓世界亮起來', '天空破了洞', '環保志工', '代謝不住', '開經書']
     if any(first_line.startswith(k) or ('【' in first_line and k in first_line) for k in keywords):
         return True
         
@@ -215,7 +228,7 @@ def main():
             elif loc_clean in ['06四弘誓願07-1大船師', '06四弘誓願 07-1大船師', '06四弘誓願', '07-1大船師']:
                 if any(k in cell_text for k in ['地藏經', '四弘誓願', '德行品梵唄', '醫療梵唄']):
                     target_cats = ['bigV']
-                elif any(k in cell_text for k in ['大醫王', '無醫村', '北慈', '江永旭', '醫子喻', '藥師如來']):
+                elif any(k in cell_text for k in ['大醫王', '無醫村', '北慈', '江永旭', '醫子喻', '藥師如來', '花慈', '連體嬰', '八仙塵爆', '火宅喻']):
                     target_cats = ['daChuanShi']
                 else:
                     target_cats = ['bigV'] if current_items.get('bigV') else ['daChuanShi']
@@ -227,7 +240,7 @@ def main():
                 elif any(k in cell_text for k in ['貧中之富', '富中之富', '黑區', '約旦', '土耳其', '莫三比克', '印尼', '緬甸', '八八風災', '泰北', '辛巴威']):
                     target_cats = ['fiveContinents2']
                 else:
-                    target_cats = ['fiveContinents2'] if ('10-2' in loc_clean or '10-5' in loc_clean) else ['fiveContinents1']
+                    target_cats = ['fiveContinents1'] if '(台灣)' in loc_clean else ['fiveContinents2']
             else:
                 target_cats = [cat]
 
@@ -359,14 +372,13 @@ def main():
         items = action_hints_data.get(cat, [])
         for item in items:
             title = item.get('title', '')
-            details_text = ' '.join(d.get('content', '') for d in item.get('details', []) if d.get('type') == 'text')
             for sess_prefix, keyword, video_entries in VIDEO_INJECTIONS:
                 match = False
                 if sess_prefix:
-                    if sess_prefix in title and (keyword in title or keyword in details_text):
+                    if sess_prefix in title and keyword in title:
                         match = True
                 else:
-                    if keyword in title or keyword in details_text:
+                    if keyword in title:
                         match = True
                 if match:
                     item['videos'] = [

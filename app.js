@@ -184,11 +184,11 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       {
         key: 'fiveContinents1',
-        name: '10-1五大洲(台灣) (台灣救災 第五功德)',
+        name: '10-1五大洲(台灣) (台灣救災 第五功德/衣珠喻)',
         label: '五洲(台灣救災)',
         itemFilter: (item) => {
           const t = item.title || '';
-          return t.includes('台灣救災') || t.includes('第五功德');
+          return t.includes('台灣救災') || t.includes('第五功德') || t.includes('衣珠喻');
         }
       }
     ],
