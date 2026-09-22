@@ -247,9 +247,17 @@ def generate_lyrics_os_database(pdf_file, existing_data_file='lyrics_os_data.js'
         raw_sections.append(cur_sec)
 
     print(f"Extracted {len(raw_sections)} sections from {pdf_file}")
-    assert len(raw_sections) == 72, f"Expected 72 sections, got {len(raw_sections)}"
+    assert len(raw_sections) == 75, f"Expected 75 sections, got {len(raw_sections)}"
 
-    # 3. Define metadata configurations for all 72 sections in order of 0916 PDF
+    # Clean wrapped session line in 富中之富 A, B
+    for s in raw_sections:
+        if '富中之富' in s['title'] and s['lines']:
+            first_l_text = ''.join(sp['text'] for sp in s['lines'][0]).strip()
+            if re.search(r'^\d{2}/\d{2}.*專屬曲目', first_l_text):
+                s['title'] += ' ' + first_l_text
+                s['lines'].pop(0)
+
+    # 3. Define metadata configurations for all 75 sections in order of 0922 PDF
     section_configs = [
         # 1..6: circle (序、生、老、病、死、六度)
         {'fk': 'circle', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/慈善+醫療/01序.mp3'},
@@ -277,10 +285,10 @@ def generate_lyrics_os_database(pdf_file, existing_data_file='lyrics_os_data.js'
         # 16..17: daChuanShi (拉繩、醫療德行品梵唄)
         {'fk': 'daChuanShi', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/慈善+醫療/15拉繩-船師大船師梵唄.mp3'},
         {'fk': 'daChuanShi', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/慈善+醫療/15拉繩-船師大船師梵唄.mp3'},
-        # 18..23: daChuanShi 醫療各場次專屬曲目 (0916 調整至大醫王前)
+        # 18..23: daChuanShi 醫療各場次專屬曲目
         {'fk': 'daChuanShi', 'sessions': ['1112'], 'audio': 'Music/慈善+醫療/18北慈＿疫情捨我其誰.mp3'}, # 羅倫佐
         {'fk': 'daChuanShi', 'sessions': ['1112'], 'audio': 'Music/慈善+醫療/16 大醫王.mp3'}, # 大埔無醫村
-        {'fk': 'daChuanShi', 'sessions': ['1113'], 'audio': ''}, # 花慈連體嬰 (0916 NEW)
+        {'fk': 'daChuanShi', 'sessions': ['1113'], 'audio': ''}, # 花慈連體嬰
         {'fk': 'daChuanShi', 'sessions': ['1114'], 'audio': 'Music/慈善+醫療/18北慈＿疫情捨我其誰.mp3'}, # 北慈疫情 (白袍禮讚)
         {'fk': 'daChuanShi', 'sessions': ['1114'], 'audio': ''}, # 中慈江永旭
         {'fk': 'daChuanShi', 'sessions': ['1115'], 'audio': 'Music/慈善+醫療/17 骨捐.mp3'}, # 北慈八仙塵爆
@@ -300,54 +308,61 @@ def generate_lyrics_os_database(pdf_file, existing_data_file='lyrics_os_data.js'
         {'fk': 'edu', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/教育+人文/教育05_教育完全化.mp3'},
         # 33: 靜思語教學 (11/14, 11/15)
         {'fk': 'edu', 'sessions': ['1114', '1115'], 'audio': 'Music/教育+人文/教育06_靜思語教學.mp3'},
-        # 34..36: humanities1 (幸福人生講座、跪羊圖、十戒)
+        # 34..35: humanities1 (幸福人生講座、跪羊圖)
         {'fk': 'humanities1', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/教育+人文/人文02_幸福人生講座.mp3'},
         {'fk': 'humanities1', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/教育+人文/人文02_幸福人生講座.mp3'},
-        {'fk': 'humanities1', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/教育+人文/人文01_慈誠隊歌.mp3'},
-        # 37..40: humanities2 (大愛台經典、大地的園丁、法譬如水能洗垢、慈悲科技上聯合國)
+        # 36: 【七月是吉祥月(換主機板隊形) 孝親月 歡喜月(目犍連救母) 】
+        {'fk': 'humanities2', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': ''},
+        # 37: 十戒 (慈誠隊歌)
+        {'fk': 'humanities2', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/教育+人文/人文01_慈誠隊歌.mp3'},
+        # 38..41: humanities2 (大愛台經典、大地的園丁、法譬如水能洗垢、慈悲科技上聯合國)
         {'fk': 'humanities2', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/教育+人文/人文03_大愛讓世界亮起來_珺月.mp3'},
         {'fk': 'humanities2', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/教育+人文/人文04_大地的園丁.mp3'},
         {'fk': 'humanities2', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/教育+人文/人文05_法譬如水能洗垢.mp3'},
         {'fk': 'humanities2', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/教育+人文/人文06_慈悲科技上聯合國.mp3'},
-        # 41: 樂生 (11/12, 11/15)
+        # 42: 樂生 (11/12, 11/15)
         {'fk': 'fiveContinents2', 'sessions': ['1112', '1115'], 'audio': 'Music/功德品/1112/11_12 [功德品] 01樂生療養院_超越天堂.mp3'},
-        # 42: 富中之富A (11/12, 11/14)
-        {'fk': 'fiveContinents2', 'sessions': ['1112', '1114'], 'audio': 'Music/功德品/1112/[功德品] 富中之富-A 0811.wav'},
-        # 43: 富中之富B (11/13, 11/15)
+        # 43: 【第一功德】
+        {'fk': 'fiveContinents2', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': ''},
+        # 44: 富中之富A (0922: 11/13, 11/15)
         {'fk': 'fiveContinents2', 'sessions': ['1113', '1115'], 'audio': 'Music/功德品/1112/[功德品] 富中之富-A 0811.wav'},
-        # 44: 開經書
+        # 45: 富中之富B (0922: 11/12, 11/14)
+        {'fk': 'fiveContinents2', 'sessions': ['1112', '1114'], 'audio': 'Music/功德品/1112/[功德品] 富中之富-A 0811.wav'},
+        # 46: 【五毛錢的力量(馬來西亞阿婆)】
+        {'fk': 'fiveContinents2', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': ''},
+        # 47: 開經書
         {'fk': 'fiveContinents1', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/功德品/1112/[功德品] 開經書_無量義經佛宅來.mp3'},
-        # 45..48: 11/12 黑區、化城喻、約旦、啟航
+        # 48..51: 11/12 黑區、化城喻、約旦、啟航
         {'fk': 'fiveContinents2', 'sessions': ['1112'], 'audio': 'Music/功德品/1112/11_12 [功德品] 03A黑區&亮區_第六功德.mp3'},
         {'fk': 'fiveContinents2', 'sessions': ['1112'], 'audio': 'Music/功德品/1112/11_12 [功德品] 03B黑區&亮區_化城喻故事.mp3'},
         {'fk': 'fiveContinents2', 'sessions': ['1112'], 'audio': 'Music/功德品/1112/11_12 [功德品] 02A第三功德(約旦).mp3'},
         {'fk': 'fiveContinents2', 'sessions': ['1112'], 'audio': 'Music/功德品/1112/11_12 [功德品] 02B啟航(約旦).mp3'},
-        # 49..50: 11/12 台灣救災集錦、衣珠喻手扎
+        # 52..53: 11/12 台灣救災集錦、衣珠喻手扎
         {'fk': 'fiveContinents1', 'sessions': ['1112'], 'audio': 'Music/功德品/1112/11_12 [功德品] 05台灣救災集錦_第五功德.mp3'},
         {'fk': 'fiveContinents1', 'sessions': ['1112'], 'audio': 'Music/功德品/1112/11_12 [功德品] 05台灣救災集錦_第五功德.mp3'},
-        # 51..55: 11/13 土耳其、莫三比克、髻珠喻、印尼、化城喻
+        # 54..58: 11/13 土耳其、莫三比克、髻珠喻、印尼、化城喻
         {'fk': 'fiveContinents2', 'sessions': ['1113'], 'audio': 'Music/功德品/1112/11_12 [功德品] 02A第三功德(約旦).mp3'},
         {'fk': 'fiveContinents2', 'sessions': ['1113'], 'audio': 'Music/功德品/1112/11_12 [功德品] 04A莫三比克_第八功德.mp3'},
         {'fk': 'fiveContinents2', 'sessions': ['1113'], 'audio': 'Music/功德品/1112/11_12 [功德品] 04B莫三比克_髻珠喻經文.mp3'},
         {'fk': 'fiveContinents2', 'sessions': ['1113'], 'audio': ''},
         {'fk': 'fiveContinents2', 'sessions': ['1113'], 'audio': ''},
-        # 56..62: 11/14 緬甸、八八風災、十在心路、泰北、辛巴威、髻珠喻、生生世世都在菩提中
+        # 59..65: 11/14 緬甸、八八風災、十在心路、泰北、辛巴威第八功德、生生世世都在菩提中、髻珠喻經文
         {'fk': 'fiveContinents2', 'sessions': ['1114'], 'audio': 'Music/功德品/1114/11_14 [功德品] 01第二功德(緬甸米撲滿).mp3'},
         {'fk': 'fiveContinents2', 'sessions': ['1114'], 'audio': 'Music/功德品/1114/11_14 [功德品] 02第七功德(八八風災).mp3'},
         {'fk': 'fiveContinents2', 'sessions': ['1114'], 'audio': 'Music/功德品/1114/11_14 [功德品] 02第七功德(八八風災).mp3'},
         {'fk': 'fiveContinents2', 'sessions': ['1114'], 'audio': 'Music/功德品/1114/11_14 [功德品] 03第四功德(泰北).mp3'},
         {'fk': 'fiveContinents2', 'sessions': ['1114'], 'audio': 'Music/功德品/1114/11_14 [功德品] 04A第八功德(辛巴威).mp3'},
-        {'fk': 'fiveContinents2', 'sessions': ['1114'], 'audio': 'Music/功德品/1114/11_14 [功德品] 04B髻珠喻經文(辛巴威).mp3'},
         {'fk': 'fiveContinents2', 'sessions': ['1114'], 'audio': 'Music/功德品/1114/11_14 [功德品] 05生生世世都在菩提中(辛巴威).mp3'},
-        # 63: 11/15 921 第九功德
+        {'fk': 'fiveContinents2', 'sessions': ['1114'], 'audio': 'Music/功德品/1114/11_14 [功德品] 04B髻珠喻經文(辛巴威).mp3'},
+        # 66: 11/15 921 第九功德
         {'fk': 'fiveContinents1', 'sessions': ['1115'], 'audio': ''},
-        # 64..68: 11/15 921化城喻(若入是城)、化城喻(諸惡道險)、減災工程、報佛恩、第十功德
+        # 67..71: 11/15 921化城喻(若入是城)、化城喻(諸惡道險)、減災工程、報佛恩、第十功德
         {'fk': 'fiveContinents2', 'sessions': ['1115'], 'audio': 'Music/功德品/1112/11_12 [功德品] 03B黑區&亮區_化城喻故事.mp3'},
         {'fk': 'fiveContinents2', 'sessions': ['1115'], 'audio': 'Music/功德品/1112/11_12 [功德品] 03B黑區&亮區_化城喻故事.mp3'},
         {'fk': 'fiveContinents2', 'sessions': ['1115'], 'audio': ''},
         {'fk': 'fiveContinents2', 'sessions': ['1115'], 'audio': ''},
         {'fk': 'fiveContinents2', 'sessions': ['1115'], 'audio': ''},
-        # 69..72: 六瑞相、發心立願、慈濟小行星、祈禱
+        # 72..75: 六瑞相、發心立願、慈濟小行星、祈禱
         {'fk': 'sixRuiXiang', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/終章/01.六瑞相.mp3'},
         {'fk': 'sixRuiXiang', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/終章/02.發心立願.mp3'},
         {'fk': 'sixRuiXiang', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/終章/03.慈濟小行星演繹版+開示.mp3'},
@@ -358,7 +373,14 @@ def generate_lyrics_os_database(pdf_file, existing_data_file='lyrics_os_data.js'
     VIDEO_INJECTIONS = [
         ('', '開經書', [('東班', 'https://youtu.be/p2KSIGqj5VE'), ('西班', 'https://youtu.be/dyWGw6dC88I')]),
         ('11/12', '樂生', [('[功德品] 樂生', 'https://www.youtube.com/watch?v=mGhnmtxZrn8&list=PLbIvC-A2H2ko')]),
-        ('11/12', '富中之富', [('[功德品] 富中之富 A', 'https://www.youtube.com/watch?v=m2NvdK1rQpk&list=PLbIvC-A2H2ko')]),
+        ('11/15', '樂生', [('[功德品] 樂生', 'https://www.youtube.com/watch?v=mGhnmtxZrn8&list=PLcdQvmBAiLJ0')]),
+        # 富中之富 A & B video mappings (0922: A is 11/13, 11/15; B is 11/12, 11/14)
+        ('11/12', '富中之富  B', [('[功德品] 富中之富 B', 'https://www.youtube.com/watch?v=14EMlfGGBXY&list=PLbIvC-A2H2ko')]),
+        ('11/14', '富中之富  B', [('[功德品] 富中之富 B', 'https://www.youtube.com/watch?v=14EMlfGGBXY&list=PLGRfIGuFCUAQ')]),
+        ('11/13', '富中之富  A', [('[功德品] 富中之富 A', 'https://www.youtube.com/watch?v=m2NvdK1rQpk&list=PLGafJimf9RDw')]),
+        ('11/15', '富中之富  A', [('[功德品] 富中之富 A', 'https://www.youtube.com/watch?v=m2NvdK1rQpk&list=PLcdQvmBAiLJ0')]),
+        ('', '富中之富  A', [('[功德品] 富中之富 A', 'https://www.youtube.com/watch?v=m2NvdK1rQpk')]),
+        ('', '富中之富  B', [('[功德品] 富中之富 B', 'https://www.youtube.com/watch?v=14EMlfGGBXY')]),
         ('11/12', '第三功德', [('[功德品] 第三功德‧約旦+土耳其', 'https://www.youtube.com/watch?v=0UcRe5beSzw&list=PLbIvC-A2H2ko')]),
         ('11/12', '約旦', [('[功德品] 張起大愛的風帆‧約旦(法海)', 'https://www.youtube.com/watch?v=MD8To93EY0I&list=PLbIvC-A2H2ko')]),
         ('11/12', '啟航', [('[功德品] 張起大愛的風帆‧約旦(法海)', 'https://www.youtube.com/watch?v=MD8To93EY0I&list=PLbIvC-A2H2ko')]),
@@ -366,7 +388,6 @@ def generate_lyrics_os_database(pdf_file, existing_data_file='lyrics_os_data.js'
         ('11/12', '黑區變亮區', [('[功德品] 第六功德‧黑區變亮區', 'https://www.youtube.com/watch?v=1SAdHJZAVuc&list=PLbIvC-A2H2ko')]),
         ('11/12', '化城喻', [('[功德品] 諸惡道險猶長遠‧黑區變亮區(法海)', 'https://www.youtube.com/watch?v=y2cdRGMovd0&list=PLbIvC-A2H2ko')]),
         ('11/12', '台灣救災', [('[功德品] 第五功德‧台灣救災集錦', 'https://www.youtube.com/watch?v=aNi9Y8qbZp0&list=PLbIvC-A2H2ko')]),
-        ('11/13', '富中之富', [('[功德品] 富中之富 B', 'https://www.youtube.com/watch?v=14EMlfGGBXY&list=PLGafJimf9RDw')]),
         ('11/13', '土耳其', [('[功德品] 第三功德‧約旦+土耳其', 'https://www.youtube.com/watch?v=0UcRe5beSzw&list=PLGafJimf9RDw')]),
         ('11/13', '第八功德', [('[功德品] 第八功德‧非洲', 'https://www.youtube.com/watch?v=vZU-rtMuEoE&list=PLGafJimf9RDw')]),
         ('11/13', '莫三比克', [('[功德品] 第八功德‧非洲', 'https://www.youtube.com/watch?v=vZU-rtMuEoE&list=PLGafJimf9RDw')]),
@@ -374,7 +395,6 @@ def generate_lyrics_os_database(pdf_file, existing_data_file='lyrics_os_data.js'
         ('11/13', '第九功德', [('[功德品] 第九功德‧印尼', 'https://www.youtube.com/watch?v=CvAlUYsudqk&list=PLGafJimf9RDw')]),
         ('11/13', '印尼', [('[功德品] 第九功德‧印尼', 'https://www.youtube.com/watch?v=CvAlUYsudqk&list=PLGafJimf9RDw')]),
         ('11/13', '化城喻', [('[功德品] 菩薩慈悲憫眾生‧印尼(法海)', 'https://www.youtube.com/watch?v=xmX4NrnNqJA&list=PLGafJimf9RDw')]),
-        ('11/14', '富中之富', [('[功德品] 富中之富 A', 'https://www.youtube.com/watch?v=m2NvdK1rQpk&list=PLGRfIGuFCUAQ')]),
         ('11/14', '第二功德', [('11/14 [功德品] 第二功德 緬甸米撲滿', 'https://www.youtube.com/watch?v=yeEd_aeAv5k&list=PLGRfIGuFCUAQ')]),
         ('11/14', '緬甸', [('11/14 [功德品] 第二功德 緬甸米撲滿', 'https://www.youtube.com/watch?v=yeEd_aeAv5k&list=PLGRfIGuFCUAQ')]),
         ('11/14', '第七功德', [('[功德品] 第七功德‧莫拉克風災', 'https://www.youtube.com/watch?v=mjPNSTARlmY&list=PLGRfIGuFCUAQ')]),
@@ -386,7 +406,6 @@ def generate_lyrics_os_database(pdf_file, existing_data_file='lyrics_os_data.js'
         ('11/14', '髻珠喻', [('[功德品] 身口意念應守護(辛巴威)', 'https://www.youtube.com/watch?v=hfwvSIDG0EE&list=PLGRfIGuFCUAQ')]),
         ('11/14', '生生世世', [('[功德品] 生生世世都在菩提中(辛巴威)', 'https://www.youtube.com/watch?v=cSjyuO_KRp8&list=PLGRfIGuFCUAQ')]),
         ('11/15', '樂生', [('[功德品] 樂生', 'https://www.youtube.com/watch?v=mGhnmtxZrn8&list=PLcdQvmBAiLJ0')]),
-        ('11/15', '富中之富', [('[功德品] 富中之富 B', 'https://www.youtube.com/watch?v=14EMlfGGBXY&list=PLcdQvmBAiLJ0')]),
         ('11/15', '九二一', [('[功德品] 第九功德‧921地震', 'https://www.youtube.com/watch?v=hUpDtkqTQNM&list=PLcdQvmBAiLJ0')]),
         ('11/15', '921', [('[功德品] 第九功德‧921地震', 'https://www.youtube.com/watch?v=hUpDtkqTQNM&list=PLcdQvmBAiLJ0')]),
         ('11/15', '化城喻', [('[化城喻故事] 921地湧菩薩', 'https://www.youtube.com/watch?v=06ylKzGmhdQ')]),
@@ -429,6 +448,7 @@ def generate_lyrics_os_database(pdf_file, existing_data_file='lyrics_os_data.js'
                         {'title': label, 'url': url, 'videoId': extract_vid(url)}
                         for label, url in video_entries
                     ]
+                    break
 
         # Format session label
         sessions = cfg['sessions']
@@ -470,7 +490,7 @@ def generate_lyrics_os_database(pdf_file, existing_data_file='lyrics_os_data.js'
     return new_sections
 
 def main():
-    pdf_file = '大巨蛋演繹段歌詞OS內容節錄_YDT_0916.pdf' if os.path.exists('大巨蛋演繹段歌詞OS內容節錄_YDT_0916.pdf') else ('大巨蛋演繹段歌詞OS內容節錄_YDT_0909.pdf' if os.path.exists('大巨蛋演繹段歌詞OS內容節錄_YDT_0909.pdf') else '大巨蛋演繹段歌詞OS內容節錄_YDT_0904.pdf')
+    pdf_file = '大巨蛋演繹段歌詞OS內容節錄_YDT_0922.pdf' if os.path.exists('大巨蛋演繹段歌詞OS內容節錄_YDT_0922.pdf') else ('大巨蛋演繹段歌詞OS內容節錄_YDT_0916.pdf' if os.path.exists('大巨蛋演繹段歌詞OS內容節錄_YDT_0916.pdf') else '大巨蛋演繹段歌詞OS內容節錄_YDT_0909.pdf')
     if not os.path.exists(pdf_file):
         print(f"Error: {pdf_file} not found")
         return
@@ -478,7 +498,7 @@ def main():
     sections = generate_lyrics_os_database(pdf_file)
     print(f"Generated {len(sections)} sections from {pdf_file}")
 
-    js_content = "// 大巨蛋演繹段歌詞與 OS 內容資料庫 (依據 0916 PDF 產生，支援多場次動態過濾與精確劇本排版)\n"
+    js_content = "// 大巨蛋演繹段歌詞與 OS 內容資料庫 (依據 0922 PDF 產生，支援多場次動態過濾與精確劇本排版)\n"
     js_content += f"const LYRICS_OS_DATA = {json.dumps(sections, ensure_ascii=False, indent=2)};\n\n"
     js_content += "// Export if in node environment, otherwise make it global\n"
     js_content += "if (typeof module !== 'undefined' && module.exports) {\n"
@@ -493,4 +513,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
