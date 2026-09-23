@@ -576,7 +576,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function getActionHintsForPerformer(performer, key) {
-    if (key === 'sixRuiXiang') return [];
     const hintKey = getActionHintKey(key);
     let rawData = (typeof ACTION_HINTS_DATA !== 'undefined' && ACTION_HINTS_DATA[hintKey]) || [];
     rawData = filterHintsBySession(rawData);

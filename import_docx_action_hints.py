@@ -3,6 +3,7 @@
 """
 import_docx_action_hints.py
 Parse 動作提示.docx, extract images to images/action_hints/, and generate action_hints_data.js.
+Supports pure standard library (zipfile + xml.etree.ElementTree) fallback if python-docx is not installed.
 """
 
 import os
@@ -10,10 +11,16 @@ import sys
 import json
 import shutil
 import re
-import docx
-from docx.oxml.ns import qn
+import zipfile
+import xml.etree.ElementTree as ET
 
-DOCX_FILE = "動作提示0916.docx" if os.path.exists("動作提示0916.docx") else ("動作提示0909.docx" if os.path.exists("動作提示0909.docx") else ("動作提示0905.docx" if os.path.exists("動作提示0905.docx") else "動作提示.docx"))
+DOCX_FILE = "動作提示0923.docx" if os.path.exists("動作提示0923.docx") else (
+    "動作提示0916.docx" if os.path.exists("動作提示0916.docx") else (
+        "動作提示0909.docx" if os.path.exists("動作提示0909.docx") else (
+            "動作提示0905.docx" if os.path.exists("動作提示0905.docx") else "動作提示.docx"
+        )
+    )
+)
 OUTPUT_JS = "action_hints_data.js"
 IMAGE_DIR = os.path.join("images", "action_hints")
 
@@ -49,49 +56,129 @@ CATEGORY_MAPPING = {
     '10-2五大洲': 'fiveContinents2',
     '10-3五大洲': 'fiveContinents2',
     '10-5五大洲': 'fiveContinents2',
-    '11-2五大洲': 'fiveContinents2'
+    '11-2五大洲': 'fiveContinents2',
+    # 12-1六瑞相
+    '12-1六瑞相': 'sixRuiXiang'
 }
 
-def get_images_from_cell(cell, doc, image_counter):
-    extracted_images = []
-    tc = cell._tc
-    blips = tc.xpath('.//a:blip')
-    for blip in blips:
-        embed_id = blip.get(qn('r:embed'))
-        if embed_id:
-            try:
-                image_part = doc.part.related_parts[embed_id]
-                image_bytes = image_part.blob
+class BuiltinDocxReader:
+    """Pure standard library parser for Word docx table and images without third-party dependencies."""
+    def __init__(self, docx_path):
+        self.zip_ref = zipfile.ZipFile(docx_path)
+        
+        # Parse relationships
+        rels_xml = self.zip_ref.read('word/_rels/document.xml.rels')
+        rels_tree = ET.fromstring(rels_xml)
+        rel_ns = {'r': 'http://schemas.openxmlformats.org/package/2006/relationships'}
+        self.rels = {}
+        for rel in rels_tree.findall('.//r:Relationship', rel_ns):
+            r_id = rel.get('Id')
+            target = rel.get('Target')
+            self.rels[r_id] = target
+            
+        doc_xml = self.zip_ref.read('word/document.xml')
+        self.doc_tree = ET.fromstring(doc_xml)
+        w_ns = {'w': 'http://schemas.openxmlformats.org/wordprocessingml/2006/main'}
+        
+        tbl_el = self.doc_tree.find('.//w:tbl', w_ns)
+        grid_cols = tbl_el.findall('./w:tblGrid/w:gridCol', w_ns)
+        self.num_cols = len(grid_cols)
+        
+        tr_els = tbl_el.findall('./w:tr', w_ns)
+        self.num_rows = len(tr_els)
+        
+        # Construct grid of w:tc elements to emulate python-docx table
+        grid = [[None for _ in range(self.num_cols)] for _ in range(self.num_rows)]
+        for r_idx, tr in enumerate(tr_els):
+            c_idx = 0
+            for tc in tr.findall('./w:tc', w_ns):
+                gs = tc.find('./w:tcPr/w:gridSpan', w_ns)
+                colspan = int(gs.get('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val')) if gs is not None else 1
                 
-                # Deduce extension
-                content_type = image_part.content_type
-                ext = content_type.split('/')[-1]
-                if ext == "jpeg":
-                    ext = "jpg"
-                
-                image_counter += 1
-                local_image_name = f"hint_{image_counter}.{ext}"
-                local_image_path = os.path.join(IMAGE_DIR, local_image_name)
-                
-                with open(local_image_path, 'wb') as img_f:
-                    img_f.write(image_bytes)
-                
-                # Resize oversized images to Full HD (max width 1920) for optimal web performance
-                try:
-                    from PIL import Image
-                    im = Image.open(local_image_path)
-                    if max(im.size) > 1920:
-                        ratio = 1920.0 / max(im.size)
-                        new_size = (int(im.size[0] * ratio), int(im.size[1] * ratio))
-                        im_resized = im.resize(new_size, Image.Resampling.LANCZOS)
-                        im_resized.save(local_image_path, optimize=True)
-                except Exception as resize_err:
-                    pass
+                vm = tc.find('./w:tcPr/w:vMerge', w_ns)
+                if vm is not None:
+                    vm_val = vm.get('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val')
+                    if vm_val != 'restart' and r_idx > 0:
+                        while c_idx < self.num_cols and grid[r_idx][c_idx] is not None:
+                            c_idx += 1
+                        upper_tc = grid[r_idx - 1][c_idx]
+                        for i in range(colspan):
+                            if c_idx + i < self.num_cols:
+                                grid[r_idx][c_idx + i] = upper_tc
+                        c_idx += colspan
+                        continue
 
-                extracted_images.append(f"images/action_hints/{local_image_name}")
-            except Exception as e:
-                print(f"Failed to extract image {embed_id}: {e}")
-    return extracted_images, image_counter
+                while c_idx < self.num_cols and grid[r_idx][c_idx] is not None:
+                    c_idx += 1
+                    
+                for i in range(colspan):
+                    if c_idx + i < self.num_cols:
+                        grid[r_idx][c_idx + i] = tc
+                c_idx += colspan
+
+        self.grid = grid
+
+    def get_cell_text(self, tc):
+        if tc is None:
+            return ""
+        w_ns = {'w': 'http://schemas.openxmlformats.org/wordprocessingml/2006/main'}
+        paragraphs = []
+        for p in tc.findall('.//w:p', w_ns):
+            t_list = [t.text for t in p.findall('.//w:t', w_ns) if t.text]
+            if t_list:
+                paragraphs.append(''.join(t_list))
+        return '\n'.join(paragraphs).strip()
+
+    def get_cell_images(self, tc, image_counter):
+        if tc is None:
+            return [], image_counter
+        extracted_images = []
+        a_ns = {
+            'a': 'http://schemas.openxmlformats.org/drawingml/2006/main',
+            'r': 'http://schemas.openxmlformats.org/officeDocument/2006/relationships'
+        }
+        blips = tc.findall('.//a:blip', a_ns)
+        for blip in blips:
+            embed_id = blip.get('{http://schemas.openxmlformats.org/officeDocument/2006/relationships}embed')
+            if embed_id and embed_id in self.rels:
+                target = self.rels[embed_id]
+                if target.startswith('/'):
+                    zip_path = target.lstrip('/')
+                elif target.startswith('../'):
+                    zip_path = 'word/' + target.replace('../', '')
+                else:
+                    zip_path = 'word/' + target
+                
+                try:
+                    image_bytes = self.zip_ref.read(zip_path)
+                    ext = target.split('.')[-1].lower()
+                    if ext == "jpeg":
+                        ext = "jpg"
+                    
+                    image_counter += 1
+                    local_image_name = f"hint_{image_counter}.{ext}"
+                    local_image_path = os.path.join(IMAGE_DIR, local_image_name)
+                    
+                    with open(local_image_path, 'wb') as img_f:
+                        img_f.write(image_bytes)
+                    
+                    # Resize oversized images to Full HD (max width 1920) if PIL is available
+                    try:
+                        from PIL import Image
+                        im = Image.open(local_image_path)
+                        if max(im.size) > 1920:
+                            ratio = 1920.0 / max(im.size)
+                            new_size = (int(im.size[0] * ratio), int(im.size[1] * ratio))
+                            im_resized = im.resize(new_size, Image.Resampling.LANCZOS)
+                            im_resized.save(local_image_path, optimize=True)
+                    except Exception:
+                        pass
+
+                    extracted_images.append(f"images/action_hints/{local_image_name}")
+                except Exception as e:
+                    print(f"Failed to extract image {embed_id}: {e}")
+        return extracted_images, image_counter
+
 
 def split_east_west_lines(lines):
     processed = []
@@ -142,10 +229,9 @@ def main():
         shutil.rmtree(IMAGE_DIR)
     os.makedirs(IMAGE_DIR, exist_ok=True)
 
-    doc = docx.Document(DOCX_FILE)
-    table = doc.tables[0]
-    R = len(table.rows)
-    C = len(table.columns)
+    reader = BuiltinDocxReader(DOCX_FILE)
+    R = reader.num_rows
+    C = reader.num_cols
     print(f"Opened table with {R} rows, {C} columns.")
 
     action_hints_data = {
@@ -163,14 +249,11 @@ def main():
         'humanities1': [],
         'humanities2': [],
         'fiveContinents1': [],
-        'fiveContinents2': []
+        'fiveContinents2': [],
+        'sixRuiXiang': []
     }
 
-    grid = [[None for _ in range(C)] for _ in range(R)]
-    for r in range(R):
-        for c in range(C):
-            grid[r][c] = table.rows[r].cells[c]._tc
-
+    grid = reader.grid
     visited = [[False for _ in range(C)] for _ in range(R)]
     
     image_counter = 0
@@ -179,8 +262,8 @@ def main():
 
     for r in range(1, R):
         # 1. Resolve current location
-        loc_cell = table.rows[r].cells[0]
-        loc_text = loc_cell.text.strip()
+        loc_tc = grid[r][0]
+        loc_text = reader.get_cell_text(loc_tc)
         if loc_text:
             current_location = loc_text
             
@@ -196,6 +279,8 @@ def main():
                 continue
             
             tc = grid[r][c]
+            if tc is None:
+                continue
             
             # Calculate span to mark visited
             colspan = 1
@@ -211,16 +296,14 @@ def main():
                 for dc in range(colspan):
                     visited[r + dr][c + dc] = True
                     
-            cell = table.rows[r].cells[c]
-            cell_text = cell.text.strip()
+            cell_text = reader.get_cell_text(tc)
             
             # Extract images from this cell
-            cell_images, image_counter = get_images_from_cell(cell, doc, image_counter)
+            cell_images, image_counter = reader.get_cell_images(tc, image_counter)
             
             if not cell_text and not cell_images:
                 continue
                 
-            # Determine target categories based on contents
             # Determine target categories based on contents
             target_cats = []
             if '是諸眾生' in cell_text or '圍爐' in cell_text or '米甕與大魚' in cell_text:
@@ -303,6 +386,7 @@ def main():
                         })
 
     # Inject session YouTube videos into 10-1 and 10-2 items
+    # Note: Updated for 0923 session assignments (11/12:富中之富B, 11/13:富中之富A, 11/14:富中之富B, 11/15:富中之富A)
     VIDEO_INJECTIONS = [
         # Shared (all sessions)
         ('', '開經書', [
@@ -312,7 +396,7 @@ def main():
 
         # 11/12
         ('11/12', '樂生', [('[功德品] 樂生', 'https://www.youtube.com/watch?v=mGhnmtxZrn8&list=PLbIvC-A2H2ko')]),
-        ('11/12', '富中之富', [('[功德品] 富中之富 A', 'https://www.youtube.com/watch?v=m2NvdK1rQpk&list=PLbIvC-A2H2ko')]),
+        ('11/12', '富中之富', [('[功德品] 富中之富 B', 'https://www.youtube.com/watch?v=14EMlfGGBXY&list=PLbIvC-A2H2ko')]),
         ('11/12', '第三功德', [('[功德品] 第三功德‧約旦+土耳其', 'https://www.youtube.com/watch?v=0UcRe5beSzw&list=PLbIvC-A2H2ko')]),
         ('11/12', '約旦', [('[功德品] 張起大愛的風帆‧約旦(法海)', 'https://www.youtube.com/watch?v=MD8To93EY0I&list=PLbIvC-A2H2ko')]),
         ('11/12', '啟航', [('[功德品] 張起大愛的風帆‧約旦(法海)', 'https://www.youtube.com/watch?v=MD8To93EY0I&list=PLbIvC-A2H2ko')]),
@@ -322,7 +406,7 @@ def main():
         ('11/12', '台灣救災', [('[功德品] 第五功德‧台灣救災集錦', 'https://www.youtube.com/watch?v=aNi9Y8qbZp0&list=PLbIvC-A2H2ko')]),
 
         # 11/13
-        ('11/13', '富中之富', [('[功德品] 富中之富 B', 'https://www.youtube.com/watch?v=14EMlfGGBXY&list=PLGafJimf9RDw')]),
+        ('11/13', '富中之富', [('[功德品] 富中之富 A', 'https://www.youtube.com/watch?v=m2NvdK1rQpk&list=PLGafJimf9RDw')]),
         ('11/13', '土耳其', [('[功德品] 第三功德‧約旦+土耳其', 'https://www.youtube.com/watch?v=0UcRe5beSzw&list=PLGafJimf9RDw')]),
         ('11/13', '第八功德', [('[功德品] 第八功德‧非洲', 'https://www.youtube.com/watch?v=vZU-rtMuEoE&list=PLGafJimf9RDw')]),
         ('11/13', '莫三比克', [('[功德品] 第八功德‧非洲', 'https://www.youtube.com/watch?v=vZU-rtMuEoE&list=PLGafJimf9RDw')]),
@@ -338,7 +422,7 @@ def main():
         ]),
 
         # 11/14
-        ('11/14', '富中之富', [('[功德品] 富中之富 A', 'https://www.youtube.com/watch?v=m2NvdK1rQpk&list=PLGRfIGuFCUAQ')]),
+        ('11/14', '富中之富', [('[功德品] 富中之富 B', 'https://www.youtube.com/watch?v=14EMlfGGBXY&list=PLGRfIGuFCUAQ')]),
         ('11/14', '第二功德', [('11/14 [功德品] 第二功德 緬甸米撲滿', 'https://www.youtube.com/watch?v=yeEd_aeAv5k&list=PLGRfIGuFCUAQ')]),
         ('11/14', '緬甸', [('11/14 [功德品] 第二功德 緬甸米撲滿', 'https://www.youtube.com/watch?v=yeEd_aeAv5k&list=PLGRfIGuFCUAQ')]),
         ('11/14', '第七功德', [('[功德品] 第七功德‧莫拉克風災', 'https://www.youtube.com/watch?v=mjPNSTARlmY&list=PLGRfIGuFCUAQ')]),
@@ -352,7 +436,7 @@ def main():
 
         # 11/15
         ('11/15', '樂生', [('[功德品] 樂生', 'https://www.youtube.com/watch?v=mGhnmtxZrn8&list=PLcdQvmBAiLJ0')]),
-        ('11/15', '富中之富', [('[功德品] 富中之富 B', 'https://www.youtube.com/watch?v=14EMlfGGBXY&list=PLcdQvmBAiLJ0')]),
+        ('11/15', '富中之富', [('[功德品] 富中之富 A', 'https://www.youtube.com/watch?v=m2NvdK1rQpk&list=PLcdQvmBAiLJ0')]),
         ('11/15', '九二一', [('[功德品] 第九功德‧921地震', 'https://www.youtube.com/watch?v=hUpDtkqTQNM&list=PLcdQvmBAiLJ0')]),
         ('11/15', '化城喻', [('[化城喻故事] 921地湧菩薩', 'https://www.youtube.com/watch?v=06ylKzGmhdQ')]),
         ('11/15', '減災工程', [('[功德品] 大愛為樑(減災希望工程)', 'https://www.youtube.com/watch?v=Qu7wLnDXivU&list=PLcdQvmBAiLJ0')]),
