@@ -120,8 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
     { key: 'edu', label: '08教育' },
     { key: 'humanities1', label: '09-1人文(基本)' },
     { key: 'humanities2', label: '09-2主機板' },
-    { key: 'fiveContinents2', label: '10-2五大洲' },
-    { key: 'fiveContinents1', label: '10-1五大洲(台灣)' },
+    { key: 'fiveContinents2', label: '10-1五大洲' },
+    { key: 'fiveContinents1', label: '10-2五大洲(台灣)' },
     { key: 'sixRuiXiang', label: '12-1六瑞相' }
   ];
 
@@ -147,17 +147,17 @@ document.addEventListener('DOMContentLoaded', () => {
     { key: 'edu', name: '08教育', label: '教育' },
     { key: 'humanities1', name: '09-1人文(基本隊形)', label: '人文(基本)' },
     { key: 'humanities2', name: '09-2人文(主機板)', label: '人文(主機板)' },
-    { key: 'fiveContinents2', name: '10-2五大洲', label: '五大洲' },
-    { key: 'fiveContinents1', name: '10-1五大洲(台灣)', label: '五大洲(台灣)' },
+    { key: 'fiveContinents2', name: '10-1五大洲', label: '五大洲' },
+    { key: 'fiveContinents1', name: '10-2五大洲(台灣)', label: '五大洲(台灣)' },
     { key: 'sixRuiXiang', name: '12-1六瑞相', label: '發願/行星/祈禱' }
   ];
 
-  // 各場次五大洲定位點穿插子步驟定義（依據 0909 官方動作提示與各場次演出時間軸）
+  // 各場次五大洲定位點穿插子步驟定義（依據最新動作提示與定位點參考演出時間軸）
   const FIVE_CONTINENTS_SESSION_STEPS = {
     '1112': [
       {
         key: 'fiveContinents2',
-        name: '10-2五大洲 (樂生/富中之富)',
+        name: '10-1五大洲 (樂生/富中之富)',
         label: '五洲(樂生/富)',
         itemFilter: (item) => {
           const t = item.title || '';
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       {
         key: 'fiveContinents1',
-        name: '10-1五大洲(台灣) (開經書)',
+        name: '10-2五大洲(台灣) (開經書)',
         label: '五洲(開經書)',
         itemFilter: (item) => {
           const t = item.title || '';
@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       {
         key: 'fiveContinents2',
-        name: '10-2五大洲 (黑區/約旦啟航)',
+        name: '10-3五大洲 (黑區/約旦啟航)',
         label: '五洲(黑區/約旦)',
         itemFilter: (item) => {
           const t = item.title || '';
@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       {
         key: 'fiveContinents1',
-        name: '10-1五大洲(台灣) (台灣救災 第五功德/衣珠喻)',
+        name: '10-4五大洲(台灣) (台灣救災 第五功德/衣珠喻)',
         label: '五洲(台灣救災)',
         itemFilter: (item) => {
           const t = item.title || '';
@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
     '1113': [
       {
         key: 'fiveContinents2',
-        name: '10-2五大洲 (富中之富)',
+        name: '10-1五大洲 (富中之富)',
         label: '五洲(富中之富)',
         itemFilter: (item) => {
           const t = item.title || '';
@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       {
         key: 'fiveContinents1',
-        name: '10-1五大洲(台灣) (開經書)',
+        name: '10-2五大洲(台灣) (開經書)',
         label: '五洲(開經書)',
         itemFilter: (item) => {
           const t = item.title || '';
@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       {
         key: 'fiveContinents2',
-        name: '10-2五大洲 (土耳其/莫三比克/印尼)',
+        name: '10-3五大洲 (土耳其/莫三比克/印尼)',
         label: '五洲(各國)',
         itemFilter: (item) => {
           const t = item.title || '';
@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
     '1114': [
       {
         key: 'fiveContinents2',
-        name: '10-2五大洲 (富中之富)',
+        name: '10-1五大洲 (富中之富)',
         label: '五洲(富中之富)',
         itemFilter: (item) => {
           const t = item.title || '';
@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       {
         key: 'fiveContinents1',
-        name: '10-1五大洲(台灣) (開經書)',
+        name: '10-2五大洲(台灣) (開經書)',
         label: '五洲(開經書)',
         itemFilter: (item) => {
           const t = item.title || '';
@@ -242,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       {
         key: 'fiveContinents2',
-        name: '10-2五大洲 (緬甸/八八風災/泰北/辛巴威)',
+        name: '10-3五大洲 (緬甸/八八風災/泰北/辛巴威)',
         label: '五洲(各國)',
         itemFilter: (item) => {
           const t = item.title || '';
@@ -253,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
     '1115': [
       {
         key: 'fiveContinents2',
-        name: '10-2五大洲 (樂生/富中之富)',
+        name: '10-1五大洲 (樂生/富中之富)',
         label: '五洲(樂生/富)',
         itemFilter: (item) => {
           const t = item.title || '';
@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       {
         key: 'fiveContinents1',
-        name: '10-1五大洲(台灣) (開經書/九二一 第九功德)',
+        name: '10-2五大洲(台灣) (開經書/九二一 第九功德)',
         label: '五洲(開經/921)',
         itemFilter: (item) => {
           const t = item.title || '';
@@ -271,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       {
         key: 'fiveContinents2',
-        name: '10-2五大洲 (化城喻/減災/導師/第十功德)',
+        name: '10-5五大洲 (化城喻/減災/導師/第十功德)',
         label: '五洲(化城/佛國)',
         itemFilter: (item) => {
           const t = item.title || '';
@@ -712,21 +712,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const f15 = formations.find(f => f.key === 'fiveContinents1');
     if (f15) {
-      f15.name = '10-1五大洲(台灣)';
+      f15.name = '10-2五大洲(台灣)';
       f15.label = '五大洲(台灣)';
       const titleFiveContinentsEl = document.getElementById('title-fiveContinents1');
       if (titleFiveContinentsEl) {
-        titleFiveContinentsEl.textContent = '10-1五大洲(台灣)';
+        titleFiveContinentsEl.textContent = '10-2五大洲(台灣)';
       }
     }
 
     const f16 = formations.find(f => f.key === 'fiveContinents2');
     if (f16) {
-      f16.name = '10-2五大洲';
+      f16.name = '10-1五大洲';
       f16.label = '五大洲';
       const titleFiveContinents2El = document.getElementById('title-fiveContinents2');
       if (titleFiveContinents2El) {
-        titleFiveContinents2El.textContent = '10-2五大洲';
+        titleFiveContinents2El.textContent = '10-1五大洲';
       }
     }
   }
@@ -4312,7 +4312,7 @@ document.addEventListener('DOMContentLoaded', () => {
     boneDonation: '骨捐 (能捨)',
     edu: '教育 (說法品/藥草喻)',
     humanities1: '人文 (父母恩/跪羊圖)',
-    humanities2: '主機板 (慈誠/天空/做環保/代謝/大愛亮起來)',
+    humanities2: '主機板 (天空破了洞/做環保/代謝不住/大愛亮起來)',
     fiveContinents1: '五洲 (台灣)',
     fiveContinents2: '五洲',
     sixRuiXiang: '六瑞相 (發願/行星/祈禱)'
