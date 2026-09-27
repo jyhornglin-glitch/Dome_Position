@@ -584,7 +584,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function getCardHintsForPerformer(performer, key) {
-    if (key === 'sixRuiXiang') return [];
     const hintKey = getActionHintKey(key);
     let rawData = (typeof CARD_HINTS_DATA !== 'undefined' && CARD_HINTS_DATA[hintKey]) || [];
     rawData = filterHintsBySession(rawData);
