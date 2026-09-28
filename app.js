@@ -4508,7 +4508,8 @@ document.addEventListener('DOMContentLoaded', () => {
           { name: '功7八八風災', lamp: '綠', displayType: 'fiveContinents2' },
           { name: '功4泰北', lamp: '黃', displayType: 'fiveContinents2' },
           { name: '功8辛巴威', lamp: '綠', displayType: 'fiveContinents2' },
-          { name: '生生世世', lamp: '黃', displayType: 'fiveContinents2' }
+          { name: '生生世世', lamp: '黃', displayType: 'fiveContinents2' },
+          { name: '髻珠喻', lamp: '綠', displayType: 'fiveContinents2' }
         ]
       }
     ]
@@ -4538,7 +4539,8 @@ document.addEventListener('DOMContentLoaded', () => {
       { name: '功7八八風災', lamp: '綠', displayType: 'fiveContinents2' },
       { name: '功4泰北', lamp: '黃', displayType: 'fiveContinents2' },
       { name: '功8辛巴威', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '生生世世', lamp: '黃', displayType: 'fiveContinents2' }
+      { name: '生生世世', lamp: '黃', displayType: 'fiveContinents2' },
+      { name: '髻珠喻', lamp: '綠', displayType: 'fiveContinents2' }
     ],
     '1115': [
       { name: '樂生', lamp: '', displayType: 'fiveContinents2' },

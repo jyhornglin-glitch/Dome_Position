@@ -774,17 +774,17 @@ const FACING_HINTS_DATA = [
   },
   {
     section: '10 五大洲',
-    title: '【辛巴威-髻珠喻】',
+    title: '【辛巴威-生生世世】',
     cue: '—',
-    facing: '面法師45度',
+    facing: '面甲舞臺45度',
     sessions: ['1114'],
     roles: ['all']
   },
   {
     section: '10 五大洲',
-    title: '【辛巴威-生生世世】',
+    title: '【辛巴威-髻珠喻】',
     cue: '—',
-    facing: '面甲舞臺45度',
+    facing: '面法師45度',
     sessions: ['1114'],
     roles: ['all']
   },
