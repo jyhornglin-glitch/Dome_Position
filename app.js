@@ -4292,29 +4292,29 @@ document.addEventListener('DOMContentLoaded', () => {
     sixRuiXiang: '黃'
   };
 
-  // 各步驟定位小卡名稱 (全面二字顯示，支援按日期場次動態對照)
+  // 各步驟定位小卡名稱 (主名稱 + 括號曲目全面二字顯示，支援按日期場次動態對照)
   const STEP_CARD_NAMES = {
-    basic: '基本',
-    circle: '圓形',
-    xingYuan: '行願',
-    miLuo: '米籮',
-    jingSi: '靜思',
-    lamp: '有船',
-    noBoat: '無船',
+    basic: '基本 (隊形)',
+    circle: '圓 (序曲/生死/六度)',
+    xingYuan: '行願 (開經)',
+    miLuo: '米籮 (天下)',
+    jingSi: '靜思 (家風)',
+    lamp: '有船 (點燈)',
+    noBoat: '無船 (五毛)',
     noBoat3: {
-      '1112': '圍爐',
-      '1114': '圍爐',
-      'default': '米甕'
+      '1112': '無船3 (圍爐)',
+      '1114': '無船3 (圍爐)',
+      'default': '有船 (米甕)'
     },
-    bigV: '四弘',
-    daChuanShi: '船師',
-    boneDonation: '骨捐',
-    edu: '教育',
-    humanities1: '人文',
-    humanities2: '主板',
+    bigV: '四弘 (地藏/誓願)',
+    daChuanShi: '船師 (醫王)',
+    boneDonation: '骨捐 (能捨)',
+    edu: '教育 (說法/藥草)',
+    humanities1: '人文 (慈誠/父母)',
+    humanities2: '主機板 (天空/環保/代謝/大愛)',
     fiveContinents1: '台灣',
     fiveContinents2: '五洲',
-    sixRuiXiang: '六瑞'
+    sixRuiXiang: '六瑞相 (發願/行星/祈禱)'
   };
 
   function getCardStepName(key, sessionKey = selectedSessionKey) {
