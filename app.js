@@ -4292,29 +4292,29 @@ document.addEventListener('DOMContentLoaded', () => {
     sixRuiXiang: '黃'
   };
 
-  // 根據 0909小卡關鍵字提示.docx 整理的各步驟定位小卡名稱 (支援按日期場次動態對照，包含括號曲目名稱)
+  // 各步驟定位小卡名稱 (全面二字顯示，支援按日期場次動態對照)
   const STEP_CARD_NAMES = {
-    basic: '基本 (基本隊形)',
-    circle: '圓 (序/生老病死/六度)',
-    xingYuan: '行願 (開經偈)',
-    miLuo: '米籮 (扛天下米籮)',
-    jingSi: '靜思 (靜思家風)',
-    lamp: '有船 (點一盞燈)',
-    noBoat: '無船 (菜市場5毛錢)',
+    basic: '基本',
+    circle: '圓形',
+    xingYuan: '行願',
+    miLuo: '米籮',
+    jingSi: '靜思',
+    lamp: '有船',
+    noBoat: '無船',
     noBoat3: {
-      '1112': '無船3 (圍爐)',
-      '1114': '無船3 (圍爐)',
-      'default': '有船 (米甕大魚)'
+      '1112': '圍爐',
+      '1114': '圍爐',
+      'default': '米甕'
     },
-    bigV: '四弘Ｖ (地藏/誓願)',
-    daChuanShi: '船師 (大醫王)',
-    boneDonation: '骨捐 (能捨)',
-    edu: '教育 (說法品/藥草喻)',
-    humanities1: '人文 (父母恩/跪羊圖)',
-    humanities2: '主機板 (天空破了洞/做環保/代謝不住/大愛亮起來)',
-    fiveContinents1: '五洲 (台灣)',
+    bigV: '四弘',
+    daChuanShi: '船師',
+    boneDonation: '骨捐',
+    edu: '教育',
+    humanities1: '人文',
+    humanities2: '主板',
+    fiveContinents1: '台灣',
     fiveContinents2: '五洲',
-    sixRuiXiang: '六瑞相 (發願/行星/祈禱)'
+    sixRuiXiang: '六瑞'
   };
 
   function getCardStepName(key, sessionKey = selectedSessionKey) {
@@ -4378,7 +4378,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return Promise.all(promises);
   }
 
-  // 功德品 各場次演繹段落（五大洲演出階段定義，跨座標跑位演繹者分割為 4 格）
+  // 功德品 各場次演繹段落（五大洲演出階段定義，跨座標跑位演繹者分割為 4 格，曲目全面二字）
   const FIVE_CONTINENTS_SECTIONS = {
     '1115': [
       {
@@ -4387,7 +4387,7 @@ document.addEventListener('DOMContentLoaded', () => {
         primaryIdx: 14,
         items: [
           { name: '樂生', lamp: '', displayType: 'fiveContinents2' },
-          { name: '富中之富', lamp: '綠', displayType: 'fiveContinents2' }
+          { name: '富Ａ', lamp: '綠', displayType: 'fiveContinents2' }
         ]
       },
       {
@@ -4395,7 +4395,7 @@ document.addEventListener('DOMContentLoaded', () => {
         coordKey: 'fiveContinents1',
         primaryIdx: 15,
         items: [
-          { name: '開經書', lamp: '綠', displayType: 'fiveContinents1' }
+          { name: '開經', lamp: '綠', displayType: 'fiveContinents1' }
         ]
       },
       {
@@ -4403,7 +4403,7 @@ document.addEventListener('DOMContentLoaded', () => {
         coordKey: 'fiveContinents1',
         primaryIdx: 15,
         items: [
-          { name: '功9 921', lamp: '綠', displayType: 'fiveContinents1' }
+          { name: '九二', lamp: '綠', displayType: 'fiveContinents1' }
         ]
       },
       {
@@ -4411,10 +4411,10 @@ document.addEventListener('DOMContentLoaded', () => {
         coordKey: 'fiveContinents2',
         primaryIdx: 14,
         items: [
-          { name: '九二一化城', lamp: '', displayType: 'fiveContinents2' },
-          { name: '減災工程', lamp: '綠', displayType: 'fiveContinents2' },
-          { name: '佛國仰師', lamp: '綠', displayType: 'fiveContinents2' },
-          { name: '功10飛天', lamp: '黃', displayType: 'fiveContinents2' }
+          { name: '化城', lamp: '', displayType: 'fiveContinents2' },
+          { name: '減災', lamp: '綠', displayType: 'fiveContinents2' },
+          { name: '佛國', lamp: '綠', displayType: 'fiveContinents2' },
+          { name: '飛天', lamp: '黃', displayType: 'fiveContinents2' }
         ]
       }
     ],
@@ -4425,7 +4425,7 @@ document.addEventListener('DOMContentLoaded', () => {
         primaryIdx: 14,
         items: [
           { name: '樂生', lamp: '', displayType: 'fiveContinents2' },
-          { name: '富中之富', lamp: '綠', displayType: 'fiveContinents2' }
+          { name: '富Ｂ', lamp: '綠', displayType: 'fiveContinents2' }
         ]
       },
       {
@@ -4433,7 +4433,7 @@ document.addEventListener('DOMContentLoaded', () => {
         coordKey: 'fiveContinents1',
         primaryIdx: 15,
         items: [
-          { name: '開經書', lamp: '綠', displayType: 'fiveContinents1' }
+          { name: '開經', lamp: '綠', displayType: 'fiveContinents1' }
         ]
       },
       {
@@ -4441,8 +4441,8 @@ document.addEventListener('DOMContentLoaded', () => {
         coordKey: 'fiveContinents2',
         primaryIdx: 14,
         items: [
-          { name: '黑區亮區', lamp: '綠', displayType: 'fiveContinents2' },
-          { name: '約旦啟航', lamp: '綠', displayType: 'fiveContinents2' }
+          { name: '黑亮', lamp: '綠', displayType: 'fiveContinents2' },
+          { name: '約旦', lamp: '綠', displayType: 'fiveContinents2' }
         ]
       },
       {
@@ -4450,7 +4450,7 @@ document.addEventListener('DOMContentLoaded', () => {
         coordKey: 'fiveContinents1',
         primaryIdx: 15,
         items: [
-          { name: '台灣救災', lamp: '綠', displayType: 'fiveContinents1' }
+          { name: '救災', lamp: '綠', displayType: 'fiveContinents1' }
         ]
       }
     ],
@@ -4460,7 +4460,7 @@ document.addEventListener('DOMContentLoaded', () => {
         coordKey: 'fiveContinents2',
         primaryIdx: 14,
         items: [
-          { name: '富中之富', lamp: '綠', displayType: 'fiveContinents2' }
+          { name: '富Ａ', lamp: '綠', displayType: 'fiveContinents2' }
         ]
       },
       {
@@ -4468,7 +4468,7 @@ document.addEventListener('DOMContentLoaded', () => {
         coordKey: 'fiveContinents1',
         primaryIdx: 15,
         items: [
-          { name: '開經書', lamp: '綠', displayType: 'fiveContinents1' }
+          { name: '開經', lamp: '綠', displayType: 'fiveContinents1' }
         ]
       },
       {
@@ -4476,9 +4476,9 @@ document.addEventListener('DOMContentLoaded', () => {
         coordKey: 'fiveContinents2',
         primaryIdx: 14,
         items: [
-          { name: '功3土耳其', lamp: '綠', displayType: 'fiveContinents2' },
-          { name: '功8莫三比克', lamp: '綠', displayType: 'fiveContinents2' },
-          { name: '功9印尼', lamp: '黃', displayType: 'fiveContinents2' }
+          { name: '土國', lamp: '綠', displayType: 'fiveContinents2' },
+          { name: '莫三', lamp: '綠', displayType: 'fiveContinents2' },
+          { name: '印尼', lamp: '黃', displayType: 'fiveContinents2' }
         ]
       }
     ],
@@ -4488,7 +4488,7 @@ document.addEventListener('DOMContentLoaded', () => {
         coordKey: 'fiveContinents2',
         primaryIdx: 14,
         items: [
-          { name: '富中之富', lamp: '綠', displayType: 'fiveContinents2' }
+          { name: '富Ｂ', lamp: '綠', displayType: 'fiveContinents2' }
         ]
       },
       {
@@ -4496,7 +4496,7 @@ document.addEventListener('DOMContentLoaded', () => {
         coordKey: 'fiveContinents1',
         primaryIdx: 15,
         items: [
-          { name: '開經書', lamp: '綠', displayType: 'fiveContinents1' }
+          { name: '開經', lamp: '綠', displayType: 'fiveContinents1' }
         ]
       },
       {
@@ -4504,53 +4504,53 @@ document.addEventListener('DOMContentLoaded', () => {
         coordKey: 'fiveContinents2',
         primaryIdx: 14,
         items: [
-          { name: '功2緬甸', lamp: '綠', displayType: 'fiveContinents2' },
-          { name: '功7八八風災', lamp: '綠', displayType: 'fiveContinents2' },
-          { name: '功4泰北', lamp: '黃', displayType: 'fiveContinents2' },
-          { name: '功8辛巴威', lamp: '綠', displayType: 'fiveContinents2' },
-          { name: '生生世世', lamp: '黃', displayType: 'fiveContinents2' },
-          { name: '髻珠喻', lamp: '綠', displayType: 'fiveContinents2' }
+          { name: '緬甸', lamp: '綠', displayType: 'fiveContinents2' },
+          { name: '八八', lamp: '綠', displayType: 'fiveContinents2' },
+          { name: '泰北', lamp: '黃', displayType: 'fiveContinents2' },
+          { name: '辛巴', lamp: '綠', displayType: 'fiveContinents2' },
+          { name: '生世', lamp: '黃', displayType: 'fiveContinents2' },
+          { name: '髻珠', lamp: '綠', displayType: 'fiveContinents2' }
         ]
       }
     ]
   };
 
-  // 功德品 各場次演繹段落（五大洲子步驟名稱與燈號對照表，依據 0909小卡關鍵字提示.docx 與 動作提示0909.docx 演繹時間軸順序）
+  // 功德品 各場次演繹段落（五大洲子步驟名稱與燈號對照表，曲目全面二字）
   const FIVE_CONTINENTS_SUB_STEPS = {
     '1112': [
       { name: '樂生', lamp: '', displayType: 'fiveContinents2' },
-      { name: '富中之富', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '開經書', lamp: '綠', displayType: 'fiveContinents1' },
-      { name: '黑區亮區', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '約旦啟航', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '台灣救災', lamp: '綠', displayType: 'fiveContinents1' }
+      { name: '富Ｂ', lamp: '綠', displayType: 'fiveContinents2' },
+      { name: '開經', lamp: '綠', displayType: 'fiveContinents1' },
+      { name: '黑亮', lamp: '綠', displayType: 'fiveContinents2' },
+      { name: '約旦', lamp: '綠', displayType: 'fiveContinents2' },
+      { name: '救災', lamp: '綠', displayType: 'fiveContinents1' }
     ],
     '1113': [
-      { name: '富中之富', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '開經書', lamp: '綠', displayType: 'fiveContinents1' },
-      { name: '功3土耳其', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '功8莫三比克', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '功9印尼', lamp: '黃', displayType: 'fiveContinents2' }
+      { name: '富Ａ', lamp: '綠', displayType: 'fiveContinents2' },
+      { name: '開經', lamp: '綠', displayType: 'fiveContinents1' },
+      { name: '土國', lamp: '綠', displayType: 'fiveContinents2' },
+      { name: '莫三', lamp: '綠', displayType: 'fiveContinents2' },
+      { name: '印尼', lamp: '黃', displayType: 'fiveContinents2' }
     ],
     '1114': [
-      { name: '富中之富', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '開經書', lamp: '綠', displayType: 'fiveContinents1' },
-      { name: '功2緬甸', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '功7八八風災', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '功4泰北', lamp: '黃', displayType: 'fiveContinents2' },
-      { name: '功8辛巴威', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '生生世世', lamp: '黃', displayType: 'fiveContinents2' },
-      { name: '髻珠喻', lamp: '綠', displayType: 'fiveContinents2' }
+      { name: '富Ｂ', lamp: '綠', displayType: 'fiveContinents2' },
+      { name: '開經', lamp: '綠', displayType: 'fiveContinents1' },
+      { name: '緬甸', lamp: '綠', displayType: 'fiveContinents2' },
+      { name: '八八', lamp: '綠', displayType: 'fiveContinents2' },
+      { name: '泰北', lamp: '黃', displayType: 'fiveContinents2' },
+      { name: '辛巴', lamp: '綠', displayType: 'fiveContinents2' },
+      { name: '生世', lamp: '黃', displayType: 'fiveContinents2' },
+      { name: '髻珠', lamp: '綠', displayType: 'fiveContinents2' }
     ],
     '1115': [
       { name: '樂生', lamp: '', displayType: 'fiveContinents2' },
-      { name: '富中之富', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '開經書', lamp: '綠', displayType: 'fiveContinents1' },
-      { name: '功9 921', lamp: '綠', displayType: 'fiveContinents1' },
-      { name: '九二一化城', lamp: '', displayType: 'fiveContinents2' },
-      { name: '減災工程', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '佛國仰師', lamp: '綠', displayType: 'fiveContinents2' },
-      { name: '功10飛天', lamp: '黃', displayType: 'fiveContinents2' }
+      { name: '富Ａ', lamp: '綠', displayType: 'fiveContinents2' },
+      { name: '開經', lamp: '綠', displayType: 'fiveContinents1' },
+      { name: '九二', lamp: '綠', displayType: 'fiveContinents1' },
+      { name: '化城', lamp: '', displayType: 'fiveContinents2' },
+      { name: '減災', lamp: '綠', displayType: 'fiveContinents2' },
+      { name: '佛國', lamp: '綠', displayType: 'fiveContinents2' },
+      { name: '飛天', lamp: '黃', displayType: 'fiveContinents2' }
     ]
   };
 
