@@ -17,6 +17,8 @@ echo ""
 echo "📤 [1/2] 推送至 GitHub..."
 cd "$SRC"
 git add -A
+# 嚴格排除指定資料檔案不予同步覆蓋至遠端
+git reset -- data.js daydata.js performers.csv dayperformers.csv 2>/dev/null || true
 git commit -m "$MSG" 2>/dev/null || echo "  （無新變更，略過 commit）"
 git push origin main
 echo "  ✅ GitHub 推送完成"

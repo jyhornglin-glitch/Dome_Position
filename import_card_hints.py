@@ -13,10 +13,14 @@ import re
 import zipfile
 import xml.etree.ElementTree as ET
 
-DOCX_CARD = "0909小卡關鍵字提示.docx" if os.path.exists("0909小卡關鍵字提示.docx") else "小卡關鍵字提示.docx"
-DOCX_ACTION = "動作提示0923.docx" if os.path.exists("動作提示0923.docx") else (
-    "動作提示0916.docx" if os.path.exists("動作提示0916.docx") else (
-        "動作提示0909.docx" if os.path.exists("動作提示0909.docx") else "動作提示.docx"
+DOCX_CARD = "1007小卡關鍵字提示.docx" if os.path.exists("1007小卡關鍵字提示.docx") else (
+    "0909小卡關鍵字提示.docx" if os.path.exists("0909小卡關鍵字提示.docx") else "小卡關鍵字提示.docx"
+)
+DOCX_ACTION = "動作提示1007.docx" if os.path.exists("動作提示1007.docx") else (
+    "動作提示0923.docx" if os.path.exists("動作提示0923.docx") else (
+        "動作提示0916.docx" if os.path.exists("動作提示0916.docx") else (
+            "動作提示0909.docx" if os.path.exists("動作提示0909.docx") else "動作提示.docx"
+        )
     )
 )
 OUTPUT_JS = "card_hints_data.js"
@@ -66,21 +70,22 @@ CATEGORY_MAPPING = {
     # Humanities 2 (人文 09-2 / 10-2)
     '09-2人文': 'humanities2',
     '10-2人文': 'humanities2',
-    # Five Continents 1 (五大洲 10-1 / 10-4 台灣段)
-    '10-1五大洲': 'fiveContinents1',
+    # Five Continents 1 (五大洲 10-2開經書 / 10-4台灣救災/921第九功德)
     '10-1五大洲(台灣)': 'fiveContinents1',
     '10-2五大洲(台灣)': 'fiveContinents1',
     '10-4五大洲(台灣)': 'fiveContinents1',
     '11-1五大洲': 'fiveContinents1',
     '11-1五大洲(台灣)': 'fiveContinents1',
     '五大洲(台灣)': 'fiveContinents1',
-    # Five Continents 2 (五大洲 10-2 / 10-3 / 10-5 各國/化城/佛國段)
+    # Five Continents 2 (五大洲 10-1樂生/富中之富, 10-3各國, 10-5化城/佛國)
+    '10-1五大洲': 'fiveContinents2',
     '10-2五大洲': 'fiveContinents2',
     '10-3五大洲': 'fiveContinents2',
     '10-5五大洲': 'fiveContinents2',
     '11-2五大洲': 'fiveContinents2',
     '五大洲': 'fiveContinents2',
-    # Six Rui Xiang (六瑞相 12-1)
+    # Six Rui Xiang (六瑞相 11 / 12-1)
+    '11六瑞相': 'sixRuiXiang',
     '12-1六瑞相': 'sixRuiXiang',
     '六瑞相': 'sixRuiXiang',
     # Flying Apsaras (飛天 11 / 12)
@@ -184,7 +189,7 @@ def build_card_hints():
                 current_date_prefix = inline_date_match.group(1) + "："
                 text = inline_date_match.group(2).strip()
 
-            match = re.match(r'^【([^】]+)】(.*)', text)
+            match = re.match(r'^(?:\d+[\.、\s]*)?【([^】]+)】(.*)', text)
             if match:
                 title_label = match.group(1).strip()
                 extra_text = match.group(2).strip()
@@ -284,7 +289,7 @@ def build_card_hints():
 
     if zim_8 and zim_ji and zim_sheng:
         # Refine Zimbabwe Sheng Sheng Shi Shi
-        zim_sheng['title'] = '11/14：【辛巴威-生生世世都在菩提中】 面甲舞臺45度'
+        zim_sheng['title'] = '11/14：【辛巴威-生生世世都在菩提中】 面向非洲陸地中心'
         zim_sheng['details'] = [
             {"type": "text", "content": "OS: 現在新冠疫情...熱食不能停(開黃燈合十)!慈善不能停!"},
             {"type": "text", "content": "我衷心發願!往生之後要埋在辛巴威，五生五世都要出生在這裡翻轉貧窮"},
@@ -322,7 +327,7 @@ def build_card_hints():
             ]
         elif '11/15：【九二一-第九功德】' in t:
             item['details'] = [
-                {"type": "text", "content": "面觀眾45度"},
+                {"type": "text", "content": "面乙舞臺圓心45度"},
                 {"type": "text", "content": "OS: 上人，臺北的東星大樓倒塌了"}
             ]
 
@@ -338,7 +343,7 @@ def build_card_hints():
             item['title'] = '11/15：【減災工程-許一個希望的未來】'
             item['details'] = [
                 {"type": "text", "content": "OS: 感恩慈濟援建的減災工程，像這次的0403花蓮地震，就帶來了平安與希望"},
-                {"type": "text", "content": "動作要領：藍衣蹲下雙肩扛、白衣出右腳往正前、身體轉左、右手拿花"},
+                {"type": "text", "content": "動作要領：白衣os「感恩」慈濟援建…從甲舞臺轉背向陸地中心；藍衣觀眾45度"},
                 {"type": "text", "content": "大愛為樑 智慧為牆 一念善心 帶來無限希望"}
             ]
         elif '11/15：【佛國-仰師德範】' in t or '11/15：【佛國-人間導師】' in t:
@@ -346,10 +351,10 @@ def build_card_hints():
             item['details'] = [
                 {"type": "text", "content": "一開始演”賤民村”時面向甲舞台45度"},
                 {"type": "text", "content": "OS: 讓正法(全體合掌轉向法師45)重回佛陀的故鄉，教導人人行菩薩道，完成佛陀救度眾生的心願，這就是回報佛恩(白轉背向陸地中心)"},
-                {"type": "text", "content": "藍衣：面法師45度；白衣：背向圓心"}
+                {"type": "text", "content": "藍衣：「讓正法」回歸→面法師45度；白衣：「讓正法」回歸→面法師45度，這就是「回報佛恩」→背向圓心"}
             ]
 
-    # (E) Add 12-1 六瑞相 (sixRuiXiang)
+    # (E) Add 11 六瑞相 (sixRuiXiang)
     action_hints_data['sixRuiXiang'] = [
         {
             "title": "【六瑞相】 面甲舞台腳夾線",
@@ -362,7 +367,10 @@ def build_card_hints():
         {
             "title": "【發心立願（行願半世紀）】 面法師腳夾線",
             "details": [
-                {"type": "text", "content": "~~ 咚~~(合掌內轉面向法師腳夾線)~~ 咚~~佛心師志~~ 咚咚... (手放小跑步到自己地標面向法師腳夾線)"},
+                {"type": "text", "content": "~~ 咚~~(合掌內轉面向甲舞台/法師腳夾線)"},
+                {"type": "text", "content": "~~ 咚~~佛心師志"},
+                {"type": "text", "content": "~~ 咚咚咚咚咚咚咚咚咚咚咚咚咚咚咚~~(手放小跑步到自己地標面向法師/甲舞台腳夾線)"},
+                {"type": "text", "content": "~~ 噹 ~~(合掌內轉面向法師腳夾線)"},
                 {"type": "text", "content": "體悟佛心(即為己心=人傷我痛) 領受師志(奉為己志=守護生命)"},
                 {"type": "text", "content": "生生世世(誓為佛教=扎根教育) 心心念念(誠為眾生=人文傳法)"},
                 {"type": "text", "content": "生生世世誓為佛教 心心念念誠為眾生 ~ 咚咚咚咚~ 願佛法興顯弘大乘 菩薩廣行無量義(收手收腳)"}

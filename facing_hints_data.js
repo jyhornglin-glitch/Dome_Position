@@ -17,7 +17,7 @@ const FACING_HINTS_DATA = [
     section: '01 圓形',
     title: '【序】',
     cue: '巴利文唱頌無量義經',
-    facing: '面甲舞臺圓弧線 (合掌拿燈，不開燈)',
+    facing: '面甲舞臺圓弧線 (轉腳夾線，合掌拿燈，不開燈)',
     sessions: ['1112', '1113', '1114', '1115'],
     roles: ['all']
   },
@@ -118,6 +118,14 @@ const FACING_HINTS_DATA = [
     facingWhite: '左轉 (兩腳夾線)',
     sessions: ['1112', '1113', '1114', '1115'],
     roles: ['color']
+  },
+  {
+    section: '01 圓形',
+    title: '【靈鷲山上】',
+    cue: '—',
+    facing: '面乙舞臺圓心 (腳尖對線，坐跪聽法)',
+    sessions: ['1112', '1113', '1114', '1115'],
+    roles: ['all']
   },
 
   // --- 02 行願 ---
@@ -313,6 +321,82 @@ const FACING_HINTS_DATA = [
     facingBigVOut: '面乙舞臺 (站立)',
     sessions: ['1112', '1113', '1114', '1115'],
     roles: ['vFormation']
+  },
+  // 11/12 醫療專屬
+  {
+    section: '06 四弘誓願',
+    title: '【大埔無醫村】',
+    cue: '起始',
+    facing: '站大小V朝甲舞臺45度看演出',
+    sessions: ['1112'],
+    roles: ['all']
+  },
+  {
+    section: '06 四弘誓願',
+    title: '【大埔無醫村】',
+    cue: '您在陌生的國度裡',
+    facing: '開始大聲唱且回復兩腳頂線',
+    sessions: ['1112'],
+    roles: ['all']
+  },
+  // 11/13 醫療專屬
+  {
+    section: '06 四弘誓願',
+    title: '【北慈.疫情捨我其誰】',
+    cue: '起始',
+    facing: '面中央走道腳頂線',
+    sessions: ['1113'],
+    roles: ['all']
+  },
+  {
+    section: '06 四弘誓願',
+    title: '【北慈.疫情捨我其誰】',
+    cue: '「照顧」確診病患',
+    facing: '轉法師腳夾線',
+    sessions: ['1113'],
+    roles: ['all']
+  },
+  {
+    section: '06 四弘誓願',
+    title: '【花慈.連體嬰】',
+    cue: '—',
+    facing: '面中央走道腳頂線',
+    sessions: ['1113'],
+    roles: ['all']
+  },
+  // 11/14 醫療專屬
+  {
+    section: '06 四弘誓願',
+    title: '【中慈.江永旭】',
+    cue: '起始',
+    facing: '站適當方向看演出',
+    sessions: ['1114'],
+    roles: ['all']
+  },
+  {
+    section: '06 四弘誓願',
+    title: '【中慈.江永旭】',
+    cue: 'OS：「永旭的世界」不再是天花板',
+    facing: '回復兩腳頂線',
+    sessions: ['1114'],
+    roles: ['all']
+  },
+  // 11/15 醫療專屬
+  {
+    section: '06 四弘誓願',
+    title: '【北慈.八仙塵爆】',
+    cue: '起始',
+    facing: '站適當方向看演出',
+    sessions: ['1115'],
+    roles: ['all']
+  },
+  {
+    section: '06 四弘誓願',
+    title: '【北慈.八仙塵爆】',
+    cue: '唐文華老師：一個都不能少',
+    facing: '轉向甲舞台腳夾線',
+    sessions: ['1115'],
+    roles: ['all']
   },
 
   // --- 07-1 大船師 ---
@@ -602,7 +686,7 @@ const FACING_HINTS_DATA = [
     section: '10 五大洲',
     title: '【黑區變亮區-第六功德】',
     cue: '—',
-    facing: '面觀眾45度',
+    facing: '面甲舞台45度',
     sessions: ['1112'],
     roles: ['all']
   },
@@ -618,7 +702,7 @@ const FACING_HINTS_DATA = [
     section: '10 五大洲',
     title: '【約旦-第三功德】',
     cue: '初始',
-    facing: '面觀眾45度',
+    facing: '第一句觀眾45度，其餘甲舞台45度',
     sessions: ['1112'],
     roles: ['all']
   },
@@ -626,9 +710,9 @@ const FACING_HINTS_DATA = [
     section: '10 五大洲',
     title: '【約旦-啟航】',
     cue: '—',
-    facing: '藍衣：面甲舞臺45度；白衣：面觀眾45度',
+    facing: '藍衣：面甲舞臺45度；白衣：前奏轉面觀眾45度',
     facingBlue: '面甲舞臺45度',
-    facingWhite: '面觀眾45度',
+    facingWhite: '前奏轉面觀眾45度',
     sessions: ['1112'],
     roles: ['color']
   },
@@ -646,31 +730,19 @@ const FACING_HINTS_DATA = [
     section: '10 五大洲',
     title: '【土耳其-第三功德】',
     cue: '初始',
-    facing: '面觀眾45度',
+    facing: '第一句觀眾45度，其餘甲舞台45度',
     sessions: ['1113'],
     roles: ['all']
   },
   {
     section: '10 五大洲',
     title: '【莫三比克-第八功德】',
-    cue: '初始',
-    facing: '東二白衣：面陸地中心；東二藍衣/其他藍白衣：面觀眾45度',
-    facingBlue: '面觀眾45度',
-    facingWhite: '東二白衣：面陸地中心；其他白衣：面觀眾45度',
-    facingEW1: '面觀眾45度',
-    facingEW2: '東二藍衣：面觀眾45度；東二白衣：面陸地中心',
-    sessions: ['1113'],
-    roles: ['eastWest', 'color']
-  },
-  {
-    section: '10 五大洲',
-    title: '【莫三比克-第八功德】',
-    cue: '第二句轉向',
-    facing: '東二藍衣：轉向陸地中心；其他藍白衣：轉向法師45度',
-    facingBlue: '東二藍衣：轉向陸地中心；其他藍衣：轉向法師45度',
-    facingWhite: '東二白衣：面陸地中心；其他白衣：轉向法師45度',
-    facingEW1: '轉向法師45度',
-    facingEW2: '東二藍衣：轉向陸地中心；東二白衣：面陸地中心',
+    cue: '—',
+    facing: '東二：面向非洲陸地中心；西二：面甲舞台45度；東一/西一：向法師45度',
+    facingBlue: '西二：面甲舞台45度；其他藍衣：向法師45度',
+    facingWhite: '東二：面向非洲陸地中心；其他白衣：向法師45度',
+    facingEW1: '向法師45度',
+    facingEW2: '東二：面向非洲陸地中心；西二：面甲舞台45度',
     sessions: ['1113'],
     roles: ['eastWest', 'color']
   },
@@ -686,7 +758,7 @@ const FACING_HINTS_DATA = [
     section: '10 五大洲',
     title: '【印尼-第九功德】',
     cue: '初始',
-    facing: '面觀眾45度',
+    facing: '面甲舞台45度',
     sessions: ['1113'],
     roles: ['all']
   },
@@ -735,40 +807,20 @@ const FACING_HINTS_DATA = [
   {
     section: '10 五大洲',
     title: '【泰北-第四功德】',
-    cue: '初始',
-    facing: '面甲舞台45度',
-    sessions: ['1114'],
-    roles: ['all']
-  },
-  {
-    section: '10 五大洲',
-    title: '【泰北-第四功德】',
-    cue: '「諸佛護念」',
-    facing: '轉向乙舞台圓心',
+    cue: '—',
+    facing: '面向乙舞台圓心',
     sessions: ['1114'],
     roles: ['all']
   },
   {
     section: '10 五大洲',
     title: '【辛巴威-第八功德】',
-    cue: '初始',
-    facing: '東二白衣：面陸地中心；東二藍衣/其他藍白衣：面觀眾45度',
-    facingBlue: '面觀眾45度',
-    facingWhite: '東二白衣：面陸地中心；其他白衣：面觀眾45度',
-    facingEW1: '面觀眾45度',
-    facingEW2: '東二藍衣：面觀眾45度；東二白衣：面陸地中心',
-    sessions: ['1114'],
-    roles: ['eastWest', 'color']
-  },
-  {
-    section: '10 五大洲',
-    title: '【辛巴威-第八功德】',
-    cue: '第二句轉向',
-    facing: '東二藍衣：轉向陸地中心；其他藍白衣：轉向法師45度',
-    facingBlue: '東二藍衣：轉向陸地中心；其他藍衣：轉向法師45度',
-    facingWhite: '東二白衣：面陸地中心；其他白衣：轉向法師45度',
-    facingEW1: '轉向法師45度',
-    facingEW2: '東二藍衣：轉向陸地中心；東二白衣：面陸地中心',
+    cue: '—',
+    facing: '東二：面向非洲陸地中心；西二：面甲舞台45度；東一/西一：向法師45度',
+    facingBlue: '西二：面甲舞台45度；其他藍衣：向法師45度',
+    facingWhite: '東二：面向非洲陸地中心；其他白衣：向法師45度',
+    facingEW1: '向法師45度',
+    facingEW2: '東二：面向非洲陸地中心；西二：面甲舞台45度',
     sessions: ['1114'],
     roles: ['eastWest', 'color']
   },
@@ -776,7 +828,7 @@ const FACING_HINTS_DATA = [
     section: '10 五大洲',
     title: '【辛巴威-生生世世】',
     cue: '—',
-    facing: '面甲舞臺45度',
+    facing: '面向非洲陸地中心',
     sessions: ['1114'],
     roles: ['all']
   },
@@ -794,7 +846,7 @@ const FACING_HINTS_DATA = [
     section: '10 五大洲',
     title: '【九二一-第九功德】',
     cue: '—',
-    facing: '面觀眾45度',
+    facing: '面乙舞臺圓心45度',
     sessions: ['1115'],
     roles: ['all']
   },
@@ -818,7 +870,9 @@ const FACING_HINTS_DATA = [
     section: '10 五大洲',
     title: '【減災工程-許一個希望的未來】',
     cue: 'OS「感恩」慈濟援建…',
-    facing: '從甲舞臺轉背向陸地中心',
+    facing: '白衣：從甲舞臺轉背向陸地中心；藍衣：觀眾45度',
+    facingBlue: '觀眾45度',
+    facingWhite: '從甲舞臺轉背向陸地中心',
     sessions: ['1115'],
     roles: ['all']
   },
@@ -826,9 +880,9 @@ const FACING_HINTS_DATA = [
     section: '10 五大洲',
     title: '【佛國-仰師德範】',
     cue: '—',
-    facing: '藍衣：面法師45度；白衣：背向圓心',
-    facingBlue: '面法師45度',
-    facingWhite: '背向圓心',
+    facing: '藍衣：「讓正法」回歸→面法師45度；白衣：「讓正法」回歸→面法師45度，這就是「回報佛恩」→背向圓心',
+    facingBlue: '「讓正法」回歸→面法師45度',
+    facingWhite: '「讓正法」回歸→面法師45度；「回報佛恩」→背向圓心',
     sessions: ['1115'],
     roles: ['color']
   },
@@ -838,6 +892,48 @@ const FACING_HINTS_DATA = [
     cue: '—',
     facing: '依照各區塊面向',
     sessions: ['1115'],
+    roles: ['all']
+  },
+
+  // --- 11 六瑞相 ---
+  {
+    section: '11 六瑞相',
+    title: '【六瑞相】',
+    cue: '—',
+    facing: '面甲舞台腳夾線',
+    sessions: ['1112', '1113', '1114', '1115'],
+    roles: ['all']
+  },
+  {
+    section: '11 六瑞相',
+    title: '【發心立願】',
+    cue: '~~ 咚~~',
+    facing: '合掌內轉面向甲舞台/法師腳夾線',
+    sessions: ['1112', '1113', '1114', '1115'],
+    roles: ['all']
+  },
+  {
+    section: '11 六瑞相',
+    title: '【發心立願】',
+    cue: '~~ 咚咚咚...跑位',
+    facing: '手放小跑步到自己地標面向法師/甲舞台腳夾線',
+    sessions: ['1112', '1113', '1114', '1115'],
+    roles: ['all']
+  },
+  {
+    section: '11 六瑞相',
+    title: '【發心立願】',
+    cue: '~~ 噹 ~~',
+    facing: '合掌內轉面向法師腳夾線',
+    sessions: ['1112', '1113', '1114', '1115'],
+    roles: ['all']
+  },
+  {
+    section: '11 六瑞相',
+    title: '【祈禱】',
+    cue: '—',
+    facing: '面乙舞台圓心',
+    sessions: ['1112', '1113', '1114', '1115'],
     roles: ['all']
   }
 ];

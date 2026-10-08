@@ -17,7 +17,7 @@ const CARD_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "巴利文唱頌無量義經(合掌拿燈，不開燈)"
+          "content": "巴利文唱頌無量義經(轉腳夾線，合掌拿燈，不開燈)"
         },
         {
           "type": "text",
@@ -84,6 +84,10 @@ const CARD_HINTS_DATA = {
           "content": "白衣：左轉；藍衣:右轉(兩腳夾線)"
         }
       ]
+    },
+    {
+      "title": "【靈鷲山上】：面乙舞臺圓心(腳尖對線)",
+      "details": []
     }
   ],
   "xingYuan": [
@@ -104,7 +108,7 @@ const CARD_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "3.「西取佛法，佛法永傳」→外側斜浪腳尖對線面向乙舞臺。內側直線45度面向乙舞臺圓心。"
+          "content": "3.「西取佛法，佛法永傳」不動"
         },
         {
           "type": "text",
@@ -112,7 +116,7 @@ const CARD_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "5.「東傳佛法，佛法永傳」→全部人轉面向自己行願動作方向。"
+          "content": "5.東傳佛法，「佛法永傳」→全部人轉面向自己行願動作方向。"
         }
       ]
     },
@@ -128,7 +132,7 @@ const CARD_HINTS_DATA = {
   ],
   "miLuo": [
     {
-      "title": "【扛天下米籮】 甲舞臺45度",
+      "title": "【扛天下米籮】 OS：「我很震撼」甲舞臺45度",
       "details": []
     }
   ],
@@ -157,11 +161,11 @@ const CARD_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "OS:三位修女… 換成LOGO隊形，到位先面向甲舞臺"
+          "content": "OS: 媽媽跟胎中的孩子「不知是生還是死」… 換成LOGO隊形，到位先面向甲舞臺"
         },
         {
           "type": "text",
-          "content": "OS:師父我們需要「你」→轉向各自方向"
+          "content": "OS:師父「我們需要你」→轉向各自方向"
         },
         {
           "type": "text",
@@ -244,6 +248,10 @@ const CARD_HINTS_DATA = {
       ]
     },
     {
+      "title": "【醫療梵唄】 面乙舞臺；小V+大V內側跪",
+      "details": []
+    },
+    {
       "title": "【四弘誓願】",
       "details": [
         {
@@ -261,8 +269,44 @@ const CARD_HINTS_DATA = {
       ]
     },
     {
-      "title": "【醫療梵唄】 面乙舞臺；小V+大V內側跪",
+      "title": "11/12：【大埔無醫村】 (一開始站大小V朝甲45度看演出)",
+      "details": [
+        {
+          "type": "text",
+          "content": "您在陌生的國度裡(開始大聲唱且回復兩腳頂線)"
+        }
+      ]
+    },
+    {
+      "title": "11/13：【北慈.疫情捨我其誰】 面中央走道腳頂線",
+      "details": [
+        {
+          "type": "text",
+          "content": "「照顧」確診病患：轉法師腳夾線"
+        }
+      ]
+    },
+    {
+      "title": "11/13：【花慈.連體嬰】 面中央走道腳頂線",
       "details": []
+    },
+    {
+      "title": "11/14：【中慈.江永旭】 (一開始站適當方向看演出)",
+      "details": [
+        {
+          "type": "text",
+          "content": "OS：「永旭的世界」不再是天花板→回復兩腳頂線"
+        }
+      ]
+    },
+    {
+      "title": "11/15：【北慈.八仙塵爆 曲目：火宅喻 手札】 (一開始站適當方向看演出)",
+      "details": [
+        {
+          "type": "text",
+          "content": "唐文華老師：一個都不能少→轉向甲舞台腳夾線"
+        }
+      ]
     }
   ],
   "daChuanShi": [
@@ -271,7 +315,7 @@ const CARD_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "「大醫王」除了拯救他們的病痛：船跑位"
+          "content": "「咚咚咚」大醫王除了拯救他們的病痛：船跑位"
         },
         {
           "type": "text",
@@ -292,6 +336,10 @@ const CARD_HINTS_DATA = {
     {
       "title": "【骨捐】 面乙舞臺(腳尖切線)",
       "details": [
+        {
+          "type": "text",
+          "content": "真的很難啊(記得轉面向中央走道腳頂線)"
+        },
         {
           "type": "text",
           "content": "OS:慈濟在找一個人，那個人可能就是你(完) →轉向甲舞臺(腳夾線)"
@@ -476,6 +524,10 @@ const CARD_HINTS_DATA = {
         {
           "type": "text",
           "content": "白衣：面陸地的圓心。"
+        },
+        {
+          "type": "text",
+          "content": "「咚咚咚」轉向下一個功德的方向"
         }
       ]
     },
@@ -497,11 +549,11 @@ const CARD_HINTS_DATA = {
       ]
     },
     {
-      "title": "11/15：【九二一-第九功德】 面觀眾45度",
+      "title": "11/15：【九二一-第九功德】 面乙舞臺圓心45度",
       "details": [
         {
           "type": "text",
-          "content": "面觀眾45度"
+          "content": "面乙舞臺圓心45度"
         },
         {
           "type": "text",
@@ -572,7 +624,7 @@ const CARD_HINTS_DATA = {
       ]
     },
     {
-      "title": "11/12：【黑區變亮區-第六功德】 面觀眾45度",
+      "title": "11/12：【黑區變亮區-第六功德】 面甲舞台45度",
       "details": []
     },
     {
@@ -580,7 +632,7 @@ const CARD_HINTS_DATA = {
       "details": []
     },
     {
-      "title": "11/12：【約旦-第三功德】 初始面觀眾45度",
+      "title": "11/12：【約旦-第三功德】 第一句觀眾45度，其餘甲舞台45度",
       "details": []
     },
     {
@@ -592,12 +644,12 @@ const CARD_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "白衣：面觀眾45度"
+          "content": "白衣：前奏轉面觀眾45度"
         }
       ]
     },
     {
-      "title": "11/13：【土耳其-第三功德】 初始面觀眾45度",
+      "title": "11/13：【土耳其-第三功德】 第一句觀眾45度，其餘甲舞台45度",
       "details": []
     },
     {
@@ -605,19 +657,19 @@ const CARD_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "東二藍衣：面觀眾45度，第二句轉向陸地中心"
+          "content": "東二：面向非洲陸地中心"
         },
         {
           "type": "text",
-          "content": "東二白衣：面陸地中心"
+          "content": "西二：面甲舞台45度"
         },
         {
           "type": "text",
-          "content": "其他藍衣：面觀眾45度，第二句轉向法師45度"
+          "content": "東一：向法師45度"
         },
         {
           "type": "text",
-          "content": "其他白衣：面觀眾45度，第二句轉向法師45度"
+          "content": "西一：向法師45度"
         }
       ]
     },
@@ -626,7 +678,7 @@ const CARD_HINTS_DATA = {
       "details": []
     },
     {
-      "title": "11/13：【印尼-第九功德】 初始面觀眾45度",
+      "title": "11/13：【印尼-第九功德】 面甲舞台45度",
       "details": []
     },
     {
@@ -646,7 +698,7 @@ const CARD_HINTS_DATA = {
       "details": []
     },
     {
-      "title": "11/14：【泰北-第四功德】 面甲舞台45度；「諸佛護念」轉向乙舞台圓心。",
+      "title": "11/14：【泰北-第四功德】 面向乙舞台圓心。",
       "details": []
     },
     {
@@ -654,24 +706,24 @@ const CARD_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "東二藍衣：面觀眾45度，第二句轉向陸地中心"
+          "content": "東二：面向非洲陸地中心"
         },
         {
           "type": "text",
-          "content": "東二白衣：面陸地中心"
+          "content": "西二：面甲舞台45度"
         },
         {
           "type": "text",
-          "content": "其他藍衣：面觀眾45度，第二句轉向法師45度"
+          "content": "東一：向法師45度"
         },
         {
           "type": "text",
-          "content": "其他白衣：面觀眾45度，第二句轉向法師45度"
+          "content": "西一：向法師45度"
         }
       ]
     },
     {
-      "title": "11/14：【辛巴威-生生世世都在菩提中】 面甲舞臺45度",
+      "title": "11/14：【辛巴威-生生世世都在菩提中】 面向非洲陸地中心",
       "details": [
         {
           "type": "text",
@@ -722,7 +774,7 @@ const CARD_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "動作要領：藍衣蹲下雙肩扛、白衣出右腳往正前、身體轉左、右手拿花"
+          "content": "動作要領：白衣os「感恩」慈濟援建…從甲舞臺轉背向陸地中心；藍衣觀眾45度"
         },
         {
           "type": "text",
@@ -743,7 +795,7 @@ const CARD_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "藍衣：面法師45度；白衣：背向圓心"
+          "content": "藍衣：「讓正法」回歸→面法師45度；白衣：「讓正法」回歸→面法師45度，這就是「回報佛恩」→背向圓心"
         }
       ]
     },
@@ -775,7 +827,19 @@ const CARD_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "~~ 咚~~(合掌內轉面向法師腳夾線)~~ 咚~~佛心師志~~ 咚咚... (手放小跑步到自己地標面向法師腳夾線)"
+          "content": "~~ 咚~~(合掌內轉面向甲舞台/法師腳夾線)"
+        },
+        {
+          "type": "text",
+          "content": "~~ 咚~~佛心師志"
+        },
+        {
+          "type": "text",
+          "content": "~~ 咚咚咚咚咚咚咚咚咚咚咚咚咚咚咚~~(手放小跑步到自己地標面向法師/甲舞台腳夾線)"
+        },
+        {
+          "type": "text",
+          "content": "~~ 噹 ~~(合掌內轉面向法師腳夾線)"
         },
         {
           "type": "text",

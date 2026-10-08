@@ -14,10 +14,12 @@ import re
 import zipfile
 import xml.etree.ElementTree as ET
 
-DOCX_FILE = "動作提示0923.docx" if os.path.exists("動作提示0923.docx") else (
-    "動作提示0916.docx" if os.path.exists("動作提示0916.docx") else (
-        "動作提示0909.docx" if os.path.exists("動作提示0909.docx") else (
-            "動作提示0905.docx" if os.path.exists("動作提示0905.docx") else "動作提示.docx"
+DOCX_FILE = "動作提示1007.docx" if os.path.exists("動作提示1007.docx") else (
+    "動作提示0923.docx" if os.path.exists("動作提示0923.docx") else (
+        "動作提示0916.docx" if os.path.exists("動作提示0916.docx") else (
+            "動作提示0909.docx" if os.path.exists("動作提示0909.docx") else (
+                "動作提示0905.docx" if os.path.exists("動作提示0905.docx") else "動作提示.docx"
+            )
         )
     )
 )
@@ -57,8 +59,10 @@ CATEGORY_MAPPING = {
     '10-3五大洲': 'fiveContinents2',
     '10-5五大洲': 'fiveContinents2',
     '11-2五大洲': 'fiveContinents2',
-    # 12-1六瑞相
-    '12-1六瑞相': 'sixRuiXiang'
+    # 11六瑞相 / 12-1六瑞相
+    '11六瑞相': 'sixRuiXiang',
+    '12-1六瑞相': 'sixRuiXiang',
+    '六瑞相': 'sixRuiXiang'
 }
 
 class BuiltinDocxReader:
@@ -211,7 +215,7 @@ def is_item_start(text):
         return True
     
     # Matches key action segments without leading numbers
-    keywords = ['序，', '生，', '老，', '病，', '死，', '六度', '行願', '開經偈', '點一盞燈', '地藏經', '醫療梵唄', '四弘誓願', '大醫王', '骨捐', '能捨', '無醫村', '北慈', '江永旭', '花慈', '連體嬰', '八仙塵爆', '火宅喻', '衣珠喻', '大體老師', '小樹啊', '種樹', '成長', '感恩', '藥草喻', '慈誠隊歌', '父母恩重難報經', '大愛讓世界亮起來', '天空破了洞', '環保志工', '代謝不住', '開經書']
+    keywords = ['序，', '生，', '老，', '病，', '死，', '六度', '靈鷲山', '行願', '開經偈', '點一盞燈', '地藏經', '醫療梵唄', '四弘誓願', '大醫王', '骨捐', '能捨', '無醫村', '北慈', '江永旭', '花慈', '連體嬰', '八仙塵爆', '火宅喻', '衣珠喻', '大體老師', '小樹啊', '種樹', '成長', '感恩', '藥草喻', '慈誠隊歌', '父母恩重難報經', '大愛讓世界亮起來', '天空破了洞', '環保志工', '代謝不住', '開經書']
     if any(first_line.startswith(k) or ('【' in first_line and k in first_line) for k in keywords):
         return True
         

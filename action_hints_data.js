@@ -314,11 +314,53 @@ const ACTION_HINTS_DATA = {
           "src": "images/action_hints/hint_8.jpg"
         }
       ]
+    },
+    {
+      "title": "7.靈鷲山上",
+      "videos": [],
+      "details": [
+        {
+          "type": "text",
+          "content": "面乙舞台圓心坐跪聽法"
+        },
+        {
+          "type": "text",
+          "content": "(音樂或OS全體高跪後坐跪)法師：佛陀為一大事因緣來人間，教導眾生行菩薩道，從靈鷲法脈，到慈濟一甲子的人間力行"
+        },
+        {
+          "type": "text",
+          "content": "靈鷲山上 法會不散"
+        },
+        {
+          "type": "text",
+          "content": "說法景象 經章躍然"
+        },
+        {
+          "type": "text",
+          "content": "一幅幅(出右手正斜上並高跪)動人的畫面"
+        },
+        {
+          "type": "text",
+          "content": "一聲聲真誠的呼喚"
+        },
+        {
+          "type": "text",
+          "content": "千百(合十高跪)億劫以來"
+        },
+        {
+          "type": "text",
+          "content": "彷若實境再現"
+        },
+        {
+          "type": "text",
+          "content": "彷若實境再現"
+        }
+      ]
     }
   ],
   "xingYuan": [
     {
-      "title": "7.行願",
+      "title": "8.行願",
       "videos": [
         {
           "title": "行願示範影片",
@@ -426,7 +468,7 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "8.開經偈",
+      "title": "9.開經偈",
       "videos": [],
       "details": [
         {
@@ -510,7 +552,7 @@ const ACTION_HINTS_DATA = {
   ],
   "miLuo": [
     {
-      "title": "9.扛天下米籮/甲45度",
+      "title": "10.扛天下米籮/甲45度",
       "videos": [
         {
           "title": "扛天下米籮/甲45度示範影片",
@@ -560,7 +602,7 @@ const ACTION_HINTS_DATA = {
   ],
   "jingSi": [
     {
-      "title": "10.靜思家風/舞台正向法師，其餘面向法師45度",
+      "title": "11.靜思家風/舞台正向法師，其餘面向法師45度",
       "videos": [
         {
           "title": "靜思家風/舞台正向法師，其餘面向法師45度示範影片",
@@ -630,7 +672,7 @@ const ACTION_HINTS_DATA = {
   ],
   "lamp": [
     {
-      "title": "11.點一盞燈",
+      "title": "12.點一盞燈",
       "videos": [
         {
           "title": "點一盞燈示範影片",
@@ -649,19 +691,15 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "OS:咦，怎麼會有一灘血……「三位修女」→換成LOGO隊形，到位先面向甲舞台"
+          "content": "媽媽跟胎中的孩子不知是生還是死(換LOGO隊形) 理性 理性 理性。"
         },
         {
           "type": "text",
-          "content": "OS:師父「我們需要你」→合掌轉向法師45度"
+          "content": "天主保佑您，法師平安。平安，您好!為佛教為眾生，我相信做得到!"
         },
         {
           "type": "text",
-          "content": "如果你幫助我做救濟的工作→開黃燈，轉向自己的方向"
-        },
-        {
-          "type": "text",
-          "content": "我就永遠不離開花蓮→該跪的跪、LOGO擺POSE"
+          "content": "同年，印順導師要 上人前往嘉義的妙雲蘭若，但三十位家庭主婦連署慰留，師父 我們需要您(大聲唸並合十轉面向正確方向)，如果你們願意幫助我(開燈/需要者拿花)做救濟的工作，我就永遠不離開花蓮(跪/預備動作)"
         },
         {
           "type": "text",
@@ -700,7 +738,7 @@ const ACTION_HINTS_DATA = {
   ],
   "noBoat": [
     {
-      "title": "12.菜市場的五毛錢/面向乙舞台",
+      "title": "13.菜市場的五毛錢/面向乙舞台",
       "videos": [
         {
           "title": "菜市場的五毛錢/面向乙舞台示範影片",
@@ -748,7 +786,7 @@ const ACTION_HINTS_DATA = {
   ],
   "noBoat3": [
     {
-      "title": "11/12、11/14：13.是諸眾生(第一三天-圍爐)",
+      "title": "11/12、11/14：14.是諸眾生(第一三天-圍爐)",
       "videos": [
         {
           "title": "是諸眾生(第一三天-圍爐)示範影片",
@@ -806,7 +844,7 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "11/13、11/15：13.是諸眾生(第二四天-米甕與大魚)",
+      "title": "11/13、11/15：14.是諸眾生(第二四天-米甕與大魚)",
       "videos": [],
       "details": [
         {
@@ -874,7 +912,7 @@ const ACTION_HINTS_DATA = {
   ],
   "bigV": [
     {
-      "title": "14.地藏經/面向乙舞台",
+      "title": "15.地藏經/面向乙舞台",
       "videos": [
         {
           "title": "地藏經/面向乙舞台示範影片",
@@ -920,7 +958,7 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "15.四弘誓願",
+      "title": "16.四弘誓願",
       "videos": [
         {
           "title": "四弘誓願示範影片",
@@ -990,7 +1028,7 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "16.醫療梵唄/面乙舞台；小V+大V內側跪",
+      "title": "17.醫療梵唄/面乙舞台；小V+大V內側跪",
       "videos": [
         {
           "title": "醫療梵唄/面乙舞台；小V+大V內側跪示範影片",
@@ -1062,24 +1100,32 @@ const ACTION_HINTS_DATA = {
           "content": "11/13："
         },
         {
-          "type": "text",
-          "content": "11/14："
-        },
-        {
           "type": "image",
           "src": "images/action_hints/hint_46.jpg"
+        },
+        {
+          "type": "text",
+          "content": "11/13："
         },
         {
           "type": "image",
           "src": "images/action_hints/hint_47.jpg"
         },
         {
+          "type": "image",
+          "src": "images/action_hints/hint_48.jpg"
+        },
+        {
           "type": "text",
           "content": "11/14："
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_48.jpg"
+          "src": "images/action_hints/hint_49.jpg"
+        },
+        {
+          "type": "text",
+          "content": "11/15："
         },
         {
           "type": "image",
@@ -1087,7 +1133,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_51.jpg"
+          "src": "images/action_hints/hint_52.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_53.jpg"
         }
       ]
     }
@@ -1130,20 +1180,40 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "11/14：【北慈.疫情捨我其誰 曲目：醫子喻 擁抱蒼生】",
+      "title": "11/13：【北慈.疫情捨我其誰 曲目：醫子喻 擁抱蒼生】",
       "videos": [],
       "details": [
         {
           "type": "text",
-          "content": "OS:媽媽!妳怎麼不回家?我們要去打怪獸!照顧確診病人，全體住宿43天"
+          "content": "媽媽，妳怎麼還不回家?我們要去打怪獸!照顧確診病人全體住宿43天! ~~登~~"
         },
         {
           "type": "text",
-          "content": "往昔所造諸惡業 皆由無始貪瞋癡 從身語意之所生 一切我今皆懺悔"
+          "content": "上人：抬頭要向天懺悔(小V)"
         },
         {
           "type": "text",
-          "content": "蘇主任:每天睡覺都會驚醒，有沒有盡力救回每一個病人"
+          "content": "低頭(大V)要向大地說感恩啦!~~匡~~"
+        },
+        {
+          "type": "text",
+          "content": "往昔所造諸惡業"
+        },
+        {
+          "type": "text",
+          "content": "皆由無始貪瞋癡"
+        },
+        {
+          "type": "text",
+          "content": "從身語意之所生"
+        },
+        {
+          "type": "text",
+          "content": "一切我今皆懺悔"
+        },
+        {
+          "type": "text",
+          "content": "蘇主任:每天睡覺都會驚醒(手放抬頭)，有沒有盡力救回每一個病人(收腳回正)"
         },
         {
           "type": "text",
@@ -1151,7 +1221,19 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "因為大愛無國界　因為醫療有團隊  讓每位大醫王 都是照亮人間的光輝"
+          "content": "因為大愛無國界"
+        },
+        {
+          "type": "text",
+          "content": "因為醫療有團隊"
+        },
+        {
+          "type": "text",
+          "content": "讓每位大醫王"
+        },
+        {
+          "type": "text",
+          "content": "都是照亮人間的光輝"
         }
       ]
     },
@@ -1187,7 +1269,15 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "把握當下莫空過 須知三界是火宅 須知三界是火宅"
+          "content": "把握當下莫空過"
+        },
+        {
+          "type": "text",
+          "content": "須知三界是火宅"
+        },
+        {
+          "type": "text",
+          "content": "須知三界是火宅"
         },
         {
           "type": "text",
@@ -1200,7 +1290,7 @@ const ACTION_HINTS_DATA = {
       ]
     },
     {
-      "title": "19.大醫王",
+      "title": "17.大醫王",
       "videos": [
         {
           "title": "大船師示範影片",
@@ -1211,7 +1301,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_49.jpg"
+          "src": "images/action_hints/hint_51.jpg"
         }
       ]
     },
@@ -1221,7 +1311,11 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "OS：「大醫王」除了拯救他們的病痛→船跑位。"
+          "content": "OS：咚咚咚……→船跑位"
+        },
+        {
+          "type": "text",
+          "content": "大醫王除了拯救他們的病痛。"
         },
         {
           "type": "text",
@@ -1268,7 +1362,7 @@ const ACTION_HINTS_DATA = {
   ],
   "boneDonation": [
     {
-      "title": "17.骨捐",
+      "title": "18.骨捐",
       "videos": [
         {
           "title": "骨捐示範影片",
@@ -1279,25 +1373,25 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_52.jpg"
+          "src": "images/action_hints/hint_54.jpg"
         }
       ]
     },
     {
-      "title": "【骨捐】有愛心的人那麼多，我一定要呼籲",
+      "title": "【骨捐】愛心的人那麼多，我一定要呼籲",
       "videos": [],
       "details": [
         {
           "type": "text",
-          "content": "來 我願意(小V)"
+          "content": "咚 我願意(小V)"
         },
         {
           "type": "text",
-          "content": "來 我願意(大V)"
+          "content": "咚 我願意(大V)"
         },
         {
           "type": "text",
-          "content": "來 我願意(C組)"
+          "content": "咚 我願意(C組)"
         },
         {
           "type": "text",
@@ -1337,12 +1431,12 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_53.png"
+          "src": "images/action_hints/hint_55.png"
         }
       ]
     },
     {
-      "title": "18.能捨",
+      "title": "19.能捨",
       "videos": [
         {
           "title": "能捨示範影片",
@@ -1353,7 +1447,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_54.png"
+          "src": "images/action_hints/hint_56.png"
         }
       ]
     },
@@ -1423,14 +1517,14 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_55.png"
+          "src": "images/action_hints/hint_57.png"
         }
       ]
     }
   ],
   "edu": [
     {
-      "title": "19.說法品梵唄",
+      "title": "20.說法品梵唄",
       "videos": [
         {
           "title": "東班示範影片",
@@ -1446,7 +1540,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_56.png"
+          "src": "images/action_hints/hint_58.png"
         }
       ]
     },
@@ -1484,16 +1578,16 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_57.jpg"
+          "src": "images/action_hints/hint_59.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_58.png"
+          "src": "images/action_hints/hint_60.png"
         }
       ]
     },
     {
-      "title": "20.無量易經終曲~無語良師VCR",
+      "title": "21.無量易經終曲~無語良師VCR",
       "videos": [
         {
           "title": "無量易經終曲~無語良師VCR示範影片",
@@ -1504,7 +1598,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_59.png"
+          "src": "images/action_hints/hint_61.png"
         }
       ]
     },
@@ -1514,7 +1608,11 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "OS：哇！病人呼吸平穩：開綠燈，合掌"
+          "content": "OS：哇！：開綠燈，合掌"
+        },
+        {
+          "type": "text",
+          "content": "病人呼吸平穩"
         },
         {
           "type": "text",
@@ -1534,12 +1632,12 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_60.jpg"
+          "src": "images/action_hints/hint_62.jpg"
         }
       ]
     },
     {
-      "title": "21.大體老師捨身育才",
+      "title": "22.大體老師捨身育才",
       "videos": [
         {
           "title": "東班示範影片",
@@ -1555,7 +1653,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_61.png"
+          "src": "images/action_hints/hint_63.png"
         }
       ]
     },
@@ -1565,7 +1663,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "OS：如果學生能做到「尊師重道」：開綠燈，轉向法師"
+          "content": "上人：立大願(東西二轉面向法師，外手拿花開綠燈放大腿邊)呢!總是要讓生命在你的手中得救，期待你們立志為人醫"
         },
         {
           "type": "text",
@@ -1585,16 +1683,16 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_62.jpg"
+          "src": "images/action_hints/hint_64.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_63.jpg"
+          "src": "images/action_hints/hint_65.jpg"
         }
       ]
     },
     {
-      "title": "22.慈濟中小學-小樹啊!",
+      "title": "23.慈濟中小學-小樹啊!",
       "videos": [
         {
           "title": "東班示範影片",
@@ -1610,7 +1708,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_64.png"
+          "src": "images/action_hints/hint_66.png"
         }
       ]
     },
@@ -1652,16 +1750,16 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_65.png"
+          "src": "images/action_hints/hint_67.png"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_66.png"
+          "src": "images/action_hints/hint_68.png"
         }
       ]
     },
     {
-      "title": "23.人文畢業典禮組曲-成長",
+      "title": "24.人文畢業典禮組曲-成長",
       "videos": [
         {
           "title": "東班示範影片",
@@ -1677,7 +1775,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_67.png"
+          "src": "images/action_hints/hint_69.png"
         }
       ]
     },
@@ -1723,16 +1821,16 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_68.png"
+          "src": "images/action_hints/hint_70.png"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_69.png"
+          "src": "images/action_hints/hint_71.png"
         }
       ]
     },
     {
-      "title": "24.人文畢業典禮組曲-感恩",
+      "title": "25.人文畢業典禮組曲-感恩",
       "videos": [
         {
           "title": "東班示範影片",
@@ -1748,7 +1846,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_70.png"
+          "src": "images/action_hints/hint_72.png"
         }
       ]
     },
@@ -1794,16 +1892,16 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_71.png"
+          "src": "images/action_hints/hint_73.png"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_72.png"
+          "src": "images/action_hints/hint_74.png"
         }
       ]
     },
     {
-      "title": "25.教聯會曲目：藥草喻",
+      "title": "26.教聯會曲目：藥草喻",
       "videos": [
         {
           "title": "教聯會曲目：藥草喻示範影片",
@@ -1814,7 +1912,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_73.png"
+          "src": "images/action_hints/hint_75.png"
         }
       ]
     },
@@ -1864,82 +1962,12 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_74.png"
+          "src": "images/action_hints/hint_76.png"
         }
       ]
     }
   ],
   "humanities1": [
-    {
-      "title": "26.慈誠隊歌",
-      "videos": [
-        {
-          "title": "慈誠隊歌示範影片",
-          "url": "https://youtu.be/oWOkGfo1HaA?si=nQoje7a5Wsx-4wqU",
-          "videoId": "oWOkGfo1HaA"
-        }
-      ],
-      "details": [
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_75.png"
-        }
-      ]
-    },
-    {
-      "title": "【慈誠隊歌】",
-      "videos": [],
-      "details": [
-        {
-          "type": "text",
-          "content": "慈誠慈誠 護法金剛"
-        },
-        {
-          "type": "text",
-          "content": "慈悲喜捨 誠正信實"
-        },
-        {
-          "type": "text",
-          "content": "犧牲奉獻 相互成就"
-        },
-        {
-          "type": "text",
-          "content": "持十戒 修十善"
-        },
-        {
-          "type": "text",
-          "content": "護持慈濟世界"
-        },
-        {
-          "type": "text",
-          "content": "敬愛上人 感恩上人"
-        },
-        {
-          "type": "text",
-          "content": "耐力毅力 身行供養"
-        },
-        {
-          "type": "text",
-          "content": "祝福植福 信解行證"
-        },
-        {
-          "type": "text",
-          "content": "悲憫心 持威儀"
-        },
-        {
-          "type": "text",
-          "content": "創造慈濟世界"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_76.png"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_77.png"
-        }
-      ]
-    },
     {
       "title": "27.父母恩重難報經",
       "videos": [
@@ -1952,7 +1980,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_78.png"
+          "src": "images/action_hints/hint_77.png"
         }
       ]
     },
@@ -2006,7 +2034,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_79.jpg"
+          "src": "images/action_hints/hint_78.jpg"
         }
       ]
     },
@@ -2052,14 +2080,84 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_80.jpg"
+          "src": "images/action_hints/hint_79.jpg"
         }
       ]
     }
   ],
   "humanities2": [
     {
-      "title": "28.大愛讓世界亮起來",
+      "title": "28.慈誠隊歌",
+      "videos": [
+        {
+          "title": "慈誠隊歌示範影片",
+          "url": "https://youtu.be/oWOkGfo1HaA?si=nQoje7a5Wsx-4wqU",
+          "videoId": "oWOkGfo1HaA"
+        }
+      ],
+      "details": [
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_80.png"
+        }
+      ]
+    },
+    {
+      "title": "【慈誠隊歌】",
+      "videos": [],
+      "details": [
+        {
+          "type": "text",
+          "content": "慈誠慈誠 護法金剛"
+        },
+        {
+          "type": "text",
+          "content": "慈悲喜捨 誠正信實"
+        },
+        {
+          "type": "text",
+          "content": "犧牲奉獻 相互成就"
+        },
+        {
+          "type": "text",
+          "content": "持十戒 修十善"
+        },
+        {
+          "type": "text",
+          "content": "護持慈濟世界"
+        },
+        {
+          "type": "text",
+          "content": "敬愛上人 感恩上人"
+        },
+        {
+          "type": "text",
+          "content": "耐力毅力 身行供養"
+        },
+        {
+          "type": "text",
+          "content": "祝福植福 信解行證"
+        },
+        {
+          "type": "text",
+          "content": "悲憫心 持威儀"
+        },
+        {
+          "type": "text",
+          "content": "創造慈濟世界"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_81.png"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_82.png"
+        }
+      ]
+    },
+    {
+      "title": "29.大愛讓世界亮起來",
       "videos": [
         {
           "title": "大愛讓世界亮起來示範影片",
@@ -2070,7 +2168,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_81.png"
+          "src": "images/action_hints/hint_83.png"
         }
       ]
     },
@@ -2108,12 +2206,12 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_82.png"
+          "src": "images/action_hints/hint_84.png"
         }
       ]
     },
     {
-      "title": "29.天空破了洞",
+      "title": "30.天空破了洞",
       "videos": [
         {
           "title": "天空破了洞示範影片",
@@ -2124,7 +2222,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_83.png"
+          "src": "images/action_hints/hint_85.png"
         }
       ]
     },
@@ -2166,12 +2264,12 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_84.jpg"
+          "src": "images/action_hints/hint_86.jpg"
         }
       ]
     },
     {
-      "title": "30.環保志工",
+      "title": "31.環保志工",
       "videos": [
         {
           "title": "環保志工示範影片",
@@ -2182,7 +2280,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_85.png"
+          "src": "images/action_hints/hint_87.png"
         }
       ]
     },
@@ -2228,12 +2326,12 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_86.jpg"
+          "src": "images/action_hints/hint_88.jpg"
         }
       ]
     },
     {
-      "title": "31.代謝不住",
+      "title": "32.代謝不住",
       "videos": [
         {
           "title": "代謝不住示範影片",
@@ -2244,7 +2342,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_87.png"
+          "src": "images/action_hints/hint_89.png"
         }
       ]
     },
@@ -2334,18 +2432,18 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_88.jpg"
+          "src": "images/action_hints/hint_90.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_89.png"
+          "src": "images/action_hints/hint_91.png"
         }
       ]
     }
   ],
   "fiveContinents1": [
     {
-      "title": "34.開經書",
+      "title": "35.開經書",
       "videos": [
         {
           "title": "東班",
@@ -2369,7 +2467,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_96.jpg"
+          "src": "images/action_hints/hint_98.jpg"
         }
       ]
     },
@@ -2379,7 +2477,11 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "前奏音樂：藍衣和台灣開綠燈放口袋合掌，白衣拿燈轉向陸地中心。"
+          "content": "啊!我想到了(台灣上舞台；法海AB開綠燈，白衣合掌拿燈、藍衣合掌)，今天的五毛錢還沒有丟進去。上人啊!我要救人啦!原來日存五毛錢已成為她的習慣，種下生生世世我要救人的基因。"
+        },
+        {
+          "type": "text",
+          "content": "前奏(白衣轉自己洲中心、跪；藍衣轉向乙舞台圓心)"
         },
         {
           "type": "text",
@@ -2398,8 +2500,12 @@ const ACTION_HINTS_DATA = {
           "content": "十大功德潤蒼生"
         },
         {
+          "type": "text",
+          "content": "咚咚咚(轉向下一個功德品的方向)"
+        },
+        {
           "type": "image",
-          "src": "images/action_hints/hint_97.jpg"
+          "src": "images/action_hints/hint_99.jpg"
         }
       ]
     },
@@ -2415,7 +2521,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_148.jpg"
+          "src": "images/action_hints/hint_146.jpg"
         }
       ]
     },
@@ -2445,7 +2551,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_149.jpg"
+          "src": "images/action_hints/hint_147.jpg"
         }
       ]
     },
@@ -2487,11 +2593,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_150.jpg"
+          "src": "images/action_hints/hint_148.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_151.jpg"
+          "src": "images/action_hints/hint_149.jpg"
         }
       ]
     },
@@ -2507,7 +2613,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_152.jpg"
+          "src": "images/action_hints/hint_150.jpg"
         }
       ]
     },
@@ -2533,18 +2639,18 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_153.jpg"
+          "src": "images/action_hints/hint_151.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_154.jpg"
+          "src": "images/action_hints/hint_152.jpg"
         }
       ]
     }
   ],
   "fiveContinents2": [
     {
-      "title": "11/12：32.貧中之富-樂生",
+      "title": "11/12：33.貧中之富-樂生",
       "videos": [
         {
           "title": "[功德品] 樂生",
@@ -2579,12 +2685,12 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_90.jpg"
+          "src": "images/action_hints/hint_92.jpg"
         }
       ]
     },
     {
-      "title": "11/15：32.貧中之富-樂生",
+      "title": "11/15：33.貧中之富-樂生",
       "videos": [
         {
           "title": "[功德品] 樂生",
@@ -2619,12 +2725,12 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_91.jpg"
+          "src": "images/action_hints/hint_93.jpg"
         }
       ]
     },
     {
-      "title": "11/13：33.富中之富A",
+      "title": "11/13：34.富中之富A",
       "videos": [
         {
           "title": "[功德品] 富中之富 A",
@@ -2683,12 +2789,12 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_92.png"
+          "src": "images/action_hints/hint_94.png"
         }
       ]
     },
     {
-      "title": "11/15：33.富中之富A",
+      "title": "11/15：34.富中之富A",
       "videos": [
         {
           "title": "[功德品] 富中之富 A",
@@ -2751,12 +2857,12 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_93.png"
+          "src": "images/action_hints/hint_95.png"
         }
       ]
     },
     {
-      "title": "11/12：32.富中之富B",
+      "title": "11/12：34.富中之富B",
       "videos": [
         {
           "title": "[功德品] 富中之富 B",
@@ -2819,12 +2925,12 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_94.png"
+          "src": "images/action_hints/hint_96.png"
         }
       ]
     },
     {
-      "title": "11/14：32.富中之富B",
+      "title": "11/14：34.富中之富B",
       "videos": [
         {
           "title": "[功德品] 富中之富 B",
@@ -2887,7 +2993,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_95.png"
+          "src": "images/action_hints/hint_97.png"
         }
       ]
     },
@@ -2903,7 +3009,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_98.jpg"
+          "src": "images/action_hints/hint_100.jpg"
         }
       ]
     },
@@ -2939,7 +3045,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_99.jpg"
+          "src": "images/action_hints/hint_101.jpg"
         }
       ]
     },
@@ -2955,7 +3061,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_100.jpg"
+          "src": "images/action_hints/hint_102.jpg"
         }
       ]
     },
@@ -3003,11 +3109,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_101.jpg"
+          "src": "images/action_hints/hint_103.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_102.jpg"
+          "src": "images/action_hints/hint_104.jpg"
         }
       ]
     },
@@ -3023,7 +3129,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_103.jpg"
+          "src": "images/action_hints/hint_105.jpg"
         }
       ]
     },
@@ -3059,15 +3165,15 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_104.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_105.jpg"
-        },
-        {
-          "type": "image",
           "src": "images/action_hints/hint_106.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_107.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_108.jpg"
         }
       ]
     },
@@ -3083,7 +3189,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_107.jpg"
+          "src": "images/action_hints/hint_109.jpg"
         }
       ]
     },
@@ -3127,11 +3233,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_108.jpg"
+          "src": "images/action_hints/hint_110.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_109.jpg"
+          "src": "images/action_hints/hint_111.jpg"
         }
       ]
     },
@@ -3147,7 +3253,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_110.jpg"
+          "src": "images/action_hints/hint_112.jpg"
         }
       ]
     },
@@ -3173,15 +3279,19 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
+          "content": "OS:2011(手放)"
+        },
+        {
+          "type": "text",
           "content": "11/13："
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_111.jpg"
+          "src": "images/action_hints/hint_113.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_112.jpg"
+          "src": "images/action_hints/hint_114.jpg"
         }
       ]
     },
@@ -3197,7 +3307,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_113.png"
+          "src": "images/action_hints/hint_115.png"
         }
       ]
     },
@@ -3233,15 +3343,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_114.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_115.jpg"
-        },
-        {
-          "type": "image",
           "src": "images/action_hints/hint_116.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_117.jpg"
         }
       ]
     },
@@ -3257,7 +3363,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_117.jpg"
+          "src": "images/action_hints/hint_118.jpg"
         }
       ]
     },
@@ -3313,10 +3419,6 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_118.jpg"
-        },
-        {
-          "type": "image",
           "src": "images/action_hints/hint_119.jpg"
         },
         {
@@ -3326,6 +3428,10 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_121.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_122.jpg"
         }
       ]
     },
@@ -3341,7 +3447,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_122.jpg"
+          "src": "images/action_hints/hint_123.jpg"
         }
       ]
     },
@@ -3365,7 +3471,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_123.jpg"
+          "src": "images/action_hints/hint_124.jpg"
         }
       ]
     },
@@ -3417,7 +3523,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_124.jpg"
+          "src": "images/action_hints/hint_125.jpg"
         }
       ]
     },
@@ -3433,7 +3539,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_125.jpg"
+          "src": "images/action_hints/hint_126.jpg"
         }
       ]
     },
@@ -3505,15 +3611,15 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_126.jpg"
-        },
-        {
-          "type": "image",
           "src": "images/action_hints/hint_127.jpg"
         },
         {
           "type": "image",
           "src": "images/action_hints/hint_128.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_129.jpg"
         }
       ]
     },
@@ -3529,7 +3635,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_129.jpg"
+          "src": "images/action_hints/hint_130.jpg"
         }
       ]
     },
@@ -3577,7 +3683,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_130.jpg"
+          "src": "images/action_hints/hint_131.jpg"
         }
       ]
     },
@@ -3595,11 +3701,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_131.jpg"
+          "src": "images/action_hints/hint_132.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_132.jpg"
+          "src": "images/action_hints/hint_133.jpg"
         }
       ]
     },
@@ -3615,7 +3721,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_133.jpg"
+          "src": "images/action_hints/hint_134.jpg"
         }
       ]
     },
@@ -3667,11 +3773,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_134.jpg"
+          "src": "images/action_hints/hint_135.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_135.jpg"
+          "src": "images/action_hints/hint_136.jpg"
         }
       ]
     },
@@ -3684,12 +3790,7 @@ const ACTION_HINTS_DATA = {
           "videoId": "vZU-rtMuEoE"
         }
       ],
-      "details": [
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_136.png"
-        }
-      ]
+      "details": []
     },
     {
       "title": "11/14：【曲目1：第八功德】",
@@ -3728,10 +3829,6 @@ const ACTION_HINTS_DATA = {
         {
           "type": "image",
           "src": "images/action_hints/hint_138.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_139.jpg"
         }
       ]
     },
@@ -3744,12 +3841,7 @@ const ACTION_HINTS_DATA = {
           "videoId": "cSjyuO_KRp8"
         }
       ],
-      "details": [
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_140.jpg"
-        }
-      ]
+      "details": []
     },
     {
       "title": "11/14：【曲目3：生生世世都在菩提中】",
@@ -3763,63 +3855,27 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "Os我怎麼能休息，但是你這麼累能怎麼辦。現在新冠疫情讓很多家庭陷入困境，不是考慮自己的時候。熱食不能停(開黃燈合十)!慈善不能停!"
+          "content": "立地藏王菩薩的願 但願眾生得離苦就算眼睛失明，腳步也不能停 (發觀世音菩薩的心)"
         },
         {
           "type": "text",
-          "content": "立地藏王菩薩的願"
+          "content": "但願愛心廣大無 我染疫了，恐怕過不了這一關(邊) 明天發放記得叫醒我(發心立願)師兄(生生世世都在菩提中)"
         },
         {
           "type": "text",
-          "content": "但願眾生得離苦"
+          "content": "我真心發願我的骨灰要撒在辛巴威這片土地上(立願發心)"
         },
         {
           "type": "text",
-          "content": "孩子們能專心上學了"
+          "content": "五生五世都要出生在這裡 (但願生生世世都在菩提中)"
         },
         {
           "type": "text",
-          "content": "發觀世音菩薩的心"
+          "content": "成為一位有力量的辛巴威人(立願)，翻轉世代的貧窮 (發心)"
         },
         {
           "type": "text",
-          "content": "但願愛心廣大無邊"
-        },
-        {
-          "type": "text",
-          "content": "我們在辛巴威終於有自己的家了"
-        },
-        {
-          "type": "text",
-          "content": "發心立願"
-        },
-        {
-          "type": "text",
-          "content": "生生世世都在菩提中"
-        },
-        {
-          "type": "text",
-          "content": "(立願發心"
-        },
-        {
-          "type": "text",
-          "content": "但願生生世世都在菩提中)"
-        },
-        {
-          "type": "text",
-          "content": "我衷心發願!往生之後要埋在辛巴威，並且五生五世都要出生在這裡，成為一個有力量的辛巴威人，繼續為這片土地服務，翻轉世代的貧窮"
-        },
-        {
-          "type": "text",
-          "content": "立願發心"
-        },
-        {
-          "type": "text",
-          "content": "但願生生世世都在菩提中"
-        },
-        {
-          "type": "text",
-          "content": "生生世世守護辛巴威"
+          "content": "但願生生世世都在菩提中 生生世世守護辛巴威"
         },
         {
           "type": "text",
@@ -3827,11 +3883,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_141.jpg"
+          "src": "images/action_hints/hint_139.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_142.jpg"
+          "src": "images/action_hints/hint_140.jpg"
         }
       ]
     },
@@ -3847,7 +3903,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_143.jpg"
+          "src": "images/action_hints/hint_141.jpg"
         }
       ]
     },
@@ -3907,19 +3963,19 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
+          "src": "images/action_hints/hint_142.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_143.jpg"
+        },
+        {
+          "type": "image",
           "src": "images/action_hints/hint_144.jpg"
         },
         {
           "type": "image",
           "src": "images/action_hints/hint_145.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_146.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_147.jpg"
         }
       ]
     },
@@ -3982,11 +4038,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_155.jpg"
+          "src": "images/action_hints/hint_153.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_156.jpg"
+          "src": "images/action_hints/hint_154.jpg"
         }
       ]
     },
@@ -4002,7 +4058,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_157.jpg"
+          "src": "images/action_hints/hint_155.jpg"
         }
       ]
     },
@@ -4046,11 +4102,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_158.jpg"
+          "src": "images/action_hints/hint_156.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_159.jpg"
+          "src": "images/action_hints/hint_157.jpg"
         }
       ]
     },
@@ -4066,7 +4122,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "image",
-          "src": "images/action_hints/hint_160.jpg"
+          "src": "images/action_hints/hint_158.jpg"
         }
       ]
     },
@@ -4100,11 +4156,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_161.jpg"
+          "src": "images/action_hints/hint_159.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_162.jpg"
+          "src": "images/action_hints/hint_160.jpg"
         }
       ]
     },
@@ -4161,11 +4217,11 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_163.jpg"
+          "src": "images/action_hints/hint_161.jpg"
         },
         {
           "type": "image",
-          "src": "images/action_hints/hint_164.jpg"
+          "src": "images/action_hints/hint_162.jpg"
         }
       ]
     },
@@ -4293,19 +4349,19 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "image",
+          "src": "images/action_hints/hint_163.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_164.jpg"
+        },
+        {
+          "type": "image",
           "src": "images/action_hints/hint_165.jpg"
         },
         {
           "type": "image",
           "src": "images/action_hints/hint_166.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_167.jpg"
-        },
-        {
-          "type": "image",
-          "src": "images/action_hints/hint_168.jpg"
         }
       ]
     },

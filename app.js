@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { key: 'humanities2', label: '09-2主機板' },
     { key: 'fiveContinents2', label: '10-1五大洲' },
     { key: 'fiveContinents1', label: '10-2五大洲(台灣)' },
-    { key: 'sixRuiXiang', label: '12-1六瑞相' }
+    { key: 'sixRuiXiang', label: '11六瑞相' }
   ];
 
   // Relative Grid coordinate configuration
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { key: 'humanities2', name: '09-2人文(主機板)', label: '人文(主機板)' },
     { key: 'fiveContinents2', name: '10-1五大洲', label: '五大洲' },
     { key: 'fiveContinents1', name: '10-2五大洲(台灣)', label: '五大洲(台灣)' },
-    { key: 'sixRuiXiang', name: '12-1六瑞相', label: '發願/行星/祈禱' }
+    { key: 'sixRuiXiang', name: '11六瑞相', label: '發願/行星/祈禱' }
   ];
 
   // 各場次五大洲定位點穿插子步驟定義（依據最新動作提示與定位點參考演出時間軸）
