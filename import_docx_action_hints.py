@@ -14,11 +14,13 @@ import re
 import zipfile
 import xml.etree.ElementTree as ET
 
-DOCX_FILE = "動作提示1007.docx" if os.path.exists("動作提示1007.docx") else (
-    "動作提示0923.docx" if os.path.exists("動作提示0923.docx") else (
-        "動作提示0916.docx" if os.path.exists("動作提示0916.docx") else (
-            "動作提示0909.docx" if os.path.exists("動作提示0909.docx") else (
-                "動作提示0905.docx" if os.path.exists("動作提示0905.docx") else "動作提示.docx"
+DOCX_FILE = "動作提示1012.docx" if os.path.exists("動作提示1012.docx") else (
+    "動作提示1007.docx" if os.path.exists("動作提示1007.docx") else (
+        "動作提示0923.docx" if os.path.exists("動作提示0923.docx") else (
+            "動作提示0916.docx" if os.path.exists("動作提示0916.docx") else (
+                "動作提示0909.docx" if os.path.exists("動作提示0909.docx") else (
+                    "動作提示0905.docx" if os.path.exists("動作提示0905.docx") else "動作提示.docx"
+                )
             )
         )
     )

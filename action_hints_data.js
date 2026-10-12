@@ -321,11 +321,7 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "面乙舞台圓心坐跪聽法"
-        },
-        {
-          "type": "text",
-          "content": "(音樂或OS全體高跪後坐跪)法師：佛陀為一大事因緣來人間，教導眾生行菩薩道，從靈鷲法脈，到慈濟一甲子的人間力行"
+          "content": "(音樂前奏合掌高跪)法師：佛陀(坐跪)為一大事因緣來人間，教導眾生行菩薩道，從靈鷲法脈，到慈濟一甲子的人間力行"
         },
         {
           "type": "text",
@@ -353,7 +349,7 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "彷若實境再現"
+          "content": "彷若實境(全體大聲唱且雙手平出)再現(雙手平上)"
         }
       ]
     }
@@ -371,11 +367,11 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "text",
-          "content": "六度結束後靈鳩山上音樂維持面向乙舞台圓心，等演鳩摩羅什暗場時才換行願隊形"
+          "content": "聽到交響樂換行願隊形"
         },
         {
           "type": "text",
-          "content": "鳩摩羅什譯經：我今稽首盡無疑 翻譯佛法 佛法永傳(轉向甲舞台東側)"
+          "content": "鳩摩羅什譯經：我今稽首盡無疑 翻譯佛法 佛法永傳"
         },
         {
           "type": "text",
@@ -4380,6 +4376,10 @@ const ACTION_HINTS_DATA = {
         {
           "type": "text",
           "content": "慈濟小行星化剎那 為永恆"
+        },
+        {
+          "type": "image",
+          "src": "images/action_hints/hint_167.jpg"
         }
       ]
     },
@@ -4389,15 +4389,27 @@ const ACTION_HINTS_DATA = {
       "details": [
         {
           "type": "text",
+          "content": "前奏轉乙舞台，腳頂線"
+        },
+        {
+          "type": "text",
           "content": "上人：我天天啦都是在祈禱,我的祈禱就是淨化人心、祥和社會、天下無災難"
         },
         {
           "type": "text",
-          "content": "我的心在靜思中感恩我的心念(舉高)充滿虔誠"
+          "content": "我的心 在靜思中感恩"
         },
         {
           "type": "text",
-          "content": "大家一起來祈禱(慢慢收)從不同角落地點祈求平安吉祥滿人間"
+          "content": "我的心念(舉高)充滿虔誠"
+        },
+        {
+          "type": "text",
+          "content": "大家一起來祈禱(慢慢收)從不同角落地點"
+        },
+        {
+          "type": "text",
+          "content": "祈求平安吉祥滿人(右併轉90度)間(右併轉90度)"
         },
         {
           "type": "text",
@@ -4409,11 +4421,19 @@ const ACTION_HINTS_DATA = {
         },
         {
           "type": "text",
-          "content": "我的心在靜思中感恩我的心念(舉高)上達諸佛心"
+          "content": "我的心 在靜思中感恩"
         },
         {
           "type": "text",
-          "content": "大家心口一念(慢慢收)化解惡念結善緣　祈求天下無災　歲歲年年"
+          "content": "我的心念(舉高)上達諸佛心"
+        },
+        {
+          "type": "text",
+          "content": "大家心口一念(慢慢收)"
+        },
+        {
+          "type": "text",
+          "content": "化解惡念結善緣 祈求天下無災 歲歲年年"
         }
       ]
     }

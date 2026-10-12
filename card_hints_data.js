@@ -869,11 +869,19 @@ const CARD_HINTS_DATA = {
       ]
     },
     {
-      "title": "【祈禱】 面乙舞台圓心",
+      "title": "【祈禱】 前奏轉乙舞台，腳頂線",
       "details": [
         {
           "type": "text",
+          "content": "前奏轉乙舞台，腳頂線"
+        },
+        {
+          "type": "text",
           "content": "上人開示：天天祈禱 淨化人心、祥和社會、天下無災難"
+        },
+        {
+          "type": "text",
+          "content": "祈求平安吉祥滿人(右併轉90度)間(右併轉90度)"
         },
         {
           "type": "text",

@@ -16,10 +16,12 @@ import xml.etree.ElementTree as ET
 DOCX_CARD = "1007小卡關鍵字提示.docx" if os.path.exists("1007小卡關鍵字提示.docx") else (
     "0909小卡關鍵字提示.docx" if os.path.exists("0909小卡關鍵字提示.docx") else "小卡關鍵字提示.docx"
 )
-DOCX_ACTION = "動作提示1007.docx" if os.path.exists("動作提示1007.docx") else (
-    "動作提示0923.docx" if os.path.exists("動作提示0923.docx") else (
-        "動作提示0916.docx" if os.path.exists("動作提示0916.docx") else (
-            "動作提示0909.docx" if os.path.exists("動作提示0909.docx") else "動作提示.docx"
+DOCX_ACTION = "動作提示1012.docx" if os.path.exists("動作提示1012.docx") else (
+    "動作提示1007.docx" if os.path.exists("動作提示1007.docx") else (
+        "動作提示0923.docx" if os.path.exists("動作提示0923.docx") else (
+            "動作提示0916.docx" if os.path.exists("動作提示0916.docx") else (
+                "動作提示0909.docx" if os.path.exists("動作提示0909.docx") else "動作提示.docx"
+            )
         )
     )
 )
@@ -384,9 +386,11 @@ def build_card_hints():
             ]
         },
         {
-            "title": "【祈禱】 面乙舞台圓心",
+            "title": "【祈禱】 前奏轉乙舞台，腳頂線",
             "details": [
+                {"type": "text", "content": "前奏轉乙舞台，腳頂線"},
                 {"type": "text", "content": "上人開示：天天祈禱 淨化人心、祥和社會、天下無災難"},
+                {"type": "text", "content": "祈求平安吉祥滿人(右併轉90度)間(右併轉90度)"},
                 {"type": "text", "content": "用心(舉高) 祈禱 但願人人(慢慢收) 牽手心連心 開啟光明大愛"},
                 {"type": "text", "content": "我的心念(舉高)上達諸佛心 大家心口一念(慢慢收)化解惡念結善緣 祈求天下無災 歲歲年年"}
             ]
