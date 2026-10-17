@@ -218,6 +218,20 @@ def generate_lyrics_os_database(pdf_file, existing_data_file='lyrics_os_data.js'
                 pending_country = m_country.group(1).strip()
                 continue
 
+            # Ignore transition notices like 【結束先換圓形...】
+            if line_text.startswith('【結束先換圓形') or line_text.startswith('【後接'):
+                if cur_sec:
+                    cur_sec['lines'].append(l)
+                continue
+
+            # Check special case for 泰北演出 sub-lines
+            if pending_country == '泰北' and (line_text.startswith('【優人劇團演出】') or line_text.startswith('【泰北師生民族舞演出】')):
+                if cur_sec:
+                    if 'pre_lines' not in cur_sec:
+                        cur_sec['pre_lines'] = []
+                    cur_sec['pre_lines'].append(l)
+                continue
+
             if cur_sec and cur_sec.get('pending_title'):
                 cur_sec['title'] += ' ' + line_text
                 cur_sec['title_spans'].extend(l)
@@ -225,19 +239,23 @@ def generate_lyrics_os_database(pdf_file, existing_data_file='lyrics_os_data.js'
                     cur_sec['pending_title'] = False
                 continue
 
-            # Handle normal section start, ignoring rehearsal flow transitions like 【後接 大醫王】
-            if line_text.startswith('【') and not line_text.startswith('【後接'):
+            # Handle normal section start
+            if line_text.startswith('【'):
                 if cur_sec:
                     raw_sections.append(cur_sec)
                 full_title = line_text
+                extra_lines = []
                 if pending_country:
                     full_title = f"【{pending_country} {line_text[1:]}"
+                    if pending_country == '泰北' and cur_sec and cur_sec.get('pre_lines'):
+                        extra_lines = cur_sec['pre_lines']
+                        cur_sec['pre_lines'] = []
                     pending_country = ''
                 cur_sec = {
                     'title': full_title,
                     'title_spans': list(l),
                     'pending_title': not ('】' in line_text),
-                    'lines': []
+                    'lines': extra_lines
                 }
             else:
                 if cur_sec:
@@ -247,7 +265,7 @@ def generate_lyrics_os_database(pdf_file, existing_data_file='lyrics_os_data.js'
         raw_sections.append(cur_sec)
 
     print(f"Extracted {len(raw_sections)} sections from {pdf_file}")
-    assert len(raw_sections) == 75, f"Expected 75 sections, got {len(raw_sections)}"
+    assert len(raw_sections) == 76, f"Expected 76 sections, got {len(raw_sections)}"
 
     # Clean wrapped session line in 富中之富 A, B
     for s in raw_sections:
@@ -257,7 +275,7 @@ def generate_lyrics_os_database(pdf_file, existing_data_file='lyrics_os_data.js'
                 s['title'] += ' ' + first_l_text
                 s['lines'].pop(0)
 
-    # 3. Define metadata configurations for all 75 sections in order of 0922 PDF
+    # 3. Define metadata configurations for all 76 sections in order of 1016 PDF
     section_configs = [
         # 1..6: circle (序、生、老、病、死、六度)
         {'fk': 'circle', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/慈善+醫療/01序.mp3'},
@@ -266,87 +284,88 @@ def generate_lyrics_os_database(pdf_file, existing_data_file='lyrics_os_data.js'
         {'fk': 'circle', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/慈善+醫療/04病.mp3'},
         {'fk': 'circle', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/慈善+醫療/05死.mp3'},
         {'fk': 'circle', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/慈善+醫療/06六度.mp3'},
-        # 7..8: xingYuan (行願、開經偈)
+        # 7..8: circle & xingYuan (靈鷲山上、鳩摩羅什)
+        {'fk': 'circle', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': ''},
+        {'fk': 'xingYuan', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': ''},
+        # 9..10: xingYuan (行願、開經偈)
         {'fk': 'xingYuan', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/慈善+醫療/07行願+開經偈.mp3'},
         {'fk': 'xingYuan', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/慈善+醫療/07行願+開經偈.mp3'},
-        # 9: miLuo (扛天下米籮)
+        # 11: miLuo (扛天下米籮)
         {'fk': 'miLuo', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/慈善+醫療/08扛天下米籮.mp3'},
-        # 10: jingSi (靜思家風)
+        # 12: jingSi (靜思家風)
         {'fk': 'jingSi', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/慈善+醫療/09靜思家風.mp3'},
-        # 11: lamp (點一盞燈)
+        # 13: lamp (點一盞燈)
         {'fk': 'lamp', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/慈善+醫療/10點一盞燈.mp3'},
-        # 12: noBoat (菜市場的五毛錢)
+        # 14: noBoat (菜市場的五毛錢)
         {'fk': 'noBoat', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/慈善+醫療/11菜市場五毛錢.mp3'},
-        # 13: noBoat3 (慈善ending)
+        # 15: noBoat3 (慈善ending)
         {'fk': 'noBoat3', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/慈善+醫療/12圍爐_是諸眾生.mp3'},
-        # 14..15: bigV (地藏經啟航、四弘誓願)
+        # 16..17: bigV (地藏經啟航、四弘誓願)
         {'fk': 'bigV', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/慈善+醫療/13醫療_地藏經.mp3'},
         {'fk': 'bigV', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/慈善+醫療/14四弘誓願.mp3'},
-        # 16..17: daChuanShi (拉繩、醫療德行品梵唄)
+        # 18..19: daChuanShi (拉繩、醫療德行品梵唄)
         {'fk': 'daChuanShi', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/慈善+醫療/15拉繩-船師大船師梵唄.mp3'},
         {'fk': 'daChuanShi', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/慈善+醫療/15拉繩-船師大船師梵唄.mp3'},
-        # 18..23: daChuanShi 醫療各場次專屬曲目
+        # 20..25: daChuanShi 醫療各場次專屬曲目 (1016: 北慈疫情為 11/13 第2天)
         {'fk': 'daChuanShi', 'sessions': ['1112'], 'audio': 'Music/慈善+醫療/18北慈＿疫情捨我其誰.mp3'}, # 羅倫佐
         {'fk': 'daChuanShi', 'sessions': ['1112'], 'audio': 'Music/慈善+醫療/16 大醫王.mp3'}, # 大埔無醫村
+        {'fk': 'daChuanShi', 'sessions': ['1113'], 'audio': 'Music/慈善+醫療/18北慈＿疫情捨我其誰.mp3'}, # 北慈疫情 (白袍禮讚 11/13)
         {'fk': 'daChuanShi', 'sessions': ['1113'], 'audio': ''}, # 花慈連體嬰
-        {'fk': 'daChuanShi', 'sessions': ['1114'], 'audio': 'Music/慈善+醫療/18北慈＿疫情捨我其誰.mp3'}, # 北慈疫情 (白袍禮讚)
         {'fk': 'daChuanShi', 'sessions': ['1114'], 'audio': ''}, # 中慈江永旭
         {'fk': 'daChuanShi', 'sessions': ['1115'], 'audio': 'Music/慈善+醫療/17 骨捐.mp3'}, # 北慈八仙塵爆
-        # 24: 大醫王
+        # 26: 大醫王
         {'fk': 'daChuanShi', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/慈善+醫療/16 大醫王.mp3'},
-        # 25..26: boneDonation (骨捐、大體捐贈)
+        # 27..28: boneDonation (骨捐、大體捐贈)
         {'fk': 'boneDonation', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/慈善+醫療/17 骨捐.mp3'},
         {'fk': 'boneDonation', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/慈善+醫療/17 骨捐.mp3'},
-        # 27..29: edu (教育說法品梵唄、大體老師、慈大醫學院宣誓)
+        # 29..31: edu (教育說法品梵唄、大體老師、慈大醫學院宣誓)
         {'fk': 'edu', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/教育+人文/教育01_教育說法品梵唄.mp3'},
         {'fk': 'edu', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/教育+人文/教育02_大體老師.mp3'},
         {'fk': 'edu', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/教育+人文/教育03_慈大醫學院宣誓.mp3'},
-        # 30: 許永祥 (11/12, 11/13)
+        # 32: 許永祥 (11/12, 11/13)
         {'fk': 'edu', 'sessions': ['1112', '1113'], 'audio': 'Music/教育+人文/教育02_大體老師.mp3'},
-        # 31..32: 慈小、教育完全化
+        # 33..34: 慈小、教育完全化
         {'fk': 'edu', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/教育+人文/教育04_慈小個案.mp3'},
         {'fk': 'edu', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/教育+人文/教育05_教育完全化.mp3'},
-        # 33: 靜思語教學 (11/14, 11/15)
+        # 35: 靜思語教學 (11/14, 11/15)
         {'fk': 'edu', 'sessions': ['1114', '1115'], 'audio': 'Music/教育+人文/教育06_靜思語教學.mp3'},
-        # 34..35: humanities1 (幸福人生講座、跪羊圖)
+        # 36..37: humanities1 (幸福人生講座、跪羊圖)
         {'fk': 'humanities1', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/教育+人文/人文02_幸福人生講座.mp3'},
         {'fk': 'humanities1', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/教育+人文/人文02_幸福人生講座.mp3'},
-        # 36: 【七月是吉祥月(換主機板隊形) 孝親月 歡喜月(目犍連救母) 】
-        {'fk': 'humanities2', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': ''},
-        # 37: 十戒 (慈誠隊歌)
+        # 38: 十戒 (慈誠隊歌)
         {'fk': 'humanities2', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/教育+人文/人文01_慈誠隊歌.mp3'},
-        # 38..41: humanities2 (大愛台經典、大地的園丁、法譬如水能洗垢、慈悲科技上聯合國)
+        # 39..42: humanities2 (大愛台經典、大地的園丁、法譬如水能洗垢、慈悲科技上聯合國)
         {'fk': 'humanities2', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/教育+人文/人文03_大愛讓世界亮起來_珺月.mp3'},
         {'fk': 'humanities2', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/教育+人文/人文04_大地的園丁.mp3'},
         {'fk': 'humanities2', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/教育+人文/人文05_法譬如水能洗垢.mp3'},
         {'fk': 'humanities2', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/教育+人文/人文06_慈悲科技上聯合國.mp3'},
-        # 42: 樂生 (11/12, 11/15)
+        # 43: 樂生 (11/12, 11/15)
         {'fk': 'fiveContinents2', 'sessions': ['1112', '1115'], 'audio': 'Music/功德品/1112/11_12 [功德品] 01樂生療養院_超越天堂.mp3'},
-        # 43: 【第一功德】
+        # 44: 【第一功德】
         {'fk': 'fiveContinents2', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': ''},
-        # 44: 富中之富A (0922: 11/13, 11/15)
+        # 45: 富中之富A (11/13, 11/15)
         {'fk': 'fiveContinents2', 'sessions': ['1113', '1115'], 'audio': 'Music/功德品/1112/[功德品] 富中之富-A 0811.wav'},
-        # 45: 富中之富B (0922: 11/12, 11/14)
+        # 46: 富中之富B (11/12, 11/14)
         {'fk': 'fiveContinents2', 'sessions': ['1112', '1114'], 'audio': 'Music/功德品/1112/[功德品] 富中之富-A 0811.wav'},
-        # 46: 【五毛錢的力量(馬來西亞阿婆)】
+        # 47: 【五毛錢的力量(馬來西亞阿婆)】
         {'fk': 'fiveContinents2', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': ''},
-        # 47: 開經書
+        # 48: 開經書
         {'fk': 'fiveContinents1', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/功德品/1112/[功德品] 開經書_無量義經佛宅來.mp3'},
-        # 48..51: 11/12 黑區、化城喻、約旦、啟航
+        # 49..52: 11/12 黑區、化城喻、約旦、啟航
         {'fk': 'fiveContinents2', 'sessions': ['1112'], 'audio': 'Music/功德品/1112/11_12 [功德品] 03A黑區&亮區_第六功德.mp3'},
         {'fk': 'fiveContinents2', 'sessions': ['1112'], 'audio': 'Music/功德品/1112/11_12 [功德品] 03B黑區&亮區_化城喻故事.mp3'},
         {'fk': 'fiveContinents2', 'sessions': ['1112'], 'audio': 'Music/功德品/1112/11_12 [功德品] 02A第三功德(約旦).mp3'},
         {'fk': 'fiveContinents2', 'sessions': ['1112'], 'audio': 'Music/功德品/1112/11_12 [功德品] 02B啟航(約旦).mp3'},
-        # 52..53: 11/12 台灣救災集錦、衣珠喻手扎
+        # 53..54: 11/12 台灣救災集錦、衣珠喻手扎
         {'fk': 'fiveContinents1', 'sessions': ['1112'], 'audio': 'Music/功德品/1112/11_12 [功德品] 05台灣救災集錦_第五功德.mp3'},
         {'fk': 'fiveContinents1', 'sessions': ['1112'], 'audio': 'Music/功德品/1112/11_12 [功德品] 05台灣救災集錦_第五功德.mp3'},
-        # 54..58: 11/13 土耳其、莫三比克、髻珠喻、印尼、化城喻
+        # 55..59: 11/13 土耳其、莫三比克、髻珠喻、印尼、化城喻
         {'fk': 'fiveContinents2', 'sessions': ['1113'], 'audio': 'Music/功德品/1112/11_12 [功德品] 02A第三功德(約旦).mp3'},
         {'fk': 'fiveContinents2', 'sessions': ['1113'], 'audio': 'Music/功德品/1112/11_12 [功德品] 04A莫三比克_第八功德.mp3'},
         {'fk': 'fiveContinents2', 'sessions': ['1113'], 'audio': 'Music/功德品/1112/11_12 [功德品] 04B莫三比克_髻珠喻經文.mp3'},
         {'fk': 'fiveContinents2', 'sessions': ['1113'], 'audio': ''},
         {'fk': 'fiveContinents2', 'sessions': ['1113'], 'audio': ''},
-        # 59..65: 11/14 緬甸、八八風災、十在心路、泰北、辛巴威第八功德、生生世世都在菩提中、髻珠喻經文
+        # 60..66: 11/14 緬甸、八八風災、十在心路、泰北、辛巴威第八功德、生生世世都在菩提中、髻珠喻經文
         {'fk': 'fiveContinents2', 'sessions': ['1114'], 'audio': 'Music/功德品/1114/11_14 [功德品] 01第二功德(緬甸米撲滿).mp3'},
         {'fk': 'fiveContinents2', 'sessions': ['1114'], 'audio': 'Music/功德品/1114/11_14 [功德品] 02第七功德(八八風災).mp3'},
         {'fk': 'fiveContinents2', 'sessions': ['1114'], 'audio': 'Music/功德品/1114/11_14 [功德品] 02第七功德(八八風災).mp3'},
@@ -354,15 +373,15 @@ def generate_lyrics_os_database(pdf_file, existing_data_file='lyrics_os_data.js'
         {'fk': 'fiveContinents2', 'sessions': ['1114'], 'audio': 'Music/功德品/1114/11_14 [功德品] 04A第八功德(辛巴威).mp3'},
         {'fk': 'fiveContinents2', 'sessions': ['1114'], 'audio': 'Music/功德品/1114/11_14 [功德品] 05生生世世都在菩提中(辛巴威).mp3'},
         {'fk': 'fiveContinents2', 'sessions': ['1114'], 'audio': 'Music/功德品/1114/11_14 [功德品] 04B髻珠喻經文(辛巴威).mp3'},
-        # 66: 11/15 921 第九功德
+        # 67: 11/15 921 第九功德
         {'fk': 'fiveContinents1', 'sessions': ['1115'], 'audio': ''},
-        # 67..71: 11/15 921化城喻(若入是城)、化城喻(諸惡道險)、減災工程、報佛恩、第十功德
+        # 68..72: 11/15 921化城喻(若入是城)、化城喻(諸惡道險)、減災工程、報佛恩、第十功德
         {'fk': 'fiveContinents2', 'sessions': ['1115'], 'audio': 'Music/功德品/1112/11_12 [功德品] 03B黑區&亮區_化城喻故事.mp3'},
         {'fk': 'fiveContinents2', 'sessions': ['1115'], 'audio': 'Music/功德品/1112/11_12 [功德品] 03B黑區&亮區_化城喻故事.mp3'},
         {'fk': 'fiveContinents2', 'sessions': ['1115'], 'audio': ''},
         {'fk': 'fiveContinents2', 'sessions': ['1115'], 'audio': ''},
         {'fk': 'fiveContinents2', 'sessions': ['1115'], 'audio': ''},
-        # 72..75: 六瑞相、發心立願、慈濟小行星、祈禱
+        # 73..76: 六瑞相、發心立願、慈濟小行星、祈禱
         {'fk': 'sixRuiXiang', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/終章/01.六瑞相.mp3'},
         {'fk': 'sixRuiXiang', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/終章/02.發心立願.mp3'},
         {'fk': 'sixRuiXiang', 'sessions': ['1112', '1113', '1114', '1115'], 'audio': 'Music/終章/03.慈濟小行星演繹版+開示.mp3'},
@@ -490,7 +509,11 @@ def generate_lyrics_os_database(pdf_file, existing_data_file='lyrics_os_data.js'
     return new_sections
 
 def main():
-    pdf_file = '大巨蛋演繹段歌詞OS內容節錄_YDT_0922.pdf' if os.path.exists('大巨蛋演繹段歌詞OS內容節錄_YDT_0922.pdf') else ('大巨蛋演繹段歌詞OS內容節錄_YDT_0916.pdf' if os.path.exists('大巨蛋演繹段歌詞OS內容節錄_YDT_0916.pdf') else '大巨蛋演繹段歌詞OS內容節錄_YDT_0909.pdf')
+    pdf_file = '大巨蛋演繹段歌詞OS內容節錄_YDT_1016.pdf' if os.path.exists('大巨蛋演繹段歌詞OS內容節錄_YDT_1016.pdf') else (
+        '大巨蛋演繹段歌詞OS內容節錄_YDT_0922.pdf' if os.path.exists('大巨蛋演繹段歌詞OS內容節錄_YDT_0922.pdf') else (
+            '大巨蛋演繹段歌詞OS內容節錄_YDT_0916.pdf' if os.path.exists('大巨蛋演繹段歌詞OS內容節錄_YDT_0916.pdf') else '大巨蛋演繹段歌詞OS內容節錄_YDT_0909.pdf'
+        )
+    )
     if not os.path.exists(pdf_file):
         print(f"Error: {pdf_file} not found")
         return
@@ -498,7 +521,7 @@ def main():
     sections = generate_lyrics_os_database(pdf_file)
     print(f"Generated {len(sections)} sections from {pdf_file}")
 
-    js_content = "// 大巨蛋演繹段歌詞與 OS 內容資料庫 (依據 0922 PDF 產生，支援多場次動態過濾與精確劇本排版)\n"
+    js_content = "// 大巨蛋演繹段歌詞與 OS 內容資料庫 (依據 1016 PDF 產生，支援多場次動態過濾與精確劇本排版)\n"
     js_content += f"const LYRICS_OS_DATA = {json.dumps(sections, ensure_ascii=False, indent=2)};\n\n"
     js_content += "// Export if in node environment, otherwise make it global\n"
     js_content += "if (typeof module !== 'undefined' && module.exports) {\n"
