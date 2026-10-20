@@ -1,4 +1,4 @@
-// 大巨蛋演繹段歌詞與 OS 內容資料庫 (依據 1016 PDF 產生，支援多場次動態過濾與精確劇本排版)
+// 大巨蛋演繹段歌詞與 OS 內容資料庫 (依據 1020v1 PDF 產生，支援多場次動態過濾與精確劇本排版)
 const LYRICS_OS_DATA = [
   {
     "id": "sec_1",
@@ -1681,7 +1681,7 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "黃老師OS：轉識成智(回正) 成(出右腳合十往上)佛道",
+        "text": "黃老師OS：轉識成智(回正) 成(出右腳合十往上)佛道 ~優人抄鑼聲~ (收)",
         "type": "dialogue",
         "segments": [
           {
@@ -1760,6 +1760,39 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "000000"
+          },
+          {
+            "text": "~優人抄鑼聲~",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "A02B93"
+          },
+          {
+            "text": " (收)",
+            "isRed": false,
+            "isGreen": true,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "196B24"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           }
         ]
       }
@@ -1781,11 +1814,22 @@ const LYRICS_OS_DATA = [
     "videos": [],
     "lines": [
       {
-        "text": "(音樂前奏合掌高跪)法師：佛陀(坐跪)為一大事因緣來人間，教導眾生行菩薩道，從靈鷲法",
+        "text": "~法螺聲~ (合掌高跪) ~咚咚咚(坐跪) ~法師：佛陀為一大事因緣來人間，教導眾生行菩薩道，",
         "type": "lyrics",
         "segments": [
           {
-            "text": "(音樂前奏合掌高跪)",
+            "text": "~法螺聲~",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "A02B93"
+          },
+          {
+            "text": " (合掌高跪)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -1796,7 +1840,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "法師：",
+            "text": " ~咚咚咚",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -1804,18 +1848,7 @@ const LYRICS_OS_DATA = [
             "isBoxed": false,
             "isBold": false,
             "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "佛陀",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": true,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
+            "color": "A02B93"
           },
           {
             "text": "(坐跪)",
@@ -1823,137 +1856,91 @@ const LYRICS_OS_DATA = [
             "isGreen": true,
             "isBlue": false,
             "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "196B24"
+          },
+          {
+            "text": " ~",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "A02B93"
+          },
+          {
+            "text": "法師：佛陀為一大事因緣來人間，教導眾生行菩薩道，",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "從靈鷲法脈，到慈濟一甲子的人間力行",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "從靈鷲法脈，到慈濟一甲子的人間力行 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "靈鷲山上  法會不散  說法景象  經章躍然 一幅幅(出右手正斜上並高跪)動人的畫面 一聲聲真誠的呼喚",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "靈鷲山上  法會不散  說法景象  經章躍",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "然 一幅幅",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": true,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "(",
+            "isRed": false,
+            "isGreen": true,
+            "isBlue": false,
+            "isPurple": false,
             "isBoxed": true,
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
           },
           {
-            "text": "為一大事因",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": true,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "緣來人間，教導眾生行菩薩道，從靈鷲法",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          }
-        ]
-      },
-      {
-        "text": "脈，到慈濟一甲子的人間力行",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "脈，到慈濟一甲子的人間力行 ",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          }
-        ]
-      },
-      {
-        "text": "靈鷲山上",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "靈鷲山上 ",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": true,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "0000FF"
-          }
-        ]
-      },
-      {
-        "text": "法會不散",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "法會不散 ",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": true,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "0000FF"
-          }
-        ]
-      },
-      {
-        "text": "說法景象",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "說法景象 ",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": true,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "0000FF"
-          }
-        ]
-      },
-      {
-        "text": "經章躍然",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "經章躍然 ",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": true,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "0000FF"
-          }
-        ]
-      },
-      {
-        "text": "一幅幅(出右手正斜上並高跪)動人的畫面",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "一幅幅",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": true,
-            "isPurple": false,
-            "isBoxed": true,
-            "isBold": false,
-            "isItalic": false,
-            "color": "0000FF"
-          },
-          {
-            "text": "(出右手正斜上並高跪)",
+            "text": "出右手正斜上並高跪)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -1964,7 +1951,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "動人的畫面 ",
+            "text": "動人的畫面 一聲聲真誠的呼喚 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -1977,20 +1964,9 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "一聲聲真誠的呼喚 千百(合十高跪)億劫以來 彷若實境再現 彷若實境(全體大聲唱且雙手平",
+        "text": "千百(合十高跪)億劫以來 彷若實境再現 彷若實境(全體大聲唱且雙手平出)再現(雙手平上)",
         "type": "lyrics",
         "segments": [
-          {
-            "text": "一聲聲真誠的呼喚 ",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": true,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "0000FF"
-          },
           {
             "text": "千百",
             "isRed": false,
@@ -2036,24 +2012,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "(全體大聲唱且雙手平",
-            "isRed": false,
-            "isGreen": true,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "196B24"
-          }
-        ]
-      },
-      {
-        "text": "出)再現(雙手平上)",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "出)",
+            "text": "(全體大聲唱且雙手平出)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -2116,11 +2075,89 @@ const LYRICS_OS_DATA = [
     "videos": [],
     "lines": [
       {
-        "text": "鳩摩羅什譯經：我今稽首盡無疑 翻譯佛法 佛法永傳(轉向甲舞台東側)",
+        "text": "鳩摩羅什譯經：我今重誓 實願不虛，所譯經典 無有錯失，亡國成囚戰禍延 受逼違戒心熬",
         "type": "lyrics",
         "segments": [
           {
-            "text": "鳩摩羅什譯經：我今稽首盡無疑 翻譯佛法",
+            "text": "鳩摩羅什譯經：我今重誓 實願不虛，所譯經典 無有錯失，",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "亡國成囚戰禍延 受逼違戒心熬",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          }
+        ]
+      },
+      {
+        "text": "煎 隨軍東行戴鎖鍊 永辭西域夢魂牽，若此為真 火焚之後，碎身如塵 舌根不壞，幽禁異鄉",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "煎 隨軍東行戴鎖鍊 永辭西域夢魂牽",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "，若此為真 火焚之後，碎身如塵 舌根不壞，",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "幽禁異鄉",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          }
+        ]
+      },
+      {
+        "text": "墜深淵 宣法難行命黯然 悲智弘深度世願 誓將烽火化紅蓮，翻譯佛法 佛法永傳(轉向甲舞台東側)",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "墜深淵 宣法難行命黯然 悲智弘深度世願 誓將烽火化紅蓮",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "，翻譯佛法",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -2177,62 +2214,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "玄奘西行取經：西行取經五萬里，霜雪劫火證菩提，生死大海 誰作舟楫，無明長夜",
+        "text": "玄奘西行取經：西行取經五萬里 霜雪劫火證菩提 生死大海 誰作舟楫 無明長夜 誰為燈炬",
         "type": "lyrics",
         "segments": [
           {
-            "text": "玄奘西行取經：西行取經五萬里，霜雪劫火證菩提，生死大海 誰作舟楫，無明長夜 ",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          }
-        ]
-      },
-      {
-        "text": "誰為燈炬，西取佛法 佛法永傳 西取佛法 佛法永傳，沙河 漫漫 八百里，赤熱",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "誰為燈炬，西取佛法 佛法永傳 西取佛法 佛法永傳，沙河 漫漫 八百里，赤熱 ",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          }
-        ]
-      },
-      {
-        "text": "灼天 絕人跡 白日孤影寂 深宵魍魎泣 焦渴 命危 餘一息，不到天竺 絕不回頭",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "灼天 絕人跡 白日孤影寂 深宵魍魎泣 焦渴 命危 餘一息，不到天竺 絕不回頭 ",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          }
-        ]
-      },
-      {
-        "text": "寧向西方一步死 不朝東土半步生 矢志 矢志 終不移 ~~馬嘯聲~~西取佛法 佛法",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "寧向西方一步死 不朝東土半步生 矢志 矢志 終不移 ",
+            "text": "玄奘西行取經：",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -2243,7 +2229,113 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "~~馬嘯聲~~",
+            "text": "西行取經五萬里 霜雪劫火證菩提 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "生死大海 誰作舟楫 無明長夜 誰為燈炬 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "西取佛法 佛法永傳 西取佛法 佛法永傳 沙河 漫漫 八百里 赤熱 灼天 絕人跡 白日孤影寂 深宵魍魎泣",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "西取佛法 佛法永傳 西取佛法 佛法永傳 沙河 漫漫 八百里 赤熱 灼天 絕人跡 白日孤影寂 深宵魍魎泣 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          }
+        ]
+      },
+      {
+        "text": "焦渴 命危 餘一息 不到天竺 絕不回頭 寧向西方一步死 不朝東土半步生 矢志 矢志 終不",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "焦渴 命危 餘一息 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "不到天竺 絕不回頭 寧向西方一步死 不朝東土半步生 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "矢志 矢志 終不",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          }
+        ]
+      },
+      {
+        "text": "移 ~馬嘯聲~西取佛法 佛法永傳(不動)",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "移",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "~馬嘯聲~",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -2276,24 +2368,7 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           },
           {
-            "text": "佛法",
-            "isRed": true,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": true,
-            "isBold": false,
-            "isItalic": false,
-            "color": "EE0000"
-          }
-        ]
-      },
-      {
-        "text": "永傳(不動) 漫天黃沙散去 綠洲野馬泉",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "永傳",
+            "text": "佛法永傳",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -2315,7 +2390,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "漫天黃沙散去 綠洲野馬泉 ",
+            "text": " ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -2328,45 +2403,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "鑑真東傳佛法：滄波萬里誠 真願東灜僧 我願捨身攜明燈 律法傳向東 山川異域，風",
+        "text": "鑑真東傳佛法：滄波萬里誠 真願東灜僧 我願捨身攜明燈 律法傳向東 山川異域，風月同天 寄",
         "type": "lyrics",
         "segments": [
           {
-            "text": "鑑真東傳佛法：滄波萬里誠 真願東灜僧 我願捨身攜明燈 律法傳向東 山川異域，風",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          }
-        ]
-      },
-      {
-        "text": "月同天 寄諸佛子，共結來緣 為法事也，何惜身命 狂風逐，巨浪撲  掀舟摧帆",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "月同天 寄諸佛子，共結來緣 為法事也，何惜身命 狂風逐，巨浪撲  掀舟摧帆",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          }
-        ]
-      },
-      {
-        "text": "幾翻覆 人無助，命擺佈 十二年月六番渡 縱然盲雙目 心光照前路 不至日本(500",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "幾翻覆 人無助，命擺佈 十二年月六番渡 縱然盲雙目 心光",
+            "text": "鑑真東傳佛法：",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -2377,18 +2418,107 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "照前路 不至日本",
+            "text": "滄波萬里誠 真願東灜僧 我願捨身攜明燈 律法傳向東",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": " 山川異域，風月同天 寄",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "諸佛子，共結來緣 為法事也，何惜身命 狂風逐，巨浪撲  掀舟摧帆幾翻覆 人無助，命擺佈",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "諸佛子，共結來緣 為法事也，何惜身命 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "狂風逐，巨浪撲  掀舟摧帆幾翻覆",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "人無助，命擺佈 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          }
+        ]
+      },
+      {
+        "text": "十二年月六番渡 縱然盲雙目 心光照前路 不至日本(500 人上中央走道面甲) 本願不遂 生死以赴 何懼千",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "十二年月六番渡 縱然盲雙目 心光照前路 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "不至日本",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
             "isPurple": false,
             "isBoxed": true,
             "isBold": false,
             "isItalic": false,
-            "color": "000000"
+            "color": "0000FF"
           },
           {
-            "text": "(500",
+            "text": "(500 人上中央走道面甲)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -2397,26 +2527,59 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          },
+          {
+            "text": " 本願不遂 生死以赴",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "何懼千",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           }
         ]
       },
       {
-        "text": "人上中央走道面甲) 本願不遂 生死以赴 何懼千百度 東傳佛法 佛法永傳(轉行願方向)",
+        "text": "百度 東傳佛法 佛法永傳(轉行願方向)",
         "type": "lyrics",
         "segments": [
           {
-            "text": "人上中央走道面甲)",
+            "text": "百度",
             "isRed": false,
-            "isGreen": true,
-            "isBlue": false,
+            "isGreen": false,
+            "isBlue": true,
             "isPurple": false,
             "isBoxed": false,
             "isBold": false,
             "isItalic": false,
-            "color": "196B24"
+            "color": "0000FF"
           },
           {
-            "text": " 本願不遂 生死以赴 何懼千百度 東傳佛法",
+            "text": " 東傳佛法",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -2449,18 +2612,7 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           },
           {
-            "text": "(轉行願方",
-            "isRed": false,
-            "isGreen": true,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": true,
-            "isBold": false,
-            "isItalic": false,
-            "color": "196B24"
-          },
-          {
-            "text": "向)",
+            "text": "(轉行願方向)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -2974,11 +3126,33 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "佛 法 廣 傳 在 人 間  行~~願",
+        "text": "佛 法 廣 傳 在 人 間  行~~願(結束後迅速起身壓縮右後轉180 度向甲舞台)",
         "type": "lyrics",
         "segments": [
           {
-            "text": "佛 法 廣 傳 在 人 間  行~~願 ",
+            "text": "佛 法 廣 傳 在 人 間  行~~願",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "EE0000"
+          },
+          {
+            "text": "(結束後迅速起身壓縮右後轉180 度向甲舞台)",
+            "isRed": false,
+            "isGreen": true,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "196B24"
+          },
+          {
+            "text": " ",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -3008,33 +3182,11 @@ const LYRICS_OS_DATA = [
     "videos": [],
     "lines": [
       {
-        "text": "~優人鼓聲三聲~千百(合十)億劫以來",
+        "text": "千百億劫(合十)以來  仿若實境再現",
         "type": "lyrics",
         "segments": [
           {
-            "text": "~優人鼓聲三",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "A02B93"
-          },
-          {
-            "text": "聲~",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": true,
-            "isBold": false,
-            "isItalic": false,
-            "color": "A02B93"
-          },
-          {
-            "text": "千百",
+            "text": "千百億劫",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -3045,18 +3197,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "(合十",
-            "isRed": false,
-            "isGreen": true,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": true,
-            "isBold": false,
-            "isItalic": false,
-            "color": "196B24"
-          },
-          {
-            "text": ")",
+            "text": "(合十)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -3067,7 +3208,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "億劫以來   ",
+            "text": "以來  仿若實境再現  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -3080,28 +3221,33 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "仿若實境再現",
+        "text": "仿若(拿花)實境再現(開綠燈)",
         "type": "lyrics",
         "segments": [
           {
-            "text": "仿若實境再現   ",
+            "text": "仿若",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
             "isPurple": false,
-            "isBoxed": false,
+            "isBoxed": true,
             "isBold": false,
             "isItalic": false,
             "color": "0000FF"
-          }
-        ]
-      },
-      {
-        "text": "仿若實境再現(開綠燈)",
-        "type": "lyrics",
-        "segments": [
+          },
           {
-            "text": "仿若實境再",
+            "text": "(拿花)",
+            "isRed": false,
+            "isGreen": true,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "196B24"
+          },
+          {
+            "text": "實境再",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -3243,7 +3389,7 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "我愛人人 人人愛我，這是我小時候的人生藍圖，在我小的時候常常都要躲空襲~空襲",
+        "text": "我愛人人 人人愛我，這是我小時候的人生藍圖，在我小的時候常常都要躲空襲~空襲警",
         "type": "lyrics",
         "segments": [
           {
@@ -3258,7 +3404,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "~空襲",
+            "text": "~空襲警",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -3271,11 +3417,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "警報聲~(【換標準隊形】看甲舞台演出) 為什麼人要這樣互相殘殺，生命是如此脆弱，連",
+        "text": "報聲~(【換標準隊形】看甲舞台演出) 為什麼人要這樣互相殘殺，生命是如此脆弱，連我",
         "type": "lyrics",
         "segments": [
           {
-            "text": "警報聲~",
+            "text": "報聲~",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -3319,7 +3465,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "為什麼人要這樣互相殘殺，生命是如此脆弱，連",
+            "text": "為什麼人要這樣互相殘殺，生命是如此脆弱，連我",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -3332,11 +3478,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "我父親也~~我的頭，我的頭好痛 好痛 好痛。人生無常，生從何來 死往何去，人生",
+        "text": "父親也~~我的頭，我的頭好痛 好痛 好痛。人生無常，生從何來 死往何去，人生何",
         "type": "lyrics",
         "segments": [
           {
-            "text": "我父親也~~我的頭，我的頭好痛 好痛 好痛。人生無常，生從何來 死往何去，人生",
+            "text": "父親也~~我的頭，我的頭好痛 好痛 好痛。人生無常，生從何來 死往何去，人生何",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -3349,11 +3495,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "何價 生命何義，我要探尋生命的價值。人生何義 生命何價 妙法蓮華經 似有龍天護",
+        "text": "價 生命何義，我要探尋生命的價值。人生何義 生命何價 妙法蓮華經 似有龍天護佑，",
         "type": "lyrics",
         "segments": [
           {
-            "text": "何價 生命何義，我要探尋生命的價值。人生何義 生命何價 ",
+            "text": "價 生命何義，我要探尋生命的價值。人生何義 生命何價 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -3375,7 +3521,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "似有龍天護",
+            "text": "似有龍天護佑，",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -3388,11 +3534,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "佑，上人心無畏懼，唯有精進修行",
+        "text": "上人心無畏懼，唯有精進修行",
         "type": "lyrics",
         "segments": [
           {
-            "text": "佑，上人心無畏懼，唯有精進修行 ",
+            "text": "上人心無畏懼，唯有精進修行 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -3809,11 +3955,11 @@ const LYRICS_OS_DATA = [
     "videos": [],
     "lines": [
       {
-        "text": "os 你去煮麵線(上舞台)，多煮一些，吃完才會飽，啊油要多放一些，胃比較舒服。下一",
+        "text": "os 第一代弟子要徹底犧牲，人家不能吃的苦要能吃，人家不能忍的苦要能忍，跟著上人",
         "type": "os",
         "segments": [
           {
-            "text": "os",
+            "text": "os 第一代弟子要徹底犧牲，人家不能吃的苦要能吃，人家不能忍的苦要能忍，",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -3824,7 +3970,85 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": " 你去煮麵線",
+            "text": "跟著上人",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          }
+        ]
+      },
+      {
+        "text": "實在是太辛苦 我想要腳底抹油快來逃，我們有請原住民來割芒草，他說食べる我是聽不懂 是不是生病需要",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "實在是太辛苦 我想要腳底抹油快來逃",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "，我們有請原住民來割芒草，",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "他說食べる我是聽不懂 是不是生病需要",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          }
+        ]
+      },
+      {
+        "text": "人照顧，他不是生病，是沒吃早餐，肚子太餓了，你去煮麵線(上舞台)，多煮一些，吃完",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "人照顧",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "，他不是生病，是沒吃早餐，肚子太餓了，",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "你去煮麵線",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -3840,24 +4064,13 @@ const LYRICS_OS_DATA = [
             "isGreen": true,
             "isBlue": false,
             "isPurple": false,
-            "isBoxed": true,
+            "isBoxed": false,
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
           },
           {
-            "text": "，",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": true,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "多煮一些，吃完才會飽，啊油要多放一些，胃比較舒服。下一",
+            "text": "，多煮一些，吃完",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -3870,11 +4083,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "餐都不知道在哪裡？油和麵線先去和普明寺借，割草的工資是借的，啊這!又要借，",
+        "text": "才會飽，啊油要多放一些，胃比較舒服。下一餐都不知道在哪裡？油和麵線先去和普",
         "type": "lyrics",
         "segments": [
           {
-            "text": "餐都不知道在哪裡？油和麵線先去和普明寺借，割草的工資是借的，啊這!又要借，",
+            "text": "才會飽，啊油要多放一些，胃比較舒服。下一餐都不知道在哪裡？油和麵線先去和普",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -3887,11 +4100,28 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "借的 難道不用還嗎，我的師父 自己沒得吃，卻是念念眾生的苦，嗯!我認定(合十轉向)",
+        "text": "明寺借，割草的工資是借的，啊這!又要借，借的 難道不用還嗎，我的師父 自己沒",
         "type": "lyrics",
         "segments": [
           {
-            "text": "借的 難道不用還嗎，我的師父 自己沒得吃，卻是念念眾生的苦，嗯!",
+            "text": "明寺借，割草的工資是借的，啊這!又要借，借的 難道不用還嗎，我的師父 自己沒",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "得吃，卻是念念眾生的苦，嗯!我認定(合十轉向)這個師父了",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "得吃，卻是念念眾生的苦，嗯!",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -3922,13 +4152,7 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
-          }
-        ]
-      },
-      {
-        "text": "這個師父了",
-        "type": "lyrics",
-        "segments": [
+          },
           {
             "text": "這個師父了 ",
             "isRed": false,
@@ -4242,11 +4466,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "性。天主保佑您，法師平安。平安，您們好!為佛教為眾生，我相信做得到!",
+        "text": "性。",
         "type": "lyrics",
         "segments": [
           {
-            "text": "性。天主保佑您，法師平安。平安，您們好!為佛教為眾生，我相信做得到! ",
+            "text": "性。 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -4259,11 +4483,28 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "同年，印順導師要 上人前往嘉義的妙雲蘭若，但三十位家庭主婦連署慰留，師父 我",
+        "text": "一灘血事件數日後，三位海星中學的修女，來到小木屋向上人傳福音，天主保佑您，",
         "type": "lyrics",
         "segments": [
           {
-            "text": "同年，印順導師要 上人前往嘉義的妙雲蘭若，但三十位家庭主婦連署慰留，師父 ",
+            "text": "一灘血事件數日後，三位海星中學的修女，來到小木屋向上人傳福音，天主保佑您，",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "法師平安。平安，您們好! 法師 佛教的教理真的有夠好 天主傳愛 有養老院 醫院與學校 深山 海邊也會",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "法師平安。平安，您們好! 法師 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -4274,35 +4515,130 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "我",
-            "isRed": true,
+            "text": "佛教的教理真的有夠好 天主傳愛 有養老院 醫院與學校 深山 海邊也會",
+            "isRed": false,
             "isGreen": false,
-            "isBlue": false,
+            "isBlue": true,
             "isPurple": false,
-            "isBoxed": true,
+            "isBoxed": false,
             "isBold": false,
             "isItalic": false,
-            "color": "EE0000"
+            "color": "0000FF"
           }
         ]
       },
       {
-        "text": "們需要您(大聲唸並合十轉面向正確方向)，如果(開燈/需要者拿花)你們願意幫助我做救濟的工",
+        "text": "去幫忙 不知道佛教有沒有，在報紙看到無名氏幫助人的義舉，都可以認為是佛教徒的發心善",
         "type": "lyrics",
         "segments": [
           {
-            "text": "們需要您",
-            "isRed": true,
+            "text": "去幫忙 不知道佛教有沒有",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "，在報紙看到無名氏幫助人的義舉，都可以認為是佛教徒的發心善",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "行，為何不將無名氏的力量集合好 慈善事業大家一起來做，為佛教為眾生，我相信做得到!",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "行，",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "為何不將無名氏的力量集合好 慈善事業大家一起來做",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "，為佛教為眾生，我相信做得到! ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "同年，印順導師要 上人前往嘉義的妙雲蘭若，但三十位家庭主婦連署慰留，師父(合",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "同年，印順導師要 上人前往嘉義的妙雲蘭若，但三十位家庭主婦連署慰留，",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "師父",
+            "isRed": false,
             "isGreen": false,
             "isBlue": false,
             "isPurple": false,
             "isBoxed": true,
             "isBold": false,
             "isItalic": false,
-            "color": "EE0000"
+            "color": "000000"
           },
           {
-            "text": "(大聲唸並合十轉面向正確方向)",
+            "text": "(合",
+            "isRed": false,
+            "isGreen": true,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "196B24"
+          }
+        ]
+      },
+      {
+        "text": "十) 我們需要您(大聲唸並轉向抬頭看L3 上人休息區)，如果(轉回演繹面向、開燈/需要者拿花)你們",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "十)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -4313,7 +4649,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "，",
+            "text": " ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -4324,18 +4660,18 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "如果",
-            "isRed": false,
+            "text": "我們需要您",
+            "isRed": true,
             "isGreen": false,
             "isBlue": false,
             "isPurple": false,
             "isBoxed": true,
             "isBold": false,
             "isItalic": false,
-            "color": "000000"
+            "color": "EE0000"
           },
           {
-            "text": "(開燈/需要者拿花)",
+            "text": "(大聲唸並轉向抬頭看L3 ",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -4346,7 +4682,40 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "你們願意幫助我做救濟的工",
+            "text": "上人休息區)",
+            "isRed": false,
+            "isGreen": true,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": true,
+            "isBold": false,
+            "isItalic": false,
+            "color": "196B24"
+          },
+          {
+            "text": "，如果",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": true,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "(轉回演繹面向、開燈/需要者拿花)",
+            "isRed": false,
+            "isGreen": true,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "196B24"
+          },
+          {
+            "text": "你們",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -4359,11 +4728,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "作，我就永遠不離開花蓮(跪/預備動作)",
+        "text": "願意幫助我做救濟的工作，我就永遠不離開花蓮(跪/預備動作)",
         "type": "lyrics",
         "segments": [
           {
-            "text": "作，我就永遠不離開",
+            "text": "願意幫助我做救濟的工作，我就永遠",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -4374,7 +4743,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "花蓮",
+            "text": "不離開花蓮",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -4385,7 +4754,18 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(跪/預備動作) ",
+            "text": "(跪/",
+            "isRed": false,
+            "isGreen": true,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": true,
+            "isBold": false,
+            "isItalic": false,
+            "color": "196B24"
+          },
+          {
+            "text": "預備動作) ",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -4415,11 +4795,11 @@ const LYRICS_OS_DATA = [
     "videos": [],
     "lines": [
       {
-        "text": "~~音效 登~~ (浪坐跪抬頭)",
+        "text": "~登~ (浪坐跪抬頭)",
         "type": "lyrics",
         "segments": [
           {
-            "text": "~~",
+            "text": "~",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -4428,17 +4808,6 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "A02B93"
-          },
-          {
-            "text": "音效 ",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": true,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "77206D"
           },
           {
             "text": "登",
@@ -4452,7 +4821,7 @@ const LYRICS_OS_DATA = [
             "color": "77206D"
           },
           {
-            "text": "~~",
+            "text": "~",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -4640,7 +5009,7 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "~~音效 登~~ (中央走道千手上) 菜市場吵雜聲",
+        "text": "~~音效 登~~ (中央走道千手上) ~菜市場吵雜聲~",
         "type": "lyrics",
         "segments": [
           {
@@ -4699,7 +5068,29 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": " 菜市場吵雜聲 ",
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": true,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "77206D"
+          },
+          {
+            "text": "~菜市場吵雜聲~",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "A02B93"
+          },
+          {
+            "text": " ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -5009,11 +5400,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "os 唉唷 怎麼幫我們想的這麼周到，我們是全世界最大的家庭啦(一說完全體開燈、需拿燈",
+        "text": "os 唉唷!怎麼幫我們想的這麼周到，我們是全世界最大的家庭啦(一說完全體開燈、需拿燈",
         "type": "os",
         "segments": [
           {
-            "text": "os 唉唷 怎麼幫我們想的這麼周到，我們是全世界",
+            "text": "os 唉唷!怎麼幫我們想的這麼周到，我們是全世界",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -5048,11 +5439,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "者拿燈、轉面向正確方向/需跪者跪、所有動作要快快快)",
+        "text": "者拿燈、轉面向正確方向；跪者動作順序：高跪→拿開燈→合十→間奏最後一拍坐、所有動作要快快快)",
         "type": "lyrics",
         "segments": [
           {
-            "text": "者拿燈、轉面向正確方向/需跪者跪、",
+            "text": "者拿燈、轉面向正確方向；",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -5063,7 +5454,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "所有動作要快快快",
+            "text": "跪者動作順序：高跪→拿開燈→合十→間奏最後一拍坐、所有動作要快快快",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -5401,44 +5792,66 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "~~ 慘叫聲~~ 42 歲張炳華搬運砂石時，不慎從卡車上摔落【直接換大小V】先面向甲舞",
+        "text": "~跌落 慘叫聲~ 42 歲張炳華搬運砂石時【直接換大小V 先面向甲舞台】，不慎從卡車上摔",
         "type": "lyrics",
         "segments": [
           {
-            "text": "~~",
+            "text": "~跌落",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
             "isPurple": false,
-            "isBoxed": false,
+            "isBoxed": true,
             "isBold": false,
             "isItalic": false,
             "color": "A02B93"
           },
           {
-            "text": " 慘叫聲~~ ",
+            "text": " ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
             "isPurple": true,
-            "isBoxed": false,
+            "isBoxed": true,
             "isBold": false,
             "isItalic": false,
             "color": "77206D"
           },
           {
-            "text": "42 歲張炳華搬運砂石時，不慎從卡車上摔落",
+            "text": "慘叫聲",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
             "isPurple": false,
-            "isBoxed": false,
+            "isBoxed": true,
+            "isBold": false,
+            "isItalic": false,
+            "color": "A02B93"
+          },
+          {
+            "text": "~ ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": true,
+            "isBoxed": true,
+            "isBold": false,
+            "isItalic": false,
+            "color": "77206D"
+          },
+          {
+            "text": "42 歲張炳華搬運砂石時",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": true,
             "isBold": false,
             "isItalic": false,
             "color": "000000"
           },
           {
-            "text": "【直接換大小V】",
+            "text": "【直接換大小V ",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -5449,24 +5862,7 @@ const LYRICS_OS_DATA = [
             "color": "FF0000"
           },
           {
-            "text": "先面向甲舞",
-            "isRed": false,
-            "isGreen": true,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "196B24"
-          }
-        ]
-      },
-      {
-        "text": "台；~~~~ 再不做來不及(面中央走道腳頂線)...我決定在花蓮蓋一座綜合醫院",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "台；",
+            "text": "先面向甲舞台",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -5477,7 +5873,142 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "~~~~ ",
+            "text": "】",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "FF0000"
+          },
+          {
+            "text": "，不慎從卡車上摔",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "落 在黑暗角落點一盞燈 慈悲智慧老鼠在咬你的腳，你不痛嗎?唉呀!我全身都沒有感覺，根本",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "落 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "在黑暗角落點一盞燈 慈悲智慧",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "老鼠在咬你的腳，你不痛嗎?唉呀!我全身都沒有感覺，根本",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "不知道痛啊!師父!他太太回來了。你讀到小學就好啦，畢業後 就趕緊出去做工，你",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "不知道痛啊!師父!他太太回來了。你讀到小學就好啦，畢業後 就趕緊出去做工，你",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "們爸爸生病，媽媽我喔真的是沒辦法。貧跟病就像是雙胞胎，如果沒錢就醫，就會拖",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "們爸爸生病，媽媽我喔真的是沒辦法。貧跟病就像是雙胞胎，如果沒錢就醫，就會拖",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "垮全家，我們只是消極的救濟，這樣是不夠的，我們還要再積極一點，我決定要義",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "垮全家，我們只是消極的救濟，這樣是不夠的，我們還要再積極一點，我決定要義",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "診。師父!我家一樓可以無條件使用喔!我的藥可以免費提供。亦不容辭!醫療從善良",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "診。師父!我家一樓可以無條件使用喔!我的藥可以免費提供。亦不容辭!醫療從善良",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "的種子開始。~~~~ 再不做來不及(面中央走道腳頂線)，我決定在花蓮蓋一座設備齊全的綜",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "的種子開始。~~~~ ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -5510,7 +6041,24 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "...我決定在花蓮蓋一座綜合醫院 ",
+            "text": "，我決定在花蓮蓋一座設備齊全的綜",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "合醫院。",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "合醫院。 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -6029,55 +6577,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "良醫 大慈大悲，師父!我的身體裏藏著一顆不定時炸彈啊 身口意，不只你有，我的心臟",
+        "text": "良醫，師父!我的身體裏藏著一顆不定時炸彈啊，不只你有，我的心臟病也是不定時",
         "type": "lyrics",
         "segments": [
           {
-            "text": "良醫",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": " 大慈大悲",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": true,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "0000FF"
-          },
-          {
-            "text": "，師父!我的身體裏藏著一顆不定時炸彈啊 ",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "身口意",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": true,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "0000FF"
-          },
-          {
-            "text": "，不只你有，我的心臟",
+            "text": "良醫，師父!我的身體裏藏著一顆不定時炸彈啊，不只你有，我的心臟病也是不定時",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -6090,11 +6594,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "病也是不定時炸彈 清淨拔苦入人群，無論生命有多長，我們更要分秒必爭 柔善能忍如大地",
+        "text": "炸彈，無論生命有多長，我們更要分秒必爭 不存驕慢心 使諸惡盡",
         "type": "lyrics",
         "segments": [
           {
-            "text": "病也是不定時炸彈 ",
+            "text": "炸彈，無論生命有多長，我們更要分秒必爭 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -6105,29 +6609,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "清淨拔苦入人群",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": true,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "0000FF"
-          },
-          {
-            "text": "，無論生命有多長，我們更要分秒必爭 ",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "柔善能忍如大地 ",
+            "text": "不存驕慢心 使諸惡盡  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6140,11 +6622,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "不存驕慢心 使諸惡盡 善護有情 誓願度眾生 誓願斷煩惱 誓願學法門 誓願成佛道",
+        "text": "善護有情 誓願度眾生 誓願斷",
         "type": "lyrics",
         "segments": [
           {
-            "text": "不存驕慢心 使諸惡盡 善護有情 誓願度眾生 誓願斷煩惱 誓願學法門 誓願成佛道 ",
+            "text": "善護有情 誓願度眾生 誓願斷",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -6157,11 +6639,33 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "(轉面向乙舞台)",
-        "type": "annotation",
+        "text": "煩惱 誓願學法門 誓願成佛道(轉面向乙舞台腳頂線)",
+        "type": "lyrics",
         "segments": [
           {
-            "text": "(轉面向乙舞台)",
+            "text": "煩惱 誓願學法門 誓願",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "成佛道",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": true,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "(轉面向乙舞台腳頂線)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -6522,6 +7026,357 @@ const LYRICS_OS_DATA = [
   },
   {
     "id": "sec_20",
+    "title": "【大林.父子同病】11/12(第1 天專屬曲目)",
+    "formationKey": "daChuanShi",
+    "formationLabel": "07-1大船師 (拉繩/德行品/大醫王)",
+    "sessionKeys": [
+      "1112"
+    ],
+    "sessionLabel": "11/12(第1天)專屬曲目",
+    "audio": "",
+    "videos": [],
+    "lines": [
+      {
+        "text": "厝邊頭尾攏有咧講起 田的中央起一間大病院 陳醫師!拜託您幫我哥哥看看片子。沒問題!這種腫瘤",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "厝邊頭尾攏有咧講起 田的中央起一間大病院 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "陳醫師!拜託您幫我哥哥看看片子。沒問題!這種腫瘤",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "很罕見，不治療啊會要人命。我們跑遍各大醫院，都沒有醫師敢替哥哥開刀。五年",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "很罕見，不治療啊會要人命。我們跑遍各大醫院，都沒有醫師敢替哥哥開刀。五年",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "了，現在哥哥手跟腳都不能動。 瑟縮在社會的暗角裡哭泣 我的雙手雙腳漸漸萎縮，每天只",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "了，現在哥哥手跟腳都不能動。 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "瑟縮在社會的暗角裡哭泣 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "我的雙手雙腳漸漸萎縮，每天只",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "能躺在床上。帶你哥哥來醫院，別人不敢做，我 願意。沒想到，陳醫師你願意幫我",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "能躺在床上。帶你哥哥來醫院，別人不敢做，我 願意。沒想到，陳醫師你願意幫我",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "哥哥開刀。這腫瘤巨大，又佈滿這麼多血管，可能會血流不止，風險太大了吧，腫瘤",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "哥哥開刀。這腫瘤巨大，又佈滿這麼多血管，可能會血流不止，風險太大了吧，腫瘤",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "位置在頸椎第三到第五節，萬一 失敗呢，可能會造成呼吸困難，四肢與大小便功能",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "位置在頸椎第三到第五節，萬一 失敗呢，可能會造成呼吸困難，四肢與大小便功能",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "缺損。搶救生命，哪怕要承擔風險責任，一秒鐘我都不會遲疑。我將尊嚴而理性 以病人的健",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "缺損。搶救生命，哪怕要承擔風險責任，一秒鐘我都不會遲疑。",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "我將尊嚴而理性 以病人的健",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          }
+        ]
+      },
+      {
+        "text": "康為一切優先 吳先生 吳先生，有聽到嗎?來，手動一下，腳也動動看。太好了! 手術非",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "康為一切優先 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "吳先生 吳先生，有聽到嗎?來，手動一下，腳也動動看。太好了! 手術非",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "常順利，腫瘤清乾淨了，接下來就要努力做復健。謝謝醫生 謝謝您，很感謝醫師你",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "常順利，腫瘤清乾淨了，接下來就要努力做復健。謝謝醫生 謝謝您，很感謝醫師你",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "沒有放棄我，把我從地獄拉回天堂。~救護車聲~陳醫師，有急症病患需要你救治。是什",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "沒有放棄我，把我從地獄拉回天堂。",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "~救護車聲~",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": true,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "77206D"
+          },
+          {
+            "text": "陳醫師，有急症病患需要你救治。是什",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "麼狀況? 阿爸，醫師啊!啊我爸是得什麼病啊?你爸爸的腫瘤和你一樣，都很罕見，要",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "麼狀況? 阿爸，醫師啊!啊我爸是得什麼病啊?你爸爸的腫瘤和你一樣，都很罕見，要",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "趕緊處理。陳醫師，我兒子的生命是你救回來的，我對你有信心，我的身體就交給你",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "趕緊處理。陳醫師，我兒子的生命是你救回來的，我對你有信心，我的身體就交給你",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "了。你放心，我一定盡心盡力。妙手妙法妙人醫 感恩救命恩人，救了我的先生，七年後又",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "了。你放心，我一定盡心盡力。",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "妙手妙法妙人醫 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "感恩救命恩人，救了我的先生，七年後又",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "救了我爸爸。",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "救了我爸爸。 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sec_21",
     "title": "【花慈.中西醫精準醫療(羅倫佐) 曲目：我可以唱歌了】面中央走道腳頂線 11/12(第1 天專屬曲目)",
     "formationKey": "daChuanShi",
     "formationLabel": "07-1大船師 (拉繩/德行品/大醫王)",
@@ -6529,7 +7384,7 @@ const LYRICS_OS_DATA = [
       "1112"
     ],
     "sessionLabel": "11/12(第1天)專屬曲目",
-    "audio": "Music/慈善+醫療/18北慈＿疫情捨我其誰.mp3",
+    "audio": "",
     "videos": [],
     "lines": [
       {
@@ -6603,7 +7458,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_21",
+    "id": "sec_22",
     "title": "【大埔無醫村 曲目：擁抱蒼生】11/12(第1 天專屬曲目) (一開始站大小V 朝甲45 度看演出)",
     "formationKey": "daChuanShi",
     "formationLabel": "07-1大船師 (拉繩/德行品/大醫王)",
@@ -6615,11 +7470,158 @@ const LYRICS_OS_DATA = [
     "videos": [],
     "lines": [
       {
-        "text": "~~救護車聲~~~幸好有醫療站及時動手術，才能將生命搶救回來!多謝醫生這麼照顧我們",
+        "text": "這裡沒有醫生看診，如果遇到緊急狀況，救護車也是要翻山越嶺，六十公里的山路，",
         "type": "lyrics",
         "segments": [
           {
-            "text": "~~救護車聲~~~",
+            "text": "這裡沒有醫生看診，如果遇到緊急狀況，救護車也是要翻山越嶺，六十公里的山路，",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "病人走著走著，就成了絕路。唉! 生不起病 真是苦啊，趕到嘉義或臺南，車程最少也",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "病人走著走著，就成了絕路。唉! 生不起病 真是苦啊，趕到嘉義或臺南，車程最少也",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "要一個小時。唉! 小病要忍，生大病，用滾的才會到，病人走不出來，醫療就走進",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "要一個小時。唉! 小病要忍，生大病，用滾的才會到，病人走不出來，醫療就走進",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "去。大埔有醫療站啦! 有門診!還有夜間急診! 假日無休，二十四小時守護我們的健",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "去。大埔有醫療站啦! 有門診!還有夜間急診! 假日無休，二十四小時守護我們的健",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "康。醫師，我割草，結果連腳也被割到了。唉呦 唉呦!我的眼睛被魚鉤，唉呦 鉤到了",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "康。醫師，我割草，結果連腳也被割到了。唉呦 唉呦!我的眼睛被魚鉤，唉呦 鉤到了",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "啦。醫師，啊那，那山豬咬我的褲子，啊我就用手去抓牠，結果牠又咬到我的手啦。",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "啦。醫師，啊那，那山豬咬我的褲子，啊我就用手去抓牠，結果牠又咬到我的手啦。",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "醫師縫了兩個多小時，總共縫了二十七針，好嚴重喔，拖到下山就醫就來不及。醫師",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "醫師縫了兩個多小時，總共縫了二十七針，好嚴重喔，拖到下山就醫就來不及。醫師 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "醫師! 我 我胸悶，喘 喘不過氣來了。這是心肌梗塞，兩條都塞住了，快 快送大林",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "醫師! 我 我胸悶，喘 喘不過氣來了。這是心肌梗塞，兩條都塞住了，快 快送大林",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "慈濟醫院，~救護車聲~幸好有醫療站及時動手術，才能將生命搶救回來!多謝醫生這麼",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "慈濟醫院，",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "~救護車聲~",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -6630,7 +7632,7 @@ const LYRICS_OS_DATA = [
             "color": "77206D"
           },
           {
-            "text": "幸好有醫療站及時動手術，才能將生命搶救回來!多謝醫生這麼照顧我們",
+            "text": "幸好有醫療站及時動手術，才能將生命搶救回來!多謝醫生這麼",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -6643,11 +7645,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "這些村民!很很感恩的!",
+        "text": "照顧我們這些村民!很很感恩的!",
         "type": "lyrics",
         "segments": [
           {
-            "text": "這些村民!很很感恩的! ",
+            "text": "照顧我們這些村民!很很感恩的! ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -6660,7 +7662,7 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "林英隆醫師:有意義的工作(回復兩腳頂線)齁 這 這是最 福氣啦，不管有錢沒錢，這就是",
+        "text": "林英隆醫師:有意義的工作齁(回復兩腳頂線) 這 這是最 福氣啦，不管有錢沒錢，這就是",
         "type": "lyrics",
         "segments": [
           {
@@ -6675,7 +7677,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "有意義的工作",
+            "text": "有意義的工作齁",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -6691,24 +7693,13 @@ const LYRICS_OS_DATA = [
             "isGreen": true,
             "isBlue": false,
             "isPurple": false,
-            "isBoxed": true,
+            "isBoxed": false,
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
           },
           {
-            "text": "齁 這 這是最 福氣啦",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": true,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "，不管有錢沒錢，這就是",
+            "text": " 這 這是最 福氣啦，不管有錢沒錢，這就是",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -6996,7 +7987,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_22",
+    "id": "sec_23",
     "title": "【北慈.疫情捨我其誰 曲目：醫子喻 白袍禮讚】面中央走道腳頂線  11/13(第2 天專屬曲目)",
     "formationKey": "daChuanShi",
     "formationLabel": "07-1大船師 (拉繩/德行品/大醫王)",
@@ -7206,7 +8197,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "。捨我其",
+            "text": "。",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -7215,6 +8206,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "000000"
+          },
+          {
+            "text": "捨我其",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "EE0000"
           },
           {
             "text": "(站起來) ",
@@ -7228,7 +8230,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": " 誰",
+            "text": " ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -7237,6 +8239,17 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "000000"
+          },
+          {
+            "text": "誰",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "EE0000"
           },
           {
             "text": "(",
@@ -8236,7 +9249,7 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "一個病房要有三個醫生，每天要專家會議(全體回正轉向甲舞台)，每個病人，病情要討論。集合眾人",
+        "text": "一個病房要有三個醫生，每天要專家會議(全體回正轉向甲舞台看演出)，每個病人病情要討論。集合眾",
         "type": "lyrics",
         "segments": [
           {
@@ -8251,7 +9264,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(全體回正轉向甲舞台)",
+            "text": "(全體回正轉向甲舞台看演出)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -8262,7 +9275,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "，每個病人，病情要討論。集合眾人",
+            "text": "，每個病人病情要討論。集合眾",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -8275,11 +9288,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "的力量，竭力照顧每一位民眾",
+        "text": "人的力量，竭力照顧每一位民眾。報告院長，急診室發現有腎友被遺棄，已經兩週沒洗腎了。立刻",
         "type": "lyrics",
         "segments": [
           {
-            "text": "的力量，竭力照顧每一位民眾 ",
+            "text": "人的力量，竭力照顧每一位民眾。報告院長，急診室發現有腎友被遺棄，已經兩週沒洗腎了。立刻",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -8292,11 +9305,45 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "媽媽，妳怎麼不回家?我們要去打怪獸!照顧(轉向法師腳夾線)確診病人全體住宿43 天!",
+        "text": "收治!報告院長，產婦確診來到急診室，32 週確診孕婦，獨自帶著行李前來。我找不到醫院願意收",
         "type": "lyrics",
         "segments": [
           {
-            "text": "媽媽，妳怎麼不回家?我們要去打怪獸!",
+            "text": "收治!報告院長，產婦確診來到急診室，32 週確診孕婦，獨自帶著行李前來。我找不到醫院願意收",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "留我，我的家人都在隔離中。我第一次要生寶寶。向這位孕婦及她的家人保證，她 就是我們的家",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "留我，我的家人都在隔離中。我第一次要生寶寶。向這位孕婦及她的家人保證，她 就是我們的家",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "人，一定全力照顧。守護生命守護愛",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "人，一定全力照顧。",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -8307,7 +9354,46 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "照顧",
+            "text": "守護生命守護愛",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "媽媽，妳怎麼不回家?我們要去打怪獸!照顧(合十轉向法師腳夾線)確診病人全體住宿43",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "媽媽，妳怎麼不回家?我",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "們要去打怪獸!照顧",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -8318,18 +9404,46 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(轉向法師腳夾線)",
+            "text": "(合十轉向法師腳夾線)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
             "isPurple": false,
-            "isBoxed": false,
+            "isBoxed": true,
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
           },
           {
-            "text": "確診病人全體住宿43 天!",
+            "text": "確",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": true,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "診病人全體住宿43",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "天! ~心電圖聲~ 上人：抬頭要向天懺悔(小V) 低頭(大V)要向大地說感恩(大V 手上、小V 回",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "天!",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -8340,24 +9454,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "  ",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": true,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "77206D"
-          }
-        ]
-      },
-      {
-        "text": "~心電圖聲~ 上人：抬頭要向天懺悔(小V) 低頭(大V)要向大地說感恩(大V 手上、小V 回正)",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "~心電圖聲~ ",
+            "text": " ~心電圖聲~ ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -8368,12 +9465,23 @@ const LYRICS_OS_DATA = [
             "color": "77206D"
           },
           {
-            "text": "上人：抬頭要向天",
+            "text": "上人：抬",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
             "isPurple": false,
             "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "頭要向天",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": true,
             "isBold": false,
             "isItalic": false,
             "color": "000000"
@@ -8395,7 +9503,7 @@ const LYRICS_OS_DATA = [
             "isGreen": true,
             "isBlue": false,
             "isPurple": false,
-            "isBoxed": false,
+            "isBoxed": true,
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
@@ -8406,7 +9514,7 @@ const LYRICS_OS_DATA = [
             "isGreen": false,
             "isBlue": false,
             "isPurple": false,
-            "isBoxed": false,
+            "isBoxed": true,
             "isBold": false,
             "isItalic": false,
             "color": "000000"
@@ -8417,24 +9525,13 @@ const LYRICS_OS_DATA = [
             "isGreen": true,
             "isBlue": false,
             "isPurple": false,
-            "isBoxed": false,
+            "isBoxed": true,
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
           },
           {
-            "text": "要向",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "大地",
+            "text": "要向大地",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -8467,7 +9564,7 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           },
           {
-            "text": "(大V 手上、小V 回正)",
+            "text": "(大V 手上、小V 回",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -8480,9 +9577,20 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "啦! ~~匡~~(大V 收轉、小V 轉)",
+        "text": "正)啦! ~匡~(大V 收轉、小V 轉)",
         "type": "lyrics",
         "segments": [
+          {
+            "text": "正)",
+            "isRed": false,
+            "isGreen": true,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "196B24"
+          },
           {
             "text": "啦! ",
             "isRed": false,
@@ -8495,7 +9603,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "~~匡~~",
+            "text": "~匡~",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -8681,7 +9789,7 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "趙有誠院長:希望(脫口罩)沒有人是求醫無門，希望每一個人都能得到像家人般的照顧",
+        "text": "趙有誠院長:希望(脫收口罩)沒有人是求醫無門，希望每一個人都能得到像家人般的照顧",
         "type": "lyrics",
         "segments": [
           {
@@ -8707,7 +9815,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(脫口",
+            "text": "(脫收",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -8718,7 +9826,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "罩)",
+            "text": "口罩)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -8812,7 +9920,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_23",
+    "id": "sec_24",
     "title": "【花慈.連體嬰 曲目：衣珠喻 故事】面中央走道腳頂線 11/13(第2 天專屬曲目)",
     "formationKey": "daChuanShi",
     "formationLabel": "07-1大船師 (拉繩/德行品/大醫王)",
@@ -8824,11 +9932,45 @@ const LYRICS_OS_DATA = [
     "videos": [],
     "lines": [
       {
-        "text": "(菲律賓os)(開綠燈)很有耐心，很有負責任的護理師",
+        "text": "你一定是有做壞事，才會生出這怪物。這樣喔 會帶給我們 災厄耶，乾脆啊將他淹死",
         "type": "lyrics",
         "segments": [
           {
-            "text": "(菲律賓os)",
+            "text": "你一定是有做壞事，才會生出這怪物。這樣喔 會帶給我們 災厄耶，乾脆啊將他淹死",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "好啦。對你喔，對我們大家喔這樣也比較好。對呀 對呀。不要! 不要怕，我們是一",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "好啦。對你喔，對我們大家喔這樣也比較好。對呀 對呀。不要! 不要怕，我們是一",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "家人呀，我們來想辦法，兩個生命相依來到人間 一聲聲啼哭 在母親懷中 穿過風雨 遠方的岸 一雙雙手 黑",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "家人呀，我們來想辦法，",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -8839,7 +9981,231 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(開綠燈)",
+            "text": "兩個生命相依來到人間 一聲聲啼哭 在母親懷中 穿過風雨 遠方的岸 一雙雙手 黑",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          }
+        ]
+      },
+      {
+        "text": "夜裡 為她們守住黎明 一道光 劃開命運 相連的身體映向晨光 各自綻放，第一刀至為關鍵，決定分割的",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "夜裡 為她們守住黎明 一道光 劃開命運 相連的身體映向晨光 各自綻放",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "，第一刀至為關鍵，決定分割的",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "成敗，他們共用同一個肝臟，分割線要做到 精準。孩子還不到一歲，長時間麻醉 有",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "成敗，他們共用同一個肝臟，分割線要做到 精準。孩子還不到一歲，長時間麻醉 有",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "風險，肝臟易分離 必須執行。我們立即接手，我們一定能平平安安的把他們分開，身",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "風險，肝臟易分離 必須執行。我們立即接手，我們一定能平平安安的把他們分開，",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "身",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          }
+        ]
+      },
+      {
+        "text": "影分離 生命相連 一雙手牽一雙手 一顆心並一顆心，要給他們一個安定的家，就安排他們住在會",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "影分離 生命相連 一雙手牽一雙手 一顆心並一顆心",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "，要給他們一個安定的家，就安排他們住在會",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "所，你來環保站工作 做環保，我們以工代賑，我們會協助孩子的學費，關懷20 年",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "所，你來環保站工作 做環保，我們以工代賑，我們會協助孩子的學費，關懷20 年 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "我們一直都在。經過你 經過你 經過我 經過我 流過歲月長河，謝謝臺灣 謝謝醫生，這不止讓我",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "我們一直都在。",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "經過你 經過你 經過我 經過我 流過歲月長河",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "，謝謝臺灣 謝謝醫生，這不止讓我",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "的孩子重生，更讓我這個做母親的重生，回到人間。我們的願望是當護理師，這也是媽",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "的孩子重生，更讓我這個做母親的重生，",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "回到人間",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "。我們的願望是當護理師，這也是媽",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "媽對我們的期望，(菲律賓os) (開綠燈)很有耐心，很有負責任的護理師，謝謝你們",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "媽對我們的期望，(菲律賓os)",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": " (開綠燈)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -8850,7 +10216,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "很有耐心，很有負責任的護理師 ",
+            "text": "很有耐心，很有負責任的護理師，謝謝你們 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -8880,11 +10246,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "科技能拔苦予樂讓她快樂的人生",
+        "text": "科技能拔苦予樂，讓她(們)有快樂的人生。",
         "type": "lyrics",
         "segments": [
           {
-            "text": "科技能拔苦予樂讓她快樂的人生",
+            "text": "科技能拔苦予樂，讓她(們)有快樂的人生。",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -9219,7 +10585,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_24",
+    "id": "sec_25",
     "title": "【中慈.江永旭 曲目：藥師如來12 大願 終曲】面中央走道腳頂線 11/14(第3 天專屬曲目)",
     "formationKey": "daChuanShi",
     "formationLabel": "07-1大船師 (拉繩/德行品/大醫王)",
@@ -9235,7 +10601,7 @@ const LYRICS_OS_DATA = [
         "type": "annotation",
         "segments": [
           {
-            "text": "(一開始站適當方向看演出)",
+            "text": "(一開始站適當方向看演出) ",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -9244,9 +10610,43 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
+          }
+        ]
+      },
+      {
+        "text": "永旭!救還是不救? 當然要救啊!但是救回來，也是一輩子終身臥床啊! 我脖子以下都",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "永旭!救還是不救? 當然要救啊!但是救回來，也是一輩子終身臥床啊! 我脖子以下都",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "癱瘓了，死又死不了，12 年了，就像在坐黑牢 瑟縮在社會的暗角裡哭泣。院長，他19 歲跌",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "癱瘓了，死又死不了，12 年了，就像在坐黑牢 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           },
           {
-            "text": " ",
+            "text": "瑟縮在社會的暗角裡哭泣",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -9255,6 +10655,141 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "0000FF"
+          },
+          {
+            "text": "。院長，他19 歲跌",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "下來，已經躺在床上12 年，12 年了，他都不曾洗過澡。他雙腳都爛掉了，而且還嚴",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "下來，已經躺在床上12 年，12 年了，他都不曾洗過澡。他雙腳都爛掉了，而且還嚴",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "重化膿，病人走不出來，這醫療就走進去。",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "重化膿，病人走不出來，這醫療就走進去。 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "江永旭：我整個都傻住了，身為一個院長，可以彎下腰，幫我洗腳 換藥 擦藥。",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "江永旭：我整個都傻住了，身為一個院長，可以彎下腰，幫我洗腳 換藥 擦藥。 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "我們要幫助他擁有自理能力，陪伴他走出來，打開12 年來封閉的心，我們可以送他",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "我們要幫助他擁有自理能力，陪伴他走出來，打開12 年來封閉的心，我們可以送他",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "電動輪椅幫助他走出來，還可以陪伴他到醫院做復健。我想買移位機，因為爸爸為了",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "電動輪椅幫助他走出來，還可以陪伴他到醫院做復健。我想買移位機，因為爸爸為了",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "抱我下床，常常閃到腰。我們一起努力。我終於可以走出家門了。啊 藥師如來的願",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "抱我下床，常常閃到腰。我們一起努力。我終於可以走出家門了。",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "啊 藥師如來的願",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           }
         ]
       },
@@ -9326,11 +10861,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "心又有價值的人生",
+        "text": "心又有價值的人生。",
         "type": "lyrics",
         "segments": [
           {
-            "text": "心又有價值的人生 ",
+            "text": "心又有價值的人生。 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -9489,7 +11024,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_25",
+    "id": "sec_26",
     "title": "【北慈.八仙塵爆 曲目：火宅喻 手札】 面中央走道腳頂線 11/15(第4 天專屬曲目)",
     "formationKey": "daChuanShi",
     "formationLabel": "07-1大船師 (拉繩/德行品/大醫王)",
@@ -9497,15 +11032,521 @@ const LYRICS_OS_DATA = [
       "1115"
     ],
     "sessionLabel": "11/15(第4天)專屬曲目",
-    "audio": "Music/慈善+醫療/17 骨捐.mp3",
+    "audio": "",
     "videos": [],
     "lines": [
       {
-        "text": "os 更舒適!更透氣!比原來的好看多了!我們每個都要救!",
-        "type": "os",
+        "text": "2015 年，八仙塵爆重大意外事故，造成499 人傷亡。臺北慈院可以幫忙救治傷患。火",
+        "type": "lyrics",
         "segments": [
           {
-            "text": "os 更舒適!更透氣!比原來的好看多了!我們每個都要救! ",
+            "text": "2015 年，八仙塵爆重大意外事故，造成499 人傷亡。臺北慈院可以幫忙救治傷患。",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "火",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          }
+        ]
+      },
+      {
+        "text": "焰逼身災難至 院長 新北市衛生局打來，說有20 多位燒傷病患要送來臺北慈院，立刻召",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "焰逼身災難至 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "院長 新北市衛生局打來，說有20 多位燒傷病患要送來臺北慈院，立刻召",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "回所有醫護 汝等速出莫遲延 啟動紅色九號! 紅色九號 紅色九號 到! 紅色九號 紅色九號",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "回所有醫護 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "汝等速出莫遲延 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "啟動紅色九號! 紅色九號 紅色九號 到! 紅色九號 紅色九號 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "到! 紅色九號 紅色九號 到! 搶救生命 不惜代價 諸子不信父所言 快快快 快按電梯! 每",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "到! 紅色九號 紅色九號 到! 搶救生命 不惜代價 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "諸子不信父所言",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": " 快快快 快按電梯! 每",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "位傷患的燒燙傷面積至少百分之六十，他們失去了皮膚，這裡一半的孩子正在死去。",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "位傷患的燒燙傷面積至少百分之六十，他們失去了皮膚，這裡一半的孩子正在死去。",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "避免感染 全部隔離。慈父憐憫起心念 我們用視訊代替探視 當為諸子設方便。每一個都要",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "避免感染 全部隔離。",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "慈父憐憫起心念",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": " 我們用視訊代替探視 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "當為諸子設方便",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "。每一個都要",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "救，一個都不能少! 院長，請你用最好的藥，救救我的孩子 拜託。我會像爸爸一",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "救，一個都不能少! 院長，請你用最好的藥，救救我的孩子 拜託。我會像爸爸一",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "樣，照顧每一個孩子。每天早上 召開晨會，家屬心心念念都是孩子，請志工與社工",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "樣，照顧每一個孩子。每天早上 召開晨會，家屬心心念念都是孩子，請志工與社工",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "師，務必一對一陪伴。每天中午召開專家會議，只要有一絲希望，不計成本 不計代",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "師，務必一對一陪伴。每天中午召開專家會議，只要有一絲希望，不計成本 不計代",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "價，我們一定要全力以赴。專家會議，每一個都要救起來。因為病患沒有皮膚，必須",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "價，我們一定要全力以赴。專家會議，每一個都要救起來。因為病患沒有皮膚，必須",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "關掉空調並且架設烤燈，才能維持他們的體溫。閉上眼睛，就算只有一 二秒鐘，對",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "關掉空調並且架設烤燈，才能維持他們的體溫。閉上眼睛，就算只有一 二秒鐘，對",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "身體來說都是一種休息。每位病患需要8 個人來換藥，每次換藥需要2 到3 個小時，",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "身體來說都是一種休息。每位病患需要8 個人來換藥，每次換藥需要2 到3 個小時，",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "一天要兩次。花蓮慈院 可以支援。我離職了!但我願意幫忙。大夜下班，立即再投入",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "一天要兩次。花蓮慈院 可以支援。我離職了!但我願意幫忙。大夜下班，立即再投入",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "支援，成立換藥班。同仁們都自動報名，值班表都填滿了，自動加班我願意。病人的",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "支援，成立換藥班。同仁們都自動報名，值班表都填滿了，自動加班我願意。病人的",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "肺部 全部變白，血壓沒了也沒有小便。緊急洗腎 快 呼吸器 葉克膜。院長 葶葶的",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "肺部 全部變白，血壓沒了也沒有小便。緊急洗腎 快 呼吸器 葉克膜。院長 葶葶的",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "肺部全都白掉，她全身都插滿管子，我們感覺快要失去這個年輕人的生命了。不可",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "肺部全都白掉，她全身都插滿管子，我們感覺快要失去這個年輕人的生命了。不可",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "以! 如果是他的爸爸媽媽，一定會說 不可以。如果是小朋友，她也一定會說不要放",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "以! 如果是他的爸爸媽媽，一定會說 不可以。如果是小朋友，她也一定會說不要放",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "棄我。對 院長，我們不可以放棄，不放棄。院長 有新藥，但是試一次要30 萬。不",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "棄我。對 院長，我們不可以放棄，不放棄。院長 有新藥，但是試一次要30 萬。不",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "論任何代價，再貴的藥都要用。諸子無知貪歡樂 看到那些孩子，穿著那麼厚的壓力衣，",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "論任何代價，再貴的藥都要用。",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "諸子無知貪歡樂",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": " 看到那些孩子，穿著那麼厚的壓力衣，",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "我真的很不忍心，大家都難受的坐立不安。我永遠記得，那個時候在火裡面，很想要",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "我真的很不忍心，大家都難受的坐立不安。我永遠記得，那個時候在火裡面，很想要",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "活下來的感覺，我希望能夠趕快改善，如果受傷的是自己的家人，你們是否會盡最大",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "活下來的感覺，我希望能夠趕快改善，如果受傷的是自己的家人，你們是否會盡最大",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "的努力。研發更透氣更舒適的壓力衣，改良十次 終於成功了!哇!更舒適!更透氣!比",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "的努力。研發更透氣更舒適的壓力衣，改良十次 終於成功了!哇!更舒適!更透氣!比",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "原來的好看多了!我們每個都要救!",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "原來的好看多了!我們每個都要救! ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -9853,7 +11894,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_26",
+    "id": "sec_27",
     "title": "【大醫王 曲目：無量義經．德行品】海浪面中央走道腳頂線",
     "formationKey": "daChuanShi",
     "formationLabel": "07-1大船師 (拉繩/德行品/大醫王)",
@@ -10246,7 +12287,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_27",
+    "id": "sec_28",
     "title": "【骨捐】面中央走道腳頂線",
     "formationKey": "boneDonation",
     "formationLabel": "07-2骨捐能捨 (骨捐/大體/專屬曲目)",
@@ -10261,7 +12302,7 @@ const LYRICS_OS_DATA = [
     "videos": [],
     "lines": [
       {
-        "text": "我不知道有沒有明天1992 年 旅美留學生 温文玲罹患白血病 我不知道有沒有明天 ~~~~",
+        "text": "我不知道有沒有明天1992 年，旅美留學生温文玲罹患白血病 我不知道有沒有明天 I am sorry",
         "type": "lyrics",
         "segments": [
           {
@@ -10276,7 +12317,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "1992 年 旅美留學生 温文玲罹患白血病 ",
+            "text": "1992 年，旅美留學生温文玲罹患白血病 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -10298,7 +12339,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "~~~~  ",
+            "text": "I am sorry ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -10311,11 +12352,240 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "唉 真的很難啊(記得轉面向中央走道腳頂線) 臺灣愛心的人 那麼多 我一定要 ~咚~我願意",
+        "text": "沒有配對到，那是生命最黑暗的宣言 すみません 配對不到 我不知道有沒有明天 血液是生命的泉源 可",
         "type": "lyrics",
         "segments": [
           {
-            "text": "唉 ",
+            "text": "沒有配對到，",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "那是生命最黑暗的宣言 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "すみません 配對不到 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "我不知道有沒有明天 血液是生命的泉源 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "可",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "是臺灣沒有骨髓資料庫啊! 誰能救我 茫茫人海 你在哪裡 溫文玲除了辦記者會 更來到花蓮拜",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "是臺灣沒有骨髓資料庫啊! ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "誰能救我 茫茫人海 你在哪裡 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "溫文玲除了辦記者會 更來到花蓮拜",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "見 上人。茫茫人海 只要有一絲希望，我絕對不會放棄。什麼! 慈濟要成立骨髓資料",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "見 上人。",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "茫茫人海 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "只要有一絲希望，我絕對不會放棄。什麼! 慈濟要成立骨髓資料",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "庫，唉呦 師父 千萬不可呀，師父 這不是三、五千萬，要好幾億啊!是啊 師父，這",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "庫，唉呦 師父 千萬不可呀，師父 這不是三、五千萬，要好幾億啊!是啊 師父，這",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "不是三、五千個人，就能解決的啊，師父 千萬不可啊 很難啊。啊 要抽龍骨水，唉",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "不是三、五千個人，就能解決的啊，師父 千萬不可啊 很難啊。啊 要抽龍骨水，唉",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "呦 萬一半身不遂那要怎麼辦。唉呦 傻孩子，你千萬不要去捐啊。 茫茫人海 聽說骨髓",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "呦 萬一半身不遂那要怎麼辦。唉呦 傻孩子，你千萬不要去捐啊。 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "茫茫人海 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "聽說骨髓",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "配對成功只有萬分之一的機率，而且如果配對到了，捐贈者又反悔不捐，那病人就會",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "配對成功只有萬分之一的機率，而且如果配對到了，捐贈者又反悔不捐，那病人就會",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "死耶，但是 病人已經在醫院等待，唉 真的很難啊(記得轉面向中央走道腳頂線) 臺灣愛心",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "死耶，但是 病人已經在醫院等待，唉 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -10348,7 +12618,24 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": " 臺灣愛心的人 那麼多 我一定要 ",
+            "text": " 臺灣愛心",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "的人那麼多，我一定要呼籲 ~咚~我願意(小V)  ~咚~我願意(大V) ~咚~我願意(C 組) 來唷",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "的人那麼多，我一定要呼籲 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -10379,13 +12666,7 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "EE0000"
-          }
-        ]
-      },
-      {
-        "text": "(小V)  ~咚~我願意(大V) ~咚~我願意(C 組)  來唷 來啦 來捐血 ~~~ 救人一命 無損己",
-        "type": "lyrics",
-        "segments": [
+          },
           {
             "text": "(小V)",
             "isRed": false,
@@ -10497,7 +12778,7 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           },
           {
-            "text": " 來唷 來啦 來捐血 ~~~ 救人一命 無損己",
+            "text": "來唷 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -10510,11 +12791,62 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "身 慈濟和我在找一個人 那個人 可能就是你(轉向)",
+        "text": "來啦 來捐血，大家來捐血喔，快來捐血呦! 您們這裡是要捐血是嗎? 啊 要捐血喔!",
         "type": "lyrics",
         "segments": [
           {
-            "text": "身 慈濟和我在找一個人 那個人 可能",
+            "text": "來啦 來捐血，大家來捐血喔，快來捐血呦! 您們這裡是要捐血是嗎? 啊 要捐血喔! ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "來來來 我的血最多了，對啦 對啦，不是啦 是要抽龍骨水!啊 龍骨水喔! 唉呦 唉呦",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "來來來 我的血最多了，對啦 對啦，不是啦 是要抽龍骨水!啊 龍骨水喔! 唉呦 唉呦 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "唉呦 唉呦，啊 救命喔 救命喔!ㄟ 發生什麼事啊? 我 我也不會說，啊你喔 跟我走",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "唉呦 唉呦，啊 救命喔 救命喔!ㄟ 發生什麼事啊? 我 我也不會說，啊你喔 跟我走",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "喔，啊你就知道了啦。救人一命無損己身，慈濟和我在找一個人，那個人可能就是你",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "喔，啊你就知道了啦。救人一命無損己身，慈濟和我在找一個人，那個人可能",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -10534,7 +12866,13 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "000000"
-          },
+          }
+        ]
+      },
+      {
+        "text": "(轉向)",
+        "type": "annotation",
+        "segments": [
           {
             "text": "(轉向)",
             "isRed": false,
@@ -10664,7 +13002,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_28",
+    "id": "sec_29",
     "title": "【大體捐贈 曲目：無量義經．德行品】面中央走道腳頂線",
     "formationKey": "boneDonation",
     "formationLabel": "07-2骨捐能捨 (骨捐/大體/專屬曲目)",
@@ -10679,7 +13017,7 @@ const LYRICS_OS_DATA = [
     "videos": [],
     "lines": [
       {
-        "text": "我真的等九年了(開黃燈) 每一年 每一次 我常已經在夢中 夢到我們家的恩人 已經夢",
+        "text": "我真的等九年了(開黃燈) 每一年，每一次，我常已經在夢中，夢到我們家的恩人，已",
         "type": "lyrics",
         "segments": [
           {
@@ -10705,7 +13043,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": " 每一年 每一次 我常已經在夢中 夢到我們家的恩人 已經夢",
+            "text": " 每一年，每一次，我常已經在夢中，夢到我們家的恩人，已",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -10718,11 +13056,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "到好幾次了 在等的就是等這一天 見到恩人 我一定會跪在他面前 感恩 說他救了我",
+        "text": "經夢到好幾次了，在等的就是等這一天，見到恩人。我一定會跪在他面前感恩，說他",
         "type": "lyrics",
         "segments": [
           {
-            "text": "到好幾次了 在等的就是等這一天 見到恩人 我一定會跪在他面前 感恩 說他救了我",
+            "text": "經夢到好幾次了，在等的就是等這一天，見到恩人。我一定會跪在他面前感恩，說他",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -10735,11 +13073,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "們一個家庭 那一念(轉向) 救人一命 無損己身",
+        "text": "救了我們一個家庭! 那一念(轉向) 救人一命 無損己身",
         "type": "lyrics",
         "segments": [
           {
-            "text": "們一個家庭 ",
+            "text": "救了我們一個家庭! ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -10972,33 +13310,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "os 來，喝酒【換教育隊形】!喝酒!喝酒!喝酒!喝酒!喝酒!心情不好喝酒就好了啦，這",
-        "type": "os",
+        "text": "結束暗場15 秒鑼鼓聲換場【換教育隊形】",
+        "type": "lyrics",
         "segments": [
           {
-            "text": "os 來，",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "喝酒",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": true,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "【換教育隊形】",
+            "text": "結束暗場15 秒鑼鼓聲換場【換教育隊形】",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -11009,7 +13325,7 @@ const LYRICS_OS_DATA = [
             "color": "FF0000"
           },
           {
-            "text": "!喝酒!喝酒!喝酒!喝酒!喝酒!心情不好喝酒就好了啦，這",
+            "text": " ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -11022,11 +13338,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "個孩子，還來不及參加畢業典禮，就已經被賣到西部了。如果讓他有一技之長，就可",
-        "type": "lyrics",
+        "text": "os 來，喝酒!喝酒!喝酒!喝酒!喝酒!喝酒!心情不好喝酒就好了啦，這個孩子，還來不",
+        "type": "os",
         "segments": [
           {
-            "text": "個孩子，還來不及參加畢業典禮，就已經被賣到西部了。如果讓他有一技之長，就可",
+            "text": "os 來，喝酒!喝酒!喝酒!喝酒!喝酒!喝酒!心情不好喝酒就好了啦，這個孩子，還來不",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -11039,11 +13355,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "以謀生，成為白衣大士更可以為部落服務(轉乙舞台圓心)",
+        "text": "及參加畢業典禮，就已經被賣到西部了(合十轉乙舞台圓心)。如果讓他有一技之長，就可",
         "type": "lyrics",
         "segments": [
           {
-            "text": "以謀生，成為白衣大士",
+            "text": "及參加畢業典禮，",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -11054,7 +13370,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "更可以為部落服務",
+            "text": "就已經被賣到西部了",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -11065,7 +13381,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(轉乙舞台圓心)",
+            "text": "(合十轉乙舞台圓心)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -11076,7 +13392,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "  ",
+            "text": "。如果讓他有一技之長，就可",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -11089,44 +13405,28 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "法師：所發(合十)慈悲  明諦不虛 苦既拔已  復為(東西二朝甲舞台腳夾線)說法",
+        "text": "以謀生，成為白衣大士更可以為部落服務",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "以謀生，成為白衣大士更可以為部落服務  ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "法師：所發慈悲  明諦不虛 苦既拔已  復為(東西二朝甲舞台腳夾線)說法",
         "type": "dialogue",
         "segments": [
           {
-            "text": "法師：",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "所發",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": true,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "(合十)",
-            "isRed": false,
-            "isGreen": true,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "196B24"
-          },
-          {
-            "text": "慈悲  明諦不虛 苦既拔已  ",
+            "text": "法師：所發慈悲  明諦不虛 苦既拔已  ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -11174,7 +13474,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_29",
+    "id": "sec_30",
     "title": "【教育說法品梵唄 曲目：說法品梵唄第6 段】",
     "formationKey": "edu",
     "formationLabel": "08教育 (說法品/大體老師/慈小/教育完全化)",
@@ -11680,11 +13980,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "上人!大體不再是泡在福馬林裡了，乾式沒有味道，大體的吊掛式改為平躺，放在學",
+        "text": "上人!大體不再是泡在福馬林裡了，乾式 沒有味道，大體的吊掛是改為平躺，放在學",
         "type": "lyrics",
         "segments": [
           {
-            "text": "上人!大體不再是泡在福馬林裡了，乾式沒有味道，大體的吊掛式改為平躺，放在學",
+            "text": "上人!大體不再是泡在福馬林裡了，乾式 沒有味道，大體的吊掛是改為平躺，放在學",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -11748,11 +14048,44 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "丫!誰願意啊?",
+        "text": "丫!誰願意啊?我願意(標準右腳蹲下右拳舉高動作)",
         "type": "lyrics",
         "segments": [
           {
-            "text": "丫!誰願意啊? ",
+            "text": "丫!誰願意啊?",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "我願意",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "EE0000"
+          },
+          {
+            "text": "(標準右腳蹲下右拳舉高動作)",
+            "isRed": false,
+            "isGreen": true,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "196B24"
+          },
+          {
+            "text": " ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -11767,7 +14100,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_30",
+    "id": "sec_31",
     "title": "【大體老師 曲目：無量義經終曲】東西二朝甲舞台腳夾線",
     "formationKey": "edu",
     "formationLabel": "08教育 (說法品/大體老師/慈小/教育完全化)",
@@ -11936,7 +14269,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_31",
+    "id": "sec_32",
     "title": "【慈大醫學院宣誓 曲目：慈大校歌】東西二朝法師腳夾線",
     "formationKey": "edu",
     "formationLabel": "08教育 (說法品/大體老師/慈小/教育完全化)",
@@ -12035,45 +14368,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "菩薩安住於實相",
+        "text": "菩薩安住於實相 所發慈悲明不虛 於眾生所能拔苦 苦既拔已復說法",
         "type": "lyrics",
         "segments": [
           {
-            "text": "菩薩安住於實相  ",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": true,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "0000FF"
-          }
-        ]
-      },
-      {
-        "text": "所發慈悲明不虛  於眾生所能拔苦",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "所發慈悲明不虛  於眾生所能拔苦 ",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": true,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "0000FF"
-          }
-        ]
-      },
-      {
-        "text": "苦既拔已復說法",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "苦既拔已復說法 ",
+            "text": "菩薩安住於實相 所發慈悲明不虛 於眾生所能拔苦 苦既拔已復說法 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -12223,7 +14522,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_32",
+    "id": "sec_33",
     "title": "【許永祥教授 曲目：醫子喻手扎】11/12、13(第1、2 天專屬曲目)",
     "formationKey": "edu",
     "formationLabel": "08教育 (說法品/大體老師/慈小/教育完全化)",
@@ -12236,11 +14535,406 @@ const LYRICS_OS_DATA = [
     "videos": [],
     "lines": [
       {
-        "text": "未定",
+        "text": "os 許主任，這裡有兩份腦部切片檢體，要請你診斷。這是淋巴瘤，所以不用開刀作化",
+        "type": "os",
+        "segments": [
+          {
+            "text": "os 許主任，這裡有兩份腦部切片檢體，要請你診斷。這是淋巴瘤，所以不用開刀作化",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "療就好了嗎?嗯!還有這份，這是惡性的神經性腫瘤—腦膜瘤，所以必須開刀而且一定",
         "type": "lyrics",
         "segments": [
           {
-            "text": "未定 ",
+            "text": "療就好了嗎?嗯!還有這份，這是惡性的神經性腫瘤—腦膜瘤，所以必須開刀而且一定",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "要切除乾淨。主任!主任!病人剛剛往生，疑似SARS 病例，主任你敢解剖嗎?敢啦!為",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "要切除乾淨。主任!主任!病人剛剛往生，疑似SARS 病例，主任你敢解剖嗎?敢啦!為",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "什麼不敢。好，我馬上去準備。嗯 所有的病理切片，都藏著疾病的解答，只要建立",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "什麼不敢。好，我馬上去準備。嗯 所有的病理切片，都藏著疾病的解答，只要建立",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "資料庫，我們就有機會救活更多人。主任!您看，這是狂犬病，這是恙蟲病，這是",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "資料庫，我們就有機會救活更多人。主任!您看，這是狂犬病，這是恙蟲病，這是",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "SARS，這是極罕見的血管內淋巴瘤。許永祥醫師在32 年間，完成342 例病理解剖，",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "SARS，這是極罕見的血管內淋巴瘤。許永祥醫師在32 年間，完成342 例病理解剖，",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "舉辦教學病理研討會859 場，帶領24 屆醫學生，完成切片數位化教材，打下紮實的",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "舉辦教學病理研討會859 場，帶領24 屆醫學生，完成切片數位化教材，打下紮實的",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "病理基礎。我的老師教導我，從事病理工作，教學永遠要排在第一位。老師 我的病",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "病理基礎。我的老師教導我，從事病理工作，教學永遠要排在第一位。老師 我的病",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "理沒及格，要延畢一年了，怎麼辦? 放心，今年暑假，老師來幫你複習。主任 我的",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "理沒及格，要延畢一年了，怎麼辦? 放心，今年暑假，老師來幫你複習。主任 我的",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "國考沒過，沒辦法當醫生了。沒事 你可以的，我來為你進行一對一的教學。老師，",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "國考沒過，沒辦法當醫生了。沒事 你可以的，我來為你進行一對一的教學。老師，",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "重修後，我竟然考了第一名。主任 我通過國考了，謝謝你。太好了 太好了，哈哈",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "重修後，我竟然考了第一名。主任 我通過國考了，謝謝你。太好了 太好了，哈哈 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "哈哈。永祥，有一位學生，堅持要把這筆錢還給你，這個信封裡面，裝有兩萬塊錢。",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "哈哈。永祥，有一位學生，堅持要把這筆錢還給你，這個信封裡面，裝有兩萬塊錢。",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "這位同學是僑生，當年國考沒通過，這筆錢，是幫助他重考的生活費，他現在己經是",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "這位同學是僑生，當年國考沒通過，這筆錢，是幫助他重考的生活費，他現在己經是",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "位婦產科的醫師了。當初老師教誨我，要永遠把學生放在第一位，我做到了，我從不",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "位婦產科的醫師了。當初老師教誨我，要永遠把學生放在第一位，我做到了，我從不",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "放棄任何一位學生。大千世界微塵數 教學32 年，現在，我要為學生們上最後一堂課，我",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "放棄任何一位學生。",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "大千世界微塵數 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "教學32 年，現在，我要為學生們上最後一堂課，我",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "已經簽署了大體捐贈同意書，你們要用心成為一個視病如親的醫師，老師為你們加",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "已經簽署了大體捐贈同意書，你們要用心成為一個視病如親的醫師，老師為你們加",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "油。我們一起用老師的名字，成立許永祥教授病理獎學金。應世醫時救群弊 對病理，我付",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "油。我們一起用老師的名字，成立許永祥教授病理獎學金。",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "應世醫時救群弊 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "對病理，我付",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "出了我的一生，這是我感到最光榮的事，而當無語良師的課程進行的時候，也是我此",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "出了我的一生，這是我感到最光榮的事，而當無語良師的課程進行的時候，也是我此",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "生最後也是最榮耀的診斷!",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "生最後也是最榮耀的診斷! ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "上人：他是一位學生的好典範的老師，真的是不可多得的好人才!一生奉獻，20 多年",
+        "type": "dialogue",
+        "segments": [
+          {
+            "text": "上人：他是一位學生的好典範的老師，真的是不可多得的好人才!一生奉獻，20 多年",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "來這種的守志不動穩如泰山啦，讓我真的有可靠，有辦法可以依靠，真的是很貼心!",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "來這種的守志不動穩如泰山啦，讓我真的有可靠，有辦法可以依靠，真的是很貼心!",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": " ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -12255,7 +14949,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_33",
+    "id": "sec_34",
     "title": "【慈小個案 曲目：種樹】東西二朝乙舞台圓心腳頂線",
     "formationKey": "edu",
     "formationLabel": "08教育 (說法品/大體老師/慈小/教育完全化)",
@@ -12500,11 +15194,130 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "耶，這是我們的榮耀。同學們，老師帶你們去水源部落關懷獨居老人~~不要小看自己 人有",
+        "text": "耶，這是我們的榮耀。同學們，老師帶你們去水源部落關懷獨居老人。好!你看阿嬤",
         "type": "lyrics",
         "segments": [
           {
-            "text": "耶，這是我們的榮耀。同學們，老師帶你們去水源部落關懷獨居老人~~",
+            "text": "耶，這是我們的榮耀。同學們，老師帶你們去水源部落關懷獨居老人。好!你看阿嬤",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "的房間都沒有整理，都發霉了!你看阿嬤的便當也沒有吃。阿嬤的牙齒都咬不動，你",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "的房間都沒有整理，都發霉了!你看阿嬤的便當也沒有吃。阿嬤的牙齒都咬不動，你",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "看窗戶都沒有裝玻璃，風吹進來一定很冷!嗯!來來來，同學們我們來想一想能夠為阿",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "看窗戶都沒有裝玻璃，風吹進來一定很冷!嗯!來來來，同學們我們來想一想能夠為阿",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "嬤做什麼?我覺得阿嬤需要一張好椅子，她的椅子太低了很難站起來。還有還有，要",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "嬤做什麼?我覺得阿嬤需要一張好椅子，她的椅子太低了很難站起來。還有還有，要",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "有扶把可以扶，也比較安全。阿嬤沒有牙齒，我覺得買奶粉沖泡就可以啦!我覺得要",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "有扶把可以扶，也比較安全。阿嬤沒有牙齒，我覺得買奶粉沖泡就可以啦!我覺得要",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "裝窗戶冬天才不會冷!沒有錢怎麼買這些東西呢?我們可以義賣茶葉蛋、點心來募款",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "裝窗戶冬天才不會冷!沒有錢怎麼買這些東西呢?我們可以義賣茶葉蛋、點心來募款",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "啊!辦公室廣播，六年級有發起點心義賣幫助部落老人，全校有愛心的人，可以一起",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "啊!辦公室廣播，六年級有發起點心義賣幫助部落老人，全校有愛心的人，可以一起",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "來購買獻愛心。一份付出愛心秒殺電暖爐，可以讓阿嬤取暖，就不擔心寒冬了!阿嬤，以",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "來購買獻愛心。",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -12515,7 +15328,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "不要小看自己 人有",
+            "text": "一份付出",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -12524,15 +15337,37 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "0000FF"
+          },
+          {
+            "text": "愛心秒殺電暖爐，可以讓阿嬤取暖，就不擔心寒冬了!阿嬤，以",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
           }
         ]
       },
       {
-        "text": "無限可能",
+        "text": "後我們會常來看您喔! 不要小看自己 人有無限可能",
         "type": "lyrics",
         "segments": [
           {
-            "text": "無限可能 ",
+            "text": "後我們會常來看您喔! ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "不要小看自己 人有無限可能 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -12547,7 +15382,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_34",
+    "id": "sec_35",
     "title": "【教育完全化 曲目：成長/感恩】東西二朝甲舞台腳夾線",
     "formationKey": "edu",
     "formationLabel": "08教育 (說法品/大體老師/慈小/教育完全化)",
@@ -12942,7 +15777,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_35",
+    "id": "sec_36",
     "title": "【靜思語教學 曲目：藥草喻】東西二朝乙舞台圓心腳頂線 11/14、15(第3、4 天專屬曲目)",
     "formationKey": "edu",
     "formationLabel": "08教育 (說法品/大體老師/慈小/教育完全化)",
@@ -13214,11 +16049,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "os 慈濟世界!【換身分證隊形】步行在清朗芬芳路上，沐浴在佛法清泉流中……",
-        "type": "os",
+        "text": "慈濟世界是佛燈【換身分證隊形】光輝遍照蒼生 慈~濟~世~界~，步行在清朗芬芳路上，沐浴在佛法",
+        "type": "lyrics",
         "segments": [
           {
-            "text": "os ",
+            "text": " ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -13229,15 +16064,15 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "慈濟世界!",
+            "text": "慈濟世界是佛燈",
             "isRed": false,
             "isGreen": false,
-            "isBlue": false,
+            "isBlue": true,
             "isPurple": false,
             "isBoxed": true,
             "isBold": false,
             "isItalic": false,
-            "color": "000000"
+            "color": "0000FF"
           },
           {
             "text": "【換身分證隊形】",
@@ -13251,7 +16086,46 @@ const LYRICS_OS_DATA = [
             "color": "FF0000"
           },
           {
-            "text": "步行在清朗芬芳路上，沐浴在佛法清泉流中…… ",
+            "text": "光輝遍照蒼生 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "慈~濟~世~界~，步行在清朗芬芳路上，沐浴在佛法",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "A02B93"
+          }
+        ]
+      },
+      {
+        "text": "清泉流中。喔! 原來我們的心是可以做好事，不只是做惡而已。23 歲入獄，廣播陪伴",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "清泉流中",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "A02B93"
+          },
+          {
+            "text": "。喔! 原來我們的心是可以做好事，不只是做惡而已。23 歲入獄，廣播陪伴",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -13262,11 +16136,117 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           }
         ]
+      },
+      {
+        "text": "走過7 個年頭，一起走入這真善美的慈濟世界，這個電台讓我領悟到一件字，孝! 就是要",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "走過7 個年頭，",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "一起走入這真善美的慈濟世界",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "A02B93"
+          },
+          {
+            "text": "，這個電台讓我領悟到一件字，孝! 就是要",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "對家裡的人說出 我愛你。我戒菸!我捐戒菸錢，我需要做好事。福田一方邀天下善事，",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "對家裡的人說出 我愛你。我戒菸!我捐戒菸錢，我需要做好事。",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "福田一方邀天下善事，",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "A02B93"
+          }
+        ]
+      },
+      {
+        "text": "心蓮萬蕊造慈濟世界。朋友們!您們有想過要好好的做人嗎……",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "心蓮萬蕊造慈濟世界",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "A02B93"
+          },
+          {
+            "text": "。",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "朋友們!您們有想過要好好的做人嗎…… ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "A02B93"
+          }
+        ]
       }
     ]
   },
   {
-    "id": "sec_36",
+    "id": "sec_37",
     "title": "【幸福人生講座 曲目：父母恩重難報經．因緣】開始面甲舞台45 度，後面法師45 度",
     "formationKey": "humanities1",
     "formationLabel": "09-1人文 (基本隊形)",
@@ -13607,7 +16587,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_37",
+    "id": "sec_38",
     "title": "【曲目：跪羊圖】",
     "formationKey": "humanities1",
     "formationLabel": "09-1人文 (基本隊形)",
@@ -13723,11 +16703,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "os (台語)七月鬼門開【換主機板隊形】(目犍連救母)",
+        "text": "os (台語)七月鬼門開【換主機板隊形】，啊很多事情都不能做，想要搬家也不敢，怕",
         "type": "os",
         "segments": [
           {
-            "text": "os (台語",
+            "text": "os (台語)",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -13738,7 +16718,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": ")七月鬼門開",
+            "text": "七月鬼門開",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -13760,7 +16740,143 @@ const LYRICS_OS_DATA = [
             "color": "FF0000"
           },
           {
-            "text": "(目犍連救母) ",
+            "text": "，啊很多事情都不能做，想要搬家也不敢，怕",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "會搬進鬼屋，哎喲 想要結婚也不敢，怕觸霉頭不吉利。很多修行人從4 月15 日到7",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "會搬進鬼屋，哎喲 想要結婚也不敢，怕觸霉頭不吉利。很多修行人從4 月15 日到7",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "月15 日專心用功佛法，聚集修行人的功德。佛陀看到弟子一個一個的有成就，他很",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "月15 日專心用功佛法，聚集修行人的功德。佛陀看到弟子一個一個的有成就，他很",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "歡喜，所以7 月叫做吉祥月，也稱為佛的歡喜月。我來跟你們講一個故事，母親 母",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "歡喜，所以7 月叫做吉祥月，也稱為佛的歡喜月。我來跟你們講一個故事，母親 母",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "親我的母親是去哪裡，母親竟然投生在餓鬼道。我很餓 救我，兒啊 救我，兒啊! 縱",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "親我的母親是去哪裡，母親竟然投生在餓鬼道。我很餓 救我，兒啊 救我，兒啊! 縱",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "然我修到神通第一，但是我仍然無法解救我的母親。世尊! 請你救我的母親。欲度脫",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "然我修到神通第一，但是我仍然無法解救我的母親。世尊! 請你救我的母親。欲度脫",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "此等業報，需仰仗廣大殊勝的功德因緣。請世尊慈示，弟子應該要怎麼做。僧眾經過",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "此等業報，需仰仗廣大殊勝的功德因緣。請世尊慈示，弟子應該要怎麼做。僧眾經過",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "三個月安居期間的精勤修持，戒德圓滿，若你能在七月十五日這一天廣設供養，並以",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "三個月安居期間的精勤修持，戒德圓滿，若你能在七月十五日這一天廣設供養，並以",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "此功德迴向，便能令惡鬼道的眾生離苦得樂。",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "此功德迴向，便能令惡鬼道的眾生離苦得樂。 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -13775,7 +16891,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_38",
+    "id": "sec_39",
     "title": "【十戒 曲目：慈誠隊歌】面甲舞台45 度",
     "formationKey": "humanities2",
     "formationLabel": "09-2人文 (主機板)",
@@ -14273,7 +17389,7 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           },
           {
-            "text": "(男眾下舞台全體面向甲舞台45 度)",
+            "text": "(男眾下舞台全體面向甲舞台45 度) ",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -14282,24 +17398,13 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
-          },
-          {
-            "text": " ",
-            "isRed": true,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "EE0000"
           }
         ]
       }
     ]
   },
   {
-    "id": "sec_39",
+    "id": "sec_40",
     "title": "【大愛台、經典 曲目：大愛讓世界亮起來】主機板箭頭方向",
     "formationKey": "humanities2",
     "formationLabel": "09-2人文 (主機板)",
@@ -15396,7 +18501,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_40",
+    "id": "sec_41",
     "title": "【大地的園丁 曲目：天空破了洞】主機板箭頭方向",
     "formationKey": "humanities2",
     "formationLabel": "09-2人文 (主機板)",
@@ -15627,7 +18732,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_41",
+    "id": "sec_42",
     "title": "【法譬如水能洗垢 曲目：無量義經說法品】主機板箭頭方向",
     "formationKey": "humanities2",
     "formationLabel": "09-2人文 (主機板)",
@@ -16176,11 +19281,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "利用，喔~好~神~奇~ 環保磚(邊唸邊轉向主機板方向)",
+        "text": "利用，喔~好~神~奇~(邊唸邊轉向主機板方向) 環保磚",
         "type": "lyrics",
         "segments": [
           {
-            "text": "利用，喔~好~神~奇~ ",
+            "text": "利用，喔~",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -16191,7 +19296,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "環保磚",
+            "text": "好~神~奇~",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -16213,7 +19318,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": " ",
+            "text": " 環保磚 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -16377,7 +19482,7 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "愛心化清流 (白衣左後轉180 度)  清流繞全球(藍衣左後轉180 度) 啊 繞(收右腳閃) ~全~球~",
+        "text": "愛心化清流 (白衣左後轉180 度)  清流繞全球(藍衣左後轉180 度) 啊 繞(收右腳閃) ~全~球~(馬上",
         "type": "lyrics",
         "segments": [
           {
@@ -16458,12 +19563,23 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           },
           {
-            "text": "啊 繞",
-            "isRed": true,
+            "text": "啊 ",
+            "isRed": false,
             "isGreen": false,
             "isBlue": false,
             "isPurple": false,
             "isBoxed": true,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "繞",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
             "isBold": false,
             "isItalic": false,
             "color": "EE0000"
@@ -16480,7 +19596,46 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "~全~球~ ",
+            "text": "~全~球~",
+            "isRed": true,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "EE0000"
+          },
+          {
+            "text": "(馬上",
+            "isRed": false,
+            "isGreen": true,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "196B24"
+          }
+        ]
+      },
+      {
+        "text": "轉面甲45)",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "轉面甲45)",
+            "isRed": false,
+            "isGreen": true,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "196B24"
+          },
+          {
+            "text": " ",
             "isRed": true,
             "isGreen": false,
             "isBlue": false,
@@ -16555,7 +19710,7 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "喔! 哇! 有夠讚! (大聲喊、右後轉180 度向箭頭方向)",
+        "text": "喔! 哇! 有夠讚! (邊大聲喊邊轉向主機板方向)",
         "type": "lyrics",
         "segments": [
           {
@@ -16581,7 +19736,7 @@ const LYRICS_OS_DATA = [
             "color": "EE0000"
           },
           {
-            "text": " (大聲喊、右後轉180 度向箭頭方向)",
+            "text": " (邊大聲喊邊轉向主機板方向)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -16607,7 +19762,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_42",
+    "id": "sec_43",
     "title": "【慈悲科技上聯合國 曲目：無量義經說法品】 主機板箭頭方向",
     "formationKey": "humanities2",
     "formationLabel": "09-2人文 (主機板)",
@@ -17064,7 +20219,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_43",
+    "id": "sec_44",
     "title": "【貧中之富 樂生 曲目：超越天堂】甲舞台45 度  11/12、15(第1、4 天專屬曲目)",
     "formationKey": "fiveContinents2",
     "formationLabel": "10-2五大洲 (樂生/富中之富)",
@@ -17083,11 +20238,11 @@ const LYRICS_OS_DATA = [
     ],
     "lines": [
       {
-        "text": "這 是我們的家 ~樂生院拆遷的補償金我要全數捐出!做好事很有意義，人若多！就有",
+        "text": "這 是我們的家(瑟縮在黑暗的角落裡哭泣) 叔叔，你什麼時候可以帶我回家。只要你病好了，",
         "type": "lyrics",
         "segments": [
           {
-            "text": "這 是我們的家 ~樂生院拆遷的補償金我要全數捐出!做好事很有意義，人若多！就",
+            "text": "這 是我們的家",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -17098,12 +20253,23 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "有",
+            "text": "(瑟縮在黑暗的角落裡哭泣) ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "叔叔，你什麼時候可以帶我回家。只要你病好了，",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
             "isPurple": false,
-            "isBoxed": true,
+            "isBoxed": false,
             "isBold": false,
             "isItalic": false,
             "color": "000000"
@@ -17111,11 +20277,197 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "夠力(雙手伸直交疊)",
+        "text": "就可以回家 藥師如來的悲願 從來不缺席 1978 年，上人與十幾位委員來到樂生院關懷院友，",
         "type": "lyrics",
         "segments": [
           {
-            "text": "夠力",
+            "text": "就可以回家 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "藥師如來的悲願 從來不缺席",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": " 1978 年，上人與十幾位委員來到樂生院關懷院友，",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "你為何要離師父這麼遠吶? 這個地方是沒有人敢來的。上人!大家都很怕我們。有什",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "你為何要離師父這麼遠吶? 這個地方是沒有人敢來的。上人!大家都很怕我們。有什",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "麼好怕的，我能幫你們做什麼?我們急需要個癱瘓病房。啊呦 上人牽他們的手啊，他",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "麼好怕的，我能幫你們做什麼?我們急需要個癱瘓病房。啊呦 上人牽他們的手啊，他",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "們怎麼不怕說被他們傳染到啊。啊 上人都不怕，啊我們有什麼好怕的呢! 整修重症",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "們怎麼不怕說被他們傳染到啊。啊 上人都不怕，啊我們有什麼好怕的呢! 整修重症",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "癱瘓病房及生活補助，每個月一萬五千元。蛤 原來慈濟的錢是五元、十元點滴累積",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "癱瘓病房及生活補助，每個月一萬五千元。蛤 原來慈濟的錢是五元、十元點滴累積",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "起來的! 欸欸欸 各位啊 各位啊 慈濟捐款來之不易啊，現在要蓋醫院，我們來響",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "起來的! 欸欸欸 各位啊 各位啊 慈濟捐款來之不易啊，現在要蓋醫院，我們來響",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "應，我們受了病痛的折磨，這蓋醫院是好事，我願意! 賣心蓮 買心蓮，一朵一萬",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "應，我們受了病痛的折磨，這蓋醫院是好事，我願意! 賣心蓮 買心蓮，一朵一萬",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "元，我可以捐出我的手工錢，我啊捐出我的棺材本，我也可以，我們省下一百元買菜",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "元，我可以捐出我的手工錢，我啊捐出我的棺材本，我也可以，我們省下一百元買菜",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "錢成為慈濟會員，我們可以做手工自力耕生，來退回補助款啊!樂生院拆遷的補償金",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "錢成為慈濟會員，我們可以做手工自力耕生，來退回補助款啊!樂生院拆遷的補償金",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "我要全數捐出!做好事真有意義，人若多！就有夠力啦(雙手伸直交疊)",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "我要全數捐出!做好事真有意義，人若多！就",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "有夠力啦",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -17310,7 +20662,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_44",
+    "id": "sec_45",
     "title": "【第一功德】法師45 度",
     "formationKey": "fiveContinents2",
     "formationLabel": "10-2五大洲 (樂生/富中之富)",
@@ -17472,7 +20824,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_45",
+    "id": "sec_46",
     "title": "【富中之富  A 曲目：彌勒問】甲舞台45 度 11/13、15(第2、4 天專屬曲目)",
     "formationKey": "fiveContinents2",
     "formationLabel": "10-2五大洲 (樂生/富中之富)",
@@ -18543,7 +21895,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_46",
+    "id": "sec_47",
     "title": "【富中之富  B 曲目：彌勒問】甲舞台45 度 11/12、14(第1、3 天專屬曲目)",
     "formationKey": "fiveContinents2",
     "formationLabel": "10-2五大洲 (樂生/富中之富)",
@@ -19261,13 +22613,24 @@ const LYRICS_OS_DATA = [
             "isGreen": true,
             "isBlue": false,
             "isPurple": false,
-            "isBoxed": false,
+            "isBoxed": true,
             "isBold": false,
             "isItalic": false,
             "color": "196B24"
           },
           {
-            "text": "，孝順又有愛心，尤其是他見到 上人之後，",
+            "text": "，孝順又有愛心，尤",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": true,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "其是他見到 上人之後，",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -19598,7 +22961,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_47",
+    "id": "sec_48",
     "title": "【五毛錢的力量(馬來西亞阿婆)】",
     "formationKey": "fiveContinents2",
     "formationLabel": "10-2五大洲 (樂生/富中之富)",
@@ -19699,7 +23062,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_48",
+    "id": "sec_49",
     "title": "【開經書 曲目：無量義經功德品】",
     "formationKey": "fiveContinents1",
     "formationLabel": "10-1五大洲 (台灣/開經書)",
@@ -19928,7 +23291,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_49",
+    "id": "sec_50",
     "title": "【黑區變亮區 曲目1：第六功德】甲舞台45 度",
     "formationKey": "fiveContinents2",
     "formationLabel": "10-2五大洲 (樂生/富中之富)",
@@ -20024,11 +23387,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "歌曲：馬來西亞(回正面向甲舞台45 度)沙巴斗湖 許多年前 逃難的人來到在這裡",
+        "text": "馬來西亞(回正面向甲舞台45 度)沙巴斗湖 許多年前 逃難的人來到在這裡 ~~~~",
         "type": "lyrics",
         "segments": [
           {
-            "text": "歌曲：馬來西亞",
+            "text": "馬來西亞",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -20050,7 +23413,80 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "沙巴斗湖 許多年前 逃難的人來到在這裡 ",
+            "text": "沙巴斗湖 許多年前 逃難的人來到在這裡 ~~~~ ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          }
+        ]
+      },
+      {
+        "text": "曾經沒有國籍 曾經沒有學校 一盞燈 照亮一個孩子 一間學校 帶給許多未來 從黑區到亮區 改變的不只是環境 點亮孩",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "曾經沒有國籍 曾經沒有學校 一盞燈 照亮一個孩子 一間學校 帶給許多未來 從黑區到亮區 改變的不只是環境 點亮孩",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          }
+        ]
+      },
+      {
+        "text": "子心中的光",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "子心中的光 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          }
+        ]
+      },
+      {
+        "text": "普天之下 沒有我不愛的人 沒有我不信任的人 沒有我不原諒的人「優人版普天三無音樂」開燈轉法師45 度",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "普天之下 沒有我不愛的人 沒有我不信任的人 沒有我不原諒的人",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "「優人版普天三無音樂」開燈轉法師45 度",
+            "isRed": false,
+            "isGreen": true,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "196B24"
+          },
+          {
+            "text": " ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -20065,7 +23501,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_50",
+    "id": "sec_51",
     "title": "【曲目2：化城喻故事】 法師45 度",
     "formationKey": "fiveContinents2",
     "formationLabel": "10-2五大洲 (樂生/富中之富)",
@@ -20224,7 +23660,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_51",
+    "id": "sec_52",
     "title": "【約旦 曲目1：第三功德】 第一句觀眾45 度，其餘甲舞台45 度",
     "formationKey": "fiveContinents2",
     "formationLabel": "10-2五大洲 (樂生/富中之富)",
@@ -20310,7 +23746,7 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "~(回正面向甲舞台45 度)機槍掃射(白衣關燈)/中彈聲~ 人間險難請救救我的孩子寸步艱",
+        "text": "~(回正面向甲舞台45 度)機槍掃射(白衣關燈)/中彈聲~ 人間險難請救救我的孩子寸步艱 分段生死",
         "type": "lyrics",
         "segments": [
           {
@@ -20391,7 +23827,35 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "寸步艱",
+            "text": "寸步艱 分段生死 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          }
+        ]
+      },
+      {
+        "text": "他們全家都被炸死了，就只剩下這個小孩，就讓我們來領養吧 一念偏向迷三途 趕快搶 趕",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "他們全家都被炸死了，就只剩下這個小孩，就讓我們來領養吧 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "一念偏向迷三途 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -20402,7 +23866,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": " ",
+            "text": "趕快搶 趕",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -20413,27 +23877,52 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           }
         ]
-      }
-    ]
-  },
-  {
-    "id": "sec_52",
-    "title": "【曲目2：啟航】",
-    "formationKey": "fiveContinents2",
-    "formationLabel": "10-2五大洲 (樂生/富中之富)",
-    "sessionKeys": [
-      "1112"
-    ],
-    "sessionLabel": "11/12(第1天)專屬曲目",
-    "audio": "Music/功德品/1112/11_12 [功德品] 02B啟航(約旦).mp3",
-    "videos": [
+      },
       {
-        "title": "[功德品] 張起大愛的風帆‧約旦(法海)",
-        "url": "https://www.youtube.com/watch?v=MD8To93EY0I&list=PLbIvC-A2H2ko",
-        "videoId": "MD8To93EY0I"
-      }
-    ],
-    "lines": [
+        "text": "快搶 趕快搶，不要搶 不要搶啊 你們不要搶啊!給我 給我 給我 給我!我累了 中止",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "快搶 趕快搶，不要搶 不要搶啊 你們不要搶啊!給我 給我 給我 給我!我累了 中止",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "發放吧 從冥入冥增惡趣",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "發放吧 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "從冥入冥增惡趣  ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          }
+        ]
+      },
       {
         "text": "上人：(合十)濟暉啊!不能停歇喔!我願意用我的血來供養難民，我盡形壽、獻身命，哪",
         "type": "dialogue",
@@ -20533,7 +24022,27 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           }
         ]
-      },
+      }
+    ]
+  },
+  {
+    "id": "sec_53",
+    "title": "【曲目2：啟航】",
+    "formationKey": "fiveContinents2",
+    "formationLabel": "10-2五大洲 (樂生/富中之富)",
+    "sessionKeys": [
+      "1112"
+    ],
+    "sessionLabel": "11/12(第1天)專屬曲目",
+    "audio": "Music/功德品/1112/11_12 [功德品] 02B啟航(約旦).mp3",
+    "videos": [
+      {
+        "title": "[功德品] 張起大愛的風帆‧約旦(法海)",
+        "url": "https://www.youtube.com/watch?v=MD8To93EY0I&list=PLbIvC-A2H2ko",
+        "videoId": "MD8To93EY0I"
+      }
+    ],
+    "lines": [
       {
         "text": "前奏：白衣內轉向觀眾45 度、",
         "type": "lyrics",
@@ -20920,7 +24429,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_53",
+    "id": "sec_54",
     "title": "【台灣救災集錦 曲目：第五功德】甲舞台45 度",
     "formationKey": "fiveContinents1",
     "formationLabel": "10-1五大洲 (台灣/開經書)",
@@ -20994,11 +24503,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "「離」扛右肩轉向觀眾45 度)",
+        "text": "「離」扛右肩轉向觀眾45 度) 每一場(回正面向甲舞台45 度)災難來臨之前 都有一個平安的家",
         "type": "lyrics",
         "segments": [
           {
-            "text": "「離」扛右肩轉向觀眾45 度)",
+            "text": "「離」扛右肩轉向觀眾45 度) ",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -21009,7 +24518,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": " ",
+            "text": "每一場",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -21018,23 +24527,6 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "0000FF"
-          }
-        ]
-      },
-      {
-        "text": "歌曲：每一場(回正面向甲舞台45 度)災難來臨之前 都有一個平安的家",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "歌曲：每一場",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "404040"
           },
           {
             "text": "(回正面向甲舞台45 度)",
@@ -21048,18 +24540,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "災難來臨之前 都有一個平安的家",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "404040"
-          },
-          {
-            "text": " ",
+            "text": "災難來臨之前 都有一個平安的家 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -21074,7 +24555,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_54",
+    "id": "sec_55",
     "title": "【曲目：衣珠喻手扎】甲舞台45 度",
     "formationKey": "fiveContinents1",
     "formationLabel": "10-1五大洲 (台灣/開經書)",
@@ -21949,7 +25430,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_55",
+    "id": "sec_56",
     "title": "【土耳其 曲目：第三功德】第一句觀眾45 度，其餘甲舞台45 度",
     "formationKey": "fiveContinents2",
     "formationLabel": "10-2五大洲 (樂生/富中之富)",
@@ -22093,7 +25574,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_56",
+    "id": "sec_57",
     "title": "【莫三比克 曲目1：第八功德】依不同區塊角度不同(不開燈)",
     "formationKey": "fiveContinents2",
     "formationLabel": "10-2五大洲 (樂生/富中之富)",
@@ -22145,11 +25626,124 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "信心既發令勇猛",
+        "text": "os：2019 年，四級颶風伊代氣旋重創莫三比克災，每小時200 公里以上的風速在夜晚",
+        "type": "dialogue",
+        "segments": [
+          {
+            "text": "os：2019 年，四級颶風伊代氣旋重創莫三比克災，每小時200 公里以上的風速在夜晚",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "襲來，造成貝拉市90%全毁。我的親人! 我沒有家了! 沒了 一切都沒了! 岱琳你看，",
         "type": "lyrics",
         "segments": [
           {
-            "text": "信心既發令勇猛  ",
+            "text": "襲來，造成貝拉市90%全毁。我的親人! 我沒有家了! 沒了 一切都沒了! 岱琳你看，",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "那位婦人好像要生了，乖 你在大水裡面出生，以後就叫你 洪水 吧。迪諾 你看那",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "那位婦人好像要生了，乖 你在大水裡面出生，以後就叫你 洪水 吧。迪諾 你看那",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "邊，他們四十四個人每天只能分到一碗豆子。你看! 小女孩還不知道學校也沒了，我",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "邊，他們四十四個人每天只能分到一碗豆子。你看! 小女孩還不知道學校也沒了，我",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "要趕緊把書曬乾，相信我很快就可以回去學校上課。",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "要趕緊把書曬乾，相信我很快就可以回去學校上課。 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "上人：睜開眼睛看人間，閉下眼睛就看地獄，人間疾苦 需要菩薩。",
+        "type": "dialogue",
+        "segments": [
+          {
+            "text": "上人：睜開眼睛看人間，閉下眼睛就看地獄，人間疾苦 需要菩薩。 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "上人! 我們要將 上人的法和愛送到災區，上人的法和愛 送到災區 哪怕天涯 但問發心 不怕阻礙 五十",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "上人! 我們要將 上人的法和愛送到災區，",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "上人的法和愛 送到災區 哪怕天涯 但問發心 不怕阻礙 五十",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -22162,11 +25756,33 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "守之不動令堅定",
+        "text": "五國響應賑災，永住災區陪伴鄉親，上人還有交代 發放糧食保溫飽 提供建材起新家 交付種子種庄稼",
         "type": "lyrics",
         "segments": [
           {
-            "text": "守之不動令堅定 ",
+            "text": "五國響應賑災",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "，永住災區陪伴鄉親，上人還有交代 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "發放糧食保溫飽 提供建材起新家 交付種子種庄稼 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -22179,11 +25795,162 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "~伊代風災演完~",
+        "text": "感恩慈濟恩如山，上人指示要開闢大愛農場，以工代賑，讓人人吃得飽。我願意放棄總統",
         "type": "lyrics",
         "segments": [
           {
-            "text": "~伊代風災演完~",
+            "text": "感恩慈濟恩如山",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "，上人指示要開闢大愛農場，以工代賑，讓人人吃得飽。我願意放棄總統",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "幕僚的職位，再捐出200 公頃的土地，全心投入慈濟。千人扛水 科學農耕，大愛農場一",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "幕僚的職位，再捐出200 公頃的土地，全心投入慈濟。千人扛水 科學農耕，",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "大愛農場一",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          }
+        ]
+      },
+      {
+        "text": "條心 我們是慈濟的法親 科學農耕來指引 年年豐收千萬斤 年年豐收千萬斤，大豐收了!這是莫三比克歷史",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "條心 我們是慈濟的法親 科學農耕來指引 年年豐收千萬斤 年年豐收千萬斤",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "，大豐收了!這是莫三比克",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "歷史",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": true,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "上最重要的時刻(轉法師45 並開綠燈)，慈濟援建了3,182 戶大愛屋與23 所學校，保障了",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "上最重要的時刻",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": true,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "(轉法師45 並開綠燈)",
+            "isRed": false,
+            "isGreen": true,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "196B24"
+          },
+          {
+            "text": "，慈濟援建了3,182 戶大愛屋與23 所學校，保障了",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "人民的生命與未來!感謝慈濟無私的大愛，我一定要讓學生們知道因為有慈濟才有恩",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "人民的生命與未來!感謝慈濟無私的大愛，我一定要讓學生們知道因為有慈濟才有恩",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "佳小學，才有今天的一切 ~外語~。",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "佳小學，才有今天的一切 ~外語~。",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -22209,7 +25976,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_57",
+    "id": "sec_58",
     "title": "【曲目2：髻珠喻經文】法師45 度",
     "formationKey": "fiveContinents2",
     "formationLabel": "10-2五大洲 (樂生/富中之富)",
@@ -22482,7 +26249,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_58",
+    "id": "sec_59",
     "title": "【印尼 曲目1：第九功德】甲舞台45 度",
     "formationKey": "fiveContinents2",
     "formationLabel": "10-2五大洲 (樂生/富中之富)",
@@ -22575,7 +26342,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_59",
+    "id": "sec_60",
     "title": "【曲目2：化城喻手扎】法師45 度",
     "formationKey": "fiveContinents2",
     "formationLabel": "10-2五大洲 (樂生/富中之富)",
@@ -23068,7 +26835,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_60",
+    "id": "sec_61",
     "title": "【緬甸 米撲滿 曲目：第二功德】甲舞台45 度",
     "formationKey": "fiveContinents2",
     "formationLabel": "10-2五大洲 (樂生/富中之富)",
@@ -23090,7 +26857,7 @@ const LYRICS_OS_DATA = [
         "type": "os",
         "segments": [
           {
-            "text": "os 五毛錢的",
+            "text": "os 五毛錢的力量 來到",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -23101,7 +26868,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "力量 來到緬甸",
+            "text": "緬甸",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -23178,24 +26945,13 @@ const LYRICS_OS_DATA = [
             "isGreen": false,
             "isBlue": true,
             "isPurple": false,
-            "isBoxed": true,
+            "isBoxed": false,
             "isBold": false,
             "isItalic": false,
             "color": "0000FF"
           },
           {
-            "text": " 我",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": true,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          },
-          {
-            "text": "也可以",
+            "text": " 我也可以",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -23737,7 +27493,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_61",
+    "id": "sec_62",
     "title": "【八八風災 曲目：第七功德】法師45 度",
     "formationKey": "fiveContinents2",
     "formationLabel": "10-2五大洲 (樂生/富中之富)",
@@ -23852,7 +27608,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_62",
+    "id": "sec_63",
     "title": "【曲目：十在心路】甲舞台45 度",
     "formationKey": "fiveContinents2",
     "formationLabel": "10-2五大洲 (樂生/富中之富)",
@@ -23864,11 +27620,11 @@ const LYRICS_OS_DATA = [
     "videos": [],
     "lines": [
       {
-        "text": "~~狂風暴雨聲~~~  路基流掉 路基沒有了~~ 啊啊~~~~~",
+        "text": "~狂風暴雨聲~ 路基流掉 路基沒有了~~ 啊啊~~~~~",
         "type": "lyrics",
         "segments": [
           {
-            "text": "~~狂風暴雨聲~~~",
+            "text": "~狂風暴雨聲~",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -23879,7 +27635,7 @@ const LYRICS_OS_DATA = [
             "color": "77206D"
           },
           {
-            "text": "  路基流掉 路基沒有了~~ 啊啊~~~~~ ",
+            "text": " 路基流掉 路基沒有了~~ 啊啊~~~~~ ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -24621,7 +28377,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_63",
+    "id": "sec_64",
     "title": "【泰北 曲目：第四功德】乙舞台圓心",
     "formationKey": "fiveContinents2",
     "formationLabel": "10-2五大洲 (樂生/富中之富)",
@@ -24916,7 +28672,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_64",
+    "id": "sec_65",
     "title": "【辛巴威 曲目1：第八功德】依不同區塊角度不同(不開燈)",
     "formationKey": "fiveContinents2",
     "formationLabel": "10-2五大洲 (樂生/富中之富)",
@@ -25395,7 +29151,7 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "幾千人 水來了!水來了!我們有水了!我們總共挖了4,715 口井耶(改開黃燈)，提供給800",
+        "text": "幾千人 水來了!水來了!我們有水了!我們總共挖了5 千多口井耶(改開黃燈)，提供給800",
         "type": "lyrics",
         "segments": [
           {
@@ -25421,7 +29177,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "我們總共挖了4,715 口井耶",
+            "text": "我們總共挖了5 千多口井耶",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -25508,7 +29264,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_65",
+    "id": "sec_66",
     "title": "【曲目3：生生世世都在菩提中】陸地中心",
     "formationKey": "fiveContinents2",
     "formationLabel": "10-2五大洲 (樂生/富中之富)",
@@ -25552,7 +29308,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "就算眼",
+            "text": "就算眼睛",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -25563,7 +29319,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "睛失明",
+            "text": "失",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -25574,7 +29330,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "，腳步也不能",
+            "text": "明，腳步也",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -25585,7 +29341,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "停",
+            "text": "不能停",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -25620,7 +29376,7 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "菩薩的心) 但願愛心廣大無 我染疫了，恐怕過不了這一關(邊)",
+        "text": "菩薩的心) 但願~咳咳 咳咳 咳 咳~愛心廣大無 我染疫了 邊，恐怕過不了這一關(發心)",
         "type": "lyrics",
         "segments": [
           {
@@ -25635,7 +29391,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "心) ",
+            "text": "心)",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -25646,12 +29402,78 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "但願愛心廣大無 ",
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": true,
+            "isBold": false,
+            "isItalic": false,
+            "color": "A02B93"
+          },
+          {
+            "text": "但願",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
             "isPurple": false,
             "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "~",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "A02B93"
+          },
+          {
+            "text": "咳咳",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": true,
+            "isBold": false,
+            "isItalic": false,
+            "color": "A02B93"
+          },
+          {
+            "text": " 咳咳 咳 咳~",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "A02B93"
+          },
+          {
+            "text": "愛心廣大無",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": true,
             "isBold": false,
             "isItalic": false,
             "color": "0000FF"
@@ -25666,6 +29488,28 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "000000"
+          },
+          {
+            "text": " ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "邊",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
           },
           {
             "text": "，恐怕過不了",
@@ -25690,7 +29534,18 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(邊)",
+            "text": "(",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": true,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "發心)",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -25725,7 +29580,7 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "明天發放記得叫醒我(發心立願)  師兄(生生世世都在菩提中)",
+        "text": "明天發放記得叫醒我(立願)",
         "type": "lyrics",
         "segments": [
           {
@@ -25762,7 +29617,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(發心立",
+            "text": "(立願) ",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -25771,14 +29626,20 @@ const LYRICS_OS_DATA = [
             "isBold": false,
             "isItalic": false,
             "color": "0000FF"
-          },
+          }
+        ]
+      },
+      {
+        "text": "生生世世都在師兄(菩提中)",
+        "type": "lyrics",
+        "segments": [
           {
-            "text": "願)  ",
+            "text": " 生生世世都在",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
             "isPurple": false,
-            "isBoxed": true,
+            "isBoxed": false,
             "isBold": false,
             "isItalic": false,
             "color": "0000FF"
@@ -25795,12 +29656,12 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(生生世世都在菩提中)",
+            "text": "(菩提中)",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
             "isPurple": false,
-            "isBoxed": false,
+            "isBoxed": true,
             "isBold": false,
             "isItalic": false,
             "color": "0000FF"
@@ -25858,11 +29719,22 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "五生五世都要出生在這裡 (但願生生世世都在菩提中)",
+        "text": "但願生生世世都要出生在這裡 (世世都在菩提中)",
         "type": "lyrics",
         "segments": [
           {
-            "text": "五生五世都要出生在這裡",
+            "text": "但願",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "生生世世都要出生在這裡",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -25873,7 +29745,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": " (但願生生世世都在菩提中)",
+            "text": " (世世都在菩提中)",
             "isRed": false,
             "isGreen": false,
             "isBlue": true,
@@ -25897,7 +29769,7 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "成為一位有力量的辛巴威人(立願)，翻轉世代的貧窮 (發心)",
+        "text": "成為一位有力量的(立願)辛巴威人，翻轉世代的貧窮 (發心)",
         "type": "lyrics",
         "segments": [
           {
@@ -25912,7 +29784,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "一位有力量的辛巴威人",
+            "text": "一位有力量的",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -25934,7 +29806,7 @@ const LYRICS_OS_DATA = [
             "color": "0000FF"
           },
           {
-            "text": "，翻轉世代的貧窮",
+            "text": "辛巴威人，翻轉世代的貧窮",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -26060,7 +29932,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_66",
+    "id": "sec_67",
     "title": "【曲目2：髻珠喻經文】法師45 度",
     "formationKey": "fiveContinents2",
     "formationLabel": "10-2五大洲 (樂生/富中之富)",
@@ -26300,7 +30172,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_67",
+    "id": "sec_68",
     "title": "【921 曲目1：第九功德】乙舞台圓心",
     "formationKey": "fiveContinents1",
     "formationLabel": "10-1五大洲 (台灣/開經書)",
@@ -26585,11 +30457,50 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "2500 個~~~~我們要當成自己的家來打造，每戶都要有12 坪的空間，才能讓大家有",
+        "text": "2500 個。五百由旬險惡道 曠絕無人多毒獸 無數千萬眾涉險 欲過此道求珍寶 有一導師聰慧明 將導眾人度此難 眾",
         "type": "lyrics",
         "segments": [
           {
-            "text": "2500 個~~~~我們要當成自己的家來打造，每戶都要有12 坪的空間，才能讓大家有",
+            "text": "2500 個。",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "五百由旬險惡道 曠絕無人多毒獸 無數千萬眾涉險 欲過此道求珍寶 有一導師聰慧明 將導眾人度此難 眾",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          }
+        ]
+      },
+      {
+        "text": "等中路志懈退 疲極怖畏不能進 弟子啊 導師方便作是念 捨大珍寶甚可愍 於險道中化一城 語眾勿怖莫退還 上人",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "等中路志懈退 疲極怖畏不能進 弟子啊 導師方便作是念 捨大珍寶甚可愍 於險道中化一城 語眾勿怖莫退還 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "上人 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -26602,11 +30513,45 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "「家的歸屬感」並且住得舒服，有尊嚴! 寒冬將至，我要為你們(轉面向法師45 度)蓋一",
+        "text": "我們是不是依照國外的經驗，為災民興建八坪的組合屋?8 坪不夠，我們要當成自己的",
         "type": "lyrics",
         "segments": [
           {
-            "text": "「家的歸屬感」並且住得舒服，有尊嚴! 寒冬將至，",
+            "text": "我們是不是依照國外的經驗，為災民興建八坪的組合屋?8 坪不夠，我們要當成自己的",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "家來打造，每戶都要有12 坪的空間，才能讓大家有「家的歸屬感」並且住得舒服，",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "家來打造，每戶都要有12 坪的空間，才能讓大家有「家的歸屬感」並且住得舒服，",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "有尊嚴! 寒冬將至，我要為你們(轉面向法師45 度)蓋一個安身安心的家",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "有尊嚴! 寒冬將至，",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -26639,24 +30584,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "蓋一",
-            "isRed": false,
-            "isGreen": false,
-            "isBlue": false,
-            "isPurple": false,
-            "isBoxed": false,
-            "isBold": false,
-            "isItalic": false,
-            "color": "000000"
-          }
-        ]
-      },
-      {
-        "text": "個安身安心的家",
-        "type": "lyrics",
-        "segments": [
-          {
-            "text": "個安身安心的家",
+            "text": "蓋一個安身安心的家",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -26682,7 +30610,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_68",
+    "id": "sec_69",
     "title": "【曲目2：化城喻故事】法師45 度",
     "formationKey": "fiveContinents2",
     "formationLabel": "10-2五大洲 (樂生/富中之富)",
@@ -26965,7 +30893,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_69",
+    "id": "sec_70",
     "title": "【曲目3：化城喻故事】法師45 度",
     "formationKey": "fiveContinents2",
     "formationLabel": "10-2五大洲 (樂生/富中之富)",
@@ -27167,11 +31095,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "我不知道錢在哪裡，但我知道 愛 在哪裡，我相信 人人有愛~~~~~~~",
+        "text": "我不知道錢在哪裡，但我知道 愛 在哪裡，我相信 人人有愛。路基流掉，路基不見",
         "type": "lyrics",
         "segments": [
           {
-            "text": "我不知道錢在哪裡，但我知道 愛 在哪裡，我相信 人人有愛~~~~~~~ ",
+            "text": "我不知道錢在哪裡，但我知道 愛 在哪裡，我相信 人人有愛。路基流掉，路基不見",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -27184,11 +31112,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "我們援建學校，是用蓋15 層大樓的鋼筋量來建的。2018 年2 月初花蓮強震，44 所學",
+        "text": "了。莫拉克颱風，重創臺灣中南部及東部校園，造成1145 所中小學受損。師父啊 我",
         "type": "lyrics",
         "segments": [
           {
-            "text": "我們援建學校，是用蓋15 層大樓的鋼筋量來建的。2018 年2 月初花蓮強震，44 所學",
+            "text": "了。莫拉克颱風，重創臺灣中南部及東部校園，造成1145 所中小學受損。師父啊 我",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -27201,11 +31129,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "校損壞，到了2024 年0403 花蓮大地震，受災學校更攀升到了102 所。哇!還好有 減",
+        "text": "是很煩惱，我孫子的學校，那鐵筋都看得到，萬一要是地震，唉呦 這樣是要怎麼辦",
         "type": "lyrics",
         "segments": [
           {
-            "text": "校損壞，到了2024 年0403 花蓮大地震，受災學校更攀升到了102 所。哇!還好有 減",
+            "text": "是很煩惱，我孫子的學校，那鐵筋都看得到，萬一要是地震，唉呦 這樣是要怎麼辦",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -27218,11 +31146,33 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "災希望工程，你看你看，國風國中的師生在這裡，非常安心地上課，嘿嘿 你看，不",
+        "text": "才好。菩薩慈悲愍眾生 學校己經是危樓了，為了孩子的安全，我們去援建，這就叫做減",
         "type": "lyrics",
         "segments": [
           {
-            "text": "災希望工程，你看你看，國風國中的師生在這裡，非常安心地上課，嘿嘿 你看，不",
+            "text": "才好。",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          },
+          {
+            "text": "菩薩慈悲愍眾生 ",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": true,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "0000FF"
+          },
+          {
+            "text": "學校己經是危樓了，為了孩子的安全，我們去援建，這就叫做減",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -27235,11 +31185,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "只國風國中，這裡的避難收容中心，那也是減災希望工程蓋的耶，是化仁國中，對對",
+        "text": "災希望工程。我們援建學校，是用蓋15 層大樓的鋼筋量來建的。2018 年2 月初花蓮",
         "type": "lyrics",
         "segments": [
           {
-            "text": "只國風國中，這裡的避難收容中心，那也是減災希望工程蓋的耶，是化仁國中，對對",
+            "text": "災希望工程。我們援建學校，是用蓋15 層大樓的鋼筋量來建的。2018 年2 月初花蓮",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -27252,11 +31202,62 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "對，還有 還有啊，你看中原國小，這次也成為發放應急金(開綠燈、白衣拿燈、藍衣轉向觀",
+        "text": "強震，44 所學校損壞，到了2024 年0403 花蓮大地震，受災學校更攀升到了102 所。",
         "type": "lyrics",
         "segments": [
           {
-            "text": "對，還有 還有啊，你看中原國小，這次也成為發放",
+            "text": "強震，44 所學校損壞，到了2024 年0403 花蓮大地震，受災學校更攀升到了102 所。",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "哇!還好有 減災希望工程，你看你看，國風國中的師生在這裡，非常安心地上課，嘿",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "哇!還好有 減災希望工程，你看你看，國風國中的師生在這裡，非常安心地上課，嘿",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "嘿 你看，不只國風國中，這裡的避難收容中心，那也是減災希望工程蓋的耶，是化",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "嘿 你看，不只國風國中，這裡的避難收容中心，那也是減災希望工程蓋的耶，是化",
+            "isRed": false,
+            "isGreen": false,
+            "isBlue": false,
+            "isPurple": false,
+            "isBoxed": false,
+            "isBold": false,
+            "isItalic": false,
+            "color": "000000"
+          }
+        ]
+      },
+      {
+        "text": "仁國中，對對對，還有 還有啊，你看中原國小，這次也成為發放應急金(開綠燈、白衣拿",
+        "type": "lyrics",
+        "segments": [
+          {
+            "text": "仁國中，對對對，還有 還有啊，你看中原國小，這次也成為發放",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -27278,7 +31279,7 @@ const LYRICS_OS_DATA = [
             "color": "000000"
           },
           {
-            "text": "(開綠燈、白衣拿燈、藍衣轉向觀",
+            "text": "(開綠燈、白衣拿",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -27291,11 +31292,11 @@ const LYRICS_OS_DATA = [
         ]
       },
       {
-        "text": "眾、白衣背向陸地中心)的重要場地了",
+        "text": "燈、藍衣轉向觀眾、白衣背向陸地中心)的重要場地了。",
         "type": "lyrics",
         "segments": [
           {
-            "text": "眾、白衣背向陸地中心)",
+            "text": "燈、藍衣轉向觀眾、白衣背向陸地中心)",
             "isRed": false,
             "isGreen": true,
             "isBlue": false,
@@ -27306,7 +31307,7 @@ const LYRICS_OS_DATA = [
             "color": "196B24"
           },
           {
-            "text": "的重要場地了 ",
+            "text": "的重要場地了。 ",
             "isRed": false,
             "isGreen": false,
             "isBlue": false,
@@ -27321,7 +31322,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_70",
+    "id": "sec_71",
     "title": "【減災工程 曲目：許一個希望的未來】白衣背向陸地中心; 藍衣觀眾45 度",
     "formationKey": "fiveContinents2",
     "formationLabel": "10-2五大洲 (樂生/富中之富)",
@@ -27626,7 +31627,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_71",
+    "id": "sec_72",
     "title": "【報佛恩 曲目1：人間導師】白衣背向陸地中心; 藍衣法師45 度",
     "formationKey": "fiveContinents2",
     "formationLabel": "10-2五大洲 (樂生/富中之富)",
@@ -27804,7 +31805,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_72",
+    "id": "sec_73",
     "title": "【曲目2：第十功德】",
     "formationKey": "fiveContinents2",
     "formationLabel": "10-2五大洲 (樂生/富中之富)",
@@ -27970,7 +31971,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_73",
+    "id": "sec_74",
     "title": "【六瑞相 曲目：六瑞相】面甲舞台腳夾線",
     "formationKey": "sixRuiXiang",
     "formationLabel": "12-1六瑞相 (發願/行星/祈禱)",
@@ -28225,7 +32226,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_74",
+    "id": "sec_75",
     "title": "【發心立願 曲目：行願半世紀】面法師腳夾線",
     "formationKey": "sixRuiXiang",
     "formationLabel": "12-1六瑞相 (發願/行星/祈禱)",
@@ -28762,7 +32763,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_75",
+    "id": "sec_76",
     "title": "【慈濟小行星 曲目：慈濟小行星】",
     "formationKey": "sixRuiXiang",
     "formationLabel": "12-1六瑞相 (發願/行星/祈禱)",
@@ -29064,7 +33065,7 @@ const LYRICS_OS_DATA = [
     ]
   },
   {
-    "id": "sec_76",
+    "id": "sec_77",
     "title": "【祈禱 曲目：祈禱】面乙舞台圓心",
     "formationKey": "sixRuiXiang",
     "formationLabel": "12-1六瑞相 (發願/行星/祈禱)",
